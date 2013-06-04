@@ -57,7 +57,7 @@ var Lens = Backbone.View.extend({
     function getResourceType(t) {
       if (t === 'publications') t = 'publication';
       if (t === 'figures') t = 'figure';
-      return t || 'toc';
+      return t || 'toc';
     }
 
     var resourceType = getResourceType(t);
