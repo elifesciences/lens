@@ -350,6 +350,91 @@
       ]
     },
 
+    "annotation:15": {
+      "type": "link",
+      "id": "annotation:15",
+      "source": "text:8",
+      "url": "http://colorcrate.com/",
+      "key": "content",
+      "pos": [
+        204,
+        12
+      ]
+    },
+
+    "annotation:16": {
+      "type": "link",
+      "id": "annotation:16",
+      "source": "text:8",
+      "url": "http://ripe.com",
+      "key": "content",
+      "pos": [
+        222,
+        4
+      ]
+    },
+
+    "annotation:17": {
+      "type": "link",
+      "id": "annotation:17",
+      "source": "text:8",
+      "url": "http://www.berkeley.edu/index.html",
+      "key": "content",
+      "pos": [
+        47,
+        11
+      ]
+    },
+
+    "annotation:18": {
+      "type": "link",
+      "id": "annotation:18",
+      "source": "text:8",
+      "url": "https://github.com/ivangrub",
+      "key": "content",
+      "pos": [
+        76,
+        13
+      ]
+    },
+    
+    "annotation:19": {
+      "type": "link",
+      "id": "annotation:19",
+      "source": "text:8",
+      "url": "http://www.elifesciences.org/about/elife-community/executive-staff/ian-mulvany-head-of-technology/",
+      "key": "content",
+      "pos": [
+        313,
+        11
+      ]
+    },
+
+    "annotation:20": {
+      "type": "link",
+      "id": "annotation:20",
+      "source": "text:8",
+      "url": "http://www.grahamnott.com/",
+      "key": "content",
+      "pos": [
+        264,
+        11
+      ]
+    },
+
+    "annotation:21": {
+      "type": "link",
+      "id": "annotation:21",
+      "source": "text:5",
+      "url": "http://github.com/elifesciences/lens",
+      "key": "content",
+      "pos": [
+        10,
+        11
+      ]
+    },
+    
+
     "annotation:100": {
       "type": "publication_reference",
       "id": "annotation:100",
