@@ -13,7 +13,7 @@
       "type": "heading"
     },
     "text:2": {
-      "content": "eLife Lens provides a novel way of looking at content on the web. It is designed to make life easier for researchers, reviewers, authors and readers. For example, have you tried to look at a figure in an online article, while at the same time trying to see what the author says about the figure, jumping all around the article, losing track of what you were looking for in the first place? The reason for this is that most online research articles are published in a fixed digital version of the original paper. With eLife Lens, we take full advantage of the dynamic nature of HTML combined with javascript. Watch the introduction video.",
+      "content": "eLife Lens provides a novel way of looking at content on the web. It is designed to make life easier for researchers, reviewers, authors and readers. For example, have you tried to look at a figure in an online article, while at the same time trying to see what the author says about the figure, jumping all around the article, losing track of what you were looking for in the first place? The reason for this is that most online research articles are published in a fixed digital version of the original paper. With eLife Lens, we take full advantage of the dynamic nature of HTML combined with javascript (Video 1).",
       "id": "text:2",
       "type": "text"
     },
@@ -31,7 +31,7 @@
     "text:intro2": {
       "id": "text:intro2",
       "type": "text",
-      "content": "The web browser provides a unified platform for viewing content. Instead of binding the content to a presentation focused format, we can view the content as data. Thereby making the content readily accessible by utilizing a defined data structure. This data structure can then be processed in similar ways to databases -- allowing users to query the content, create new content and build new tools."
+      "content": "The web browser provides a unified platform for viewing content. Instead of binding the content to a presentation focused format, we can view the content as data (Aufreiter 2013). Thereby making the content readily accessible by utilizing a defined data structure. This data structure can then be processed in similar ways to databases -- allowing users to query the content, create new content and build new tools."
     },
     "text:intro3": {
       "id": "text:intro3",
@@ -45,7 +45,7 @@
       "type": "heading"
     },
     "text:pres1": {
-      "content": "When designing Lens, we worked to provide a flexible experience that supports a variety of use cases. On the far left the document map identifies the readers position in the context of the whole article. It also outlines each paragraph in the article. The left panel includes all of the textual content of the article. The right panel includes the resources. The resources are defined as the table of contents, figures, tables, videos, supplemental data, references and information about the article. By splitting apart the content into individual panels, we enable the reader to focus on multiple content bits at the same time.",
+      "content": "When designing Lens, we worked to provide a flexible experience that supports a variety of use cases. On the far left the document map (Figure 2A) identifies the readers position in the context of the whole article. It also outlines each paragraph in the article. The left panel includes all of the textual content of the article (Figure 2B). The right panel includes the resources (Figure 2C). The resources are defined as the table of contents, figures, tables, videos, supplemental data, references and information about the article. By splitting apart the content into individual panels, we enable the reader to focus on multiple content bits at the same time.",
       "id": "text:pres1",
       "type": "text"
     },
@@ -55,7 +55,7 @@
       "type": "text"
     },
     "text:pres3": {
-      "content": "Two viewing modes that are implicitly supported are text-centric and resource-centric viewing. Text-centric viewing creates a microscale reading experience by limiting the viewable content to a singular content node. When a figure or publication label is selected within a text node, only the figures or publications that are referenced within that paragraph will be displayed in their appropriate resource sections. Resource-centric viewing on the other hand provides a global overview of the paper. Selection of any figure or publication will color the paragraphs in the document map that include a reference to the selected resource.",
+      "content": "Two viewing modes that are implicitly supported are text-centric and resource-centric viewing. Text-centric viewing creates a microscale reading experience by limiting the viewable content to a singular content node. When a figure or publication label is selected within a text node, only the figures or publications that are referenced within that paragraph will be displayed in their appropriate resource sections (Figure 3, Figure 4). Selection of any figure or publication will color the paragraphs in the document map (Figure 2A) that include a reference to the selected resource.",
       "id": "text:pres3",
       "type": "text"
     },
@@ -93,19 +93,19 @@
       "type": "heading"
     },
     "text:3": {
-      "content": "We are convinced that there is a need to break with traditional presentation-centric formats, by considering content as data and making it accessible in new ways. Therefore with the release of Lens, we’d like to promote a data-centric representation of scientific content, optimized for being consumed by web-clients.",
+      "content": "We are convinced that there is a need to break with traditional presentation-centric formats, by considering content as data and making it accessible in new ways (Aufreiter 2013). Therefore with the release of Lens, we’d like to promote a data-centric representation of scientific content, optimized for being consumed by web-clients.",
       "id": "text:3",
       "type": "text"
     },
     "text:12": {
-      "content": "Lens can display any document that conforms to a simple JSON representation. JSON representations are flexible and can be adapted to any type of content. The initial JSON object provides the framework for organizing all of the content in an article. The id and properties keys provide global access if many JSON articles are to be queried for an initial round of filtering. The nodes key contains all of the content and the view key defines indices about what order the nodes will be displayed. The nodes are then linked together via annotations. The annotations are defined by either an explicit reference to a target content node that is contained in its source content code or font styling.",
+      "content": "Lens can display any document that conforms to a simple JSON representation. JSON representations are flexible and can be adapted to any type of content. The initial JSON object provides the framework for organizing all of the content in an article. The id and properties keys provide global access if many JSON articles are to be queried for an initial round of filtering. The nodes key contains all of the content and the view key defines indices about what order the nodes will be displayed. The nodes are then linked together via annotations. The annotations are defined by either an explicit reference to a target content node that is contained in its source content code or font styling. Figure 1 outlines a simple example of how to use the JSON representation to compose an article for Lens. ",
       "id": "text:12",
       "type": "text"
     },
     "text:13": {
       "id": "text:13",
       "type": "text",
-      "content": "The creation of an article's JSON depends on a converter script that runs through the XML tags using the sax-js node.js module. The XML tags define various types of content nodes. Table 1 outlines the conversions. Each node contains type, id and content keys that the viewer then uses to define the rendering. All of the keys have their own definitions with regards to how Lens renders them. The translation from the XML to a structured JSON creates a consistent presentation scheme for the content."
+      "content": "The creation of an article's JSON depends on a converter script that runs through the XML tags using the sax-js node.js module. The XML tags define various types of content nodes. Each node contains type, id and content keys that the viewer then uses to define the rendering. All of the keys have their own definitions with regards to how Lens renders them. The translation from the XML to a structured JSON creates a consistent presentation scheme for the content."
     },
     "heading:9": {
       "level": 1,
@@ -142,17 +142,19 @@
       "type": "video",
       "id": "video:video1",
       "label": "Video 1.",
-      "url_ogv": "http://static.movie-usa.glencoesoftware.com/ogv/10.7554/elife00378v001.ogv",
+      "url_ogv": "http://ma.zive.at/lens-intro.ogv",
       "caption": "caption:301",
-      "url": "http://static.movie-usa.glencoesoftware.com/mp4/10.7554/elife00378v001.mp4",
-      "poster": "http://static.movie-usa.glencoesoftware.com/jpg/10.7554/elife00378v001.jpg"
+      "url": "http://ma.zive.at/lens-intro.mp4",
+      "poster": ""
     },
     "caption:301": {
       "type": "caption",
       "id": "caption:301",
-      "content": "An introduction video, recorded by Ian Mulvany showing the concepts behind Lens.",
+      "title": "Introducing eLife Lens",
+      "content": "Watch Ian Mulvany from eLife demonstrating Lens.",
       "source": "video:video1"
     },
+
     "annotation:1": {
       "type": "figure_reference",
       "id": "annotation:1",
@@ -161,103 +163,52 @@
       "key": "content",
       "content": "Video 1",
       "pos": [
-        618,
-        18
+        608,
+        7
       ]
     },
-    "image:math": {
+
+    "image:docformat": {
       "type": "image",
-      "id": "image:math",
-      "label": "Figure 1.",
+      "id": "image:docformat",
+      "label": "Figure 1",
       "object_id": "F1",
       "caption": "caption:105",
-      "graphic_id": "elife00378f001",
-      "url": "http://ma.zive.at/lens-screenshots/lens-math.png",
-      "large_url": "http://ma.zive.at/lens-screenshots/lens-math.png"
+      "url": "https://lh3.googleusercontent.com/n9HUIHSrDtuuBmWsHrR6jpqVlSP_PWDRwV4_YYAdabzQQPLuhWGD2o98ci4fXcpLP5YuUM95JJNh94-j1xX7KN4IXm6CppJOj1sZZFXvVcT91DDss6NENnlK",
+      "large_url": "https://lh3.googleusercontent.com/n9HUIHSrDtuuBmWsHrR6jpqVlSP_PWDRwV4_YYAdabzQQPLuhWGD2o98ci4fXcpLP5YuUM95JJNh94-j1xX7KN4IXm6CppJOj1sZZFXvVcT91DDss6NENnlK"
     },
+
     "caption:105": {
       "type": "caption",
       "id": "caption:105",
-      "title": "Beautiful Math typesetting using MathJax.",
-      "content": "Math formulas are supported.",
-      "source": "image:math"
-    },
-    "annotation:2": {
-      "type": "figure_reference",
-      "id": "annotation:2",
-      "source": "text:2",
-      "target": "image:math",
-      "key": "content",
-      "content": "Figure 1",
-      "pos": [
-        20,
-        7
-      ]
+      "title": "The Lens Document Format",
+      "content": "An example of how to begin creating content for Lens. The backbone organizes all of the data in a readily accessible manner. The text node defines the paragraph that may reference figures or publications. The figure node defines the image that will be displayed while the annotation links the figure to the associated text node that references the figure.",
+      "source": "image:docformat"
     },
 
-    "image:doclist": {
+    "image:lens-workspace": {
       "type": "image",
-      "id": "image:doclist",
-      "label": "Figure 2.",
-      "object_id": "F1",
+      "id": "image:lens-workspace",
+      "label": "Figure 2",
+      "object_id": "F2",
       "caption": "caption:106",
-      "graphic_id": "elife00378f001",
-      "url": "http://ma.zive.at/lens-screenshots/lens-list-documents.png",
-      "large_url": "http://ma.zive.at/lens-screenshots/lens-list-documents.png"
+      "url": "https://lh4.googleusercontent.com/XiY7ZLqjj7bXT5NGXvpfx9UkSTjxxiU87jpjRWccmXtbD4cp3keRl5Ur7IQ_KHtwOuPJphHAIzRY4s77pBWfpxxuGpxAD6-0_Kf1g6wJhRfwfskkZNZv0ESm",
+      "large_url": "https://lh4.googleusercontent.com/XiY7ZLqjj7bXT5NGXvpfx9UkSTjxxiU87jpjRWccmXtbD4cp3keRl5Ur7IQ_KHtwOuPJphHAIzRY4s77pBWfpxxuGpxAD6-0_Kf1g6wJhRfwfskkZNZv0ESm"
     },
+
     "caption:106": {
       "type": "caption",
       "id": "caption:106",
-      "title": "Easily find relevant documents using faceted browsing.",
-      "content": "Easily find relevant documents using faceted browsing.",
-      "source": "image:doclist"
-    },
-    "annotation:3": {
-      "type": "figure_reference",
-      "id": "annotation:3",
-      "source": "text:2",
-      "target": "image:doclist",
-      "key": "content",
-      "pos": [
-        30,
-        7
-      ]
-    },
-
-    "image:coverpage": {
-      "type": "image",
-      "id": "image:coverpage",
-      "label": "Lens Article",
-      "object_id": "F3",
-      "caption": "caption:107",
-      "graphic_id": "elife00378f001",
-      "url": "http://ma.zive.at/lens-screenshots/lens-cover-page.png",
-      "large_url": "http://ma.zive.at/lens-screenshots/lens-cover-page.png"
-    },
-    "caption:107": {
-      "type": "caption",
-      "id": "caption:107",
-      "title": "A research article viewed in Lens.",
-      "content": "More text here",
-      "source": "image:coverpage"
-    },
-    "annotation:4": {
-      "type": "figure_reference",
-      "id": "annotation:4",
-      "source": "text:2",
-      "target": "image:coverpage",
-      "key": "content",
-      "pos": [
-        40,
-        7
-      ]
+      "title": "The workspace of Lens",
+      "content": "A. The document map. Each gray bar identifies an individual paragraph within the article. B. The article’s text content. C. All of the associated resources. This includes the Table of Contents, figures, references and additional information, including meta-data, about the article.",
+      "source": "image:lens-workspace"
     },
 
     "image:publications": {
       "type": "image",
       "id": "image:publications",
-      "label": "Lens Publications",
-      "object_id": "F3",
+      "label": "Figure 4",
+      "object_id": "F4",
       "caption": "caption:108",
       "graphic_id": "elife00378f001",
       "url": "http://ma.zive.at/lens-screenshots/lens-publications.png",
@@ -267,86 +218,173 @@
     "caption:108": {
       "type": "caption",
       "id": "caption:108",
-      "title": "Access related publications through Lens",
-      "content": "More text here",
+      "title": "Focus on relevant publications",
+      "content": "Clicking on a reference label reveals details about the referenced publication. The blue highlighted link symbol is a quick link to view all of the publications that are referenced within the selected paragraph.",
       "source": "image:coverpage"
     },
 
-    "annotation:5": {
-      "type": "figure_reference",
-      "id": "annotation:5",
-      "source": "text:2",
-      "target": "image:publications",
-      "key": "content",
-      "pos": [
-        50,
-        7
-      ]
-    },
-
-    "image:docmap": {
+    "image:focusmode": {
       "type": "image",
-      "id": "image:docmap",
-      "label": "Document Map",
+      "id": "image:focusmode",
+      "label": "Figure 3",
       "object_id": "F3",
-      "caption": "caption:109",
+      "caption": "caption:110",
       "graphic_id": "elife00378f001",
-      "url": "http://ma.zive.at/lens-screenshots/lens-document-map.png",
-      "large_url": "http://ma.zive.at/lens-screenshots/lens-document-map.png"
+      "url": "https://lh5.googleusercontent.com/DwESR7rejiMtSfxM9U8F2SZjw0Ik552yS6OJBdbi0ZSuStzeDUlKu6ToXToo3a8WPwgMI341Zf3zGtDJKuuFq7gnbyedmFw9UncR5Y7YjPG5WqSVd7Oa6DgF",
+      "large_url": "https://lh5.googleusercontent.com/DwESR7rejiMtSfxM9U8F2SZjw0Ik552yS6OJBdbi0ZSuStzeDUlKu6ToXToo3a8WPwgMI341Zf3zGtDJKuuFq7gnbyedmFw9UncR5Y7YjPG5WqSVd7Oa6DgF"
     },
 
-    "caption:109": {
+    "caption:110": {
       "type": "caption",
-      "id": "caption:109",
-      "title": "Document Outline",
-      "content": "More text here",
-      "source": "image:docmap"
+      "id": "caption:110",
+      "title": "Focus on relevant figures",
+      "content": "Selecting a figure or reference label within the textual content, displays only the pertinent content in the resources panel. The green highlighted camera is a quick link to view all of the figures that are referenced within the selected paragraph. The black arrow to the left of the document map is is a visual cue for the reader to quickly return to the paragraph they were on if they navigate away from this to another paragraph that has Figure 5 referenced. The reader can select the figure or reference label in the resources panel (Figure 2C) to focus on the paragraphs where a specific figure is mentioned. The document map (Figure 2A) will highlight the paragraphs that reference the selected resource.",
+      "source": "image:focusmode"
     },
     
     "annotation:6": {
       "type": "figure_reference",
       "id": "annotation:6",
       "source": "text:pres1",
-      "target": "image:docmap",
+      "target": "image:lens-workspace",
       "key": "content",
       "pos": [
-        122,
-        12
+        136,
+        9
       ]
     },
 
-
-    "image:focusmode": {
-      "type": "image",
-      "id": "image:focusmode",
-      "label": "Document Map",
-      "object_id": "F3",
-      "caption": "caption:110",
-      "graphic_id": "elife00378f001",
-      "url": "http://ma.zive.at/lens-screenshots/lens-focus-mode.png",
-      "large_url": "http://ma.zive.at/lens-screenshots/lens-focus-mode.png"
-    },
-
-    "caption:110": {
-      "type": "caption",
-      "id": "caption:110",
-      "title": "Document Map",
-      "content": "More text here",
-      "source": "image:focusmode"
-    },
-    
     "annotation:7": {
       "type": "figure_reference",
       "id": "annotation:7",
       "source": "text:pres1",
+      "target": "image:lens-workspace",
+      "key": "content",
+      "pos": [
+        383,
+        9
+      ]
+    },
+
+    "annotation:8": {
+      "type": "figure_reference",
+      "id": "annotation:8",
+      "source": "text:pres1",
+      "target": "image:lens-workspace",
+      "key": "content",
+      "pos": [
+        331,
+        9
+      ]
+    },
+
+    "annotation:9": {
+      "type": "figure_reference",
+      "id": "annotation:9",
+      "source": "text:12",
+      "target": "image:docformat",
+      "key": "content",
+      "pos": [
+        694,
+        8
+      ]
+    },
+
+    "annotation:10": {
+      "type": "figure_reference",
+      "id": "annotation:10",
+      "source": "text:pres3",
       "target": "image:focusmode",
       "key": "content",
       "pos": [
-        348,
+        417,
+        8
+      ]
+    },
+
+    "annotation:11": {
+      "type": "figure_reference",
+      "id": "annotation:11",
+      "source": "text:pres3",
+      "target": "image:publications",
+      "key": "content",
+      "pos": [
+        427,
+        8
+      ]
+    },
+
+    "annotation:12": {
+      "type": "figure_reference",
+      "id": "annotation:12",
+      "source": "text:pres3",
+      "target": "image:lens-workspace",
+      "key": "content",
+      "pos": [
+        524,
         9
       ]
-    }
+    },
 
+    "annotation:13": {
+      "type": "link",
+      "id": "annotation:13",
+      "source": "text:8",
+      "url": "http://twitter.com/_mql",
+      "key": "content",
+      "pos": [
+        110,
+        18
+      ]
+    },
+
+    "annotation:14": {
+      "type": "link",
+      "id": "annotation:14",
+      "source": "text:8",
+      "url": "http://substance.io",
+      "key": "content",
+      "pos": [
+        134,
+        9
+      ]
+    },
+
+    "annotation:100": {
+      "type": "publication_reference",
+      "id": "annotation:100",
+      "source": "text:3",
+      "target": "article:substance",
+      "key": "content",
+      "pos": [
+        163,
+        14
+      ]
+    },
+
+    "article:substance": {
+      "type": "website",
+      "id": "article:substance",
+      "authors": [
+        {
+          "given-names": "Michael",
+          "last-name": "Aufreiter"
+        }
+      ],
+      "title": "Content as data - Towards open digital publishing with Substance",
+      "year": "2013",
+      "comment": "Open Knowledge Foundation Blog",
+      "citation_url": [
+        "citation:592"
+      ]
+    },
+
+    "citation:592": {
+      "type": "citation",
+      "id": "citation:592",
+      "label": "Read article",
+      "url": "http://blog.okfn.org/2013/01/15/content-as-data-towards-open-digital-publishing-with-substance/"
+    }
 
   },
   "views": {
@@ -376,8 +414,8 @@
       "heading:7",
       "text:8"
     ],
-    "figures": ["video:video1", "image:math", "image:doclist", "image:coverpage", "image:publications", "image:docmap", "image:focusmode"],
-    "publications": [],
+    "figures": ["video:video1", "image:docformat", "image:lens-workspace", "image:focusmode", "image:publications"],
+    "publications": ["article:substance"],
     "info": []
   }
 }
