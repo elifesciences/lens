@@ -344,7 +344,7 @@ a.home:hover {
   height: 40px;
   position: absolute;
   right: 20px;
-  left: 0px;
+  left: 5px;
   top: 0px;
   z-index: 3000;
 }
