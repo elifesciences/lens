@@ -1,7 +1,11 @@
 {
   "properties": {
     "title": "eLife Lens is a novel way of seeing content",
-    "authors": ["Ivan Grubisic", "Michael Aufreiter", "Ian Mulvany"]
+    "authors": [
+      "person:author-grubisic",
+      "person:author-aufreiter",
+      "person:author-mulvany"
+    ]
   },
   "meta": {},
   "id": "a_new_doc",
@@ -482,6 +486,94 @@
       ]
     },
 
+    "person:author-aufreiter": {
+      "type": "person",
+      "id": "person:author-aufreiter",
+      "given-names": "Michael",
+      "last-name": "Aufreiter",
+      "role": "author",
+      "affiliations": [
+        {
+          "label": "6",
+          "department": "",
+          "institution": "institution:substance"
+        }
+      ],
+      "contribution": "Design and implementation, revising the article",
+      "funding": []
+    },
+
+    "person:author-grubisic": {
+      "type": "person",
+      "id": "person:author-grubisic",
+      "given-names": "Ivan",
+      "last-name": "Grubisic",
+      "role": "author",
+      "affiliations": [
+        {
+          "label": "2",
+          "department": "",
+          "institution": "institution:aff2"
+        },
+        {
+          "label": "6",
+          "department": "UC Berkeley-UCSF Graduate Program in Bioengineering, Department of Molecular and Cell Biology, California Institute of Quantitative Biosciences",
+          "institution": "institution:aff6"
+        }
+      ],
+      "contribution": "Drafting and revising the article",
+      "funding": []
+    },
+
+    "person:author-mulvany": {
+      "type": "person",
+      "id": "person:author-mulvany",
+      "given-names": "Ian",
+      "last-name": "Mulvany",
+      "role": "author",
+      "affiliations": [
+        {
+          "label": "6",
+          "department": "",
+          "institution": "institution:elife"
+        }
+      ],
+      "contribution": "Project coordination",
+      "funding": []
+    },
+
+    "institution:aff6": {
+      "type": "institution",
+      "id": "institution:aff6",
+      "name": "University of California, Berkeley",
+      "city": "Berkeley",
+      "country": "United States"
+    },
+
+    "institution:aff2": {
+      "type": "institution",
+      "id": "institution:aff2",
+      "name": "Li Ka Shing Center For Biomedical and Health Sciences, CIRM Center of Excellence, University of California, Berkeley",
+      "city": "Berkeley",
+      "country": "United States"
+    },
+
+    "institution:elife": {
+      "type": "institution",
+      "id": "institution:elife",
+      "name": "eLife Publications",
+      "city": "Cambridge",
+      "country": "UK"
+    },
+
+    "institution:substance": {
+      "type": "institution",
+      "id": "institution:substance",
+      "name": "Substance",
+      "city": "Linz",
+      "country": "Austria"
+    },
+
     "article:substance": {
       "type": "website",
       "id": "article:substance",
@@ -505,7 +597,6 @@
       "label": "Read article",
       "url": "http://blog.okfn.org/2013/01/15/content-as-data-towards-open-digital-publishing-with-substance/"
     }
-
   },
   "views": {
     "content": [
@@ -536,6 +627,10 @@
     ],
     "figures": ["video:video1", "image:docformat", "image:lens-workspace", "image:focusmode", "image:publications"],
     "publications": ["article:substance"],
-    "info": []
+    "info": [
+      "person:author-grubisic",
+      "person:author-aufreiter",
+      "person:author-mulvany"
+    ]
   }
 }
