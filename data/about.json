@@ -1,0 +1,383 @@
+{
+  "properties": {
+    "title": "eLife Lens is a novel way of seeing content",
+    "authors": ["Ivan Grubisic", "Michael Aufreiter", "Ian Mulvany"]
+  },
+  "meta": {},
+  "id": "a_new_doc",
+  "nodes": {
+    "heading:1": {
+      "level": 1,
+      "content": "Abstract",
+      "id": "heading:1",
+      "type": "heading"
+    },
+    "text:2": {
+      "content": "eLife Lens provides a novel way of looking at content on the web. It is designed to make life easier for researchers, reviewers, authors and readers. For example, have you tried to look at a figure in an online article, while at the same time trying to see what the author says about the figure, jumping all around the article, losing track of what you were looking for in the first place? The reason for this is that most online research articles are published in a fixed digital version of the original paper. With eLife Lens, we take full advantage of the dynamic nature of HTML combined with javascript. Watch the introduction video.",
+      "id": "text:2",
+      "type": "text"
+    },
+    "heading:2": {
+      "level": 1,
+      "content": "Motivation",
+      "id": "heading:2",
+      "type": "heading"
+    },
+    "text:intro1": {
+      "id": "text:intro1",
+      "type": "text",
+      "content": "Working with digital documents has been difficult for the most part, because they come in presentation-centric formats, optimized for print and with the intent to have the same display across multiple devices. Ultimately, the display of these documents is preserved to allow the user to print the exact same document across any device. Content today, however, is no longer being printed out readily; instead, it is read on a variety of platforms spanning computers and mobile devices. The limitations presented by different screen sizes, the lack of tactile feedback that comes from flipping between pages and inability to purely focus on the author’s arguments are problems present in all disciplines."
+    },
+    "text:intro2": {
+      "id": "text:intro2",
+      "type": "text",
+      "content": "The web browser provides a unified platform for viewing content. Instead of binding the content to a presentation focused format, we can view the content as data. Thereby making the content readily accessible by utilizing a defined data structure. This data structure can then be processed in similar ways to databases -- allowing users to query the content, create new content and build new tools."
+    },
+    "text:intro3": {
+      "id": "text:intro3",
+      "type": "text",
+      "content": "We have decided to focus our initial efforts on applying the data-centric representation of content to the scientific literature. The Open Access scientific community has standardized much of their content into a formally annotated XML format, making it easier to gain access to a large library of articles. The content of scientific articles is a combination of text, figures, tables, videos and references which are used to form the author’s argument. Scientific arguments are also rarely linear in nature, making it difficult to follow an argument when all of the content is not readily viewable on a digital device. The large amount of available data and non-linear format of the articles, provided us with the ideal start to test the flexibility of our data-centric approach. With the release of Lens, we would like to not only promote the data-centric representation of scientific content, but that of any content, which would be optimized for viewing on web clients."
+    },
+    "heading:3": {
+      "level": 1,
+      "content": "The Presentation of Lens",
+      "id": "heading:3",
+      "type": "heading"
+    },
+    "text:pres1": {
+      "content": "When designing Lens, we worked to provide a flexible experience that supports a variety of use cases. On the far left the document map identifies the readers position in the context of the whole article. It also outlines each paragraph in the article. The left panel includes all of the textual content of the article. The right panel includes the resources. The resources are defined as the table of contents, figures, tables, videos, supplemental data, references and information about the article. By splitting apart the content into individual panels, we enable the reader to focus on multiple content bits at the same time.",
+      "id": "text:pres1",
+      "type": "text"
+    },
+    "text:pres2": {
+      "content": "When reading scientific articles, it is rare for a reader to read straight through the text and figures in order. Instead, they may look to get a quick overview of the paper by looking at the figures first. By splitting the figures out from the text, the reader can transition between the two independently of one another. This allows the reader to simultaneously view exactly the content they want to focus on at that moment.",
+      "id": "text:pres2",
+      "type": "text"
+    },
+    "text:pres3": {
+      "content": "Two viewing modes that are implicitly supported are text-centric and resource-centric viewing. Text-centric viewing creates a microscale reading experience by limiting the viewable content to a singular content node. When a figure or publication label is selected within a text node, only the figures or publications that are referenced within that paragraph will be displayed in their appropriate resource sections. Resource-centric viewing on the other hand provides a global overview of the paper. Selection of any figure or publication will color the paragraphs in the document map that include a reference to the selected resource.",
+      "id": "text:pres3",
+      "type": "text"
+    },
+    "text:pres4": {
+      "content": "The presentation of the article information has also been redesigned to organize the information in a uniform way. Each publisher will have information like the author’s impact statement, article keywords, major dataset links, etc. placed in different positions of their HTML or PDF versions of the articles. The aim is to distill all of the article information into organized subsections that can be displayed together on individual cards. The information cards create a uniform viewing experience making it easy to quickly find what the reader is looking for.",
+      "id": "text:pres4",
+      "type": "text"
+    },
+    "text:pres5": {
+      "content": "In addition to simplifying the reading experience of research articles, Lens also provides useful tools to share content with others. Each of the content nodes in the data structure are deep-linked which means that each state is defined by a given URL. Sharing a specific URL will take the new reader to the exact same state in their browser which will facilitate the ease discussions about the content.",
+      "id": "text:pres5",
+      "type": "text"
+    },
+
+    "heading:4": {
+      "level": 1,
+      "content": "Open Source",
+      "id": "heading:4",
+      "type": "heading"
+    },
+    "text:5": {
+      "content": "Lens is open source software. Its codebase is fairly small (less than 1000 lines of code) and available on Github. We'd like to invite anyone to use Lens for displaying their own content and get involved in the development process.",
+      "id": "text:5",
+      "type": "text"
+    },
+    "text:6": {
+      "content": "Lens utilizes a number existing open source components, including Backbone to structure the application code, Substance Document, which serves as our document model and Ken for faceted filtering.",
+      "id": "text:6",
+      "type": "text"
+    },
+    "heading:10": {
+      "level": 1,
+      "content": "The Lens Document Format",
+      "id": "heading:10",
+      "type": "heading"
+    },
+    "text:3": {
+      "content": "We are convinced that there is a need to break with traditional presentation-centric formats, by considering content as data and making it accessible in new ways. Therefore with the release of Lens, we’d like to promote a data-centric representation of scientific content, optimized for being consumed by web-clients.",
+      "id": "text:3",
+      "type": "text"
+    },
+    "text:12": {
+      "content": "Lens can display any document that conforms to a simple JSON representation. JSON representations are flexible and can be adapted to any type of content. The initial JSON object provides the framework for organizing all of the content in an article. The id and properties keys provide global access if many JSON articles are to be queried for an initial round of filtering. The nodes key contains all of the content and the view key defines indices about what order the nodes will be displayed. The nodes are then linked together via annotations. The annotations are defined by either an explicit reference to a target content node that is contained in its source content code or font styling.",
+      "id": "text:12",
+      "type": "text"
+    },
+    "text:13": {
+      "id": "text:13",
+      "type": "text",
+      "content": "The creation of an article's JSON depends on a converter script that runs through the XML tags using the sax-js node.js module. The XML tags define various types of content nodes. Table 1 outlines the conversions. Each node contains type, id and content keys that the viewer then uses to define the rendering. All of the keys have their own definitions with regards to how Lens renders them. The translation from the XML to a structured JSON creates a consistent presentation scheme for the content."
+    },
+    "heading:9": {
+      "level": 1,
+      "content": "Next Steps",
+      "id": "heading:9",
+      "type": "heading"
+    },
+    "text:10": {
+      "content": "This tool is an initial prototype, it was developed with the goal of getting it to market, and in your hands, as quickly as possible. The entire project went from idea to launch in just 14 weeks. Based on the user feedback we get we'll contintue to improve eLife Lens. We'd like to invite other content providers to make their content available for viewing in Lens. We also plan to support user annotations and comments. We intend to investigate integrating Lens into the peer review process.",
+      "id": "text:10",
+      "type": "text"
+    },
+    "text:11": {
+      "id": "text:11",
+      "type": "text",
+      "content": "By utilizing a data-centric approach to content, we have created a flexible and scalable platform that can be applied to any form of content. The multiple viewing experiences presented in Lens creates an interesting opportunity for content generators. Authors now have a higher level of control with regards to how their argument is presented. In addition to having explicit references in the text, the author can include implicit resources to provide additional context to the reader. An author would also be able to query all of their older content to pull specific bits of content into their new work. In demonstrating the utility of the Lens platform with the Open Access scientific community, we are curious to see how others look to leverage the platform for generating new content."
+    },
+    "heading:7": {
+      "level": 1,
+      "content": "Credits",
+      "id": "heading:7",
+      "type": "heading"
+    },
+    "text:8": {
+      "content": "eLife Lens was developed in collaboration with UC Berkeley graduate student Ivan Grubisic. He was supported by Michael Aufreiter from Substance, who helped with the design and implementation of the tool, Ian Hamilton from ripe who gave advice on the UI design and Graham Nott implemented the deployment workflow. Ian Mulvany from eLife made the virtual tea and biscuits, and eLife provided support for the project and the initial corpus of documents against which the tool was developed.",
+      "id": "text:8",
+      "type": "text"
+    },
+    "cover:1": {
+      "id": "cover:1",
+      "type": "cover"
+    },
+    "video:video1": {
+      "type": "video",
+      "id": "video:video1",
+      "label": "Video 1.",
+      "url_ogv": "http://static.movie-usa.glencoesoftware.com/ogv/10.7554/elife00378v001.ogv",
+      "caption": "caption:301",
+      "url": "http://static.movie-usa.glencoesoftware.com/mp4/10.7554/elife00378v001.mp4",
+      "poster": "http://static.movie-usa.glencoesoftware.com/jpg/10.7554/elife00378v001.jpg"
+    },
+    "caption:301": {
+      "type": "caption",
+      "id": "caption:301",
+      "content": "An introduction video, recorded by Ian Mulvany showing the concepts behind Lens.",
+      "source": "video:video1"
+    },
+    "annotation:1": {
+      "type": "figure_reference",
+      "id": "annotation:1",
+      "source": "text:2",
+      "target": "video:video1",
+      "key": "content",
+      "content": "Video 1",
+      "pos": [
+        618,
+        18
+      ]
+    },
+    "image:math": {
+      "type": "image",
+      "id": "image:math",
+      "label": "Figure 1.",
+      "object_id": "F1",
+      "caption": "caption:105",
+      "graphic_id": "elife00378f001",
+      "url": "http://ma.zive.at/lens-screenshots/lens-math.png",
+      "large_url": "http://ma.zive.at/lens-screenshots/lens-math.png"
+    },
+    "caption:105": {
+      "type": "caption",
+      "id": "caption:105",
+      "title": "Beautiful Math typesetting using MathJax.",
+      "content": "Math formulas are supported.",
+      "source": "image:math"
+    },
+    "annotation:2": {
+      "type": "figure_reference",
+      "id": "annotation:2",
+      "source": "text:2",
+      "target": "image:math",
+      "key": "content",
+      "content": "Figure 1",
+      "pos": [
+        20,
+        7
+      ]
+    },
+
+    "image:doclist": {
+      "type": "image",
+      "id": "image:doclist",
+      "label": "Figure 2.",
+      "object_id": "F1",
+      "caption": "caption:106",
+      "graphic_id": "elife00378f001",
+      "url": "http://ma.zive.at/lens-screenshots/lens-list-documents.png",
+      "large_url": "http://ma.zive.at/lens-screenshots/lens-list-documents.png"
+    },
+    "caption:106": {
+      "type": "caption",
+      "id": "caption:106",
+      "title": "Easily find relevant documents using faceted browsing.",
+      "content": "Easily find relevant documents using faceted browsing.",
+      "source": "image:doclist"
+    },
+    "annotation:3": {
+      "type": "figure_reference",
+      "id": "annotation:3",
+      "source": "text:2",
+      "target": "image:doclist",
+      "key": "content",
+      "pos": [
+        30,
+        7
+      ]
+    },
+
+    "image:coverpage": {
+      "type": "image",
+      "id": "image:coverpage",
+      "label": "Lens Article",
+      "object_id": "F3",
+      "caption": "caption:107",
+      "graphic_id": "elife00378f001",
+      "url": "http://ma.zive.at/lens-screenshots/lens-cover-page.png",
+      "large_url": "http://ma.zive.at/lens-screenshots/lens-cover-page.png"
+    },
+    "caption:107": {
+      "type": "caption",
+      "id": "caption:107",
+      "title": "A research article viewed in Lens.",
+      "content": "More text here",
+      "source": "image:coverpage"
+    },
+    "annotation:4": {
+      "type": "figure_reference",
+      "id": "annotation:4",
+      "source": "text:2",
+      "target": "image:coverpage",
+      "key": "content",
+      "pos": [
+        40,
+        7
+      ]
+    },
+
+    "image:publications": {
+      "type": "image",
+      "id": "image:publications",
+      "label": "Lens Publications",
+      "object_id": "F3",
+      "caption": "caption:108",
+      "graphic_id": "elife00378f001",
+      "url": "http://ma.zive.at/lens-screenshots/lens-publications.png",
+      "large_url": "http://ma.zive.at/lens-screenshots/lens-publications.png"
+    },
+
+    "caption:108": {
+      "type": "caption",
+      "id": "caption:108",
+      "title": "Access related publications through Lens",
+      "content": "More text here",
+      "source": "image:coverpage"
+    },
+
+    "annotation:5": {
+      "type": "figure_reference",
+      "id": "annotation:5",
+      "source": "text:2",
+      "target": "image:publications",
+      "key": "content",
+      "pos": [
+        50,
+        7
+      ]
+    },
+
+    "image:docmap": {
+      "type": "image",
+      "id": "image:docmap",
+      "label": "Document Map",
+      "object_id": "F3",
+      "caption": "caption:109",
+      "graphic_id": "elife00378f001",
+      "url": "http://ma.zive.at/lens-screenshots/lens-document-map.png",
+      "large_url": "http://ma.zive.at/lens-screenshots/lens-document-map.png"
+    },
+
+    "caption:109": {
+      "type": "caption",
+      "id": "caption:109",
+      "title": "Document Outline",
+      "content": "More text here",
+      "source": "image:docmap"
+    },
+    
+    "annotation:6": {
+      "type": "figure_reference",
+      "id": "annotation:6",
+      "source": "text:pres1",
+      "target": "image:docmap",
+      "key": "content",
+      "pos": [
+        122,
+        12
+      ]
+    },
+
+
+    "image:focusmode": {
+      "type": "image",
+      "id": "image:focusmode",
+      "label": "Document Map",
+      "object_id": "F3",
+      "caption": "caption:110",
+      "graphic_id": "elife00378f001",
+      "url": "http://ma.zive.at/lens-screenshots/lens-focus-mode.png",
+      "large_url": "http://ma.zive.at/lens-screenshots/lens-focus-mode.png"
+    },
+
+    "caption:110": {
+      "type": "caption",
+      "id": "caption:110",
+      "title": "Document Map",
+      "content": "More text here",
+      "source": "image:focusmode"
+    },
+    
+    "annotation:7": {
+      "type": "figure_reference",
+      "id": "annotation:7",
+      "source": "text:pres1",
+      "target": "image:focusmode",
+      "key": "content",
+      "pos": [
+        348,
+        9
+      ]
+    }
+
+
+  },
+  "views": {
+    "content": [
+      "cover:1",
+      "text:2",
+      "heading:2",
+      "text:intro1",
+      "text:intro2",
+      "text:intro3",
+      "heading:3",
+      "text:pres1",
+      "text:pres2",
+      "text:pres3",
+      "text:pres4",
+      "text:pres5",
+      "heading:10",
+      "text:3",
+      "text:12",
+      "text:13",
+      "heading:4",
+      "text:5",
+      "text:6",
+      "heading:9",
+      "text:10",
+      "text:11",
+      "heading:7",
+      "text:8"
+    ],
+    "figures": ["video:video1", "image:math", "image:doclist", "image:coverpage", "image:publications", "image:docmap", "image:focusmode"],
+    "publications": [],
+    "info": []
+  }
+}
