@@ -429,11 +429,46 @@
       "url": "http://github.com/elifesciences/lens",
       "key": "content",
       "pos": [
-        10,
-        11
+        107,
+        6
+      ]
+    },
+
+    "annotation:22": {
+      "type": "link",
+      "id": "annotation:22",
+      "source": "text:6",
+      "url": "http://backbonejs.org",
+      "key": "content",
+      "pos": [
+        66,
+        8
       ]
     },
     
+    "annotation:23": {
+      "type": "link",
+      "id": "annotation:23",
+      "source": "text:6",
+      "url": "http://interior.substance.io/modules/document.html",
+      "key": "content",
+      "pos": [
+        110,
+        18
+      ]
+    },
+
+    "annotation:24": {
+      "type": "link",
+      "id": "annotation:24",
+      "source": "text:6",
+      "url": "http://github.com/michael/ken",
+      "key": "content",
+      "pos": [
+        169,
+        3
+      ]
+    },
 
     "annotation:100": {
       "type": "publication_reference",
