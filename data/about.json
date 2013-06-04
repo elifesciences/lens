@@ -142,10 +142,10 @@
       "type": "video",
       "id": "video:video1",
       "label": "Video 1.",
-      "url_ogv": "http://static.movie-usa.glencoesoftware.com/ogv/10.7554/elife00378v001.ogv",
+      "url_ogv": "http://cdn.elifesciences.org/video/eLifeLensIntro2.ogv",
       "caption": "caption:301",
-      "url": "http://static.movie-usa.glencoesoftware.com/mp4/10.7554/elife00378v001.mp4",
-      "poster": "http://static.movie-usa.glencoesoftware.com/jpg/10.7554/elife00378v001.jpg"
+      "url": "http://cdn.elifesciences.org/video/eLifeLensIntro2.mp4",
+      "poster": "http://cdn.elifesciences.org/video/eLifeLensIntro2.jpg"
     },
     "caption:301": {
       "type": "caption",
