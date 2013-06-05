@@ -76,7 +76,11 @@
           <% } %>
           <div class="name"><%= node["given-names"] %> <%= node["last-name"] %></div>
         </div>
-
+        <% if (node["image"]) { %>
+          <div class="image">
+            <img width="150" src="<%= node["image"] %>">
+          </div>
+        <% } %>
         <div class="affiliations">
           <% _.each(node.affiliations, function(aff) { %>
             <div class="affiliation">
@@ -533,9 +537,8 @@
 
     <!-- Ken.Facets  -->
     <script type="text/x-ejs-template" name="facets">
-      <div class="about">
-        <a class="about" href="#about">About eLife Lens</a>
-      </div>
+      <a class="about" href="#about"><i class="icon-info"></i> &nbsp;&nbsp;About eLife Lens</a>
+
       <div class="article-count">Showing <%= collection.length %> articles</div>
       <% var count = 0; %>
       <% _.each(facets, function(f, key) { %>

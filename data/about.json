@@ -4,6 +4,7 @@
     "authors": [
       "person:author-grubisic",
       "person:author-aufreiter",
+      "person:author-nott",
       "person:author-mulvany"
     ]
   },
@@ -134,7 +135,7 @@
       "type": "heading"
     },
     "text:8": {
-      "content": "eLife Lens was developed in collaboration with UC Berkeley graduate student Ivan Grubisic. He was supported by Michael Aufreiter from Substance, who helped with the design and implementation of the tool, Ian Hamilton from ripe who gave advice on the UI design and Graham Nott implemented the deployment workflow. Ian Mulvany from eLife made the virtual tea and biscuits, and eLife provided support for the project and the initial corpus of documents against which the tool was developed.",
+      "content": "eLife Lens was developed in collaboration between UC Berkeley graduate student Ivan Grubisic and eLife. He was supported by Michael Aufreiter from Substance, who helped with the design and implementation of the tool, Ian Hamilton from ripe who gave advice on the UI design and Graham Nott implemented the deployment workflow. eLife provided support for the project and the initial corpus of documents against which the tool was developed.",
       "id": "text:8",
       "type": "text"
     },
@@ -337,7 +338,7 @@
       "url": "http://twitter.com/_mql",
       "key": "content",
       "pos": [
-        110,
+        123,
         18
       ]
     },
@@ -349,7 +350,7 @@
       "url": "http://substance.io",
       "key": "content",
       "pos": [
-        134,
+        147,
         9
       ]
     },
@@ -361,7 +362,7 @@
       "url": "http://colorcrate.com/",
       "key": "content",
       "pos": [
-        204,
+        217,
         12
       ]
     },
@@ -373,7 +374,7 @@
       "url": "http://ripe.com",
       "key": "content",
       "pos": [
-        222,
+        235,
         4
       ]
     },
@@ -385,7 +386,7 @@
       "url": "http://bioegrad.berkeley.edu/",
       "key": "content",
       "pos": [
-        47,
+        50,
         11
       ]
     },
@@ -397,20 +398,8 @@
       "url": "http://www.linkedin.com/pub/ivan-grubisic/26/353/739",
       "key": "content",
       "pos": [
-        76,
+        79,
         13
-      ]
-    },
-    
-    "annotation:19": {
-      "type": "link",
-      "id": "annotation:19",
-      "source": "text:8",
-      "url": "http://www.elifesciences.org/about/elife-community/executive-staff/ian-mulvany-head-of-technology/",
-      "key": "content",
-      "pos": [
-        313,
-        11
       ]
     },
 
@@ -421,7 +410,7 @@
       "url": "http://www.grahamnott.com/",
       "key": "content",
       "pos": [
-        264,
+        277,
         11
       ]
     },
@@ -492,6 +481,7 @@
       "given-names": "Michael",
       "last-name": "Aufreiter",
       "role": "author",
+      "image": "https://secure.gravatar.com/avatar/d5a959d7e57daa5433fcb9f8da40be4b?s=420&d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png",
       "affiliations": [
         {
           "label": "3",
@@ -499,7 +489,25 @@
           "institution": "institution:substance"
         }
       ],
-      "contribution": "Design and implementation, revising the article",
+      "contribution": "Design and implementation of Lens, revising the article",
+      "funding": []
+    },
+
+    "person:author-nott": {
+      "type": "person",
+      "id": "person:author-nott",
+      "given-names": "Graham",
+      "last-name": "Nott",
+      "role": "author",
+      "image": "https://secure.gravatar.com/avatar/75b35bfe5e434bf8b19c6200f10eea4f?s=400&d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png",
+      "affiliations": [
+        {
+          "label": "3",
+          "department": "",
+          "institution": "institution:starglobal"
+        }
+      ],
+      "contribution": "Implementation of the deployment workflow, revising the article",
       "funding": []
     },
 
@@ -508,6 +516,7 @@
       "id": "person:author-grubisic",
       "given-names": "Ivan",
       "last-name": "Grubisic",
+      "image": "https://secure.gravatar.com/avatar/344c946d46895666f41e259da89d0316?s=420&d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png",
       "role": "author",
       "affiliations": [
         {
@@ -529,7 +538,9 @@
       "type": "person",
       "id": "person:author-mulvany",
       "given-names": "Ian",
+
       "last-name": "Mulvany",
+      "image": "https://secure.gravatar.com/avatar/fccb9ef81d69152b6096ec047428ac2e?s=400&d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png",
       "role": "author",
       "affiliations": [
         {
@@ -572,6 +583,14 @@
       "name": "Substance",
       "city": "Linz",
       "country": "Austria"
+    },
+
+    "institution:starglobal": {
+      "type": "institution",
+      "id": "institution:starglobal",
+      "name": "Star Global Advanced IT Corp. Ltd.",
+      "city": "Victoria",
+      "country": "BC, Canada"
     },
 
     "article:substance": {
@@ -630,6 +649,7 @@
     "info": [
       "person:author-grubisic",
       "person:author-aufreiter",
+      "person:author-nott",
       "person:author-mulvany"
     ]
   }

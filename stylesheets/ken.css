@@ -7,10 +7,21 @@
 
 
 #facets .about {
-  padding: 20px 18px;
-  padding-bottom: 30px;
   font-size: 15px;
   font-family: 'Avenir LT W01 85 Heavy', 'Montserrat', 'Source Sans Pro';
+  height: 40px;
+  line-height: 40px;
+  background: #5c6570;
+  color: rgba(255,255,255,0.8);
+  padding: 0 10px;
+  display: block;
+  width: 160px;
+  margin-left: 30px;
+  text-align: center;
+}
+
+#facets .about:hover {
+  color: #fff;
 }
 
 #facets .article-count {
@@ -121,7 +132,6 @@
   font-weight: normal;
 }
 
-
 /* Matrix 
    --------------------------------------- */
 
@@ -141,7 +151,7 @@
   position: relative;
   display: block;
   width: 46%;
-  height: 180px;
+  height: 200px;
   float: left;
   cursor: pointer;
   overflow:hidden;
@@ -216,7 +226,7 @@
 
 #matrix .item .authors {
   color: #777;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 16px;
   text-align: left;
   padding: 20px 10px 0 10px;

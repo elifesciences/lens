@@ -931,12 +931,6 @@ TOC
   padding-bottom: 15px;
 }
 
-.content-node.cover .affiliations {
-  font-size: 14px;
-  padding: 10px 60px;
-  padding-left: 100px;
-  padding-top: 40px;
-}
 
 .content-node.cover .abstract {
   color: #777;
@@ -1168,6 +1162,7 @@ Document Info panel
   padding: 30px;
   font-size: 14px;
   position: relative;
+  overflow: auto;
 }
 
 .resources .info .content-node.dataset {
@@ -1179,11 +1174,16 @@ Document Info panel
   font-weight: bold;
 }
 
-
-
 .resources .info .content-node.person .affiliations {
   font-size: 15px;
   padding: 10px 20px;
+  padding-top: 20px;
+}
+
+.resources .info .content-node.person .image {
+  float: left;
+  padding: 10px;
+  min-height: 200px;
 }
 
 .resources .info .content-node.person .contribution,
@@ -1298,7 +1298,6 @@ Animations
   -webkit-animation-iteration-count: 2;
   -webkit-animation-timing-function: ease-in-out;
 }*/
-
 
 
 /* Zoom Stuff */
