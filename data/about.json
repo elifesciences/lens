@@ -146,9 +146,9 @@
       "type": "video",
       "id": "video:video1",
       "label": "Video 1.",
-      "url_ogv": "http://ma.zive.at/lens-intro.ogv",
+      "url_ogv": "http://cdn.elifesciences.org/video/eLifeLensIntro2.ogv",
       "caption": "caption:301",
-      "url": "http://ma.zive.at/lens-intro.mp4",
+      "url": "http://cdn.elifesciences.org/video/eLifeLensIntro2.mp4",
       "poster": ""
     },
     "caption:301": {
@@ -382,7 +382,7 @@
       "type": "link",
       "id": "annotation:17",
       "source": "text:8",
-      "url": "http://www.berkeley.edu/index.html",
+      "url": "http://bioegrad.berkeley.edu/",
       "key": "content",
       "pos": [
         47,
@@ -494,7 +494,7 @@
       "role": "author",
       "affiliations": [
         {
-          "label": "6",
+          "label": "3",
           "department": "",
           "institution": "institution:substance"
         }
@@ -511,17 +511,17 @@
       "role": "author",
       "affiliations": [
         {
+          "label": "1",
+          "department": "UC Berkeley-UCSF Graduate Program in Bioengineering, California Institute of Quantitative Biosciences",
+          "institution": "institution:aff6"
+        },
+        {
           "label": "2",
           "department": "",
           "institution": "institution:aff2"
         },
-        {
-          "label": "6",
-          "department": "UC Berkeley-UCSF Graduate Program in Bioengineering, Department of Molecular and Cell Biology, California Institute of Quantitative Biosciences",
-          "institution": "institution:aff6"
-        }
       ],
-      "contribution": "Drafting and revising the article",
+      "contribution": "Conception of the idea, drafting and revising the article",
       "funding": []
     },
 
@@ -533,7 +533,7 @@
       "role": "author",
       "affiliations": [
         {
-          "label": "6",
+          "label": "4",
           "department": "",
           "institution": "institution:elife"
         }
