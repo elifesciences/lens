@@ -584,6 +584,12 @@ Publications
   color: #fff;
 }
 
+#document .resources .info.view .content-node.resource.active .resource-header {
+  background: #5c6570;
+  color: #fff;
+}
+
+
 #document .resources .content-node.resource.active .resource-header:hover {
   opacity: 0.9;
 }
@@ -620,7 +626,7 @@ Publications
   color: white;
 }
 
-#document .resources .content-node.figure.active .type {
+#document .resources .content-node.active .type {
   color: white;
 }
 
@@ -928,7 +934,29 @@ TOC
   padding: 10px 60px;
   padding-left: 100px;
   color: rgba(255,255,255, 0.7);
-  padding-bottom: 15px;
+  padding-bottom: 30px;
+  overflow: auto;
+}
+
+.content-node.cover .authors .author {
+  color: rgba(255,255,255, 0.5);
+  display: block;
+  float: left;
+  padding: 0 5px;
+  margin-right: 10px;
+  font-size: 20px;
+  line-height: 30px;
+
+}
+
+.content-node.cover .authors .author:hover {
+  background: rgba(0,0,0,0.1);
+  color: #fff;
+}
+
+.content-node.cover .authors .author.active {
+  color: #fff;
+  background: rgba(0,0,0,0.5);
 }
 
 

@@ -18,6 +18,7 @@ var Document = Backbone.View.extend({
     'mouseover span.annotation': '_teaseAnnotation',
     'mouseout span.annotation': '_untease',
     'click .resource .resource-header': '_showResource',
+    'click .authors .author': '_showAuthor',
     'click .document span.formula_reference': '_showFormula',
     'click .outline .node': '_switchNode',
     'click .heading-ref': '_jumpToHeading',
@@ -29,6 +30,21 @@ var Document = Backbone.View.extend({
     'mousedown .outline': '_mouseDown',
     'mouseup': '_mouseUp',
     'mousemove .outline': '_scroll'
+  },
+
+  // Show Author Card
+  // -----------------
+  // 
+
+  _showAuthor: function(e) {
+    var person = $(e.currentTarget).attr('data-id');
+
+    if (person === this.model.resource) {
+      this.clear(this.model.activeResourceType);
+    } else {
+      this.showResource(person);
+    }
+    return false;
   },
 
   // Tease
@@ -231,9 +247,11 @@ var Document = Backbone.View.extend({
   // 
 
   _showResource: function(e) {
+
     var resource = _.nodeId($(e.currentTarget).parent().attr('id'));
     if (resource === this.model.resource) {
       this.model.resource = null;
+      $('.authors .author').removeClass('active');
       this.updateResources();
     } else {
       this.showResource(resource, true);  
@@ -261,10 +279,16 @@ var Document = Backbone.View.extend({
     if (!resource) return;
 
     var parentType = doc.getTypes(resource.type)[0];
-    if (!_.include(["figure", "publication"], parentType)) return;
+
+    if (!_.include(['figure', 'publication', 'person'], parentType)) return;
     if (this.model.node) this.selectNode(this.model.node, silent);
 
-    this.model.resourceType = parentType;
+    if (parentType === 'person') {
+      this.model.resourceType = 'info';
+    } else {
+      this.model.resourceType = parentType;  
+    }
+    
     this.model.resource = resource.id;
     this.updateResources(silent);
     this.updatePath();
@@ -297,6 +321,8 @@ var Document = Backbone.View.extend({
     this.model.resourceType = resourceType && _.isString(resourceType) ? resourceType : 'toc';
     $('#document .content-node').removeClass('active');
     $('#document .annotation').removeClass('active');
+
+    
     $('.resources .headings .heading-ref').removeClass('selected');
     $('#document .resources .content-node.active').removeClass('active');
 
@@ -348,6 +374,13 @@ var Document = Backbone.View.extend({
     this.resources.update(silent);
     this.highlightResource();
     this.updateOutline();
+
+    $('.authors .author').removeClass('active');
+    
+    if (this.model.resource) {
+      $('.authors #'+_.htmlId(this.model.resource)).addClass('active');      
+    }
+
 
     if (this.model.node && this.model.node !== 'all' && this.model.resource) {
       $('#document').addClass('focus-mode');

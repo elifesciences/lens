@@ -190,14 +190,9 @@
         <div class="title"><%= doc.properties.title %></div>
         
         <div class="authors">
-          <%
-            var authors = _.map(doc.properties.authors, function(a) {
-              var author = get(a);
-              if (!author) return a;
-              return author['given-names']+ ' '+ author['last-name'];
-            });
-          %>
-          <%= authors.join(', ') %>
+          <% _.each(doc.properties.authors, function(aid) { %>
+              <a href="#" class="author" id="<%= _.htmlId(aid) %>" data-id="<%= aid %>"><%= get(aid)['given-names'] %> <%= get(aid)['last-name'] %></a>
+          <% }); %>
         </div>
       </div>
     </script>

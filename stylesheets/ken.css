@@ -5,7 +5,6 @@
   overflow: auto;
 }
 
-
 #facets .about {
   font-size: 15px;
   font-family: 'Avenir LT W01 85 Heavy', 'Montserrat', 'Source Sans Pro';
@@ -27,7 +26,6 @@
 #facets .article-count {
   padding: 20px 33px;
   color: #888;
-
   font-family: 'Avenir LT W01 85 Heavy', 'Montserrat', 'Source Sans Pro';
 }
 
