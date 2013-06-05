@@ -211,6 +211,36 @@
       "source": "image:lens-workspace"
     },
 
+    "annotation:25" : {
+      "type" : "strong",
+      "id" : "annotation:25",
+      "key" : "content",
+      "source" : "caption:106",
+      "target" : null,
+      "content" : "A.",
+      "pos" : [1,2]
+    },
+
+    "annotation:26" : {
+      "type" : "strong",
+      "id" : "annotation:26",
+      "key" : "content",
+      "source" : "caption:110",
+      "target" : null,
+      "content" : "B.",
+      "pos" : [90,2]
+    },
+
+    "annotation:27" : {
+      "type" : "strong",
+      "id" : "annotation:27",
+      "key" : "content",
+      "source" : "caption:110",
+      "target" : null,
+      "content" : "C.",
+      "pos" : [121,2]
+    },
+
     "image:publications": {
       "type": "image",
       "id": "image:publications",
@@ -247,6 +277,26 @@
       "title": "Focus on relevant figures",
       "content": "Selecting a figure or reference label within the textual content, displays only the pertinent content in the resources panel. The green highlighted camera is a quick link to view all of the figures that are referenced within the selected paragraph. The black arrow to the left of the document map is a visual cue for the reader to quickly return to the paragraph they were on if they navigate away from this to another paragraph that references Figure 5. The reader can select the figure or reference label in the resources panel (Figure 2C) to focus on the paragraphs where a specific figure is mentioned. The document map (Figure 2A) will highlight the paragraphs that reference the selected resource.",
       "source": "image:focusmode"
+    },
+
+    "annotation:28" : {
+      "type" : "figure_reference",
+      "id" : "annotation:28",
+      "key" : "content",
+      "source" : "caption:110",
+      "target" : "image:lens-workspace",
+      "content" : "Figure 2C",
+      "pos" : [531,9]
+    },
+
+    "annotation:29" : {
+      "type" : "figure_reference",
+      "id" : "annotation:29",
+      "key" : "content",
+      "source" : "caption:110",
+      "target" : "image:lens-workspace",
+      "content" : "Figure 2A",
+      "pos" : [625,9]
     },
     
     "annotation:6": {
