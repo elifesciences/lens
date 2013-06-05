@@ -181,8 +181,8 @@
       "label": "Figure 1",
       "object_id": "F1",
       "caption": "caption:105",
-      "url": "https://lh3.googleusercontent.com/n9HUIHSrDtuuBmWsHrR6jpqVlSP_PWDRwV4_YYAdabzQQPLuhWGD2o98ci4fXcpLP5YuUM95JJNh94-j1xX7KN4IXm6CppJOj1sZZFXvVcT91DDss6NENnlK",
-      "large_url": "https://lh3.googleusercontent.com/n9HUIHSrDtuuBmWsHrR6jpqVlSP_PWDRwV4_YYAdabzQQPLuhWGD2o98ci4fXcpLP5YuUM95JJNh94-j1xX7KN4IXm6CppJOj1sZZFXvVcT91DDss6NENnlK"
+      "url": "http://cdn.elifesciences.org/lens/about/aboutf001.jpg",
+      "large_url": "http://cdn.elifesciences.org/lens/about/aboutf001.jpg"
     },
 
     "caption:105": {
@@ -199,8 +199,8 @@
       "label": "Figure 2",
       "object_id": "F2",
       "caption": "caption:106",
-      "url": "https://lh4.googleusercontent.com/XiY7ZLqjj7bXT5NGXvpfx9UkSTjxxiU87jpjRWccmXtbD4cp3keRl5Ur7IQ_KHtwOuPJphHAIzRY4s77pBWfpxxuGpxAD6-0_Kf1g6wJhRfwfskkZNZv0ESm",
-      "large_url": "https://lh4.googleusercontent.com/XiY7ZLqjj7bXT5NGXvpfx9UkSTjxxiU87jpjRWccmXtbD4cp3keRl5Ur7IQ_KHtwOuPJphHAIzRY4s77pBWfpxxuGpxAD6-0_Kf1g6wJhRfwfskkZNZv0ESm"
+      "url": "http://cdn.elifesciences.org/lens/about/aboutf002.jpg",
+      "large_url": "http://cdn.elifesciences.org/lens/about/aboutf002.jpg"
     },
 
     "caption:106": {
@@ -218,8 +218,8 @@
       "object_id": "F4",
       "caption": "caption:108",
       "graphic_id": "elife00378f001",
-      "url": "http://ma.zive.at/lens-screenshots/lens-publications.png",
-      "large_url": "http://ma.zive.at/lens-screenshots/lens-publications.png"
+      "url": "http://cdn.elifesciences.org/lens/about/aboutf004.png",
+      "large_url": "http://cdn.elifesciences.org/lens/about/aboutf004.png"
     },
 
     "caption:108": {
@@ -237,8 +237,8 @@
       "object_id": "F3",
       "caption": "caption:110",
       "graphic_id": "elife00378f001",
-      "url": "https://lh5.googleusercontent.com/DwESR7rejiMtSfxM9U8F2SZjw0Ik552yS6OJBdbi0ZSuStzeDUlKu6ToXToo3a8WPwgMI341Zf3zGtDJKuuFq7gnbyedmFw9UncR5Y7YjPG5WqSVd7Oa6DgF",
-      "large_url": "https://lh5.googleusercontent.com/DwESR7rejiMtSfxM9U8F2SZjw0Ik552yS6OJBdbi0ZSuStzeDUlKu6ToXToo3a8WPwgMI341Zf3zGtDJKuuFq7gnbyedmFw9UncR5Y7YjPG5WqSVd7Oa6DgF"
+      "url": "http://cdn.elifesciences.org/lens/about/aboutf003.jpg",
+      "large_url": "http://cdn.elifesciences.org/lens/about/aboutf003.jpg"
     },
 
     "caption:110": {
@@ -519,7 +519,7 @@
       "given-names": "Ian",
       "last-name": "Hamilton",
       "role": "author",
-      "image": "https://lh3.googleusercontent.com/-mgMHOI08y_Q/UND4UV4PZMI/AAAAAAAAACQ/TXLT6u6FnsM/w445-h446-no/fbimg.jpg",
+      "image": "http://cdn.elifesciences.org/lens/author/ian-hamilton.jpg",
       "affiliations": [
         {
           "label": "4",
