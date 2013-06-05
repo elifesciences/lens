@@ -148,10 +148,11 @@
       "type": "video",
       "id": "video:video1",
       "label": "Video 1.",
+      "url_webm": "http://cdn.elifesciences.org/video/eLifeLensIntro2.webm",
       "url_ogv": "http://cdn.elifesciences.org/video/eLifeLensIntro2.ogv",
       "caption": "caption:301",
       "url": "http://cdn.elifesciences.org/video/eLifeLensIntro2.mp4",
-      "poster": ""
+      "poster": "http://cdn.elifesciences.org/video/eLifeLensIntro2.png"
     },
     "caption:301": {
       "type": "caption",
