@@ -6,8 +6,19 @@
 var Lens = Backbone.View.extend({
   el: '#container',
   
+  events: {
+    'click a.hide-browser-warning': '_hideBrowserWarning'
+  },
+
   initialize: function(options) {
     _.bindAll(this, 'document', 'list');
+  },
+
+  // Hide warming
+  _hideBrowserWarning: function() {
+    document.cookie =  'message_read=1; expires=Thu, 2 Aug 2050 20:47:11 UTC; path=/';
+    document.location.reload();
+    return false;
   },
 
   // Main view injection
@@ -29,7 +40,25 @@ var Lens = Backbone.View.extend({
   // The List View
   // -------
 
+  checkBrowser: function() {
+    var b = BrowserDetect.browser;
+    var v = BrowserDetect.version;
+
+    if (document.cookie) return true;
+    if (_.include(["Chrome", "Safari", "Firefox", "Opera"], b)) return true;
+    if (b === "Explorer" && v >= 10) return true;
+
+    // Display warning
+    $('.browser-not-supported').show();
+    $('#main').hide();
+    return false;
+  },
+
+  // The List View
+  // -------
+
   list: function() {
+    if (!this.checkBrowser()) return;
     var that = this;
 
     $('#main').empty();
@@ -47,6 +76,7 @@ var Lens = Backbone.View.extend({
   // -------
 
   document: function(d, t, n, r) {
+    if (!this.checkBrowser()) return;
     var that = this;
 
     $('#main').empty();
