@@ -5,6 +5,7 @@
       "person:author-grubisic",
       "person:author-aufreiter",
       "person:author-nott",
+      "person:author-hamilton",
       "person:author-mulvany"
     ]
   },
@@ -504,10 +505,28 @@
         {
           "label": "4",
           "department": "",
-          "institution": "institution:starglobal"
+          "institution": "institution:elife"
         }
       ],
       "contribution": "Implementation of the deployment workflow, revising the article",
+      "funding": []
+    },
+
+    "person:author-hamilton": {
+      "type": "person",
+      "id": "person:author-hamilton",
+      "given-names": "Ian",
+      "last-name": "Hamilton",
+      "role": "author",
+      "image": "https://lh3.googleusercontent.com/-mgMHOI08y_Q/UND4UV4PZMI/AAAAAAAAACQ/TXLT6u6FnsM/w445-h446-no/fbimg.jpg",
+      "affiliations": [
+        {
+          "label": "4",
+          "department": "",
+          "institution": "institution:ripe"
+        }
+      ],
+      "contribution": "Advice on the UI Design, revising the article",
       "funding": []
     },
 
@@ -575,6 +594,14 @@
       "name": "eLife Publications",
       "city": "Cambridge",
       "country": "UK"
+    },
+
+    "institution:ripe": {
+      "type": "institution",
+      "id": "institution:ripe",
+      "name": "ripe",
+      "city": "Washington DC",
+      "country": "United States"
     },
 
     "institution:substance": {
@@ -650,6 +677,7 @@
       "person:author-grubisic",
       "person:author-aufreiter",
       "person:author-nott",
+      "person:author-hamilton",
       "person:author-mulvany"
     ]
   }

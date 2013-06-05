@@ -939,14 +939,13 @@ TOC
 }
 
 .content-node.cover .authors .author {
-  color: rgba(255,255,255, 0.5);
+  color: rgba(255,255,255, 0.7);
   display: block;
   float: left;
   padding: 0 5px;
   margin-right: 10px;
   font-size: 20px;
   line-height: 30px;
-
 }
 
 .content-node.cover .authors .author:hover {
@@ -958,7 +957,6 @@ TOC
   color: #fff;
   background: rgba(0,0,0,0.5);
 }
-
 
 .content-node.cover .abstract {
   color: #777;
