@@ -120,7 +120,7 @@
       "type": "heading"
     },
     "text:10": {
-      "content": "This tool is an initial prototype, it was developed with the goal of getting it to market, and in your hands, as quickly as possible. The entire project went from idea to launch in just 14 weeks. Based on the user feedback we get we'll contintue to improve eLife Lens. We'd like to invite other content providers to make their content available for viewing in Lens. We also plan to support user annotations and comments. We intend to investigate integrating Lens into the peer review process.",
+      "content": "This tool is an initial prototype, it was developed with the goal of getting it to market, and in your hands, as quickly as possible. The entire project went from idea to launch in just 14 weeks. Based on the user feedback we get we will contintue to improve eLife Lens. We would like to invite other content providers to make their content available for viewing in Lens. We also plan to support user annotations and comments. We intend to investigate integrating Lens into the peer review process.",
       "id": "text:10",
       "type": "text"
     },
@@ -536,7 +536,7 @@
       "image": "https://secure.gravatar.com/avatar/d5a959d7e57daa5433fcb9f8da40be4b?s=420&d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png",
       "affiliations": [
         {
-          "label": "3",
+          "label": "2",
           "department": "",
           "institution": "institution:substance"
         }
@@ -554,7 +554,7 @@
       "image": "https://secure.gravatar.com/avatar/75b35bfe5e434bf8b19c6200f10eea4f?s=400&d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png",
       "affiliations": [
         {
-          "label": "4",
+          "label": "3",
           "department": "",
           "institution": "institution:elife"
         }
@@ -590,15 +590,10 @@
       "role": "author",
       "affiliations": [
         {
-          "label": "1",
-          "department": "UC Berkeley-UCSF Graduate Program in Bioengineering, California Institute of Quantitative Biosciences",
+          "label": "5",
+          "department": "UC Berkeley-UCSF Graduate Program in Bioengineering",
           "institution": "institution:aff6"
         },
-        {
-          "label": "2",
-          "department": "",
-          "institution": "institution:aff2"
-        }
       ],
       "contribution": "Conception of the idea, drafting and revising the article",
       "funding": []
