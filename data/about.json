@@ -242,7 +242,7 @@
       "type": "caption",
       "id": "caption:110",
       "title": "Focus on relevant figures",
-      "content": "Selecting a figure or reference label within the textual content, displays only the pertinent content in the resources panel. The green highlighted camera is a quick link to view all of the figures that are referenced within the selected paragraph. The black arrow to the left of the document map is is a visual cue for the reader to quickly return to the paragraph they were on if they navigate away from this to another paragraph that has Figure 5 referenced. The reader can select the figure or reference label in the resources panel (Figure 2C) to focus on the paragraphs where a specific figure is mentioned. The document map (Figure 2A) will highlight the paragraphs that reference the selected resource.",
+      "content": "Selecting a figure or reference label within the textual content, displays only the pertinent content in the resources panel. The green highlighted camera is a quick link to view all of the figures that are referenced within the selected paragraph. The black arrow to the left of the document map is a visual cue for the reader to quickly return to the paragraph they were on if they navigate away from this to another paragraph that references Figure 5. The reader can select the figure or reference label in the resources panel (Figure 2C) to focus on the paragraphs where a specific figure is mentioned. The document map (Figure 2A) will highlight the paragraphs that reference the selected resource.",
       "source": "image:focusmode"
     },
     
@@ -394,7 +394,7 @@
       "type": "link",
       "id": "annotation:18",
       "source": "text:8",
-      "url": "https://github.com/ivangrub",
+      "url": "http://www.linkedin.com/pub/ivan-grubisic/26/353/739",
       "key": "content",
       "pos": [
         76,
