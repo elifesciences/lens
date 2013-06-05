@@ -181,8 +181,8 @@
       "label": "Figure 1",
       "object_id": "F1",
       "caption": "caption:105",
-      "url": "http://cdn.elifesciences.org/lens/about/aboutf001.jpg",
-      "large_url": "http://cdn.elifesciences.org/lens/about/aboutf001.jpg"
+      "url": "http://cdn.elifesciences.org/lens/about/aboutf001.png",
+      "large_url": "http://cdn.elifesciences.org/lens/about/aboutf001.png"
     },
 
     "caption:105": {
@@ -199,8 +199,8 @@
       "label": "Figure 2",
       "object_id": "F2",
       "caption": "caption:106",
-      "url": "http://cdn.elifesciences.org/lens/about/aboutf002.jpg",
-      "large_url": "http://cdn.elifesciences.org/lens/about/aboutf002.jpg"
+      "url": "http://cdn.elifesciences.org/lens/about/aboutf002.png",
+      "large_url": "http://cdn.elifesciences.org/lens/about/aboutf002.png"
     },
 
     "caption:106": {
@@ -237,8 +237,8 @@
       "object_id": "F3",
       "caption": "caption:110",
       "graphic_id": "elife00378f001",
-      "url": "http://cdn.elifesciences.org/lens/about/aboutf003.jpg",
-      "large_url": "http://cdn.elifesciences.org/lens/about/aboutf003.jpg"
+      "url": "http://cdn.elifesciences.org/lens/about/aboutf003.png",
+      "large_url": "http://cdn.elifesciences.org/lens/about/aboutf003.png"
     },
 
     "caption:110": {
