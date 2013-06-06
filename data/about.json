@@ -5,6 +5,7 @@
       "person:author-grubisic",
       "person:author-aufreiter",
       "person:author-nott",
+      "person:author-korosec",
       "person:author-hamilton",
       "person:author-mulvany"
     ]
@@ -136,7 +137,7 @@
       "type": "heading"
     },
     "text:8": {
-      "content": "eLife Lens was developed in collaboration between UC Berkeley graduate student Ivan Grubisic and eLife. He was supported by Michael Aufreiter from Substance, who helped with the design and implementation of the tool, Ian Hamilton from ripe who gave advice on the UI design and Graham Nott implemented the deployment workflow. eLife provided support for the project and the initial corpus of documents against which the tool was developed.",
+      "content": "eLife Lens was developed in collaboration between UC Berkeley graduate student Ivan Grubisic and eLife. He was supported by Michael Aufreiter from Substance, who helped with the design and implementation of the tool. Samo Korošec (froodee) and Ian Hamilton (ripe) gave advice on the UX/UI design. Graham Nott implemented the deployment workflow and eLife provided support for the project and the initial corpus of documents against which the tool was developed.",
       "id": "text:8",
       "type": "text"
     },
@@ -407,6 +408,18 @@
       ]
     },
 
+    "annotation:155": {
+      "type": "link",
+      "id": "annotation:155",
+      "source": "text:8",
+      "url": "http://dribbble.com/froodee/",
+      "key": "content",
+      "pos": [
+        231,
+        7
+      ]
+    },
+
     "annotation:15": {
       "type": "link",
       "id": "annotation:15",
@@ -414,7 +427,7 @@
       "url": "http://colorcrate.com/",
       "key": "content",
       "pos": [
-        217,
+        244,
         12
       ]
     },
@@ -426,7 +439,7 @@
       "url": "http://ripe.com",
       "key": "content",
       "pos": [
-        235,
+        258,
         4
       ]
     },
@@ -462,7 +475,7 @@
       "url": "http://www.grahamnott.com/",
       "key": "content",
       "pos": [
-        277,
+        297,
         11
       ]
     },
@@ -581,6 +594,24 @@
       "funding": []
     },
 
+    "person:author-korosec": {
+      "type": "person",
+      "id": "person:author-korosec",
+      "given-names": "Samo",
+      "last-name": "Korosec",
+      "role": "author",
+      "image": "http://f.cl.ly/items/2E0d0w0W0R3I3P2P1O0G/samo.jpg",
+      "affiliations": [
+        {
+          "label": "4",
+          "department": "",
+          "institution": "institution:froodee"
+        }
+      ],
+      "contribution": "Advice on UX Design, mockups to support UI development",
+      "funding": []
+    },
+
     "person:author-grubisic": {
       "type": "person",
       "id": "person:author-grubisic",
@@ -629,6 +660,14 @@
       "name": "University of California, Berkeley",
       "city": "Berkeley",
       "country": "United States"
+    },
+
+    "institution:froodee": {
+      "type": "institution",
+      "id": "institution:froodee",
+      "name": "froodee design bureau",
+      "city": "Vienna",
+      "country": "Austria"
     },
 
     "institution:aff2": {
@@ -728,6 +767,7 @@
       "person:author-grubisic",
       "person:author-aufreiter",
       "person:author-nott",
+      "person:author-korosec",
       "person:author-hamilton",
       "person:author-mulvany"
     ]
