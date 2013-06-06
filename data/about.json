@@ -1,6 +1,6 @@
 {
   "properties": {
-    "title": "eLife Lens is a novel way of seeing content",
+    "title": "eLife Lens: A novel way of seeing content",
     "authors": [
       "person:author-grubisic",
       "person:author-aufreiter",
@@ -39,6 +39,17 @@
       "id": "text:intro2",
       "type": "text",
       "content": "The web browser provides a unified platform for viewing content. Instead of binding the content to a presentation focused format, we can view the content as data (Aufreiter 2013). Thereby making the content readily accessible by utilizing a defined data structure. This data structure can then be processed in similar ways to databases -- allowing users to query the content, create new content and build new tools."
+    },
+    "annotation:101": {
+      "type": "publication_reference",
+      "id": "annotation:101",
+      "source": "text:intro2",
+      "target": "article:substance",
+      "key": "content",
+      "pos": [
+        163,
+        14
+      ]
     },
     "text:intro3": {
       "id": "text:intro3",
@@ -121,7 +132,7 @@
       "type": "heading"
     },
     "text:10": {
-      "content": "This tool is an initial prototype, it was developed with the goal of getting it to market, and in your hands, as quickly as possible. The entire project went from idea to launch in just 14 weeks. Based on the user feedback we get we'll contintue to improve eLife Lens. We'd like to invite other content providers to make their content available for viewing in Lens. We also plan to support user annotations and comments. We intend to investigate integrating Lens into the peer review process.",
+      "content": "This tool is an initial prototype, it was developed with the goal of getting it to market, and in your hands, as quickly as possible. The entire project went from idea to launch in just 14 weeks. Based on the user feedback we get we will contintue to improve eLife Lens. We would like to invite other content providers to make their content available for viewing in Lens. We also plan to support user annotations and comments. We intend to investigate integrating Lens into the peer review process.",
       "id": "text:10",
       "type": "text"
     },
@@ -219,14 +230,14 @@
       "source" : "caption:106",
       "target" : null,
       "content" : "A.",
-      "pos" : [1,2]
+      "pos" : [0,2]
     },
 
     "annotation:26" : {
       "type" : "strong",
       "id" : "annotation:26",
       "key" : "content",
-      "source" : "caption:110",
+      "source" : "caption:106",
       "target" : null,
       "content" : "B.",
       "pos" : [90,2]
@@ -236,7 +247,7 @@
       "type" : "strong",
       "id" : "annotation:27",
       "key" : "content",
-      "source" : "caption:110",
+      "source" : "caption:106",
       "target" : null,
       "content" : "C.",
       "pos" : [121,2]
@@ -549,7 +560,7 @@
       "image": "https://secure.gravatar.com/avatar/d5a959d7e57daa5433fcb9f8da40be4b?s=420&d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png",
       "affiliations": [
         {
-          "label": "3",
+          "label": "2",
           "department": "",
           "institution": "institution:substance"
         }
@@ -567,7 +578,7 @@
       "image": "https://secure.gravatar.com/avatar/75b35bfe5e434bf8b19c6200f10eea4f?s=400&d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png",
       "affiliations": [
         {
-          "label": "4",
+          "label": "3",
           "department": "",
           "institution": "institution:elife"
         }
@@ -621,17 +632,12 @@
       "role": "author",
       "affiliations": [
         {
-          "label": "1",
-          "department": "UC Berkeley-UCSF Graduate Program in Bioengineering, California Institute of Quantitative Biosciences",
+          "label": "5",
+          "department": "UC Berkeley-UCSF Graduate Program in Bioengineering",
           "institution": "institution:aff6"
-        },
-        {
-          "label": "2",
-          "department": "",
-          "institution": "institution:aff2"
         }
       ],
-      "contribution": "Conception of the idea, drafting and revising the article",
+      "contribution": "Conception of the idea, XML to JSON conversion, drafting and revising the article",
       "funding": []
     },
 
