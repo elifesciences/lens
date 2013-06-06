@@ -225,7 +225,7 @@
       "type" : "strong",
       "id" : "annotation:26",
       "key" : "content",
-      "source" : "caption:110",
+      "source" : "caption:106",
       "target" : null,
       "content" : "B.",
       "pos" : [90,2]
@@ -235,7 +235,7 @@
       "type" : "strong",
       "id" : "annotation:27",
       "key" : "content",
-      "source" : "caption:110",
+      "source" : "caption:106",
       "target" : null,
       "content" : "C.",
       "pos" : [121,2]
