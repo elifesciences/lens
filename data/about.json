@@ -593,7 +593,7 @@
           "label": "5",
           "department": "UC Berkeley-UCSF Graduate Program in Bioengineering",
           "institution": "institution:aff6"
-        },
+        }
       ],
       "contribution": "Conception of the idea, XML to JSON conversion, drafting and revising the article",
       "funding": []
