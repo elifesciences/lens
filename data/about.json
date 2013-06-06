@@ -39,6 +39,17 @@
       "type": "text",
       "content": "The web browser provides a unified platform for viewing content. Instead of binding the content to a presentation focused format, we can view the content as data (Aufreiter 2013). Thereby making the content readily accessible by utilizing a defined data structure. This data structure can then be processed in similar ways to databases -- allowing users to query the content, create new content and build new tools."
     },
+    "annotation:101": {
+      "type": "publication_reference",
+      "id": "annotation:101",
+      "source": "text:intro2",
+      "target": "article:substance",
+      "key": "content",
+      "pos": [
+        163,
+        14
+      ]
+    },
     "text:intro3": {
       "id": "text:intro3",
       "type": "text",
