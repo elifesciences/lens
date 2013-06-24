@@ -10,7 +10,7 @@ var Lens = root.Lens;
 //   `/documents` - the document index
 //   `/documents/:document` - a single document where `:document` is the id
 
-Lens.ENV = 'production';
+Lens.ENV = 'development';
 
 // Can optionally be an array specifying a file extension (we need that for static deployment)
 
