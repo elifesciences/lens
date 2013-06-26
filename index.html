@@ -514,7 +514,7 @@
 
     <!-- Ken.Item  -->
     <script type="text/x-ejs-template" name="item">
-      <a href="#<%= item._id.replace('e', '') %>" class="item" id="<%= _.htmlId(item._id) %>" data-id="<%= item._id %>">
+      <a href="#<%= item._id %>" class="item" id="<%= _.htmlId(item._id) %>" data-id="<%= item._id %>">
         <div class="article-type">
           <%= item.properties["article-type"] %>
           <div class="published_at">
