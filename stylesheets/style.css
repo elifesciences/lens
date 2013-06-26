@@ -767,6 +767,11 @@ TOC
   font-size: 13px;
 }
 
+#document .toc.view .heading-ref.level-3 {
+  padding-left: 60px;
+  font-size: 13px;
+}
+
 #document .toc.view .heading-ref:hover {
   color: rgba(0,0,0,1.0);
 }
