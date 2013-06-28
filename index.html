@@ -126,17 +126,17 @@
               <div class="value"><%= doc.properties['subjects'].join(', ') %></div>
             </td>
             <td>
-              <div class="label">Organism</div>
-              <div class="value"><%= doc.properties['research_organisms'] ? doc.properties['research_organisms'].join(', ') : '' %></div>
+              <div class="label">Journal</div>
+              <div class="value"><%= doc.properties['journal'] %></div>
             </td>
           </tr>
-          <tr>
-            <td colspan="2">
-              <div class="label">Keywords</div>
-              <div class="value"><%= doc.properties['keywords'] ? doc.properties['keywords'].join(', ') : '' %></div>
-            </td>
-            <td></td>
-          </tr>
+          // <tr>
+          //   <td colspan="2">
+          //     <div class="label">Keywords</div>
+          //     <div class="value"><%= doc.properties['keywords'] ? doc.properties['keywords'].join(', ') : '' %></div>
+          //   </td>
+          //   <td></td>
+          // </tr>
         </table>
 
         <div class="label links">
