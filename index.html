@@ -69,7 +69,7 @@
     <script type="text/x-ejs-template" name="node_person">
       <div id="node_<%= _.htmlId(node.id) %>" class="content-node person resource">
         <div class="resource-header">
-          <% if (node.id.indexOf('author') >= 0) { %>
+          <% if (node.role.indexOf('author') >= 0) { %>
             <div class="type person author"><i class="icon-user"></i> Author</div>
           <% } else { %>
             <div class="type person editor"><i class="icon-edit"></i> Editor</div>
