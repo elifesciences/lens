@@ -60,9 +60,15 @@ NodeRenderer.prototype.render = function() {
         if (a.type === "inline_formula") {
           if (type === "starts") {
             var formula = content.nodes[a.target];
-            res += '<mml:math xmlns="http://www.w3.org/1998/Math/MathML">';
-            res += formula.content;
-            res += '</mml:math>';
+            if (formula.url) {
+              // Display Image
+              res += '<img src="'+formula.url+'"/>';
+            } else {
+              // Display MathJax
+              res += '<mml:math xmlns="http://www.w3.org/1998/Math/MathML">';
+              res += formula.content;
+              res += '</mml:math>';
+            }
           }
           return;
         }

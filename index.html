@@ -257,9 +257,14 @@
     <!-- Lens.Formula -->
     <script type="text/x-ejs-template" name="node_formula">
       <div id="node_<%= _.htmlId(node.id) %>" class="content-node formula">
-        <mml:math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
-        <%= node.content %>
-        </mml:math>
+        <% if (!node.content) { %>
+          <img src="<%= node.url %>"/>
+        <% } else { %>
+          <mml:math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+          <%= node.content %>
+          </mml:math>
+        <% } %>
+
         <div class="label"><%= node.label %></div>
         <div class="focus anchor" title="Highlight element then share the link from the address bar.">
           <i class="icon-bookmark"></i>
@@ -330,6 +335,11 @@
           <div class="type figure table"><i class="icon-table"></i> Table</div>
           <div class="name"><%= node.label %></div>
         </div>
+        <% if (node.url) { %>
+          <div class="table-image">
+            <a href="<%= node.large_url %>" target="_new"><img class="thumbnail" src="<%= node.url %>"/></a>
+          </div>
+        <% } %>
         <div class="table-wrapper">
           <%= node.content %>
         </div>
@@ -392,7 +402,6 @@
         <% } %>
       </div>
     </script>
-
 
     <!-- Lens.Article -->
     <script type="text/x-ejs-template" name="node_article">
