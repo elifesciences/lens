@@ -15,7 +15,7 @@ Lens.ENV = 'development';
 // Can optionally be an array specifying a file extension (we need that for static deployment)
 
 Lens.API_URL_PRODUCTION = ['http://cdn.elifesciences.org/documents/elife', '.js'];
-Lens.API_URL_DEV = 'http://localhost:1441';//http://elife-converter.herokuapp.com';
+Lens.API_URL_DEV = 'http://plos-converter.herokuapp.com'; //http://elife-converter.herokuapp.com';
 
 
 // The Lens Document Schema
