@@ -6,6 +6,13 @@ For a demo and more information see: http://lens.elifesciences.org
 
 To suggest a feature, report a bug, or general discussion: http://github.com/elifesciences/lens/issues/
 
+
+## The Lens Article Format
+
+The [Lens Article Format](http://github.com/elifesciences/lens-article) is a JSON based document model designed for representing scientific content. It features basic content types such as paragraphs, headings, and various figure types such as images, tables and videos complete with captions and cross-references.
+
+We're working on releasing the first official verison of the spec.
+
 ## Install
 
 Installing and running Lens locally is quite simple, since all you need is Node.js (our dev environment) and a web-browser.
@@ -29,6 +36,8 @@ Installing and running Lens locally is quite simple, since all you need is Node.
    ```bash
    $ ./lens start
    ```
+
+
 
 ## Deployment
 
