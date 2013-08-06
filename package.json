@@ -6,8 +6,8 @@
   "author"        : "Michael Aufreiter",
   "contributors"  : ["Ivan Grubisic", "Ian Mulvany", "Ian Hamilton", "Graham Nott", "Samo Korosec"],
   "repository": {
-      "type": "git",
-      "url": "https://github.com/elifesciences/lens.git"
+    "type": "git",
+    "url": "https://github.com/elifesciences/lens.git"
   },
   "engines": {
     "node": ">=0.8.x"

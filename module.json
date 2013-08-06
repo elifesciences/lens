@@ -1,0 +1,31 @@
+{
+  "name"          : "lens",
+  "description"   : "A novel way of seeing content.",
+  "url"           : "http://github.com/elifesciences/lens",
+  "keywords"      : ["digital documents", "linked-data", "research", "science"],
+  "author"        : "Michael Aufreiter",
+  "contributors"  : ["Ivan Grubisic", "Ian Mulvany", "Ian Hamilton", "Graham Nott", "Samo Korosec"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/elifesciences/lens.git"
+  },
+  "dependencies": {
+    "underscore": "1.5.x",
+    "express": "3.3.x",
+    "handlebars": "1.0.x",
+    "substance-util": "",
+    "substance-test": "",
+    "substance-surface": "",
+    "substance-regexp": "",
+    "substance-store": "",
+    "substance-operator": "",
+    "substance-document": "",
+    "substance-data": "",
+    "substance-commander": "",
+    "substance-converter": "",
+    "substance-chronicle": "",
+    "substance-application": "",
+    "lens-article": ""
+  },
+  "version": "0.2.0"
+}
