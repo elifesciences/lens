@@ -4,8 +4,22 @@
 
 For a demo and more information see: http://lens.elifesciences.org
 
-To suggest a feature, report a bug, or general discussion: http://github.com/elifesciences/lens/issues/
 
+
+### Participating and Contributing 
+
+Participation is highly encouraged. 
+
+To suggest a feature, report a bug: http://github.com/elifesciences/lens/issues/
+
+For general discussion join the mailing list/web forum: https://groups.google.com/forum/#!forum/elife-lens
+
+To get an overview of what we are currently working on now, and to see what we would like to work on in the future have a look at our roadmap: https://github.com/elifesciences/lens/wiki/Product-Roadmap
+
+To contribute to the project, please fork the project, and submit your pull requests. We will code review submissions, and a track record of good submissions will build confidence, and gain you access to direct access to the repo.
+
+The core team meets on a google+ hangout regularly. If you would like to join the core team, please consider supporting the project through either 
+code contributions, or a finanial commitment to support development. 
 
 ### The Lens Article Format
 
