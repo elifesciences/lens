@@ -29,13 +29,24 @@ We're working on releasing the first official verison of the spec.
 
 ### Install
 
+
+Lens is a Substance application, so the easiest way to get started is using the Substance Screwdriver.
+
+```bash
+$ git clone https://github.com/substance/screwdriver.git
+$ cd screwdriver
+$ python setup.py install
+```
+
+thus you need to install the Substance toolchain first. It provides helper that help your
+
 Installing and running Lens locally is quite simple, since all you need is Node.js (our dev environment) and a web-browser.
 
 
 1. Clone the repository
 
    ```bash
-   $ git clone https://github.com/elifesciences/lens.git
+   $ substance --clone https://github.com/elifesciences/lens.git
    ```
   
 2. Run the lens script, which pulls in all the dependencies
