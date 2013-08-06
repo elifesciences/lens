@@ -42,23 +42,34 @@ Installing and running Lens locally is quite simple, since all you need is Node.
 
    ```bash
    $ cd lens
-   $ ./lens update
+   $ substance --update
    ```
   
 3. Finally start the server and point your browser to `http://localhost:4000`
 
    ```bash
-   $ ./lens start
+   $ substance --start
    ```
 
 
+### Development workflow
+
+1. Create a feature branch across all sub-modules.
+
+   ```bash
+   substance --git -- checkout -b <feature_branch_name>
+   ```
+
+2. Edit `project.json` manually (replace branch: master with your feature-branch-name)
+
+3. substance --checkout
 
 ### Deployment
 
 This is not yet implemented, but in a couple of weeks you'll be able to bundle Lens as a static web page as simple as this.
 
 ```bash
-$ ./lens bundle
+$ substance --bundle
 ```
 
 It creates a `dist` folder with everything you need.
