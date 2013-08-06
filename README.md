@@ -52,17 +52,33 @@ Installing and running Lens locally is quite simple, since all you need is Node.
    ```
 
 
-### Development workflow
+### Development workflows
+
+
+#### Work with feature branches
+
+A good start is working with fresh feature branches.
 
 1. Create a feature branch across all sub-modules.
 
    ```bash
-   substance --git -- checkout -b <feature_branch_name>
+   $ substance --git -- checkout -b <feature_branch_name>
    ```
 
 2. Edit `project.json` manually (replace branch: master with your feature-branch-name)
 
-3. substance --checkout
+3. Checkout configured branches of sub-modules
+ 
+   ```bash
+   $ substance --checkout
+   ```
+
+#### To pull in upstream changes from master.
+
+```
+substance --git -- pull origin master:<feature_branch_name>
+```
+
 
 ### Deployment
 
