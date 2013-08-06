@@ -7,7 +7,7 @@
       "views": [
         "content",
         "figures",
-        "publications"
+        "citations"
       ],
       "guid": "lorem_ipsum",
       "creator": "",
@@ -24,7 +24,7 @@
         "heading_1",
         "codeblock_2",
         "formula_eqn1",
-        "image_1",
+        "image_fig2",
         "paragraph_3",
         "paragraph_4",
         "paragraph_5"
@@ -34,12 +34,14 @@
     "figures": {
       "type": "view",
       "id": "figures",
-      "nodes": []
+      "nodes": [
+        "image_fig2"
+      ]
     },
 
-    "publications": {
+    "citations": {
       "type": "view",
-      "id": "publications",
+      "id": "citations",
       "nodes": []
     },
 
@@ -56,11 +58,20 @@
       "content": "Lorem ipsum"
     },
 
-    "image_1": {
+    "image_fig2": {
       "type": "image",
-      "id": "image_1",
-      "content": " ",
-      "url": "http://i.telegraph.co.uk/multimedia/archive/02429/eleanor_scriven_2429776k.jpg"
+      "id": "image_fig2",
+      "label": "Figure 2.",
+      "object_id": "F2",
+      "group": [
+        "parent",
+        null
+      ],
+      "doi": "http://dx.doi.org/10.7554/eLife.00311.005",
+      "caption": "Ensemble refinement parameters and results as function of resolution of the datasets. (A) Gain in Rfree of ensemble refinement compared with re-refinement using phenix.refine, (B) number of structures in the final ensemble model, (C) optimum relaxation time, τx, (D) optimum pTLS and (E) optimum Tbath plotted as function of resolution of the dataset.",
+      "graphic_id": "elife00311f002",
+      "url": "http://elife.elifesciences.org/content/elife/1/e00311/F2.medium.gif",
+      "large_url": "http://elife.elifesciences.org/content/elife/1/e00311/F2.large.jpg"
     },
 
     "codeblock_2": {

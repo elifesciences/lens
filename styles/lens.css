@@ -1231,42 +1231,7 @@ Document Info panel
 Annotations
 --------------------------------------- */
 
-#document span.annotation {
-  -webkit-transition-property: background, color;
-  -moz-transition-property: background, color;
-  transition-property: background, color;
 
-  -webkit-transition-duration: 0.1s;
-  -moz-transition-duration: 0.1s;
-  transition-duration: 0.1s;
-}
-
-span.annotation.formula_reference, span.publication_reference {
-  padding-left: 3px; padding-right: 3px;
-}
-
-#document span.emphasis, #document em {
-  font-style: italic;
-}
-
-#document span.superscript, #document span.subscript, #document sup, #document sub {
-  vertical-align: baseline;
-  position: relative;
-  top: -0.4em;
-  font-size: 12px;
-}
-
-#document span.subscript, #document sub {
-  top: 0.4em;
-}
-
-#document span.strong, #document strong {
-  font-weight: bold;
-}
-
-#document span.underline {
-  text-decoration: underline;
-}
 
 /*span.formula_reference {
   cursor: pointer;

@@ -21,14 +21,13 @@ var Substance = {
 
 // Register node types
 // TODO: that should be done smarter
-Substance.Document.Transformer.nodeTypes = {
-  "node": require('lens-article/nodes/node'),
-  "constructor": require('lens-article/nodes/constructor'),
-  "paragraph": require('lens-article/nodes/paragraph'),
-  "heading": require('lens-article/nodes/heading'),
-  "image": require('lens-article/nodes/image'),
-  "codeblock": require('lens-article/nodes/codeblock')
-};
+// Substance.Document.Transformer.nodeTypes = {
+//   "node": require('lens-article/nodes/node'),
+//   "paragraph": require('lens-article/nodes/paragraph'),
+//   "heading": require('lens-article/nodes/heading'),
+//   "image": require('lens-article/nodes/image'),
+//   "codeblock": require('lens-article/nodes/codeblock')
+// };
 
 // require("substance-operator/tests");
 // require("substance-chronicle/tests");
