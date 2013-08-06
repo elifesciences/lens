@@ -7,13 +7,13 @@ For a demo and more information see: http://lens.elifesciences.org
 To suggest a feature, report a bug, or general discussion: http://github.com/elifesciences/lens/issues/
 
 
-## The Lens Article Format
+### The Lens Article Format
 
 The [Lens Article Format](http://github.com/elifesciences/lens-article) is a JSON based document model designed for representing scientific content. It features basic content types such as paragraphs, headings, and various figure types such as images, tables and videos complete with captions and cross-references.
 
 We're working on releasing the first official verison of the spec.
 
-## Install
+### Install
 
 Installing and running Lens locally is quite simple, since all you need is Node.js (our dev environment) and a web-browser.
 
@@ -39,7 +39,7 @@ Installing and running Lens locally is quite simple, since all you need is Node.
 
 
 
-## Deployment
+### Deployment
 
 This is not yet implemented, but in a couple of weeks you'll be able to bundle Lens as a static web page as simple as this.
 
@@ -50,12 +50,7 @@ $ ./lens bundle
 It creates a `dist` folder with everything you need.
 
 
-## Roadmap
+### Roadmap
 
-Lens is a work in progress. It's intended to be an open platform for viewing science literature.  Here's what you can expect to be implemented in the coming months.
+The Roadmap is covered on the [project wiki](https://github.com/elifesciences/lens/wiki/Product-Roadmap)
 
-- Integrating other OA content (first will be [PLoS](http://www.plos.org))
-- Private notes, so users can stick notes on their paper which are stored locally
-- Mobile optimizations
-- Evaluating options for offline reading
-- And obviously there will be bugfixes, UI polish addressing the feedback we've got
