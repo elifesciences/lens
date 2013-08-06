@@ -3,27 +3,27 @@
     {
       "repository": "https://github.com/substance/application.git",
       "folder": "node_modules/substance-application",
-      "branch": "master"
+      "branch": "0.1.x"
     },
     {
       "repository": "https://github.com/substance/chronicle.git",
       "folder": "node_modules/substance-chronicle",
-      "branch": "master"
+      "branch": "0.2.x"
     },
     {
       "repository": "https://github.com/substance/commander.git",
       "folder": "node_modules/substance-commander",
-      "branch": "master"
+      "branch": "0.1.x"
     },
     {
       "repository": "https://github.com/michael/data.git",
       "folder": "node_modules/substance-data",
-      "branch": "master"
+      "branch": "0.8.x"
     },
     {
       "repository": "https://github.com/substance/document.git",
       "folder": "node_modules/substance-document",
-      "branch": "master"
+      "branch": "0.5.x"
     },
     {
       "repository": "https://github.com/elifesciences/lens-article.git",
@@ -38,32 +38,32 @@
     {
       "repository": "https://github.com/substance/operator.git",
       "folder": "node_modules/substance-operator",
-      "branch": "master"
+      "branch": "0.2.x"
     },
     {
       "repository": "https://github.com/substance/regexp.git",
       "folder": "node_modules/substance-regexp",
-      "branch": "master"
+      "branch": "0.1.x"
     },
     {
       "repository": "https://github.com/substance/store.git",
       "folder": "node_modules/substance-store",
-      "branch": "master"
+      "branch": "0.1.x"
     },
     {
       "repository": "https://github.com/substance/surface.git",
       "folder": "node_modules/substance-surface",
-      "branch": "master"
+      "branch": "0.3.x"
     },
     {
       "repository": "https://github.com/substance/test.git",
       "folder": "node_modules/substance-test",
-      "branch": "master"
+      "branch": "0.2.x"
     },
     {
       "repository": "https://github.com/substance/util.git",
       "folder": "node_modules/substance-util",
-      "branch": "master"
+      "branch": "0.2.x"
     },
     {
       "repository": "https://github.com/elifesciences/lens.git",
