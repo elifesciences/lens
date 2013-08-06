@@ -22,6 +22,7 @@
         "paragraph_1",
         "heading_1",
         "codeblock_2",
+        "formula_eqn1",
         "image_1",
         "paragraph_3",
         "paragraph_4",
@@ -43,6 +44,7 @@
       "id": "paragraph_1",
       "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vel accumsan lectus, id hendrerit magna. Donec vehicula dui quis ipsum tempor tincidunt. Quisque adipiscing, nibh at pulvinar feugiat, odio lectus eleifend felis, eu consectetur turpis ante eu magna. Praesent consequat velit nibh, eu porta nibh vulputate sed. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc nec urna at diam molestie fermentum a vitae metus. Sed ac arcu vel urna vehicula vulputate. Donec urna augue, interdum tristique pellentesque a, tincidunt id felis. Nunc in consequat augue. Nulla facilisi."
     },
+
     "heading_1": {
       "type": "heading",
       "id": "heading_1",
@@ -75,6 +77,15 @@
       "id": "paragraph_5",
       "content": "Maecenas tincidunt purus quis leo posuere, eu venenatis magna placerat. Sed vestibulum eros in pulvinar ornare. Nam arcu urna, dignissim a mi id, euismod consequat mi. Nam varius metus elit, sagittis rutrum elit cursus non. Integer ut euismod ligula. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nam a sapien vehicula, vestibulum lorem ac, condimentum elit. Donec gravida tortor sit amet molestie sollicitudin."
     },
+
+    "formula_eqn1": {
+      "type": "formula",
+      "id": "formula_eqn1",
+      "label": "(1)",
+      "data": "<mml:mrow><mml:msub><mml:mi mathvariant=bold-italic>F</mml:mi><mml:mrow><mml:mi mathvariant=italic>model</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mi>k</mml:mi><mml:msup><mml:mi>e</mml:mi><mml:mrow><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:mo>−</mml:mo><mml:mfrac><mml:mrow><mml:msup><mml:mi mathvariant=bold-italic>h</mml:mi><mml:mi>T</mml:mi></mml:msup><mml:msup><mml:mi mathvariant=bold-italic>A</mml:mi><mml:mrow><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:msub><mml:mi mathvariant=bold-italic>B</mml:mi><mml:mrow><mml:mi mathvariant=italic>cart</mml:mi></mml:mrow></mml:msub><mml:msup><mml:mrow><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:msup><mml:mi mathvariant=bold-italic>A</mml:mi><mml:mrow><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup></mml:mrow><mml:mo>)</mml:mo></mml:mrow></mml:mrow><mml:mi>T</mml:mi></mml:msup><mml:mi mathvariant=bold-italic>h</mml:mi></mml:mrow><mml:mn>4</mml:mn></mml:mfrac></mml:mrow><mml:mo>)</mml:mo></mml:mrow></mml:mrow></mml:msup><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:msub><mml:mi mathvariant=bold-italic>F</mml:mi><mml:mrow><mml:mi>c</mml:mi><mml:mi>a</mml:mi><mml:mi>l</mml:mi><mml:mi>c</mml:mi></mml:mrow></mml:msub><mml:mo>+</mml:mo><mml:msub><mml:mi>k</mml:mi><mml:mrow><mml:mi mathvariant=italic>sol</mml:mi></mml:mrow></mml:msub><mml:msup><mml:mi>e</mml:mi><mml:mrow><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:mo>−</mml:mo><mml:mfrac><mml:mrow><mml:msub><mml:mi>B</mml:mi><mml:mrow><mml:mi mathvariant=italic>sol</mml:mi></mml:mrow></mml:msub><mml:msup><mml:mi>s</mml:mi><mml:mn>2</mml:mn></mml:msup></mml:mrow><mml:mn>4</mml:mn></mml:mfrac></mml:mrow><mml:mo>)</mml:mo></mml:mrow></mml:mrow></mml:msup><mml:msub><mml:mi mathvariant=bold-italic>F</mml:mi><mml:mrow><mml:mi mathvariant=italic>mask</mml:mi></mml:mrow></mml:msub></mml:mrow><mml:mo>)</mml:mo></mml:mrow><mml:mo>,</mml:mo></mml:mrow>",
+      "format": "mathml"
+    },
+
     "idea_1": {
       "id":"idea_1",
       "type":"idea",
