@@ -1268,7 +1268,7 @@ span.annotation.formula_reference, span.publication_reference {
   text-decoration: underline;
 }
 
-span.formula_reference {
+/*span.formula_reference {
   cursor: pointer;
   color: #1B6685;
 }
@@ -1308,7 +1308,7 @@ span.publication_reference:hover {
 span.publication_reference.active {
 
   background: rgba(11, 157, 217, 0.6);
-}
+}*/
 
 
 /*
