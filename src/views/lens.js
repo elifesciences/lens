@@ -9,7 +9,6 @@ var View = require("substance-application").View;
 // var TestCenter = Substance.Test.TestCenter;
 // var EditorView = require("./editor");
 
-
 // Lens.View Constructor
 // ==========================================================================
 
@@ -19,8 +18,10 @@ var LensView = function(controller) {
   this.controller = controller;
 
   this.$el.attr({id: "container"});
+
   // Handle state transitions
   // --------
+  
   this.listenTo(this.controller, 'state-changed', this.onStateChanged);
 
   // DOM events
