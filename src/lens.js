@@ -3,7 +3,8 @@
 var _ = require("underscore");
 
 var Lens = {
-  Article: require("lens-article")
+  Article: require("lens-article"),
+  Outline: require("lens-outline")
 };
 
 var Substance = {
@@ -19,15 +20,6 @@ var Substance = {
   Surface: require("substance-surface")
 };
 
-// Register node types
-// TODO: that should be done smarter
-// Substance.Document.Transformer.nodeTypes = {
-//   "node": require('lens-article/nodes/node'),
-//   "paragraph": require('lens-article/nodes/paragraph'),
-//   "heading": require('lens-article/nodes/heading'),
-//   "image": require('lens-article/nodes/image'),
-//   "codeblock": require('lens-article/nodes/codeblock')
-// };
 
 // require("substance-operator/tests");
 // require("substance-chronicle/tests");

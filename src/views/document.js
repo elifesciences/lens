@@ -53,25 +53,25 @@ var Document = Backbone.View.extend({
   // Visually tease annotation on mousover
   // TODO: We could start teasing the occurences here
 
-  _teaseAnnotation: function(e) {
-    var doc = this.model.document;
-    $el = $(e.currentTarget);
-    var type = $el.hasClass('figure_reference') ? 'figures' : 'publications';
-    var node = $(e.currentTarget).parent().attr('id');
-    $('#'+node+' .focus-'+type).addClass('active');
-    return false;
-  },
+  // _teaseAnnotation: function(e) {
+  //   var doc = this.model.document;
+  //   $el = $(e.currentTarget);
+  //   var type = $el.hasClass('figure_reference') ? 'figures' : 'publications';
+  //   var node = $(e.currentTarget).parent().attr('id');
+  //   $('#'+node+' .focus-'+type).addClass('active');
+  //   return false;
+  // },
 
   // Untease
   // -----------------
   // 
   // On mouse out, remove the teased items
 
-  _untease: function() {
-    $('.focus-publications').removeClass('active');
-    $('.focus-figures').removeClass('active');
-    return false;
-  },
+  // _untease: function() {
+  //   $('.focus-publications').removeClass('active');
+  //   $('.focus-figures').removeClass('active');
+  //   return false;
+  // },
 
   // Handle Mouse Down
   // -----------------
@@ -79,38 +79,38 @@ var Document = Backbone.View.extend({
   // Used by the document map to scroll through the doc by
   // clicking and holding the `.visible-area` handle
 
-  _mouseDown: function(e) {
-    this.mouseDown = true;
-    var y = e.pageY;
+  // _mouseDown: function(e) {
+  //   this.mouseDown = true;
+  //   var y = e.pageY;
 
-    // find offset to visible-area.top
-    this.offset = y - $('.visible-area').position().top;
-    return false;
-  },
+  //   // find offset to visible-area.top
+  //   this.offset = y - $('.visible-area').position().top;
+  //   return false;
+  // },
 
-  // Handle Mouse Up
-  // -----------------
-  // 
-  // Mouse lifted, no scroll anymore
+  // // Handle Mouse Up
+  // // -----------------
+  // // 
+  // // Mouse lifted, no scroll anymore
 
-  _mouseUp: function() {
-    this.mouseDown = false;
-  },
+  // _mouseUp: function() {
+  //   this.mouseDown = false;
+  // },
 
-  // Handle Scroll
-  // -----------------
-  // 
-  // Handle scroll event
-  // .visible-area handle
+  // // Handle Scroll
+  // // -----------------
+  // // 
+  // // Handle scroll event
+  // // .visible-area handle
 
-  _scroll: function(e) {
-    if (this.mouseDown) {
-      var y = e.pageY;
-      // find offset to visible-area.top
-      var scroll = (y - this.offset)*this.factor;
-      $('#container .content').scrollTop(scroll);
-    }
-  },
+  // _scroll: function(e) {
+  //   if (this.mouseDown) {
+  //     var y = e.pageY;
+  //     // find offset to visible-area.top
+  //     var scroll = (y - this.offset)*this.factor;
+  //     $('#container .content').scrollTop(scroll);
+  //   }
+  // },
 
   // TODO: Redundant, try to combine with toggleFocus
   _toggleAnchor: function(e) {
@@ -393,59 +393,59 @@ var Document = Backbone.View.extend({
     $(this.el).addClass(this.model.resourceType);
   },
 
-  // Render Document Outline
-  // -------------
-  // 
-  // Renders outline and calculates heading bounds
-  // Used for auto-selecting current heading
+  // // Render Document Outline
+  // // -------------
+  // // 
+  // // Renders outline and calculates heading bounds
+  // // Used for auto-selecting current heading
 
-  renderOutline: function() {
-    var that = this;
-    var totalHeight = 0;
-    var doc = this.model.document;
+  // renderOutline: function() {
+  //   var that = this;
+  //   var totalHeight = 0;
+  //   var doc = this.model.document;
 
-    that.$('.outline').empty();
-    that.$('.outline').append('<div class="visible-area"></div>');
+  //   that.$('.outline').empty();
+  //   that.$('.outline').append('<div class="visible-area"></div>');
 
-    var contentHeight = $('.nodes').height();
-    var panelHeight = $('.outline').height();
+  //   var contentHeight = $('.nodes').height();
+  //   var panelHeight = $('.outline').height();
 
-    var factor = (contentHeight / panelHeight);
-    this.factor = factor;
+  //   var factor = (contentHeight / panelHeight);
+  //   this.factor = factor;
 
-    _.each(doc["views"]["content"], function(node) {
-      var n = doc.nodes[node];
-      var dn = $('#node_'+_.htmlId(n.id));
+  //   _.each(doc["views"]["content"], function(node) {
+  //     var n = doc.nodes[node];
+  //     var dn = $('#node_'+_.htmlId(n.id));
 
-      var height = dn.outerHeight(true) / factor;
+  //     var height = dn.outerHeight(true) / factor;
       
-      var $node = '<div class="node '+n.type+'" id="outline_'+_.htmlId(node)+'" style="position: absolute; height: '+(height-1)+'px; top:'+totalHeight+'px;"><div class="arrow"></div></div>';
-      that.$('.outline').append($node);
-      totalHeight += height;
-    });
+  //     var $node = '<div class="node '+n.type+'" id="outline_'+_.htmlId(node)+'" style="position: absolute; height: '+(height-1)+'px; top:'+totalHeight+'px;"><div class="arrow"></div></div>';
+  //     that.$('.outline').append($node);
+  //     totalHeight += height;
+  //   });
 
 
-    // Init scroll pos
-    var scrollTop = $('#container .content').scrollTop();
-    $('.visible-area').css({
-      "top": scrollTop / factor,
-      "height": $('#document .outline').height() / factor
-    });
+  //   // Init scroll pos
+  //   var scrollTop = $('#container .content').scrollTop();
+  //   $('.visible-area').css({
+  //     "top": scrollTop / factor,
+  //     "height": $('#document .outline').height() / factor
+  //   });
 
-    $('#container .content').unbind('scroll');
-    $('#container .content').scroll(function() {
-      // update outline scroll pos
-      var scrollTop = $('#container .content').scrollTop();
+  //   $('#container .content').unbind('scroll');
+  //   $('#container .content').scroll(function() {
+  //     // update outline scroll pos
+  //     var scrollTop = $('#container .content').scrollTop();
 
-      // Update visible area
-      $('.visible-area').css({
-        "top": scrollTop / factor,
-        "height": $('#document .outline').height() / factor
-      });
+  //     // Update visible area
+  //     $('.visible-area').css({
+  //       "top": scrollTop / factor,
+  //       "height": $('#document .outline').height() / factor
+  //     });
 
-      that.markActiveHeading();
-    });
-  },
+  //     that.markActiveHeading();
+  //   });
+  // },
 
   // Mark Active Heading
   // -------------
@@ -484,35 +484,35 @@ var Document = Backbone.View.extend({
     tocEntry.addClass('highlighted');
   },
 
-  // Update Outline
-  // -------------
-  // 
-  // Renders outline and calculates heading bounds
-  // Used for auto-selecting current heading
+  // // Update Outline
+  // // -------------
+  // // 
+  // // Renders outline and calculates heading bounds
+  // // Used for auto-selecting current heading
 
-  updateOutline: function() {
-    var that = this;
-    var doc = this.model.document;
+  // updateOutline: function() {
+  //   var that = this;
+  //   var doc = this.model.document;
 
-    // Reset
-    this.$('.outline .node').removeClass('active').removeClass('highlighted');
-    that.$('.outline').removeClass('figure').removeClass('publication');
+  //   // Reset
+  //   this.$('.outline .node').removeClass('active').removeClass('highlighted');
+  //   that.$('.outline').removeClass('figure').removeClass('publication');
 
-    // 1. Mark active node
-    if (this.model.node) {
-      this.$('#outline_'+_.htmlId(this.model.node)).addClass('active');  
-    }
+  //   // 1. Mark active node
+  //   if (this.model.node) {
+  //     this.$('#outline_'+_.htmlId(this.model.node)).addClass('active');  
+  //   }
 
-    if (this.model.resource) {
-      that.$('.outline').addClass(this.model.resourceType);
+  //   if (this.model.resource) {
+  //     that.$('.outline').addClass(this.model.resourceType);
 
-      var annotations = doc.find('reverse_annotations', this.model.resource);
-      _.each(annotations, function(a) {
-        var node = a.source;
-        that.$('#outline_'+_.htmlId(node)).addClass('highlighted');
-      });
-    }
-  },
+  //     var annotations = doc.find('reverse_annotations', this.model.resource);
+  //     _.each(annotations, function(a) {
+  //       var node = a.source;
+  //       that.$('#outline_'+_.htmlId(node)).addClass('highlighted');
+  //     });
+  //   }
+  // },
 
   // Recompute Layout properties
   // --------

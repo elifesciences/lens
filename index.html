@@ -17,10 +17,10 @@
 
     <!-- Lens.Article related styles -->
     <link href="lib/substance/lens-article/article.css" media="screen" rel="stylesheet" type="text/css" />
-    <link href="lib/substance/lens-article/nodes/constructor/constructor.css" media="screen" rel="stylesheet" type="text/css" />
     <link href="lib/substance/lens-article/nodes/text/text.css" media="screen" rel="stylesheet" type="text/css" />
     <link href="lib/substance/lens-article/nodes/paragraph/paragraph.css" media="screen" rel="stylesheet" type="text/css" />
     <link href="lib/substance/lens-article/nodes/heading/heading.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="lib/substance/lens-article/nodes/formula/formula.css" media="screen" rel="stylesheet" type="text/css" />
     <link href="lib/substance/lens-article/nodes/codeblock/codeblock.css" media="screen" rel="stylesheet" type="text/css" />
     <link href="lib/substance/lens-article/nodes/image/image.css" media="screen" rel="stylesheet" type="text/css" />
 
@@ -75,22 +75,23 @@
 
     <!-- Article View -->
     <script type="text/x-ejs-template" name="article">
-      <div id="document_wrapper">
-        <div id="composer">
-          <div id="document">
-            <div class="surface">
+      <!-- Main Document Content -->
+      <div class="document">
 
-            </div>
-          </div>
+      </div>
+
+      <!-- Resources panel -->
+      <div class="resources">
+        <div class="figures">
+
         </div>
       </div>
     </script>
 
     <script type="text/x-ejs-template" name="surface">
-      <input type="file" class="image-files" name="files[]"/>
-      <div class="controls">
+      <!--<div class="controls">
 
-      </div>
+      </div>-->
       <!-- where the content goes -->
       <div class="nodes"></div>
     </script>
