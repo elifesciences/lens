@@ -132,6 +132,39 @@ p:last-child { padding-bottom: 0; }
 Layout 
 --------------------------------------- */
 
+a.home {
+  position: absolute;
+  left: 0px;
+  top: 20px;
+  opacity: 0.7;
+}
+
+a.home img {
+  padding-left: 10px;
+  display: block;
+}
+
+a.home .go-back {
+  position: absolute;
+  left: -60px;
+  top: 5px;
+  display: none;
+  opacity: 0;
+  padding-top: 10px;
+  color: #777;
+  font-size: 12px;
+  font-family: 'Avenir LT W01 85 Heavy', 'Montserrat', 'Source Sans Pro';
+  text-transform: uppercase;
+}
+
+a.home:hover .go-back {
+  opacity: 1;
+}
+
+a.home:hover {
+  opacity: 1;
+}
+
 
 
 /* main
@@ -417,7 +450,6 @@ Publications
 }
 
 .article .resources .name {
-
   font-family: 'Avenir LT W01 85 Medium', 'Montserrat', 'Source Sans Pro';
   font-size: 16px;
   
@@ -453,46 +485,7 @@ Publications
 
 
 
-/*
-TOC 
---------------------------------------- */
 
-.article .toc.view {
-  margin-right: 20px;
-  position: relative;
-}
-
-.article .toc.view .heading-ref {
-  display: block;
-  color: rgba(0,0,0,0.5);
-  font-size: 17px;
-  padding: 4px 10px;
-  line-height: 20px;
-  font-family: 'Avenir LT W01 85 Heavy', 'Montserrat', 'Source Sans Pro';
-  margin-right: 10px;
-  border: 1px solid transparent;
-}
-
-.article .toc.view .heading-ref.highlighted {
-  color: rgba(0,0,0,0.9);
-  background: #fff;
-  border: 1px solid #eee;
-}
-
-
-.article .toc.view .heading-ref.level-2 {
-  padding-left: 30px;
-  font-size: 13px;
-}
-
-.article .toc.view .heading-ref.level-3 {
-  padding-left: 60px;
-  font-size: 13px;
-}
-
-.article .toc.view .heading-ref:hover {
-  color: rgba(0,0,0,1.0);
-}
 
 
 /* Content Nodes*/

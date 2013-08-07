@@ -24,7 +24,6 @@
         "heading_1",
         "codeblock_2",
         "formula_eqn1",
-        "image_fig2",
         "paragraph_3",
         "paragraph_4",
         "paragraph_5"
@@ -35,7 +34,8 @@
       "type": "view",
       "id": "figures",
       "nodes": [
-        "image_fig2"
+        "image_fig2",
+        "image_fig3"
       ]
     },
 
@@ -72,6 +72,17 @@
       "graphic_id": "elife00311f002",
       "url": "http://elife.elifesciences.org/content/elife/1/e00311/F2.medium.gif",
       "large_url": "http://elife.elifesciences.org/content/elife/1/e00311/F2.large.jpg"
+    },
+
+    "image_fig3": {
+      "type": "image",
+      "id": "image_fig3",
+      "label": "Figure 3.",
+      "object_id": "F3",
+      "doi": "http://dx.doi.org/10.7554/eLife.00311.009",
+      "caption": "Validation of ensemble refinement using dataset 1YTT with exceptionally high quality experimental phases. (A) Real space cross-correlation of experimentally phased electron density map (|Fobs|exp[iφobs]) and model map (|Fmodel|exp[iφmodel]) for the single-structure (black) and ensemble model (chain A and B, blue and red respectively) shows improvements particularly for disordered areas (atomic B-factors from the re-refined single structure are shown in grey dashed lines). (B) Example of improved vector-difference map (|Fobs|exp[iφobs] − |Fmodel|exp[iφmodel]), contoured at 0.71 e/Å3 equivalent to 2.5 σ for the single structure for Gln167, chain A, for single (left-hand side) and ensemble structure (right-hand side). (C) Conformer distribution of Phe121 (chain A) with the experimental phased map (|Fobs|exp[iφobs]) contoured at 1.4 σ is highly similar to the multi-conformer shown in Figure 1c in Burling et al. (1996). (D) Partially disordered solvent shell (red) around residue Leu203 (chain A) as anticipated in Burling et al. (1996). Ensemble structure with experimental phased experimental map (|Fobs|exp[iφobs]) contoured at 1.4 σ (left side) and 0.7 σ (right side), as shown in Figure 2b in Burling et al. (1996). (E) Scatter plot showing the anti-correlation between the B-factor of explicit solvent molecules in the re-refined single-structure and the relative occupancy of water molecules at that same position (within 0.5-Å distance) in the ensemble model. Due to the difficulty in differentiating between disorder (B-factor) and occupancy for explicitly modelled water atoms in single structures a high B-factor is likely to correspond to a partially occupied site.",
+      "url": "http://elife.elifesciences.org/content/elife/1/e00311/F3.medium.gif",
+      "large_url": "http://elife.elifesciences.org/content/elife/1/e00311/F3.large.jpg"
     },
 
     "codeblock_2": {

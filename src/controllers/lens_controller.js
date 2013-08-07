@@ -43,7 +43,6 @@ LensController.Prototype = function() {
     var that = this;
     this.session.loadDocument(documentId || 'lorem_ipsum', function(err, doc) {
       if (err) throw "Loading failed";
-      console.log('OPENING::::', doc);
       that.article = new ArticleController(doc);
       that.updateState('article');
     });
