@@ -61,7 +61,7 @@ code contributions, or a finanial commitment to support development.
 
 ### Forking
 
-To contribute to Lens you should clone the full Lens stack first.
+To contribute to Lens you should clone the full Lens project first.
 
 Then you can create your personal fork of the module you want contribute to:
 see [here](https://help.github.com/articles/fork-a-repo) for explanations.
