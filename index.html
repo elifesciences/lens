@@ -18,6 +18,7 @@
     <!-- Lens.Article related styles -->
     <link href="lib/substance/lens-article/article.css" media="screen" rel="stylesheet" type="text/css" />
 
+    <link href="lib/substance/lens-article/nodes/node/node.css" media="screen" rel="stylesheet" type="text/css" />
     <link href="lib/substance/lens-article/nodes/text/text.css" media="screen" rel="stylesheet" type="text/css" />
     <link href="lib/substance/lens-article/nodes/paragraph/paragraph.css" media="screen" rel="stylesheet" type="text/css" />
     <link href="lib/substance/lens-article/nodes/heading/heading.css" media="screen" rel="stylesheet" type="text/css" />
@@ -28,7 +29,6 @@
 
     <!-- Lens.Outline styles -->
     <link href="lib/substance/lens-outline/outline.css" media="screen" rel="stylesheet" type="text/css" />
-
 
     <!-- Templates -->
     <script type="text/html" name="lens">
@@ -94,20 +94,6 @@
       <div class="nodes"></div>
     </script>
 
-    <!-- Substance.Text Node -->
-    <!-- Used for paragraphs and headings -->
-    <script type="text/x-ejs-template" name="text">
-      <div class="content"></div>
-    </script>
-
-    <script type="text/x-ejs-template" name="image">
-      <div class="content">
-        <div class="image-char">
-          <img src="<%= medium || url %>"/>
-          <div class="overlay"></div>
-        </div>
-      </div>
-    </script>
 
     <!-- Substance.TestCenter -->
     <script type="text/text/x-handlebars-template" name="test_center">
