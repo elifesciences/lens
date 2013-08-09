@@ -19,9 +19,6 @@ var LensController = function(env) {
   Controller.call(this);
   this.session = new Session(env);
 
-  // Create main view
-  this.view = new LensView(this);
-
   // Main controls
   this.on('open:article', this.openArticle);
   this.on('open:library', this.openLibrary);
@@ -29,28 +26,49 @@ var LensController = function(env) {
   this.on('open:test_center', this.openTestCenter);
 };
 
-
 LensController.Prototype = function() {
+
+  // Initial view creation
+  // ===================================
+
+  this.createView = function() {
+    // Remove when transition has completed
+    // this.writer = new Document.Writer(this.__document);
+
+    // this.content = new Document.Writer(this.__document, {view: "content"});
+    // this.toc = new TOC();
+    // this.figures = new Document.Writer(this.__document, {view: "figures"});
+    // this.citations = new Document.Writer(this.__document, {view: "citations"});
+
+    // Create main view
+    var view = new LensView(this);
+    this.view = view;
+    return view;
+  };
 
   // Transitions
   // ===================================
 
-  this.openArticle = function(documentId) {
-    console.log('open article', documentId);
+  this.openArticle = function(documentId, context, node, resource) {
+
+    // The article view state
+    var state = {
+      context: context,
+      node: node,
+      resource: resource
+    };
+
     var that = this;
 
     this.session.loadDocument(documentId, function(err, doc) {
-      console.log('YOYO');
       if (err) throw "Loading failed";
-      that.article = new ArticleController(doc);
-      console.log('YOYO');
+      that.article = new ArticleController(doc, state);
+      console.log('article loaded.. updating state');
       that.updateState('article');
     });
   };
 
   this.openLibrary = function() {
-    console.log('opening library');
-
     this.library = new LibraryController();
     this.updateState('library');
   };

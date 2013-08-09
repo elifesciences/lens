@@ -1,7 +1,10 @@
+// The Lens Router
+// --------
+
 [
-  {"route": ":document/:node/:resource", "name": "node",           "command": "openArticle"},
-  {"route": ":document/:node",           "name": "node",           "command": "openArticle"},
-  {"route": ":document/:type",           "name": "resource",       "command": "openArticle"},
-  {"route": ":document",                 "name": "document",       "command": "openArticle"},
-  {"route": "",                          "name": "document",       "command": "openLibrary"},
+  {"route": ":document/:context/:node/:resource", "name": "resource",       "command": "openArticle"},
+  {"route": ":document/:context/:node",           "name": "node",           "command": "openArticle"},
+  {"route": ":document/:context",                 "name": "resource",       "command": "openArticle"},
+  {"route": ":document",                          "name": "document",       "command": "openArticle"},
+  {"route": "",                                   "name": "library",        "command": "openLibrary"}
 ]

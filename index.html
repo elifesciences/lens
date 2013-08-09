@@ -95,61 +95,6 @@
     </script>
 
 
-    <!-- Substance.TestCenter -->
-    <script type="text/text/x-handlebars-template" name="test_center">
-      <div class="test-suites">
-        {{#each test_suites}}
-          <a class="test-suite {{name}}" sbs-click='showReport({{name}})' href="#tests/{{name}}">
-            {{name}}
-            <div class="status"></div>
-          </a>
-        {{/each}}
-      </div>
-
-      <div class="test-report">
-
-      </div>
-
-      <div class="test-output">
-
-      </div>
-    </script>
-
-    <!-- Substance.TestReport -->
-    <script type="text/text/x-handlebars-template" name="test_report">
-      <div class="border-right"></div>
-      <h2>Subtance.{{name}}</h2>
-      <div class="tests">
-        {{#each tests}}
-          <div class="test">
-            <div class="name">{{name}}</div>
-            <div class="actions">
-              {{#each actions}}
-                <div class="action {{#ifelse error "error" "success"}}{{/ifelse}}">
-                  <div class="status">
-                    <i class="{{#ifelse error "icon-frown" "icon-smile"}}{{/ifelse}}"></i>
-                  </div>
-                    {{@index}}. {{label}}
-                  {{# if error }}
-                  <div class="error-message">{{error.message}}</div>
-                  <div class="error-source">
-                    <pre>{{sourcecode}}</pre>
-                  </div>
-                  <div class="stack-trace">
-                    <pre>{{error.stack}}</pre>
-                  </div>
-                  {{/if}}
-                  <div class="duration">
-                     {{duration}} ms
-                  </div>
-                </div>
-              {{/each}}
-            </div>
-          </div>
-        {{/each}}
-      </div>
-    </script>
-
     <script src="lib/underscore.js"></script>
     <script src="lib/jquery-2.0.3.min.js"></script>
     <script src="lib/backbone.js"></script>

@@ -18,10 +18,6 @@ var Backbone = require("../lib/backbone");
 var Lens = function(config) {
   Application.call(this, config);
 
-  // Compile templates
-  html.compileTemplate('test_center');
-  html.compileTemplate('test_report');
-
   this.controller = new LensController();
 };
 
@@ -64,7 +60,7 @@ Lens.Prototype = function() {
   this.start = function() {
     Application.prototype.start.call(this);
 
-    this.view = new LensView(this.controller);
+    this.view = this.controller.createView();
     this.$el.html(this.view.render().el);
 
     this.initRouter();

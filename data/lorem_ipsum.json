@@ -137,7 +137,7 @@
       "id":"figure_reference_3",
       "type":"figure_reference",
       "path": ["paragraph_1", "content"],
-      "target": "paragraph_4",
+      "target": "image_fig2",
       "range":[200,210]
     },
 

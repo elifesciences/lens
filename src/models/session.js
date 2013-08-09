@@ -22,7 +22,7 @@ Session.Prototype = function() {
   // Load document from data folder
   // --------
 
-  this.loadDocument = function(name, cb) {    
+  this.loadDocument = function(name, cb) {
     $.getJSON("data/"+name+".json", function(data) {
       var doc = Article.fromSnapshot(data, {
         chronicle: Chronicle.create()
