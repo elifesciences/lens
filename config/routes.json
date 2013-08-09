@@ -1,0 +1,7 @@
+[
+  {"route": ":document/:node/:resource", "name": "node",           "command": "openArticle"},
+  {"route": ":document/:node",           "name": "node",           "command": "openArticle"},
+  {"route": ":document/:type",           "name": "resource",       "command": "openArticle"},
+  {"route": ":document",                 "name": "document",       "command": "openArticle"},
+  {"route": "",                          "name": "document",       "command": "openLibrary"},
+]

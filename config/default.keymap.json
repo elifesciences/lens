@@ -50,5 +50,4 @@
       // {"keys": ["shift+command+left"],  "command": "expand", "scope": "selection", "args": ["left", "node"] }
     ]
   }
-
 ]

@@ -3,11 +3,9 @@
 var _ = require("underscore");
 var util = require('substance-util');
 var html = util.html;
-var Lens = require("../lens");
 var View = require("substance-application").View;
 
 // var TestCenter = Substance.Test.TestCenter;
-// var EditorView = require("./editor");
 
 // Lens.View Constructor
 // ==========================================================================
@@ -16,7 +14,6 @@ var LensView = function(controller) {
   View.call(this);
 
   this.controller = controller;
-
   this.$el.attr({id: "container"});
 
   // Handle state transitions

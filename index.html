@@ -166,10 +166,24 @@
     #####scripts#####
 
     <script>
-      // var sandbox = new Substance.Sandbox();
+      var Lens = require("/src/lens.js");
+
+      // Create a new Lens app instance
+      // --------
+      // 
+      // injects itself into body
+
+      var app = new Lens({
+        env: 'development',
+        library_url: ['http://cdn.elifesciences.org/documents/elife', '.js'],
+        // alternatively
+        // library_url: 'http://plos-converter.herokuapp.com'
+      });
+
+      // window.app = app;
+
       $(function() {
-        var boot = require("/src/boot.js");
-        window.Lens = boot();
+        app.start();
       });
 
     </script>

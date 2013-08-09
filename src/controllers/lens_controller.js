@@ -8,7 +8,6 @@ var util = require("substance-util");
 var Controller = require("substance-application").Controller;
 var LensView = require("../views/lens");
 var Test = require("substance-test");
-var Router = require("../router");
 
 
 // Lens.Controller
@@ -19,9 +18,6 @@ var Router = require("../router");
 var LensController = function(env) {
   Controller.call(this);
   this.session = new Session(env);
-
-  // HACK: probably this can be straightened
-  this.router = new Router({controller: this});
 
   // Create main view
   this.view = new LensView(this);
@@ -40,15 +36,21 @@ LensController.Prototype = function() {
   // ===================================
 
   this.openArticle = function(documentId) {
+    console.log('open article', documentId);
     var that = this;
-    this.session.loadDocument(documentId || 'lorem_ipsum', function(err, doc) {
+
+    this.session.loadDocument(documentId, function(err, doc) {
+      console.log('YOYO');
       if (err) throw "Loading failed";
       that.article = new ArticleController(doc);
+      console.log('YOYO');
       that.updateState('article');
     });
   };
 
   this.openLibrary = function() {
+    console.log('opening library');
+
     this.library = new LibraryController();
     this.updateState('library');
   };
