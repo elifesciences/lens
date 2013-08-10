@@ -19,7 +19,7 @@ We're working on releasing the first official verison of the spec.
    ```bash
    $ git clone https://github.com/substance/screwdriver.git
    $ cd screwdriver
-   $ python setup.py install
+   $ sudo python setup.py install
    ```
 
 
