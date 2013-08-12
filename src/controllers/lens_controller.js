@@ -32,15 +32,6 @@ LensController.Prototype = function() {
   // ===================================
 
   this.createView = function() {
-    // Remove when transition has completed
-    // this.writer = new Document.Writer(this.__document);
-
-    // this.content = new Document.Writer(this.__document, {view: "content"});
-    // this.toc = new TOC();
-    // this.figures = new Document.Writer(this.__document, {view: "figures"});
-    // this.citations = new Document.Writer(this.__document, {view: "citations"});
-
-    // Create main view
     var view = new LensView(this);
     this.view = view;
     return view;
