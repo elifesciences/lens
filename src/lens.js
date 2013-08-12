@@ -6,7 +6,6 @@ var LensController = require("./controllers/lens_controller");
 var LensView = require("./views/lens");
 var Keyboard = require("substance-commander").Keyboard;
 var util = require("substance-util");
-var page = require("page");
 var html = util.html;
 var Backbone = require("../lib/backbone");
 
