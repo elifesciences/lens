@@ -63,7 +63,7 @@
     {
       "repository": "https://github.com/substance/surface.git",
       "folder": "node_modules/substance-surface",
-      "branch": "0.3.x"
+      "branch": "contenteditable"
     },
     {
       "repository": "https://github.com/substance/test.git",
