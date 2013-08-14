@@ -10,7 +10,7 @@ var html = util.html;
 var Backbone = require("../lib/backbone");
 
 
-// The Lens application
+// The Lens Application
 // ========
 //
 
@@ -22,7 +22,9 @@ var Lens = function(config) {
 
 
 Lens.Article = require("lens-article");
+Lens.Reader = require("lens-reader");
 Lens.Outline = require("lens-outline");
+
 
 Lens.Prototype = function() {
 

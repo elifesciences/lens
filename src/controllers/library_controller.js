@@ -30,7 +30,6 @@ LibraryController.Prototype = function() {
   // ==================================
 
 
-
   // Provides an array of (context, controller) tuples that describe the
   // current state of responsibilities
   // --------

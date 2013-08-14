@@ -34,8 +34,8 @@ LensView.Prototype = function() {
   //
 
   this.onStateChanged = function(newState, oldState, options) {
-    if (newState === "article") {
-      this.openArticle();
+    if (newState === "reader") {
+      this.openReader();
     } else if (newState === "library") {
       this.openLibrary(options);
     } else if (newState === "test_center") {
@@ -66,13 +66,13 @@ LensView.Prototype = function() {
   // ----------
   //
 
-  this.openArticle = function() {
+  this.openReader = function() {
     // Application controller has a editor controller ready
     // -> pass it to the editor view
     // var view = new EditorView(this.controller.editor.view);
 
-    var view = this.controller.article.createView();
-    this.replaceMainView('article', view);
+    var view = this.controller.reader.createView();
+    this.replaceMainView('reader', view);
   };
 
   // Open TestCenter

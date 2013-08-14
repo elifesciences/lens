@@ -3,7 +3,7 @@
 var _ = require("underscore");
 var Session = require("../models/session");
 var LibraryController = require("./library_controller");
-var ArticleController = require("lens-article/article_controller");
+var ReaderController = require("lens-reader").Controller;
 var util = require("substance-util");
 var Controller = require("substance-application").Controller;
 var LensView = require("../views/lens");
@@ -20,7 +20,7 @@ var LensController = function(env) {
   this.session = new Session(env);
 
   // Main controls
-  this.on('open:article', this.openArticle);
+  this.on('open:reader', this.openReader);
   this.on('open:library', this.openLibrary);
   this.on('open:login', this.openLogin);
   this.on('open:test_center', this.openTestCenter);
@@ -40,7 +40,7 @@ LensController.Prototype = function() {
   // Transitions
   // ===================================
 
-  this.openArticle = function(documentId, context, node, resource) {
+  this.openReader = function(documentId, context, node, resource) {
 
     // The article view state
     var state = {
@@ -53,9 +53,8 @@ LensController.Prototype = function() {
 
     this.session.loadDocument(documentId, function(err, doc) {
       if (err) throw "Loading failed";
-      that.article = new ArticleController(doc, state);
-      console.log('article loaded.. updating state');
-      that.updateState('article');
+      that.reader = new ReaderController(doc, state);
+      that.updateState('reader');
     });
   };
 

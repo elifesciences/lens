@@ -2,9 +2,9 @@
 // --------
 
 [
-  {"route": ":document/:context/:node/:resource", "name": "resource",       "command": "openArticle"},
-  {"route": ":document/:context/:node",           "name": "node",           "command": "openArticle"},
-  {"route": ":document/:context",                 "name": "resource",       "command": "openArticle"},
-  {"route": ":document",                          "name": "document",       "command": "openArticle"},
+  {"route": ":document/:context/:node/:resource", "name": "resource",       "command": "openReader"},
+  {"route": ":document/:context/:node",           "name": "node",           "command": "openReader"},
+  {"route": ":document/:context",                 "name": "resource",       "command": "openReader"},
+  {"route": ":document",                          "name": "document",       "command": "openReader"},
   {"route": "",                                   "name": "library",        "command": "openLibrary"}
 ]

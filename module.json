@@ -4,7 +4,7 @@
   "url"           : "http://github.com/elifesciences/lens",
   "keywords"      : ["digital documents", "linked-data", "research", "science"],
   "author"        : "Michael Aufreiter",
-  "contributors"  : ["Ivan Grubisic", "Ian Mulvany", "Ian Hamilton", "Graham Nott", "Samo Korosec"],
+  "contributors"  : ["Ivan Grubisic", "Oliver Buchtala", "Ian Mulvany", "Ian Hamilton", "Graham Nott", "Samo Korosec"],
   "repository": {
     "type": "git",
     "url": "https://github.com/elifesciences/lens.git"
@@ -24,7 +24,9 @@
     "substance-commander": "",
     "substance-chronicle": "",
     "substance-application": "",
-    "lens-article": ""
+    "lens-article": "",
+    "lens-reader": "",
+    "lens-outline": ""
   },
   "version": "0.2.0"
 }
