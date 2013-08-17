@@ -69,31 +69,9 @@
       <div class="navigation">
 
       </div>
-
       <!-- this is where the doc list gets rendered -->
       <div class="collection"></div>
     </script>
-
-    <!-- Article View -->
-    <script type="text/x-ejs-template" name="article">
-      <!-- Main Document Content -->
-      <div class="document">
-
-      </div>
-
-      <!-- Resources panel -->
-      <div class="resources">
-      </div>
-    </script>
-
-    <script type="text/x-ejs-template" name="surface">
-      <!--<div class="controls">
-
-      </div>-->
-      <!-- where the content goes -->
-      <div class="nodes"></div>
-    </script>
-
 
     <script src="lib/underscore.js"></script>
     <script src="lib/jquery-2.0.3.min.js"></script>
@@ -124,8 +102,6 @@
         // alternatively
         // library_url: 'http://plos-converter.herokuapp.com'
       });
-
-      // window.app = app;
 
       $(function() {
         app.start();
