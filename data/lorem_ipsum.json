@@ -42,7 +42,7 @@
     "citations": {
       "type": "view",
       "id": "citations",
-      "nodes": ["article_nature08160"]
+      "nodes": ["citation_1", "article_nature08160"]
     },
 
     "paragraph_1": {
@@ -108,6 +108,13 @@
       "caption": "fig2_caption",
       "url": "http://elife.elifesciences.org/content/elife/1/e00311/F3.medium.gif",
       "large_url": "http://elife.elifesciences.org/content/elife/1/e00311/F3.large.jpg"
+    },
+
+    "citation_1": {
+      "id": "citation_1",
+      "type": "citation",
+      "description": "Meyer MJ, Fleming JM, Lin AF, Hussnain SA, Ginsburg E, Vonderhaar BK. CD44posCD49fhiCD133/2hi defines xenograft-initiating cells in estrogen receptor-negative breast cancer. Cancer Res 2010; 70: 4624 - 33",
+      "doi": "http://dx.doi.org/10.1158/0008-5472.CAN-09-3619"
     },
 
     "codeblock_2": {
