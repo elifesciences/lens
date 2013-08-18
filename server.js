@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 
 var CommonJSServer = require("substance-application/commonjs");
+var Article = require("lens-article");
 
 // var Converter = require("substance-converter");
 
@@ -58,13 +59,9 @@ app.get("/scripts*",
 );
 
 
-// Should go into a separate module
+// Serves auto-generated doc, that describes the Lens.Article specification
 // --------
-
-var Article = require("lens-article");
-
-// A generated 
-// --------
+//
 
 app.get('/data/lens_article.json', function(req, res) {
   res.json(Article.describe());

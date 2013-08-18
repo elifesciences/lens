@@ -68,13 +68,17 @@ LibraryController.Prototype = function() {
           title: "Lorem Ipsum"
         },
         {
-          id: encodeURIComponent("https://raw.github.com/michael/documents/master/2012-06-30-substance.md"),
-          title: "Substance"
+          id: "lens_article",
+          title: "The Lens Article"
         },
-        {
-          id: "elife_00311",
-          title: "Modelling dynamics in protein crystal structures by ensemble refinement"
-        },
+        // {
+        //   id: encodeURIComponent("https://raw.github.com/michael/documents/master/2012-06-30-substance.md"),
+        //   title: "Substance"
+        // },
+        // {
+        //   id: "elife_00311",
+        //   title: "Modelling dynamics in protein crystal structures by ensemble refinement"
+        // },
         // {
         //   id: "elife_00845",
         //   title: "Dynamin phosphorylation controls optimization of endocytosis for brief action potential bursts"
