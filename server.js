@@ -10,11 +10,8 @@ var Handlebars = require("handlebars");
 var fs = require("fs");
 
 var app = express();
-
 var commonJSServer = new CommonJSServer(__dirname);
-
 commonJSServer.boot({alias: "lens", source: "./src/boot.js"});
-
 
 var port = process.env.PORT || 4000;
 app.use(express.cookieParser());
@@ -52,13 +49,26 @@ app.get("/scripts*",
     var scriptPath = req.params[0];
     res.type('text/javascript');
     try {
-      var script = commonJSServer.getScript(scriptPath)
+      var script = commonJSServer.getScript(scriptPath);
       res.send(script);
     } catch (err) {
       res.send(err.stack);
     }
   }
 );
+
+
+// Should go into a separate module
+// --------
+
+var Article = require("lens-article");
+
+// A generated 
+// --------
+
+app.get('/data/lens_article.json', function(req, res) {
+  res.json(Article.describe());
+});
 
 
 // Serve the Substance Converter
