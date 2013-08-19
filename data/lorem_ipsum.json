@@ -34,6 +34,7 @@
       "type": "view",
       "id": "figures",
       "nodes": [
+        "video_1",
         "image_fig2",
         "image_fig3",
         "table_1"
@@ -62,14 +63,9 @@
     "image_fig2": {
       "type": "image",
       "id": "image_fig2",
-      "title": "Figure 2.",
-      "object_id": "F2",
-      "group": [
-        "parent",
-        null
-      ],
+      "label": "Figure 2.",
+      "title": "TRAF2, TRAF5, and TRAF6 are important for IRF3 and IKK activation in vitro.",
       "doi": "http://dx.doi.org/10.7554/eLife.00311.005",
-      "label": "TRAF2, TRAF5, and TRAF6 are important for IRF3 and IKK activation in vitro.",
       "caption": "fig2_caption",
       "graphic_id": "elife00311f002",
       "url": "http://elife.elifesciences.org/content/elife/1/e00311/F2.medium.gif",
@@ -104,10 +100,9 @@
     "image_fig3": {
       "type": "image",
       "id": "image_fig3",
-      "title": "Figure 3.",
-      "object_id": "F3",
+      "label": "Figure 3.",
+      "title": "TRAF2, TRAF5, and TRAF6 are important for IRF3 and IKK activation in vitro.",
       "doi": "http://dx.doi.org/10.7554/eLife.00311.009",
-      "label": "TRAF2, TRAF5, and TRAF6 are important for IRF3 and IKK activation in vitro.",
       "caption": "fig2_caption",
       "url": "http://elife.elifesciences.org/content/elife/1/e00311/F3.medium.gif",
       "large_url": "http://elife.elifesciences.org/content/elife/1/e00311/F3.large.jpg"
@@ -155,11 +150,23 @@
     "table_1": {
       "type": "table",
       "id": "table_1",
-      "title": "Table 1.",
+      "label": "Table 1.",
+      "title": "Lorem ipsum table",
       "content": "<table><thead><tr><td rowspan=2>PDB ID</td><td rowspan=2>Resolution (Ã…)</td><td>Ensemble refinement</td><td>phenix.refine</td><td>Ensembleâ€”phenix.refine</td></tr><tr><td><em>Ï„</em><sub><em>x</em></sub> (ps)</td><td>No. of structures</td><td><em>R</em><sub><em>work</em></sub></td><td><em>R</em><sub><em>free</em></sub></td><td><em>R</em><sub><em>work</em></sub></td><td><em>R</em><sub><em>free</em></sub></td><td><em>Î”R</em><sub><em>work</em></sub></td><td><em>Î”R</em><sub><em>fre</em>e</sub></td></tr></thead><tbody><tr><td>1KZK</td><td>1.1</td><td>1.5</td><td>600</td><td>0.125</td><td>0.153</td><td>0.136</td><td>0.155</td><td>âˆ’0.011</td><td>âˆ’0.003</td></tr><tr><td>3K0M</td><td>1.3</td><td>2.0</td><td>250</td><td>0.104</td><td>0.129</td><td>0.116</td><td>0.132</td><td>âˆ’0.012</td><td>âˆ’0.003</td></tr><tr><td>3K0N</td><td>1.4</td><td>1.0</td><td>209</td><td>0.115</td><td>0.133</td><td>0.119</td><td>0.143</td><td>âˆ’0.004</td><td>âˆ’0.010</td></tr><tr><td>2PC0</td><td>1.4</td><td>0.8</td><td>250</td><td>0.145</td><td>0.188</td><td>0.161</td><td>0.193</td><td>âˆ’0.016</td><td>âˆ’0.005</td></tr><tr><td>1UOY</td><td>1.5</td><td>1.0</td><td>167</td><td>0.104</td><td>0.137</td><td>0.155</td><td>0.185</td><td>âˆ’0.051</td><td>âˆ’0.049</td></tr><tr><td>3CA7</td><td>1.5</td><td>0.8</td><td>40</td><td>0.149</td><td>0.184</td><td>0.171</td><td>0.212</td><td>âˆ’0.022</td><td>âˆ’0.029</td></tr><tr><td>2R8Q</td><td>1.5</td><td>1.0</td><td>200</td><td>0.132</td><td>0.162</td><td>0.158</td><td>0.178</td><td>âˆ’0.026</td><td>âˆ’0.016</td></tr><tr><td>3QL0</td><td>1.6</td><td>0.5</td><td>70</td><td>0.204</td><td>0.254</td><td>0.229</td><td>0.270</td><td>âˆ’0.024</td><td>âˆ’0.017</td></tr><tr><td>1X6P</td><td>1.6</td><td>1.0</td><td>400</td><td>0.121</td><td>0.149</td><td>0.140</td><td>0.175</td><td>âˆ’0.019</td><td>âˆ’0.026</td></tr><tr><td>1F2F</td><td>1.7</td><td>0.8</td><td>143</td><td>0.128</td><td>0.168</td><td>0.160</td><td>0.198</td><td>âˆ’0.032</td><td>âˆ’0.031</td></tr><tr><td>3QL3</td><td>1.8</td><td>0.5</td><td>80</td><td>0.160</td><td>0.208</td><td>0.170</td><td>0.221</td><td>âˆ’0.010</td><td>âˆ’0.013</td></tr><tr><td>1YTT</td><td>1.8</td><td>0.3</td><td>84</td><td>0.139</td><td>0.174</td><td>0.166</td><td>0.189</td><td>âˆ’0.027</td><td>âˆ’0.014</td></tr><tr><td>3GWH</td><td>2.0</td><td>1.0</td><td>39</td><td>0.160</td><td>0.200</td><td>0.187</td><td>0.220</td><td>âˆ’0.027</td><td>âˆ’0.021</td></tr><tr><td>1BV1</td><td>2.0</td><td>0.4</td><td>78</td><td>0.149</td><td>0.182</td><td>0.154</td><td>0.205</td><td>âˆ’0.005</td><td>âˆ’0.023</td></tr><tr><td>1IEP</td><td>2.1</td><td>0.5</td><td>200</td><td>0.183</td><td>0.238</td><td>0.196</td><td>0.245</td><td>âˆ’0.012</td><td>âˆ’0.007</td></tr><tr><td>2XFA</td><td>2.1</td><td>1.0</td><td>100</td><td>0.171</td><td>0.217</td><td>0.184</td><td>0.244</td><td>âˆ’0.013</td><td>âˆ’0.027</td></tr><tr><td>3ODU</td><td>2.5</td><td>0.3</td><td>50</td><td>0.208</td><td>0.269</td><td>0.219</td><td>0.281</td><td>âˆ’0.010</td><td>âˆ’0.012</td></tr><tr><td>1M52</td><td>2.6</td><td>0.5</td><td>50</td><td>0.161</td><td>0.211</td><td>0.168</td><td>0.228</td><td>âˆ’0.007</td><td>âˆ’0.017</td></tr><tr><td>3CM8</td><td>2.9</td><td>0.5</td><td>67</td><td>0.194</td><td>0.235</td><td>0.205</td><td>0.248</td><td>âˆ’0.011</td><td>âˆ’0.013</td></tr><tr><td>3RZE</td><td>3.1</td><td>0.1</td><td>72</td><td>0.210</td><td>0.280</td><td>0.210</td><td>0.291</td><td>0.000</td><td>âˆ’0.011</td></tr><tr><td rowspan=3 colspan=7></td><td><strong>Max</strong></td><td>âˆ’0.051</td><td>âˆ’0.049</td></tr><tr><td><strong>Min</strong></td><td>0.000</td><td>âˆ’0.003</td></tr><tr><td><strong>Mean</strong></td><td>âˆ’0.018</td><td>âˆ’0.018</td></tr></tbody></table>",
       "footers": [],
       "doi": "http://dx.doi.org/10.7554/eLife.00311.003",
       "caption": "paragraph_table_1"
+    },
+
+    "video_1": {
+      "id": "video_1",
+      "type": "video",
+      "label": "Video 1.",
+      "url": "http://cdn.elifesciences.org/video/eLifeLensIntro2.mp4",
+      "url_webm": "http://cdn.elifesciences.org/video/eLifeLensIntro2.webm",
+      "url_ogv": "http://cdn.elifesciences.org/video/eLifeLensIntro2.ogv",
+      "caption": "paragraph_video_caption",
+      "poster": "http://cdn.elifesciences.org/video/eLifeLensIntro2.png"
     },
 
     "paragraph_table_1": {
@@ -168,7 +175,6 @@
       "content": "Ensemble refinement statistics for 20 datasets. Datasets were taken from the PDB or PDB_REDO and were re-refined using ensemble refinement and phenix.refine. The relaxation time Ï„x used, the resulting number of structures in the final ensemble and Rwork and Rfree values are given. The ensemble models yield improved Rfree values for all datasets, ranging in improvement from 0.3% to 4.9% with a mean improvement of 1.8%. The PDB accession numbers are as follows: 1KZK (Reiling et al., 2002), 3K0M (Fraser et al., 2009), 3K0N (Fraser et al., 2009), 2PC0 (Heaslet et al., 2007), 1UOY (Olsen et al., 2004), 3CA7 (Klein et al., 2008), 2R8Q (Wang et al., 2007), 3QL0 (Bhabha et al., 2011), 1X6P (Dunlop et al., 2005), 1F2F (Kimber et al., 2000), 3QL3 (Bhabha et al., 2011), 1YTT (Burling et al., 1996), 3GWH (RodrÃ­guez et al., 2009), 1BV1 (Gajhede et al., 1996), 1IEP (Nagar et al., 2002), 2XFA (Singh et al., 2011), 3ODU (Wu et al., 2010), 1M52 (Nagar et al., 2002), 3CM8 (He et al., 2008) and 3RZE (Shimamura et al., 2011) ",
       "source": "table_1"
     },
-
 
     "cross_reference_1": {
       "id":"cross_reference_1",
@@ -208,6 +214,14 @@
       "path": ["paragraph_3", "content"],
       "target": "image_fig3",
       "range":[5,15]
+    },
+
+    "figure_reference_6": {
+      "id":"figure_reference_6",
+      "type":"figure_reference",
+      "path": ["paragraph_3", "content"],
+      "target": "video_1",
+      "range":[40,55]
     },
 
     "citation_reference_1": {
