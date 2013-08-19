@@ -2,13 +2,11 @@
 
 ```
 ########################################################################################
-#####
 ##### Disclaimer:
 #####
 ##### You are looking at the 0.2.x series of Lens which is considered a work-in-progress
 ##### 
 ##### Use at your own risk! For a stable version check the `gh-pages` branch.
-#####
 ########################################################################################
 ```
 
