@@ -17,7 +17,7 @@ For a demo and more information see: http://lens.elifesciences.org
 Lens is composed of some independent modules. Those are:
 
 - The [Lens Article Format](http://github.com/elifesciences/lens-article) is a JSON based document model designed for representing scientific content. It features basic content types such as paragraphs, headings, and various figure types such as images, tables and videos complete with captions and cross-references.
-- The [Lens Reader](http://github.com/elifesciences/lens-article) is the implementation of the article reader, it can be embedded into any page
+- The [Lens Reader](http://github.com/elifesciences/lens-reader) is the implementation of the article reader, it can be embedded into any page
 - The [Lens Outline](http://github.com/elifesciences/lens-outline) is the visual document map we are using in Lens. It can be used independently.
 
 
