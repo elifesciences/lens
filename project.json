@@ -48,7 +48,7 @@
     {
       "repository": "https://github.com/elifesciences/refract.git",
       "folder": "node_modules/refract",
-      "branch": "0.1.x"
+      "branch": "0.2.x"
     },
     {
       "repository": "https://github.com/substance/operator.git",
