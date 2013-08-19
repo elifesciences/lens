@@ -1,74 +1,35 @@
 # Lens
 
 ```
-####################################################################################
-##### Lens is currently undergoing a huge refactor in the `modularize` branch.
-##### The cutting edge build can be considered broken for next 1-2 weeks.
+########################################################################################
 #####
-#####  For a stable version check the `gh-pages` branch.
-####################################################################################
+##### Disclaimer:
+#####
+##### You are looking at the 0.2.x series of Lens which is considered a work-in-progress
+##### 
+##### Use at your own risk! For a stable version check the `gh-pages` branch.
+#####
+########################################################################################
 ```
 
 **eLife Lens** provides a novel way of looking at content on the web. It is designed to make life easier for researchers, reviewers, authors and readers. For example, have you tried to look at a figure in an online article, while at the same time trying to see what the author says about the figure, jumping all around the article, losing track of what you were looking for in the first place? The reason for this is that most online research articles are published in a fixed digital version of the original paper. With eLife Lens, we take full advantage of the internet’s flexibility.
 
 For a demo and more information see: http://lens.elifesciences.org
 
+Lens is composed of some independent modules. Those are:
+
+- The [Lens Article Format](http://github.com/elifesciences/lens-article) is a JSON based document model designed for representing scientific content. It features basic content types such as paragraphs, headings, and various figure types such as images, tables and videos complete with captions and cross-references.
+- The [Lens Reader](http://github.com/elifesciences/lens-article) is the implementation of the article reader, it can be embedded into any page
+- The [Lens Outline](http://github.com/elifesciences/lens-outline) is the visual document map we are using in Lens. It can be used independently.
 
 
-### The Lens Article Format
 
-The [Lens Article Format](http://github.com/elifesciences/lens-article) is a JSON based document model designed for representing scientific content. It features basic content types such as paragraphs, headings, and various figure types such as images, tables and videos complete with captions and cross-references.
+### Installing and contributing
 
-We're working on releasing the first official verison of the spec.
-
-### Install
-
-1. Install the Substance Screwdriver command line utility
-
-   ```bash
-   $ git clone https://github.com/substance/screwdriver.git
-   $ cd screwdriver
-   $ sudo python setup.py install
-   ```
+For install instructions and how to contribute see the manual [here](https://github.com/elifesciences/lens-manual/blob/master/installing_updating_and_contributing.md). 
 
 
-2. Clone the repository
-
-   ```bash
-   $ git clone https://github.com/elifesciences/lens.git
-   ```
-  
-3. Run the update command, which pulls in all the dependencies
-
-   ```bash
-   $ cd lens
-   $ substance --update
-   ```
-  
-4. Finally start the server and point your browser to `http://localhost:4000`
-
-   ```bash
-   $ substance
-   ```
-
-
-### Participating and Contributing 
-
-Participation is highly encouraged. 
-
-To suggest a feature, report a bug: http://github.com/elifesciences/lens/issues/
-
-For general discussion join the mailing list/web forum: https://groups.google.com/forum/#!forum/elife-lens
-
-To get an overview of what we are currently working on now, and to see what we would like to work on in the future have a look at our roadmap: https://github.com/elifesciences/lens/wiki/Product-Roadmap
-
-To contribute to the project, please fork the project, and submit your pull requests. We will code review submissions, and a track record of good submissions will build confidence, and gain you access to direct access to the repo.
-
-The core team meets on a google+ hangout regularly. If you would like to join the core team, please consider supporting the project through either 
-code contributions, or a finanial commitment to support development. 
-
-
-### Forking
+<!--### Forking
 
 To contribute to Lens you should clone the full Lens project first.
 
@@ -90,6 +51,7 @@ After that you should adapt the `project.json` to use your personal fork. E.g.,
   ]
 }
 ```
+-->
 
 <!--
 #### Work with feature branches
@@ -111,22 +73,6 @@ A good start is working with fresh feature branches.
    ```
 -->
 
-#### To pull in upstream changes from master for the entire project.
-
-```
-substance --git -- pull origin master:<feature_branch_name>
-```
-
-
-### Deployment
-
-This is not yet implemented, but soon you'll be able to bundle Lens as a static web page as simple as this:
-
-```bash
-$ substance --bundle
-```
-
-It creates a `dist` folder with everything you need.
 
 
 ### Roadmap
