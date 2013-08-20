@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 
 var CommonJSServer = require("substance-application/commonjs");
+var Converter = require("substance-converter");
 var Article = require("lens-article");
 
 // var Converter = require("substance-converter");
@@ -59,6 +60,15 @@ app.get("/scripts*",
 );
 
 
+
+// Serve the Substance Converter
+// Provides on the fly conversion for different markup formats
+// --------
+
+var converter = new Converter.Server(app);
+converter.serve();
+
+
 // Serves auto-generated doc, that describes the Lens.Article specification
 // --------
 //
@@ -66,6 +76,29 @@ app.get("/scripts*",
 app.get('/data/lens_article.json', function(req, res) {
   res.json(Article.describe());
 });
+
+
+// Serve a doc from the docs folder (powered by on the fly markdown->substance conversion)
+// --------
+
+app.get('/data/:doc.json', function(req, res) {
+  var docId = req.params.doc;
+
+  var inputData;
+  try {
+    var filename = __dirname + "/node_modules/lens-manual/"+docId+".md";
+    inputData = fs.readFileSync(filename, 'utf8');
+    converter.convert(inputData, 'markdown', 'substance', function(err, output) {
+      if (err) return res.send(500, err);
+      res.send(output);
+    });
+  } catch (err) {
+    inputData = fs.readFileSync(__dirname + "/data/"+docId+".json", 'utf8');
+    res.send(inputData);
+  }
+});
+
+
 
 
 // Serve the Substance Converter

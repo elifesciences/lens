@@ -65,12 +65,17 @@ LibraryController.Prototype = function() {
       documents: [
         {
           id: "lorem_ipsum",
-          title: "Lorem Ipsum"
+          title: "Lorem Ipsum (Example document)"
+        },
+        {
+          id: "installing_updating_and_contributing",
+          title: "The Lens Manual"
         },
         {
           id: "lens_article",
-          title: "The Lens Article"
+          title: "The Lens Article Format"
         },
+
         // {
         //   id: encodeURIComponent("https://raw.github.com/michael/documents/master/2012-06-30-substance.md"),
         //   title: "Substance"
