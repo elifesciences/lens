@@ -44,7 +44,7 @@ LensController.Prototype = function() {
 
     // The article view state
     var state = {
-      context: context,
+      context: context || "toc",
       node: node,
       resource: resource
     };
