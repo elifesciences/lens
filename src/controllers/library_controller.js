@@ -68,7 +68,7 @@ LibraryController.Prototype = function() {
           title: "Lorem Ipsum (Example document)"
         },
         {
-          id: "installing_updating_and_contributing",
+          id: "manual",
           title: "The Lens Manual"
         },
         {

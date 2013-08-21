@@ -89,6 +89,10 @@ app.get('/data/:doc.json', function(req, res) {
     var filename = __dirname + "/node_modules/lens-manual/"+docId+".md";
     inputData = fs.readFileSync(filename, 'utf8');
     converter.convert(inputData, 'markdown', 'substance', function(err, output) {
+      output = output.toJSON();
+      output.id = docId;
+      output.nodes.document.guid = docId;
+
       if (err) return res.send(500, err);
       res.send(output);
     });
