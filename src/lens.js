@@ -48,11 +48,11 @@ Lens.Prototype = function() {
   // --------
 
   this.initRouter = function() {
-    var router = new Backbone.Router();
+    this.router = new Backbone.Router();
     var routes = require("../config/routes.json");
 
     _.each(routes, function(route) {
-      router.route(route.route, route.name, _.bind(this.controller[route.command], this.controller));
+      this.router.route(route.route, route.name, _.bind(this.controller[route.command], this.controller));
     }, this);
 
     Backbone.history.start();
