@@ -194,6 +194,13 @@
       "range":[4,19]
     },
 
+    "emphasis_1": {
+      "id":"emphasis_1",
+      "type":"strong",
+      "path": ["paragraph_1", "content"],
+      "range":[22,26]
+    },
+
     "cross_reference_2": {
       "id":"cross_reference_2",
       "type":"cross_reference",
