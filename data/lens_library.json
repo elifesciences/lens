@@ -1,0 +1,33 @@
+{
+  "id": "lens_library",
+  "schema": ["substance-library", "0.1.0"],
+  "nodes": {
+    "library": {
+      "type": "library",
+      "collections": ["docs"]
+    },
+    "docs": {
+      "id": "docs",
+      "type": "collection",
+      "records": ["manual", "lorem_ipsum", "lens_article"]
+    },
+    "manual": {
+      "id": "manual",
+      "title": "The Lens Manual",
+      "type": "record",
+      "url": "http://localhost:4000/data/manual.json"
+    },
+    "lorem_ipsum": {
+      "id": "lorem_ipsum",
+      "title": "Lorem Ipsum (Example Document)",
+      "type": "record",
+      "url": "http://localhost:4000/data/lorem_ipsum.json"
+    },
+    "lens_article": {
+      "id": "lens_article",
+      "title": "The Lens Article Format",
+      "type": "record",
+      "url": "http://localhost:4000/data/lorem_ipsum.json"
+    }
+  }
+}

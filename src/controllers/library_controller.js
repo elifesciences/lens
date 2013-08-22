@@ -3,19 +3,28 @@
 var _ = require("underscore");
 var Controller = require("substance-application").Controller;
 var LibraryView = require("../views/library");
-var util = require("substance-util")
+var util = require("substance-util");
+var Library = require("substance-library");
+
+var librarySeed = require("../../data/lens_library.json");
 
 // Substance.Library.Controller
 // -----------------
 //
 
 var LibraryController = function(library) {
+  // this.library = library;
 
-  this.library = library;
+  this.library = new Library({seed: librarySeed});
+
+  console.log('LE LIBRARY', this.library);
+
   Controller.call(this);
   
   // Create library view
   this.view = new LibraryView(this);
+
+
 };
 
 
