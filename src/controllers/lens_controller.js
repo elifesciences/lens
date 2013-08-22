@@ -9,6 +9,7 @@ var Controller = require("substance-application").Controller;
 var LensView = require("../views/lens");
 var Test = require("substance-test");
 
+var Library = require("substance-library");
 
 // Lens.Controller
 // -----------------
@@ -59,7 +60,13 @@ LensController.Prototype = function() {
   };
 
   this.openLibrary = function() {
-    this.library = new LibraryController();
+
+    var library = new Library({
+      seed: require("../../data/lens_library.json")
+    });
+
+    this.library = new LibraryController(library);
+
     this.updateState('library');
   };
 

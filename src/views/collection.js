@@ -4,18 +4,18 @@ var _ = require("underscore");
 var util = require('substance-util');
 var html = util.html;
 var View = require("substance-application").View;
-
+var $$ = require("substance-application").$$;
 
 // Substance.Collection.View
 // ==========================================================================
 //
 // The Substance Collection display
 
-var CollectionView = function(controller) {
+var CollectionView = function(library) {
   View.call(this);
 
   this.$el.addClass('collection');
-  this.controller = controller;
+  this.library = library;
 };
 
 CollectionView.Prototype = function() {
@@ -23,9 +23,21 @@ CollectionView.Prototype = function() {
   // Rendering
   // --------
   //
+  // .collection
+  //   .title
 
   this.render = function() {
-    this.$el.html(html.tpl('collection', this.controller.getCollection()));
+    // Render the collection
+    var records = this.library.collection.records;
+
+    _.each(records, function(record) {
+      this.el.appendChild($$('a.document', {
+        href: "#"+record.id,
+        children: [
+          $$('.title', { text: record.title })
+        ]
+      }));
+    }, this);
     return this;
   };
 

@@ -12,29 +12,23 @@ var CollectionView = require("./collection");
 //
 // The Substance Document Editor
 
-var LibraryView = function(controller) {
+var LibraryView = function(library) {
   View.call(this);
 
   this.$el.addClass('library');
-  this.controller = controller;
+  this.library = library;
 
-  this.collectionView = new CollectionView(controller);
+  this.collectionView = new CollectionView(library);
 };
 
 LibraryView.Prototype = function() {
-
-  this.importDocument = function() {
-    var url = this.$('#import_url').val();
-    // Rather nasty, get rid of it
-    window.Substance.app.router.navigate('documents/'+encodeURIComponent(url), true);
-  };
 
   // Rendering
   // --------
   //
 
   this.render = function() {
-    this.$el.html(html.tpl('library', this.controller));
+    this.$el.html(html.tpl('library', this.library));
 
     // // Render current collection
     this.$('.collection').replaceWith(this.collectionView.render().el);

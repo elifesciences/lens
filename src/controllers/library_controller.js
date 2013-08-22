@@ -4,27 +4,21 @@ var _ = require("underscore");
 var Controller = require("substance-application").Controller;
 var LibraryView = require("../views/library");
 var util = require("substance-util");
-var Library = require("substance-library");
 
-var librarySeed = require("../../data/lens_library.json");
 
 // Substance.Library.Controller
 // -----------------
 //
 
 var LibraryController = function(library) {
-  // this.library = library;
+  this.library = library; 
 
-  this.library = new Library({seed: librarySeed});
-
-  console.log('LE LIBRARY', this.library);
+  this.collection = this.library.getCollection("docs");
 
   Controller.call(this);
   
   // Create library view
   this.view = new LibraryView(this);
-
-
 };
 
 
@@ -63,46 +57,6 @@ LibraryController.Prototype = function() {
       result.push(["test_center", this.testRunner]);
     }
     return result;
-  };
-
-  // Returns active collection
-  // --------
-
-  this.getCollection = function() {
-    return {
-      name: "Example documents",
-      documents: [
-        {
-          id: "lorem_ipsum",
-          title: "Lorem Ipsum (Example document)"
-        },
-        {
-          id: "manual",
-          title: "The Lens Manual"
-        },
-        {
-          id: "lens_article",
-          title: "The Lens Article Format"
-        },
-
-        // {
-        //   id: encodeURIComponent("https://raw.github.com/michael/documents/master/2012-06-30-substance.md"),
-        //   title: "Substance"
-        // },
-        // {
-        //   id: "elife_00311",
-        //   title: "Modelling dynamics in protein crystal structures by ensemble refinement"
-        // },
-        // {
-        //   id: "elife_00845",
-        //   title: "Dynamin phosphorylation controls optimization of endocytosis for brief action potential bursts"
-        // },
-        // {
-        //   id: "elife_00762",
-        //   title: "A mammalian pseudogene lncRNA at the interface of inflammation and anti-inflammatory therapeutics"
-        // }
-      ]
-    }
   };
 };
 
