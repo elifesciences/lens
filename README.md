@@ -24,7 +24,7 @@ Lens is composed of some independent modules. Those are:
 
 ### Installing and contributing
 
-For install instructions and how to contribute see the manual [here](https://github.com/elifesciences/lens-manual/blob/master/installing_updating_and_contributing.md). 
+For install instructions and how to contribute see the manual [here](https://github.com/elifesciences/lens-manual/blob/master/manual.md). 
 
 
 <!--### Forking
