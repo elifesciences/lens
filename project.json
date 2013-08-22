@@ -51,6 +51,11 @@
       "branch": "0.1.x"
     },
     {
+      "repository": "https://github.com/substance/library.git",
+      "folder": "node_modules/substance-library",
+      "branch": "0.1.x"
+    },
+    {
       "repository": "https://github.com/substance/toc.git",
       "folder": "node_modules/substance-toc",
       "branch": "0.1.x"
