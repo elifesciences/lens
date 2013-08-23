@@ -6,6 +6,25 @@ var CommonJSServer = require("substance-application/commonjs");
 var Converter = require("substance-converter");
 var Article = require("lens-article");
 
+var Refract = require("refract");
+
+
+
+
+// Useful general purpose helpers
+// --------
+//
+
+function getFile(url, cb) {
+  var request = require("request");
+
+  request(url, function (err, res, body) {
+    if (err || res.statusCode !== 200) return cb(err || 'Nope');
+    cb(null, body);
+  });
+};
+
+
 // var Converter = require("substance-converter");
 
 var Handlebars = require("handlebars");
@@ -103,6 +122,19 @@ app.get('/data/:doc.json', function(req, res) {
 });
 
 
+
+// Serve a doc from the docs folder (powered by on the fly markdown->substance conversion)
+// --------
+
+app.get('/convert/:url', function(req, res) {
+  var url = req.params.url;
+
+  var converter = new Refract.Converter();
+  converter.convert({url: url}, function(err, doc) {
+    if (err) return res.send(500, err);
+    res.json(doc);
+  });
+});
 
 
 // Serve the Substance Converter

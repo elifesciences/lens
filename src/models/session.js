@@ -23,12 +23,22 @@ Session.Prototype = function() {
   // --------
 
   this.loadDocument = function(name, cb) {
-    $.getJSON("data/"+name+".json", function(data) {
-      var doc = Article.fromSnapshot(data, {
-        chronicle: Chronicle.create()
-      });
-      cb(null, doc);
-    }).error(cb);
+    if (name.match(/http/)) {
+      // Perform on the 
+      $.getJSON("convert/"+encodeURIComponent(name), function(data) {
+        var doc = Article.fromSnapshot(data, {
+          chronicle: Chronicle.create()
+        });
+        cb(null, doc);
+      }).error(cb);
+    } else {
+      $.getJSON("data/"+name+".json", function(data) {
+        var doc = Article.fromSnapshot(data, {
+          chronicle: Chronicle.create()
+        });
+        cb(null, doc);
+      }).error(cb);
+    }
   };
 };
 

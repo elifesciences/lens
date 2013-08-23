@@ -85,7 +85,9 @@
         "heading_s4-10",
         "paragraph_428",
         "heading_s4-11",
-        "paragraph_436"
+        "paragraph_436",
+        "sub-article",
+        "sub-article"
       ]
     },
     "figures": {
@@ -106,7 +108,52 @@
     "citations": {
       "type": "view",
       "id": "citations",
-      "nodes": []
+      "nodes": [
+        "article_citation_bib1",
+        "article_citation_bib2",
+        "article_citation_bib3",
+        "article_citation_bib4",
+        "article_citation_bib5",
+        "article_citation_bib6",
+        "article_citation_bib7",
+        "article_citation_bib8",
+        "article_citation_bib9",
+        "article_citation_bib10",
+        "article_citation_bib11",
+        "article_citation_bib12",
+        "article_citation_bib13",
+        "article_citation_bib14",
+        "article_citation_bib15",
+        "article_citation_bib16",
+        "article_citation_bib17",
+        "article_citation_bib18",
+        "article_citation_bib19",
+        "article_citation_bib20",
+        "article_citation_bib21",
+        "article_citation_bib22",
+        "article_citation_bib23",
+        "article_citation_bib24",
+        "article_citation_bib25",
+        "article_citation_bib26",
+        "article_citation_bib27",
+        "article_citation_bib28",
+        "article_citation_bib29",
+        "article_citation_bib30",
+        "article_citation_bib31",
+        "article_citation_bib32",
+        "article_citation_bib33",
+        "article_citation_bib34",
+        "article_citation_bib35",
+        "article_citation_bib36",
+        "article_citation_bib37",
+        "article_citation_bib38",
+        "article_citation_bib39",
+        "article_citation_bib40",
+        "article_citation_bib41",
+        "article_citation_bib42",
+        "article_citation_bib43",
+        "article_citation_bib44"
+      ]
     },
     "document": {
       "type": "document",
@@ -165,7 +212,7 @@
       "role": "author",
       "affiliations": [],
       "image": "",
-      "contribution": "",
+      "contribution": " Conception and design, Acquisition of data, Analysis and interpretation of data, Drafting or revising the article",
       "email": "",
       "funding": []
     },
@@ -177,7 +224,7 @@
       "role": "author",
       "affiliations": [],
       "image": "",
-      "contribution": "",
+      "contribution": " Conception and design, Acquisition of data, Analysis and interpretation of data, Drafting or revising the article",
       "email": "",
       "funding": [
         "funding_par_5"
@@ -191,7 +238,7 @@
       "role": "author",
       "affiliations": [],
       "image": "",
-      "contribution": "",
+      "contribution": " Acquisition of data, Analysis and interpretation of data, Contributed unpublished essential data or reagents",
       "email": "",
       "funding": []
     },
@@ -203,7 +250,7 @@
       "role": "author",
       "affiliations": [],
       "image": "",
-      "contribution": "",
+      "contribution": " Acquisition of data, Analysis and interpretation of data",
       "email": "",
       "funding": []
     },
@@ -215,7 +262,7 @@
       "role": "author",
       "affiliations": [],
       "image": "",
-      "contribution": "",
+      "contribution": " Conception and design, Acquisition of data, Analysis and interpretation of data",
       "email": "",
       "funding": []
     },
@@ -227,7 +274,7 @@
       "role": "author",
       "affiliations": [],
       "image": "",
-      "contribution": "",
+      "contribution": " Acquisition of data",
       "email": "",
       "funding": []
     },
@@ -239,7 +286,7 @@
       "role": "author",
       "affiliations": [],
       "image": "",
-      "contribution": "",
+      "contribution": " Analysis and interpretation of data",
       "email": "",
       "funding": []
     },
@@ -251,7 +298,7 @@
       "role": "author",
       "affiliations": [],
       "image": "",
-      "contribution": "",
+      "contribution": " Conception and design, Analysis and interpretation of data, Drafting or revising the article",
       "email": "",
       "funding": []
     },
@@ -263,7 +310,7 @@
       "role": "author",
       "affiliations": [],
       "image": "",
-      "contribution": "",
+      "contribution": " Conception and design, Acquisition of data, Analysis and interpretation of data, Drafting or revising the article",
       "email": "",
       "funding": [
         "funding_par_4"
@@ -277,7 +324,7 @@
       "role": "author",
       "affiliations": [],
       "image": "",
-      "contribution": "",
+      "contribution": " Conception and design, Analysis and interpretation of data, Drafting or revising the article, Contributed unpublished essential data or reagents",
       "email": "",
       "funding": [
         "funding_par_2",
@@ -292,7 +339,7 @@
       "role": "author",
       "affiliations": [],
       "image": "",
-      "contribution": "",
+      "contribution": " Conception and design, Analysis and interpretation of data, Drafting or revising the article",
       "email": "email_cor1",
       "funding": [
         "funding_par_1"
@@ -1024,7 +1071,7 @@
       "graphic_id": "elife00003f001"
     },
     "caption_52": {
-      "type": "paragraph",
+      "type": "caption",
       "id": "caption_52",
       "content": "(A). Representative plates in a colony forming assay, showing growth of Gram-negative (Escherichia coli DH5α, top) and Gram-positive (Staphylococcus epidermidis, bottom) bacteria, where a known amount of bacteria were incubated at 37°C either in buffer alone, or with LDs pre-treated with or without anti-histone antibodies. In buffer (left, ‘Buffer’), many colonies (white spots) were observed, but in the presence of LDs (LD), the observed number of colonies was greatly decreased, demonstrating an antibacterial effect of the LDs. Pre-treatment of the droplets with anti-histone antibodies abolished this effect (LD + Anti-histones). (B). Quantification of colony forming assay in A. Each bar represents the mean number of observed colonies, in three independent trials, presented with the standard error. (C). Disc diffusion assay over a lawn of E. coli DH5α. A potential antibacterial agent is placed on a small sterile piece of filter paper (white circle); a cleared area (darker region) indicates antibacterial activity. Positive control: the antibiotic kanamycin (Antibiotic); growth inhibition region indicated by the red arrow. Negative control: buffer (Buffer). LDs isolated in the presence (LD-CaCO3) or absence (LD) of alkaline carbonate were spotted on sterile discs; bacterial inhibition was observed in the untreated droplets (LD) but not in the carbonate-treated droplets (LD-CaCO3). The filter papers are 7 mm in diameter. (D). Quantification of the size of the clear zone in the disc diffusion assay from C. Fifteen independent disc diffusion assays were performed with purified LDs from Drosophila embryos, the antibiotic kanamycin, or buffer. Antimicrobial activity of compounds was quantified as the diameter of the clear zones surrounding the filter papers after subtraction of filter papers diameter (1 A.U. = 0.1 mm). (E). Use of a gel-overlay assay to determine the identity of the anti-bacterial protein(s) on the LDs. Proteins extracted from LDs (LD, left lane) were run in duplicate on an AU-gel; murine cryptdin 4 (Crp 4, right lane) served as positive control. After electrophoresis, the gel was split. One half (left) was stained by Coomassie Blue; the histone bands are indicated by a blue arrow and the crp 4 control is indicated by the green arrow. The other half (right) was used in a gel overlay assay (see ‘Materials and methods’) to reveal regions of the gel able to inhibit bacterial growth (inhibition by LD is indicated by the red arrow and that by crp 4 control is indicated by the violet arrow). Inhibition of bacterial growth due to proteins on the LDs was only observed in a single region, corresponding to the histones (red arrow). Consistent with this, mass spectrometry of proteins cut from the Coomassie gel corresponding to the killing region identified predominantly histones H2A and H2B (see ‘LDs have antimicrobial activity’). (F). E. coli ML35 cultures were transiently (∼1 hr) exposed to commercial calf thymus pan-histone proteins (Sigma) or gel-extracted LD-histones (from the gel-overlay assay). Both preparations show similar potency for bacterial killing."
     },
@@ -1768,7 +1815,7 @@
       "graphic_id": "elife00003f002"
     },
     "caption_111": {
-      "type": "paragraph",
+      "type": "caption",
       "id": "caption_111",
       "content": "(A) Histone H2Av GFP is not detectable in cytoplasmic puncta of Jabbazl01 embryos. Both genotypes show strong signal in nuclei. (B). By immunostaining, endogenous H2A and H2B are absent from the lipid droplet layer (LD) of centrifuged Jabbazl01 embryos. (C). Histone H2A is absent from the lipid droplet layer in centrifuged Jabbaf07560 embryos. BF is the bright field image and LD is the lipid droplet layer. (D). Equal amounts of proteins from purified LDs were compared by Western analysis. Droplets from Jabbazl01 embryos lack histones H2A and H2B. The droplet-bound Khc protein serves as loading control. (E). When compared side by side, similar reductions in droplet-bound histones were found for both the independently isolated Jabba alleles Jabbaf07560 and Jabbazlo1. (F). Western blot of equal numbers of unfertilized wild-type and Jabba mutant embryos. Overall levels of histone H2A and H2B are significantly reduced in the Jabba mutants. (G). LDs purified from embryos of two independently isolated Jabba mutants revealed no bacterial killing activity in antibacterial plate assays, with bacterial growth comparable to buffer alone, in contrast to droplets purified from wild-type embryos which dramatically decreased bacterial growth."
     },
@@ -2321,7 +2368,7 @@
       "graphic_id": "elife00003f003"
     },
     "caption_154": {
-      "type": "paragraph",
+      "type": "caption",
       "id": "caption_154",
       "content": "(A) Schematic representation of embryo microinjection. Early embryos collected within half an hour of laying were injected with a bacterial suspension, as detailed in ‘Materials and methods’. (B). Wild-type and Jabba mutant embryos show similar survival when injected with buffer alone. Wild-type and Jabba mutants (Jabbaf07560, Jabbazl01) embryos were injected with microinjection buffer (no bacteria) and the percentage survival was scored 72 hr post injection. (C) Bacteria grow only in embryos lacking droplet-bound histones. Approximately equal numbers of GFP labeled bacteria (E. coli strain YD133) were injected into wild-type and Jabba mutant embryos (Jabbaf07560) and the growth of bacteria inside embryos was monitored at various times post injection. (D). Drosophila embryos lacking droplet-bound histones have reduced survival due to bacterial infection. Approximately equal numbers of bacteria were injected into wild-type and Jabba mutant (Jabbazl0 and Jabbaf07560) embryos and embryo survival after 72 hr was normalized to the buffer-only injected embryos (in B). The bacterial strains used were Staphylococcus epidermidis (Gram-positive); E. coli DH 5α (Gram- negative); Listeria monocytogenes (Gram-positive and intracellular); and Bacillus subtilis (hlyA), modified Bacillus subtilis expressing listeria hemolysin-A protein (Gram-positive and intracelluar)."
     },
@@ -2760,7 +2807,7 @@
       "graphic_id": "elife00003fs001"
     },
     "caption_187": {
-      "type": "paragraph",
+      "type": "caption",
       "id": "caption_187",
       "content": "DOI: http://dx.doi.org/10.7554/eLife.00003.006"
     },
@@ -2810,7 +2857,7 @@
       "graphic_id": "elife00003fs002"
     },
     "caption_190": {
-      "type": "paragraph",
+      "type": "caption",
       "id": "caption_190",
       "content": "DOI: http://dx.doi.org/10.7554/eLife.00003.007"
     },
@@ -2860,7 +2907,7 @@
       "graphic_id": "elife00003fs003"
     },
     "caption_193": {
-      "type": "paragraph",
+      "type": "caption",
       "id": "caption_193",
       "content": "DOI: http://dx.doi.org/10.7554/eLife.00003.008"
     },
@@ -3552,7 +3599,7 @@
       "graphic_id": "elife00003f004"
     },
     "caption_248": {
-      "type": "paragraph",
+      "type": "caption",
       "id": "caption_248",
       "content": "(A and B) Adult Drosophila lacking Jabba (A: Jabbaf07560; B: Jabbazl01) have reduced survival when challenged by bacteria. Wild-type and Jabba mutant (Jabbazl0 and Jabbaf07560) adult flies were infected with Listeria monocytogenes as detailed in ‘Materials and methods’, and fly survival was monitored over the course of 4 days. (C). Representative plates in a colony forming assay, showing bacterial colonies on agar plates streaked with cytosolic extract from bacteria infected adult flies. (D) Western blots of histone H2B from equal amounts of cytosolic extracts from wild type and Jabba mutant adult flies, showing that overall levels of H2B were significantly reduced in the Jabba mutants."
     },
@@ -4052,7 +4099,7 @@
       "graphic_id": "elife00003f005"
     },
     "caption_287": {
-      "type": "paragraph",
+      "type": "caption",
       "id": "caption_287",
       "content": "(A). Increasing concentrations of lipopolysaccharide (LPS) in the buffer releases droplet bound histones from purified LDs. (B). Lipoteichoic acid (LTA) causes the dose dependent release of histones from purified droplets. LDs were purified from wild-type Drosophila embryos, re-suspended in buffer, and incubated for 2 hr at room temperature with different concentrations of LPS or LTA. LDs (LD) were then separated from the under-layer buffer (UB) and both were processed for SDS-PAGE. Western Blot analysis was carried out with H2B histone antibodies."
     },
@@ -4401,7 +4448,7 @@
       "graphic_id": "elife00003f006"
     },
     "caption_315": {
-      "type": "paragraph",
+      "type": "caption",
       "id": "caption_315",
       "content": "(A). Western blot analysis of LDs (LD) purified from hepatocytes of mice injected with (+) or without (−) LPS. Antibodies against ALDI, histones H2A, H2B and H3 were used. Whole liver homogenate (h) was used for comparison and as a control. (B) The presence of histone H1 (H1) on LDs (LD) purified from hepatocytes of mice injected with (+) or without (−) LPS was detected by immunoblot, and more H1 was present on droplets purified from LPS-treated animals. Equal total proteins from the nuclear fraction (n) and from whole liver homogenate (h) were used as comparison. (C). Mice were injected intraperitoneally with (+) or without (−) LPS, and transaminase levels (AST and ALT) and cytokine levels (IL-6 and TNFα) were quantified in units/l or units/ml in the serum; asterisk indicates statistical significance (p=0.05), confirming that LPS injection provoked the expected biological response. (D). Western blot analysis of histone H1 released into the buffer (UB) when purified LDs, from the liver of infection induced mice, were treated with LPS (+). Histone H1 is either minimally detected or not at all detected in the buffer in the absence of LPS (−). The band at 97 kDa in C and D represents histone H1 oligomers."
     },
@@ -5957,6 +6004,1731 @@
         1744,
         1762
       ]
+    },
+    "info:ack": {
+      "type": "heading",
+      "id": "info:ack",
+      "level": 2,
+      "content": "Acknowledgements",
+      "nodes": [
+        "paragraph_ack"
+      ]
+    },
+    "paragraph_ack": {
+      "type": "paragraph",
+      "id": "paragraph_ack",
+      "content": "AcknowledgementsWe thank the Huang, Warrior, Arora and the Ouellette laboratories members for their help during this study, especially Jennifer Mastroianni and Dr. Doug Bornemann for technical support. We thank Dr. Daniel A. Portnoy, UC Berkeley and Dr. Teuta Pilizota, Princeton University for kindly providing the bacterial strains. We also thank Samuel Martinez Gross for his work in quantifying bacterial counts in the fluorescent images.Additional information"
+    },
+    "info:competing-interest": {
+      "type": "heading",
+      "id": "info:competing-interest",
+      "level": 2,
+      "content": "Competing Interests",
+      "nodes": [
+        "paragraph_441"
+      ]
+    },
+    "paragraph_441": {
+      "type": "paragraph",
+      "id": "paragraph_441",
+      "content": "Competing interestsThe authors have declared that no competing interests exist"
+    },
+    "info:author_contribution": {
+      "type": "heading",
+      "id": "info:author_contribution",
+      "level": 2,
+      "content": "Authors",
+      "nodes": [
+        "person_author_1258",
+        "person_author_1247",
+        "person_author_1248",
+        "person_author_1249",
+        "person_author_1250",
+        "person_author_1259",
+        "person_author_1252",
+        "person_author_1253",
+        "person_author_1254",
+        "person_author_1255",
+        "person_author_1211"
+      ]
+    },
+    "article_citation_bib1": {
+      "type": "article_citation",
+      "id": "article_citation_bib1",
+      "authors": [
+        {
+          "given-names": "LA",
+          "last-name": "Augusto"
+        },
+        {
+          "given-names": "P",
+          "last-name": "Decottignies"
+        },
+        {
+          "given-names": "M",
+          "last-name": "Synguelakis"
+        },
+        {
+          "given-names": "M",
+          "last-name": "Nicaise"
+        },
+        {
+          "given-names": "P",
+          "last-name": "Le Maréchal"
+        },
+        {
+          "given-names": "R",
+          "last-name": "Chaby"
+        }
+      ],
+      "title": "Histones: a novel class of lipopolysaccharide-binding molecules. Biochemistry 42:3929–38.",
+      "year": ". 2003",
+      "volume": "",
+      "source": "",
+      "issue": "",
+      "fpage": "",
+      "lpage": "",
+      "edition": "",
+      "publisher-name": "",
+      "publisher-loc": "",
+      "doi": "",
+      "citation_url": []
+    },
+    "article_citation_bib2": {
+      "type": "article_citation",
+      "id": "article_citation_bib2",
+      "authors": [
+        {
+          "given-names": "J",
+          "last-name": "Bielecki"
+        },
+        {
+          "given-names": "P",
+          "last-name": "Youngman"
+        },
+        {
+          "given-names": "P",
+          "last-name": "Connelly"
+        },
+        {
+          "given-names": "DA",
+          "last-name": "Portnoy"
+        }
+      ],
+      "title": "Bacillus subtilis expressing a haemolysin gene from Listeria monocytogenes can grow in mammalian cells. Nature 345:175–6.",
+      "year": ". 1990",
+      "volume": "",
+      "source": "",
+      "issue": "",
+      "fpage": "",
+      "lpage": "",
+      "edition": "",
+      "publisher-name": "",
+      "publisher-loc": "",
+      "doi": "",
+      "citation_url": []
+    },
+    "annotation_442": {
+      "type": "emphasis",
+      "id": "annotation_442",
+      "path": [
+        "article_citation_bib2",
+        "title"
+      ],
+      "target": null,
+      "range": [
+        0,
+        17
+      ]
+    },
+    "annotation_443": {
+      "type": "emphasis",
+      "id": "annotation_443",
+      "path": [
+        "article_citation_bib2",
+        "title"
+      ],
+      "target": null,
+      "range": [
+        52,
+        74
+      ]
+    },
+    "article_citation_bib3": {
+      "type": "article_citation",
+      "id": "article_citation_bib3",
+      "authors": [
+        {
+          "given-names": "JB",
+          "last-name": "Bliska"
+        },
+        {
+          "given-names": "A",
+          "last-name": "Casadevall"
+        }
+      ],
+      "title": "Intracellular pathogenic bacteria and fungi—a case of convergent evolution? Nat Rev Microbiol 7:165–71.",
+      "year": ". 2009",
+      "volume": "",
+      "source": "",
+      "issue": "",
+      "fpage": "",
+      "lpage": "",
+      "edition": "",
+      "publisher-name": "",
+      "publisher-loc": "",
+      "doi": "",
+      "citation_url": []
+    },
+    "article_citation_bib4": {
+      "type": "article_citation",
+      "id": "article_citation_bib4",
+      "authors": [
+        {
+          "given-names": "SJ",
+          "last-name": "Bolton"
+        },
+        {
+          "given-names": "VH",
+          "last-name": "Perry"
+        }
+      ],
+      "title": "Histone H1; a neuronal protein that binds bacterial lipopolysaccharide. J Neurocytol 26:823–31.",
+      "year": ". 1997",
+      "volume": "",
+      "source": "",
+      "issue": "",
+      "fpage": "",
+      "lpage": "",
+      "edition": "",
+      "publisher-name": "",
+      "publisher-loc": "",
+      "doi": "",
+      "citation_url": []
+    },
+    "article_citation_bib5": {
+      "type": "article_citation",
+      "id": "article_citation_bib5",
+      "authors": [
+        {
+          "given-names": "PT",
+          "last-name": "Bozza"
+        },
+        {
+          "given-names": "JP",
+          "last-name": "Viola"
+        }
+      ],
+      "title": "Lipid droplets in inflammation and cancer. Prostaglandins Leukot Essent Fatty Acids 82:243–50.",
+      "year": ". 2010",
+      "volume": "",
+      "source": "",
+      "issue": "",
+      "fpage": "",
+      "lpage": "",
+      "edition": "",
+      "publisher-name": "",
+      "publisher-loc": "",
+      "doi": "",
+      "citation_url": []
+    },
+    "article_citation_bib6": {
+      "type": "article_citation",
+      "id": "article_citation_bib6",
+      "authors": [
+        {
+          "given-names": "DL",
+          "last-name": "Brasaemle"
+        },
+        {
+          "given-names": "G",
+          "last-name": "Dolios"
+        },
+        {
+          "given-names": "L",
+          "last-name": "Shapiro"
+        },
+        {
+          "given-names": "R",
+          "last-name": "Wang"
+        }
+      ],
+      "title": "Proteomic analysis of proteins associated with lipid droplets of basal and lipolytically stimulated 3T3-L1 adipocytes. J Biol Chem 279:46835–42.",
+      "year": ". 2004",
+      "volume": "",
+      "source": "",
+      "issue": "",
+      "fpage": "",
+      "lpage": "",
+      "edition": "",
+      "publisher-name": "",
+      "publisher-loc": "",
+      "doi": "",
+      "citation_url": []
+    },
+    "article_citation_bib7": {
+      "type": "article_citation",
+      "id": "article_citation_bib7",
+      "authors": [
+        {
+          "given-names": "S",
+          "last-name": "Cermelli"
+        },
+        {
+          "given-names": "Y",
+          "last-name": "Guo"
+        },
+        {
+          "given-names": "SP",
+          "last-name": "Gross"
+        },
+        {
+          "given-names": "MA",
+          "last-name": "Welte"
+        }
+      ],
+      "title": "The lipid-droplet proteome reveals that droplets are a protein-storage depot. Curr Biol 16:1783–95.",
+      "year": ". 2006",
+      "volume": "",
+      "source": "",
+      "issue": "",
+      "fpage": "",
+      "lpage": "",
+      "edition": "",
+      "publisher-name": "",
+      "publisher-loc": "",
+      "doi": "",
+      "citation_url": []
+    },
+    "article_citation_bib8": {
+      "type": "article_citation",
+      "id": "article_citation_bib8",
+      "authors": [
+        {
+          "given-names": "VR",
+          "last-name": "Chintapalli"
+        },
+        {
+          "given-names": "J",
+          "last-name": "Wang"
+        },
+        {
+          "given-names": "JA",
+          "last-name": "Dow"
+        }
+      ],
+      "title": "Using FlyAtlas to identify better Drosophila melanogaster models of human disease. Nat Genet 39:715–20.",
+      "year": ". 2007",
+      "volume": "",
+      "source": "",
+      "issue": "",
+      "fpage": "",
+      "lpage": "",
+      "edition": "",
+      "publisher-name": "",
+      "publisher-loc": "",
+      "doi": "",
+      "citation_url": []
+    },
+    "annotation_444": {
+      "type": "emphasis",
+      "id": "annotation_444",
+      "path": [
+        "article_citation_bib8",
+        "title"
+      ],
+      "target": null,
+      "range": [
+        34,
+        57
+      ]
+    },
+    "article_citation_bib9": {
+      "type": "article_citation",
+      "id": "article_citation_bib9",
+      "authors": [
+        {
+          "given-names": "JH",
+          "last-name": "Cho"
+        },
+        {
+          "given-names": "IY",
+          "last-name": "Park"
+        },
+        {
+          "given-names": "HS",
+          "last-name": "Kim"
+        },
+        {
+          "given-names": "WT",
+          "last-name": "Lee"
+        },
+        {
+          "given-names": "MS",
+          "last-name": "Kim"
+        },
+        {
+          "given-names": "SC",
+          "last-name": "Kim"
+        }
+      ],
+      "title": "Cathepsin D produces antimicrobial peptide parasin I from histone H2A in the skin mucosa of fish. FASEB J 16:429–31.",
+      "year": ". 2002",
+      "volume": "",
+      "source": "",
+      "issue": "",
+      "fpage": "",
+      "lpage": "",
+      "edition": "",
+      "publisher-name": "",
+      "publisher-loc": "",
+      "doi": "",
+      "citation_url": []
+    },
+    "article_citation_bib10": {
+      "type": "article_citation",
+      "id": "article_citation_bib10",
+      "authors": [
+        {
+          "given-names": "AJ",
+          "last-name": "De Lucca"
+        },
+        {
+          "given-names": "LO",
+          "last-name": "Heden"
+        },
+        {
+          "given-names": "B",
+          "last-name": "Ingber"
+        },
+        {
+          "given-names": "D",
+          "last-name": "Bhatnagar"
+        }
+      ],
+      "title": "Antifungal properties of wheat histones (H1-H4) and purified wheat histone H1. J Agric Food Chem 59:6933–9.",
+      "year": ". 2011",
+      "volume": "",
+      "source": "",
+      "issue": "",
+      "fpage": "",
+      "lpage": "",
+      "edition": "",
+      "publisher-name": "",
+      "publisher-loc": "",
+      "doi": "",
+      "citation_url": []
+    },
+    "article_citation_bib11": {
+      "type": "article_citation",
+      "id": "article_citation_bib11",
+      "authors": [
+        {
+          "given-names": "JM",
+          "last-name": "Fernandes"
+        },
+        {
+          "given-names": "G",
+          "last-name": "Molle"
+        },
+        {
+          "given-names": "GD",
+          "last-name": "Kemp"
+        },
+        {
+          "given-names": "VJ",
+          "last-name": "Smith"
+        }
+      ],
+      "title": "Isolation and characterisation of oncorhyncin II, a histone H1-derived antimicrobial peptide from skin secretions of rainbow trout, Oncorhynchus mykiss. Dev Comp Immunol 28:127–38.",
+      "year": ". 2004",
+      "volume": "",
+      "source": "",
+      "issue": "",
+      "fpage": "",
+      "lpage": "",
+      "edition": "",
+      "publisher-name": "",
+      "publisher-loc": "",
+      "doi": "",
+      "citation_url": []
+    },
+    "annotation_445": {
+      "type": "emphasis",
+      "id": "annotation_445",
+      "path": [
+        "article_citation_bib11",
+        "title"
+      ],
+      "target": null,
+      "range": [
+        132,
+        151
+      ]
+    },
+    "article_citation_bib12": {
+      "type": "article_citation",
+      "id": "article_citation_bib12",
+      "authors": [
+        {
+          "given-names": "SM",
+          "last-name": "Figueredo"
+        },
+        {
+          "given-names": "CS",
+          "last-name": "Weeks"
+        },
+        {
+          "given-names": "SK",
+          "last-name": "Young"
+        },
+        {
+          "given-names": "AJ",
+          "last-name": "Ouellette"
+        }
+      ],
+      "title": "Anionic amino acids near the pro-alpha-defensin N terminus mediate inhibition of bactericidal activity in mouse pro-cryptdin-4. J Biol Chem 284:6826–31.",
+      "year": ". 2009",
+      "volume": "",
+      "source": "",
+      "issue": "",
+      "fpage": "",
+      "lpage": "",
+      "edition": "",
+      "publisher-name": "",
+      "publisher-loc": "",
+      "doi": "",
+      "citation_url": []
+    },
+    "article_citation_bib13": {
+      "type": "article_citation",
+      "id": "article_citation_bib13",
+      "authors": [
+        {
+          "given-names": "A",
+          "last-name": "Gunjan"
+        },
+        {
+          "given-names": "A",
+          "last-name": "Verreault"
+        }
+      ],
+      "title": "A Rad53 kinase-dependent surveillance mechanism that regulates histone protein levels in S. cerevisiae. Cell 115:537–49.",
+      "year": ". 2003",
+      "volume": "",
+      "source": "",
+      "issue": "",
+      "fpage": "",
+      "lpage": "",
+      "edition": "",
+      "publisher-name": "",
+      "publisher-loc": "",
+      "doi": "",
+      "citation_url": []
+    },
+    "annotation_446": {
+      "type": "emphasis",
+      "id": "annotation_446",
+      "path": [
+        "article_citation_bib13",
+        "title"
+      ],
+      "target": null,
+      "range": [
+        89,
+        102
+      ]
+    },
+    "article_citation_bib14": {
+      "type": "article_citation",
+      "id": "article_citation_bib14",
+      "authors": [
+        {
+          "given-names": "D",
+          "last-name": "Heumann"
+        },
+        {
+          "given-names": "T",
+          "last-name": "Roger"
+        }
+      ],
+      "title": "Initial responses to endotoxins and Gram-negative bacteria. Clin Chim Acta 323:59–72.",
+      "year": ". 2002",
+      "volume": "",
+      "source": "",
+      "issue": "",
+      "fpage": "",
+      "lpage": "",
+      "edition": "",
+      "publisher-name": "",
+      "publisher-loc": "",
+      "doi": "",
+      "citation_url": []
+    },
+    "article_citation_bib15": {
+      "type": "article_citation",
+      "id": "article_citation_bib15",
+      "authors": [
+        {
+          "given-names": "JG",
+          "last-name": "Hirsch"
+        }
+      ],
+      "title": "Bactericidal action of histone. J Exp Med 108:925–44.",
+      "year": ". 1958",
+      "volume": "",
+      "source": "",
+      "issue": "",
+      "fpage": "",
+      "lpage": "",
+      "edition": "",
+      "publisher-name": "",
+      "publisher-loc": "",
+      "doi": "",
+      "citation_url": []
+    },
+    "article_citation_bib16": {
+      "type": "article_citation",
+      "id": "article_citation_bib16",
+      "authors": [
+        {
+          "given-names": "L",
+          "last-name": "Huang"
+        },
+        {
+          "given-names": "RJ",
+          "last-name": "Jacob"
+        },
+        {
+          "given-names": "SC",
+          "last-name": "Pegg"
+        },
+        {
+          "given-names": "MA",
+          "last-name": "Baldwin"
+        },
+        {
+          "given-names": "CC",
+          "last-name": "Wang"
+        },
+        {
+          "given-names": "AL",
+          "last-name": "Burlingame"
+        }
+      ],
+      "title": "Functional assignment of the 20 S proteasome from Trypanosoma brucei using mass spectrometry and new bioinformatics approaches. J Biol Chem 276:28327–39.",
+      "year": ". 2001",
+      "volume": "",
+      "source": "",
+      "issue": "",
+      "fpage": "",
+      "lpage": "",
+      "edition": "",
+      "publisher-name": "",
+      "publisher-loc": "",
+      "doi": "",
+      "citation_url": []
+    },
+    "annotation_447": {
+      "type": "emphasis",
+      "id": "annotation_447",
+      "path": [
+        "article_citation_bib16",
+        "title"
+      ],
+      "target": null,
+      "range": [
+        50,
+        68
+      ]
+    },
+    "article_citation_bib17": {
+      "type": "article_citation",
+      "id": "article_citation_bib17",
+      "authors": [
+        {
+          "given-names": "HS",
+          "last-name": "Kim"
+        },
+        {
+          "given-names": "H",
+          "last-name": "Yoon"
+        },
+        {
+          "given-names": "I",
+          "last-name": "Minn"
+        },
+        {
+          "given-names": "CB",
+          "last-name": "Park"
+        },
+        {
+          "given-names": "WT",
+          "last-name": "Lee"
+        },
+        {
+          "given-names": "M",
+          "last-name": "Zasloff"
+        }
+      ],
+      "title": "Pepsin-mediated processing of the cytoplasmic histone H2A to strong antimicrobial peptide buforin I. J Immunol 165:3268–74.",
+      "year": ". 2000",
+      "volume": "",
+      "source": "",
+      "issue": "",
+      "fpage": "",
+      "lpage": "",
+      "edition": "",
+      "publisher-name": "",
+      "publisher-loc": "",
+      "doi": "",
+      "citation_url": []
+    },
+    "article_citation_bib18": {
+      "type": "article_citation",
+      "id": "article_citation_bib18",
+      "authors": [
+        {
+          "given-names": "S",
+          "last-name": "Larsson"
+        },
+        {
+          "given-names": "S",
+          "last-name": "Resjö"
+        },
+        {
+          "given-names": "MF",
+          "last-name": "Gomez"
+        },
+        {
+          "given-names": "P",
+          "last-name": "James"
+        },
+        {
+          "given-names": "C",
+          "last-name": "Holm"
+        }
+      ],
+      "title": "Characterization of the lipid droplet proteome of a clonal insulin-producing β-cell line (INS-1 832/13). J Proteome Res 11:1264–73.",
+      "year": ". 2012",
+      "volume": "",
+      "source": "",
+      "issue": "",
+      "fpage": "",
+      "lpage": "",
+      "edition": "",
+      "publisher-name": "",
+      "publisher-loc": "",
+      "doi": "",
+      "citation_url": []
+    },
+    "article_citation_bib19": {
+      "type": "article_citation",
+      "id": "article_citation_bib19",
+      "authors": [
+        {
+          "given-names": "TJ",
+          "last-name": "Leach"
+        },
+        {
+          "given-names": "M",
+          "last-name": "Mazzeo"
+        },
+        {
+          "given-names": "HL",
+          "last-name": "Chotkowski"
+        },
+        {
+          "given-names": "JP",
+          "last-name": "Madigan"
+        },
+        {
+          "given-names": "MG",
+          "last-name": "Wotring"
+        },
+        {
+          "given-names": "RL",
+          "last-name": "Glaser"
+        }
+      ],
+      "title": "Histone H2A.Z is widely but nonrandomly distributed in chromosomes of Drosophila melanogaster. J Biol Chem 275:23267–72.",
+      "year": ". 2000",
+      "volume": "",
+      "source": "",
+      "issue": "",
+      "fpage": "",
+      "lpage": "",
+      "edition": "",
+      "publisher-name": "",
+      "publisher-loc": "",
+      "doi": "",
+      "citation_url": []
+    },
+    "annotation_448": {
+      "type": "emphasis",
+      "id": "annotation_448",
+      "path": [
+        "article_citation_bib19",
+        "title"
+      ],
+      "target": null,
+      "range": [
+        70,
+        93
+      ]
+    },
+    "article_citation_bib20": {
+      "type": "article_citation",
+      "id": "article_citation_bib20",
+      "authors": [
+        {
+          "given-names": "DY",
+          "last-name": "Lee"
+        },
+        {
+          "given-names": "CM",
+          "last-name": "Huang"
+        },
+        {
+          "given-names": "T",
+          "last-name": "Nakatsuji"
+        },
+        {
+          "given-names": "D",
+          "last-name": "Thiboutot"
+        },
+        {
+          "given-names": "SA",
+          "last-name": "Kang"
+        },
+        {
+          "given-names": "M",
+          "last-name": "Monestier"
+        }
+      ],
+      "title": "Histone H4 is a major component of the antimicrobial action of human sebocytes. J Invest Dermatol 129:2489–96.",
+      "year": ". 2009",
+      "volume": "",
+      "source": "",
+      "issue": "",
+      "fpage": "",
+      "lpage": "",
+      "edition": "",
+      "publisher-name": "",
+      "publisher-loc": "",
+      "doi": "",
+      "citation_url": []
+    },
+    "article_citation_bib21": {
+      "type": "article_citation",
+      "id": "article_citation_bib21",
+      "authors": [
+        {
+          "given-names": "RI",
+          "last-name": "Lehrer"
+        },
+        {
+          "given-names": "M",
+          "last-name": "Rosenman"
+        },
+        {
+          "given-names": "SS",
+          "last-name": "Harwig"
+        },
+        {
+          "given-names": "R",
+          "last-name": "Jackson"
+        },
+        {
+          "given-names": "P",
+          "last-name": "Eisenhauer"
+        }
+      ],
+      "title": "Ultrasensitive assays for endogenous antimicrobial polypeptides. J Immunol Methods 137:167–73.",
+      "year": ". 1991",
+      "volume": "",
+      "source": "",
+      "issue": "",
+      "fpage": "",
+      "lpage": "",
+      "edition": "",
+      "publisher-name": "",
+      "publisher-loc": "",
+      "doi": "",
+      "citation_url": []
+    },
+    "article_citation_bib22": {
+      "type": "article_citation",
+      "id": "article_citation_bib22",
+      "authors": [
+        {
+          "given-names": "Z",
+          "last-name": "Li"
+        },
+        {
+          "given-names": "K",
+          "last-name": "Thiel"
+        },
+        {
+          "given-names": "PJ",
+          "last-name": "Thul"
+        },
+        {
+          "given-names": "M",
+          "last-name": "Beller"
+        },
+        {
+          "given-names": "RP",
+          "last-name": "Kühnlein"
+        },
+        {
+          "given-names": "MA",
+          "last-name": "Welt"
+        }
+      ],
+      "title": "Lipid droplets control the maternal histone supply of drosophila embryos. Current Biology doi: 10.1016/j.cub.2012.09.018.",
+      "year": ". 2012",
+      "volume": "",
+      "source": "",
+      "issue": "",
+      "fpage": "",
+      "lpage": "",
+      "edition": "",
+      "publisher-name": "",
+      "publisher-loc": "",
+      "doi": "",
+      "citation_url": []
+    },
+    "article_citation_bib23": {
+      "type": "article_citation",
+      "id": "article_citation_bib23",
+      "authors": [
+        {
+          "given-names": "M",
+          "last-name": "Lowder"
+        },
+        {
+          "given-names": "A",
+          "last-name": "Unge"
+        },
+        {
+          "given-names": "N",
+          "last-name": "Maraha"
+        },
+        {
+          "given-names": "JK",
+          "last-name": "Jansson"
+        },
+        {
+          "given-names": "J",
+          "last-name": "Swiggett"
+        },
+        {
+          "given-names": "JD",
+          "last-name": "Oliver"
+        }
+      ],
+      "title": "Effect of starvation and the viable-but-nonculturable state on green fluorescent protein (GFP) fluorescence in GFP-tagged Pseudomonas fluorescens A506. Appl Environ Microbiol 66:3160–5.",
+      "year": ". 2000",
+      "volume": "",
+      "source": "",
+      "issue": "",
+      "fpage": "",
+      "lpage": "",
+      "edition": "",
+      "publisher-name": "",
+      "publisher-loc": "",
+      "doi": "",
+      "citation_url": []
+    },
+    "annotation_449": {
+      "type": "emphasis",
+      "id": "annotation_449",
+      "path": [
+        "article_citation_bib23",
+        "title"
+      ],
+      "target": null,
+      "range": [
+        122,
+        145
+      ]
+    },
+    "article_citation_bib24": {
+      "type": "article_citation",
+      "id": "article_citation_bib24",
+      "authors": [
+        {
+          "given-names": "IR",
+          "last-name": "Mackay"
+        }
+      ],
+      "title": "Hepatoimmunology: a perspective. Immunol Cell Biol 80:36–44.",
+      "year": ". 2002",
+      "volume": "",
+      "source": "",
+      "issue": "",
+      "fpage": "",
+      "lpage": "",
+      "edition": "",
+      "publisher-name": "",
+      "publisher-loc": "",
+      "doi": "",
+      "citation_url": []
+    },
+    "article_citation_bib25": {
+      "type": "article_citation",
+      "id": "article_citation_bib25",
+      "authors": [
+        {
+          "given-names": "P",
+          "last-name": "McQuilton"
+        },
+        {
+          "given-names": "SE",
+          "last-name": "St Pierre"
+        },
+        {
+          "given-names": "J",
+          "last-name": "Thurmond"
+        }
+      ],
+      "title": "FlyBase 101—the basics of navigating FlyBase. Nucleic Acids Res 40:D706–14.",
+      "year": ". 2012",
+      "volume": "",
+      "source": "",
+      "issue": "",
+      "fpage": "",
+      "lpage": "",
+      "edition": "",
+      "publisher-name": "",
+      "publisher-loc": "",
+      "doi": "",
+      "citation_url": []
+    },
+    "article_citation_bib26": {
+      "type": "article_citation",
+      "id": "article_citation_bib26",
+      "authors": [
+        {
+          "given-names": "SA",
+          "last-name": "Ouvry-Patat"
+        },
+        {
+          "given-names": "KL",
+          "last-name": "Schey"
+        }
+      ],
+      "title": "Characterization of antimicrobial histone sequences and posttranslational modifications by mass spectrometry. J Mass Spectrom 42:664–74.",
+      "year": ". 2007",
+      "volume": "",
+      "source": "",
+      "issue": "",
+      "fpage": "",
+      "lpage": "",
+      "edition": "",
+      "publisher-name": "",
+      "publisher-loc": "",
+      "doi": "",
+      "citation_url": []
+    },
+    "article_citation_bib27": {
+      "type": "article_citation",
+      "id": "article_citation_bib27",
+      "authors": [
+        {
+          "given-names": "MH",
+          "last-name": "Parseghian"
+        },
+        {
+          "given-names": "KA",
+          "last-name": "Luhrs"
+        }
+      ],
+      "title": "Beyond the walls of the nucleus: the role of histones in cellular signaling and innate immunity. Biochem Cell Biol 84:589–604.",
+      "year": ". 2006",
+      "volume": "",
+      "source": "",
+      "issue": "",
+      "fpage": "",
+      "lpage": "",
+      "edition": "",
+      "publisher-name": "",
+      "publisher-loc": "",
+      "doi": "",
+      "citation_url": []
+    },
+    "article_citation_bib28": {
+      "type": "article_citation",
+      "id": "article_citation_bib28",
+      "authors": [
+        {
+          "given-names": "K",
+          "last-name": "Ray"
+        },
+        {
+          "given-names": "B",
+          "last-name": "Marteyn"
+        },
+        {
+          "given-names": "PJ",
+          "last-name": "Sansonetti"
+        },
+        {
+          "given-names": "CM",
+          "last-name": "Tang"
+        }
+      ],
+      "title": "Life on the inside: the intracellular lifestyle of cytosolic bacteria. Nat Rev Microbiol 7:333–40.",
+      "year": ". 2009",
+      "volume": "",
+      "source": "",
+      "issue": "",
+      "fpage": "",
+      "lpage": "",
+      "edition": "",
+      "publisher-name": "",
+      "publisher-loc": "",
+      "doi": "",
+      "citation_url": []
+    },
+    "article_citation_bib29": {
+      "type": "article_citation",
+      "id": "article_citation_bib29",
+      "authors": [
+        {
+          "given-names": "M",
+          "last-name": "Saffarzadeh"
+        },
+        {
+          "given-names": "C",
+          "last-name": "Juenemann"
+        },
+        {
+          "given-names": "MA",
+          "last-name": "Queisser"
+        },
+        {
+          "given-names": "G",
+          "last-name": "Lochnit"
+        },
+        {
+          "given-names": "G",
+          "last-name": "Barreto"
+        },
+        {
+          "given-names": "SP",
+          "last-name": "Galuska"
+        }
+      ],
+      "title": "Neutrophil extracellular traps directly induce epithelial and endothelial cell death: a predominant role of histones. PLoS One 7:e32366.",
+      "year": ". 2012",
+      "volume": "",
+      "source": "",
+      "issue": "",
+      "fpage": "",
+      "lpage": "",
+      "edition": "",
+      "publisher-name": "",
+      "publisher-loc": "",
+      "doi": "",
+      "citation_url": []
+    },
+    "article_citation_bib30": {
+      "type": "article_citation",
+      "id": "article_citation_bib30",
+      "authors": [
+        {
+          "given-names": "F",
+          "last-name": "Senga"
+        },
+        {
+          "given-names": "L",
+          "last-name": "Yin"
+        },
+        {
+          "given-names": "H",
+          "last-name": "Karasuno"
+        },
+        {
+          "given-names": "H",
+          "last-name": "Ohtaki"
+        },
+        {
+          "given-names": "T",
+          "last-name": "Nakamachi"
+        },
+        {
+          "given-names": "K",
+          "last-name": "Satoh"
+        }
+      ],
+      "title": "Minus charge stimulation prevents LPS-induced liver injury by reduction of nitric oxide. J Clin Biochem Nutr 42:222–7.",
+      "year": ". 2008",
+      "volume": "",
+      "source": "",
+      "issue": "",
+      "fpage": "",
+      "lpage": "",
+      "edition": "",
+      "publisher-name": "",
+      "publisher-loc": "",
+      "doi": "",
+      "citation_url": []
+    },
+    "article_citation_bib31": {
+      "type": "article_citation",
+      "id": "article_citation_bib31",
+      "authors": [
+        {
+          "given-names": "RK",
+          "last-name": "Singh"
+        },
+        {
+          "given-names": "MH",
+          "last-name": "Kabbaj"
+        },
+        {
+          "given-names": "J",
+          "last-name": "Paik"
+        },
+        {
+          "given-names": "A",
+          "last-name": "Gunjan"
+        }
+      ],
+      "title": "Histone levels are regulated by phosphorylation and ubiquitylation-dependent proteolysis. Nat Cell Biol 11:925–33.",
+      "year": ". 2009a",
+      "volume": "",
+      "source": "",
+      "issue": "",
+      "fpage": "",
+      "lpage": "",
+      "edition": "",
+      "publisher-name": "",
+      "publisher-loc": "",
+      "doi": "",
+      "citation_url": []
+    },
+    "article_citation_bib32": {
+      "type": "article_citation",
+      "id": "article_citation_bib32",
+      "authors": [
+        {
+          "given-names": "RK",
+          "last-name": "Singh"
+        },
+        {
+          "given-names": "J",
+          "last-name": "Paik"
+        },
+        {
+          "given-names": "A",
+          "last-name": "Gunjan"
+        }
+      ],
+      "title": "Generation and management of excess histones during the cell cycle. Front Biosci 14:3145–58.",
+      "year": ". 2009b",
+      "volume": "",
+      "source": "",
+      "issue": "",
+      "fpage": "",
+      "lpage": "",
+      "edition": "",
+      "publisher-name": "",
+      "publisher-loc": "",
+      "doi": "",
+      "citation_url": []
+    },
+    "article_citation_bib33": {
+      "type": "article_citation",
+      "id": "article_citation_bib33",
+      "authors": [
+        {
+          "given-names": "RK",
+          "last-name": "Singh"
+        },
+        {
+          "given-names": "D",
+          "last-name": "Liang"
+        },
+        {
+          "given-names": "UR",
+          "last-name": "Gajjalaiahvari"
+        },
+        {
+          "given-names": "MH",
+          "last-name": "Kabbaj"
+        },
+        {
+          "given-names": "J",
+          "last-name": "Paik"
+        },
+        {
+          "given-names": "A",
+          "last-name": "Gunjan"
+        }
+      ],
+      "title": "Excess histone levels mediate cytotoxicity via multiple mechanisms. Cell Cycle 9:4236–44.",
+      "year": ". 2010",
+      "volume": "",
+      "source": "",
+      "issue": "",
+      "fpage": "",
+      "lpage": "",
+      "edition": "",
+      "publisher-name": "",
+      "publisher-loc": "",
+      "doi": "",
+      "citation_url": []
+    },
+    "article_citation_bib34": {
+      "type": "article_citation",
+      "id": "article_citation_bib34",
+      "authors": [
+        {
+          "given-names": "G",
+          "last-name": "Smolenski"
+        },
+        {
+          "given-names": "S",
+          "last-name": "Haines"
+        },
+        {
+          "given-names": "FY",
+          "last-name": "Kwan"
+        },
+        {
+          "given-names": "J",
+          "last-name": "Bond"
+        },
+        {
+          "given-names": "V",
+          "last-name": "Farr"
+        },
+        {
+          "given-names": "SR",
+          "last-name": "Davis"
+        }
+      ],
+      "title": "Characterisation of host defence proteins in milk using a proteomic approach. J Proteome Res 6:207–15.",
+      "year": ". 2007",
+      "volume": "",
+      "source": "",
+      "issue": "",
+      "fpage": "",
+      "lpage": "",
+      "edition": "",
+      "publisher-name": "",
+      "publisher-loc": "",
+      "doi": "",
+      "citation_url": []
+    },
+    "article_citation_bib35": {
+      "type": "article_citation",
+      "id": "article_citation_bib35",
+      "authors": [
+        {
+          "given-names": "LG",
+          "last-name": "Tilney"
+        },
+        {
+          "given-names": "DA",
+          "last-name": "Portnoy"
+        }
+      ],
+      "title": "Actin filaments and the growth, movement, and spread of the intracellular bacterial parasite, Listeria monocytogenes. J Cell Biol 109(Pt 1):1597–608.",
+      "year": ". 1989",
+      "volume": "",
+      "source": "",
+      "issue": "",
+      "fpage": "",
+      "lpage": "",
+      "edition": "",
+      "publisher-name": "",
+      "publisher-loc": "",
+      "doi": "",
+      "citation_url": []
+    },
+    "annotation_450": {
+      "type": "emphasis",
+      "id": "annotation_450",
+      "path": [
+        "article_citation_bib35",
+        "title"
+      ],
+      "target": null,
+      "range": [
+        94,
+        116
+      ]
+    },
+    "article_citation_bib36": {
+      "type": "article_citation",
+      "id": "article_citation_bib36",
+      "authors": [
+        {
+          "given-names": "S",
+          "last-name": "Turró"
+        },
+        {
+          "given-names": "M",
+          "last-name": "Ingelmo-Torres"
+        },
+        {
+          "given-names": "JM",
+          "last-name": "Estanyol"
+        },
+        {
+          "given-names": "F",
+          "last-name": "Tebar"
+        },
+        {
+          "given-names": "MA",
+          "last-name": "Fernández"
+        },
+        {
+          "given-names": "CV",
+          "last-name": "Albor"
+        }
+      ],
+      "title": "Identification and characterization of associated with lipid droplet protein 1: a novel membrane-associated protein that resides on hepatic lipid droplets. Traffic 7:1254–69.",
+      "year": ". 2006",
+      "volume": "",
+      "source": "",
+      "issue": "",
+      "fpage": "",
+      "lpage": "",
+      "edition": "",
+      "publisher-name": "",
+      "publisher-loc": "",
+      "doi": "",
+      "citation_url": []
+    },
+    "article_citation_bib37": {
+      "type": "article_citation",
+      "id": "article_citation_bib37",
+      "authors": [
+        {
+          "given-names": "M",
+          "last-name": "von Kockritz-Blickwede"
+        },
+        {
+          "given-names": "V",
+          "last-name": "Nizet"
+        }
+      ],
+      "title": "Innate immunity turned inside-out: antimicrobial defense by phagocyte extracellular traps. J Mol Med (Berl) 87:775–83.",
+      "year": ". 2009",
+      "volume": "",
+      "source": "",
+      "issue": "",
+      "fpage": "",
+      "lpage": "",
+      "edition": "",
+      "publisher-name": "",
+      "publisher-loc": "",
+      "doi": "",
+      "citation_url": []
+    },
+    "article_citation_bib38": {
+      "type": "article_citation",
+      "id": "article_citation_bib38",
+      "authors": [
+        {
+          "given-names": "HC",
+          "last-name": "Wan"
+        },
+        {
+          "given-names": "RC",
+          "last-name": "Melo"
+        },
+        {
+          "given-names": "Z",
+          "last-name": "Jin"
+        },
+        {
+          "given-names": "AM",
+          "last-name": "Dvorak"
+        },
+        {
+          "given-names": "PF",
+          "last-name": "Weller"
+        }
+      ],
+      "title": "Roles and origins of leukocyte lipid bodies: proteomic and ultrastructural studies. FASEB J 21:167–78.",
+      "year": ". 2007",
+      "volume": "",
+      "source": "",
+      "issue": "",
+      "fpage": "",
+      "lpage": "",
+      "edition": "",
+      "publisher-name": "",
+      "publisher-loc": "",
+      "doi": "",
+      "citation_url": []
+    },
+    "article_citation_bib39": {
+      "type": "article_citation",
+      "id": "article_citation_bib39",
+      "authors": [
+        {
+          "given-names": "MA",
+          "last-name": "Welte"
+        },
+        {
+          "given-names": "S",
+          "last-name": "Cermelli"
+        },
+        {
+          "given-names": "J",
+          "last-name": "Griner"
+        },
+        {
+          "given-names": "A",
+          "last-name": "Viera"
+        },
+        {
+          "given-names": "Y",
+          "last-name": "Guo"
+        },
+        {
+          "given-names": "DH",
+          "last-name": "Kim"
+        }
+      ],
+      "title": "Regulation of lipid-droplet transport by the perilipin homolog LSD2. Curr Biol 15:1266–75.",
+      "year": ". 2005",
+      "volume": "",
+      "source": "",
+      "issue": "",
+      "fpage": "",
+      "lpage": "",
+      "edition": "",
+      "publisher-name": "",
+      "publisher-loc": "",
+      "doi": "",
+      "citation_url": []
+    },
+    "article_citation_bib40": {
+      "type": "article_citation",
+      "id": "article_citation_bib40",
+      "authors": [
+        {
+          "given-names": "MA",
+          "last-name": "Welte"
+        }
+      ],
+      "title": "Proteins under new management: lipid droplets deliver. Trends Cell Biol 17:363–9.",
+      "year": ". 2007",
+      "volume": "",
+      "source": "",
+      "issue": "",
+      "fpage": "",
+      "lpage": "",
+      "edition": "",
+      "publisher-name": "",
+      "publisher-loc": "",
+      "doi": "",
+      "citation_url": []
+    },
+    "article_citation_bib41": {
+      "type": "article_citation",
+      "id": "article_citation_bib41",
+      "authors": [
+        {
+          "given-names": "HI",
+          "last-name": "Wergeland"
+        },
+        {
+          "given-names": "LR",
+          "last-name": "Haaheim"
+        },
+        {
+          "given-names": "OB",
+          "last-name": "Natås"
+        },
+        {
+          "given-names": "F",
+          "last-name": "Wesenberg"
+        },
+        {
+          "given-names": "P",
+          "last-name": "Oeding"
+        }
+      ],
+      "title": "Antibodies to staphylococcal peptidoglycan and its peptide epitopes, teichoic acid, and lipoteichoic acid in sera from blood donors and patients with staphylococcal infections. J Clin Microbiol 27:1286–91.",
+      "year": ". 1989",
+      "volume": "",
+      "source": "",
+      "issue": "",
+      "fpage": "",
+      "lpage": "",
+      "edition": "",
+      "publisher-name": "",
+      "publisher-loc": "",
+      "doi": "",
+      "citation_url": []
+    },
+    "article_citation_bib42": {
+      "type": "article_citation",
+      "id": "article_citation_bib42",
+      "authors": [
+        {
+          "given-names": "H",
+          "last-name": "Yang"
+        },
+        {
+          "given-names": "Z",
+          "last-name": "Zhou"
+        },
+        {
+          "given-names": "H",
+          "last-name": "Zhang"
+        },
+        {
+          "given-names": "M",
+          "last-name": "Chen"
+        },
+        {
+          "given-names": "J",
+          "last-name": "Li"
+        },
+        {
+          "given-names": "Y",
+          "last-name": "Ma"
+        }
+      ],
+      "title": "Shotgun proteomic analysis of the fat body during metamorphosis of domesticated silkworm (Bombyx mori). Amino Acids 38:1333–42.",
+      "year": ". 2010",
+      "volume": "",
+      "source": "",
+      "issue": "",
+      "fpage": "",
+      "lpage": "",
+      "edition": "",
+      "publisher-name": "",
+      "publisher-loc": "",
+      "doi": "",
+      "citation_url": []
+    },
+    "annotation_451": {
+      "type": "emphasis",
+      "id": "annotation_451",
+      "path": [
+        "article_citation_bib42",
+        "title"
+      ],
+      "target": null,
+      "range": [
+        90,
+        101
+      ]
+    },
+    "article_citation_bib43": {
+      "type": "article_citation",
+      "id": "article_citation_bib43",
+      "authors": [
+        {
+          "given-names": "H",
+          "last-name": "Zhang"
+        },
+        {
+          "given-names": "Y",
+          "last-name": "Wang"
+        },
+        {
+          "given-names": "J",
+          "last-name": "Li"
+        },
+        {
+          "given-names": "J",
+          "last-name": "Yu"
+        },
+        {
+          "given-names": "J",
+          "last-name": "Pu"
+        },
+        {
+          "given-names": "L",
+          "last-name": "Li"
+        }
+      ],
+      "title": "Proteome of skeletal muscle lipid droplet reveals association with mitochondria and apolipoprotein a-I. J Proteome Res 10:4757–68.",
+      "year": ". 2011",
+      "volume": "",
+      "source": "",
+      "issue": "",
+      "fpage": "",
+      "lpage": "",
+      "edition": "",
+      "publisher-name": "",
+      "publisher-loc": "",
+      "doi": "",
+      "citation_url": []
+    },
+    "article_citation_bib44": {
+      "type": "article_citation",
+      "id": "article_citation_bib44",
+      "authors": [
+        {
+          "given-names": "P",
+          "last-name": "Zhang"
+        },
+        {
+          "given-names": "H",
+          "last-name": "Na"
+        },
+        {
+          "given-names": "Z",
+          "last-name": "Liu"
+        },
+        {
+          "given-names": "S",
+          "last-name": "Zhang"
+        },
+        {
+          "given-names": "P",
+          "last-name": "Xue"
+        },
+        {
+          "given-names": "Y",
+          "last-name": "Chen"
+        }
+      ],
+      "title": "Proteomic study and marker protein identification of Caenorhabditis elegans lipid droplets. Mol Cell Proteomics 11:317–28.10.7554/eLife.00003.012Decision letterKolterRobertoReviewing editorHarvard Medical School, United StateseLife posts the editorial decision letter and author response on a selection of the published articles (subject to the approval of the authors). An edited version of the letter sent to the authors after peer review is shown, indicating the substantive concerns or comments; minor concerns are not usually shown. Reviewers have the opportunity to discuss the decision before the letter is sent (see review process). Similarly, the author response typically shows only responses to the major concerns raised by the reviewers.Thank you for choosing to send your work entitled “A novel role for lipid droplets in the organismal antibacterial response” for consideration at eLife. Your article has been evaluated by a Senior Editor and 2 reviewers, one of whom is a member of eLife's Board of Reviewing Editors. The latter was Roberto Kolter, who wanted to reveal his identity.We discussed our comments and concerns before we reached this decision, and the Reviewing Editor has assembled the following comments based on the reviewers' reports. Our goal is to provide the essential revision requirements as a single set of instructions, so that you have a clear view of the revisions that are necessary for us to publish your work.This is a very nice description of a remarkable new finding – bacteria infected into Drosophila embryos are killed by the release of histones from lipid droplets. The finding that in Jabba mutants histones do not accumulate in lipid droplets allowed a direct test of the involvement of histones in the process. A large difference in bacterial growth was observed, and a four to five fold difference in embryo survival was observed upon injection with bacteria. While the results are outstanding, the manuscript preparation is a bit wanting. In particular, there should be more quantitative assessment of the effects observed.An important point that is currently not discussed in the paper is that, as of now, this phenomenon has been shown to apply to fly embryos (with some interesting results in murine liver added). But we feel there should be some discussion of whether this might apply to the adult organism – perhaps even some presentation as to whether adult Jabba flies are compromised or not when confronted with bacterial pathogens, if such trials have been done. While such experiments are not absolutely required (eLife policy is to suggest just the absolutely essential experiments), the text must be modified to bring forth this important limitation; as of now the effect has been seen only in early embryos and not in adult flies.Aside from this important limitation that needs to be addressed, we recommend that the effect of Jabba be tested in another mutant background (jabba/deficiency) to exclude a possible background effect.There were also some issues raised regarding the experiments using mammalian cell lines. Firstly, in the context of immunity, measuring the efficiency of an LPS infection is usually defined by cytokine response rather than hepatic injury. Secondly, if histones do act as cytosolic antibacterial agents in mammalian cells, it might to include a bacterial killing assay with intracellular bacteria and mammalian cells. In short, it would be good to tone down this section as well because the experiments presented are also rather limited, if provocative.10.7554/eLife.00003.013Author responseAn important point that is currently not discussed in the paper is that, as of now, this phenomenon has been shown to apply to fly embryos (with some interesting results in murine liver added). But we feel there should be some discussion of whether this might apply to the adult organism – perhaps even some presentation as to whether adult Jabba flies are compromised or not when confronted with bacterial pathogens, if such trials have been done. While such experiments are not absolutely required (eLife policy is to suggest just the absolutely essential experiments), the text must be modified to bring forth this important limitation; as of now the effect has been seen only in early embryos and not in adult flies.We agree that this was an interesting and important question. In the new version of the manuscript, we answer it in the affirmative—Figure 4 is entirely new, and shows new data quantifying survival of adult flies challenged with bacteria. Further, Figure 4 shows that we can indeed detect histones in the adult cytosol, and that histone levels are decreased in the Jabba mutant background.We recommend that the effect of Jabba be tested in another mutant background (jabba/deficiency) to exclude a possible background effect.In fact, this was not an issue—the experiments presented had been done in two entirely different genetic backgrounds, but our description was lacking. We have now modified the text to show the exact details of the two different mutants used in this study to address the background effect. Alleles Jabbazl01 and Jabbaf07560 were derived independently: Jabbazl01 is due to imprecise excision of a P element inserted near the Jabba promoter. Jabbaf07560 is due to the insertion of a PBac element in the middle of the Jabba coding region. As the two alleles were generated in entirely different genetic backgrounds, this rules out any genetic background effects. This has now been clarified in the text.There were also some issues raised regarding the experiments using mammalian cell lines. Firstly, in the context of immunity, measuring the efficiency of an LPS infection is usually defined by cytokine response rather than hepatic injury. Secondly, if histones do act as cytosolic antibacterial agents in mammalian cells, it might do to include a bacterial killing assay with intracellular bacteria and mammalian cells. In short, it would be good to tone down this section as well because the experiments presented are also rather limited, if provocative.The cytokine levels in the murine study are now included in the revised version of the manuscript (see Figure 6). We have not been able to do a bacterial killing assay with the murine droplets, because a great deal of research in Spain (where our collaborators are located) is currently on hold due to the financial crisis there; the mouse facility is closed for a month or two. Given our new data on whole-fly data, and the expected large delay in being able to carry out the murine-droplet killing assays, we propose to leave establishing the efficacy of the murine droplets for future work. Accordingly, this section has been toned down as suggested by the reviewers, and in particular, we now include the sentence: “Determining whether the murine droplet-bound histones actively contribute to host defense remains for future studies.”",
+      "year": ". 2012",
+      "volume": "",
+      "source": "",
+      "issue": "",
+      "fpage": "",
+      "lpage": "",
+      "edition": "",
+      "publisher-name": "",
+      "publisher-loc": "",
+      "doi": "",
+      "citation_url": []
+    },
+    "annotation_452": {
+      "type": "emphasis",
+      "id": "annotation_452",
+      "path": [
+        "article_citation_bib44",
+        "title"
+      ],
+      "target": null,
+      "range": [
+        53,
+        75
+      ]
+    },
+    "sub-article": {
+      "type": "heading",
+      "id": "sub-article",
+      "level": 1,
+      "content": "Article Commentary",
+      "nodes": []
     }
   }
 }

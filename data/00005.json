@@ -17,50 +17,50 @@
         "heading_s1",
         "paragraph_18",
         "paragraph_26",
-        "paragraph_46",
-        "paragraph_50",
+        "paragraph_44",
+        "paragraph_48",
         "heading_s2",
         "heading_s2-1",
-        "paragraph_56",
-        "paragraph_60",
+        "paragraph_54",
+        "paragraph_58",
         "heading_s2-2",
-        "paragraph_67",
-        "paragraph_94",
+        "paragraph_65",
+        "paragraph_88",
         "heading_s2-3",
-        "paragraph_101",
-        "paragraph_114",
-        "paragraph_136",
-        "paragraph_151",
-        "paragraph_171",
+        "paragraph_93",
+        "paragraph_104",
+        "paragraph_124",
+        "paragraph_139",
+        "paragraph_159",
         "heading_s2-4",
-        "paragraph_172",
-        "paragraph_197",
-        "paragraph_207",
-        "paragraph_213",
-        "paragraph_220",
-        "paragraph_228",
-        "paragraph_263",
-        "paragraph_265",
-        "paragraph_270",
-        "paragraph_280",
+        "paragraph_160",
+        "paragraph_177",
+        "paragraph_187",
+        "paragraph_193",
+        "paragraph_200",
+        "paragraph_208",
+        "paragraph_233",
+        "paragraph_235",
+        "paragraph_240",
+        "paragraph_250",
         "heading_s4",
         "heading_s4-1",
-        "paragraph_281",
+        "paragraph_251",
         "heading_s4-2",
-        "paragraph_285",
-        "paragraph_286",
-        "paragraph_288",
-        "paragraph_290",
+        "paragraph_255",
+        "paragraph_256",
+        "paragraph_258",
+        "paragraph_260",
         "heading_s4-3",
-        "paragraph_293",
+        "paragraph_263",
         "heading_s4-4",
-        "paragraph_297",
-        "paragraph_300",
+        "paragraph_267",
+        "paragraph_270",
         "heading_s4-5",
-        "paragraph_306",
+        "paragraph_276",
         "heading_s4-6",
-        "paragraph_309",
-        "paragraph_314",
+        "paragraph_279",
+        "paragraph_284",
         "sub-article"
       ]
     },
@@ -795,14 +795,14 @@
         "parent",
         null
       ],
-      "doi": "",
+      "doi": "http://dx.doi.org/10.7554/eLife.00005.003",
       "caption": "caption_39",
       "graphic_id": "elife00005f001"
     },
     "caption_39": {
-      "type": "paragraph",
+      "type": "caption",
       "id": "caption_39",
-      "content": "(A) Schematic representation of the components of the human PRC2 Complex and AEBP2. (B) Size-exclusion chromatography of recombinant PRC2-AEBP2 complex and corresponding SDS-PAGE separation stained with Coomassie brilliant blue. The molecular mass of the recombinant complex is ∼275 kDa. Arrows and numbers indicate elution markers in the size-exclusion chromatography experiments and their molecular masses (in kilodaltons), respectively (a.u.: arbitrary unit). (C) Negative-stain EM of the recombinant PRC2-AEBP2 complex. Individual particles have an elongated shape with a length of ∼16 nm and a thickness of ∼7 nm. Bar: 200 nm. (D) Comparison between representative reference-free 2D class averages from non cross-linked (0%) and mildly cross-linked (0.015% glutaraldehyde) particles of the PRC2-AEBP2 complex.DOI: http://dx.doi.org/10.7554/eLife.00005.003"
+      "content": "(A) Schematic representation of the components of the human PRC2 Complex and AEBP2. (B) Size-exclusion chromatography of recombinant PRC2-AEBP2 complex and corresponding SDS-PAGE separation stained with Coomassie brilliant blue. The molecular mass of the recombinant complex is ∼275 kDa. Arrows and numbers indicate elution markers in the size-exclusion chromatography experiments and their molecular masses (in kilodaltons), respectively (a.u.: arbitrary unit). (C) Negative-stain EM of the recombinant PRC2-AEBP2 complex. Individual particles have an elongated shape with a length of ∼16 nm and a thickness of ∼7 nm. Bar: 200 nm. (D) Comparison between representative reference-free 2D class averages from non cross-linked (0%) and mildly cross-linked (0.015% glutaraldehyde) particles of the PRC2-AEBP2 complex."
     },
     "annotation_40": {
       "type": "strong",
@@ -856,43 +856,16 @@
         634
       ]
     },
-    "annotation_44": {
-      "type": "strong",
-      "id": "annotation_44",
-      "path": [
-        "caption_39",
-        "content"
-      ],
-      "target": null,
-      "range": [
-        814,
-        818
-      ]
-    },
-    "annotation_45": {
-      "type": "link",
-      "id": "annotation_45",
-      "path": [
-        "caption_39",
-        "content"
-      ],
-      "target": null,
-      "range": [
-        819,
-        860
-      ],
-      "url": "10.7554/eLife.00005.003"
-    },
-    "paragraph_46": {
+    "paragraph_44": {
       "type": "paragraph",
-      "id": "paragraph_46",
+      "id": "paragraph_44",
       "content": "Biochemical studies have shown that PRC2 co-purifies with the protein AEBP2 and it has been proposed that this interaction aids in targeting of PRC2 to specific DNA sites and enhances its methyl-transferase activity (Cao and Zhang, 2004b; Kim et al., 2009). This important cofactor is an evolutionarily conserved protein present in two isoforms in humans, an adult-specific larger form (51 kDa) and an embryo-specific smaller form (32 kDa), both containing three Gli-Krüppel (Cys2-His2)-type zinc fingers (He et al., 1999)."
     },
-    "citation_reference_47": {
+    "citation_reference_45": {
       "type": "citation_reference",
-      "id": "citation_reference_47",
+      "id": "citation_reference_45",
       "path": [
-        "paragraph_46",
+        "paragraph_44",
         "content"
       ],
       "target": "article_citation_bib4",
@@ -901,11 +874,11 @@
         237
       ]
     },
-    "citation_reference_48": {
+    "citation_reference_46": {
       "type": "citation_reference",
-      "id": "citation_reference_48",
+      "id": "citation_reference_46",
       "path": [
-        "paragraph_46",
+        "paragraph_44",
         "content"
       ],
       "target": "article_citation_bib13",
@@ -914,11 +887,11 @@
         255
       ]
     },
-    "citation_reference_49": {
+    "citation_reference_47": {
       "type": "citation_reference",
-      "id": "citation_reference_49",
+      "id": "citation_reference_47",
       "path": [
-        "paragraph_46",
+        "paragraph_44",
         "content"
       ],
       "target": "article_citation_bib10",
@@ -927,16 +900,16 @@
         521
       ]
     },
-    "paragraph_50": {
+    "paragraph_48": {
       "type": "paragraph",
-      "id": "paragraph_50",
+      "id": "paragraph_48",
       "content": "The PRC2 complex has been the focus of a significant number of biochemical and molecular studies (for a recent review see Margueron and Reinberg, 2011), and atomic structures of the EED and RbAp48 subunits have been reported (Margueron et al., 2009; Nowak et al., 2011; Schmitges et al., 2011; Xu et al., 2010). A comprehensive picture, however, of the PRC2 complex and the manner in which its different components interact to coordinate the regulated methyl-transferase activity remains elusive. In this study we present the first structure of the entire PRC2 holoenzyme in complex with AEBP2, describing its subunit architecture and the important interactions between their domains. These results contribute significantly to our structural understanding of this chromatin regulator, allowing us to suggest a possible molecular mechanism for PRC2's role in gene silencing."
     },
-    "citation_reference_51": {
+    "citation_reference_49": {
       "type": "citation_reference",
-      "id": "citation_reference_51",
+      "id": "citation_reference_49",
       "path": [
-        "paragraph_50",
+        "paragraph_48",
         "content"
       ],
       "target": "article_citation_bib20",
@@ -945,11 +918,11 @@
         150
       ]
     },
-    "citation_reference_52": {
+    "citation_reference_50": {
       "type": "citation_reference",
-      "id": "citation_reference_52",
+      "id": "citation_reference_50",
       "path": [
-        "paragraph_50",
+        "paragraph_48",
         "content"
       ],
       "target": "article_citation_bib21",
@@ -958,11 +931,11 @@
         248
       ]
     },
-    "citation_reference_53": {
+    "citation_reference_51": {
       "type": "citation_reference",
-      "id": "citation_reference_53",
+      "id": "citation_reference_51",
       "path": [
-        "paragraph_50",
+        "paragraph_48",
         "content"
       ],
       "target": "article_citation_bib26",
@@ -971,11 +944,11 @@
         268
       ]
     },
-    "citation_reference_54": {
+    "citation_reference_52": {
       "type": "citation_reference",
-      "id": "citation_reference_54",
+      "id": "citation_reference_52",
       "path": [
-        "paragraph_50",
+        "paragraph_48",
         "content"
       ],
       "target": "article_citation_bib36",
@@ -984,11 +957,11 @@
         292
       ]
     },
-    "citation_reference_55": {
+    "citation_reference_53": {
       "type": "citation_reference",
-      "id": "citation_reference_55",
+      "id": "citation_reference_53",
       "path": [
-        "paragraph_50",
+        "paragraph_48",
         "content"
       ],
       "target": "article_citation_bib44",
@@ -1011,16 +984,16 @@
       "content": "Reconstitution of the human PRC2-AEBP2 complex",
       "nodes": []
     },
-    "paragraph_56": {
+    "paragraph_54": {
       "type": "paragraph",
-      "id": "paragraph_56",
+      "id": "paragraph_54",
       "content": "In preliminary experiments, we reconstituted the tetrameric PRC2 complex (Ezh2/EED/Suz12/RbAp48) in an insect cell expression system, following previous protocols established to reconstitute a functional PRC2 complex (Pasini et al., 2004; Ketel et al., 2005; Margueron et al., 2008). When analyzed by SDS page the purified complex appeared to be stoichiometric and biochemically homogeneous (data not shown). However, further analysis to generate reference-free 2D class averages and a 3D reconstruction were limited in resolution and lacked clear structural details (data not shown), indicating the presence of extreme conformational flexibility and hampering further structural studies of this tetrameric PRC2."
     },
-    "citation_reference_57": {
+    "citation_reference_55": {
       "type": "citation_reference",
-      "id": "citation_reference_57",
+      "id": "citation_reference_55",
       "path": [
-        "paragraph_56",
+        "paragraph_54",
         "content"
       ],
       "target": "article_citation_bib29",
@@ -1029,11 +1002,11 @@
         237
       ]
     },
-    "citation_reference_58": {
+    "citation_reference_56": {
       "type": "citation_reference",
-      "id": "citation_reference_58",
+      "id": "citation_reference_56",
       "path": [
-        "paragraph_56",
+        "paragraph_54",
         "content"
       ],
       "target": "article_citation_bib12",
@@ -1042,11 +1015,11 @@
         257
       ]
     },
-    "citation_reference_59": {
+    "citation_reference_57": {
       "type": "citation_reference",
-      "id": "citation_reference_59",
+      "id": "citation_reference_57",
       "path": [
-        "paragraph_56",
+        "paragraph_54",
         "content"
       ],
       "target": "article_citation_bib22",
@@ -1055,16 +1028,16 @@
         281
       ]
     },
-    "paragraph_60": {
+    "paragraph_58": {
       "type": "paragraph",
-      "id": "paragraph_60",
+      "id": "paragraph_58",
       "content": "Since the AEBP2 cofactor is known to stably interact with the PRC2 complex and is required for optimal enzymatic activity (Cao and Zhang, 2004b), we added AEBP2 to the expression system, with the hope of locking the PRC2 complex in a conformation, both more active and more stable. We overexpressed the five-component PRC2-AEBP2 complex using the shorter isoform of AEBP2 protein, which is missing an extended unstructured region present in the longest isoform. Stoichiometric and biochemically homogeneous PRC2-AEPB2 complex was purified from insect cell lysate by affinity chromatography using a StrepII tag on the AEBP2 subunit, followed by size exclusion chromatography (Figure 1B). The subunits of the purified complex appeared to be stoichiometric by SDS page, although we could not rule out the presence of a small excess of AEBP2, as this subunit was utilized for tag-based purification. In our EM images we observed a small percentage of very small particles, which could be attributed to views of the complex oriented perpendicular to the plane of the grid, or to the presence of partial complexes (even AEBP2 by itself). These smaller particles were not considered in the generation of the 3D reconstruction (see ‘Materials and methods’). While inclusion of the cofactor significantly improved the quality of the 2D class averages in EM analysis (Figure 1D, top row), both detailed inspection and attempts to pursue a 3D reconstruction (not shown) indicated that the stability of the complex remained limiting. In order to preserve complex stability for further structural analysis, we mildly cross-linked the PRC2-AEBP2 complexes using 0.015% glutaraldehyde. Under these conditions we saw no apparent aggregation of the complex (Figure 1C). Importantly, comparison of class averages of the non cross-linked and the cross-linked sample (Figure 1D, bottom row), shows that the cross-linking had a positive effect on the stability of the complex, as judged by the increased detail in the class averages (for similar number of particles and classes). Class averages show PRC2 having an elongated shape, with top and bottom density regions that are joined at a narrow central point (Figure 1D)."
     },
-    "citation_reference_61": {
+    "citation_reference_59": {
       "type": "citation_reference",
-      "id": "citation_reference_61",
+      "id": "citation_reference_59",
       "path": [
-        "paragraph_60",
+        "paragraph_58",
         "content"
       ],
       "target": "article_citation_bib4",
@@ -1073,11 +1046,11 @@
         143
       ]
     },
-    "figure_reference_62": {
+    "figure_reference_60": {
       "type": "figure_reference",
-      "id": "figure_reference_62",
+      "id": "figure_reference_60",
       "path": [
-        "paragraph_60",
+        "paragraph_58",
         "content"
       ],
       "target": "image_fig1",
@@ -1086,11 +1059,11 @@
         684
       ]
     },
-    "figure_reference_63": {
+    "figure_reference_61": {
       "type": "figure_reference",
-      "id": "figure_reference_63",
+      "id": "figure_reference_61",
       "path": [
-        "paragraph_60",
+        "paragraph_58",
         "content"
       ],
       "target": "image_fig1",
@@ -1099,11 +1072,11 @@
         1367
       ]
     },
-    "figure_reference_64": {
+    "figure_reference_62": {
       "type": "figure_reference",
-      "id": "figure_reference_64",
+      "id": "figure_reference_62",
       "path": [
-        "paragraph_60",
+        "paragraph_58",
         "content"
       ],
       "target": "image_fig1",
@@ -1112,11 +1085,11 @@
         1750
       ]
     },
-    "figure_reference_65": {
+    "figure_reference_63": {
       "type": "figure_reference",
-      "id": "figure_reference_65",
+      "id": "figure_reference_63",
       "path": [
-        "paragraph_60",
+        "paragraph_58",
         "content"
       ],
       "target": "image_fig1",
@@ -1125,11 +1098,11 @@
         1857
       ]
     },
-    "figure_reference_66": {
+    "figure_reference_64": {
       "type": "figure_reference",
-      "id": "figure_reference_66",
+      "id": "figure_reference_64",
       "path": [
-        "paragraph_60",
+        "paragraph_58",
         "content"
       ],
       "target": "image_fig1",
@@ -1145,16 +1118,16 @@
       "content": "Architecture of the PRC2-AEBP2 complex",
       "nodes": []
     },
-    "paragraph_67": {
+    "paragraph_65": {
       "type": "paragraph",
-      "id": "paragraph_67",
+      "id": "paragraph_65",
       "content": "Given the lack of structural information for the PRC2 complex, we carried out ab initio structural determination using the Random Conical Tilt (RCT) method (Radermacher et al., 1987) (Figure 2). Tilted and untilted image pairs were collected (Figure 2A), and 20 reference-free 2D class averages were calculated from the untilted classes (Figure 2B). RCT reconstructions were generated for each class average using the corresponding tilted images (Figure 2B,C). A four-lobed organization was evident in all the resulting models, indicating that the complex likely assumes one major architectural state. Concurrently, we collected a large dataset (∼40,000 particles) of untilted images, which were used to generate 1000 reference-free 2D class averages. Euler angles were assigned to these class averages, using each of the 20 RCT reconstructions as reference models. The results showed that the class averages were aligned in 3D in a self-consistent fashion, producing a similar complex architecture at the low resolution expected at this stage, irrespective of the RCT structure used as a reference (data not shown). Not surprisingly, Euler assignment using the RCT model from the most populated class gave a reconstruction that had the most structural detail (Figure 2C, class 4). This reconstruction was then used as an initial model (Figure 3A) for multiple rounds of projection-based angular refinement for single particles of the full 0° dataset (Penczek et al., 1994). The final refined structure has a resolution of 21 Å, based on the 0.5 Fourier shell correlation criteria (Figure 3B) (van Heel and Schatz, 2005). Due to the shape of the complex and its tendency to lie flat on the grid, we do not have an even distribution of views. However, views around the longitudinal axis of the model (vertical axis in the Euler plot) are well represented (Figure 3C). The quality of our model in representing the experimental images was confirmed by comparing the re-projected 3D reconstruction of the PRC2-AEBP2 complex with reference-free class averages (Figure 3D)."
     },
-    "citation_reference_68": {
+    "citation_reference_66": {
       "type": "citation_reference",
-      "id": "citation_reference_68",
+      "id": "citation_reference_66",
       "path": [
-        "paragraph_67",
+        "paragraph_65",
         "content"
       ],
       "target": "article_citation_bib32",
@@ -1163,11 +1136,11 @@
         181
       ]
     },
-    "figure_reference_69": {
+    "figure_reference_67": {
       "type": "figure_reference",
-      "id": "figure_reference_69",
+      "id": "figure_reference_67",
       "path": [
-        "paragraph_67",
+        "paragraph_65",
         "content"
       ],
       "target": "image_fig2",
@@ -1176,11 +1149,11 @@
         192
       ]
     },
-    "figure_reference_70": {
+    "figure_reference_68": {
       "type": "figure_reference",
-      "id": "figure_reference_70",
+      "id": "figure_reference_68",
       "path": [
-        "paragraph_67",
+        "paragraph_65",
         "content"
       ],
       "target": "image_fig2",
@@ -1189,11 +1162,11 @@
         252
       ]
     },
-    "figure_reference_71": {
+    "figure_reference_69": {
       "type": "figure_reference",
-      "id": "figure_reference_71",
+      "id": "figure_reference_69",
       "path": [
-        "paragraph_67",
+        "paragraph_65",
         "content"
       ],
       "target": "image_fig2",
@@ -1202,11 +1175,11 @@
         347
       ]
     },
-    "figure_reference_72": {
+    "figure_reference_70": {
       "type": "figure_reference",
-      "id": "figure_reference_72",
+      "id": "figure_reference_70",
       "path": [
-        "paragraph_67",
+        "paragraph_65",
         "content"
       ],
       "target": "image_fig2",
@@ -1215,11 +1188,11 @@
         458
       ]
     },
-    "figure_reference_73": {
+    "figure_reference_71": {
       "type": "figure_reference",
-      "id": "figure_reference_73",
+      "id": "figure_reference_71",
       "path": [
-        "paragraph_67",
+        "paragraph_65",
         "content"
       ],
       "target": "image_fig2",
@@ -1228,11 +1201,11 @@
         1270
       ]
     },
-    "figure_reference_74": {
+    "figure_reference_72": {
       "type": "figure_reference",
-      "id": "figure_reference_74",
+      "id": "figure_reference_72",
       "path": [
-        "paragraph_67",
+        "paragraph_65",
         "content"
       ],
       "target": "image_fig3",
@@ -1241,11 +1214,11 @@
         1346
       ]
     },
-    "citation_reference_75": {
+    "citation_reference_73": {
       "type": "citation_reference",
-      "id": "citation_reference_75",
+      "id": "citation_reference_73",
       "path": [
-        "paragraph_67",
+        "paragraph_65",
         "content"
       ],
       "target": "article_citation_bib30",
@@ -1254,11 +1227,11 @@
         1472
       ]
     },
-    "figure_reference_76": {
+    "figure_reference_74": {
       "type": "figure_reference",
-      "id": "figure_reference_76",
+      "id": "figure_reference_74",
       "path": [
-        "paragraph_67",
+        "paragraph_65",
         "content"
       ],
       "target": "image_fig3",
@@ -1267,11 +1240,11 @@
         1591
       ]
     },
-    "citation_reference_77": {
+    "citation_reference_75": {
       "type": "citation_reference",
-      "id": "citation_reference_77",
+      "id": "citation_reference_75",
       "path": [
-        "paragraph_67",
+        "paragraph_65",
         "content"
       ],
       "target": "article_citation_bib41",
@@ -1280,11 +1253,11 @@
         1619
       ]
     },
-    "figure_reference_78": {
+    "figure_reference_76": {
       "type": "figure_reference",
-      "id": "figure_reference_78",
+      "id": "figure_reference_76",
       "path": [
-        "paragraph_67",
+        "paragraph_65",
         "content"
       ],
       "target": "image_fig3",
@@ -1293,11 +1266,11 @@
         1864
       ]
     },
-    "figure_reference_79": {
+    "figure_reference_77": {
       "type": "figure_reference",
-      "id": "figure_reference_79",
+      "id": "figure_reference_77",
       "path": [
-        "paragraph_67",
+        "paragraph_65",
         "content"
       ],
       "target": "image_fig3",
@@ -1320,20 +1293,20 @@
         "parent",
         null
       ],
-      "doi": "",
-      "caption": "caption_80",
+      "doi": "http://dx.doi.org/10.7554/eLife.00005.004",
+      "caption": "caption_78",
       "graphic_id": "elife00005f002"
     },
-    "caption_80": {
-      "type": "paragraph",
-      "id": "caption_80",
-      "content": "(A) Representative untilted and 60° tilt-pair micrographs (80,000× magnification). Corresponding particles pairs indicated by yellow circles. (B) RCT Volumes aligned to each of the 20 corresponding reference free class averages (from 6075 particles in the 0° micrographs, each class containing between 150 and 800 particles, as indicated in parentheses). (C) Alignment of the RCT volumes with respect to each other.DOI: http://dx.doi.org/10.7554/eLife.00005.004"
+    "caption_78": {
+      "type": "caption",
+      "id": "caption_78",
+      "content": "(A) Representative untilted and 60° tilt-pair micrographs (80,000× magnification). Corresponding particles pairs indicated by yellow circles. (B) RCT Volumes aligned to each of the 20 corresponding reference free class averages (from 6075 particles in the 0° micrographs, each class containing between 150 and 800 particles, as indicated in parentheses). (C) Alignment of the RCT volumes with respect to each other."
     },
-    "annotation_81": {
+    "annotation_79": {
       "type": "strong",
-      "id": "annotation_81",
+      "id": "annotation_79",
       "path": [
-        "caption_80",
+        "caption_78",
         "content"
       ],
       "target": null,
@@ -1342,11 +1315,11 @@
         2
       ]
     },
-    "annotation_82": {
+    "annotation_80": {
       "type": "strong",
-      "id": "annotation_82",
+      "id": "annotation_80",
       "path": [
-        "caption_80",
+        "caption_78",
         "content"
       ],
       "target": null,
@@ -1355,11 +1328,11 @@
         144
       ]
     },
-    "annotation_83": {
+    "annotation_81": {
       "type": "strong",
-      "id": "annotation_83",
+      "id": "annotation_81",
       "path": [
-        "caption_80",
+        "caption_78",
         "content"
       ],
       "target": null,
@@ -1367,33 +1340,6 @@
         356,
         357
       ]
-    },
-    "annotation_84": {
-      "type": "strong",
-      "id": "annotation_84",
-      "path": [
-        "caption_80",
-        "content"
-      ],
-      "target": null,
-      "range": [
-        415,
-        419
-      ]
-    },
-    "annotation_85": {
-      "type": "link",
-      "id": "annotation_85",
-      "path": [
-        "caption_80",
-        "content"
-      ],
-      "target": null,
-      "range": [
-        420,
-        461
-      ],
-      "url": "10.7554/eLife.00005.004"
     },
     "image_fig3": {
       "type": "image",
@@ -1409,20 +1355,20 @@
         "parent",
         null
       ],
-      "doi": "",
-      "caption": "caption_86",
+      "doi": "http://dx.doi.org/10.7554/eLife.00005.005",
+      "caption": "caption_82",
       "graphic_id": "elife00005f003"
     },
-    "caption_86": {
-      "type": "paragraph",
-      "id": "caption_86",
-      "content": "(A) 3D reconstruction of the ab initio model used for iterative projection-matching (corresponds to reconstruction 4 in Figure 2C). (B) Final resolution was estimated as 21 Å using the Fourier shell correlation criterion with a cutoff of 0.5. (C) Euler distribution plot of the PRC2-AEBP2 particles, where the size of the circle corresponds to the relative number of views included for that projection. (D) Comparison between re-projection of the final model (even numbers) and reference free 2D class averages (odd numbers). The projections were generated at 12° increments around the PRC2 long axis, including out-of-plane tilting going up to 30°.DOI: http://dx.doi.org/10.7554/eLife.00005.005"
+    "caption_82": {
+      "type": "caption",
+      "id": "caption_82",
+      "content": "(A) 3D reconstruction of the ab initio model used for iterative projection-matching (corresponds to reconstruction 4 in Figure 2C). (B) Final resolution was estimated as 21 Å using the Fourier shell correlation criterion with a cutoff of 0.5. (C) Euler distribution plot of the PRC2-AEBP2 particles, where the size of the circle corresponds to the relative number of views included for that projection. (D) Comparison between re-projection of the final model (even numbers) and reference free 2D class averages (odd numbers). The projections were generated at 12° increments around the PRC2 long axis, including out-of-plane tilting going up to 30°."
     },
-    "annotation_87": {
+    "annotation_83": {
       "type": "strong",
-      "id": "annotation_87",
+      "id": "annotation_83",
       "path": [
-        "caption_86",
+        "caption_82",
         "content"
       ],
       "target": null,
@@ -1431,11 +1377,11 @@
         2
       ]
     },
-    "figure_reference_88": {
+    "figure_reference_84": {
       "type": "figure_reference",
-      "id": "figure_reference_88",
+      "id": "figure_reference_84",
       "path": [
-        "caption_86",
+        "caption_82",
         "content"
       ],
       "target": "image_fig2",
@@ -1444,11 +1390,11 @@
         129
       ]
     },
-    "annotation_89": {
+    "annotation_85": {
       "type": "strong",
-      "id": "annotation_89",
+      "id": "annotation_85",
       "path": [
-        "caption_86",
+        "caption_82",
         "content"
       ],
       "target": null,
@@ -1457,11 +1403,11 @@
         134
       ]
     },
-    "annotation_90": {
+    "annotation_86": {
       "type": "strong",
-      "id": "annotation_90",
+      "id": "annotation_86",
       "path": [
-        "caption_86",
+        "caption_82",
         "content"
       ],
       "target": null,
@@ -1470,11 +1416,11 @@
         245
       ]
     },
-    "annotation_91": {
+    "annotation_87": {
       "type": "strong",
-      "id": "annotation_91",
+      "id": "annotation_87",
       "path": [
-        "caption_86",
+        "caption_82",
         "content"
       ],
       "target": null,
@@ -1483,43 +1429,16 @@
         405
       ]
     },
-    "annotation_92": {
-      "type": "strong",
-      "id": "annotation_92",
-      "path": [
-        "caption_86",
-        "content"
-      ],
-      "target": null,
-      "range": [
-        649,
-        653
-      ]
-    },
-    "annotation_93": {
-      "type": "link",
-      "id": "annotation_93",
-      "path": [
-        "caption_86",
-        "content"
-      ],
-      "target": null,
-      "range": [
-        654,
-        695
-      ],
-      "url": "10.7554/eLife.00005.005"
-    },
-    "paragraph_94": {
+    "paragraph_88": {
       "type": "paragraph",
-      "id": "paragraph_94",
+      "id": "paragraph_88",
       "content": "Figure 4 shows four orthogonal views of the PCR2-AEBP2 structure, displayed as an isosurface that corresponds to the estimated molecular mass for the complex (275 kDa). The structure (roughly 160 Å by 120 Å by 90 Å) consists of four large lobes: A, B, C and D (each approximately 55 Å in diameter), interconnected by two narrower arms, Arm 1 at the top, and Arm 2 in the center. In the upper part of the structure, Arm 1 spans the width of the complex horizontally, connecting lobes A and B. These lobes have additional interactions closer to the center of the particle. Arm 2 runs in a more vertical direction, starting at Lobe A and continuing vertically to the lower half of the structure, where it merges with Lobe C and D. Lobe A and D both have distinct ring-like shapes that are consistent with the propeller-like WD40 motifs of EED and RbAp48 (Figure 4, blue). These two WD40 domains are the only regions in the PRC2 complex for which atomic structures are presently available."
     },
-    "figure_reference_95": {
+    "figure_reference_89": {
       "type": "figure_reference",
-      "id": "figure_reference_95",
+      "id": "figure_reference_89",
       "path": [
-        "paragraph_94",
+        "paragraph_88",
         "content"
       ],
       "target": "image_fig4",
@@ -1528,11 +1447,11 @@
         8
       ]
     },
-    "figure_reference_96": {
+    "figure_reference_90": {
       "type": "figure_reference",
-      "id": "figure_reference_96",
+      "id": "figure_reference_90",
       "path": [
-        "paragraph_94",
+        "paragraph_88",
         "content"
       ],
       "target": "image_fig4",
@@ -1555,20 +1474,20 @@
         "parent",
         null
       ],
-      "doi": "",
-      "caption": "caption_97",
+      "doi": "http://dx.doi.org/10.7554/eLife.00005.006",
+      "caption": "caption_91",
       "graphic_id": "elife00005f004"
     },
-    "caption_97": {
-      "type": "paragraph",
-      "id": "caption_97",
-      "content": "(A) The PRC2-AEBP2 complex consists of 4 different lobes, each about 55 Å in diameter (A, B, C, D), interconnected by two narrow arms (Arm 1, Arm 2). The two WD40 domains of EED and RbAp48 (indicated in blue) are located at opposite ends.DOI: http://dx.doi.org/10.7554/eLife.00005.006"
+    "caption_91": {
+      "type": "caption",
+      "id": "caption_91",
+      "content": "(A) The PRC2-AEBP2 complex consists of 4 different lobes, each about 55 Å in diameter (A, B, C, D), interconnected by two narrow arms (Arm 1, Arm 2). The two WD40 domains of EED and RbAp48 (indicated in blue) are located at opposite ends."
     },
-    "annotation_98": {
+    "annotation_92": {
       "type": "strong",
-      "id": "annotation_98",
+      "id": "annotation_92",
       "path": [
-        "caption_97",
+        "caption_91",
         "content"
       ],
       "target": null,
@@ -1577,33 +1496,6 @@
         2
       ]
     },
-    "annotation_99": {
-      "type": "strong",
-      "id": "annotation_99",
-      "path": [
-        "caption_97",
-        "content"
-      ],
-      "target": null,
-      "range": [
-        238,
-        242
-      ]
-    },
-    "annotation_100": {
-      "type": "link",
-      "id": "annotation_100",
-      "path": [
-        "caption_97",
-        "content"
-      ],
-      "target": null,
-      "range": [
-        243,
-        284
-      ],
-      "url": "10.7554/eLife.00005.006"
-    },
     "heading_s2-3": {
       "type": "heading",
       "id": "heading_s2-3",
@@ -1611,16 +1503,16 @@
       "content": "Interaction mapping using chemical cross-linking and mass spectrometry",
       "nodes": []
     },
-    "paragraph_101": {
+    "paragraph_93": {
       "type": "paragraph",
-      "id": "paragraph_101",
+      "id": "paragraph_93",
       "content": "To identify regions of interaction within the PRC2-AEBP2 complex, we carried out chemical cross-linking using isotope labeled cross-linkers and mass spectrometric identification of the cross-linked peptides, on recombinant complexes identical to those used for structure determination. This technique has been successfully utilized in several laboratories during recent years to aid in characterizing the organization of multi-subunit protein complexes (Gingras et al., 2007; Maiolica et al., 2007; Ciferri et al., 2008; Rappsilber, 2011). For cross-linking analysis, we used DSSG, a homo-bifunctional cross-linker reacting with primary amines in lysine side chains or protein N-termini spaced ∼7 Å apart. We identified about 60 intra- or inter-molecular sites of interaction within the PRC2-AEBP2 complex (Figure 5; Supplementary file 1). While some of these interactions confirm previous biochemical data, others had never been described before and thus significantly expanded our knowledge of the PRC2 organization. In this report we include all the identified cross-linking interactions (Supplementary file 1). None of them proved in contradictions with previous reports or published crystal structures. Salient cross-linked Lysines are described in the following section, indicated as [Kn], where n represents the residue number of the protein."
     },
-    "citation_reference_102": {
+    "citation_reference_94": {
       "type": "citation_reference",
-      "id": "citation_reference_102",
+      "id": "citation_reference_94",
       "path": [
-        "paragraph_101",
+        "paragraph_93",
         "content"
       ],
       "target": "article_citation_bib8",
@@ -1629,11 +1521,11 @@
         474
       ]
     },
-    "citation_reference_103": {
+    "citation_reference_95": {
       "type": "citation_reference",
-      "id": "citation_reference_103",
+      "id": "citation_reference_95",
       "path": [
-        "paragraph_101",
+        "paragraph_93",
         "content"
       ],
       "target": "article_citation_bib17",
@@ -1642,11 +1534,11 @@
         497
       ]
     },
-    "citation_reference_104": {
+    "citation_reference_96": {
       "type": "citation_reference",
-      "id": "citation_reference_104",
+      "id": "citation_reference_96",
       "path": [
-        "paragraph_101",
+        "paragraph_93",
         "content"
       ],
       "target": "article_citation_bib6",
@@ -1655,11 +1547,11 @@
         519
       ]
     },
-    "citation_reference_105": {
+    "citation_reference_97": {
       "type": "citation_reference",
-      "id": "citation_reference_105",
+      "id": "citation_reference_97",
       "path": [
-        "paragraph_101",
+        "paragraph_93",
         "content"
       ],
       "target": "article_citation_bib33",
@@ -1668,11 +1560,11 @@
         537
       ]
     },
-    "figure_reference_106": {
+    "figure_reference_98": {
       "type": "figure_reference",
-      "id": "figure_reference_106",
+      "id": "figure_reference_98",
       "path": [
-        "paragraph_101",
+        "paragraph_93",
         "content"
       ],
       "target": "image_fig5",
@@ -1681,11 +1573,11 @@
         815
       ]
     },
-    "cross_reference_107": {
+    "cross_reference_99": {
       "type": "cross_reference",
-      "id": "cross_reference_107",
+      "id": "cross_reference_99",
       "path": [
-        "paragraph_101",
+        "paragraph_93",
         "content"
       ],
       "target": "supplement_SD2_data",
@@ -1694,11 +1586,11 @@
         837
       ]
     },
-    "cross_reference_108": {
+    "cross_reference_100": {
       "type": "cross_reference",
-      "id": "cross_reference_108",
+      "id": "cross_reference_100",
       "path": [
-        "paragraph_101",
+        "paragraph_93",
         "content"
       ],
       "target": "supplement_SD2_data",
@@ -1707,11 +1599,11 @@
         1112
       ]
     },
-    "annotation_109": {
+    "annotation_101": {
       "type": "subscript",
-      "id": "annotation_109",
+      "id": "annotation_101",
       "path": [
-        "paragraph_101",
+        "paragraph_93",
         "content"
       ],
       "target": null,
@@ -1734,20 +1626,20 @@
         "parent",
         null
       ],
-      "doi": "",
-      "caption": "caption_110",
+      "doi": "http://dx.doi.org/10.7554/eLife.00005.007",
+      "caption": "caption_102",
       "graphic_id": "elife00005f005"
     },
-    "caption_110": {
-      "type": "paragraph",
-      "id": "caption_110",
-      "content": "Cross-link map for PRC2 in complex with AEBP2. Observed inter-molecular cross-links (straight dashed lines) are colored in grey. Intra-molecular cross-links are color coded by the respective PRC2-AEBP2 subunit (See also Supplementary file 1).DOI: http://dx.doi.org/10.7554/eLife.00005.007"
+    "caption_102": {
+      "type": "caption",
+      "id": "caption_102",
+      "content": "Cross-link map for PRC2 in complex with AEBP2. Observed inter-molecular cross-links (straight dashed lines) are colored in grey. Intra-molecular cross-links are color coded by the respective PRC2-AEBP2 subunit (See also Supplementary file 1)."
     },
-    "cross_reference_111": {
+    "cross_reference_103": {
       "type": "cross_reference",
-      "id": "cross_reference_111",
+      "id": "cross_reference_103",
       "path": [
-        "caption_110",
+        "caption_102",
         "content"
       ],
       "target": "supplement_SD2_data",
@@ -1756,43 +1648,16 @@
         240
       ]
     },
-    "annotation_112": {
-      "type": "strong",
-      "id": "annotation_112",
-      "path": [
-        "caption_110",
-        "content"
-      ],
-      "target": null,
-      "range": [
-        242,
-        246
-      ]
-    },
-    "annotation_113": {
-      "type": "link",
-      "id": "annotation_113",
-      "path": [
-        "caption_110",
-        "content"
-      ],
-      "target": null,
-      "range": [
-        247,
-        288
-      ],
-      "url": "10.7554/eLife.00005.007"
-    },
-    "paragraph_114": {
+    "paragraph_104": {
       "type": "paragraph",
-      "id": "paragraph_114",
+      "id": "paragraph_104",
       "content": "Previous crystallographic analysis of the EED-Ezh2 complex described the interaction of the C-terminal WD40 propeller of EED with residues 40–68 of Ezh2 (Han et al., 2007). In agreement with these data, we identified a cross-link between EED [K423] and Ezh2 [K39], as well as an internal cross-link between EED [K79/83] and EED [K433] (Figures 5 and 6A). We found two additional interactions between EED and other PRC2 components (Figure 5), one connecting the WD40 domain of EED [K433] with a loop between the second and the third Zn fingers of AEBP2 [K118/121], and the other linking the N-terminal region of EED [K19/20] with a region downstream of the first SANT domain of Ezh2 [K241/243] (Figure 5)."
     },
-    "citation_reference_115": {
+    "citation_reference_105": {
       "type": "citation_reference",
-      "id": "citation_reference_115",
+      "id": "citation_reference_105",
       "path": [
-        "paragraph_114",
+        "paragraph_104",
         "content"
       ],
       "target": "article_citation_bib9",
@@ -1801,11 +1666,11 @@
         170
       ]
     },
-    "annotation_116": {
+    "annotation_106": {
       "type": "subscript",
-      "id": "annotation_116",
+      "id": "annotation_106",
       "path": [
-        "paragraph_114",
+        "paragraph_104",
         "content"
       ],
       "target": null,
@@ -1814,11 +1679,11 @@
         247
       ]
     },
-    "annotation_117": {
+    "annotation_107": {
       "type": "subscript",
-      "id": "annotation_117",
+      "id": "annotation_107",
       "path": [
-        "paragraph_114",
+        "paragraph_104",
         "content"
       ],
       "target": null,
@@ -1827,11 +1692,11 @@
         262
       ]
     },
-    "annotation_118": {
+    "annotation_108": {
       "type": "subscript",
-      "id": "annotation_118",
+      "id": "annotation_108",
       "path": [
-        "paragraph_114",
+        "paragraph_104",
         "content"
       ],
       "target": null,
@@ -1840,11 +1705,11 @@
         318
       ]
     },
-    "annotation_119": {
+    "annotation_109": {
       "type": "subscript",
-      "id": "annotation_119",
+      "id": "annotation_109",
       "path": [
-        "paragraph_114",
+        "paragraph_104",
         "content"
       ],
       "target": null,
@@ -1853,11 +1718,11 @@
         333
       ]
     },
-    "figure_reference_120": {
+    "figure_reference_110": {
       "type": "figure_reference",
-      "id": "figure_reference_120",
+      "id": "figure_reference_110",
       "path": [
-        "paragraph_114",
+        "paragraph_104",
         "content"
       ],
       "target": "image_fig5 fig6",
@@ -1866,11 +1731,11 @@
         352
       ]
     },
-    "figure_reference_121": {
+    "figure_reference_111": {
       "type": "figure_reference",
-      "id": "figure_reference_121",
+      "id": "figure_reference_111",
       "path": [
-        "paragraph_114",
+        "paragraph_104",
         "content"
       ],
       "target": "image_fig5",
@@ -1879,11 +1744,11 @@
         439
       ]
     },
-    "annotation_122": {
+    "annotation_112": {
       "type": "subscript",
-      "id": "annotation_122",
+      "id": "annotation_112",
       "path": [
-        "paragraph_114",
+        "paragraph_104",
         "content"
       ],
       "target": null,
@@ -1892,11 +1757,11 @@
         485
       ]
     },
-    "annotation_123": {
+    "annotation_113": {
       "type": "subscript",
-      "id": "annotation_123",
+      "id": "annotation_113",
       "path": [
-        "paragraph_114",
+        "paragraph_104",
         "content"
       ],
       "target": null,
@@ -1905,11 +1770,11 @@
         561
       ]
     },
-    "annotation_124": {
+    "annotation_114": {
       "type": "subscript",
-      "id": "annotation_124",
+      "id": "annotation_114",
       "path": [
-        "paragraph_114",
+        "paragraph_104",
         "content"
       ],
       "target": null,
@@ -1918,11 +1783,11 @@
         622
       ]
     },
-    "annotation_125": {
+    "annotation_115": {
       "type": "subscript",
-      "id": "annotation_125",
+      "id": "annotation_115",
       "path": [
-        "paragraph_114",
+        "paragraph_104",
         "content"
       ],
       "target": null,
@@ -1931,11 +1796,11 @@
         691
       ]
     },
-    "figure_reference_126": {
+    "figure_reference_116": {
       "type": "figure_reference",
-      "id": "figure_reference_126",
+      "id": "figure_reference_116",
       "path": [
-        "paragraph_114",
+        "paragraph_104",
         "content"
       ],
       "target": "image_fig5",
@@ -1958,20 +1823,20 @@
         "parent",
         null
       ],
-      "doi": "",
-      "caption": "caption_127",
+      "doi": "http://dx.doi.org/10.7554/eLife.00005.008",
+      "caption": "caption_117",
       "graphic_id": "elife00005f006"
     },
-    "caption_127": {
-      "type": "paragraph",
-      "id": "caption_127",
-      "content": "(A) Crystal structure of EED in complex with Ezh2 (PDB: 2QXV). EED is colored in green and Ezh2 in blue. Both intermolecular and intra-molecular crosslinking data fit very well with the inter-residue distance in the structure. Scale bar of 7.7 Å represent the length of DSSG molecule used for the cross-linking experiment. (B) Structure of the subunit RbAp46 (PDB: 3CFS; 89% identity to RbAp48). Distance between residues K120 and K160 (∼5 Å) is within the range of the cross-linker. The larger distance observed between cross-linked residues K160 and K220 (∼10 Å) could be justified if the length of both lysine residues is also included in the calculation.DOI: http://dx.doi.org/10.7554/eLife.00005.008"
+    "caption_117": {
+      "type": "caption",
+      "id": "caption_117",
+      "content": "(A) Crystal structure of EED in complex with Ezh2 (PDB: 2QXV). EED is colored in green and Ezh2 in blue. Both intermolecular and intra-molecular crosslinking data fit very well with the inter-residue distance in the structure. Scale bar of 7.7 Å represent the length of DSSG molecule used for the cross-linking experiment. (B) Structure of the subunit RbAp46 (PDB: 3CFS; 89% identity to RbAp48). Distance between residues K120 and K160 (∼5 Å) is within the range of the cross-linker. The larger distance observed between cross-linked residues K160 and K220 (∼10 Å) could be justified if the length of both lysine residues is also included in the calculation."
     },
-    "annotation_128": {
+    "annotation_118": {
       "type": "strong",
-      "id": "annotation_128",
+      "id": "annotation_118",
       "path": [
-        "caption_127",
+        "caption_117",
         "content"
       ],
       "target": null,
@@ -1980,11 +1845,11 @@
         2
       ]
     },
-    "annotation_129": {
+    "annotation_119": {
       "type": "strong",
-      "id": "annotation_129",
+      "id": "annotation_119",
       "path": [
-        "caption_127",
+        "caption_117",
         "content"
       ],
       "target": null,
@@ -1993,11 +1858,11 @@
         325
       ]
     },
-    "annotation_130": {
+    "annotation_120": {
       "type": "subscript",
-      "id": "annotation_130",
+      "id": "annotation_120",
       "path": [
-        "caption_127",
+        "caption_117",
         "content"
       ],
       "target": null,
@@ -2006,11 +1871,11 @@
         426
       ]
     },
-    "annotation_131": {
+    "annotation_121": {
       "type": "subscript",
-      "id": "annotation_131",
+      "id": "annotation_121",
       "path": [
-        "caption_127",
+        "caption_117",
         "content"
       ],
       "target": null,
@@ -2019,11 +1884,11 @@
         435
       ]
     },
-    "annotation_132": {
+    "annotation_122": {
       "type": "subscript",
-      "id": "annotation_132",
+      "id": "annotation_122",
       "path": [
-        "caption_127",
+        "caption_117",
         "content"
       ],
       "target": null,
@@ -2032,11 +1897,11 @@
         547
       ]
     },
-    "annotation_133": {
+    "annotation_123": {
       "type": "subscript",
-      "id": "annotation_133",
+      "id": "annotation_123",
       "path": [
-        "caption_127",
+        "caption_117",
         "content"
       ],
       "target": null,
@@ -2045,43 +1910,16 @@
         556
       ]
     },
-    "annotation_134": {
-      "type": "strong",
-      "id": "annotation_134",
-      "path": [
-        "caption_127",
-        "content"
-      ],
-      "target": null,
-      "range": [
-        658,
-        662
-      ]
-    },
-    "annotation_135": {
-      "type": "link",
-      "id": "annotation_135",
-      "path": [
-        "caption_127",
-        "content"
-      ],
-      "target": null,
-      "range": [
-        663,
-        704
-      ],
-      "url": "10.7554/eLife.00005.008"
-    },
-    "paragraph_136": {
+    "paragraph_124": {
       "type": "paragraph",
-      "id": "paragraph_136",
+      "id": "paragraph_124",
       "content": "We found several interactions involving this first SANT domain of Ezh2. The peptide centered at residues [K210/217/222] binds the second SANT domain of Ezh2 [K510/514/515], associates with the VEFS domain of Suz12 [K650], and is also cross-linked to the same region of AEBP2 [K118/121] that interacts with EED. Interestingly, this region of AEBP2, which contains the last two Zn finger domains [K95–K166], represents an intricate hub of interaction within the PRC2 complex. In addition to the interactions described above, cross-linking data show that AEBP2 binds to Ezh2's methyltransferase (SET)-containing C-terminus [K568–K740], as well as Suz12's Zn finger domain [K414–K534]. Furthermore, this region of Suz12 [K465/468–K483] also interacts with the methyltransferase domain of Ezh2 [K568–K740], suggesting a trimeric subcomplex that includes the SET domain of Ezh2 and the Zn fingers of Suz12 and AEBP2. Based on the observations that the Zn finger of AEBP2 and the C-terminal region of Suz12 together interact with both the N-terminal SANT and C-terminal SET domains of Ezh2, we propose that these two terminal regions of Ezh2 are within proximity to, or directly interacting with each other."
     },
-    "annotation_137": {
+    "annotation_125": {
       "type": "subscript",
-      "id": "annotation_137",
+      "id": "annotation_125",
       "path": [
-        "paragraph_136",
+        "paragraph_124",
         "content"
       ],
       "target": null,
@@ -2090,11 +1928,11 @@
         118
       ]
     },
-    "annotation_138": {
+    "annotation_126": {
       "type": "subscript",
-      "id": "annotation_138",
+      "id": "annotation_126",
       "path": [
-        "paragraph_136",
+        "paragraph_124",
         "content"
       ],
       "target": null,
@@ -2103,11 +1941,11 @@
         170
       ]
     },
-    "annotation_139": {
+    "annotation_127": {
       "type": "subscript",
-      "id": "annotation_139",
+      "id": "annotation_127",
       "path": [
-        "paragraph_136",
+        "paragraph_124",
         "content"
       ],
       "target": null,
@@ -2116,11 +1954,11 @@
         219
       ]
     },
-    "annotation_140": {
+    "annotation_128": {
       "type": "subscript",
-      "id": "annotation_140",
+      "id": "annotation_128",
       "path": [
-        "paragraph_136",
+        "paragraph_124",
         "content"
       ],
       "target": null,
@@ -2129,11 +1967,11 @@
         284
       ]
     },
-    "annotation_141": {
+    "annotation_129": {
       "type": "subscript",
-      "id": "annotation_141",
+      "id": "annotation_129",
       "path": [
-        "paragraph_136",
+        "paragraph_124",
         "content"
       ],
       "target": null,
@@ -2142,11 +1980,11 @@
         398
       ]
     },
-    "annotation_142": {
+    "annotation_130": {
       "type": "subscript",
-      "id": "annotation_142",
+      "id": "annotation_130",
       "path": [
-        "paragraph_136",
+        "paragraph_124",
         "content"
       ],
       "target": null,
@@ -2155,11 +1993,11 @@
         403
       ]
     },
-    "annotation_143": {
+    "annotation_131": {
       "type": "subscript",
-      "id": "annotation_143",
+      "id": "annotation_131",
       "path": [
-        "paragraph_136",
+        "paragraph_124",
         "content"
       ],
       "target": null,
@@ -2168,11 +2006,11 @@
         625
       ]
     },
-    "annotation_144": {
+    "annotation_132": {
       "type": "subscript",
-      "id": "annotation_144",
+      "id": "annotation_132",
       "path": [
-        "paragraph_136",
+        "paragraph_124",
         "content"
       ],
       "target": null,
@@ -2181,11 +2019,11 @@
         630
       ]
     },
-    "annotation_145": {
+    "annotation_133": {
       "type": "subscript",
-      "id": "annotation_145",
+      "id": "annotation_133",
       "path": [
-        "paragraph_136",
+        "paragraph_124",
         "content"
       ],
       "target": null,
@@ -2194,11 +2032,11 @@
         674
       ]
     },
-    "annotation_146": {
+    "annotation_134": {
       "type": "subscript",
-      "id": "annotation_146",
+      "id": "annotation_134",
       "path": [
-        "paragraph_136",
+        "paragraph_124",
         "content"
       ],
       "target": null,
@@ -2207,11 +2045,11 @@
         679
       ]
     },
-    "annotation_147": {
+    "annotation_135": {
       "type": "subscript",
-      "id": "annotation_147",
+      "id": "annotation_135",
       "path": [
-        "paragraph_136",
+        "paragraph_124",
         "content"
       ],
       "target": null,
@@ -2220,11 +2058,11 @@
         725
       ]
     },
-    "annotation_148": {
+    "annotation_136": {
       "type": "subscript",
-      "id": "annotation_148",
+      "id": "annotation_136",
       "path": [
-        "paragraph_136",
+        "paragraph_124",
         "content"
       ],
       "target": null,
@@ -2233,11 +2071,11 @@
         730
       ]
     },
-    "annotation_149": {
+    "annotation_137": {
       "type": "subscript",
-      "id": "annotation_149",
+      "id": "annotation_137",
       "path": [
-        "paragraph_136",
+        "paragraph_124",
         "content"
       ],
       "target": null,
@@ -2246,11 +2084,11 @@
         794
       ]
     },
-    "annotation_150": {
+    "annotation_138": {
       "type": "subscript",
-      "id": "annotation_150",
+      "id": "annotation_138",
       "path": [
-        "paragraph_136",
+        "paragraph_124",
         "content"
       ],
       "target": null,
@@ -2259,16 +2097,16 @@
         799
       ]
     },
-    "paragraph_151": {
+    "paragraph_139": {
       "type": "paragraph",
-      "id": "paragraph_151",
+      "id": "paragraph_139",
       "content": "Two recently published crystal structures of the Drosophila Nurf55-Suz12 complex identified a small region of interaction between the WD40 domain of Nurf55 (an ortholog of RbAp48) and an alpha helix of Suz12 (residues 77–93, corresponding to 105–121 in human) (Nowak et al., 2011; Schmitges et al., 2011). In addition, Schmitges and colleagues identified a region downstream of this Suz12 helix that plays an important role in stabilizing this interaction. Due to the absence of exposed lysines, we did not observe any cross-linking between the regions of RbAp48 and Suz12 shown to interact in the crystal structure. We did identify internal cross-linking within the WD40 propeller of RbAp48 [K114/120–K160–K215/220], consistent with the reported crystal structure of the isoform RbAp46 (PDB: 3CFS; Figure 6B). Additionally, we detect the presence of a set of three interactions between the WD40 domain of RbAp48 [K307/309] and the central portion of Suz12 [K167–K403] (Figure 5). This result suggests that the stabilizing downstream region described by Schmitges and colleagues might actually involve a larger portion of Suz12. In addition to this interaction with RbAp48, we also observe cross-linking between this region of Suz12 [K304–K403] and AEBP2 [K229–K274]. These residues of AEBP2 also interact with AEBP2's own Zn finger domain [K95–K166] (Figure 5). Taken together, these findings suggest that RbAp48, the central domain of Suz12, and AEBP2 undergo extensive interactions, in agreement with previous biochemical data (Cao and Zhang, 2004b)."
     },
-    "annotation_152": {
+    "annotation_140": {
       "type": "emphasis",
-      "id": "annotation_152",
+      "id": "annotation_140",
       "path": [
-        "paragraph_151",
+        "paragraph_139",
         "content"
       ],
       "target": null,
@@ -2277,11 +2115,11 @@
         59
       ]
     },
-    "citation_reference_153": {
+    "citation_reference_141": {
       "type": "citation_reference",
-      "id": "citation_reference_153",
+      "id": "citation_reference_141",
       "path": [
-        "paragraph_151",
+        "paragraph_139",
         "content"
       ],
       "target": "article_citation_bib26",
@@ -2290,11 +2128,11 @@
         279
       ]
     },
-    "citation_reference_154": {
+    "citation_reference_142": {
       "type": "citation_reference",
-      "id": "citation_reference_154",
+      "id": "citation_reference_142",
       "path": [
-        "paragraph_151",
+        "paragraph_139",
         "content"
       ],
       "target": "article_citation_bib36",
@@ -2303,11 +2141,11 @@
         303
       ]
     },
-    "annotation_155": {
+    "annotation_143": {
       "type": "subscript",
-      "id": "annotation_155",
+      "id": "annotation_143",
       "path": [
-        "paragraph_151",
+        "paragraph_139",
         "content"
       ],
       "target": null,
@@ -2316,11 +2154,11 @@
         701
       ]
     },
-    "annotation_156": {
+    "annotation_144": {
       "type": "subscript",
-      "id": "annotation_156",
+      "id": "annotation_144",
       "path": [
-        "paragraph_151",
+        "paragraph_139",
         "content"
       ],
       "target": null,
@@ -2329,11 +2167,11 @@
         706
       ]
     },
-    "annotation_157": {
+    "annotation_145": {
       "type": "subscript",
-      "id": "annotation_157",
+      "id": "annotation_145",
       "path": [
-        "paragraph_151",
+        "paragraph_139",
         "content"
       ],
       "target": null,
@@ -2342,11 +2180,11 @@
         715
       ]
     },
-    "figure_reference_158": {
+    "figure_reference_146": {
       "type": "figure_reference",
-      "id": "figure_reference_158",
+      "id": "figure_reference_146",
       "path": [
-        "paragraph_151",
+        "paragraph_139",
         "content"
       ],
       "target": "image_fig6",
@@ -2355,11 +2193,11 @@
         808
       ]
     },
-    "annotation_159": {
+    "annotation_147": {
       "type": "subscript",
-      "id": "annotation_159",
+      "id": "annotation_147",
       "path": [
-        "paragraph_151",
+        "paragraph_139",
         "content"
       ],
       "target": null,
@@ -2368,11 +2206,11 @@
         922
       ]
     },
-    "annotation_160": {
+    "annotation_148": {
       "type": "subscript",
-      "id": "annotation_160",
+      "id": "annotation_148",
       "path": [
-        "paragraph_151",
+        "paragraph_139",
         "content"
       ],
       "target": null,
@@ -2381,11 +2219,11 @@
         962
       ]
     },
-    "annotation_161": {
+    "annotation_149": {
       "type": "subscript",
-      "id": "annotation_161",
+      "id": "annotation_149",
       "path": [
-        "paragraph_151",
+        "paragraph_139",
         "content"
       ],
       "target": null,
@@ -2394,11 +2232,11 @@
         967
       ]
     },
-    "figure_reference_162": {
+    "figure_reference_150": {
       "type": "figure_reference",
-      "id": "figure_reference_162",
+      "id": "figure_reference_150",
       "path": [
-        "paragraph_151",
+        "paragraph_139",
         "content"
       ],
       "target": "image_fig5",
@@ -2407,11 +2245,11 @@
         978
       ]
     },
-    "annotation_163": {
+    "annotation_151": {
       "type": "subscript",
-      "id": "annotation_163",
+      "id": "annotation_151",
       "path": [
-        "paragraph_151",
+        "paragraph_139",
         "content"
       ],
       "target": null,
@@ -2420,11 +2258,11 @@
         1238
       ]
     },
-    "annotation_164": {
+    "annotation_152": {
       "type": "subscript",
-      "id": "annotation_164",
+      "id": "annotation_152",
       "path": [
-        "paragraph_151",
+        "paragraph_139",
         "content"
       ],
       "target": null,
@@ -2433,11 +2271,11 @@
         1243
       ]
     },
-    "annotation_165": {
+    "annotation_153": {
       "type": "subscript",
-      "id": "annotation_165",
+      "id": "annotation_153",
       "path": [
-        "paragraph_151",
+        "paragraph_139",
         "content"
       ],
       "target": null,
@@ -2446,11 +2284,11 @@
         1260
       ]
     },
-    "annotation_166": {
+    "annotation_154": {
       "type": "subscript",
-      "id": "annotation_166",
+      "id": "annotation_154",
       "path": [
-        "paragraph_151",
+        "paragraph_139",
         "content"
       ],
       "target": null,
@@ -2459,11 +2297,11 @@
         1265
       ]
     },
-    "annotation_167": {
+    "annotation_155": {
       "type": "subscript",
-      "id": "annotation_167",
+      "id": "annotation_155",
       "path": [
-        "paragraph_151",
+        "paragraph_139",
         "content"
       ],
       "target": null,
@@ -2472,11 +2310,11 @@
         1344
       ]
     },
-    "annotation_168": {
+    "annotation_156": {
       "type": "subscript",
-      "id": "annotation_168",
+      "id": "annotation_156",
       "path": [
-        "paragraph_151",
+        "paragraph_139",
         "content"
       ],
       "target": null,
@@ -2485,11 +2323,11 @@
         1349
       ]
     },
-    "figure_reference_169": {
+    "figure_reference_157": {
       "type": "figure_reference",
-      "id": "figure_reference_169",
+      "id": "figure_reference_157",
       "path": [
-        "paragraph_151",
+        "paragraph_139",
         "content"
       ],
       "target": "image_fig5",
@@ -2498,11 +2336,11 @@
         1360
       ]
     },
-    "citation_reference_170": {
+    "citation_reference_158": {
       "type": "citation_reference",
-      "id": "citation_reference_170",
+      "id": "citation_reference_158",
       "path": [
-        "paragraph_151",
+        "paragraph_139",
         "content"
       ],
       "target": "article_citation_bib4",
@@ -2511,9 +2349,9 @@
         1551
       ]
     },
-    "paragraph_171": {
+    "paragraph_159": {
       "type": "paragraph",
-      "id": "paragraph_171",
+      "id": "paragraph_159",
       "content": "In summary, our cross-linking data provides a detailed overview of the interactions among the components of the PRC2-AEBP2 complex. Interestingly, we find that AEBP2 plays a major role in coordinating different PRC2 subunits, explaining its stabilizing effect on the PRC2 complex. AEBP2's central region is involved in interactions with the N- and C-termini of Ezh2, EED, and the C-terminal region of Suz12, while its C-terminal region interacts with both the central portion of Suz12 and RbAp48."
     },
     "heading_s2-4": {
@@ -2523,16 +2361,16 @@
       "content": "Subunit localization within the PRC2-AEBP2 complex",
       "nodes": []
     },
-    "paragraph_172": {
+    "paragraph_160": {
       "type": "paragraph",
-      "id": "paragraph_172",
+      "id": "paragraph_160",
       "content": "In order to provide a better-defined spatial context to all our cross-linking data we used EM analysis to localize the different PRC2 subunits within the EM structure of the AEBP2-bound complex. To determine the position of individual components, we incorporated an N-terminal MBP (maltose-binding protein) or an internal or C-terminal GFP (green fluorescence protein) into each of the subunits within the PRC2-AEBP2 complex, visualizing the resulting assembly by EM. We used reference-free 2D classification to identify the position of the specific tags when compared to the corresponding class averages of the untagged complex (Figures 7–10). We concentrated our analysis on a specific view that we define as ‘canonical’ (corresponding to the first panel in Figure 4), which is both well represented in the EM images (for most, although not all of the tagged samples) and where the structural features of the complex are clear and well separated."
     },
-    "figure_reference_173": {
+    "figure_reference_161": {
       "type": "figure_reference",
-      "id": "figure_reference_173",
+      "id": "figure_reference_161",
       "path": [
-        "paragraph_172",
+        "paragraph_160",
         "content"
       ],
       "target": "image_fig7 fig8 fig9 fig10",
@@ -2541,11 +2379,11 @@
         642
       ]
     },
-    "figure_reference_174": {
+    "figure_reference_162": {
       "type": "figure_reference",
-      "id": "figure_reference_174",
+      "id": "figure_reference_162",
       "path": [
-        "paragraph_172",
+        "paragraph_160",
         "content"
       ],
       "target": "image_fig4",
@@ -2568,20 +2406,20 @@
         "parent",
         null
       ],
-      "doi": "",
-      "caption": "caption_175",
+      "doi": "http://dx.doi.org/10.7554/eLife.00005.009",
+      "caption": "caption_163",
       "graphic_id": "elife00005f007"
     },
-    "caption_175": {
-      "type": "paragraph",
-      "id": "caption_175",
-      "content": "Three different internal GFP tags (EED-EGFP128, EED-EGFP370 and MBP-Ezh2) were used to determine the correct position of the EED-Ezh2 crystal structure (PDB: 2QXV) within the EM reconstruction. (A and B) For each study, a cartoon indicates the position of the tag within the protein. MBP tags are indicated in red, GFP tags in green. The far left panel represents the reference-free 2D class obtained from the labeled sample. The middle left panel shows the corresponding class for the unlabeled sample. The middle right panel was calculated by subtracting the labeled reference-free class from the unlabeled average (labeled and unlabeled). Only differences with a standard deviation greater than 3, are considered significant. The far right panel includes a representative 3D view of the complex, the localized density color-coded and the assigned Lobe indicated. (C) Top panel: 2D class averages for each mutant indicates the position of the specific tag on the molecule. Bottom panel: fitting of the X-ray structure within the EM density based on the specific position of the tags. Docking of the Histone H3 based on its crystal structure in complex with the subunit EED (PDB: 3IIW) is also indicated.DOI: http://dx.doi.org/10.7554/eLife.00005.009"
+    "caption_163": {
+      "type": "caption",
+      "id": "caption_163",
+      "content": "Three different internal GFP tags (EED-EGFP128, EED-EGFP370 and MBP-Ezh2) were used to determine the correct position of the EED-Ezh2 crystal structure (PDB: 2QXV) within the EM reconstruction. (A and B) For each study, a cartoon indicates the position of the tag within the protein. MBP tags are indicated in red, GFP tags in green. The far left panel represents the reference-free 2D class obtained from the labeled sample. The middle left panel shows the corresponding class for the unlabeled sample. The middle right panel was calculated by subtracting the labeled reference-free class from the unlabeled average (labeled and unlabeled). Only differences with a standard deviation greater than 3, are considered significant. The far right panel includes a representative 3D view of the complex, the localized density color-coded and the assigned Lobe indicated. (C) Top panel: 2D class averages for each mutant indicates the position of the specific tag on the molecule. Bottom panel: fitting of the X-ray structure within the EM density based on the specific position of the tags. Docking of the Histone H3 based on its crystal structure in complex with the subunit EED (PDB: 3IIW) is also indicated."
     },
-    "annotation_176": {
+    "annotation_164": {
       "type": "strong",
-      "id": "annotation_176",
+      "id": "annotation_164",
       "path": [
-        "caption_175",
+        "caption_163",
         "content"
       ],
       "target": null,
@@ -2590,11 +2428,11 @@
         202
       ]
     },
-    "annotation_177": {
+    "annotation_165": {
       "type": "strong",
-      "id": "annotation_177",
+      "id": "annotation_165",
       "path": [
-        "caption_175",
+        "caption_163",
         "content"
       ],
       "target": null,
@@ -2602,33 +2440,6 @@
         867,
         868
       ]
-    },
-    "annotation_178": {
-      "type": "strong",
-      "id": "annotation_178",
-      "path": [
-        "caption_175",
-        "content"
-      ],
-      "target": null,
-      "range": [
-        1205,
-        1209
-      ]
-    },
-    "annotation_179": {
-      "type": "link",
-      "id": "annotation_179",
-      "path": [
-        "caption_175",
-        "content"
-      ],
-      "target": null,
-      "range": [
-        1210,
-        1251
-      ],
-      "url": "10.7554/eLife.00005.009"
     },
     "image_fig8": {
       "type": "image",
@@ -2644,20 +2455,20 @@
         "parent",
         null
       ],
-      "doi": "",
-      "caption": "caption_180",
+      "doi": "http://dx.doi.org/10.7554/eLife.00005.010",
+      "caption": "caption_166",
       "graphic_id": "elife00005f008"
     },
-    "caption_180": {
-      "type": "paragraph",
-      "id": "caption_180",
-      "content": "(A) Reference-free 2D class of the labeled, unlabeled sample, difference map and 3D view of the complex with assigned localization. (B) Fitting of the Nurf55-Suz12 crystal structure within the density of Lobe D. The density has been automatically placed using the local localization algorithm implemented in the UCSF Chimera software (Pettersen et al., 2004). Docking of the Histone H3 based on its crystal structure in complex with the RbAp48 homologue subunit Nurf55 (PDB: 2YBA) is also indicated.DOI: http://dx.doi.org/10.7554/eLife.00005.010"
+    "caption_166": {
+      "type": "caption",
+      "id": "caption_166",
+      "content": "(A) Reference-free 2D class of the labeled, unlabeled sample, difference map and 3D view of the complex with assigned localization. (B) Fitting of the Nurf55-Suz12 crystal structure within the density of Lobe D. The density has been automatically placed using the local localization algorithm implemented in the UCSF Chimera software (Pettersen et al., 2004). Docking of the Histone H3 based on its crystal structure in complex with the RbAp48 homologue subunit Nurf55 (PDB: 2YBA) is also indicated."
     },
-    "annotation_181": {
+    "annotation_167": {
       "type": "strong",
-      "id": "annotation_181",
+      "id": "annotation_167",
       "path": [
-        "caption_180",
+        "caption_166",
         "content"
       ],
       "target": null,
@@ -2666,11 +2477,11 @@
         2
       ]
     },
-    "annotation_182": {
+    "annotation_168": {
       "type": "strong",
-      "id": "annotation_182",
+      "id": "annotation_168",
       "path": [
-        "caption_180",
+        "caption_166",
         "content"
       ],
       "target": null,
@@ -2679,11 +2490,11 @@
         134
       ]
     },
-    "citation_reference_183": {
+    "citation_reference_169": {
       "type": "citation_reference",
-      "id": "citation_reference_183",
+      "id": "citation_reference_169",
       "path": [
-        "caption_180",
+        "caption_166",
         "content"
       ],
       "target": "article_citation_bib31",
@@ -2691,33 +2502,6 @@
         335,
         357
       ]
-    },
-    "annotation_184": {
-      "type": "strong",
-      "id": "annotation_184",
-      "path": [
-        "caption_180",
-        "content"
-      ],
-      "target": null,
-      "range": [
-        499,
-        503
-      ]
-    },
-    "annotation_185": {
-      "type": "link",
-      "id": "annotation_185",
-      "path": [
-        "caption_180",
-        "content"
-      ],
-      "target": null,
-      "range": [
-        504,
-        545
-      ],
-      "url": "10.7554/eLife.00005.010"
     },
     "image_fig9": {
       "type": "image",
@@ -2733,20 +2517,20 @@
         "parent",
         null
       ],
-      "doi": "",
-      "caption": "caption_186",
+      "doi": "http://dx.doi.org/10.7554/eLife.00005.011",
+      "caption": "caption_170",
       "graphic_id": "elife00005f009"
     },
-    "caption_186": {
-      "type": "paragraph",
-      "id": "caption_186",
-      "content": "(A) Reference-free 2D class of the labeled, unlabeled sample, difference map and 3D view of the complex with assigned localization for different MBP/GFP fusion mutants of EZH2. (B) Assignment of EZH2 subunit domains to electron density map based on the specific position of the tags. The crosslink between K210 and K510 is shown. The EZH2 protein chain path within the PRC2-AEBP2 complex is indicated in the inset (See also Figure 9—figure supplement 1).DOI: http://dx.doi.org/10.7554/eLife.00005.011"
+    "caption_170": {
+      "type": "caption",
+      "id": "caption_170",
+      "content": "(A) Reference-free 2D class of the labeled, unlabeled sample, difference map and 3D view of the complex with assigned localization for different MBP/GFP fusion mutants of EZH2. (B) Assignment of EZH2 subunit domains to electron density map based on the specific position of the tags. The crosslink between K210 and K510 is shown. The EZH2 protein chain path within the PRC2-AEBP2 complex is indicated in the inset (See also Figure 9—figure supplement 1)."
     },
-    "annotation_187": {
+    "annotation_171": {
       "type": "strong",
-      "id": "annotation_187",
+      "id": "annotation_171",
       "path": [
-        "caption_186",
+        "caption_170",
         "content"
       ],
       "target": null,
@@ -2755,11 +2539,11 @@
         2
       ]
     },
-    "annotation_188": {
+    "annotation_172": {
       "type": "strong",
-      "id": "annotation_188",
+      "id": "annotation_172",
       "path": [
-        "caption_186",
+        "caption_170",
         "content"
       ],
       "target": null,
@@ -2768,11 +2552,11 @@
         179
       ]
     },
-    "figure_reference_189": {
+    "figure_reference_173": {
       "type": "figure_reference",
-      "id": "figure_reference_189",
+      "id": "figure_reference_173",
       "path": [
-        "caption_186",
+        "caption_170",
         "content"
       ],
       "target": "image_fig9s1",
@@ -2780,33 +2564,6 @@
         424,
         452
       ]
-    },
-    "annotation_190": {
-      "type": "strong",
-      "id": "annotation_190",
-      "path": [
-        "caption_186",
-        "content"
-      ],
-      "target": null,
-      "range": [
-        454,
-        458
-      ]
-    },
-    "annotation_191": {
-      "type": "link",
-      "id": "annotation_191",
-      "path": [
-        "caption_186",
-        "content"
-      ],
-      "target": null,
-      "range": [
-        459,
-        500
-      ],
-      "url": "10.7554/eLife.00005.011"
     },
     "image_fig9s1": {
       "type": "image",
@@ -2822,20 +2579,20 @@
         "child",
         "image_fig9"
       ],
-      "doi": "",
-      "caption": "caption_192",
+      "doi": "http://dx.doi.org/10.7554/eLife.00005.012",
+      "caption": "caption_174",
       "graphic_id": "elife00005fs001"
     },
-    "caption_192": {
-      "type": "paragraph",
-      "id": "caption_192",
-      "content": "(A) Subclassification of the canonical view for the EZH2 1-594-GFP-595-751 complex showed all the classes to contain an extra tag density. The class average selected for Figure 9AIV is indicated with a green box. Notice that the GFP density is clearer in any of the subclasses than in the overall average (top right panel, green circle) (See also Movie 1). (B) Subclassification of a well-represented, canonical view of the EZH2 1-303-GFP-304-751 labeled complex shows some subclasses without clear extra density (left panels) and other with clear, but flexible tag (right panel). The class shown in Figure 9AII is indicated with the green box.DOI: http://dx.doi.org/10.7554/eLife.00005.012"
+    "caption_174": {
+      "type": "caption",
+      "id": "caption_174",
+      "content": "(A) Subclassification of the canonical view for the EZH2 1-594-GFP-595-751 complex showed all the classes to contain an extra tag density. The class average selected for Figure 9AIV is indicated with a green box. Notice that the GFP density is clearer in any of the subclasses than in the overall average (top right panel, green circle) (See also Movie 1). (B) Subclassification of a well-represented, canonical view of the EZH2 1-303-GFP-304-751 labeled complex shows some subclasses without clear extra density (left panels) and other with clear, but flexible tag (right panel). The class shown in Figure 9AII is indicated with the green box."
     },
-    "annotation_193": {
+    "annotation_175": {
       "type": "strong",
-      "id": "annotation_193",
+      "id": "annotation_175",
       "path": [
-        "caption_192",
+        "caption_174",
         "content"
       ],
       "target": null,
@@ -2844,11 +2601,11 @@
         2
       ]
     },
-    "figure_reference_194": {
+    "figure_reference_176": {
       "type": "figure_reference",
-      "id": "figure_reference_194",
+      "id": "figure_reference_176",
       "path": [
-        "caption_192",
+        "caption_174",
         "content"
       ],
       "target": "video_movie1",
@@ -2857,43 +2614,16 @@
         354
       ]
     },
-    "annotation_195": {
-      "type": "strong",
-      "id": "annotation_195",
-      "path": [
-        "caption_192",
-        "content"
-      ],
-      "target": null,
-      "range": [
-        644,
-        648
-      ]
-    },
-    "annotation_196": {
-      "type": "link",
-      "id": "annotation_196",
-      "path": [
-        "caption_192",
-        "content"
-      ],
-      "target": null,
-      "range": [
-        649,
-        690
-      ],
-      "url": "10.7554/eLife.00005.012"
-    },
-    "paragraph_197": {
+    "paragraph_177": {
       "type": "paragraph",
-      "id": "paragraph_197",
+      "id": "paragraph_177",
       "content": "We started by assigning the position of EED, which consists of a WD40 domain and an 80-residue N-terminus that is predicted to be unstructured (Han et al., 2007). Neither N-terminal MBP nor C-terminal GFP fusions assembled into stoichiometric or stable complexes. To overcome this limitation, we took advantage of the fact that the GFP N- and C-termini are in close spatial proximity and designed an expression vector to generate protein chimeras containing an internal GFP, connected by a short loop, at desired sites along the main protein chain. Using the crystal structure of EED (PDB: 2QXV), we designed four constructs, each containing an internal GFP at a distinct site within the WD40 domain. The two constructs containing an internal GFP at either residue 115 or 370 (EED-GFP115 and EED-GFP370) assembled into stoichiometric and stable complexes that were used for EM analysis (Figure 7A, panels I and II, respectively). Comparing the internally GFP-tagged EED sample with the untagged form allowed us to identify the additional GFP density protruding from the WD40-shaped Lobe A (Figure 7A). To further confirm this localization, we reconstituted and analyzed a complex containing an N-terminal MBP on Ezh2. According to the known crystal structure (Han et al., 2007), the EED WD40 domain interacts with the N-terminal region of Ezh2. Therefore, an MBP in this region should localize similarly to Lobe A. Consistent with this prediction, 2D analysis of this construct showed additional density corresponding to an MBP tag protruding from Lobe A (Figure 7B). Based on the positions of the two internal GFP tags for EED and the MBP tag for Ezh2, we were able to accurately orient the EED-Ezh2 crystal structure within the 3D EM density. This information, together with the crystal structure of histone H3-bound EED (Margueron et al., 2009), suggests that the canonical histone H3-binding site is located in a cavity at the intersection of Lobe A and Arm 2 (Figure 7C)."
     },
-    "citation_reference_198": {
+    "citation_reference_178": {
       "type": "citation_reference",
-      "id": "citation_reference_198",
+      "id": "citation_reference_178",
       "path": [
-        "paragraph_197",
+        "paragraph_177",
         "content"
       ],
       "target": "article_citation_bib9",
@@ -2902,11 +2632,11 @@
         160
       ]
     },
-    "annotation_199": {
+    "annotation_179": {
       "type": "subscript",
-      "id": "annotation_199",
+      "id": "annotation_179",
       "path": [
-        "paragraph_197",
+        "paragraph_177",
         "content"
       ],
       "target": null,
@@ -2915,11 +2645,11 @@
         787
       ]
     },
-    "annotation_200": {
+    "annotation_180": {
       "type": "subscript",
-      "id": "annotation_200",
+      "id": "annotation_180",
       "path": [
-        "paragraph_197",
+        "paragraph_177",
         "content"
       ],
       "target": null,
@@ -2928,11 +2658,11 @@
         802
       ]
     },
-    "figure_reference_201": {
+    "figure_reference_181": {
       "type": "figure_reference",
-      "id": "figure_reference_201",
+      "id": "figure_reference_181",
       "path": [
-        "paragraph_197",
+        "paragraph_177",
         "content"
       ],
       "target": "image_fig7",
@@ -2941,11 +2671,11 @@
         896
       ]
     },
-    "figure_reference_202": {
+    "figure_reference_182": {
       "type": "figure_reference",
-      "id": "figure_reference_202",
+      "id": "figure_reference_182",
       "path": [
-        "paragraph_197",
+        "paragraph_177",
         "content"
       ],
       "target": "image_fig7",
@@ -2954,11 +2684,11 @@
         1099
       ]
     },
-    "citation_reference_203": {
+    "citation_reference_183": {
       "type": "citation_reference",
-      "id": "citation_reference_203",
+      "id": "citation_reference_183",
       "path": [
-        "paragraph_197",
+        "paragraph_177",
         "content"
       ],
       "target": "article_citation_bib9",
@@ -2967,11 +2697,11 @@
         1276
       ]
     },
-    "figure_reference_204": {
+    "figure_reference_184": {
       "type": "figure_reference",
-      "id": "figure_reference_204",
+      "id": "figure_reference_184",
       "path": [
-        "paragraph_197",
+        "paragraph_177",
         "content"
       ],
       "target": "image_fig7",
@@ -2980,11 +2710,11 @@
         1565
       ]
     },
-    "citation_reference_205": {
+    "citation_reference_185": {
       "type": "citation_reference",
-      "id": "citation_reference_205",
+      "id": "citation_reference_185",
       "path": [
-        "paragraph_197",
+        "paragraph_177",
         "content"
       ],
       "target": "article_citation_bib21",
@@ -2993,11 +2723,11 @@
         1846
       ]
     },
-    "figure_reference_206": {
+    "figure_reference_186": {
       "type": "figure_reference",
-      "id": "figure_reference_206",
+      "id": "figure_reference_186",
       "path": [
-        "paragraph_197",
+        "paragraph_177",
         "content"
       ],
       "target": "image_fig7",
@@ -3006,16 +2736,16 @@
         1974
       ]
     },
-    "paragraph_207": {
+    "paragraph_187": {
       "type": "paragraph",
-      "id": "paragraph_207",
+      "id": "paragraph_187",
       "content": "With the EED's WD40 domain assigned to Lobe A, we predicted that Lobe D would correspond to the WD40 propeller of RbAp48. To test this idea, we reconstituted complexes carrying an N-terminal MBP or and internal or C-terminal GFP tag on RbAp48, but none of these fusion constructs produced a stable and stoichiometric complex. To overcome this limitation, we again took advantage on the known interaction between Nurf55 (Drosophila ortholog of RbAp48) and Suz12 that has been structurally characterized (Nowak et al., 2011; Schmitges et al., 2011). We generated a complex bearing an internal GFP tag immediately after the alpha helix of Suz12 that interacts with RbAp48 (Suz12-GFP123). In this particular case, the canonical view was not as well represented and the label was more clearly seen in a different orientation (Figure 8A). The GFP can be seen localizing to Lobe D, confirming that Suz12 interacts with the RbAp48 propeller at this position."
     },
-    "annotation_208": {
+    "annotation_188": {
       "type": "emphasis",
-      "id": "annotation_208",
+      "id": "annotation_188",
       "path": [
-        "paragraph_207",
+        "paragraph_187",
         "content"
       ],
       "target": null,
@@ -3024,11 +2754,11 @@
         430
       ]
     },
-    "citation_reference_209": {
+    "citation_reference_189": {
       "type": "citation_reference",
-      "id": "citation_reference_209",
+      "id": "citation_reference_189",
       "path": [
-        "paragraph_207",
+        "paragraph_187",
         "content"
       ],
       "target": "article_citation_bib26",
@@ -3037,11 +2767,11 @@
         521
       ]
     },
-    "citation_reference_210": {
+    "citation_reference_190": {
       "type": "citation_reference",
-      "id": "citation_reference_210",
+      "id": "citation_reference_190",
       "path": [
-        "paragraph_207",
+        "paragraph_187",
         "content"
       ],
       "target": "article_citation_bib36",
@@ -3050,11 +2780,11 @@
         545
       ]
     },
-    "annotation_211": {
+    "annotation_191": {
       "type": "subscript",
-      "id": "annotation_211",
+      "id": "annotation_191",
       "path": [
-        "paragraph_207",
+        "paragraph_187",
         "content"
       ],
       "target": null,
@@ -3063,11 +2793,11 @@
         682
       ]
     },
-    "figure_reference_212": {
+    "figure_reference_192": {
       "type": "figure_reference",
-      "id": "figure_reference_212",
+      "id": "figure_reference_192",
       "path": [
-        "paragraph_207",
+        "paragraph_187",
         "content"
       ],
       "target": "image_fig8",
@@ -3076,16 +2806,16 @@
         830
       ]
     },
-    "paragraph_213": {
+    "paragraph_193": {
       "type": "paragraph",
-      "id": "paragraph_213",
+      "id": "paragraph_193",
       "content": "Using the local rigid-body fitting algorithm implemented in the UCSF Chimera software package (Pettersen et al., 2004), we docked the crystal structures of the Drosophila RbAp48-Suz12 complex (PDB: 2YB8) into our density map (Figure 8B). The WD40 propeller and protruding N-terminal alpha-helix of RbAp48 were accommodated within this region with high fidelity. The docked crystal structure of the histone H3-bound RbAp48 (Nowak et al., 2011; Schmitges et al., 2011) provides further insight into histone binding. Attached to RbAp48 at Lobe D, the histone would face Lobe C (Figure 8B), suggesting that the histone H3 tail is situated in a head-to-tail orientation, running vertically from the bottom end of the complex in Lobe D towards Lobe B."
     },
-    "citation_reference_214": {
+    "citation_reference_194": {
       "type": "citation_reference",
-      "id": "citation_reference_214",
+      "id": "citation_reference_194",
       "path": [
-        "paragraph_213",
+        "paragraph_193",
         "content"
       ],
       "target": "article_citation_bib31",
@@ -3094,11 +2824,11 @@
         117
       ]
     },
-    "annotation_215": {
+    "annotation_195": {
       "type": "emphasis",
-      "id": "annotation_215",
+      "id": "annotation_195",
       "path": [
-        "paragraph_213",
+        "paragraph_193",
         "content"
       ],
       "target": null,
@@ -3107,11 +2837,11 @@
         170
       ]
     },
-    "figure_reference_216": {
+    "figure_reference_196": {
       "type": "figure_reference",
-      "id": "figure_reference_216",
+      "id": "figure_reference_196",
       "path": [
-        "paragraph_213",
+        "paragraph_193",
         "content"
       ],
       "target": "image_fig8",
@@ -3120,11 +2850,11 @@
         235
       ]
     },
-    "citation_reference_217": {
+    "citation_reference_197": {
       "type": "citation_reference",
-      "id": "citation_reference_217",
+      "id": "citation_reference_197",
       "path": [
-        "paragraph_213",
+        "paragraph_193",
         "content"
       ],
       "target": "article_citation_bib26",
@@ -3133,11 +2863,11 @@
         441
       ]
     },
-    "citation_reference_218": {
+    "citation_reference_198": {
       "type": "citation_reference",
-      "id": "citation_reference_218",
+      "id": "citation_reference_198",
       "path": [
-        "paragraph_213",
+        "paragraph_193",
         "content"
       ],
       "target": "article_citation_bib36",
@@ -3146,11 +2876,11 @@
         465
       ]
     },
-    "figure_reference_219": {
+    "figure_reference_199": {
       "type": "figure_reference",
-      "id": "figure_reference_219",
+      "id": "figure_reference_199",
       "path": [
-        "paragraph_213",
+        "paragraph_193",
         "content"
       ],
       "target": "image_fig8",
@@ -3159,16 +2889,16 @@
         584
       ]
     },
-    "paragraph_220": {
+    "paragraph_200": {
       "type": "paragraph",
-      "id": "paragraph_220",
+      "id": "paragraph_200",
       "content": "Next, and in order to locate within PRC2 the different domains of the catalytic Ezh2 subunit, we again used an internal GFP labeling strategy in addition to our MBP N-terminal label (Figure 9A, panel I). To localize the two SANT domains, we reconstituted PRC2-AEBP2 complexes containing either a GFP label downstream of the first SANT domain (Ezh2-GFP303, Figure 9A, panel II; see also Figure 9—figure supplement 1) or immediately upstream of the second SANT domain (Ezh2-GFP436, Figure 9A, panel III). The location of the GFP extra density suggests that the first SANT domain is positioned at the intersection of Lobe A and Arm 1, and the second at the intersection of Arm 1 and Lobe B. The proximity of these two SANT domains is in very good agreement with our cross-linking analysis (Figure 5)."
     },
-    "figure_reference_221": {
+    "figure_reference_201": {
       "type": "figure_reference",
-      "id": "figure_reference_221",
+      "id": "figure_reference_201",
       "path": [
-        "paragraph_220",
+        "paragraph_200",
         "content"
       ],
       "target": "image_fig9",
@@ -3177,11 +2907,11 @@
         192
       ]
     },
-    "annotation_222": {
+    "annotation_202": {
       "type": "subscript",
-      "id": "annotation_222",
+      "id": "annotation_202",
       "path": [
-        "paragraph_220",
+        "paragraph_200",
         "content"
       ],
       "target": null,
@@ -3190,11 +2920,11 @@
         354
       ]
     },
-    "figure_reference_223": {
+    "figure_reference_203": {
       "type": "figure_reference",
-      "id": "figure_reference_223",
+      "id": "figure_reference_203",
       "path": [
-        "paragraph_220",
+        "paragraph_200",
         "content"
       ],
       "target": "image_fig9",
@@ -3203,11 +2933,11 @@
         365
       ]
     },
-    "figure_reference_224": {
+    "figure_reference_204": {
       "type": "figure_reference",
-      "id": "figure_reference_224",
+      "id": "figure_reference_204",
       "path": [
-        "paragraph_220",
+        "paragraph_200",
         "content"
       ],
       "target": "image_fig9s1",
@@ -3216,11 +2946,11 @@
         414
       ]
     },
-    "annotation_225": {
+    "annotation_205": {
       "type": "subscript",
-      "id": "annotation_225",
+      "id": "annotation_205",
       "path": [
-        "paragraph_220",
+        "paragraph_200",
         "content"
       ],
       "target": null,
@@ -3229,11 +2959,11 @@
         478
       ]
     },
-    "figure_reference_226": {
+    "figure_reference_206": {
       "type": "figure_reference",
-      "id": "figure_reference_226",
+      "id": "figure_reference_206",
       "path": [
-        "paragraph_220",
+        "paragraph_200",
         "content"
       ],
       "target": "image_fig9",
@@ -3242,11 +2972,11 @@
         489
       ]
     },
-    "figure_reference_227": {
+    "figure_reference_207": {
       "type": "figure_reference",
-      "id": "figure_reference_227",
+      "id": "figure_reference_207",
       "path": [
-        "paragraph_220",
+        "paragraph_200",
         "content"
       ],
       "target": "image_fig5",
@@ -3255,16 +2985,16 @@
         795
       ]
     },
-    "paragraph_228": {
+    "paragraph_208": {
       "type": "paragraph",
-      "id": "paragraph_228",
+      "id": "paragraph_208",
       "content": "The methyltransferase SET domain of Ezh2 was located by reconstituting two complexes, one bearing an internal GFP tag immediately upstream of this domain (Ezh2-GFP595, Figure 9A, panel IV; see also Figure 9—figure supplement 1, Movie 1) and another with a C-terminal GFP tag (Ezh2-GFP, Figure 9A, panel V). Analysis of the 2D class averages indicates that the SET domain begins at Lobe B and terminates above EED in Lobe A. Figure 9B summarized our Ezh2 labeling results (proposed chain path in inset): the two SANT domains span Arm 1 and Lobe B, while the C-terminal SET domain is located between Lobes A and B. Our identification of a cross-link between the first Ezh2 SANT domain and the N-terminus of EED (Figure 5) further suggest that the N-terminal region of EED localizes to Arm1 (Figure 11). In agreement with our tagged-based localization, crystal structures for homologous SANT and domains and SET domains (PDBs: 3HM5 and 3H6L) fit well within the assigned lobes in the EM structure (Figure 11 and Movie 2)."
     },
-    "annotation_229": {
+    "annotation_209": {
       "type": "subscript",
-      "id": "annotation_229",
+      "id": "annotation_209",
       "path": [
-        "paragraph_228",
+        "paragraph_208",
         "content"
       ],
       "target": null,
@@ -3273,11 +3003,11 @@
         166
       ]
     },
-    "figure_reference_230": {
+    "figure_reference_210": {
       "type": "figure_reference",
-      "id": "figure_reference_230",
+      "id": "figure_reference_210",
       "path": [
-        "paragraph_228",
+        "paragraph_208",
         "content"
       ],
       "target": "image_fig9",
@@ -3286,11 +3016,11 @@
         177
       ]
     },
-    "figure_reference_231": {
+    "figure_reference_211": {
       "type": "figure_reference",
-      "id": "figure_reference_231",
+      "id": "figure_reference_211",
       "path": [
-        "paragraph_228",
+        "paragraph_208",
         "content"
       ],
       "target": "image_fig9s1",
@@ -3299,11 +3029,11 @@
         226
       ]
     },
-    "figure_reference_232": {
+    "figure_reference_212": {
       "type": "figure_reference",
-      "id": "figure_reference_232",
+      "id": "figure_reference_212",
       "path": [
-        "paragraph_228",
+        "paragraph_208",
         "content"
       ],
       "target": "video_movie1",
@@ -3312,11 +3042,11 @@
         235
       ]
     },
-    "figure_reference_233": {
+    "figure_reference_213": {
       "type": "figure_reference",
-      "id": "figure_reference_233",
+      "id": "figure_reference_213",
       "path": [
-        "paragraph_228",
+        "paragraph_208",
         "content"
       ],
       "target": "image_fig9",
@@ -3325,11 +3055,11 @@
         295
       ]
     },
-    "figure_reference_234": {
+    "figure_reference_214": {
       "type": "figure_reference",
-      "id": "figure_reference_234",
+      "id": "figure_reference_214",
       "path": [
-        "paragraph_228",
+        "paragraph_208",
         "content"
       ],
       "target": "image_fig9",
@@ -3338,11 +3068,11 @@
         433
       ]
     },
-    "figure_reference_235": {
+    "figure_reference_215": {
       "type": "figure_reference",
-      "id": "figure_reference_235",
+      "id": "figure_reference_215",
       "path": [
-        "paragraph_228",
+        "paragraph_208",
         "content"
       ],
       "target": "image_fig5",
@@ -3351,11 +3081,11 @@
         718
       ]
     },
-    "figure_reference_236": {
+    "figure_reference_216": {
       "type": "figure_reference",
-      "id": "figure_reference_236",
+      "id": "figure_reference_216",
       "path": [
-        "paragraph_228",
+        "paragraph_208",
         "content"
       ],
       "target": "image_fig11",
@@ -3364,11 +3094,11 @@
         798
       ]
     },
-    "figure_reference_237": {
+    "figure_reference_217": {
       "type": "figure_reference",
-      "id": "figure_reference_237",
+      "id": "figure_reference_217",
       "path": [
-        "paragraph_228",
+        "paragraph_208",
         "content"
       ],
       "target": "image_fig11",
@@ -3377,11 +3107,11 @@
         1004
       ]
     },
-    "figure_reference_238": {
+    "figure_reference_218": {
       "type": "figure_reference",
-      "id": "figure_reference_238",
+      "id": "figure_reference_218",
       "path": [
-        "paragraph_228",
+        "paragraph_208",
         "content"
       ],
       "target": "video_movie2",
@@ -3394,7 +3124,7 @@
       "type": "video",
       "id": "video_movie1",
       "label": "Movie 1.",
-      "caption": "caption_239",
+      "caption": "caption_219",
       "content_type": "",
       "url_ogv": "",
       "url_jpg": "",
@@ -3402,16 +3132,16 @@
       "doi": "",
       "title": "undefinedMovement of GFP tag."
     },
-    "caption_239": {
-      "type": "paragraph",
-      "id": "caption_239",
+    "caption_219": {
+      "type": "caption",
+      "id": "caption_219",
       "content": "DOI: http://dx.doi.org/10.7554/eLife.00005.013"
     },
-    "annotation_240": {
+    "annotation_220": {
       "type": "strong",
-      "id": "annotation_240",
+      "id": "annotation_220",
       "path": [
-        "caption_239",
+        "caption_219",
         "content"
       ],
       "target": null,
@@ -3420,11 +3150,11 @@
         4
       ]
     },
-    "annotation_241": {
+    "annotation_221": {
       "type": "link",
-      "id": "annotation_241",
+      "id": "annotation_221",
       "path": [
-        "caption_239",
+        "caption_219",
         "content"
       ],
       "target": null,
@@ -3448,20 +3178,20 @@
         "parent",
         null
       ],
-      "doi": "",
-      "caption": "caption_242",
+      "doi": "http://dx.doi.org/10.7554/eLife.00005.014",
+      "caption": "caption_222",
       "graphic_id": "elife00005f010"
     },
-    "caption_242": {
-      "type": "paragraph",
-      "id": "caption_242",
-      "content": "(A) Reference-free 2D class of the labeled, unlable sample, difference map and 3D view of the complex with assigned localization for different GFP fusion mutants of Suz12 and AEBP2. (B) Assignment of Suz12 and AEBP2 subunit domains to electron density map based on the specific position of the tags. Suz12 and AEBP2 protein chains paths within the PRC2-AEBP2 complex are indicated in the inset. Aminoacidic numbers indicate cross-linked residues in the contest of the electron density map. (C) Isotopic cross-linking of PRC2 complex. Connections in red indicate the cross-linked aminoacids referred in the text.DOI: http://dx.doi.org/10.7554/eLife.00005.014"
+    "caption_222": {
+      "type": "caption",
+      "id": "caption_222",
+      "content": "(A) Reference-free 2D class of the labeled, unlable sample, difference map and 3D view of the complex with assigned localization for different GFP fusion mutants of Suz12 and AEBP2. (B) Assignment of Suz12 and AEBP2 subunit domains to electron density map based on the specific position of the tags. Suz12 and AEBP2 protein chains paths within the PRC2-AEBP2 complex are indicated in the inset. Aminoacidic numbers indicate cross-linked residues in the contest of the electron density map. (C) Isotopic cross-linking of PRC2 complex. Connections in red indicate the cross-linked aminoacids referred in the text."
     },
-    "annotation_243": {
+    "annotation_223": {
       "type": "strong",
-      "id": "annotation_243",
+      "id": "annotation_223",
       "path": [
-        "caption_242",
+        "caption_222",
         "content"
       ],
       "target": null,
@@ -3470,11 +3200,11 @@
         2
       ]
     },
-    "annotation_244": {
+    "annotation_224": {
       "type": "strong",
-      "id": "annotation_244",
+      "id": "annotation_224",
       "path": [
-        "caption_242",
+        "caption_222",
         "content"
       ],
       "target": null,
@@ -3483,11 +3213,11 @@
         184
       ]
     },
-    "annotation_245": {
+    "annotation_225": {
       "type": "strong",
-      "id": "annotation_245",
+      "id": "annotation_225",
       "path": [
-        "caption_242",
+        "caption_222",
         "content"
       ],
       "target": null,
@@ -3495,33 +3225,6 @@
         491,
         492
       ]
-    },
-    "annotation_246": {
-      "type": "strong",
-      "id": "annotation_246",
-      "path": [
-        "caption_242",
-        "content"
-      ],
-      "target": null,
-      "range": [
-        611,
-        615
-      ]
-    },
-    "annotation_247": {
-      "type": "link",
-      "id": "annotation_247",
-      "path": [
-        "caption_242",
-        "content"
-      ],
-      "target": null,
-      "range": [
-        616,
-        657
-      ],
-      "url": "10.7554/eLife.00005.014"
     },
     "image_fig11": {
       "type": "image",
@@ -3537,20 +3240,20 @@
         "parent",
         null
       ],
-      "doi": "",
-      "caption": "caption_248",
+      "doi": "http://dx.doi.org/10.7554/eLife.00005.015",
+      "caption": "caption_226",
       "graphic_id": "elife00005f011"
     },
-    "caption_248": {
-      "type": "paragraph",
-      "id": "caption_248",
-      "content": "Model of the Prc2 complex from a combination of biochemical data, mass spectrometry, and structural biology data. Docking of crystal structure for EED and RbAp48 WD40s (PDB: 2QXV; 2YB8) are indicated respectively in green and red. Docking of crystal structures of homologue SANT, SET and Zn finger domains (PDB: 3HM5, 3H6L and 2VY5) are shown in blue and purple. Approximate positions of crosslinking sites are also indicated. See also Movie 2.DOI: http://dx.doi.org/10.7554/eLife.00005.015"
+    "caption_226": {
+      "type": "caption",
+      "id": "caption_226",
+      "content": "Model of the Prc2 complex from a combination of biochemical data, mass spectrometry, and structural biology data. Docking of crystal structure for EED and RbAp48 WD40s (PDB: 2QXV; 2YB8) are indicated respectively in green and red. Docking of crystal structures of homologue SANT, SET and Zn finger domains (PDB: 3HM5, 3H6L and 2VY5) are shown in blue and purple. Approximate positions of crosslinking sites are also indicated. See also Movie 2."
     },
-    "figure_reference_249": {
+    "figure_reference_227": {
       "type": "figure_reference",
-      "id": "figure_reference_249",
+      "id": "figure_reference_227",
       "path": [
-        "caption_248",
+        "caption_226",
         "content"
       ],
       "target": "video_movie2",
@@ -3559,76 +3262,24 @@
         443
       ]
     },
-    "annotation_250": {
-      "type": "strong",
-      "id": "annotation_250",
-      "path": [
-        "caption_248",
-        "content"
-      ],
-      "target": null,
-      "range": [
-        444,
-        448
-      ]
-    },
-    "annotation_251": {
-      "type": "link",
-      "id": "annotation_251",
-      "path": [
-        "caption_248",
-        "content"
-      ],
-      "target": null,
-      "range": [
-        449,
-        490
-      ],
-      "url": "10.7554/eLife.00005.015"
-    },
     "video_movie2": {
       "type": "video",
       "id": "video_movie2",
       "label": "Movie 2.",
-      "caption": "caption_252",
+      "caption": "caption_228",
       "content_type": "",
-      "url_ogv": "",
+      "url_ogv": "http://static.movie-usa.glencoesoftware.com/ogv/10.7554/elife00005m002.ogv",
       "url_jpg": "",
       "url_mp4": "",
-      "doi": "",
-      "title": "undefined3D reconstruction of the human PRC2-AEBP2 complex."
+      "doi": "http://dx.doi.org/10.7554/eLife.00005.016",
+      "title": "undefined3D reconstruction of the human PRC2-AEBP2 complex.",
+      "url": "http://static.movie-usa.glencoesoftware.com/mp4/10.7554/elife00005m002.mp4",
+      "poster": "http://static.movie-usa.glencoesoftware.com/jpg/10.7554/elife00005m002.jpg"
     },
-    "caption_252": {
-      "type": "paragraph",
-      "id": "caption_252",
-      "content": "Docking of crystal structure for EED and RbAp48 WD40s (PDB: 2QXV; 2YB8) are indicated respectively in green and red. Docking of crystal structures of homologue SANT, SET and Zn finger domains (PDB: 3HM5, 3H6L and 2VY5) are shown in blue and purple.DOI: http://dx.doi.org/10.7554/eLife.00005.016"
-    },
-    "annotation_253": {
-      "type": "strong",
-      "id": "annotation_253",
-      "path": [
-        "caption_252",
-        "content"
-      ],
-      "target": null,
-      "range": [
-        248,
-        252
-      ]
-    },
-    "annotation_254": {
-      "type": "link",
-      "id": "annotation_254",
-      "path": [
-        "caption_252",
-        "content"
-      ],
-      "target": null,
-      "range": [
-        253,
-        294
-      ],
-      "url": "10.7554/eLife.00005.016"
+    "caption_228": {
+      "type": "caption",
+      "id": "caption_228",
+      "content": "Docking of crystal structure for EED and RbAp48 WD40s (PDB: 2QXV; 2YB8) are indicated respectively in green and red. Docking of crystal structures of homologue SANT, SET and Zn finger domains (PDB: 3HM5, 3H6L and 2VY5) are shown in blue and purple."
     },
     "supplement_SD1_data": {
       "type": "supplement",
@@ -3636,42 +3287,15 @@
       "label": "Movie 2—source code 1.",
       "source": "",
       "title": "",
-      "caption": "caption_255",
+      "caption": "caption_229",
       "content": "",
-      "doi": "",
+      "doi": "http://dx.doi.org/10.7554/eLife.00005.017",
       "graphic_id": "elife00005s001.wrl"
     },
-    "caption_255": {
-      "type": "paragraph",
-      "id": "caption_255",
-      "content": "Overall architecture of the PRC2 complex.DOI: http://dx.doi.org/10.7554/eLife.00005.017"
-    },
-    "annotation_256": {
-      "type": "strong",
-      "id": "annotation_256",
-      "path": [
-        "caption_255",
-        "content"
-      ],
-      "target": null,
-      "range": [
-        41,
-        45
-      ]
-    },
-    "annotation_257": {
-      "type": "link",
-      "id": "annotation_257",
-      "path": [
-        "caption_255",
-        "content"
-      ],
-      "target": null,
-      "range": [
-        46,
-        87
-      ],
-      "url": "10.7554/eLife.00005.017"
+    "caption_229": {
+      "type": "caption",
+      "id": "caption_229",
+      "content": "Overall architecture of the PRC2 complex."
     },
     "image_fig12": {
       "type": "image",
@@ -3687,20 +3311,20 @@
         "parent",
         null
       ],
-      "doi": "",
-      "caption": "caption_258",
+      "doi": "http://dx.doi.org/10.7554/eLife.00005.018",
+      "caption": "caption_230",
       "graphic_id": "elife00005f012"
     },
-    "caption_258": {
-      "type": "paragraph",
-      "id": "caption_258",
-      "content": "(A) At loci of compact and repressed chromatin, H3K27-me3 marks are recognized by EED. This binding is signaled via the SANT domains to the SET domain increasing the methyl-transferase activity of Ezh2, strengthening the chromatin compaction. (B) At loci of open and actively transcribed chromatin, H3K4me3 and H3K36me2,3 are recognized by the VEFS domain of Suz12 and transferred to Ezh2, with an allosteric regulation that blocks Ezh2's enzymatic activity.DOI: http://dx.doi.org/10.7554/eLife.00005.018"
+    "caption_230": {
+      "type": "caption",
+      "id": "caption_230",
+      "content": "(A) At loci of compact and repressed chromatin, H3K27-me3 marks are recognized by EED. This binding is signaled via the SANT domains to the SET domain increasing the methyl-transferase activity of Ezh2, strengthening the chromatin compaction. (B) At loci of open and actively transcribed chromatin, H3K4me3 and H3K36me2,3 are recognized by the VEFS domain of Suz12 and transferred to Ezh2, with an allosteric regulation that blocks Ezh2's enzymatic activity."
     },
-    "annotation_259": {
+    "annotation_231": {
       "type": "strong",
-      "id": "annotation_259",
+      "id": "annotation_231",
       "path": [
-        "caption_258",
+        "caption_230",
         "content"
       ],
       "target": null,
@@ -3709,11 +3333,11 @@
         2
       ]
     },
-    "annotation_260": {
+    "annotation_232": {
       "type": "strong",
-      "id": "annotation_260",
+      "id": "annotation_232",
       "path": [
-        "caption_258",
+        "caption_230",
         "content"
       ],
       "target": null,
@@ -3722,43 +3346,16 @@
         245
       ]
     },
-    "annotation_261": {
-      "type": "strong",
-      "id": "annotation_261",
-      "path": [
-        "caption_258",
-        "content"
-      ],
-      "target": null,
-      "range": [
-        458,
-        462
-      ]
-    },
-    "annotation_262": {
-      "type": "link",
-      "id": "annotation_262",
-      "path": [
-        "caption_258",
-        "content"
-      ],
-      "target": null,
-      "range": [
-        463,
-        504
-      ],
-      "url": "10.7554/eLife.00005.018"
-    },
-    "paragraph_263": {
+    "paragraph_233": {
       "type": "paragraph",
-      "id": "paragraph_263",
+      "id": "paragraph_233",
       "content": "At the opposite end of the core module, the VEFS domain of Suz12 and the SANT and SET domains of Ezh2 together interact with two Zn fingers from AEBP2 and Suz12 (Figure 12B). The position of the Suz12 VEFS domain with respect to the Ezh2 SET domain suggests how the H3K4me3 and H3K36me2/3 inhibition via Suz12 could be transferred to Ezh2, regulating its methyltransferase activity. The close proximity of these elements could also explain why the gene activation marks need to be on the tail being modified in order to block methyltransferase activity."
     },
-    "figure_reference_264": {
+    "figure_reference_234": {
       "type": "figure_reference",
-      "id": "figure_reference_264",
+      "id": "figure_reference_234",
       "path": [
-        "paragraph_263",
+        "paragraph_233",
         "content"
       ],
       "target": "image_fig12",
@@ -3767,16 +3364,16 @@
         172
       ]
     },
-    "paragraph_265": {
+    "paragraph_235": {
       "type": "paragraph",
-      "id": "paragraph_265",
+      "id": "paragraph_235",
       "content": "In summary, our structure offers a three dimensional framework showing how various elements of the PRC2 complex involved in regulated histone-binding can act either independently or synergistically in response to different chromatin environments. Importantly, our PRC2 subunit organization is consistent with previously proposed models of PRC2 activity (Margueron et al., 2009; Schmitges et al., 2011): when chromatin domains are targeted for repression, PRC2 is recruited to deposit the repressive H3K27me3 histone mark at nucleosome-associated regions of DNA. Existing H3K27me3 marks are recognized by EED and, possibly in cooperation with Ezh2's SANT domains, Ezh2 methyltransferase activity is increased (Figure 12A). To ensure that H3K27 trimethylation is limited only to the repressed target, PRC2 is capable of repressing its own enzymatic activity. When PRC2 comes into contact with the boundary of an active gene, the interaction between H3K4me3, H3K36me2, and H3K36me3 with the VEFS domain of Suz12, could be propagated to the Ezh2 subunit, blocking PRC2 activity (Figure 12B)."
     },
-    "citation_reference_266": {
+    "citation_reference_236": {
       "type": "citation_reference",
-      "id": "citation_reference_266",
+      "id": "citation_reference_236",
       "path": [
-        "paragraph_265",
+        "paragraph_235",
         "content"
       ],
       "target": "article_citation_bib21",
@@ -3785,11 +3382,11 @@
         376
       ]
     },
-    "citation_reference_267": {
+    "citation_reference_237": {
       "type": "citation_reference",
-      "id": "citation_reference_267",
+      "id": "citation_reference_237",
       "path": [
-        "paragraph_265",
+        "paragraph_235",
         "content"
       ],
       "target": "article_citation_bib36",
@@ -3798,11 +3395,11 @@
         400
       ]
     },
-    "figure_reference_268": {
+    "figure_reference_238": {
       "type": "figure_reference",
-      "id": "figure_reference_268",
+      "id": "figure_reference_238",
       "path": [
-        "paragraph_265",
+        "paragraph_235",
         "content"
       ],
       "target": "image_fig12",
@@ -3811,11 +3408,11 @@
         719
       ]
     },
-    "figure_reference_269": {
+    "figure_reference_239": {
       "type": "figure_reference",
-      "id": "figure_reference_269",
+      "id": "figure_reference_239",
       "path": [
-        "paragraph_265",
+        "paragraph_235",
         "content"
       ],
       "target": "image_fig12",
@@ -3824,16 +3421,16 @@
         1085
       ]
     },
-    "paragraph_270": {
+    "paragraph_240": {
       "type": "paragraph",
-      "id": "paragraph_270",
+      "id": "paragraph_240",
       "content": "Previous studies have shown that PRC2 favors di- and oligonucleosome substrates over mononucleosomes, octamers, or histone H3 peptides (Cao and Zhang, 2004a; Kuzmichev et al., 2004; Martin et al., 2006). Molecular explanations for this substrate preference have been largely hypothetical in the absence of any structural information. The positioning of the different subunits within the PRC2 structure suggests a model of how PRC2 could interact with a dinucleosome, by placing the regions interacting with histone tails in opposite sides of the complex, thus allowing interaction with two nucleosomes simultaneously, without any steric hindrance. Figure 13 suggests a possible arrangement illustrating this point that also agrees with the proposed binding of AEBP2 to nucleosomal DNA (Kim et al., 2009). In such arrangement, EED binding to one nucleosome would position the histone H3 tail from the second nucleosome in close proximity to the Ezh2 SET domain (Figure 13)."
     },
-    "citation_reference_271": {
+    "citation_reference_241": {
       "type": "citation_reference",
-      "id": "citation_reference_271",
+      "id": "citation_reference_241",
       "path": [
-        "paragraph_270",
+        "paragraph_240",
         "content"
       ],
       "target": "article_citation_bib3",
@@ -3842,11 +3439,11 @@
         156
       ]
     },
-    "citation_reference_272": {
+    "citation_reference_242": {
       "type": "citation_reference",
-      "id": "citation_reference_272",
+      "id": "citation_reference_242",
       "path": [
-        "paragraph_270",
+        "paragraph_240",
         "content"
       ],
       "target": "article_citation_bib15",
@@ -3855,11 +3452,11 @@
         180
       ]
     },
-    "citation_reference_273": {
+    "citation_reference_243": {
       "type": "citation_reference",
-      "id": "citation_reference_273",
+      "id": "citation_reference_243",
       "path": [
-        "paragraph_270",
+        "paragraph_240",
         "content"
       ],
       "target": "article_citation_bib23",
@@ -3868,11 +3465,11 @@
         201
       ]
     },
-    "figure_reference_274": {
+    "figure_reference_244": {
       "type": "figure_reference",
-      "id": "figure_reference_274",
+      "id": "figure_reference_244",
       "path": [
-        "paragraph_270",
+        "paragraph_240",
         "content"
       ],
       "target": "image_fig13",
@@ -3881,11 +3478,11 @@
         657
       ]
     },
-    "citation_reference_275": {
+    "citation_reference_245": {
       "type": "citation_reference",
-      "id": "citation_reference_275",
+      "id": "citation_reference_245",
       "path": [
-        "paragraph_270",
+        "paragraph_240",
         "content"
       ],
       "target": "article_citation_bib13",
@@ -3894,11 +3491,11 @@
         802
       ]
     },
-    "figure_reference_276": {
+    "figure_reference_246": {
       "type": "figure_reference",
-      "id": "figure_reference_276",
+      "id": "figure_reference_246",
       "path": [
-        "paragraph_270",
+        "paragraph_240",
         "content"
       ],
       "target": "image_fig13",
@@ -3922,19 +3519,19 @@
         null
       ],
       "doi": "",
-      "caption": "caption_277",
+      "caption": "caption_247",
       "graphic_id": "elife00005f013"
     },
-    "caption_277": {
-      "type": "paragraph",
-      "id": "caption_277",
+    "caption_247": {
+      "type": "caption",
+      "id": "caption_247",
       "content": "DOI: http://dx.doi.org/10.7554/eLife.00005.019"
     },
-    "annotation_278": {
+    "annotation_248": {
       "type": "strong",
-      "id": "annotation_278",
+      "id": "annotation_248",
       "path": [
-        "caption_277",
+        "caption_247",
         "content"
       ],
       "target": null,
@@ -3943,11 +3540,11 @@
         4
       ]
     },
-    "annotation_279": {
+    "annotation_249": {
       "type": "link",
-      "id": "annotation_279",
+      "id": "annotation_249",
       "path": [
-        "caption_277",
+        "caption_247",
         "content"
       ],
       "target": null,
@@ -3957,9 +3554,9 @@
       ],
       "url": "10.7554/eLife.00005.019"
     },
-    "paragraph_280": {
+    "paragraph_250": {
       "type": "paragraph",
-      "id": "paragraph_280",
+      "id": "paragraph_250",
       "content": "In conclusion, the human PRC2 structure presented here provides us with the first full picture of the molecular organization of this fundamental complex and offers an invaluable structural context to understand previous biochemical data. Furthermore, the functional mapping of different activities within the physical shape of the complex leads to novel, testable hypotheses on how PRC2 interacts with chromatin that should inspire future research of PRC2 function and regulation. Given the similarity in sequence between PRC2 components from different species, we expect the molecular architecture that we described for human PRC2 to be conserved throughout higher eukaryotes."
     },
     "heading_s4": {
@@ -3976,16 +3573,16 @@
       "content": "PRC2 complex reconstitution and purification",
       "nodes": []
     },
-    "paragraph_281": {
+    "paragraph_251": {
       "type": "paragraph",
-      "id": "paragraph_281",
+      "id": "paragraph_251",
       "content": "Sequences corresponding to the full-length EED, RbAp48, Ezh2, Suz12 and AEBP2 (see Figure 1A for domain schematics for these proteins) were amplified from human full-length cDNA clones. AEBP2 was subcloned in frame with a N-terminal StrepII tag into the pFastBac1 shuttle vector. All the other components were subcloned in the same vector in frame with a N-terminal hexahistidine tag. For PRC2 component localization, all the subunits were sub-cloned into a modified pFastBac1 vector in frame with either an N-terminal maltose binding protein or an internal or C-terminal GFP. All clones were verified by DNA sequencing. Recombinant baculoviruses were generated in Sf9 cells using the Bac-to-Bac kit (Invitrogen, Grand Island, NY, USA) according to manufacturer's recommendations. For protein expression, High5 cells were grown in suspension culture in ESF921 serum-free medium (Expression Systems, Davis, CA, USA) and infected with the right combination of viruses at a density of 1.0 × 106 ml−1. Cells were harvested 60–72 hr post-infection and lysed by sonication in 25 mM Hepes pH 7.5, 138 mM NaCl, 10% Glycerol, 0.05% Nonidet-P40 (NP40) and 1 mM Dithiothreitol (DTT) (supplemented with protease inhibitors). All samples were affinity-purified on Strep-Tactin Superflow Plus resin (Qiagen, Valencia, CA, USA) using an N-terminal Strep-tag II tag on the AEBP2 subunit. The complex was eluted from the resin by competition with lysis buffer containing 10 mM Desthiobiotin. The complex was then immediately subjected to size exclusion chromatography (SEC) on a calibrated Superose 6 PC 3.2/30 column (GE Healthcare, Uppsala, Sweden) at 4°C equilibrated in SEC buffer (25 mM Hepes pH 7.5, 138 mM NaCl, 10% Glycerol, 0.05% NP40, 1 mM Tris(2-carboxyethyl) phosphine hydrochloride [TCEP]). To preserve protein stability for structure determination, Prc2 protein complexes were cross-linked with 0.015% Glutaraldehyde for 10 minutes and the reaction stopped with 1M Tris, pH 8.0. Protein elution was monitored at 280 nm and protein fractions were collected and analyzed by SDS-PAGE and Coomassie brilliant blue staining."
     },
-    "figure_reference_282": {
+    "figure_reference_252": {
       "type": "figure_reference",
-      "id": "figure_reference_282",
+      "id": "figure_reference_252",
       "path": [
-        "paragraph_281",
+        "paragraph_251",
         "content"
       ],
       "target": "image_fig1",
@@ -3994,11 +3591,11 @@
         92
       ]
     },
-    "annotation_283": {
+    "annotation_253": {
       "type": "superscript",
-      "id": "annotation_283",
+      "id": "annotation_253",
       "path": [
-        "paragraph_281",
+        "paragraph_251",
         "content"
       ],
       "target": null,
@@ -4007,11 +3604,11 @@
         991
       ]
     },
-    "annotation_284": {
+    "annotation_254": {
       "type": "superscript",
-      "id": "annotation_284",
+      "id": "annotation_254",
       "path": [
-        "paragraph_281",
+        "paragraph_251",
         "content"
       ],
       "target": null,
@@ -4027,21 +3624,21 @@
       "content": "Chemical cross-linking using isotope labeled cross-linkers and mass spectrometric identification of cross-linked peptides",
       "nodes": []
     },
-    "paragraph_285": {
+    "paragraph_255": {
       "type": "paragraph",
-      "id": "paragraph_285",
+      "id": "paragraph_255",
       "content": "Human PRC2 Complex (10 μg of protein equivalent to 36 pmol) was mixed with a 600X excess of isotope-labeled cross-linker di-(sulfosuccinimidyl)-glutarate (1:1 mixture of light DSSG-D0 and heavy DSSG-D6) (Creative Molecules, Andover, MA, USA) in a final volume of 50 μl of 10 mM Hepes, pH 7.5, 138 mM NaCl at room temperature. The reaction was stopped after 30 min by adding 5 μl of 1 M ammonium bicarbonate."
     },
-    "paragraph_286": {
+    "paragraph_256": {
       "type": "paragraph",
-      "id": "paragraph_286",
+      "id": "paragraph_256",
       "content": "Cross-linked proteins were reduced with 5 mM TCEP (tris (2-carboxyethyl) phosphine; Thermo Scientific, Rockford, IL, USA) at 37°C for 15 min and alkylated with 10 mM iodoacetamide (Sigma-Aldrich, St. Louis, MO, USA) for 30 min in the dark. Proteins were digested with trypsin (Promega, Madison, WI, USA) at an enzyme to substrate ratio of 1:50 (wt/wt) at 37°C for 2 hr and, after a second addition of trypsin (1:50 wt/wt), over night. Peptides were acidified with 1% trifluoroacetic acid (TFA; Sigma-Aldrich, St. Louis, MO, USA) and purified by solid-phase extraction (SPE) using C18 cartridges (Sep-Pak; Waters, Milford, MA, USA). The SPE eluate was evaporated to dryness and reconstituted in 20 µl of SEC mobile phase (water/acetonitrile/TFA, 70:30:0.1). 15 µl were injected on a GE Healthcare (Uppsala, Sweden) Äkta micro system. Peptides were separated on a Superdex Peptide PC 3.2/30 column (300 × 3.2 mm) at a flow rate of 50 µl min−1 using the SEC mobile phase. Two-minute fractions (100 µl) were collected into 96-well plates."
     },
-    "annotation_287": {
+    "annotation_257": {
       "type": "superscript",
-      "id": "annotation_287",
+      "id": "annotation_257",
       "path": [
-        "paragraph_286",
+        "paragraph_256",
         "content"
       ],
       "target": null,
@@ -4050,16 +3647,16 @@
         940
       ]
     },
-    "paragraph_288": {
+    "paragraph_258": {
       "type": "paragraph",
-      "id": "paragraph_288",
+      "id": "paragraph_258",
       "content": "LC-MS/MS analysis was carried out on an Eksigent 1D-NanoLC-Ultra system connected to a Thermo LTQ Orbitrap XL mass spectrometer equipped with a standard nanoelectrospray source. SEC fractions were reconstituted in mobile phase A (water/acetonitrile/formic acid, 97:3:0.1). A fraction corresponding to an estimated 1 µg was injected onto a 11 cm × 0.075 mm I.D. column packed in house with Michrom Magic C18 material (3 µm particle size, 200 Å pore size). Peptides were separated at a flow rate of 300 nl min−1 ramping a gradient from 5% to 35% mobile phase B (water/acetonitrile/formic acid, 3:97:0.1)."
     },
-    "annotation_289": {
+    "annotation_259": {
       "type": "superscript",
-      "id": "annotation_289",
+      "id": "annotation_259",
       "path": [
-        "paragraph_288",
+        "paragraph_258",
         "content"
       ],
       "target": null,
@@ -4068,16 +3665,16 @@
         509
       ]
     },
-    "paragraph_290": {
+    "paragraph_260": {
       "type": "paragraph",
-      "id": "paragraph_290",
+      "id": "paragraph_260",
       "content": "Cross-linked peptides were identified using an in-house version of the dedicated search engine, xQuest (Rinner et al., 2008). Tandem mass spectra of precursors differing in their mass by 6.037660475 Da (difference between DSSG-d0 and DSS-d6) were paired if they had a charge state of 3+ to 8+ and were triggered within 2.5 min of each other. These spectra were then searched against a pre-processed .fasta database. A valid identification of the cross-linked peptides required at least four bond cleavages in total or three in a series for each peptide and a minimum peptide length of six amino acids."
     },
-    "citation_reference_291": {
+    "citation_reference_261": {
       "type": "citation_reference",
-      "id": "citation_reference_291",
+      "id": "citation_reference_261",
       "path": [
-        "paragraph_290",
+        "paragraph_260",
         "content"
       ],
       "target": "article_citation_bib34",
@@ -4086,11 +3683,11 @@
         123
       ]
     },
-    "annotation_292": {
+    "annotation_262": {
       "type": "emphasis",
-      "id": "annotation_292",
+      "id": "annotation_262",
       "path": [
-        "paragraph_290",
+        "paragraph_260",
         "content"
       ],
       "target": null,
@@ -4106,16 +3703,16 @@
       "content": "Electron microscopy sample preparation and data collection",
       "nodes": []
     },
-    "paragraph_293": {
+    "paragraph_263": {
       "type": "paragraph",
-      "id": "paragraph_293",
+      "id": "paragraph_263",
       "content": "A 4 µl aliquot of purified sample was immediately placed onto a continuous carbon grid that had been plasma cleaned in a 75% Ar/25% O2 atmosphere for 20 s in a Solarus plasma cleaner (Gatan, Inc, Pleasanton, CA, USA). After 30 s of incubation on the grid at room temperature, the sample was negatively-stained with a solution of 2% uranyl formate and blotted dry. Samples were imaged using a Tecnai F20 Twin-transmission electron microscope operating at 120 keV at a nominal magnification of 80,000× (1.52 Å/pixel at the detector level) using a defocus range of −0.6 to −1.3 μm. Images were automatically recorded with an electron dose of 20e-/Å2 using the Leginon data collection software (Suloway et al., 2005) on a Gatan 4096 × 4096 pixel CCD camera (15 μm pixel size). For the random conical tilt (RCT) dataset, images were collected at −60° and 0°."
     },
-    "annotation_294": {
+    "annotation_264": {
       "type": "subscript",
-      "id": "annotation_294",
+      "id": "annotation_264",
       "path": [
-        "paragraph_293",
+        "paragraph_263",
         "content"
       ],
       "target": null,
@@ -4124,11 +3721,11 @@
         134
       ]
     },
-    "annotation_295": {
+    "annotation_265": {
       "type": "superscript",
-      "id": "annotation_295",
+      "id": "annotation_265",
       "path": [
-        "paragraph_293",
+        "paragraph_263",
         "content"
       ],
       "target": null,
@@ -4137,11 +3734,11 @@
         646
       ]
     },
-    "citation_reference_296": {
+    "citation_reference_266": {
       "type": "citation_reference",
-      "id": "citation_reference_296",
+      "id": "citation_reference_266",
       "path": [
-        "paragraph_293",
+        "paragraph_263",
         "content"
       ],
       "target": "article_citation_bib38",
@@ -4157,16 +3754,16 @@
       "content": "Image processing",
       "nodes": []
     },
-    "paragraph_297": {
+    "paragraph_267": {
       "type": "paragraph",
-      "id": "paragraph_297",
+      "id": "paragraph_267",
       "content": "All image pre-processing and two-dimensional classification was performed in the Appion image-processing environment (Lander et al., 2009). A general scheme was utilized for image analysis to deal with the large number of datasets acquired, as well as to minimize user bias. Particles were initially selected from the 0° tilt micrographs of the PRC2-AEBP2 complex using a difference of Gaussians (DoG) transform-based automated picker (Voss et al., 2009), and extracted using a 224 × 224-pixel box size. Iterative multivariate statistical analysis (MSA) and multi-reference alignment (MRA) of the extracted particles provided representative 2D views of the PRC2 complex, which served as templates for all subsequent automated particle selection."
     },
-    "citation_reference_298": {
+    "citation_reference_268": {
       "type": "citation_reference",
-      "id": "citation_reference_298",
+      "id": "citation_reference_268",
       "path": [
-        "paragraph_297",
+        "paragraph_267",
         "content"
       ],
       "target": "article_citation_bib16",
@@ -4175,11 +3772,11 @@
         137
       ]
     },
-    "citation_reference_299": {
+    "citation_reference_269": {
       "type": "citation_reference",
-      "id": "citation_reference_299",
+      "id": "citation_reference_269",
       "path": [
-        "paragraph_297",
+        "paragraph_267",
         "content"
       ],
       "target": "article_citation_bib43",
@@ -4188,16 +3785,16 @@
         453
       ]
     },
-    "paragraph_300": {
+    "paragraph_270": {
       "type": "paragraph",
-      "id": "paragraph_300",
+      "id": "paragraph_270",
       "content": "The generalized processing scheme utilized for processing was as follows. The ACE2 and CTFFind programs (Mindell and Grigorieff, 2003; Mallick et al., 2005) ran concurrently with data collection to estimate the contrast transfer function (CTF) of the micrographs, as well as to provide a quantitative measurement of the quality of the imaging. At the same time, a template-based particle picker using the representative views of PRC2 (described above) located particles on the micrograph. At the end of data collection, the phases of the micrograph were corrected with ACE2, and individual particles were extracted using a box size of 224 × 224 pixels and decimated by a factor of 2. Any pixels whose values were above or below 4.5 sigma of the mean pixel value were removed using the XMIPP normalization function (Scheres et al., 2008). In order to remove inappropriately selected protein aggregates, stain crystals, carbon edges, or other forms of contamination, particles whose mean or standard deviation deviated significantly from the norm were removed. The remaining particles were subjected to a single round of MSA and classification (Ogura et al., 2003), in which thousands of class averages were generated with ∼20 particles per class. The resulting class averages were manually inspected to remove remaining aggregation, contamination, false positive particle selections, and very small particles potentially corresponding to incomplete PRC2 complexes. Following these particle-cleaning steps, the remaining 39,527 particles were subjected to several rounds of MSA and MRA using the IMAGIC software package (van Heel et al., 1996) to produce detailed views of the PRC2 complex with high signal-to-noise ratios."
     },
-    "citation_reference_301": {
+    "citation_reference_271": {
       "type": "citation_reference",
-      "id": "citation_reference_301",
+      "id": "citation_reference_271",
       "path": [
-        "paragraph_300",
+        "paragraph_270",
         "content"
       ],
       "target": "article_citation_bib24",
@@ -4206,11 +3803,11 @@
         133
       ]
     },
-    "citation_reference_302": {
+    "citation_reference_272": {
       "type": "citation_reference",
-      "id": "citation_reference_302",
+      "id": "citation_reference_272",
       "path": [
-        "paragraph_300",
+        "paragraph_270",
         "content"
       ],
       "target": "article_citation_bib18",
@@ -4219,11 +3816,11 @@
         155
       ]
     },
-    "citation_reference_303": {
+    "citation_reference_273": {
       "type": "citation_reference",
-      "id": "citation_reference_303",
+      "id": "citation_reference_273",
       "path": [
-        "paragraph_300",
+        "paragraph_270",
         "content"
       ],
       "target": "article_citation_bib35",
@@ -4232,11 +3829,11 @@
         835
       ]
     },
-    "citation_reference_304": {
+    "citation_reference_274": {
       "type": "citation_reference",
-      "id": "citation_reference_304",
+      "id": "citation_reference_274",
       "path": [
-        "paragraph_300",
+        "paragraph_270",
         "content"
       ],
       "target": "article_citation_bib28",
@@ -4245,11 +3842,11 @@
         1161
       ]
     },
-    "citation_reference_305": {
+    "citation_reference_275": {
       "type": "citation_reference",
-      "id": "citation_reference_305",
+      "id": "citation_reference_275",
       "path": [
-        "paragraph_300",
+        "paragraph_270",
         "content"
       ],
       "target": "article_citation_bib42",
@@ -4265,16 +3862,16 @@
       "content": "Analysis of tagged complexes",
       "nodes": []
     },
-    "paragraph_306": {
+    "paragraph_276": {
       "type": "paragraph",
-      "id": "paragraph_306",
+      "id": "paragraph_276",
       "content": "For subunit localization, reference-free 2D class averages from each tagged dataset were generated. We concentrated any further efforts on classes corresponding to the canonical view. The full set of tagged particles corresponding to this projection view gives rise to a class average with very good signal for the complex, as well as some extra density, corresponding to the tag, which is distinctive but typically smeared to different extents for different samples due to the flexibility of the tag. For a clearer visualization of the tag, we subclassified particles within this view. Two examples of the subclassification are shown for GFP-tagged complexes in Figure 9—figure supplement 1. The pivoting of the tag density can be clearly seen in these classes and in Movie 1. The percentage of subclasses clearly showing the tag ranges from 100% for a significant number of labels to 57% for the least favorable case (likely due to proteolysis). For the generation of the figures in the main text of the paper we chose to show a single subclass average with a larger number of particles that accurately resembles the full ensemble, but that more clearly shows the density of the tag, nicely corresponding to the mass expected for proteins of their size. These classes were then compared to the wild-type PRC2 class averages through cross-correlation using the SPIDER ‘AP SH’ command. After alignment, the matching class averages for the untagged and tagged complexes were individually normalized and then the PRC2 class averages were subtracted from the PRC2-tagged class averages. The densities seen in the difference maps were at least 3-standard deviations above the mean, showing the location of tagged-PRC2 subunits."
     },
-    "figure_reference_307": {
+    "figure_reference_277": {
       "type": "figure_reference",
-      "id": "figure_reference_307",
+      "id": "figure_reference_277",
       "path": [
-        "paragraph_306",
+        "paragraph_276",
         "content"
       ],
       "target": "image_fig9s1",
@@ -4283,11 +3880,11 @@
         691
       ]
     },
-    "figure_reference_308": {
+    "figure_reference_278": {
       "type": "figure_reference",
-      "id": "figure_reference_308",
+      "id": "figure_reference_278",
       "path": [
-        "paragraph_306",
+        "paragraph_276",
         "content"
       ],
       "target": "video_movie1",
@@ -4303,16 +3900,16 @@
       "content": "Ab initio reconstruction using random conical tilt and 3D reconstruction refinement",
       "nodes": []
     },
-    "paragraph_309": {
+    "paragraph_279": {
       "type": "paragraph",
-      "id": "paragraph_309",
+      "id": "paragraph_279",
       "content": "In order to generate an initial three dimensional model of the negatively-stained PRC2 complex, 190 tilt-pair images (60° and 0°) were collected using the same imaging conditions as described in the previous section. These data were collected in an automated fashion using the RCT-Raster application in Leginon (Yoshioka et al., 2007). Particles were automatically selected using the DoG particle picker (Voss et al., 2009), and the tilt axis, as well as the particle-pair assignments, were calculated automatically with the TiltPicker module of Appion TiltPicker (Voss et al., 2009). Particles were extracted in the same manner as described in the previous section, resulting in 6075 particle pairs. The XMIPP ML2D program was used to generate 20 reference-free 2D averages from the 0° micrographs, each class containing between 150 and 800 particles (Scheres et al., 2008). Generation of more than 20 classes did not reveal conformers that were notably different from the reconstructions resulting from the initial classes, and suffered in resolution due to the decreased number of particles attributed to each class. SPIDER routines integrated into Appion were used to generate 3D RCT reconstructions for each of these class averages."
     },
-    "citation_reference_310": {
+    "citation_reference_280": {
       "type": "citation_reference",
-      "id": "citation_reference_310",
+      "id": "citation_reference_280",
       "path": [
-        "paragraph_309",
+        "paragraph_279",
         "content"
       ],
       "target": "article_citation_bib46",
@@ -4321,11 +3918,11 @@
         333
       ]
     },
-    "citation_reference_311": {
+    "citation_reference_281": {
       "type": "citation_reference",
-      "id": "citation_reference_311",
+      "id": "citation_reference_281",
       "path": [
-        "paragraph_309",
+        "paragraph_279",
         "content"
       ],
       "target": "article_citation_bib43",
@@ -4334,11 +3931,11 @@
         422
       ]
     },
-    "citation_reference_312": {
+    "citation_reference_282": {
       "type": "citation_reference",
-      "id": "citation_reference_312",
+      "id": "citation_reference_282",
       "path": [
-        "paragraph_309",
+        "paragraph_279",
         "content"
       ],
       "target": "article_citation_bib43",
@@ -4347,11 +3944,11 @@
         582
       ]
     },
-    "citation_reference_313": {
+    "citation_reference_283": {
       "type": "citation_reference",
-      "id": "citation_reference_313",
+      "id": "citation_reference_283",
       "path": [
-        "paragraph_309",
+        "paragraph_279",
         "content"
       ],
       "target": "article_citation_bib35",
@@ -4360,16 +3957,16 @@
         873
       ]
     },
-    "paragraph_314": {
+    "paragraph_284": {
       "type": "paragraph",
-      "id": "paragraph_314",
+      "id": "paragraph_284",
       "content": "In order to minimize missing-cone artifacts inherent to the RCT methodology from influencing subsequent projection-matching-based reconstructions, and assess the homogeneity of the PRC2 conformation represented in the class averages, all the RCT reconstructions were used as references to assign Euler angles to 1000 high signal-to-noise reference-free class averages from the 39,527-particle untilted dataset using projection-matching, in lieu of merging the RCT reconstructions into a single density. The class averages were then back-projected according to their assigned Euler angles to provide a three-dimensional model based solely on 0° particles data. The resulting 3D reconstructions, albeit at low resolution, were highly consistent, indicating that there is one major architectural state of the complex. We used the reconstruction obtained from the more populated RCT class as the initial model for refinement against single particles of the full 0° data set. Since potential end-on views of the complex were not considered during structure determination, as they could not be distinguished from partial complexes, we relied on ‘tomographic’ coverage of the views along the long axis of the structure. This refinement was performed using an iterative projection-matching script that makes use of libraries from the SPARX and EMAN2 image processing packages (Baldwin and Penczek, 2007; Tang et al., 2007)."
     },
-    "citation_reference_315": {
+    "citation_reference_285": {
       "type": "citation_reference",
-      "id": "citation_reference_315",
+      "id": "citation_reference_285",
       "path": [
-        "paragraph_314",
+        "paragraph_284",
         "content"
       ],
       "target": "article_citation_bib1",
@@ -4378,11 +3975,11 @@
         1394
       ]
     },
-    "citation_reference_316": {
+    "citation_reference_286": {
       "type": "citation_reference",
-      "id": "citation_reference_316",
+      "id": "citation_reference_286",
       "path": [
-        "paragraph_314",
+        "paragraph_284",
         "content"
       ],
       "target": "article_citation_bib39",
@@ -4403,7 +4000,7 @@
     "paragraph_ack": {
       "type": "paragraph",
       "id": "paragraph_ack",
-      "content": "We are grateful to S. Sun, M Jinek, J. Querol Audi, M Cianfrocco, T. Houweling, A. Costa, E. Arias Palomo and Ann Fisher (UC Berkeley Tissue Culture Facility) for technical support. We are thankful to Denny Reinberg, Andrea Carfi and Diego Pasini for critical reading of the manuscript."
+      "content": "AcknowledgementsWe are grateful to S. Sun, M Jinek, J. Querol Audi, M Cianfrocco, T. Houweling, A. Costa, E. Arias Palomo and Ann Fisher (UC Berkeley Tissue Culture Facility) for technical support. We are thankful to Denny Reinberg, Andrea Carfi and Diego Pasini for critical reading of the manuscript.Additional information"
     },
     "info:competing-interest": {
       "type": "heading",
@@ -4411,12 +4008,12 @@
       "level": 2,
       "content": "Competing Interests",
       "nodes": [
-        "paragraph_317"
+        "paragraph_287"
       ]
     },
-    "paragraph_317": {
+    "paragraph_287": {
       "type": "paragraph",
-      "id": "paragraph_317",
+      "id": "paragraph_287",
       "content": "Competing interestsThe authors have declared that no competing interests exist"
     },
     "info:author_contribution": {
@@ -4439,42 +4036,15 @@
       "label": "Supplementary file 1.",
       "source": "",
       "title": "",
-      "caption": "caption_318",
+      "caption": "caption_288",
       "content": "",
-      "doi": "",
+      "doi": "http://dx.doi.org/10.7554/eLife.00005.020",
       "graphic_id": "elife00005s002.xlsx"
     },
-    "caption_318": {
-      "type": "paragraph",
-      "id": "caption_318",
-      "content": "Inter- and intramolecular crosslinking.DOI: http://dx.doi.org/10.7554/eLife.00005.020"
-    },
-    "annotation_319": {
-      "type": "strong",
-      "id": "annotation_319",
-      "path": [
-        "caption_318",
-        "content"
-      ],
-      "target": null,
-      "range": [
-        39,
-        43
-      ]
-    },
-    "annotation_320": {
-      "type": "link",
-      "id": "annotation_320",
-      "path": [
-        "caption_318",
-        "content"
-      ],
-      "target": null,
-      "range": [
-        44,
-        85
-      ],
-      "url": "10.7554/eLife.00005.020"
+    "caption_288": {
+      "type": "caption",
+      "id": "caption_288",
+      "content": "Inter- and intramolecular crosslinking."
     },
     "sub-article": {
       "type": "heading",
