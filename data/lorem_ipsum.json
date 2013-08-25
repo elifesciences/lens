@@ -9,7 +9,7 @@
         "figures",
         "citations"
       ],
-      "title": "Introduction to Lens",
+      "title": "Lorem Ipsum - A Lens example article that has all available content types",
       "authors": ["person_1", "person_2"],
       "guid": "lorem_ipsum",
       "creator": "",
@@ -39,7 +39,8 @@
         "video_1",
         "image_fig2",
         "image_fig3",
-        "table_1"
+        "table_1",
+        "supplement_1"
       ]
     },
 
@@ -190,6 +191,20 @@
       "caption": "paragraph_video_1",
       "doi": "http://dx.doi.org/10.7554/Fake.doi.003",
       "poster": "http://cdn.elifesciences.org/video/eLifeLensIntro2.png"
+    },
+
+    "supplement_1": {
+      "id": "supplement_1",
+      "type": "supplement",
+      "label": "Supplementary file 1.",
+      "doi": "http://dx.doi.org/10.7554/eLife.00868.023",
+      "caption": "paragraph_caption_supplement_1"
+    },
+
+    "paragraph_caption_supplement_1": {
+      "id": "paragraph_caption_supplement_1",
+      "type": "paragraph",
+      "content": "(A) Strains used in this study. (B) Primers used in this study. (C) Plasmids used in this study and their mode of construction."
     },
 
     "paragraph_video_1": {
