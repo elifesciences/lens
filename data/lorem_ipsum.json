@@ -9,9 +9,10 @@
         "figures",
         "citations"
       ],
+      "title": "Introduction to Lens",
+      "authors": ["person_1", "person_2"],
       "guid": "lorem_ipsum",
       "creator": "",
-      "title": "",
       "abstract": "",
       "keywords": []
     },
@@ -20,6 +21,7 @@
       "type": "view",
       "id": "content",
       "nodes": [
+        "cover_1",
         "paragraph_1",
         "heading_1",
         "codeblock_2",
@@ -45,6 +47,23 @@
       "type": "view",
       "id": "citations",
       "nodes": ["citation_1", "article_nature08160"]
+    },
+
+    "cover_1": {
+      "id": "cover_1",
+      "type": "cover"
+    },
+
+    "person_1": {
+      "id": "person_1",
+      "type": "person",
+      "name": "John Foo"
+    },
+
+    "person_2": {
+      "id": "person_1",
+      "type": "person",
+      "name": "Jane Doe"
     },
 
     "paragraph_1": {
