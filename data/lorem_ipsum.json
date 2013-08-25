@@ -40,7 +40,8 @@
         "image_fig2",
         "image_fig3",
         "table_1",
-        "supplement_1"
+        "supplement_1",
+        "supplement_2"
       ]
     },
 
@@ -203,6 +204,31 @@
       "doi": "http://dx.doi.org/10.7554/eLife.00868.023",
       "caption": "paragraph_caption_supplement_1"
     },
+
+    "supplement_2": {
+      "id": "supplement_2",
+      "type": "supplement",
+      "label": "Supplemental Materials",
+      "files": ["file_1", "file_2"]
+    }, 
+
+    "file_1": {
+        "id": "file_1",
+        "type": "file",
+        "name": "PDF",
+        "size": "3",
+        "extension": ".pdf",
+        "url": "http://www.landesbioscience.com/bla.pdf"
+    },
+    
+    "file_2": {
+        "id": "file_2",
+        "type": "file",
+        "name": "Excel",
+        "size": "3",
+        "extension": ".xls",
+        "url": "http://www.landesbioscience.com/bla.xls"
+    }, 
 
     "paragraph_caption_supplement_1": {
       "id": "paragraph_caption_supplement_1",
