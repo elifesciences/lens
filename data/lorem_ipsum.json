@@ -201,9 +201,15 @@
       "id": "supplement_1",
       "type": "supplement",
       "label": "Supplementary file 1.",
-      "doi": "http://dx.doi.org/10.7554/eLife.00868.023",
-      "caption": "paragraph_caption_supplement_1"
+      "caption": "paragraph_caption_supplement_1",
+      "files": ["file_0"]
     },
+
+    "file_0": {
+        "id": "file_0",
+        "type": "file",
+        "doi": "http://dx.doi.org/10.7554/eLife.00868.023"
+    },       
 
     "supplement_2": {
       "id": "supplement_2",
@@ -215,19 +221,17 @@
     "file_1": {
         "id": "file_1",
         "type": "file",
+        "description": "(.pdf, 2M)",
         "name": "PDF",
-        "size": "3",
-        "extension": ".pdf",
-        "url": "http://www.landesbioscience.com/bla.pdf"
+        "url": "http://www.landesbioscience.com/journals/virulence/2013VIRULENCE0013R-Sup.pdf"
     },
     
     "file_2": {
         "id": "file_2",
         "type": "file",
+        "description": "(.xlsx, 201K)",
         "name": "Excel",
-        "size": "3",
-        "extension": ".xls",
-        "url": "http://www.landesbioscience.com/bla.xls"
+        "url": "http://www.landesbioscience.com/journals/virulence/Table S1.xlsx"
     }, 
 
     "paragraph_caption_supplement_1": {
