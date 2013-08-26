@@ -57,7 +57,7 @@
       "title": "The Anatomy of a Lens Article",
       "authors": ["Michael Aufreiter", "Ivan Grubisic", "Rebecca Close"],
       "type": "record",
-      "url": "/data/lorem_ipsum.json"
+      "url": "/data/lens_article.json"
     },
 
     // eLife Articles
