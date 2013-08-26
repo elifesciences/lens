@@ -23,7 +23,7 @@
       "id": "elife",
       "name": "eLife",
       "type": "collection",
-      "records": ["00003", "00005"]
+      "records": ["00003", "00005", "00311", "00049"]
     },
 
     "lb": {
@@ -79,6 +79,24 @@
       "type": "record",
       // "url": "http://localhost:4000/data/00005.json"
       "url": "/convert/https%3A%2F%2Fs3.amazonaws.com%2Felife-cdn%2Felife-articles%2F00005%2Felife00005.xml"
+    },
+
+    "00311": {
+      "id": "00311",
+      "title": "Modelling dynamics in protein crystal structures by ensemble refinement",
+      "authors": ["B Tom Burnley", "Pavel V Afonine", "Paul D Adams", "Piet Gros"],
+      "type": "record",
+      // "url": "http://localhost:4000/data/00005.json"
+      "url": "/convert/https%3A%2F%2Fs3.amazonaws.com%2Felife-cdn%2Felife-articles%2F00311%2Felife00311.xml"
+    },
+
+    "00049": {
+      "id": "00049",
+      "title": "Sodium taurocholate cotransporting polypeptide is a functional receptor for human hepatitis B and D virus",
+      "authors": ["Some", "Authors"],
+      "type": "record",
+      // "url": "http://localhost:4000/data/00005.json"
+      "url": "/convert/https%3A%2F%2Fs3.amazonaws.com%2Felife-cdn%2Felife-articles%2F00049%2Felife00049.xml"
     },
 
     // Landes Bioscience Articles
