@@ -41,7 +41,7 @@
       "title": "The Lens Manual - A developers guide for Lens application development",
       "authors": ["Michael Aufreiter", "Ivan Grubisic", "Rebecca Close"],
       "type": "record",
-      "url": "http://localhost:4000/data/manual.json"
+      "url": "/data/manual.json"
     },
 
     "lorem_ipsum": {
@@ -49,7 +49,7 @@
       "title": "Lorem Ipsum - A Lens example article that has all available content types",
       "authors": ["Michael Aufreiter", "Ivan Grubisic", "Rebecca Close"],
       "type": "record",
-      "url": "http://localhost:4000/data/lorem_ipsum.json"
+      "url": "/data/lorem_ipsum.json"
     },
 
     "lens_article": {
@@ -57,7 +57,7 @@
       "title": "The Anatomy of a Lens Article",
       "authors": ["Michael Aufreiter", "Ivan Grubisic", "Rebecca Close"],
       "type": "record",
-      "url": "http://localhost:4000/data/lorem_ipsum.json"
+      "url": "/data/lorem_ipsum.json"
     },
 
     // eLife Articles
@@ -69,7 +69,7 @@
       "authors": ["Preetha Anand", "Silvia Cermelli", "Zhihuan LiAdam Kassan"],
       "type": "record",
       // "url": "http://localhost:4000/data/00003.json"
-      "url": "http://localhost:4000/convert/https%3A%2F%2Fs3.amazonaws.com%2Felife-cdn%2Felife-articles%2F00003%2Felife00003.xml"
+      "url": "/convert/https%3A%2F%2Fs3.amazonaws.com%2Felife-cdn%2Felife-articles%2F00003%2Felife00003.xml"
     },
 
     "00005": {
@@ -78,7 +78,7 @@
       "authors": ["Claudio Ciferri", "Gabriel C Lander", "Alessio Maiolica"],
       "type": "record",
       // "url": "http://localhost:4000/data/00005.json"
-      "url": "http://localhost:4000/convert/https%3A%2F%2Fs3.amazonaws.com%2Felife-cdn%2Felife-articles%2F00005%2Felife00005.xml"
+      "url": "/convert/https%3A%2F%2Fs3.amazonaws.com%2Felife-cdn%2Felife-articles%2F00005%2Felife00005.xml"
     },
 
     // Landes Bioscience Articles
@@ -88,7 +88,7 @@
       "title": "In vivo functional studies of tumor-specific retrogene NanogP8 in transgenic animals",
       "authors": ["Mark A Badeaux", "Collene R Jeter", "Shuai Gong", "Bigang Liu"],
       "type": "record",
-      "url": "http://localhost:4000/convert/https%3A%2F%2Fwww.landesbioscience.com%2Farticle%2F25402%2Ffull_text_xml",
+      "url": "/convert/https%3A%2F%2Fwww.landesbioscience.com%2Farticle%2F25402%2Ffull_text_xml",
     }
   }
 }
