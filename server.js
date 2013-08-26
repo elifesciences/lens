@@ -7,6 +7,7 @@ var Converter = require("substance-converter");
 var Article = require("lens-article");
 
 var Refract = require("refract");
+var _ = require("underscore");
 
 
 
@@ -88,6 +89,8 @@ var converter = new Converter.Server(app);
 converter.serve();
 
 
+
+
 // Serves auto-generated doc, that describes the Lens.Article specification
 // --------
 //
@@ -95,6 +98,49 @@ converter.serve();
 app.get('/data/lens_article.json', function(req, res) {
   res.json(Article.describe());
 });
+
+
+// Adds some stuff like cover nodes to the converted docs based on some internal assumptions
+// --------
+
+function enhanceDoc(doc) {
+  var docNode = doc.nodes.document;
+  docNode.title = docNode.guid;
+  docNode.authors = ["michael", "ivan", "rebecca"];
+
+  if (docNode.title === "manual") {
+    docNode.title = "The Lens Manual - A developers guide for Lens application development";
+  } else if (docNode.title === "lens_article") {
+    docNode.title = "The anatomy of a Lens Article";
+  }
+
+  _.extend(doc.nodes, {
+    "cover": {
+      "id": "cover",
+      "type": "cover"
+    },
+    "michael": {
+      "id": "michael",
+      "type": "person",
+      "name": "Michael Aufreiter"
+    },
+    "ivan": {
+      "id": "ivan",
+      "type": "person",
+      "name": "Ivan Grubisic"
+    },
+    "rebecca": {
+      "id": "rebecca",
+      "type": "person",
+      "name": "Rebecca Close"
+    }
+  });
+
+  // Insert cover node
+  doc.nodes["content"].nodes.splice(0, 0, "cover");
+  // var arr = [1].concat(arr);
+  // splice(0,0,"x")
+};
 
 
 // Serve a doc from the docs folder (powered by on the fly markdown->substance conversion)
@@ -113,6 +159,7 @@ app.get('/data/:doc.json', function(req, res) {
       output.nodes.document.guid = docId;
 
       if (err) return res.send(500, err);
+      enhanceDoc(output);
       res.send(output);
     });
   } catch (err) {
