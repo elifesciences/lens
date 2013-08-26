@@ -2,14 +2,16 @@
 
 var _ = require("underscore");
 var Session = require("../models/session");
-var LibraryController = require("./library_controller");
-var ReaderController = require("lens-reader").Controller;
 var util = require("substance-util");
 var Controller = require("substance-application").Controller;
 var LensView = require("../views/lens");
 var Test = require("substance-test");
 
 var Library = require("substance-library");
+var LibraryController = Library.Controller;
+var ReaderController = require("lens-reader").Controller;
+
+
 
 // Lens.Controller
 // -----------------
