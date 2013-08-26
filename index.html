@@ -58,19 +58,10 @@
       <div class="loading" style="display: none;"></div>
 
       <div id="main">
-
+        
       </div>
     </script>
 
-
-    <!-- Library -->
-    <script type="text/x-ejs-template" name="library">
-      <div class="navigation">
-
-      </div>
-      <!-- this is where the doc list gets rendered -->
-      <div class="collection"></div>
-    </script>
 
     <script src="lib/underscore.js"></script>
     <script src="lib/jquery-2.0.3.min.js"></script>
@@ -98,6 +89,7 @@
       var app = new Lens({
         env: 'development',
         library_url: ['http://cdn.elifesciences.org/documents/elife', '.js'],
+
         // alternatively
         // library_url: 'http://plos-converter.herokuapp.com'
       });

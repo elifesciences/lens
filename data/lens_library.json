@@ -2,15 +2,40 @@
   "id": "lens_library",
   "schema": ["substance-library", "0.1.0"],
   "nodes": {
+
     "library": {
       "type": "library",
-      "collections": ["docs"]
+      "name": "Lens development resources",
+      "collections": ["lens", "elife", "lb"]
     },
-    "docs": {
-      "id": "docs",
+
+    // Collections
+    // --------
+
+    "lens": {
+      "id": "lens",
+      "name": "Lens Documentation",
       "type": "collection",
-      "records": ["manual", "lorem_ipsum", "lens_article", "00003", "00005"]
+      "records": ["manual", "lorem_ipsum", "lens_article"]
     },
+
+    "elife": {
+      "id": "elife",
+      "name": "eLife",
+      "type": "collection",
+      "records": ["00003", "00005"]
+    },
+
+    "lb": {
+      "id": "lb",
+      "name": "Landes Biosciences",
+      "type": "collection",
+      "records": ["00003", "00005"]
+    },
+
+    // Lens Articles
+    // --------
+
     "manual": {
       "id": "manual",
       "title": "The Lens Manual",
@@ -29,6 +54,10 @@
       "type": "record",
       "url": "http://localhost:4000/data/lorem_ipsum.json"
     },
+
+    // eLife Articles
+    // --------
+
     "00003": {
       "id": "00003",
       "title": "A novel role for lipid droplets in the organismal antibacterial response",

@@ -2,9 +2,10 @@
 // --------
 
 [
-  {"route": ":document/:context/:node/:resource", "name": "resource",       "command": "openReader"},
-  {"route": ":document/:context/:node",           "name": "node",           "command": "openReader"},
-  {"route": ":document/:context",                 "name": "resource",       "command": "openReader"},
-  {"route": ":document",                          "name": "document",       "command": "openReader"},
-  {"route": "",                                   "name": "library",        "command": "openLibrary"}
+  {"route": ":collection/:document/:context/:node/:resource", "name": "document-resource",       "command": "openReader"},
+  {"route": ":collection/:document/:context/:node",           "name": "document-node",           "command": "openReader"},
+  {"route": ":collection/:document/:context",                 "name": "document-context",        "command": "openReader"},
+  {"route": ":collection/:document",                          "name": "document",                "command": "openReader"},
+  {"route": ":collection",                                    "name": "library",                 "command": "openLibrary"},
+  {"route": "",                                               "name": "library",                 "command": "openLibrary"}
 ]

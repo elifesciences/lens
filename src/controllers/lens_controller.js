@@ -22,6 +22,10 @@ var LensController = function(env) {
   Controller.call(this);
   this.session = new Session(env);
 
+  this.__library = new Library({
+    seed: require("../../data/lens_library.json")
+  });
+
   // Main controls
   this.on('open:reader', this.openReader);
   this.on('open:library', this.openLibrary);
@@ -43,17 +47,17 @@ LensController.Prototype = function() {
   // Transitions
   // ===================================
 
-  this.openReader = function(documentId, context, node, resource) {
+  this.openReader = function(collectionId, documentId, context, node, resource) {
 
     // The article view state
     var state = {
       context: context || "toc",
       node: node,
-      resource: resource
+      resource: resource,
+      collection: collectionId
     };
 
     var that = this;
-
     this.session.loadDocument(documentId, function(err, doc) {
       if (err) throw "Loading failed";
       that.reader = new ReaderController(doc, state);
@@ -61,14 +65,16 @@ LensController.Prototype = function() {
     });
   };
 
-  this.openLibrary = function() {
+  this.openLibrary = function(collectionId) {
+    // TODO: Load library from backend
+    // GET /libraries/lens.json
 
-    var library = new Library({
-      seed: require("../../data/lens_library.json")
-    });
+    // Defaults to lens collection
+    var state = {
+      collection: collectionId || "lens"
+    };
 
-    this.library = new LibraryController(library);
-
+    this.library = new LibraryController(this.__library, state);
     this.updateState('library');
   };
 
