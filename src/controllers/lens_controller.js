@@ -48,6 +48,7 @@ LensController.Prototype = function() {
   // ===================================
 
   this.openReader = function(collectionId, documentId, context, node, resource) {
+    var that = this;
 
     // The article view state
     var state = {
@@ -57,9 +58,8 @@ LensController.Prototype = function() {
       collection: collectionId
     };
 
-    var that = this;
-    this.session.loadDocument(documentId, function(err, doc) {
-      if (err) throw "Loading failed";
+    this.__library.loadDocument(documentId, function(err, doc) {
+      if (err) throw err;
       that.reader = new ReaderController(doc, state);
       that.updateState('reader');
     });

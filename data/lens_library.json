@@ -30,7 +30,7 @@
       "id": "lb",
       "name": "Landes Biosciences",
       "type": "collection",
-      "records": ["00003", "00005"]
+      "records": ["lb25402"]
     },
 
     // Lens Articles
@@ -71,6 +71,15 @@
       "type": "record",
       // "url": "http://localhost:4000/data/00005.json"
       "url": "http://localhost:4000/convert/https%3A%2F%2Fs3.amazonaws.com%2Felife-cdn%2Felife-articles%2F00005%2Felife00005.xml"
+    },
+
+    // Landes Bioscience Articles
+
+    "lb25402": {
+      "id": "lb25402",
+      "title": "In vivo functional studies of tumor-specific retrogene NanogP8 in transgenic animals",
+      "type": "record",
+      "url": "http://localhost:4000/convert/https%3A%2F%2Fwww.landesbioscience.com%2Farticle%2F25402%2Ffull_text_xml",
     }
   }
 }
