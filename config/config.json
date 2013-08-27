@@ -1,4 +1,4 @@
 {
   "env": "development",
-  "library_url": "http://localhost:1441/index.json"
+  "library_url": "/data/lens_library.json"
 }
