@@ -34,7 +34,6 @@
     <link href="lib/substance/lens-article/nodes/table/table.css" media="screen" rel="stylesheet" type="text/css" />
     <link href="lib/substance/lens-article/nodes/video/video.css" media="screen" rel="stylesheet" type="text/css" />
 
-
     <!-- Lens.Outline styles -->
     <link href="lib/substance/lens-outline/outline.css" media="screen" rel="stylesheet" type="text/css" />
 
@@ -86,10 +85,7 @@
       // 
       // Injects itself into body
 
-      var app = new Lens({
-        env: 'development',
-        library_url: 'http://localhost:4000/data/lens_library.json'
-      });
+      var app = new Lens();
 
       $(function() {
         app.start();

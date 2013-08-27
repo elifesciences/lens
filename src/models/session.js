@@ -15,30 +15,40 @@ var Session = function(env) {
   this.env = env;
 };
 
-window.handleDoc = null;
+// window.handleDoc = null;
 
 Session.Prototype = function() {
 
   // Load document from data folder
   // --------
 
-  this.loadDocument = function(name, cb) {
-    if (name.match(/http/)) {
-      // Perform on the 
-      $.getJSON("convert/"+encodeURIComponent(name), function(data) {
-        var doc = Article.fromSnapshot(data, {
-          chronicle: Chronicle.create()
-        });
-        cb(null, doc);
-      }).error(cb);
-    } else {
-      $.getJSON("data/"+name+".json", function(data) {
-        var doc = Article.fromSnapshot(data, {
-          chronicle: Chronicle.create()
-        });
-        cb(null, doc);
-      }).error(cb);
-    }
+  // this.loadDocument = function(name, cb) {
+  //   if (name.match(/http/)) {
+  //     // Perform on the 
+  //     $.getJSON("convert/"+encodeURIComponent(name), function(data) {
+  //       var doc = Article.fromSnapshot(data, {
+  //         chronicle: Chronicle.create()
+  //       });
+  //       cb(null, doc);
+  //     }).error(cb);
+  //   } else {
+  //     $.getJSON("data/"+name+".json", function(data) {
+  //       var doc = Article.fromSnapshot(data, {
+  //         chronicle: Chronicle.create()
+  //       });
+  //       cb(null, doc);
+  //     }).error(cb);
+  //   }
+  // };
+
+
+  // Load library from remote
+  // --------
+
+  this.loadLibrary = function(url, cb) {
+    $.getJSON(url, function(data) {
+      cb(null, data);
+    }).error(cb);
   };
 };
 

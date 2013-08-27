@@ -12,19 +12,16 @@ var LibraryController = Library.Controller;
 var ReaderController = require("lens-reader").Controller;
 
 
-
 // Lens.Controller
 // -----------------
 //
 // Main Application Controller
 
-var LensController = function(env) {
+var LensController = function(config) {
   Controller.call(this);
-  this.session = new Session(env);
 
-  this.__library = new Library({
-    seed: require("../../data/lens_library.json")
-  });
+  this.config = config;
+  this.session = new Session(config.env);
 
   // Main controls
   this.on('open:reader', this.openReader);
@@ -44,38 +41,64 @@ LensController.Prototype = function() {
     return view;
   };
 
+  // Loaders
+  // --------
+
+  this.loadLibrary = function(url, cb) {
+    var that = this;
+    if (this.__library) return cb(null);
+
+    $.getJSON(url, function(data) {
+      that.__library = new Library({
+        seed: data
+      });
+      cb(null);
+    }).error(cb);
+  };
+
+
   // Transitions
   // ===================================
 
   this.openReader = function(collectionId, documentId, context, node, resource) {
     var that = this;
 
-    // The article view state
-    var state = {
-      context: context || "toc",
-      node: node,
-      resource: resource,
-      collection: collectionId
-    };
+    function open() {
+      // The article view state
+      var state = {
+        context: context || "toc",
+        node: node,
+        resource: resource,
+        collection: collectionId
+      };
 
-    this.__library.loadDocument(documentId, function(err, doc) {
-      if (err) throw err;
-      that.reader = new ReaderController(doc, state);
-      that.updateState('reader');
-    });
+      that.__library.loadDocument(documentId, function(err, doc) {
+        if (err) throw err;
+        that.reader = new ReaderController(doc, state);
+        that.updateState('reader');
+      });
+    }
+
+    // Ensure the library is loaded
+    this.loadLibrary(this.config.library_url, open);
+
   };
 
   this.openLibrary = function(collectionId) {
-    // TODO: Load library from backend
-    // GET /libraries/lens.json
+    var that = this;
 
-    // Defaults to lens collection
-    var state = {
-      collection: collectionId || "lens"
-    };
+    function open() {
+      // Defaults to lens collection
+      var state = {
+        collection: collectionId || that.__library.collections[0].id // "lens"
+      };
 
-    this.library = new LibraryController(this.__library, state);
-    this.updateState('library');
+      that.library = new LibraryController(that.__library, state);
+      that.updateState('library');      
+    }
+
+    // Ensure the library is loaded
+    this.loadLibrary(this.config.library_url, open);
   };
 
   // Test control center

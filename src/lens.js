@@ -8,16 +8,17 @@ var Keyboard = require("substance-commander").Keyboard;
 var util = require("substance-util");
 var html = util.html;
 var Backbone = require("../lib/backbone");
-
+var DEFAULT_CONFIG = require("../config/config.json");
 
 // The Lens Application
 // ========
 //
 
 var Lens = function(config) {
+  config = config || DEFAULT_CONFIG;
   Application.call(this, config);
 
-  this.controller = new LensController();
+  this.controller = new LensController(config);
 };
 
 
