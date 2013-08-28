@@ -6,10 +6,7 @@ var CommonJSServer = require("substance-application/commonjs");
 var Converter = require("substance-converter");
 var Article = require("lens-article");
 
-var Refract = require("refract");
 var _ = require("underscore");
-
-
 
 
 // Useful general purpose helpers
@@ -24,7 +21,6 @@ function getFile(url, cb) {
     cb(null, body);
   });
 };
-
 
 // var Converter = require("substance-converter");
 
@@ -166,21 +162,6 @@ app.get('/data/:doc.json', function(req, res) {
     inputData = fs.readFileSync(__dirname + "/data/"+docId+".json", 'utf8');
     res.send(inputData);
   }
-});
-
-
-
-// Serve a doc from the docs folder (powered by on the fly markdown->substance conversion)
-// --------
-
-app.get('/convert/:url', function(req, res) {
-  var url = req.params.url;
-
-  var converter = new Refract.Converter();
-  converter.convert({url: url}, function(err, doc) {
-    if (err) return res.send(500, err);
-    res.json(doc);
-  });
 });
 
 

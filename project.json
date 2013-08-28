@@ -61,11 +61,6 @@
       "branch": "0.1.x"
     },
     {
-      "repository": "https://github.com/elifesciences/refract.git",
-      "folder": "node_modules/refract",
-      "branch": "0.2.x"
-    },
-    {
       "repository": "https://github.com/substance/converter.git",
       "folder": "node_modules/substance-converter",
       "branch": "recursive_descent"

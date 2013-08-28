@@ -6,11 +6,9 @@ var util = require("substance-util");
 var Controller = require("substance-application").Controller;
 var LensView = require("../views/lens");
 var Test = require("substance-test");
-
 var Library = require("substance-library");
 var LibraryController = Library.Controller;
 var ReaderController = require("lens-reader").Controller;
-
 
 // Lens.Controller
 // -----------------
@@ -30,6 +28,7 @@ var LensController = function(config) {
   this.on('open:test_center', this.openTestCenter);
 };
 
+
 LensController.Prototype = function() {
 
   // Initial view creation
@@ -40,6 +39,7 @@ LensController.Prototype = function() {
     this.view = view;
     return view;
   };
+
 
   // Loaders
   // --------
@@ -56,11 +56,10 @@ LensController.Prototype = function() {
     }).error(cb);
   };
 
-
   // Transitions
   // ===================================
 
-  this.openReader = function(collectionId, documentId, context, node, resource) {
+  this.openReader = function(collectionId, documentId, context, node, resource, fullscreen) {
     var that = this;
 
     function open() {
@@ -69,7 +68,8 @@ LensController.Prototype = function() {
         context: context || "toc",
         node: node,
         resource: resource,
-        collection: collectionId
+        fullscreen: !!fullscreen,
+        collection: collectionId // TODO: get rid of the library dependency here
       };
 
       that.__library.loadDocument(documentId, function(err, doc) {
