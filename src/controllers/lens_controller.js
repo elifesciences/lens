@@ -1,7 +1,6 @@
 "use strict";
 
 var _ = require("underscore");
-var Session = require("../models/session");
 var util = require("substance-util");
 var Controller = require("substance-application").Controller;
 var LensView = require("../views/lens");
@@ -19,7 +18,6 @@ var LensController = function(config) {
   Controller.call(this);
 
   this.config = config;
-  this.session = new Session(config.env);
 
   // Main controls
   this.on('open:reader', this.openReader);
