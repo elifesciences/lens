@@ -39,29 +39,58 @@
         "paragraph_183",
         "paragraph_190",
         "paragraph_198",
-        "paragraph_217",
-        "paragraph_219",
-        "paragraph_224",
-        "paragraph_233",
+        "paragraph_216",
+        "paragraph_221",
+        "paragraph_234",
+        "paragraph_236",
+        "heading_s3",
+        "paragraph_237",
+        "paragraph_239",
+        "paragraph_247",
+        "paragraph_250",
+        "paragraph_256",
+        "paragraph_258",
+        "paragraph_263",
+        "paragraph_272",
         "heading_s4",
         "heading_s4-1",
-        "paragraph_234",
+        "paragraph_273",
         "heading_s4-2",
-        "paragraph_238",
-        "paragraph_239",
-        "paragraph_241",
-        "paragraph_243",
+        "paragraph_277",
+        "paragraph_278",
+        "paragraph_280",
+        "paragraph_282",
         "heading_s4-3",
-        "paragraph_246",
+        "paragraph_285",
         "heading_s4-4",
-        "paragraph_250",
-        "paragraph_253",
+        "paragraph_289",
+        "paragraph_292",
         "heading_s4-5",
-        "paragraph_259",
+        "paragraph_298",
         "heading_s4-6",
-        "paragraph_262",
-        "paragraph_267",
-        "sub-article"
+        "paragraph_301",
+        "paragraph_306",
+        "sub-article",
+        "heading_315",
+        "paragraph_316",
+        "paragraph_318",
+        "paragraph_322",
+        "paragraph_323",
+        "paragraph_324",
+        "paragraph_325",
+        "paragraph_326",
+        "paragraph_327",
+        "paragraph_328",
+        "sub-article",
+        "heading_329",
+        "paragraph_330",
+        "paragraph_332",
+        "paragraph_333",
+        "paragraph_335",
+        "paragraph_338",
+        "paragraph_340",
+        "paragraph_341",
+        "paragraph_343"
       ]
     },
     "figures": {
@@ -91,7 +120,54 @@
     "citations": {
       "type": "view",
       "id": "citations",
-      "nodes": []
+      "nodes": [
+        "article_citation_bib1",
+        "article_citation_bib2",
+        "article_citation_bib3",
+        "article_citation_bib4",
+        "article_citation_bib5",
+        "article_citation_bib6",
+        "article_citation_bib7",
+        "article_citation_bib8",
+        "article_citation_bib9",
+        "article_citation_bib10",
+        "article_citation_bib11",
+        "article_citation_bib12",
+        "article_citation_bib13",
+        "article_citation_bib14",
+        "article_citation_bib15",
+        "article_citation_bib16",
+        "article_citation_bib17",
+        "article_citation_bib18",
+        "article_citation_bib19",
+        "article_citation_bib20",
+        "article_citation_bib21",
+        "article_citation_bib22",
+        "article_citation_bib23",
+        "article_citation_bib24",
+        "article_citation_bib25",
+        "article_citation_bib26",
+        "article_citation_bib27",
+        "article_citation_bib28",
+        "article_citation_bib29",
+        "article_citation_bib30",
+        "article_citation_bib31",
+        "article_citation_bib32",
+        "article_citation_bib33",
+        "article_citation_bib34",
+        "article_citation_bib35",
+        "article_citation_bib36",
+        "article_citation_bib37",
+        "article_citation_bib38",
+        "article_citation_bib39",
+        "article_citation_bib40",
+        "article_citation_bib41",
+        "article_citation_bib42",
+        "article_citation_bib43",
+        "article_citation_bib44",
+        "article_citation_bib45",
+        "article_citation_bib46"
+      ]
     },
     "document": {
       "type": "document",
@@ -115,7 +191,6 @@
       "accepted_on": "2012-08-13",
       "published_on": "2012-10-30",
       "journal": "eLife",
-      "article_type": "",
       "keywords": [
         "cryo-EM",
         "Gene silencing",
@@ -129,10 +204,9 @@
       "subjects": [
         "Biophysics and structural biology"
       ],
-      "pdf_link": "",
-      "xml_link": "",
-      "json_link": "",
-      "doi": ""
+      "xml_link": "https://s3.amazonaws.com/elife-cdn/elife-articles/00005/elife00005.xml",
+      "json_link": "https://s3.amazonaws.com/elife-cdn/elife-articles/00005/00005.json",
+      "doi": "http://dx.doi.org/10.7554/eLife.00005"
     },
     "person_author_1313": {
       "type": "person",
@@ -141,7 +215,6 @@
       "last-name": "Ciferri",
       "role": "author",
       "affiliations": [],
-      "image": "",
       "contribution": " Conception and design, Acquisition of data, Analysis and interpretation of data, Drafting or revising the article",
       "email": "email:cor2",
       "funding": []
@@ -153,9 +226,7 @@
       "last-name": "Lander",
       "role": "author",
       "affiliations": [],
-      "image": "",
       "contribution": " Acquisition of data, Analysis and interpretation of data, Drafting or revising the article",
-      "email": "",
       "funding": [
         "funding_par_4"
       ]
@@ -167,9 +238,7 @@
       "last-name": "Maiolica",
       "role": "author",
       "affiliations": [],
-      "image": "",
       "contribution": " Conception and design, Acquisition of data, Analysis and interpretation of data, Drafting or revising the article",
-      "email": "",
       "funding": [
         "funding_par_6"
       ]
@@ -181,9 +250,7 @@
       "last-name": "Herzog",
       "role": "author",
       "affiliations": [],
-      "image": "",
       "contribution": " Acquisition of data, Analysis and interpretation of data, Drafting or revising the article",
-      "email": "",
       "funding": [
         "funding_par_2",
         "funding_par_5"
@@ -196,9 +263,7 @@
       "last-name": "Aebersold",
       "role": "author",
       "affiliations": [],
-      "image": "",
       "contribution": " Conception and design, Analysis and interpretation of data, Drafting or revising the article",
-      "email": "",
       "funding": [
         "funding_par_3"
       ]
@@ -210,7 +275,6 @@
       "last-name": "Nogales",
       "role": "author",
       "affiliations": [],
-      "image": "",
       "contribution": " Conception and design, Analysis and interpretation of data, Drafting or revising the article",
       "email": "email:cor1",
       "funding": [
@@ -223,45 +287,35 @@
       "id": "institution_aff1",
       "name": "University of California",
       "city": "Berkeley",
-      "country": "United States",
-      "email": "",
-      "image": ""
+      "country": "United States"
     },
     "institution_aff2": {
       "type": "institution",
       "id": "institution_aff2",
       "name": "Lawrence Berkeley National Laboratory",
       "city": "Berkeley",
-      "country": "United States",
-      "email": "",
-      "image": ""
+      "country": "United States"
     },
     "institution_aff3": {
       "type": "institution",
       "id": "institution_aff3",
       "name": "ETH Zurich",
       "city": "Zurich",
-      "country": "Switzerland",
-      "email": "",
-      "image": ""
+      "country": "Switzerland"
     },
     "institution_aff4": {
       "type": "institution",
       "id": "institution_aff4",
       "name": "University of Zurich",
       "city": "Zurich",
-      "country": "Switzerland",
-      "email": "",
-      "image": ""
+      "country": "Switzerland"
     },
     "institution_aff5": {
       "type": "institution",
       "id": "institution_aff5",
       "name": "Howard Hughes Medical Institute, UC Berkeley",
       "city": "Berkeley",
-      "country": "United States",
-      "email": "",
-      "image": ""
+      "country": "United States"
     },
     "person_1": {
       "type": "person",
@@ -270,9 +324,6 @@
       "last-name": "Struhl",
       "role": "editor",
       "affiliations": [],
-      "image": "",
-      "contribution": "",
-      "email": "",
       "funding": []
     },
     "info:review": {
@@ -287,13 +338,11 @@
     "email_cor1": {
       "type": "email",
       "id": "email_cor1",
-      "node": "",
       "email": "enogales@lbl.gov"
     },
     "email_cor2": {
       "type": "email",
       "id": "email_cor2",
-      "node": "",
       "email": "claudio.ciferri@novartis.com"
     },
     "info:copyright": {
@@ -308,7 +357,7 @@
     "paragraph_2": {
       "type": "paragraph",
       "id": "paragraph_2",
-      "content": "This article is distributed under the terms of the Creative Commons Attribution License, which permits unrestricted use and redistribution provided that the original author and source are credited.10.7554/eLife.00005.001"
+      "content": "This article is distributed under the terms of the Creative Commons Attribution License, which permits unrestricted use and redistribution provided that the original author and source are credited."
     },
     "annotation_3": {
       "type": "link",
@@ -339,7 +388,7 @@
     "paragraph_5": {
       "type": "paragraph",
       "id": "paragraph_5",
-      "content": "DOI: http://dx.doi.org/10.7554/eLife.00005.00110.7554/eLife.00005.002"
+      "content": "DOI: http://dx.doi.org/10.7554/eLife.00005.001"
     },
     "annotation_6": {
       "type": "strong",
@@ -471,7 +520,6 @@
       "type": "funding",
       "id": "funding_par_4",
       "institution": "Damon Runyon Cancer Research Foundation Fellowship",
-      "accession": "",
       "person": "person_author_1314",
       "given-names": "Gabriel C",
       "last-name": "Lander"
@@ -480,7 +528,6 @@
       "type": "funding",
       "id": "funding_par_5",
       "institution": "Marie Curie Fellowship",
-      "accession": "",
       "person": "person_author_1316",
       "given-names": "Franz",
       "last-name": "Herzog"
@@ -489,7 +536,6 @@
       "type": "funding",
       "id": "funding_par_6",
       "institution": "EMBO Fellowship",
-      "accession": "",
       "person": "person_author_1315",
       "given-names": "Alessio",
       "last-name": "Maiolica"
@@ -498,7 +544,6 @@
       "type": "funding",
       "id": "funding_par_7",
       "institution": "Howard Hughes Medical Institute",
-      "accession": "",
       "person": "person_author_1218",
       "given-names": "Eva",
       "last-name": "Nogales"
@@ -514,8 +559,7 @@
     },
     "paragraph_17": {
       "type": "paragraph",
-      "id": "paragraph_17",
-      "content": ""
+      "id": "paragraph_17"
     },
     "heading_s1": {
       "type": "heading",
@@ -785,19 +829,12 @@
       "type": "image",
       "id": "image_fig1",
       "label": "Figure 1.",
-      "url": "",
-      "object_id": "F1",
+      "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00005/svg/elife00005f001.svg",
       "title": "Reconstitution of the human PRC2-AEBP2 Complex.",
-      "content_type": "",
-      "large_url": "",
-      "content": "",
-      "group": [
-        "parent",
-        null
-      ],
       "doi": "http://dx.doi.org/10.7554/eLife.00005.003",
       "caption": "paragraph_image_fig1",
-      "graphic_id": "elife00005f001"
+      "graphic_id": "elife00005f001",
+      "format": "image"
     },
     "paragraph_image_fig1": {
       "type": "paragraph",
@@ -1283,19 +1320,12 @@
       "type": "image",
       "id": "image_fig2",
       "label": "Figure 2.",
-      "url": "",
-      "object_id": "F2",
+      "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00005/svg/elife00005f002.svg",
       "title": "Ab initio random conical tilt reconstruction of the human PRC2-AEBP2 complex.",
-      "content_type": "",
-      "large_url": "",
-      "content": "",
-      "group": [
-        "parent",
-        null
-      ],
       "doi": "http://dx.doi.org/10.7554/eLife.00005.004",
       "caption": "paragraph_image_fig2",
-      "graphic_id": "elife00005f002"
+      "graphic_id": "elife00005f002",
+      "format": "image"
     },
     "paragraph_image_fig2": {
       "type": "paragraph",
@@ -1345,19 +1375,12 @@
       "type": "image",
       "id": "image_fig3",
       "label": "Figure 3.",
-      "url": "",
-      "object_id": "F3",
+      "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00005/svg/elife00005f003.svg",
       "title": "Refinement and final statistics for the reconstruction of the human PRC2-AEBP2 complex.",
-      "content_type": "",
-      "large_url": "",
-      "content": "",
-      "group": [
-        "parent",
-        null
-      ],
       "doi": "http://dx.doi.org/10.7554/eLife.00005.005",
       "caption": "paragraph_image_fig3",
-      "graphic_id": "elife00005f003"
+      "graphic_id": "elife00005f003",
+      "format": "image"
     },
     "paragraph_image_fig3": {
       "type": "paragraph",
@@ -1464,19 +1487,12 @@
       "type": "image",
       "id": "image_fig4",
       "label": "Figure 4.",
-      "url": "",
-      "object_id": "F4",
+      "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00005/svg/elife00005f004.svg",
       "title": "Structure of the human PRC2-AEBP2 complex.",
-      "content_type": "",
-      "large_url": "",
-      "content": "",
-      "group": [
-        "parent",
-        null
-      ],
       "doi": "http://dx.doi.org/10.7554/eLife.00005.006",
       "caption": "paragraph_image_fig4",
-      "graphic_id": "elife00005f004"
+      "graphic_id": "elife00005f004",
+      "format": "image"
     },
     "paragraph_image_fig4": {
       "type": "paragraph",
@@ -1573,9 +1589,9 @@
         815
       ]
     },
-    "cross_reference_95": {
-      "type": "cross_reference",
-      "id": "cross_reference_95",
+    "figure_reference_95": {
+      "type": "figure_reference",
+      "id": "figure_reference_95",
       "path": [
         "paragraph_89",
         "content"
@@ -1586,9 +1602,9 @@
         837
       ]
     },
-    "cross_reference_96": {
-      "type": "cross_reference",
-      "id": "cross_reference_96",
+    "figure_reference_96": {
+      "type": "figure_reference",
+      "id": "figure_reference_96",
       "path": [
         "paragraph_89",
         "content"
@@ -1616,28 +1632,21 @@
       "type": "image",
       "id": "image_fig5",
       "label": "Figure 5.",
-      "url": "",
-      "object_id": "F5",
+      "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00005/svg/elife00005f005.svg",
       "title": "MS-coupled cross-linking analysis of the PRC2-AEBP2 complex.",
-      "content_type": "",
-      "large_url": "",
-      "content": "",
-      "group": [
-        "parent",
-        null
-      ],
       "doi": "http://dx.doi.org/10.7554/eLife.00005.007",
       "caption": "paragraph_image_fig5",
-      "graphic_id": "elife00005f005"
+      "graphic_id": "elife00005f005",
+      "format": "image"
     },
     "paragraph_image_fig5": {
       "type": "paragraph",
       "id": "paragraph_image_fig5",
       "content": "Cross-link map for PRC2 in complex with AEBP2. Observed inter-molecular cross-links (straight dashed lines) are colored in grey. Intra-molecular cross-links are color coded by the respective PRC2-AEBP2 subunit (See also Supplementary file 1)."
     },
-    "cross_reference_98": {
-      "type": "cross_reference",
-      "id": "cross_reference_98",
+    "figure_reference_98": {
+      "type": "figure_reference",
+      "id": "figure_reference_98",
       "path": [
         "paragraph_image_fig5",
         "content"
@@ -1725,7 +1734,7 @@
         "paragraph_99",
         "content"
       ],
-      "target": "image_fig5 fig6",
+      "target": "image_fig5",
       "range": [
         336,
         352
@@ -1813,19 +1822,12 @@
       "type": "image",
       "id": "image_fig6",
       "label": "Figure 6.",
-      "url": "",
-      "object_id": "F6",
+      "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00005/svg/elife00005f006.svg",
       "title": "Isotopic crosslinking within the WD40 regions of EED and RbAp48.",
-      "content_type": "",
-      "large_url": "",
-      "content": "",
-      "group": [
-        "parent",
-        null
-      ],
       "doi": "http://dx.doi.org/10.7554/eLife.00005.008",
       "caption": "paragraph_image_fig6",
-      "graphic_id": "elife00005f006"
+      "graphic_id": "elife00005f006",
+      "format": "image"
     },
     "paragraph_image_fig6": {
       "type": "paragraph",
@@ -2373,7 +2375,7 @@
         "paragraph_154",
         "content"
       ],
-      "target": "image_fig7 fig8 fig9 fig10",
+      "target": "image_fig7",
       "range": [
         630,
         642
@@ -2396,19 +2398,12 @@
       "type": "image",
       "id": "image_fig7",
       "label": "Figure 7.",
-      "url": "",
-      "object_id": "F7",
+      "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00005/svg/elife00005f007.svg",
       "title": "Localization and arrangement of the subunit EED within the PRC2 electron density map.",
-      "content_type": "",
-      "large_url": "",
-      "content": "",
-      "group": [
-        "parent",
-        null
-      ],
       "doi": "http://dx.doi.org/10.7554/eLife.00005.009",
       "caption": "paragraph_image_fig7",
-      "graphic_id": "elife00005f007"
+      "graphic_id": "elife00005f007",
+      "format": "image"
     },
     "paragraph_image_fig7": {
       "type": "paragraph",
@@ -2445,19 +2440,12 @@
       "type": "image",
       "id": "image_fig8",
       "label": "Figure 8.",
-      "url": "",
-      "object_id": "F8",
+      "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00005/svg/elife00005f008.svg",
       "title": "Localization of the subunit RbAp48 within the PRC2-AEBP2 electron density map.",
-      "content_type": "",
-      "large_url": "",
-      "content": "",
-      "group": [
-        "parent",
-        null
-      ],
       "doi": "http://dx.doi.org/10.7554/eLife.00005.010",
       "caption": "paragraph_image_fig8",
-      "graphic_id": "elife00005f008"
+      "graphic_id": "elife00005f008",
+      "format": "image"
     },
     "paragraph_image_fig8": {
       "type": "paragraph",
@@ -2507,19 +2495,12 @@
       "type": "image",
       "id": "image_fig9",
       "label": "Figure 9.",
-      "url": "",
-      "object_id": "F9",
+      "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00005/svg/elife00005f009.svg",
       "title": "Localization and arrangement of the subunit EZH2 within the PRC2-AEBP2 electron density map.",
-      "content_type": "",
-      "large_url": "",
-      "content": "",
-      "group": [
-        "parent",
-        null
-      ],
       "doi": "http://dx.doi.org/10.7554/eLife.00005.011",
       "caption": "paragraph_image_fig9",
-      "graphic_id": "elife00005f009"
+      "graphic_id": "elife00005f009",
+      "format": "image"
     },
     "paragraph_image_fig9": {
       "type": "paragraph",
@@ -2569,19 +2550,12 @@
       "type": "image",
       "id": "image_fig9s1",
       "label": "Figure 9—figure supplement 1.",
-      "url": "",
-      "object_id": "F10",
+      "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00005/svg/elife00005fs001.svg",
       "title": "Subclassification of particles from labeled complexes illustrate the flexibility of the tag.",
-      "content_type": "",
-      "large_url": "",
-      "content": "",
-      "group": [
-        "child",
-        "image_fig9"
-      ],
       "doi": "http://dx.doi.org/10.7554/eLife.00005.012",
       "caption": "paragraph_image_fig9s1",
-      "graphic_id": "elife00005fs001"
+      "graphic_id": "elife00005fs001",
+      "format": "image"
     },
     "paragraph_image_fig9s1": {
       "type": "paragraph",
@@ -3124,13 +3098,8 @@
       "type": "video",
       "id": "video_movie1",
       "label": "Movie 1.",
-      "caption": "paragraph_video_movie1",
-      "content_type": "",
-      "url_ogv": "",
-      "url_jpg": "",
-      "url_mp4": "",
-      "doi": "",
-      "title": "undefinedMovement of GFP tag."
+      "title": "Movement of GFP tag.",
+      "caption": "paragraph_video_movie1"
     },
     "paragraph_video_movie1": {
       "type": "paragraph",
@@ -3168,19 +3137,12 @@
       "type": "image",
       "id": "image_fig10",
       "label": "Figure 10.",
-      "url": "",
-      "object_id": "F11",
+      "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00005/svg/elife00005f010.svg",
       "title": "Localization and Arrangement of the subunits Suz12 and AEBP2 in the PRC2-AEBP2 electron-density map.",
-      "content_type": "",
-      "large_url": "",
-      "content": "",
-      "group": [
-        "parent",
-        null
-      ],
       "doi": "http://dx.doi.org/10.7554/eLife.00005.014",
       "caption": "paragraph_image_fig10",
-      "graphic_id": "elife00005f010"
+      "graphic_id": "elife00005f010",
+      "format": "image"
     },
     "paragraph_image_fig10": {
       "type": "paragraph",
@@ -3230,19 +3192,12 @@
       "type": "image",
       "id": "image_fig11",
       "label": "Figure 11.",
-      "url": "",
-      "object_id": "F12",
+      "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00005/svg/elife00005f011.svg",
       "title": "Overall Architecture of the PRC2 Complex.",
-      "content_type": "",
-      "large_url": "",
-      "content": "",
-      "group": [
-        "parent",
-        null
-      ],
       "doi": "http://dx.doi.org/10.7554/eLife.00005.015",
       "caption": "paragraph_image_fig11",
-      "graphic_id": "elife00005f011"
+      "graphic_id": "elife00005f011",
+      "format": "image"
     },
     "paragraph_image_fig11": {
       "type": "paragraph",
@@ -3266,13 +3221,10 @@
       "type": "video",
       "id": "video_movie2",
       "label": "Movie 2.",
+      "title": "3D reconstruction of the human PRC2-AEBP2 complex.",
       "caption": "paragraph_video_movie2",
-      "content_type": "",
       "url_ogv": "http://static.movie-usa.glencoesoftware.com/ogv/10.7554/elife00005m002.ogv",
-      "url_jpg": "",
-      "url_mp4": "",
       "doi": "http://dx.doi.org/10.7554/eLife.00005.016",
-      "title": "undefined3D reconstruction of the human PRC2-AEBP2 complex.",
       "url": "http://static.movie-usa.glencoesoftware.com/mp4/10.7554/elife00005m002.mp4",
       "poster": "http://static.movie-usa.glencoesoftware.com/jpg/10.7554/elife00005m002.jpg"
     },
@@ -3285,44 +3237,481 @@
       "type": "supplement",
       "id": "supplement_SD1_data",
       "label": "Movie 2—source code 1.",
-      "source": "",
-      "title": "",
       "caption": "paragraph_supplement_SD1_data",
-      "content": "",
       "doi": "http://dx.doi.org/10.7554/eLife.00005.017",
-      "graphic_id": "elife00005s001.wrl"
+      "files": [
+        "file_215"
+      ]
     },
     "paragraph_supplement_SD1_data": {
       "type": "paragraph",
       "id": "paragraph_supplement_SD1_data",
       "content": "Overall architecture of the PRC2 complex."
     },
+    "file_215": {
+      "type": "file",
+      "id": "file_215",
+      "name": "WRL",
+      "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00005/suppl/elife00005s001.wrl",
+      "graphic_id": "elife00005s001.wrl",
+      "extension": ".wrl"
+    },
+    "paragraph_216": {
+      "type": "paragraph",
+      "id": "paragraph_216",
+      "content": "In order to localize Suz12 we generated complexes containing tags at either the N- or C-termini of this subunit. However, neither of them resulted in clearly identifiable densities by 2D analysis, probably because these two regions are predicted to be unstructured and the tags were too mobile. While mutant complexes carrying internal GFP tags at the Zn finger and VEFS domains resulted in unstable complexes, two others were amenable for structural studies. The first was a mutant complex containing a GFP tag in the central portion of Suz12 (Suz12-GFP269) that exhibited additional density near Lobe C (Figure 10A, panel I). The second complex contained a C-terminal truncation of Suz12 after the VEFS domain, with a GFP tag at the truncated terminus (Suz12-ΔC-GFP). This complex showed extra density extending from Lobe B (Figure 10A, panel II). Together, our labeling data suggest that Suz12's N-terminal region is located at Lobe C, and terminates at Lobe B near the SET domain of Ezh2, most likely passing through Arm2 (Figure 10B)."
+    },
+    "annotation_217": {
+      "type": "subscript",
+      "id": "annotation_217",
+      "path": [
+        "paragraph_216",
+        "content"
+      ],
+      "target": null,
+      "range": [
+        554,
+        557
+      ]
+    },
+    "figure_reference_218": {
+      "type": "figure_reference",
+      "id": "figure_reference_218",
+      "path": [
+        "paragraph_216",
+        "content"
+      ],
+      "target": "image_fig10",
+      "range": [
+        606,
+        616
+      ]
+    },
+    "figure_reference_219": {
+      "type": "figure_reference",
+      "id": "figure_reference_219",
+      "path": [
+        "paragraph_216",
+        "content"
+      ],
+      "target": "image_fig10",
+      "range": [
+        827,
+        837
+      ]
+    },
+    "figure_reference_220": {
+      "type": "figure_reference",
+      "id": "figure_reference_220",
+      "path": [
+        "paragraph_216",
+        "content"
+      ],
+      "target": "image_fig10",
+      "range": [
+        1027,
+        1037
+      ]
+    },
+    "paragraph_221": {
+      "type": "paragraph",
+      "id": "paragraph_221",
+      "content": "Finally, to determine the spatial organization of the cofactor AEBP2 as it binds to PRC2, we reconstituted different complexes carrying protein tags in AEBP2 at the N- and C-termini (MBP-AEBP2; AEBP2-EGFP) and in the two loops connecting the Zn finger domains (AEBP2-GFP84 and AEBP2-GFP115). With the exception of MBP-AEBP2, which failed to form a stable complex, all the resulting complexes were suitable for EM analysis. AEBP2-GFP84 (Figure 10A, panel III) and AEBP2-GFP115 (Figure 10A, panel IV) both localized near Lobe A and Arm 1. This location, in the vicinity of EED and the first SANT domain of Ezh2 (Figure 10B), agrees with our cross-linking data (Figures 5 and 10C). 2D analysis of the AEBP2-EGFP–containing complex shows that the C-terminal region of AEBP2 is located between Lobes A and D, possibly within Arm 2 (Figure 10A, panel V). Importantly, our cross-linking data also indicate that the AEBP2 C-terminus makes extensive interactions with the central portion of Suz12 (304–416), suggesting that these two segments might co-localize to Arm 2 and into Lobe D (Figures 5 and 10C). Thus, AEBP2 runs in the opposite direction of Suz12, with its central portion located near Arm 1 and Lobe A, from where it continues along the PRC2 structure, terminating near Arm 2 and the top of Lobe D (Figure 10B). The inset in Figure 10B summarizes the proposed chain paths for AEBP2, and SUZ12."
+    },
+    "annotation_222": {
+      "type": "subscript",
+      "id": "annotation_222",
+      "path": [
+        "paragraph_221",
+        "content"
+      ],
+      "target": null,
+      "range": [
+        270,
+        272
+      ]
+    },
+    "annotation_223": {
+      "type": "subscript",
+      "id": "annotation_223",
+      "path": [
+        "paragraph_221",
+        "content"
+      ],
+      "target": null,
+      "range": [
+        286,
+        289
+      ]
+    },
+    "annotation_224": {
+      "type": "subscript",
+      "id": "annotation_224",
+      "path": [
+        "paragraph_221",
+        "content"
+      ],
+      "target": null,
+      "range": [
+        432,
+        434
+      ]
+    },
+    "figure_reference_225": {
+      "type": "figure_reference",
+      "id": "figure_reference_225",
+      "path": [
+        "paragraph_221",
+        "content"
+      ],
+      "target": "image_fig10",
+      "range": [
+        436,
+        446
+      ]
+    },
+    "annotation_226": {
+      "type": "subscript",
+      "id": "annotation_226",
+      "path": [
+        "paragraph_221",
+        "content"
+      ],
+      "target": null,
+      "range": [
+        472,
+        475
+      ]
+    },
+    "figure_reference_227": {
+      "type": "figure_reference",
+      "id": "figure_reference_227",
+      "path": [
+        "paragraph_221",
+        "content"
+      ],
+      "target": "image_fig10",
+      "range": [
+        477,
+        487
+      ]
+    },
+    "figure_reference_228": {
+      "type": "figure_reference",
+      "id": "figure_reference_228",
+      "path": [
+        "paragraph_221",
+        "content"
+      ],
+      "target": "image_fig10",
+      "range": [
+        610,
+        620
+      ]
+    },
+    "figure_reference_229": {
+      "type": "figure_reference",
+      "id": "figure_reference_229",
+      "path": [
+        "paragraph_221",
+        "content"
+      ],
+      "target": "image_fig5",
+      "range": [
+        659,
+        676
+      ]
+    },
+    "figure_reference_230": {
+      "type": "figure_reference",
+      "id": "figure_reference_230",
+      "path": [
+        "paragraph_221",
+        "content"
+      ],
+      "target": "image_fig10",
+      "range": [
+        827,
+        837
+      ]
+    },
+    "figure_reference_231": {
+      "type": "figure_reference",
+      "id": "figure_reference_231",
+      "path": [
+        "paragraph_221",
+        "content"
+      ],
+      "target": "image_fig5",
+      "range": [
+        1078,
+        1095
+      ]
+    },
+    "figure_reference_232": {
+      "type": "figure_reference",
+      "id": "figure_reference_232",
+      "path": [
+        "paragraph_221",
+        "content"
+      ],
+      "target": "image_fig10",
+      "range": [
+        1303,
+        1313
+      ]
+    },
+    "figure_reference_233": {
+      "type": "figure_reference",
+      "id": "figure_reference_233",
+      "path": [
+        "paragraph_221",
+        "content"
+      ],
+      "target": "image_fig10",
+      "range": [
+        1329,
+        1339
+      ]
+    },
+    "paragraph_234": {
+      "type": "paragraph",
+      "id": "paragraph_234",
+      "content": "Our labeling studies indicate that the PRC2-AEBP2 complex contains a single copy of each subunit, as we observed only one additional density within each of the individually tagged complexes. These data also confirm that the determined structure contains all the purified components. The proposed overall architecture for the PRC2-AEBP2 complex is summarized in Figure 11. The available crystal structures for EED and RbAp48 WD40 domains, as well as those for homologues of the SANT, SET and Zn finger domains are included."
+    },
+    "figure_reference_235": {
+      "type": "figure_reference",
+      "id": "figure_reference_235",
+      "path": [
+        "paragraph_234",
+        "content"
+      ],
+      "target": "image_fig11",
+      "range": [
+        361,
+        370
+      ]
+    },
+    "paragraph_236": {
+      "type": "paragraph",
+      "id": "paragraph_236",
+      "content": "In conclusion, using a combination of redundant and consistent data from protein biochemistry, chemical cross-linking and mass spectrometry, electron microscopy, and crystal structure docking, our study provides a robust model of the overall architecture and domain organization of the PRC2-AEBP2 complex. The unprecedented detail in our architectural map of the complex should serve as an invaluable structural framework for past and future functional studies of this essential silencing complex."
+    },
+    "heading_s3": {
+      "type": "heading",
+      "id": "heading_s3",
+      "level": 1,
+      "content": "Discussion",
+      "nodes": []
+    },
+    "paragraph_237": {
+      "type": "paragraph",
+      "id": "paragraph_237",
+      "content": "In higher eukaryotes, the Trithorax (TrxG) and Polycomb groups (PcG) of protein complexes play a fundamental role in orchestrating the transcriptional activation or silencing of the genome. These genomic ‘on’ and ‘off’ switches are primarily controlled through the trimethylation of H3K4 (H3K4-me3), H3K36 (H3K36-me2/3), and H3K27 (H3K27-me3). The PRC2 complex is an important member of the PcG family, and a large number of biochemical studies have suggested models for its role in mediating gene repression (reviewed in Margueron and Reinberg, 2011). Characterizing the spatial arrangement of the PRC2 components is a fundamental step towards understanding the molecular mechanism underlying PRC2's regulated histone methylation and its role in gene silencing. However, structural studies so far have been limited to two isolated domains out of the four PRC2 protein subunits, severely restricting our understanding of the molecular mechanism of this fundamental complex. Here, by using EM in conjunction with chemical cross-linking and mass spectrometry, we provide the complete PRC2 architecture, describing the structure of this complex bound to its co-factor AEBP2. We present a detailed map of localizations and interactions of its constitutive subunits, integrating previous structural and biochemical studies into a more comprehensive molecular model of PRC2 activity."
+    },
+    "citation_reference_238": {
+      "type": "citation_reference",
+      "id": "citation_reference_238",
+      "path": [
+        "paragraph_237",
+        "content"
+      ],
+      "target": "article_citation_bib20",
+      "range": [
+        522,
+        550
+      ]
+    },
+    "paragraph_239": {
+      "type": "paragraph",
+      "id": "paragraph_239",
+      "content": "Previous reports have shown that the PRC2 subunit EED is able to bind the chromatin repressive mark H3K27me3 in trans, via its WD40 domain, thus enhancing PRC2 mediated methylation of H3K27 in oligonucleosomes (Margueron et al., 2009; Xu et al., 2010). This activation results in propagation of the repressive chromatin state to neighboring nucleosomes containing newly incorporated unmodified histone H3 (Hansen et al., 2008; Margueron et al., 2009). On the other hand, the studies of Schmitges and colleagues suggested that binding of the chromatin activation marks H3K4me3 and H3K36me2-3, inhibits PRC2 activity if placed in cis on the same tail containing the target lysine H3K27 (Schmitges et al., 2011). Additionally, it has been proposed that the subunit Suz12, and in particular its VEFS domain, is responsible in mediating this inhibition (Schmitges et al., 2011). Since this inhibitory effect can be reversed by the addition of H3K27me3 containing peptides, it has been thought that PRC2 can simultaneously integrate inhibitory and activating chromatin marks tuning its enzymatic activity based on the surrounding chromatin state (Schmitges et al., 2011)."
+    },
+    "citation_reference_240": {
+      "type": "citation_reference",
+      "id": "citation_reference_240",
+      "path": [
+        "paragraph_239",
+        "content"
+      ],
+      "target": "article_citation_bib21",
+      "range": [
+        211,
+        233
+      ]
+    },
+    "citation_reference_241": {
+      "type": "citation_reference",
+      "id": "citation_reference_241",
+      "path": [
+        "paragraph_239",
+        "content"
+      ],
+      "target": "article_citation_bib44",
+      "range": [
+        235,
+        250
+      ]
+    },
+    "citation_reference_242": {
+      "type": "citation_reference",
+      "id": "citation_reference_242",
+      "path": [
+        "paragraph_239",
+        "content"
+      ],
+      "target": "article_citation_bib11",
+      "range": [
+        406,
+        425
+      ]
+    },
+    "citation_reference_243": {
+      "type": "citation_reference",
+      "id": "citation_reference_243",
+      "path": [
+        "paragraph_239",
+        "content"
+      ],
+      "target": "article_citation_bib21",
+      "range": [
+        427,
+        449
+      ]
+    },
+    "citation_reference_244": {
+      "type": "citation_reference",
+      "id": "citation_reference_244",
+      "path": [
+        "paragraph_239",
+        "content"
+      ],
+      "target": "article_citation_bib36",
+      "range": [
+        685,
+        707
+      ]
+    },
+    "citation_reference_245": {
+      "type": "citation_reference",
+      "id": "citation_reference_245",
+      "path": [
+        "paragraph_239",
+        "content"
+      ],
+      "target": "article_citation_bib36",
+      "range": [
+        849,
+        871
+      ]
+    },
+    "citation_reference_246": {
+      "type": "citation_reference",
+      "id": "citation_reference_246",
+      "path": [
+        "paragraph_239",
+        "content"
+      ],
+      "target": "article_citation_bib36",
+      "range": [
+        1141,
+        1163
+      ]
+    },
+    "paragraph_247": {
+      "type": "paragraph",
+      "id": "paragraph_247",
+      "content": "The results we present here make sense of these previous biochemical findings within the context of the functionally identified architecture of the PRC2 complex, allowing us to propose models that serve as hypotheses for further testing. Our structure shows that the Ezh2's methyltransferase domain forms a structural core with the two activity-controlling elements of PRC2, the WD40 domain of EED and the VEFS domain of Suz12 (Margueron et al., 2009; Schmitges et al., 2011). This suggests that the proposed regulatory mechanisms of these domains on PRC2 activity could be structurally supported by their physical interaction with the SET domain."
+    },
+    "citation_reference_248": {
+      "type": "citation_reference",
+      "id": "citation_reference_248",
+      "path": [
+        "paragraph_247",
+        "content"
+      ],
+      "target": "article_citation_bib21",
+      "range": [
+        428,
+        450
+      ]
+    },
+    "citation_reference_249": {
+      "type": "citation_reference",
+      "id": "citation_reference_249",
+      "path": [
+        "paragraph_247",
+        "content"
+      ],
+      "target": "article_citation_bib36",
+      "range": [
+        452,
+        474
+      ]
+    },
+    "paragraph_250": {
+      "type": "paragraph",
+      "id": "paragraph_250",
+      "content": "SANT domains have been shown to be important in coupling histone-tail binding to enzymatic activity in many chromatin regulating complexes (Boyer et al., 2004). Additionally, it is known that histone H3 binds to the N-terminal tail of EED (Tie et al., 2007). Our structure and cross-linking studies show an intricate network of interaction between the N-terminal and WD40 regions of EED and SET and SANT domains of Ezh2. These SANT domains may couple EED-mediated binding of methylated histone H3 to the methyltransferase activity of Ezh2 (Figure 12A), suggesting that complex activity could be influenced through incorporation of EED isoforms that differ in their N-terminal regions."
+    },
+    "citation_reference_251": {
+      "type": "citation_reference",
+      "id": "citation_reference_251",
+      "path": [
+        "paragraph_250",
+        "content"
+      ],
+      "target": "article_citation_bib2",
+      "range": [
+        140,
+        158
+      ]
+    },
+    "citation_reference_252": {
+      "type": "citation_reference",
+      "id": "citation_reference_252",
+      "path": [
+        "paragraph_250",
+        "content"
+      ],
+      "target": "article_citation_bib40",
+      "range": [
+        240,
+        256
+      ]
+    },
+    "figure_reference_253": {
+      "type": "figure_reference",
+      "id": "figure_reference_253",
+      "path": [
+        "paragraph_250",
+        "content"
+      ],
+      "target": "image_fig12",
+      "range": [
+        540,
+        550
+      ]
+    },
     "image_fig12": {
       "type": "image",
       "id": "image_fig12",
       "label": "Figure 12.",
-      "url": "",
-      "object_id": "F13",
+      "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00005/svg/elife00005f012.svg",
       "title": "Mechanism and allosteric regulation of PRC2 during gene silencing.",
-      "content_type": "",
-      "large_url": "",
-      "content": "",
-      "group": [
-        "parent",
-        null
-      ],
       "doi": "http://dx.doi.org/10.7554/eLife.00005.018",
       "caption": "paragraph_image_fig12",
-      "graphic_id": "elife00005f012"
+      "graphic_id": "elife00005f012",
+      "format": "image"
     },
     "paragraph_image_fig12": {
       "type": "paragraph",
       "id": "paragraph_image_fig12",
       "content": "(A) At loci of compact and repressed chromatin, H3K27-me3 marks are recognized by EED. This binding is signaled via the SANT domains to the SET domain increasing the methyl-transferase activity of Ezh2, strengthening the chromatin compaction. (B) At loci of open and actively transcribed chromatin, H3K4me3 and H3K36me2,3 are recognized by the VEFS domain of Suz12 and transferred to Ezh2, with an allosteric regulation that blocks Ezh2's enzymatic activity."
     },
-    "annotation_215": {
+    "annotation_254": {
       "type": "strong",
-      "id": "annotation_215",
+      "id": "annotation_254",
       "path": [
         "paragraph_image_fig12",
         "content"
@@ -3333,9 +3722,9 @@
         2
       ]
     },
-    "annotation_216": {
+    "annotation_255": {
       "type": "strong",
-      "id": "annotation_216",
+      "id": "annotation_255",
       "path": [
         "paragraph_image_fig12",
         "content"
@@ -3346,16 +3735,16 @@
         245
       ]
     },
-    "paragraph_217": {
+    "paragraph_256": {
       "type": "paragraph",
-      "id": "paragraph_217",
+      "id": "paragraph_256",
       "content": "At the opposite end of the core module, the VEFS domain of Suz12 and the SANT and SET domains of Ezh2 together interact with two Zn fingers from AEBP2 and Suz12 (Figure 12B). The position of the Suz12 VEFS domain with respect to the Ezh2 SET domain suggests how the H3K4me3 and H3K36me2/3 inhibition via Suz12 could be transferred to Ezh2, regulating its methyltransferase activity. The close proximity of these elements could also explain why the gene activation marks need to be on the tail being modified in order to block methyltransferase activity."
     },
-    "figure_reference_218": {
+    "figure_reference_257": {
       "type": "figure_reference",
-      "id": "figure_reference_218",
+      "id": "figure_reference_257",
       "path": [
-        "paragraph_217",
+        "paragraph_256",
         "content"
       ],
       "target": "image_fig12",
@@ -3364,16 +3753,16 @@
         172
       ]
     },
-    "paragraph_219": {
+    "paragraph_258": {
       "type": "paragraph",
-      "id": "paragraph_219",
+      "id": "paragraph_258",
       "content": "In summary, our structure offers a three dimensional framework showing how various elements of the PRC2 complex involved in regulated histone-binding can act either independently or synergistically in response to different chromatin environments. Importantly, our PRC2 subunit organization is consistent with previously proposed models of PRC2 activity (Margueron et al., 2009; Schmitges et al., 2011): when chromatin domains are targeted for repression, PRC2 is recruited to deposit the repressive H3K27me3 histone mark at nucleosome-associated regions of DNA. Existing H3K27me3 marks are recognized by EED and, possibly in cooperation with Ezh2's SANT domains, Ezh2 methyltransferase activity is increased (Figure 12A). To ensure that H3K27 trimethylation is limited only to the repressed target, PRC2 is capable of repressing its own enzymatic activity. When PRC2 comes into contact with the boundary of an active gene, the interaction between H3K4me3, H3K36me2, and H3K36me3 with the VEFS domain of Suz12, could be propagated to the Ezh2 subunit, blocking PRC2 activity (Figure 12B)."
     },
-    "citation_reference_220": {
+    "citation_reference_259": {
       "type": "citation_reference",
-      "id": "citation_reference_220",
+      "id": "citation_reference_259",
       "path": [
-        "paragraph_219",
+        "paragraph_258",
         "content"
       ],
       "target": "article_citation_bib21",
@@ -3382,11 +3771,11 @@
         376
       ]
     },
-    "citation_reference_221": {
+    "citation_reference_260": {
       "type": "citation_reference",
-      "id": "citation_reference_221",
+      "id": "citation_reference_260",
       "path": [
-        "paragraph_219",
+        "paragraph_258",
         "content"
       ],
       "target": "article_citation_bib36",
@@ -3395,11 +3784,11 @@
         400
       ]
     },
-    "figure_reference_222": {
+    "figure_reference_261": {
       "type": "figure_reference",
-      "id": "figure_reference_222",
+      "id": "figure_reference_261",
       "path": [
-        "paragraph_219",
+        "paragraph_258",
         "content"
       ],
       "target": "image_fig12",
@@ -3408,11 +3797,11 @@
         719
       ]
     },
-    "figure_reference_223": {
+    "figure_reference_262": {
       "type": "figure_reference",
-      "id": "figure_reference_223",
+      "id": "figure_reference_262",
       "path": [
-        "paragraph_219",
+        "paragraph_258",
         "content"
       ],
       "target": "image_fig12",
@@ -3421,16 +3810,16 @@
         1085
       ]
     },
-    "paragraph_224": {
+    "paragraph_263": {
       "type": "paragraph",
-      "id": "paragraph_224",
+      "id": "paragraph_263",
       "content": "Previous studies have shown that PRC2 favors di- and oligonucleosome substrates over mononucleosomes, octamers, or histone H3 peptides (Cao and Zhang, 2004a; Kuzmichev et al., 2004; Martin et al., 2006). Molecular explanations for this substrate preference have been largely hypothetical in the absence of any structural information. The positioning of the different subunits within the PRC2 structure suggests a model of how PRC2 could interact with a dinucleosome, by placing the regions interacting with histone tails in opposite sides of the complex, thus allowing interaction with two nucleosomes simultaneously, without any steric hindrance. Figure 13 suggests a possible arrangement illustrating this point that also agrees with the proposed binding of AEBP2 to nucleosomal DNA (Kim et al., 2009). In such arrangement, EED binding to one nucleosome would position the histone H3 tail from the second nucleosome in close proximity to the Ezh2 SET domain (Figure 13)."
     },
-    "citation_reference_225": {
+    "citation_reference_264": {
       "type": "citation_reference",
-      "id": "citation_reference_225",
+      "id": "citation_reference_264",
       "path": [
-        "paragraph_224",
+        "paragraph_263",
         "content"
       ],
       "target": "article_citation_bib3",
@@ -3439,11 +3828,11 @@
         156
       ]
     },
-    "citation_reference_226": {
+    "citation_reference_265": {
       "type": "citation_reference",
-      "id": "citation_reference_226",
+      "id": "citation_reference_265",
       "path": [
-        "paragraph_224",
+        "paragraph_263",
         "content"
       ],
       "target": "article_citation_bib15",
@@ -3452,11 +3841,11 @@
         180
       ]
     },
-    "citation_reference_227": {
+    "citation_reference_266": {
       "type": "citation_reference",
-      "id": "citation_reference_227",
+      "id": "citation_reference_266",
       "path": [
-        "paragraph_224",
+        "paragraph_263",
         "content"
       ],
       "target": "article_citation_bib23",
@@ -3465,11 +3854,11 @@
         201
       ]
     },
-    "figure_reference_228": {
+    "figure_reference_267": {
       "type": "figure_reference",
-      "id": "figure_reference_228",
+      "id": "figure_reference_267",
       "path": [
-        "paragraph_224",
+        "paragraph_263",
         "content"
       ],
       "target": "image_fig13",
@@ -3478,11 +3867,11 @@
         657
       ]
     },
-    "citation_reference_229": {
+    "citation_reference_268": {
       "type": "citation_reference",
-      "id": "citation_reference_229",
+      "id": "citation_reference_268",
       "path": [
-        "paragraph_224",
+        "paragraph_263",
         "content"
       ],
       "target": "article_citation_bib13",
@@ -3491,11 +3880,11 @@
         802
       ]
     },
-    "figure_reference_230": {
+    "figure_reference_269": {
       "type": "figure_reference",
-      "id": "figure_reference_230",
+      "id": "figure_reference_269",
       "path": [
-        "paragraph_224",
+        "paragraph_263",
         "content"
       ],
       "target": "image_fig13",
@@ -3508,28 +3897,20 @@
       "type": "image",
       "id": "image_fig13",
       "label": "Figure 13.",
-      "url": "",
-      "object_id": "F14",
+      "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00005/svg/elife00005f013.svg",
       "title": "A proposed possible model for the binding of the PRC2-AEBP2 complex to a di-nucleosome.",
-      "content_type": "",
-      "large_url": "",
-      "content": "",
-      "group": [
-        "parent",
-        null
-      ],
-      "doi": "",
       "caption": "paragraph_image_fig13",
-      "graphic_id": "elife00005f013"
+      "graphic_id": "elife00005f013",
+      "format": "image"
     },
     "paragraph_image_fig13": {
       "type": "paragraph",
       "id": "paragraph_image_fig13",
       "content": "DOI: http://dx.doi.org/10.7554/eLife.00005.019"
     },
-    "annotation_231": {
+    "annotation_270": {
       "type": "strong",
-      "id": "annotation_231",
+      "id": "annotation_270",
       "path": [
         "paragraph_image_fig13",
         "content"
@@ -3540,9 +3921,9 @@
         4
       ]
     },
-    "annotation_232": {
+    "annotation_271": {
       "type": "link",
-      "id": "annotation_232",
+      "id": "annotation_271",
       "path": [
         "paragraph_image_fig13",
         "content"
@@ -3554,9 +3935,9 @@
       ],
       "url": "10.7554/eLife.00005.019"
     },
-    "paragraph_233": {
+    "paragraph_272": {
       "type": "paragraph",
-      "id": "paragraph_233",
+      "id": "paragraph_272",
       "content": "In conclusion, the human PRC2 structure presented here provides us with the first full picture of the molecular organization of this fundamental complex and offers an invaluable structural context to understand previous biochemical data. Furthermore, the functional mapping of different activities within the physical shape of the complex leads to novel, testable hypotheses on how PRC2 interacts with chromatin that should inspire future research of PRC2 function and regulation. Given the similarity in sequence between PRC2 components from different species, we expect the molecular architecture that we described for human PRC2 to be conserved throughout higher eukaryotes."
     },
     "heading_s4": {
@@ -3573,16 +3954,16 @@
       "content": "PRC2 complex reconstitution and purification",
       "nodes": []
     },
-    "paragraph_234": {
+    "paragraph_273": {
       "type": "paragraph",
-      "id": "paragraph_234",
+      "id": "paragraph_273",
       "content": "Sequences corresponding to the full-length EED, RbAp48, Ezh2, Suz12 and AEBP2 (see Figure 1A for domain schematics for these proteins) were amplified from human full-length cDNA clones. AEBP2 was subcloned in frame with a N-terminal StrepII tag into the pFastBac1 shuttle vector. All the other components were subcloned in the same vector in frame with a N-terminal hexahistidine tag. For PRC2 component localization, all the subunits were sub-cloned into a modified pFastBac1 vector in frame with either an N-terminal maltose binding protein or an internal or C-terminal GFP. All clones were verified by DNA sequencing. Recombinant baculoviruses were generated in Sf9 cells using the Bac-to-Bac kit (Invitrogen, Grand Island, NY, USA) according to manufacturer's recommendations. For protein expression, High5 cells were grown in suspension culture in ESF921 serum-free medium (Expression Systems, Davis, CA, USA) and infected with the right combination of viruses at a density of 1.0 × 106 ml−1. Cells were harvested 60–72 hr post-infection and lysed by sonication in 25 mM Hepes pH 7.5, 138 mM NaCl, 10% Glycerol, 0.05% Nonidet-P40 (NP40) and 1 mM Dithiothreitol (DTT) (supplemented with protease inhibitors). All samples were affinity-purified on Strep-Tactin Superflow Plus resin (Qiagen, Valencia, CA, USA) using an N-terminal Strep-tag II tag on the AEBP2 subunit. The complex was eluted from the resin by competition with lysis buffer containing 10 mM Desthiobiotin. The complex was then immediately subjected to size exclusion chromatography (SEC) on a calibrated Superose 6 PC 3.2/30 column (GE Healthcare, Uppsala, Sweden) at 4°C equilibrated in SEC buffer (25 mM Hepes pH 7.5, 138 mM NaCl, 10% Glycerol, 0.05% NP40, 1 mM Tris(2-carboxyethyl) phosphine hydrochloride [TCEP]). To preserve protein stability for structure determination, Prc2 protein complexes were cross-linked with 0.015% Glutaraldehyde for 10 minutes and the reaction stopped with 1M Tris, pH 8.0. Protein elution was monitored at 280 nm and protein fractions were collected and analyzed by SDS-PAGE and Coomassie brilliant blue staining."
     },
-    "figure_reference_235": {
+    "figure_reference_274": {
       "type": "figure_reference",
-      "id": "figure_reference_235",
+      "id": "figure_reference_274",
       "path": [
-        "paragraph_234",
+        "paragraph_273",
         "content"
       ],
       "target": "image_fig1",
@@ -3591,11 +3972,11 @@
         92
       ]
     },
-    "annotation_236": {
+    "annotation_275": {
       "type": "superscript",
-      "id": "annotation_236",
+      "id": "annotation_275",
       "path": [
-        "paragraph_234",
+        "paragraph_273",
         "content"
       ],
       "target": null,
@@ -3604,11 +3985,11 @@
         991
       ]
     },
-    "annotation_237": {
+    "annotation_276": {
       "type": "superscript",
-      "id": "annotation_237",
+      "id": "annotation_276",
       "path": [
-        "paragraph_234",
+        "paragraph_273",
         "content"
       ],
       "target": null,
@@ -3624,21 +4005,21 @@
       "content": "Chemical cross-linking using isotope labeled cross-linkers and mass spectrometric identification of cross-linked peptides",
       "nodes": []
     },
-    "paragraph_238": {
+    "paragraph_277": {
       "type": "paragraph",
-      "id": "paragraph_238",
+      "id": "paragraph_277",
       "content": "Human PRC2 Complex (10 μg of protein equivalent to 36 pmol) was mixed with a 600X excess of isotope-labeled cross-linker di-(sulfosuccinimidyl)-glutarate (1:1 mixture of light DSSG-D0 and heavy DSSG-D6) (Creative Molecules, Andover, MA, USA) in a final volume of 50 μl of 10 mM Hepes, pH 7.5, 138 mM NaCl at room temperature. The reaction was stopped after 30 min by adding 5 μl of 1 M ammonium bicarbonate."
     },
-    "paragraph_239": {
+    "paragraph_278": {
       "type": "paragraph",
-      "id": "paragraph_239",
+      "id": "paragraph_278",
       "content": "Cross-linked proteins were reduced with 5 mM TCEP (tris (2-carboxyethyl) phosphine; Thermo Scientific, Rockford, IL, USA) at 37°C for 15 min and alkylated with 10 mM iodoacetamide (Sigma-Aldrich, St. Louis, MO, USA) for 30 min in the dark. Proteins were digested with trypsin (Promega, Madison, WI, USA) at an enzyme to substrate ratio of 1:50 (wt/wt) at 37°C for 2 hr and, after a second addition of trypsin (1:50 wt/wt), over night. Peptides were acidified with 1% trifluoroacetic acid (TFA; Sigma-Aldrich, St. Louis, MO, USA) and purified by solid-phase extraction (SPE) using C18 cartridges (Sep-Pak; Waters, Milford, MA, USA). The SPE eluate was evaporated to dryness and reconstituted in 20 µl of SEC mobile phase (water/acetonitrile/TFA, 70:30:0.1). 15 µl were injected on a GE Healthcare (Uppsala, Sweden) Äkta micro system. Peptides were separated on a Superdex Peptide PC 3.2/30 column (300 × 3.2 mm) at a flow rate of 50 µl min−1 using the SEC mobile phase. Two-minute fractions (100 µl) were collected into 96-well plates."
     },
-    "annotation_240": {
+    "annotation_279": {
       "type": "superscript",
-      "id": "annotation_240",
+      "id": "annotation_279",
       "path": [
-        "paragraph_239",
+        "paragraph_278",
         "content"
       ],
       "target": null,
@@ -3647,16 +4028,16 @@
         940
       ]
     },
-    "paragraph_241": {
+    "paragraph_280": {
       "type": "paragraph",
-      "id": "paragraph_241",
+      "id": "paragraph_280",
       "content": "LC-MS/MS analysis was carried out on an Eksigent 1D-NanoLC-Ultra system connected to a Thermo LTQ Orbitrap XL mass spectrometer equipped with a standard nanoelectrospray source. SEC fractions were reconstituted in mobile phase A (water/acetonitrile/formic acid, 97:3:0.1). A fraction corresponding to an estimated 1 µg was injected onto a 11 cm × 0.075 mm I.D. column packed in house with Michrom Magic C18 material (3 µm particle size, 200 Å pore size). Peptides were separated at a flow rate of 300 nl min−1 ramping a gradient from 5% to 35% mobile phase B (water/acetonitrile/formic acid, 3:97:0.1)."
     },
-    "annotation_242": {
+    "annotation_281": {
       "type": "superscript",
-      "id": "annotation_242",
+      "id": "annotation_281",
       "path": [
-        "paragraph_241",
+        "paragraph_280",
         "content"
       ],
       "target": null,
@@ -3665,16 +4046,16 @@
         509
       ]
     },
-    "paragraph_243": {
+    "paragraph_282": {
       "type": "paragraph",
-      "id": "paragraph_243",
+      "id": "paragraph_282",
       "content": "Cross-linked peptides were identified using an in-house version of the dedicated search engine, xQuest (Rinner et al., 2008). Tandem mass spectra of precursors differing in their mass by 6.037660475 Da (difference between DSSG-d0 and DSS-d6) were paired if they had a charge state of 3+ to 8+ and were triggered within 2.5 min of each other. These spectra were then searched against a pre-processed .fasta database. A valid identification of the cross-linked peptides required at least four bond cleavages in total or three in a series for each peptide and a minimum peptide length of six amino acids."
     },
-    "citation_reference_244": {
+    "citation_reference_283": {
       "type": "citation_reference",
-      "id": "citation_reference_244",
+      "id": "citation_reference_283",
       "path": [
-        "paragraph_243",
+        "paragraph_282",
         "content"
       ],
       "target": "article_citation_bib34",
@@ -3683,11 +4064,11 @@
         123
       ]
     },
-    "annotation_245": {
+    "annotation_284": {
       "type": "emphasis",
-      "id": "annotation_245",
+      "id": "annotation_284",
       "path": [
-        "paragraph_243",
+        "paragraph_282",
         "content"
       ],
       "target": null,
@@ -3703,16 +4084,16 @@
       "content": "Electron microscopy sample preparation and data collection",
       "nodes": []
     },
-    "paragraph_246": {
+    "paragraph_285": {
       "type": "paragraph",
-      "id": "paragraph_246",
+      "id": "paragraph_285",
       "content": "A 4 µl aliquot of purified sample was immediately placed onto a continuous carbon grid that had been plasma cleaned in a 75% Ar/25% O2 atmosphere for 20 s in a Solarus plasma cleaner (Gatan, Inc, Pleasanton, CA, USA). After 30 s of incubation on the grid at room temperature, the sample was negatively-stained with a solution of 2% uranyl formate and blotted dry. Samples were imaged using a Tecnai F20 Twin-transmission electron microscope operating at 120 keV at a nominal magnification of 80,000× (1.52 Å/pixel at the detector level) using a defocus range of −0.6 to −1.3 μm. Images were automatically recorded with an electron dose of 20e-/Å2 using the Leginon data collection software (Suloway et al., 2005) on a Gatan 4096 × 4096 pixel CCD camera (15 μm pixel size). For the random conical tilt (RCT) dataset, images were collected at −60° and 0°."
     },
-    "annotation_247": {
+    "annotation_286": {
       "type": "subscript",
-      "id": "annotation_247",
+      "id": "annotation_286",
       "path": [
-        "paragraph_246",
+        "paragraph_285",
         "content"
       ],
       "target": null,
@@ -3721,11 +4102,11 @@
         134
       ]
     },
-    "annotation_248": {
+    "annotation_287": {
       "type": "superscript",
-      "id": "annotation_248",
+      "id": "annotation_287",
       "path": [
-        "paragraph_246",
+        "paragraph_285",
         "content"
       ],
       "target": null,
@@ -3734,11 +4115,11 @@
         646
       ]
     },
-    "citation_reference_249": {
+    "citation_reference_288": {
       "type": "citation_reference",
-      "id": "citation_reference_249",
+      "id": "citation_reference_288",
       "path": [
-        "paragraph_246",
+        "paragraph_285",
         "content"
       ],
       "target": "article_citation_bib38",
@@ -3754,16 +4135,16 @@
       "content": "Image processing",
       "nodes": []
     },
-    "paragraph_250": {
+    "paragraph_289": {
       "type": "paragraph",
-      "id": "paragraph_250",
+      "id": "paragraph_289",
       "content": "All image pre-processing and two-dimensional classification was performed in the Appion image-processing environment (Lander et al., 2009). A general scheme was utilized for image analysis to deal with the large number of datasets acquired, as well as to minimize user bias. Particles were initially selected from the 0° tilt micrographs of the PRC2-AEBP2 complex using a difference of Gaussians (DoG) transform-based automated picker (Voss et al., 2009), and extracted using a 224 × 224-pixel box size. Iterative multivariate statistical analysis (MSA) and multi-reference alignment (MRA) of the extracted particles provided representative 2D views of the PRC2 complex, which served as templates for all subsequent automated particle selection."
     },
-    "citation_reference_251": {
+    "citation_reference_290": {
       "type": "citation_reference",
-      "id": "citation_reference_251",
+      "id": "citation_reference_290",
       "path": [
-        "paragraph_250",
+        "paragraph_289",
         "content"
       ],
       "target": "article_citation_bib16",
@@ -3772,11 +4153,11 @@
         137
       ]
     },
-    "citation_reference_252": {
+    "citation_reference_291": {
       "type": "citation_reference",
-      "id": "citation_reference_252",
+      "id": "citation_reference_291",
       "path": [
-        "paragraph_250",
+        "paragraph_289",
         "content"
       ],
       "target": "article_citation_bib43",
@@ -3785,16 +4166,16 @@
         453
       ]
     },
-    "paragraph_253": {
+    "paragraph_292": {
       "type": "paragraph",
-      "id": "paragraph_253",
+      "id": "paragraph_292",
       "content": "The generalized processing scheme utilized for processing was as follows. The ACE2 and CTFFind programs (Mindell and Grigorieff, 2003; Mallick et al., 2005) ran concurrently with data collection to estimate the contrast transfer function (CTF) of the micrographs, as well as to provide a quantitative measurement of the quality of the imaging. At the same time, a template-based particle picker using the representative views of PRC2 (described above) located particles on the micrograph. At the end of data collection, the phases of the micrograph were corrected with ACE2, and individual particles were extracted using a box size of 224 × 224 pixels and decimated by a factor of 2. Any pixels whose values were above or below 4.5 sigma of the mean pixel value were removed using the XMIPP normalization function (Scheres et al., 2008). In order to remove inappropriately selected protein aggregates, stain crystals, carbon edges, or other forms of contamination, particles whose mean or standard deviation deviated significantly from the norm were removed. The remaining particles were subjected to a single round of MSA and classification (Ogura et al., 2003), in which thousands of class averages were generated with ∼20 particles per class. The resulting class averages were manually inspected to remove remaining aggregation, contamination, false positive particle selections, and very small particles potentially corresponding to incomplete PRC2 complexes. Following these particle-cleaning steps, the remaining 39,527 particles were subjected to several rounds of MSA and MRA using the IMAGIC software package (van Heel et al., 1996) to produce detailed views of the PRC2 complex with high signal-to-noise ratios."
     },
-    "citation_reference_254": {
+    "citation_reference_293": {
       "type": "citation_reference",
-      "id": "citation_reference_254",
+      "id": "citation_reference_293",
       "path": [
-        "paragraph_253",
+        "paragraph_292",
         "content"
       ],
       "target": "article_citation_bib24",
@@ -3803,11 +4184,11 @@
         133
       ]
     },
-    "citation_reference_255": {
+    "citation_reference_294": {
       "type": "citation_reference",
-      "id": "citation_reference_255",
+      "id": "citation_reference_294",
       "path": [
-        "paragraph_253",
+        "paragraph_292",
         "content"
       ],
       "target": "article_citation_bib18",
@@ -3816,11 +4197,11 @@
         155
       ]
     },
-    "citation_reference_256": {
+    "citation_reference_295": {
       "type": "citation_reference",
-      "id": "citation_reference_256",
+      "id": "citation_reference_295",
       "path": [
-        "paragraph_253",
+        "paragraph_292",
         "content"
       ],
       "target": "article_citation_bib35",
@@ -3829,11 +4210,11 @@
         835
       ]
     },
-    "citation_reference_257": {
+    "citation_reference_296": {
       "type": "citation_reference",
-      "id": "citation_reference_257",
+      "id": "citation_reference_296",
       "path": [
-        "paragraph_253",
+        "paragraph_292",
         "content"
       ],
       "target": "article_citation_bib28",
@@ -3842,11 +4223,11 @@
         1161
       ]
     },
-    "citation_reference_258": {
+    "citation_reference_297": {
       "type": "citation_reference",
-      "id": "citation_reference_258",
+      "id": "citation_reference_297",
       "path": [
-        "paragraph_253",
+        "paragraph_292",
         "content"
       ],
       "target": "article_citation_bib42",
@@ -3862,16 +4243,16 @@
       "content": "Analysis of tagged complexes",
       "nodes": []
     },
-    "paragraph_259": {
+    "paragraph_298": {
       "type": "paragraph",
-      "id": "paragraph_259",
+      "id": "paragraph_298",
       "content": "For subunit localization, reference-free 2D class averages from each tagged dataset were generated. We concentrated any further efforts on classes corresponding to the canonical view. The full set of tagged particles corresponding to this projection view gives rise to a class average with very good signal for the complex, as well as some extra density, corresponding to the tag, which is distinctive but typically smeared to different extents for different samples due to the flexibility of the tag. For a clearer visualization of the tag, we subclassified particles within this view. Two examples of the subclassification are shown for GFP-tagged complexes in Figure 9—figure supplement 1. The pivoting of the tag density can be clearly seen in these classes and in Movie 1. The percentage of subclasses clearly showing the tag ranges from 100% for a significant number of labels to 57% for the least favorable case (likely due to proteolysis). For the generation of the figures in the main text of the paper we chose to show a single subclass average with a larger number of particles that accurately resembles the full ensemble, but that more clearly shows the density of the tag, nicely corresponding to the mass expected for proteins of their size. These classes were then compared to the wild-type PRC2 class averages through cross-correlation using the SPIDER ‘AP SH’ command. After alignment, the matching class averages for the untagged and tagged complexes were individually normalized and then the PRC2 class averages were subtracted from the PRC2-tagged class averages. The densities seen in the difference maps were at least 3-standard deviations above the mean, showing the location of tagged-PRC2 subunits."
     },
-    "figure_reference_260": {
+    "figure_reference_299": {
       "type": "figure_reference",
-      "id": "figure_reference_260",
+      "id": "figure_reference_299",
       "path": [
-        "paragraph_259",
+        "paragraph_298",
         "content"
       ],
       "target": "image_fig9s1",
@@ -3880,11 +4261,11 @@
         691
       ]
     },
-    "figure_reference_261": {
+    "figure_reference_300": {
       "type": "figure_reference",
-      "id": "figure_reference_261",
+      "id": "figure_reference_300",
       "path": [
-        "paragraph_259",
+        "paragraph_298",
         "content"
       ],
       "target": "video_movie1",
@@ -3900,16 +4281,16 @@
       "content": "Ab initio reconstruction using random conical tilt and 3D reconstruction refinement",
       "nodes": []
     },
-    "paragraph_262": {
+    "paragraph_301": {
       "type": "paragraph",
-      "id": "paragraph_262",
+      "id": "paragraph_301",
       "content": "In order to generate an initial three dimensional model of the negatively-stained PRC2 complex, 190 tilt-pair images (60° and 0°) were collected using the same imaging conditions as described in the previous section. These data were collected in an automated fashion using the RCT-Raster application in Leginon (Yoshioka et al., 2007). Particles were automatically selected using the DoG particle picker (Voss et al., 2009), and the tilt axis, as well as the particle-pair assignments, were calculated automatically with the TiltPicker module of Appion TiltPicker (Voss et al., 2009). Particles were extracted in the same manner as described in the previous section, resulting in 6075 particle pairs. The XMIPP ML2D program was used to generate 20 reference-free 2D averages from the 0° micrographs, each class containing between 150 and 800 particles (Scheres et al., 2008). Generation of more than 20 classes did not reveal conformers that were notably different from the reconstructions resulting from the initial classes, and suffered in resolution due to the decreased number of particles attributed to each class. SPIDER routines integrated into Appion were used to generate 3D RCT reconstructions for each of these class averages."
     },
-    "citation_reference_263": {
+    "citation_reference_302": {
       "type": "citation_reference",
-      "id": "citation_reference_263",
+      "id": "citation_reference_302",
       "path": [
-        "paragraph_262",
+        "paragraph_301",
         "content"
       ],
       "target": "article_citation_bib46",
@@ -3918,11 +4299,11 @@
         333
       ]
     },
-    "citation_reference_264": {
+    "citation_reference_303": {
       "type": "citation_reference",
-      "id": "citation_reference_264",
+      "id": "citation_reference_303",
       "path": [
-        "paragraph_262",
+        "paragraph_301",
         "content"
       ],
       "target": "article_citation_bib43",
@@ -3931,11 +4312,11 @@
         422
       ]
     },
-    "citation_reference_265": {
+    "citation_reference_304": {
       "type": "citation_reference",
-      "id": "citation_reference_265",
+      "id": "citation_reference_304",
       "path": [
-        "paragraph_262",
+        "paragraph_301",
         "content"
       ],
       "target": "article_citation_bib43",
@@ -3944,11 +4325,11 @@
         582
       ]
     },
-    "citation_reference_266": {
+    "citation_reference_305": {
       "type": "citation_reference",
-      "id": "citation_reference_266",
+      "id": "citation_reference_305",
       "path": [
-        "paragraph_262",
+        "paragraph_301",
         "content"
       ],
       "target": "article_citation_bib35",
@@ -3957,16 +4338,16 @@
         873
       ]
     },
-    "paragraph_267": {
+    "paragraph_306": {
       "type": "paragraph",
-      "id": "paragraph_267",
+      "id": "paragraph_306",
       "content": "In order to minimize missing-cone artifacts inherent to the RCT methodology from influencing subsequent projection-matching-based reconstructions, and assess the homogeneity of the PRC2 conformation represented in the class averages, all the RCT reconstructions were used as references to assign Euler angles to 1000 high signal-to-noise reference-free class averages from the 39,527-particle untilted dataset using projection-matching, in lieu of merging the RCT reconstructions into a single density. The class averages were then back-projected according to their assigned Euler angles to provide a three-dimensional model based solely on 0° particles data. The resulting 3D reconstructions, albeit at low resolution, were highly consistent, indicating that there is one major architectural state of the complex. We used the reconstruction obtained from the more populated RCT class as the initial model for refinement against single particles of the full 0° data set. Since potential end-on views of the complex were not considered during structure determination, as they could not be distinguished from partial complexes, we relied on ‘tomographic’ coverage of the views along the long axis of the structure. This refinement was performed using an iterative projection-matching script that makes use of libraries from the SPARX and EMAN2 image processing packages (Baldwin and Penczek, 2007; Tang et al., 2007)."
     },
-    "citation_reference_268": {
+    "citation_reference_307": {
       "type": "citation_reference",
-      "id": "citation_reference_268",
+      "id": "citation_reference_307",
       "path": [
-        "paragraph_267",
+        "paragraph_306",
         "content"
       ],
       "target": "article_citation_bib1",
@@ -3975,11 +4356,11 @@
         1394
       ]
     },
-    "citation_reference_269": {
+    "citation_reference_308": {
       "type": "citation_reference",
-      "id": "citation_reference_269",
+      "id": "citation_reference_308",
       "path": [
-        "paragraph_267",
+        "paragraph_306",
         "content"
       ],
       "target": "article_citation_bib39",
@@ -4008,12 +4389,12 @@
       "level": 2,
       "content": "Competing Interests",
       "nodes": [
-        "paragraph_270"
+        "paragraph_309"
       ]
     },
-    "paragraph_270": {
+    "paragraph_309": {
       "type": "paragraph",
-      "id": "paragraph_270",
+      "id": "paragraph_309",
       "content": "Competing interestsThe authors have declared that no competing interests exist"
     },
     "info:author_contribution": {
@@ -4034,17 +4415,1594 @@
       "type": "supplement",
       "id": "supplement_SD2_data",
       "label": "Supplementary file 1.",
-      "source": "",
-      "title": "",
       "caption": "paragraph_supplement_SD2_data",
-      "content": "",
       "doi": "http://dx.doi.org/10.7554/eLife.00005.020",
-      "graphic_id": "elife00005s002.xlsx"
+      "files": [
+        "file_310"
+      ]
     },
     "paragraph_supplement_SD2_data": {
       "type": "paragraph",
       "id": "paragraph_supplement_SD2_data",
       "content": "Inter- and intramolecular crosslinking."
+    },
+    "file_310": {
+      "type": "file",
+      "id": "file_310",
+      "name": "XLSX",
+      "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00005/suppl/elife00005s002.xlsx",
+      "graphic_id": "elife00005s002.xlsx",
+      "extension": ".xlsx"
+    },
+    "article_citation_bib1": {
+      "type": "article_citation",
+      "id": "article_citation_bib1",
+      "authors": [
+        {
+          "given-names": "PR",
+          "last-name": "Baldwin"
+        },
+        {
+          "given-names": "PA",
+          "last-name": "Penczek"
+        }
+      ],
+      "title": "The Transform Class in SPARX and EMAN2",
+      "year": "2007",
+      "volume": "157",
+      "source": "J Struct Biol",
+      "fpage": "250",
+      "lpage": "61",
+      "citation_url": [],
+      "format": "journal",
+      "editors": []
+    },
+    "article_citation_bib2": {
+      "type": "article_citation",
+      "id": "article_citation_bib2",
+      "authors": [
+        {
+          "given-names": "LA",
+          "last-name": "Boyer"
+        },
+        {
+          "given-names": "RR",
+          "last-name": "Latek"
+        },
+        {
+          "given-names": "CL",
+          "last-name": "Peterson"
+        }
+      ],
+      "title": "The SANT domain: a unique histone-tail-binding module?",
+      "year": "2004",
+      "volume": "5",
+      "source": "Nat Rev Mol Cell Biol",
+      "fpage": "158",
+      "lpage": "63",
+      "citation_url": [],
+      "format": "journal",
+      "editors": []
+    },
+    "article_citation_bib3": {
+      "type": "article_citation",
+      "id": "article_citation_bib3",
+      "authors": [
+        {
+          "given-names": "R",
+          "last-name": "Cao"
+        },
+        {
+          "given-names": "Y",
+          "last-name": "Zhang"
+        }
+      ],
+      "title": "The functions of E(Z)/EZH2-mediated methylation of lysine 27 in histone H3",
+      "year": "2004a",
+      "volume": "14",
+      "source": "Curr Opin Genet Dev",
+      "fpage": "155",
+      "lpage": "64",
+      "citation_url": [],
+      "format": "journal",
+      "editors": []
+    },
+    "article_citation_bib4": {
+      "type": "article_citation",
+      "id": "article_citation_bib4",
+      "authors": [
+        {
+          "given-names": "R",
+          "last-name": "Cao"
+        },
+        {
+          "given-names": "Y",
+          "last-name": "Zhang"
+        }
+      ],
+      "title": "SUZ12 is required for both the histone methyltransferase activity and the silencing function of the EED-EZH2 complex",
+      "year": "2004b",
+      "volume": "15",
+      "source": "Mol Cell",
+      "fpage": "57",
+      "lpage": "67",
+      "citation_url": [],
+      "format": "journal",
+      "editors": []
+    },
+    "article_citation_bib5": {
+      "type": "article_citation",
+      "id": "article_citation_bib5",
+      "authors": [
+        {
+          "given-names": "R",
+          "last-name": "Cao"
+        },
+        {
+          "given-names": "L",
+          "last-name": "Wang"
+        },
+        {
+          "given-names": "H",
+          "last-name": "Wang"
+        },
+        {
+          "given-names": "L",
+          "last-name": "Xia"
+        },
+        {
+          "given-names": "H",
+          "last-name": "Erdjument-Bromage"
+        },
+        {
+          "given-names": "P",
+          "last-name": "Tempst"
+        }
+      ],
+      "title": "Role of histone H3 lysine 27 methylation in Polycomb-group silencing",
+      "year": "2002",
+      "volume": "298",
+      "source": "Science",
+      "fpage": "1039",
+      "lpage": "43",
+      "citation_url": [],
+      "format": "journal",
+      "editors": []
+    },
+    "article_citation_bib6": {
+      "type": "article_citation",
+      "id": "article_citation_bib6",
+      "authors": [
+        {
+          "given-names": "C",
+          "last-name": "Ciferri"
+        },
+        {
+          "given-names": "S",
+          "last-name": "Pasqualato"
+        },
+        {
+          "given-names": "E",
+          "last-name": "Screpanti"
+        },
+        {
+          "given-names": "G",
+          "last-name": "Varetti"
+        },
+        {
+          "given-names": "S",
+          "last-name": "Santaguida"
+        },
+        {
+          "given-names": "G",
+          "last-name": "Dos Reis"
+        }
+      ],
+      "title": "Implications for kinetochore-microtubule attachment from the structure of an engineered Ndc80 complex",
+      "year": "2008",
+      "volume": "133",
+      "source": "Cell",
+      "fpage": "427",
+      "lpage": "39",
+      "citation_url": [],
+      "format": "journal",
+      "editors": []
+    },
+    "article_citation_bib7": {
+      "type": "article_citation",
+      "id": "article_citation_bib7",
+      "authors": [
+        {
+          "given-names": "B",
+          "last-name": "Czermin"
+        },
+        {
+          "given-names": "R",
+          "last-name": "Melfi"
+        },
+        {
+          "given-names": "D",
+          "last-name": "McCabe"
+        },
+        {
+          "given-names": "V",
+          "last-name": "Seitz"
+        },
+        {
+          "given-names": "A",
+          "last-name": "Imhof"
+        },
+        {
+          "given-names": "V",
+          "last-name": "Pirrotta"
+        }
+      ],
+      "title": "Drosophila enhancer of Zeste/ESC complexes have a histone H3 methyltransferase activity that marks chromosomal Polycomb sites",
+      "year": "2002",
+      "volume": "111",
+      "source": "Cell",
+      "fpage": "185",
+      "lpage": "96",
+      "citation_url": [],
+      "format": "journal",
+      "editors": []
+    },
+    "annotation_311": {
+      "type": "emphasis",
+      "id": "annotation_311",
+      "path": [
+        "article_citation_bib7",
+        "title"
+      ],
+      "target": null,
+      "range": [
+        0,
+        10
+      ]
+    },
+    "article_citation_bib8": {
+      "type": "article_citation",
+      "id": "article_citation_bib8",
+      "authors": [
+        {
+          "given-names": "AC",
+          "last-name": "Gingras"
+        },
+        {
+          "given-names": "M",
+          "last-name": "Gstaiger"
+        },
+        {
+          "given-names": "B",
+          "last-name": "Raught"
+        },
+        {
+          "given-names": "R",
+          "last-name": "Aebersold"
+        }
+      ],
+      "title": "Analysis of protein complexes using mass spectrometry",
+      "year": "2007",
+      "volume": "8",
+      "source": "Nat Rev Mol Cell Biol",
+      "fpage": "645",
+      "lpage": "54",
+      "citation_url": [],
+      "format": "journal",
+      "editors": []
+    },
+    "article_citation_bib9": {
+      "type": "article_citation",
+      "id": "article_citation_bib9",
+      "authors": [
+        {
+          "given-names": "Z",
+          "last-name": "Han"
+        },
+        {
+          "given-names": "X",
+          "last-name": "Xing"
+        },
+        {
+          "given-names": "M",
+          "last-name": "Hu"
+        },
+        {
+          "given-names": "Y",
+          "last-name": "Zhang"
+        },
+        {
+          "given-names": "P",
+          "last-name": "Liu"
+        },
+        {
+          "given-names": "J",
+          "last-name": "Chai"
+        }
+      ],
+      "title": "Structural basis of EZH2 recognition by EED",
+      "year": "2007",
+      "volume": "15",
+      "source": "Structure",
+      "fpage": "1306",
+      "lpage": "15",
+      "citation_url": [],
+      "format": "journal",
+      "editors": []
+    },
+    "article_citation_bib10": {
+      "type": "article_citation",
+      "id": "article_citation_bib10",
+      "authors": [
+        {
+          "given-names": "GP",
+          "last-name": "He"
+        },
+        {
+          "given-names": "S",
+          "last-name": "Kim"
+        },
+        {
+          "given-names": "HS",
+          "last-name": "Ro"
+        }
+      ],
+      "title": "Cloning and characterization of a novel zinc finger transcriptional repressor. A direct role of the zinc finger motif in repression",
+      "year": "1999",
+      "volume": "274",
+      "source": "J Biol Chem",
+      "fpage": "14678",
+      "lpage": "84",
+      "citation_url": [],
+      "format": "journal",
+      "editors": []
+    },
+    "article_citation_bib11": {
+      "type": "article_citation",
+      "id": "article_citation_bib11",
+      "authors": [
+        {
+          "given-names": "KH",
+          "last-name": "Hansen"
+        },
+        {
+          "given-names": "AP",
+          "last-name": "Bracken"
+        },
+        {
+          "given-names": "D",
+          "last-name": "Pasini"
+        },
+        {
+          "given-names": "N",
+          "last-name": "Dietrich"
+        },
+        {
+          "given-names": "SS",
+          "last-name": "Gehani"
+        },
+        {
+          "given-names": "A",
+          "last-name": "Monrad"
+        }
+      ],
+      "title": "A model for transmission of the H3K27me3 epigenetic mark",
+      "year": "2008",
+      "volume": "10",
+      "source": "Nat Cell Biol",
+      "fpage": "1291",
+      "lpage": "300",
+      "citation_url": [],
+      "format": "journal",
+      "editors": []
+    },
+    "article_citation_bib12": {
+      "type": "article_citation",
+      "id": "article_citation_bib12",
+      "authors": [
+        {
+          "given-names": "CS",
+          "last-name": "Ketel"
+        },
+        {
+          "given-names": "EF",
+          "last-name": "Andersen"
+        },
+        {
+          "given-names": "ML",
+          "last-name": "Vargas"
+        },
+        {
+          "given-names": "J",
+          "last-name": "Suh"
+        },
+        {
+          "given-names": "S",
+          "last-name": "Strome"
+        },
+        {
+          "given-names": "JA",
+          "last-name": "Simon"
+        }
+      ],
+      "title": "Subunit contributions to histone methyltransferase activities of fly and worm polycomb group complexes",
+      "year": "2005",
+      "volume": "25",
+      "source": "Mol Cell Biol",
+      "fpage": "6857",
+      "lpage": "68",
+      "citation_url": [],
+      "format": "journal",
+      "editors": []
+    },
+    "article_citation_bib13": {
+      "type": "article_citation",
+      "id": "article_citation_bib13",
+      "authors": [
+        {
+          "given-names": "H",
+          "last-name": "Kim"
+        },
+        {
+          "given-names": "K",
+          "last-name": "Kang"
+        },
+        {
+          "given-names": "J",
+          "last-name": "Kim"
+        }
+      ],
+      "title": "AEBP2 as a potential targeting protein for Polycomb Repression Complex PRC2",
+      "year": "2009",
+      "volume": "37",
+      "source": "Nucleic Acids Res",
+      "fpage": "2940",
+      "lpage": "50",
+      "citation_url": [],
+      "format": "journal",
+      "editors": []
+    },
+    "article_citation_bib14": {
+      "type": "article_citation",
+      "id": "article_citation_bib14",
+      "authors": [
+        {
+          "given-names": "A",
+          "last-name": "Kirmizis"
+        },
+        {
+          "given-names": "SM",
+          "last-name": "Bartley"
+        },
+        {
+          "given-names": "A",
+          "last-name": "Kuzmichev"
+        },
+        {
+          "given-names": "R",
+          "last-name": "Margueron"
+        },
+        {
+          "given-names": "D",
+          "last-name": "Reinberg"
+        },
+        {
+          "given-names": "R",
+          "last-name": "Green"
+        }
+      ],
+      "title": "Silencing of human polycomb target genes is associated with methylation of histone H3 Lys 27",
+      "year": "2004",
+      "volume": "18",
+      "source": "Genes Dev",
+      "fpage": "1592",
+      "lpage": "605",
+      "citation_url": [],
+      "format": "journal",
+      "editors": []
+    },
+    "article_citation_bib15": {
+      "type": "article_citation",
+      "id": "article_citation_bib15",
+      "authors": [
+        {
+          "given-names": "A",
+          "last-name": "Kuzmichev"
+        },
+        {
+          "given-names": "T",
+          "last-name": "Jenuwein"
+        },
+        {
+          "given-names": "P",
+          "last-name": "Tempst"
+        },
+        {
+          "given-names": "D",
+          "last-name": "Reinberg"
+        }
+      ],
+      "title": "Different EZH2-containing complexes target methylation of histone H1 or nucleosomal histone H3",
+      "year": "2004",
+      "volume": "14",
+      "source": "Mol Cell",
+      "fpage": "183",
+      "lpage": "93",
+      "citation_url": [],
+      "format": "journal",
+      "editors": []
+    },
+    "article_citation_bib16": {
+      "type": "article_citation",
+      "id": "article_citation_bib16",
+      "authors": [
+        {
+          "given-names": "GC",
+          "last-name": "Lander"
+        },
+        {
+          "given-names": "SM",
+          "last-name": "Stagg"
+        },
+        {
+          "given-names": "NR",
+          "last-name": "Voss"
+        },
+        {
+          "given-names": "A",
+          "last-name": "Cheng"
+        },
+        {
+          "given-names": "D",
+          "last-name": "Fellmann"
+        },
+        {
+          "given-names": "J",
+          "last-name": "Pulokas"
+        }
+      ],
+      "title": "Appion: an integrated, database-driven pipeline to facilitate EM image processing",
+      "year": "2009",
+      "volume": "166",
+      "source": "J Struct Biol",
+      "fpage": "95",
+      "lpage": "102",
+      "citation_url": [],
+      "format": "journal",
+      "editors": []
+    },
+    "article_citation_bib17": {
+      "type": "article_citation",
+      "id": "article_citation_bib17",
+      "authors": [
+        {
+          "given-names": "A",
+          "last-name": "Maiolica"
+        },
+        {
+          "given-names": "D",
+          "last-name": "Cittaro"
+        },
+        {
+          "given-names": "D",
+          "last-name": "Borsotti"
+        },
+        {
+          "given-names": "L",
+          "last-name": "Sennels"
+        },
+        {
+          "given-names": "C",
+          "last-name": "Ciferri"
+        },
+        {
+          "given-names": "C",
+          "last-name": "Tarricone"
+        }
+      ],
+      "title": "Structural analysis of multiprotein complexes by cross-linking, mass spectrometry, and database searching",
+      "year": "2007",
+      "volume": "6",
+      "source": "Mol Cell Proteomics",
+      "fpage": "2200",
+      "lpage": "11",
+      "citation_url": [],
+      "format": "journal",
+      "editors": []
+    },
+    "article_citation_bib18": {
+      "type": "article_citation",
+      "id": "article_citation_bib18",
+      "authors": [
+        {
+          "given-names": "SP",
+          "last-name": "Mallick"
+        },
+        {
+          "given-names": "B",
+          "last-name": "Carragher"
+        },
+        {
+          "given-names": "CS",
+          "last-name": "Potter"
+        },
+        {
+          "given-names": "DJ",
+          "last-name": "Kriegman"
+        }
+      ],
+      "title": "ACE: automated CTF estimation",
+      "year": "2005",
+      "volume": "104",
+      "source": "Ultramicroscopy",
+      "fpage": "8",
+      "lpage": "29",
+      "citation_url": [],
+      "format": "journal",
+      "editors": []
+    },
+    "article_citation_bib19": {
+      "type": "article_citation",
+      "id": "article_citation_bib19",
+      "authors": [
+        {
+          "given-names": "R",
+          "last-name": "Margueron"
+        },
+        {
+          "given-names": "D",
+          "last-name": "Reinberg"
+        }
+      ],
+      "title": "Chromatin structure and the inheritance of epigenetic information",
+      "year": "2010",
+      "volume": "11",
+      "source": "Nat Rev Genet",
+      "fpage": "285",
+      "lpage": "96",
+      "citation_url": [],
+      "format": "journal",
+      "editors": []
+    },
+    "article_citation_bib20": {
+      "type": "article_citation",
+      "id": "article_citation_bib20",
+      "authors": [
+        {
+          "given-names": "R",
+          "last-name": "Margueron"
+        },
+        {
+          "given-names": "D",
+          "last-name": "Reinberg"
+        }
+      ],
+      "title": "The Polycomb complex PRC2 and its mark in life",
+      "year": "2011",
+      "volume": "469",
+      "source": "Nature",
+      "fpage": "343",
+      "lpage": "9",
+      "citation_url": [],
+      "format": "journal",
+      "editors": []
+    },
+    "article_citation_bib21": {
+      "type": "article_citation",
+      "id": "article_citation_bib21",
+      "authors": [
+        {
+          "given-names": "R",
+          "last-name": "Margueron"
+        },
+        {
+          "given-names": "N",
+          "last-name": "Justin"
+        },
+        {
+          "given-names": "K",
+          "last-name": "Ohno"
+        },
+        {
+          "given-names": "ML",
+          "last-name": "Sharpe"
+        },
+        {
+          "given-names": "J",
+          "last-name": "Son"
+        },
+        {
+          "given-names": "III",
+          "last-name": "Drury"
+        }
+      ],
+      "title": "Role of the polycomb protein EED in the propagation of repressive histone marks",
+      "year": "2009",
+      "volume": "461",
+      "source": "Nature",
+      "fpage": "762",
+      "lpage": "7",
+      "citation_url": [],
+      "format": "journal",
+      "editors": []
+    },
+    "article_citation_bib22": {
+      "type": "article_citation",
+      "id": "article_citation_bib22",
+      "authors": [
+        {
+          "given-names": "R",
+          "last-name": "Margueron"
+        },
+        {
+          "given-names": "G",
+          "last-name": "Li"
+        },
+        {
+          "given-names": "K",
+          "last-name": "Sarma"
+        },
+        {
+          "given-names": "A",
+          "last-name": "Blais"
+        },
+        {
+          "given-names": "J",
+          "last-name": "Zavadil"
+        },
+        {
+          "given-names": "CL",
+          "last-name": "Woodcock"
+        }
+      ],
+      "title": "Ezh1 and Ezh2 maintain repressive chromatin through different mechanisms",
+      "year": "2008",
+      "volume": "32",
+      "source": "Mol Cell",
+      "fpage": "503",
+      "lpage": "18",
+      "citation_url": [],
+      "format": "journal",
+      "editors": []
+    },
+    "article_citation_bib23": {
+      "type": "article_citation",
+      "id": "article_citation_bib23",
+      "authors": [
+        {
+          "given-names": "C",
+          "last-name": "Martin"
+        },
+        {
+          "given-names": "R",
+          "last-name": "Cao"
+        },
+        {
+          "given-names": "Y",
+          "last-name": "Zhang"
+        }
+      ],
+      "title": "Substrate preferences of the EZH2 histone methyltransferase complex",
+      "year": "2006",
+      "volume": "281",
+      "source": "J Biol Chem",
+      "fpage": "8365",
+      "lpage": "70",
+      "citation_url": [],
+      "format": "journal",
+      "editors": []
+    },
+    "article_citation_bib24": {
+      "type": "article_citation",
+      "id": "article_citation_bib24",
+      "authors": [
+        {
+          "given-names": "JA",
+          "last-name": "Mindell"
+        },
+        {
+          "given-names": "N",
+          "last-name": "Grigorieff"
+        }
+      ],
+      "title": "Accurate determination of local defocus and specimen tilt in electron microscopy",
+      "year": "2003",
+      "volume": "142",
+      "source": "J Struct Biol",
+      "fpage": "334",
+      "lpage": "47",
+      "citation_url": [],
+      "format": "journal",
+      "editors": []
+    },
+    "article_citation_bib25": {
+      "type": "article_citation",
+      "id": "article_citation_bib25",
+      "authors": [
+        {
+          "given-names": "J",
+          "last-name": "Muller"
+        },
+        {
+          "given-names": "CM",
+          "last-name": "Hart"
+        },
+        {
+          "given-names": "NJ",
+          "last-name": "Francis"
+        },
+        {
+          "given-names": "ML",
+          "last-name": "Vargas"
+        },
+        {
+          "given-names": "A",
+          "last-name": "Sengupta"
+        },
+        {
+          "given-names": "B",
+          "last-name": "Wild"
+        }
+      ],
+      "title": "Histone methyltransferase activity of a Drosophila Polycomb group repressor complex",
+      "year": "2002",
+      "volume": "111",
+      "source": "Cell",
+      "fpage": "197",
+      "lpage": "208",
+      "citation_url": [],
+      "format": "journal",
+      "editors": []
+    },
+    "annotation_312": {
+      "type": "emphasis",
+      "id": "annotation_312",
+      "path": [
+        "article_citation_bib25",
+        "title"
+      ],
+      "target": null,
+      "range": [
+        40,
+        50
+      ]
+    },
+    "article_citation_bib26": {
+      "type": "article_citation",
+      "id": "article_citation_bib26",
+      "authors": [
+        {
+          "given-names": "AJ",
+          "last-name": "Nowak"
+        },
+        {
+          "given-names": "C",
+          "last-name": "Alfieri"
+        },
+        {
+          "given-names": "CU",
+          "last-name": "Stirnimann"
+        },
+        {
+          "given-names": "V",
+          "last-name": "Rybin"
+        },
+        {
+          "given-names": "F",
+          "last-name": "Baudin"
+        },
+        {
+          "given-names": "N",
+          "last-name": "Ly-Hartig"
+        }
+      ],
+      "title": "Chromatin-modifying complex component Nurf55/p55 associates with histones H3 and H4 and polycomb repressive complex 2 subunit Su(z)12 through partially overlapping binding sites",
+      "year": "2011",
+      "volume": "286",
+      "source": "J Biol Chem",
+      "fpage": "23388",
+      "lpage": "96",
+      "citation_url": [],
+      "format": "journal",
+      "editors": []
+    },
+    "article_citation_bib27": {
+      "type": "article_citation",
+      "id": "article_citation_bib27",
+      "authors": [
+        {
+          "given-names": "D",
+          "last-name": "O'Carroll"
+        },
+        {
+          "given-names": "S",
+          "last-name": "Erhardt"
+        },
+        {
+          "given-names": "M",
+          "last-name": "Pagani"
+        },
+        {
+          "given-names": "SC",
+          "last-name": "Barton"
+        },
+        {
+          "given-names": "MA",
+          "last-name": "Surani"
+        },
+        {
+          "given-names": "T",
+          "last-name": "Jenuwein"
+        }
+      ],
+      "title": "The polycomb-group gene Ezh2 is required for early mouse development",
+      "year": "2001",
+      "volume": "21",
+      "source": "Mol Cell Biol",
+      "fpage": "4330",
+      "lpage": "6",
+      "citation_url": [],
+      "format": "journal",
+      "editors": []
+    },
+    "article_citation_bib28": {
+      "type": "article_citation",
+      "id": "article_citation_bib28",
+      "authors": [
+        {
+          "given-names": "T",
+          "last-name": "Ogura"
+        },
+        {
+          "given-names": "K",
+          "last-name": "Iwasaki"
+        },
+        {
+          "given-names": "C",
+          "last-name": "Sato"
+        }
+      ],
+      "title": "Topology representing network enables highly accurate classification of protein images taken by cryo electron-microscope without masking",
+      "year": "2003",
+      "volume": "143",
+      "source": "J Struct Biol",
+      "fpage": "185",
+      "lpage": "200",
+      "citation_url": [],
+      "format": "journal",
+      "editors": []
+    },
+    "article_citation_bib29": {
+      "type": "article_citation",
+      "id": "article_citation_bib29",
+      "authors": [
+        {
+          "given-names": "D",
+          "last-name": "Pasini"
+        },
+        {
+          "given-names": "AP",
+          "last-name": "Bracken"
+        },
+        {
+          "given-names": "K",
+          "last-name": "Helin"
+        }
+      ],
+      "title": "Polycomb group proteins in cell cycle progression and cancer",
+      "year": "2004",
+      "volume": "3",
+      "source": "Cell Cycle",
+      "fpage": "396",
+      "lpage": "400",
+      "citation_url": [],
+      "format": "journal",
+      "editors": []
+    },
+    "article_citation_bib30": {
+      "type": "article_citation",
+      "id": "article_citation_bib30",
+      "authors": [
+        {
+          "given-names": "PA",
+          "last-name": "Penczek"
+        },
+        {
+          "given-names": "RA",
+          "last-name": "Grassucci"
+        },
+        {
+          "given-names": "J",
+          "last-name": "Frank"
+        }
+      ],
+      "title": "The ribosome at improved resolution: new techniques for merging and orientation refinement in 3D cryo-electron microscopy of biological particles",
+      "year": "1994",
+      "volume": "53",
+      "source": "Ultramicroscopy",
+      "fpage": "251",
+      "lpage": "70",
+      "citation_url": [],
+      "format": "journal",
+      "editors": []
+    },
+    "article_citation_bib31": {
+      "type": "article_citation",
+      "id": "article_citation_bib31",
+      "authors": [
+        {
+          "given-names": "EF",
+          "last-name": "Pettersen"
+        },
+        {
+          "given-names": "TD",
+          "last-name": "Goddard"
+        },
+        {
+          "given-names": "CC",
+          "last-name": "Huang"
+        },
+        {
+          "given-names": "GS",
+          "last-name": "Couch"
+        },
+        {
+          "given-names": "DM",
+          "last-name": "Greenblatt"
+        },
+        {
+          "given-names": "EC",
+          "last-name": "Meng"
+        }
+      ],
+      "title": "UCSF Chimera—a visualization system for exploratory research and analysis",
+      "year": "2004",
+      "volume": "25",
+      "source": "J Comput Chem",
+      "fpage": "1605",
+      "lpage": "12",
+      "citation_url": [],
+      "format": "journal",
+      "editors": []
+    },
+    "article_citation_bib32": {
+      "type": "article_citation",
+      "id": "article_citation_bib32",
+      "authors": [
+        {
+          "given-names": "M",
+          "last-name": "Radermacher"
+        },
+        {
+          "given-names": "T",
+          "last-name": "Wagenknecht"
+        },
+        {
+          "given-names": "A",
+          "last-name": "Verschoor"
+        },
+        {
+          "given-names": "J",
+          "last-name": "Frank"
+        }
+      ],
+      "title": "Three-dimensional reconstruction from a single-exposure, random conical tilt series applied to the 50S ribosomal subunit of Escherichia coli",
+      "year": "1987",
+      "volume": "146",
+      "source": "J Microsc",
+      "fpage": "113",
+      "lpage": "36",
+      "citation_url": [],
+      "format": "journal",
+      "editors": []
+    },
+    "annotation_313": {
+      "type": "emphasis",
+      "id": "annotation_313",
+      "path": [
+        "article_citation_bib32",
+        "title"
+      ],
+      "target": null,
+      "range": [
+        124,
+        140
+      ]
+    },
+    "article_citation_bib33": {
+      "type": "article_citation",
+      "id": "article_citation_bib33",
+      "authors": [
+        {
+          "given-names": "J",
+          "last-name": "Rappsilber"
+        }
+      ],
+      "title": "The beginning of a beautiful friendship: cross-linking/mass spectrometry and modelling of proteins and multi-protein complexes",
+      "year": "2011",
+      "volume": "173",
+      "source": "J Struct Biol",
+      "fpage": "530",
+      "lpage": "40",
+      "citation_url": [],
+      "format": "journal",
+      "editors": []
+    },
+    "article_citation_bib34": {
+      "type": "article_citation",
+      "id": "article_citation_bib34",
+      "authors": [
+        {
+          "given-names": "O",
+          "last-name": "Rinner"
+        },
+        {
+          "given-names": "J",
+          "last-name": "Seebacher"
+        },
+        {
+          "given-names": "T",
+          "last-name": "Walzthoeni"
+        },
+        {
+          "given-names": "LN",
+          "last-name": "Mueller"
+        },
+        {
+          "given-names": "M",
+          "last-name": "Beck"
+        },
+        {
+          "given-names": "A",
+          "last-name": "Schmidt"
+        }
+      ],
+      "title": "Identification of cross-linked peptides from large sequence databases",
+      "year": "2008",
+      "volume": "5",
+      "source": "Nat Methods",
+      "fpage": "315",
+      "lpage": "8",
+      "citation_url": [],
+      "format": "journal",
+      "editors": []
+    },
+    "article_citation_bib35": {
+      "type": "article_citation",
+      "id": "article_citation_bib35",
+      "authors": [
+        {
+          "given-names": "SH",
+          "last-name": "Scheres"
+        },
+        {
+          "given-names": "R",
+          "last-name": "Nunez-Ramirez"
+        },
+        {
+          "given-names": "CO",
+          "last-name": "Sorzano"
+        },
+        {
+          "given-names": "JM",
+          "last-name": "Carazo"
+        },
+        {
+          "given-names": "R",
+          "last-name": "Marabini"
+        }
+      ],
+      "title": "Image processing for electron microscopy single-particle analysis using XMIPP",
+      "year": "2008",
+      "volume": "3",
+      "source": "Nat Protoc",
+      "fpage": "977",
+      "lpage": "90",
+      "citation_url": [],
+      "format": "journal",
+      "editors": []
+    },
+    "article_citation_bib36": {
+      "type": "article_citation",
+      "id": "article_citation_bib36",
+      "authors": [
+        {
+          "given-names": "FW",
+          "last-name": "Schmitges"
+        },
+        {
+          "given-names": "AB",
+          "last-name": "Prusty"
+        },
+        {
+          "given-names": "M",
+          "last-name": "Faty"
+        },
+        {
+          "given-names": "A",
+          "last-name": "Stutzer"
+        },
+        {
+          "given-names": "GM",
+          "last-name": "Lingaraju"
+        },
+        {
+          "given-names": "J",
+          "last-name": "Aiwazian"
+        }
+      ],
+      "title": "Histone methylation by PRC2 is inhibited by active chromatin marks",
+      "year": "2011",
+      "volume": "42",
+      "source": "Mol Cell",
+      "fpage": "330",
+      "lpage": "41",
+      "citation_url": [],
+      "format": "journal",
+      "editors": []
+    },
+    "article_citation_bib37": {
+      "type": "article_citation",
+      "id": "article_citation_bib37",
+      "authors": [
+        {
+          "given-names": "B",
+          "last-name": "Schuettengruber"
+        },
+        {
+          "given-names": "D",
+          "last-name": "Chourrout"
+        },
+        {
+          "given-names": "M",
+          "last-name": "Vervoort"
+        },
+        {
+          "given-names": "B",
+          "last-name": "Leblanc"
+        },
+        {
+          "given-names": "G",
+          "last-name": "Cavalli"
+        }
+      ],
+      "title": "Genome regulation by polycomb and trithorax proteins",
+      "year": "2007",
+      "volume": "128",
+      "source": "Cell",
+      "fpage": "735",
+      "lpage": "45",
+      "citation_url": [],
+      "format": "journal",
+      "editors": []
+    },
+    "article_citation_bib38": {
+      "type": "article_citation",
+      "id": "article_citation_bib38",
+      "authors": [
+        {
+          "given-names": "C",
+          "last-name": "Suloway"
+        },
+        {
+          "given-names": "J",
+          "last-name": "Pulokas"
+        },
+        {
+          "given-names": "D",
+          "last-name": "Fellmann"
+        },
+        {
+          "given-names": "A",
+          "last-name": "Cheng"
+        },
+        {
+          "given-names": "F",
+          "last-name": "Guerra"
+        },
+        {
+          "given-names": "J",
+          "last-name": "Quispe"
+        }
+      ],
+      "title": "Automated molecular microscopy: the new Leginon system",
+      "year": "2005",
+      "volume": "151",
+      "source": "J Struct Biol",
+      "fpage": "41",
+      "lpage": "60",
+      "citation_url": [],
+      "format": "journal",
+      "editors": []
+    },
+    "article_citation_bib39": {
+      "type": "article_citation",
+      "id": "article_citation_bib39",
+      "authors": [
+        {
+          "given-names": "G",
+          "last-name": "Tang"
+        },
+        {
+          "given-names": "L",
+          "last-name": "Peng"
+        },
+        {
+          "given-names": "PR",
+          "last-name": "Baldwin"
+        },
+        {
+          "given-names": "DS",
+          "last-name": "Mann"
+        },
+        {
+          "given-names": "W",
+          "last-name": "Jiang"
+        },
+        {
+          "given-names": "I",
+          "last-name": "Rees"
+        }
+      ],
+      "title": "EMAN2: an extensible image processing suite for electron microscopy",
+      "year": "2007",
+      "volume": "157",
+      "source": "J Struct Biol",
+      "fpage": "38",
+      "lpage": "46",
+      "citation_url": [],
+      "format": "journal",
+      "editors": []
+    },
+    "article_citation_bib40": {
+      "type": "article_citation",
+      "id": "article_citation_bib40",
+      "authors": [
+        {
+          "given-names": "F",
+          "last-name": "Tie"
+        },
+        {
+          "given-names": "CA",
+          "last-name": "Stratton"
+        },
+        {
+          "given-names": "RL",
+          "last-name": "Kurzhals"
+        },
+        {
+          "given-names": "PJ",
+          "last-name": "Harte"
+        }
+      ],
+      "title": "The N terminus of Drosophila ESC binds directly to histone H3 and is required for E(Z)-dependent trimethylation of H3 lysine 27",
+      "year": "2007",
+      "volume": "27",
+      "source": "Mol Cell Biol",
+      "fpage": "2014",
+      "lpage": "26",
+      "citation_url": [],
+      "format": "journal",
+      "editors": []
+    },
+    "annotation_314": {
+      "type": "emphasis",
+      "id": "annotation_314",
+      "path": [
+        "article_citation_bib40",
+        "title"
+      ],
+      "target": null,
+      "range": [
+        18,
+        28
+      ]
+    },
+    "article_citation_bib41": {
+      "type": "article_citation",
+      "id": "article_citation_bib41",
+      "authors": [
+        {
+          "given-names": "M",
+          "last-name": "van Heel"
+        },
+        {
+          "given-names": "M",
+          "last-name": "Schatz"
+        }
+      ],
+      "title": "Fourier shell correlation threshold criteria",
+      "year": "2005",
+      "volume": "151",
+      "source": "J Struct Biol",
+      "fpage": "250",
+      "lpage": "62",
+      "citation_url": [],
+      "format": "journal",
+      "editors": []
+    },
+    "article_citation_bib42": {
+      "type": "article_citation",
+      "id": "article_citation_bib42",
+      "authors": [
+        {
+          "given-names": "M",
+          "last-name": "van Heel"
+        },
+        {
+          "given-names": "G",
+          "last-name": "Harauz"
+        },
+        {
+          "given-names": "EV",
+          "last-name": "Orlova"
+        },
+        {
+          "given-names": "R",
+          "last-name": "Schmidt"
+        },
+        {
+          "given-names": "M",
+          "last-name": "Schatz"
+        }
+      ],
+      "title": "A new generation of the IMAGIC image processing system",
+      "year": "1996",
+      "volume": "116",
+      "source": "J Struct Biol",
+      "fpage": "17",
+      "lpage": "24",
+      "citation_url": [],
+      "format": "journal",
+      "editors": []
+    },
+    "article_citation_bib43": {
+      "type": "article_citation",
+      "id": "article_citation_bib43",
+      "authors": [
+        {
+          "given-names": "NR",
+          "last-name": "Voss"
+        },
+        {
+          "given-names": "CK",
+          "last-name": "Yoshioka"
+        },
+        {
+          "given-names": "M",
+          "last-name": "Radermacher"
+        },
+        {
+          "given-names": "CS",
+          "last-name": "Potter"
+        },
+        {
+          "given-names": "B",
+          "last-name": "Carragher"
+        }
+      ],
+      "title": "DoG Picker and TiltPicker: software tools to facilitate particle selection in single particle electron microscopy",
+      "year": "2009",
+      "volume": "166",
+      "source": "J Struct Biol",
+      "fpage": "205",
+      "lpage": "13",
+      "citation_url": [],
+      "format": "journal",
+      "editors": []
+    },
+    "article_citation_bib44": {
+      "type": "article_citation",
+      "id": "article_citation_bib44",
+      "authors": [
+        {
+          "given-names": "C",
+          "last-name": "Xu"
+        },
+        {
+          "given-names": "C",
+          "last-name": "Bian"
+        },
+        {
+          "given-names": "W",
+          "last-name": "Yang"
+        },
+        {
+          "given-names": "M",
+          "last-name": "Galka"
+        },
+        {
+          "given-names": "H",
+          "last-name": "Ouyang"
+        },
+        {
+          "given-names": "C",
+          "last-name": "Chen"
+        }
+      ],
+      "title": "Binding of different histone marks differentially regulates the activity and specificity of polycomb repressive complex 2 (PRC2)",
+      "year": "2010",
+      "volume": "107",
+      "source": "Proc Natl Acad Sci U S A",
+      "fpage": "19266",
+      "lpage": "71",
+      "citation_url": [],
+      "format": "journal",
+      "editors": []
+    },
+    "article_citation_bib45": {
+      "type": "article_citation",
+      "id": "article_citation_bib45",
+      "authors": [
+        {
+          "given-names": "K",
+          "last-name": "Yamamoto"
+        },
+        {
+          "given-names": "M",
+          "last-name": "Sonoda"
+        },
+        {
+          "given-names": "J",
+          "last-name": "Inokuchi"
+        },
+        {
+          "given-names": "S",
+          "last-name": "Shirasawa"
+        },
+        {
+          "given-names": "T",
+          "last-name": "Sasazuki"
+        }
+      ],
+      "title": "Polycomb group suppressor of zeste 12 links heterochromatin protein 1alpha and enhancer of zeste 2",
+      "year": "2004",
+      "volume": "279",
+      "source": "J Biol Chem",
+      "fpage": "401",
+      "lpage": "6",
+      "citation_url": [],
+      "format": "journal",
+      "editors": []
+    },
+    "article_citation_bib46": {
+      "type": "article_citation",
+      "id": "article_citation_bib46",
+      "authors": [
+        {
+          "given-names": "C",
+          "last-name": "Yoshioka"
+        },
+        {
+          "given-names": "J",
+          "last-name": "Pulokas"
+        },
+        {
+          "given-names": "D",
+          "last-name": "Fellmann"
+        },
+        {
+          "given-names": "CS",
+          "last-name": "Potter"
+        },
+        {
+          "given-names": "RA",
+          "last-name": "Milligan"
+        },
+        {
+          "given-names": "B",
+          "last-name": "Carragher"
+        }
+      ],
+      "title": "Automation of random conical tilt and orthogonal tilt data collection using feature-based correlation",
+      "year": "2007",
+      "volume": "159",
+      "source": "J Struct Biol",
+      "fpage": "335",
+      "lpage": "46",
+      "citation_url": [],
+      "format": "journal",
+      "editors": []
     },
     "sub-article": {
       "type": "heading",
@@ -4052,6 +6010,236 @@
       "level": 1,
       "content": "Article Commentary",
       "nodes": []
+    },
+    "heading_315": {
+      "type": "heading",
+      "id": "heading_315",
+      "level": 2,
+      "content": "Decision letter",
+      "nodes": []
+    },
+    "paragraph_316": {
+      "type": "paragraph",
+      "id": "paragraph_316",
+      "content": "eLife posts the editorial decision letter and author response on a selection of the published articles (subject to the approval of the authors). An edited version of the letter sent to the authors after peer review is shown, indicating the substantive concerns or comments; minor concerns are not usually shown. Reviewers have the opportunity to discuss the decision before the letter is sent (see review process). Similarly, the author response typically shows only responses to the major concerns raised by the reviewers."
+    },
+    "annotation_317": {
+      "type": "link",
+      "id": "annotation_317",
+      "path": [
+        "paragraph_316",
+        "content"
+      ],
+      "target": null,
+      "range": [
+        398,
+        412
+      ],
+      "url": "http://www.elifesciences.org/the-journal/review-process"
+    },
+    "paragraph_318": {
+      "type": "paragraph",
+      "id": "paragraph_318",
+      "content": "Thank you for choosing to send your work entitled “Molecular architecture of the Polycomb Repressive Complex 2” for consideration at eLife. Your article has been evaluated by a Senior Editor and 2 reviewers, one of whom is a member of eLife's Board of Reviewing Editors."
+    },
+    "annotation_319": {
+      "type": "emphasis",
+      "id": "annotation_319",
+      "path": [
+        "paragraph_318",
+        "content"
+      ],
+      "target": null,
+      "range": [
+        133,
+        138
+      ]
+    },
+    "annotation_320": {
+      "type": "emphasis",
+      "id": "annotation_320",
+      "path": [
+        "paragraph_318",
+        "content"
+      ],
+      "target": null,
+      "range": [
+        235,
+        240
+      ]
+    },
+    "annotation_321": {
+      "type": "emphasis",
+      "id": "annotation_321",
+      "path": [
+        "paragraph_318",
+        "content"
+      ],
+      "target": null,
+      "range": [
+        241,
+        242
+      ]
+    },
+    "paragraph_322": {
+      "type": "paragraph",
+      "id": "paragraph_322",
+      "content": "The Reviewing Editor and the other reviewers discussed their comments before we reached this decision, and the Reviewing Editor has assembled the following comments based on the reviewers' reports. Our goal is to provide the essential revision requirements as a single set of instructions, so that you have a clear view of the revisions that are necessary for us to publish your work."
+    },
+    "paragraph_323": {
+      "type": "paragraph",
+      "id": "paragraph_323",
+      "content": "The work presented by C. Ciferri aims to determine the molecular organization of the Polycomb Repressive complex 2 bound to its cofactor AEBP. The recombinant complex produced in insect cells was characterized biochemically and analyzed by negative stain electron microscopy to determine a 3-D model of the assembly at 21 Å resolution. Cross-linking experiments combined with mass spectrometry analysis was used to identify at the sequence level the most prominent protein-protein contacts. Furthermore a large number of complexes were produced, each carrying a large protein tag at a different position in order to identify and position the constituent proteins and several of their domains in the 3-D envelope. This structural characterization allowed a clear positioning of existing atomic structures or homology models of the complex components. PRC2 is of fundamental importance and high interest, and this structure is a very significant advance over previous high-resolution structures of isolated domains of 2 PRC2 components. The authors make a number of suggestions to provide a structural basis for previous biochemical observations. These include how the enzymatic activity is affected by modifications of the H3 tail, as well as the stabilization of the complex by the AEBP1 cofactor. These inferences about biochemical function are speculative given the resolution of the structure."
+    },
+    "paragraph_324": {
+      "type": "paragraph",
+      "id": "paragraph_324",
+      "content": "The work is of very high quality and despite using negative stained particles instead of cryo EM, it reaches important conclusions supported by redundant and accurate information. The conclusions drawn about the shape of the complex, the location of the different subunits and the relative orientation of the subunits are sound and convincing. The cross-linking experiments confirm the structural conclusions Concerns to be addressed during revision:"
+    },
+    "paragraph_325": {
+      "type": "paragraph",
+      "id": "paragraph_325",
+      "content": "*The original images show a heterogeneous population of particles and in particular smaller particles that suggest that some particles may dissociate. We also notice that little information is given regarding the stoichiometry of the complex. However the data is consistent and convincing. The authors should describe whether all particles were considered or whether some were rejected. If the latter was the case, the rejection criteria should be communicated."
+    },
+    "paragraph_326": {
+      "type": "paragraph",
+      "id": "paragraph_326",
+      "content": "*The conclusions of the manuscript, and in particular the functional consequences for the interaction of PCR2 with nucleosomes, are highly speculative. The histone tails that interact with the WD40 repeats of PCR2 are extremely flexible and one cannot conclude at this stage that PRC2 will bind between two adjacent nucleosomes. A part of the discussion concerns the interaction with the so-called linker histone H1. H1 interacts mainly through its globular domain with the dyad axis of the core nucleosome and has little interaction, except for its N-and C termini with the linker DNA. Once bound to nucleosomes, H1 induces an important condensation of the chromatin and it is unlikely that PCR2 can still bind between two successive nucleosomes. Therefore this part of the discussion should be removed."
+    },
+    "paragraph_327": {
+      "type": "paragraph",
+      "id": "paragraph_327",
+      "content": "*Based on the combined results, the authors make a number of suggestions to provide a structural basis for previous biochemical observations. These include how the enzymatic activity is affected by modifications of the H3 tail, as well as the stabilization of the complex by AEBP1. These inferences about biochemical function are speculative given the resolution of the structure."
+    },
+    "paragraph_328": {
+      "type": "paragraph",
+      "id": "paragraph_328",
+      "content": "*We were wondering why only 20 classes were considered for the Random Conical Tilt method. If the complexes were homogeneous this would correspond to an angular difference of 40 or 50 degrees between classes which is a large merging angle and would lead to a rather poor resolution. If several different conformations were to be considered an even larger merging angle would be considered. The authors should justify why only 20 classes were reconstructed.10.7554/eLife.00005.022"
+    },
+    "heading_329": {
+      "type": "heading",
+      "id": "heading_329",
+      "level": 2,
+      "content": "Author response",
+      "nodes": []
+    },
+    "paragraph_330": {
+      "type": "paragraph",
+      "id": "paragraph_330",
+      "content": "•The original images show a heterogeneous population of particles and in particular smaller particles that suggest that some particles may dissociate. We also notice that little information is given regarding the stoichiometry of the complex. However the data is consistent and convincing. The authors should describe whether all particles were considered or whether some were rejected. If the latter was the case, the rejection criteria should be communicated."
+    },
+    "annotation_331": {
+      "type": "emphasis",
+      "id": "annotation_331",
+      "path": [
+        "paragraph_330",
+        "content"
+      ],
+      "target": null,
+      "range": [
+        1,
+        460
+      ]
+    },
+    "paragraph_332": {
+      "type": "paragraph",
+      "id": "paragraph_332",
+      "content": "We thank the reviewer for pointing out the omission of this section of the text. The manuscript now includes this information in the results section. We mentioned that, as we affinity purified the PRC2-ABP2 complex using a Strep tag onto AEBP2, we cannot exclude the presence of a small excess of this subunit in our preparation. Regarding the EM images, we noticed the presence of smaller particles. We interpreted them as either end-on views or partial complexes, most likely the AEBP2 itself, being used for tag-based purification. Those particles were consequently not considered during the 3D data processing, and we relied on a good “tomographic” coverage of the views around the long axis of the structure. It should also be noted that the labeling studies clearly indicate that the structure described contains all the subunits."
+    },
+    "paragraph_333": {
+      "type": "paragraph",
+      "id": "paragraph_333",
+      "content": "•The conclusions of the manuscript, and in particular the functional consequences for the interaction of PCR2 with nucleosomes, are highly speculative. The histone tails that interact with the WD40 repeats of PCR2 are extremely flexible and one cannot conclude at this stage that PRC2 will bind between two adjacent nucleosomes. A part of the discussion concerns the interaction with the so-called linker histone H1. H1 interacts mainly through its globular domain with the dyad axis of the core nucleosome and has little interaction, except for its N-and C termini with the linker DNA. Once bound to nucleosomes, H1 induces an important condensation of the chromatin and it is unlikely that PCR2 can still bind between two successive nucleosomes. Therefore this part of the discussion should be removed."
+    },
+    "annotation_334": {
+      "type": "emphasis",
+      "id": "annotation_334",
+      "path": [
+        "paragraph_333",
+        "content"
+      ],
+      "target": null,
+      "range": [
+        1,
+        803
+      ]
+    },
+    "paragraph_335": {
+      "type": "paragraph",
+      "id": "paragraph_335",
+      "content": "We thank the reviewer for pointing out the issues in this part of the discussion. We have now completely removed the portion regarding the Histone H1 binding and rephrased, in a more cautious and succinct way, the section concerning the nucleosome binding. We still indicate that our structure does suggest a possible arrangement of the PRC2 complex during di-nucleosome binding, which makes sense sterically and is the most parsimonious given the localization of the histone tail-binding regions at opposite ends of the complex. We summarized these ideas in just a single paragraph and describe it in an additional figure (Figure 13) that was extracted from the previous Figure 12 (now simplified), and that lacks the reference to H1."
+    },
+    "figure_reference_336": {
+      "type": "figure_reference",
+      "id": "figure_reference_336",
+      "path": [
+        "paragraph_335",
+        "content"
+      ],
+      "target": "image_fig13",
+      "range": [
+        624,
+        633
+      ]
+    },
+    "figure_reference_337": {
+      "type": "figure_reference",
+      "id": "figure_reference_337",
+      "path": [
+        "paragraph_335",
+        "content"
+      ],
+      "target": "image_fig12",
+      "range": [
+        672,
+        681
+      ]
+    },
+    "paragraph_338": {
+      "type": "paragraph",
+      "id": "paragraph_338",
+      "content": "•Based on the combined results, the authors make a number of suggestions to provide a structural basis for previous biochemical observations. These include how the enzymatic activity is affected by modifications of the H3 tail, as well as the stabilization of the complex by AEBP1. These inferences about biochemical function are speculative given the resolution of the structure."
+    },
+    "annotation_339": {
+      "type": "emphasis",
+      "id": "annotation_339",
+      "path": [
+        "paragraph_338",
+        "content"
+      ],
+      "target": null,
+      "range": [
+        1,
+        379
+      ]
+    },
+    "paragraph_340": {
+      "type": "paragraph",
+      "id": "paragraph_340",
+      "content": "We understand the concerns of the reviewers. And while we do agree that at the resolution of the structure we present here we cannot describe specific mechanistic details concerning single amino acid interactions, which will only come when atomic details are available, our present work still represents a huge step forward that allows, for the first time, to place previous biochemical data into an architectural framework of PRC2. During the past few years, work from different labs have shown how the enzymatic activity of PRC2 is affected by modifications of Histone H3. It has also been shown how the binding of AEBP2 affects and increases its activity. In this paper we describe the first molecular organization of the PRC2 complex and how AEBP2 interacts with different regions of the complex. In the discussion section we are simply placing the published biochemical data in the framework of the structure and protein connections we have visualized. This is something that could not be done before and that opens new questions and testable models. We believe that the localization we describe here does lead to a parsimonious explanation of biochemical data that we truly feel should be indicated at this point. To address the reviewers’ concerns we have revised the text to clarify how far the present data takes us, making clear where we are just placing biochemical data into a physical context, and when we are extrapolating, in a logical way, to propose testable models that really build on our new structural data, always keeping in mind the resolution limitation."
+    },
+    "paragraph_341": {
+      "type": "paragraph",
+      "id": "paragraph_341",
+      "content": "•We were wondering why only 20 classes were considered for the Random Conical Tilt method. If the complexes were homogeneous this would correspond to an angular difference of 40 or 50 degrees between classes which is a large merging angle and would lead to a rather poor resolution. If several different conformations were to be considered an even larger merging angle would be considered. The authors should justify why only 20 classes were reconstructed."
+    },
+    "annotation_342": {
+      "type": "emphasis",
+      "id": "annotation_342",
+      "path": [
+        "paragraph_341",
+        "content"
+      ],
+      "target": null,
+      "range": [
+        1,
+        455
+      ]
+    },
+    "paragraph_343": {
+      "type": "paragraph",
+      "id": "paragraph_343",
+      "content": "We made 20 classes based on the number of tilt pairs we had, since this number could distribute the dataset into classes that had an appropriate number of particles for a reconstruction with enough signal and at a resolution that was sufficient to serve as an initial model for projection matching. Had we made more classes, then the RCT reconstructions would have had much fewer particles, and not been interpretable. As we relied on a good “tomographic” coverage of the views around the long axis of the structure, we were expecting to have a coverage of about 18 degrees from the 20 classes (360/20). We believe this was a good compromise between angular spread and signal. A proof of this principle was that our strategy actually worked, generating an RCT 3D model from which reprojections matched well our reference free 2D classes, and that ultimately aided to refine our untilted data to 21 Å."
     }
   }
 }

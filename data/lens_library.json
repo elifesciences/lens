@@ -6,7 +6,7 @@
     "library": {
       "type": "library",
       "name": "Lens development resources",
-      "collections": ["lens", "elife", "lb"]
+      "collections": ["lens", "elife"]
     },
 
     "lens": {
@@ -18,17 +18,11 @@
 
     "elife": {
       "id": "elife",
-      "name": "eLife",
+      "name": "eLife Examples",
       "type": "collection",
       "records": ["00003", "00005", "00311", "00049"]
     },
 
-    "lb": {
-      "id": "lb",
-      "name": "Landes Biosciences",
-      "type": "collection",
-      "records": ["lb25402"]
-    },
 
     "manual": {
       "id": "manual",
@@ -59,7 +53,7 @@
       "title": "A novel role for lipid droplets in the organismal antibacterial response",
       "authors": ["Preetha Anand", "Silvia Cermelli", "Zhihuan LiAdam Kassan"],
       "type": "record",
-      "url": "/convert/https%3A%2F%2Fs3.amazonaws.com%2Felife-cdn%2Felife-articles%2F00003%2Felife00003.xml"
+      "url": "/data/00003.json"
     },
 
     "00005": {
@@ -67,7 +61,7 @@
       "title": "Molecular architecture of human polycomb repressive complex 2",
       "authors": ["Claudio Ciferri", "Gabriel C Lander", "Alessio Maiolica"],
       "type": "record",
-      "url": "/convert/https%3A%2F%2Fs3.amazonaws.com%2Felife-cdn%2Felife-articles%2F00005%2Felife00005.xml"
+      "url": "/data/00005.json"
     },
 
     "00311": {
@@ -75,7 +69,7 @@
       "title": "Modelling dynamics in protein crystal structures by ensemble refinement",
       "authors": ["B Tom Burnley", "Pavel V Afonine", "Paul D Adams", "Piet Gros"],
       "type": "record",
-      "url": "/convert/https%3A%2F%2Fs3.amazonaws.com%2Felife-cdn%2Felife-articles%2F00311%2Felife00311.xml"
+      "url": "/data/00311.json"
     },
 
     "00049": {
@@ -83,15 +77,7 @@
       "title": "Sodium taurocholate cotransporting polypeptide is a functional receptor for human hepatitis B and D virus",
       "authors": ["Some", "Authors"],
       "type": "record",
-      "url": "/convert/https%3A%2F%2Fs3.amazonaws.com%2Felife-cdn%2Felife-articles%2F00049%2Felife00049.xml"
-    },
-
-    "lb25402": {
-      "id": "lb25402",
-      "title": "In vivo functional studies of tumor-specific retrogene NanogP8 in transgenic animals",
-      "authors": ["Mark A Badeaux", "Collene R Jeter", "Shuai Gong", "Bigang Liu"],
-      "type": "record",
-      "url": "/convert/https%3A%2F%2Fwww.landesbioscience.com%2Farticle%2F25402%2Ffull_text_xml"
+      "url": "/data/00049.json"
     }
   }
 }

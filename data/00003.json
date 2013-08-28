@@ -87,7 +87,22 @@
         "heading_s4-11",
         "paragraph_427",
         "sub-article",
-        "sub-article"
+        "heading_444",
+        "paragraph_445",
+        "paragraph_447",
+        "paragraph_450",
+        "paragraph_451",
+        "paragraph_453",
+        "paragraph_455",
+        "paragraph_456",
+        "sub-article",
+        "heading_457",
+        "paragraph_458",
+        "paragraph_460",
+        "paragraph_461",
+        "paragraph_463",
+        "paragraph_476",
+        "paragraph_478"
       ]
     },
     "figures": {
@@ -182,7 +197,6 @@
       "accepted_on": "2012-09-05",
       "published_on": "2012-11-13",
       "journal": "eLife",
-      "article_type": "",
       "keywords": [
         "innate immunity",
         "histones",
@@ -199,10 +213,9 @@
         "Immunology",
         "Microbiology and infectious disease"
       ],
-      "pdf_link": "",
-      "xml_link": "",
-      "json_link": "",
-      "doi": ""
+      "xml_link": "https://s3.amazonaws.com/elife-cdn/elife-articles/00003/elife00003.xml",
+      "json_link": "https://s3.amazonaws.com/elife-cdn/elife-articles/00003/00003.json",
+      "doi": "http://dx.doi.org/10.7554/eLife.00003"
     },
     "person_author_1258": {
       "type": "person",
@@ -211,9 +224,7 @@
       "last-name": "Anand",
       "role": "author",
       "affiliations": [],
-      "image": "",
       "contribution": " Conception and design, Acquisition of data, Analysis and interpretation of data, Drafting or revising the article",
-      "email": "",
       "funding": []
     },
     "person_author_1247": {
@@ -223,9 +234,7 @@
       "last-name": "Cermelli",
       "role": "author",
       "affiliations": [],
-      "image": "",
       "contribution": " Conception and design, Acquisition of data, Analysis and interpretation of data, Drafting or revising the article",
-      "email": "",
       "funding": [
         "funding_par_5"
       ]
@@ -237,9 +246,7 @@
       "last-name": "Li",
       "role": "author",
       "affiliations": [],
-      "image": "",
       "contribution": " Acquisition of data, Analysis and interpretation of data, Contributed unpublished essential data or reagents",
-      "email": "",
       "funding": []
     },
     "person_author_1249": {
@@ -249,9 +256,7 @@
       "last-name": "Kassan",
       "role": "author",
       "affiliations": [],
-      "image": "",
       "contribution": " Acquisition of data, Analysis and interpretation of data",
-      "email": "",
       "funding": []
     },
     "person_author_1250": {
@@ -261,9 +266,7 @@
       "last-name": "Bosch",
       "role": "author",
       "affiliations": [],
-      "image": "",
       "contribution": " Conception and design, Acquisition of data, Analysis and interpretation of data",
-      "email": "",
       "funding": []
     },
     "person_author_1259": {
@@ -273,9 +276,7 @@
       "last-name": "Sigua",
       "role": "author",
       "affiliations": [],
-      "image": "",
       "contribution": " Acquisition of data",
-      "email": "",
       "funding": []
     },
     "person_author_1252": {
@@ -285,9 +286,7 @@
       "last-name": "Huang",
       "role": "author",
       "affiliations": [],
-      "image": "",
       "contribution": " Analysis and interpretation of data",
-      "email": "",
       "funding": []
     },
     "person_author_1253": {
@@ -297,9 +296,7 @@
       "last-name": "Ouellette",
       "role": "author",
       "affiliations": [],
-      "image": "",
       "contribution": " Conception and design, Analysis and interpretation of data, Drafting or revising the article",
-      "email": "",
       "funding": []
     },
     "person_author_1254": {
@@ -309,9 +306,7 @@
       "last-name": "Pol",
       "role": "author",
       "affiliations": [],
-      "image": "",
       "contribution": " Conception and design, Acquisition of data, Analysis and interpretation of data, Drafting or revising the article",
-      "email": "",
       "funding": [
         "funding_par_4"
       ]
@@ -323,9 +318,7 @@
       "last-name": "Welte",
       "role": "author",
       "affiliations": [],
-      "image": "",
       "contribution": " Conception and design, Analysis and interpretation of data, Drafting or revising the article, Contributed unpublished essential data or reagents",
-      "email": "",
       "funding": [
         "funding_par_2",
         "funding_par_3"
@@ -338,7 +331,6 @@
       "last-name": "Gross",
       "role": "author",
       "affiliations": [],
-      "image": "",
       "contribution": " Conception and design, Analysis and interpretation of data, Drafting or revising the article",
       "email": "email_cor1",
       "funding": [
@@ -350,54 +342,42 @@
       "id": "institution_aff1",
       "name": "University of California Irvine",
       "city": "Irvine",
-      "country": "United States",
-      "email": "",
-      "image": ""
+      "country": "United States"
     },
     "institution_aff2": {
       "type": "institution",
       "id": "institution_aff2",
       "name": "University of Rochester",
       "city": "Rochester",
-      "country": "United States",
-      "email": "",
-      "image": ""
+      "country": "United States"
     },
     "institution_aff3": {
       "type": "institution",
       "id": "institution_aff3",
       "name": "Institut d'Investigacions Biomèdiques August Pi i Sunyer (IDIBAPS)",
       "city": "Barcelona",
-      "country": "Spain",
-      "email": "",
-      "image": ""
+      "country": "Spain"
     },
     "institution_aff4": {
       "type": "institution",
       "id": "institution_aff4",
       "name": "University of California Irvine",
       "city": "Irvine",
-      "country": "United States",
-      "email": "",
-      "image": ""
+      "country": "United States"
     },
     "institution_aff5": {
       "type": "institution",
       "id": "institution_aff5",
       "name": "University of Southern California",
       "city": "Los Angeles",
-      "country": "United States",
-      "email": "",
-      "image": ""
+      "country": "United States"
     },
     "institution_aff6": {
       "type": "institution",
       "id": "institution_aff6",
       "name": "Institució Catalana de Recerca i Estudis Avançats",
       "city": "Barcelona",
-      "country": "Spain",
-      "email": "",
-      "image": ""
+      "country": "Spain"
     },
     "person_1": {
       "type": "person",
@@ -406,9 +386,6 @@
       "last-name": "Kolter",
       "role": "editor",
       "affiliations": [],
-      "image": "",
-      "contribution": "",
-      "email": "",
       "funding": []
     },
     "info:review": {
@@ -423,7 +400,6 @@
     "email_cor1": {
       "type": "email",
       "id": "email_cor1",
-      "node": "",
       "email": "sgross@uci.edu"
     },
     "info:copyright": {
@@ -438,7 +414,7 @@
     "paragraph_2": {
       "type": "paragraph",
       "id": "paragraph_2",
-      "content": "This article is distributed under the terms of the Creative Commons Attribution License, which permits unrestricted use and redistribution provided that the original author and source are credited.10.7554/eLife.00003.001"
+      "content": "This article is distributed under the terms of the Creative Commons Attribution License, which permits unrestricted use and redistribution provided that the original author and source are credited."
     },
     "annotation_3": {
       "type": "link",
@@ -482,7 +458,7 @@
     "paragraph_6": {
       "type": "paragraph",
       "id": "paragraph_6",
-      "content": "DOI: http://dx.doi.org/10.7554/eLife.00003.00110.7554/eLife.00003.002"
+      "content": "DOI: http://dx.doi.org/10.7554/eLife.00003.001"
     },
     "annotation_7": {
       "type": "strong",
@@ -652,8 +628,7 @@
     },
     "paragraph_19": {
       "type": "paragraph",
-      "id": "paragraph_19",
-      "content": ""
+      "id": "paragraph_19"
     },
     "heading_s1": {
       "type": "heading",
@@ -1056,19 +1031,12 @@
       "type": "image",
       "id": "image_fig1",
       "label": "Figure 1.",
-      "url": "",
-      "object_id": "F1",
+      "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00003/svg/elife00003f001.svg",
       "title": "LDs kill bacteria via droplet bound histones.",
-      "content_type": "",
-      "large_url": "",
-      "content": "",
-      "group": [
-        "parent",
-        null
-      ],
       "doi": "http://dx.doi.org/10.7554/eLife.00003.003",
       "caption": "paragraph_image_fig1",
-      "graphic_id": "elife00003f001"
+      "graphic_id": "elife00003f001",
+      "format": "image"
     },
     "paragraph_image_fig1": {
       "type": "paragraph",
@@ -1800,19 +1768,12 @@
       "type": "image",
       "id": "image_fig2",
       "label": "Figure 2.",
-      "url": "",
-      "object_id": "F2",
+      "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00003/svg/elife00003f002.svg",
       "title": "Presence of extranuclear histones depends on the Jabba protein.",
-      "content_type": "",
-      "large_url": "",
-      "content": "",
-      "group": [
-        "parent",
-        null
-      ],
       "doi": "http://dx.doi.org/10.7554/eLife.00003.004",
       "caption": "paragraph_image_fig2",
-      "graphic_id": "elife00003f002"
+      "graphic_id": "elife00003f002",
+      "format": "image"
     },
     "paragraph_image_fig2": {
       "type": "paragraph",
@@ -2353,19 +2314,12 @@
       "type": "image",
       "id": "image_fig3",
       "label": "Figure 3.",
-      "url": "",
-      "object_id": "F3",
+      "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00003/svg/elife00003f003.svg",
       "title": "LD bound histones can kill bacteria in vivo.",
-      "content_type": "",
-      "large_url": "",
-      "content": "",
-      "group": [
-        "parent",
-        null
-      ],
       "doi": "http://dx.doi.org/10.7554/eLife.00003.005",
       "caption": "paragraph_image_fig3",
-      "graphic_id": "elife00003f003"
+      "graphic_id": "elife00003f003",
+      "format": "image"
     },
     "paragraph_image_fig3": {
       "type": "paragraph",
@@ -2792,19 +2746,11 @@
       "type": "image",
       "id": "image_fig3s1",
       "label": "Figure 3—figure supplement 1.",
-      "url": "",
-      "object_id": "F4",
+      "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00003/svg/elife00003fs001.svg",
       "title": "2 hr: Additional images of wild-type and Jabba mutant embryos with fluorescent bacteria, 2 hr after bacterial injection.",
-      "content_type": "",
-      "large_url": "",
-      "content": "",
-      "group": [
-        "child",
-        "image_fig3"
-      ],
-      "doi": "",
       "caption": "paragraph_image_fig3s1",
-      "graphic_id": "elife00003fs001"
+      "graphic_id": "elife00003fs001",
+      "format": "image"
     },
     "paragraph_image_fig3s1": {
       "type": "paragraph",
@@ -2842,19 +2788,11 @@
       "type": "image",
       "id": "image_fig3s2",
       "label": "Figure 3—figure supplement 2.",
-      "url": "",
-      "object_id": "F5",
+      "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00003/svg/elife00003fs002.svg",
       "title": "24 hr: Additional images of wild-type and Jabba mutant embryos with fluorescent bacteria, 24 hr after bacterial injection.",
-      "content_type": "",
-      "large_url": "",
-      "content": "",
-      "group": [
-        "child",
-        "image_fig3"
-      ],
-      "doi": "",
       "caption": "paragraph_image_fig3s2",
-      "graphic_id": "elife00003fs002"
+      "graphic_id": "elife00003fs002",
+      "format": "image"
     },
     "paragraph_image_fig3s2": {
       "type": "paragraph",
@@ -2892,19 +2830,11 @@
       "type": "image",
       "id": "image_fig3s3",
       "label": "Figure 3—figure supplement 3.",
-      "url": "",
-      "object_id": "F6",
+      "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00003/svg/elife00003fs003.svg",
       "title": "48 hr: Additional images of wild-type and Jabba mutant embryos with fluorescent bacteria, 48 hr after bacterial injection.",
-      "content_type": "",
-      "large_url": "",
-      "content": "",
-      "group": [
-        "child",
-        "image_fig3"
-      ],
-      "doi": "",
       "caption": "paragraph_image_fig3s3",
-      "graphic_id": "elife00003fs003"
+      "graphic_id": "elife00003fs003",
+      "format": "image"
     },
     "paragraph_image_fig3s3": {
       "type": "paragraph",
@@ -3584,19 +3514,12 @@
       "type": "image",
       "id": "image_fig4",
       "label": "Figure 4.",
-      "url": "",
-      "object_id": "F7",
+      "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00003/svg/elife00003f004.svg",
       "title": "The Jabba protein contributes to improved survival for adult flies.",
-      "content_type": "",
-      "large_url": "",
-      "content": "",
-      "group": [
-        "parent",
-        null
-      ],
       "doi": "http://dx.doi.org/10.7554/eLife.00003.009",
       "caption": "paragraph_image_fig4",
-      "graphic_id": "elife00003f004"
+      "graphic_id": "elife00003f004",
+      "format": "image"
     },
     "paragraph_image_fig4": {
       "type": "paragraph",
@@ -4084,19 +4007,12 @@
       "type": "image",
       "id": "image_fig5",
       "label": "Figure 5.",
-      "url": "",
-      "object_id": "F8",
+      "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00003/svg/elife00003f005.svg",
       "title": "Bacterial cell wall components release droplet bounds histones in a dose dependent manner.",
-      "content_type": "",
-      "large_url": "",
-      "content": "",
-      "group": [
-        "parent",
-        null
-      ],
       "doi": "http://dx.doi.org/10.7554/eLife.00003.010",
       "caption": "paragraph_image_fig5",
-      "graphic_id": "elife00003f005"
+      "graphic_id": "elife00003f005",
+      "format": "image"
     },
     "paragraph_image_fig5": {
       "type": "paragraph",
@@ -4433,19 +4349,12 @@
       "type": "image",
       "id": "image_fig6",
       "label": "Figure 6.",
-      "url": "",
-      "object_id": "F9",
+      "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00003/svg/elife00003f006.svg",
       "title": "Histones are on mammalian LDs and respond to LPS.",
-      "content_type": "",
-      "large_url": "",
-      "content": "",
-      "group": [
-        "parent",
-        null
-      ],
       "doi": "http://dx.doi.org/10.7554/eLife.00003.011",
       "caption": "paragraph_image_fig6",
-      "graphic_id": "elife00003f006"
+      "graphic_id": "elife00003f006",
+      "format": "image"
     },
     "paragraph_image_fig6": {
       "type": "paragraph",
@@ -6085,17 +5994,10 @@
       "year": "2003",
       "volume": "42",
       "source": "Biochemistry",
-      "issue": "",
       "fpage": "3929",
       "lpage": "38",
-      "collab": "",
-      "edition": "",
-      "publisher-name": "",
-      "publisher-loc": "",
-      "doi": "",
       "citation_url": [],
       "format": "journal",
-      "label": "",
       "editors": []
     },
     "article_citation_bib2": {
@@ -6123,17 +6025,10 @@
       "year": "1990",
       "volume": "345",
       "source": "Nature",
-      "issue": "",
       "fpage": "175",
       "lpage": "6",
-      "collab": "",
-      "edition": "",
-      "publisher-name": "",
-      "publisher-loc": "",
-      "doi": "",
       "citation_url": [],
       "format": "journal",
-      "label": "",
       "editors": []
     },
     "annotation_433": {
@@ -6179,17 +6074,10 @@
       "year": "2009",
       "volume": "7",
       "source": "Nat Rev Microbiol",
-      "issue": "",
       "fpage": "165",
       "lpage": "71",
-      "collab": "",
-      "edition": "",
-      "publisher-name": "",
-      "publisher-loc": "",
-      "doi": "",
       "citation_url": [],
       "format": "journal",
-      "label": "",
       "editors": []
     },
     "article_citation_bib4": {
@@ -6209,17 +6097,10 @@
       "year": "1997",
       "volume": "26",
       "source": "J Neurocytol",
-      "issue": "",
       "fpage": "823",
       "lpage": "31",
-      "collab": "",
-      "edition": "",
-      "publisher-name": "",
-      "publisher-loc": "",
-      "doi": "",
       "citation_url": [],
       "format": "journal",
-      "label": "",
       "editors": []
     },
     "article_citation_bib5": {
@@ -6239,17 +6120,10 @@
       "year": "2010",
       "volume": "82",
       "source": "Prostaglandins Leukot Essent Fatty Acids",
-      "issue": "",
       "fpage": "243",
       "lpage": "50",
-      "collab": "",
-      "edition": "",
-      "publisher-name": "",
-      "publisher-loc": "",
-      "doi": "",
       "citation_url": [],
       "format": "journal",
-      "label": "",
       "editors": []
     },
     "article_citation_bib6": {
@@ -6277,17 +6151,10 @@
       "year": "2004",
       "volume": "279",
       "source": "J Biol Chem",
-      "issue": "",
       "fpage": "46835",
       "lpage": "42",
-      "collab": "",
-      "edition": "",
-      "publisher-name": "",
-      "publisher-loc": "",
-      "doi": "",
       "citation_url": [],
       "format": "journal",
-      "label": "",
       "editors": []
     },
     "article_citation_bib7": {
@@ -6315,17 +6182,10 @@
       "year": "2006",
       "volume": "16",
       "source": "Curr Biol",
-      "issue": "",
       "fpage": "1783",
       "lpage": "95",
-      "collab": "",
-      "edition": "",
-      "publisher-name": "",
-      "publisher-loc": "",
-      "doi": "",
       "citation_url": [],
       "format": "journal",
-      "label": "",
       "editors": []
     },
     "article_citation_bib8": {
@@ -6349,17 +6209,10 @@
       "year": "2007",
       "volume": "39",
       "source": "Nat Genet",
-      "issue": "",
       "fpage": "715",
       "lpage": "20",
-      "collab": "",
-      "edition": "",
-      "publisher-name": "",
-      "publisher-loc": "",
-      "doi": "",
       "citation_url": [],
       "format": "journal",
-      "label": "",
       "editors": []
     },
     "annotation_435": {
@@ -6408,17 +6261,10 @@
       "year": "2002",
       "volume": "16",
       "source": "FASEB J",
-      "issue": "",
       "fpage": "429",
       "lpage": "31",
-      "collab": "",
-      "edition": "",
-      "publisher-name": "",
-      "publisher-loc": "",
-      "doi": "",
       "citation_url": [],
       "format": "journal",
-      "label": "",
       "editors": []
     },
     "article_citation_bib10": {
@@ -6446,17 +6292,10 @@
       "year": "2011",
       "volume": "59",
       "source": "J Agric Food Chem",
-      "issue": "",
       "fpage": "6933",
       "lpage": "9",
-      "collab": "",
-      "edition": "",
-      "publisher-name": "",
-      "publisher-loc": "",
-      "doi": "",
       "citation_url": [],
       "format": "journal",
-      "label": "",
       "editors": []
     },
     "article_citation_bib11": {
@@ -6484,17 +6323,10 @@
       "year": "2004",
       "volume": "28",
       "source": "Dev Comp Immunol",
-      "issue": "",
       "fpage": "127",
       "lpage": "38",
-      "collab": "",
-      "edition": "",
-      "publisher-name": "",
-      "publisher-loc": "",
-      "doi": "",
       "citation_url": [],
       "format": "journal",
-      "label": "",
       "editors": []
     },
     "annotation_436": {
@@ -6535,17 +6367,10 @@
       "year": "2009",
       "volume": "284",
       "source": "J Biol Chem",
-      "issue": "",
       "fpage": "6826",
       "lpage": "31",
-      "collab": "",
-      "edition": "",
-      "publisher-name": "",
-      "publisher-loc": "",
-      "doi": "",
       "citation_url": [],
       "format": "journal",
-      "label": "",
       "editors": []
     },
     "article_citation_bib13": {
@@ -6565,17 +6390,10 @@
       "year": "2003",
       "volume": "115",
       "source": "Cell",
-      "issue": "",
       "fpage": "537",
       "lpage": "49",
-      "collab": "",
-      "edition": "",
-      "publisher-name": "",
-      "publisher-loc": "",
-      "doi": "",
       "citation_url": [],
       "format": "journal",
-      "label": "",
       "editors": []
     },
     "annotation_437": {
@@ -6608,17 +6426,10 @@
       "year": "2002",
       "volume": "323",
       "source": "Clin Chim Acta",
-      "issue": "",
       "fpage": "59",
       "lpage": "72",
-      "collab": "",
-      "edition": "",
-      "publisher-name": "",
-      "publisher-loc": "",
-      "doi": "",
       "citation_url": [],
       "format": "journal",
-      "label": "",
       "editors": []
     },
     "article_citation_bib15": {
@@ -6634,17 +6445,10 @@
       "year": "1958",
       "volume": "108",
       "source": "J Exp Med",
-      "issue": "",
       "fpage": "925",
       "lpage": "44",
-      "collab": "",
-      "edition": "",
-      "publisher-name": "",
-      "publisher-loc": "",
-      "doi": "",
       "citation_url": [],
       "format": "journal",
-      "label": "",
       "editors": []
     },
     "article_citation_bib16": {
@@ -6680,17 +6484,10 @@
       "year": "2001",
       "volume": "276",
       "source": "J Biol Chem",
-      "issue": "",
       "fpage": "28327",
       "lpage": "39",
-      "collab": "",
-      "edition": "",
-      "publisher-name": "",
-      "publisher-loc": "",
-      "doi": "",
       "citation_url": [],
       "format": "journal",
-      "label": "",
       "editors": []
     },
     "annotation_438": {
@@ -6739,17 +6536,10 @@
       "year": "2000",
       "volume": "165",
       "source": "J Immunol",
-      "issue": "",
       "fpage": "3268",
       "lpage": "74",
-      "collab": "",
-      "edition": "",
-      "publisher-name": "",
-      "publisher-loc": "",
-      "doi": "",
       "citation_url": [],
       "format": "journal",
-      "label": "",
       "editors": []
     },
     "article_citation_bib18": {
@@ -6781,17 +6571,10 @@
       "year": "2012",
       "volume": "11",
       "source": "J Proteome Res",
-      "issue": "",
       "fpage": "1264",
       "lpage": "73",
-      "collab": "",
-      "edition": "",
-      "publisher-name": "",
-      "publisher-loc": "",
-      "doi": "",
       "citation_url": [],
       "format": "journal",
-      "label": "",
       "editors": []
     },
     "article_citation_bib19": {
@@ -6827,17 +6610,10 @@
       "year": "2000",
       "volume": "275",
       "source": "J Biol Chem",
-      "issue": "",
       "fpage": "23267",
       "lpage": "72",
-      "collab": "",
-      "edition": "",
-      "publisher-name": "",
-      "publisher-loc": "",
-      "doi": "",
       "citation_url": [],
       "format": "journal",
-      "label": "",
       "editors": []
     },
     "annotation_439": {
@@ -6886,17 +6662,10 @@
       "year": "2009",
       "volume": "129",
       "source": "J Invest Dermatol",
-      "issue": "",
       "fpage": "2489",
       "lpage": "96",
-      "collab": "",
-      "edition": "",
-      "publisher-name": "",
-      "publisher-loc": "",
-      "doi": "",
       "citation_url": [],
       "format": "journal",
-      "label": "",
       "editors": []
     },
     "article_citation_bib21": {
@@ -6928,17 +6697,10 @@
       "year": "1991",
       "volume": "137",
       "source": "J Immunol Methods",
-      "issue": "",
       "fpage": "167",
       "lpage": "73",
-      "collab": "",
-      "edition": "",
-      "publisher-name": "",
-      "publisher-loc": "",
-      "doi": "",
       "citation_url": [],
       "format": "journal",
-      "label": "",
       "editors": []
     },
     "article_citation_bib22": {
@@ -6972,19 +6734,10 @@
       ],
       "title": "Lipid droplets control the maternal histone supply of drosophila embryos",
       "year": "2012",
-      "volume": "",
       "source": "Current Biology",
-      "issue": "",
-      "fpage": "",
-      "lpage": "",
-      "collab": "",
-      "edition": "",
-      "publisher-name": "",
-      "publisher-loc": "",
       "doi": "http://dx.doi.org/10.1016/j.cub.2012.09.018",
       "citation_url": [],
       "format": "journal",
-      "label": "",
       "editors": []
     },
     "article_citation_bib23": {
@@ -7020,17 +6773,10 @@
       "year": "2000",
       "volume": "66",
       "source": "Appl Environ Microbiol",
-      "issue": "",
       "fpage": "3160",
       "lpage": "5",
-      "collab": "",
-      "edition": "",
-      "publisher-name": "",
-      "publisher-loc": "",
-      "doi": "",
       "citation_url": [],
       "format": "journal",
-      "label": "",
       "editors": []
     },
     "annotation_440": {
@@ -7059,17 +6805,10 @@
       "year": "2002",
       "volume": "80",
       "source": "Immunol Cell Biol",
-      "issue": "",
       "fpage": "36",
       "lpage": "44",
-      "collab": "",
-      "edition": "",
-      "publisher-name": "",
-      "publisher-loc": "",
-      "doi": "",
       "citation_url": [],
       "format": "journal",
-      "label": "",
       "editors": []
     },
     "article_citation_bib25": {
@@ -7093,17 +6832,11 @@
       "year": "2012",
       "volume": "40",
       "source": "Nucleic Acids Res",
-      "issue": "",
       "fpage": "D706",
       "lpage": "14",
       "collab": "FlyBase Consortium",
-      "edition": "",
-      "publisher-name": "",
-      "publisher-loc": "",
-      "doi": "",
       "citation_url": [],
       "format": "journal",
-      "label": "",
       "editors": []
     },
     "article_citation_bib26": {
@@ -7123,17 +6856,10 @@
       "year": "2007",
       "volume": "42",
       "source": "J Mass Spectrom",
-      "issue": "",
       "fpage": "664",
       "lpage": "74",
-      "collab": "",
-      "edition": "",
-      "publisher-name": "",
-      "publisher-loc": "",
-      "doi": "",
       "citation_url": [],
       "format": "journal",
-      "label": "",
       "editors": []
     },
     "article_citation_bib27": {
@@ -7153,17 +6879,10 @@
       "year": "2006",
       "volume": "84",
       "source": "Biochem Cell Biol",
-      "issue": "",
       "fpage": "589",
       "lpage": "604",
-      "collab": "",
-      "edition": "",
-      "publisher-name": "",
-      "publisher-loc": "",
-      "doi": "",
       "citation_url": [],
       "format": "journal",
-      "label": "",
       "editors": []
     },
     "article_citation_bib28": {
@@ -7191,17 +6910,10 @@
       "year": "2009",
       "volume": "7",
       "source": "Nat Rev Microbiol",
-      "issue": "",
       "fpage": "333",
       "lpage": "40",
-      "collab": "",
-      "edition": "",
-      "publisher-name": "",
-      "publisher-loc": "",
-      "doi": "",
       "citation_url": [],
       "format": "journal",
-      "label": "",
       "editors": []
     },
     "article_citation_bib29": {
@@ -7237,17 +6949,9 @@
       "year": "2012",
       "volume": "7",
       "source": "PLoS One",
-      "issue": "",
       "fpage": "e32366",
-      "lpage": "",
-      "collab": "",
-      "edition": "",
-      "publisher-name": "",
-      "publisher-loc": "",
-      "doi": "",
       "citation_url": [],
       "format": "journal",
-      "label": "",
       "editors": []
     },
     "article_citation_bib30": {
@@ -7283,17 +6987,10 @@
       "year": "2008",
       "volume": "42",
       "source": "J Clin Biochem Nutr",
-      "issue": "",
       "fpage": "222",
       "lpage": "7",
-      "collab": "",
-      "edition": "",
-      "publisher-name": "",
-      "publisher-loc": "",
-      "doi": "",
       "citation_url": [],
       "format": "journal",
-      "label": "",
       "editors": []
     },
     "article_citation_bib31": {
@@ -7321,17 +7018,10 @@
       "year": "2009a",
       "volume": "11",
       "source": "Nat Cell Biol",
-      "issue": "",
       "fpage": "925",
       "lpage": "33",
-      "collab": "",
-      "edition": "",
-      "publisher-name": "",
-      "publisher-loc": "",
-      "doi": "",
       "citation_url": [],
       "format": "journal",
-      "label": "",
       "editors": []
     },
     "article_citation_bib32": {
@@ -7355,17 +7045,10 @@
       "year": "2009b",
       "volume": "14",
       "source": "Front Biosci",
-      "issue": "",
       "fpage": "3145",
       "lpage": "58",
-      "collab": "",
-      "edition": "",
-      "publisher-name": "",
-      "publisher-loc": "",
-      "doi": "",
       "citation_url": [],
       "format": "journal",
-      "label": "",
       "editors": []
     },
     "article_citation_bib33": {
@@ -7401,17 +7084,10 @@
       "year": "2010",
       "volume": "9",
       "source": "Cell Cycle",
-      "issue": "",
       "fpage": "4236",
       "lpage": "44",
-      "collab": "",
-      "edition": "",
-      "publisher-name": "",
-      "publisher-loc": "",
-      "doi": "",
       "citation_url": [],
       "format": "journal",
-      "label": "",
       "editors": []
     },
     "article_citation_bib34": {
@@ -7447,17 +7123,10 @@
       "year": "2007",
       "volume": "6",
       "source": "J Proteome Res",
-      "issue": "",
       "fpage": "207",
       "lpage": "15",
-      "collab": "",
-      "edition": "",
-      "publisher-name": "",
-      "publisher-loc": "",
-      "doi": "",
       "citation_url": [],
       "format": "journal",
-      "label": "",
       "editors": []
     },
     "article_citation_bib35": {
@@ -7480,14 +7149,8 @@
       "issue": "Pt 1",
       "fpage": "1597",
       "lpage": "608",
-      "collab": "",
-      "edition": "",
-      "publisher-name": "",
-      "publisher-loc": "",
-      "doi": "",
       "citation_url": [],
       "format": "journal",
-      "label": "",
       "editors": []
     },
     "annotation_441": {
@@ -7536,17 +7199,10 @@
       "year": "2006",
       "volume": "7",
       "source": "Traffic",
-      "issue": "",
       "fpage": "1254",
       "lpage": "69",
-      "collab": "",
-      "edition": "",
-      "publisher-name": "",
-      "publisher-loc": "",
-      "doi": "",
       "citation_url": [],
       "format": "journal",
-      "label": "",
       "editors": []
     },
     "article_citation_bib37": {
@@ -7566,17 +7222,10 @@
       "year": "2009",
       "volume": "87",
       "source": "J Mol Med (Berl)",
-      "issue": "",
       "fpage": "775",
       "lpage": "83",
-      "collab": "",
-      "edition": "",
-      "publisher-name": "",
-      "publisher-loc": "",
-      "doi": "",
       "citation_url": [],
       "format": "journal",
-      "label": "",
       "editors": []
     },
     "article_citation_bib38": {
@@ -7608,17 +7257,10 @@
       "year": "2007",
       "volume": "21",
       "source": "FASEB J",
-      "issue": "",
       "fpage": "167",
       "lpage": "78",
-      "collab": "",
-      "edition": "",
-      "publisher-name": "",
-      "publisher-loc": "",
-      "doi": "",
       "citation_url": [],
       "format": "journal",
-      "label": "",
       "editors": []
     },
     "article_citation_bib39": {
@@ -7654,17 +7296,10 @@
       "year": "2005",
       "volume": "15",
       "source": "Curr Biol",
-      "issue": "",
       "fpage": "1266",
       "lpage": "75",
-      "collab": "",
-      "edition": "",
-      "publisher-name": "",
-      "publisher-loc": "",
-      "doi": "",
       "citation_url": [],
       "format": "journal",
-      "label": "",
       "editors": []
     },
     "article_citation_bib40": {
@@ -7680,17 +7315,10 @@
       "year": "2007",
       "volume": "17",
       "source": "Trends Cell Biol",
-      "issue": "",
       "fpage": "363",
       "lpage": "9",
-      "collab": "",
-      "edition": "",
-      "publisher-name": "",
-      "publisher-loc": "",
-      "doi": "",
       "citation_url": [],
       "format": "journal",
-      "label": "",
       "editors": []
     },
     "article_citation_bib41": {
@@ -7722,17 +7350,10 @@
       "year": "1989",
       "volume": "27",
       "source": "J Clin Microbiol",
-      "issue": "",
       "fpage": "1286",
       "lpage": "91",
-      "collab": "",
-      "edition": "",
-      "publisher-name": "",
-      "publisher-loc": "",
-      "doi": "",
       "citation_url": [],
       "format": "journal",
-      "label": "",
       "editors": []
     },
     "article_citation_bib42": {
@@ -7768,17 +7389,10 @@
       "year": "2010",
       "volume": "38",
       "source": "Amino Acids",
-      "issue": "",
       "fpage": "1333",
       "lpage": "42",
-      "collab": "",
-      "edition": "",
-      "publisher-name": "",
-      "publisher-loc": "",
-      "doi": "",
       "citation_url": [],
       "format": "journal",
-      "label": "",
       "editors": []
     },
     "annotation_442": {
@@ -7827,17 +7441,10 @@
       "year": "2011",
       "volume": "10",
       "source": "J Proteome Res",
-      "issue": "",
       "fpage": "4757",
       "lpage": "68",
-      "collab": "",
-      "edition": "",
-      "publisher-name": "",
-      "publisher-loc": "",
-      "doi": "",
       "citation_url": [],
       "format": "journal",
-      "label": "",
       "editors": []
     },
     "article_citation_bib44": {
@@ -7873,17 +7480,10 @@
       "year": "2012",
       "volume": "11",
       "source": "Mol Cell Proteomics",
-      "issue": "",
       "fpage": "317",
       "lpage": "28",
-      "collab": "",
-      "edition": "",
-      "publisher-name": "",
-      "publisher-loc": "",
-      "doi": "",
       "citation_url": [],
       "format": "journal",
-      "label": "",
       "editors": []
     },
     "annotation_443": {
@@ -7905,6 +7505,346 @@
       "level": 1,
       "content": "Article Commentary",
       "nodes": []
+    },
+    "heading_444": {
+      "type": "heading",
+      "id": "heading_444",
+      "level": 2,
+      "content": "Decision letter",
+      "nodes": []
+    },
+    "paragraph_445": {
+      "type": "paragraph",
+      "id": "paragraph_445",
+      "content": "eLife posts the editorial decision letter and author response on a selection of the published articles (subject to the approval of the authors). An edited version of the letter sent to the authors after peer review is shown, indicating the substantive concerns or comments; minor concerns are not usually shown. Reviewers have the opportunity to discuss the decision before the letter is sent (see review process). Similarly, the author response typically shows only responses to the major concerns raised by the reviewers."
+    },
+    "annotation_446": {
+      "type": "link",
+      "id": "annotation_446",
+      "path": [
+        "paragraph_445",
+        "content"
+      ],
+      "target": null,
+      "range": [
+        398,
+        412
+      ],
+      "url": "http://www.elifesciences.org/the-journal/review-process"
+    },
+    "paragraph_447": {
+      "type": "paragraph",
+      "id": "paragraph_447",
+      "content": "Thank you for choosing to send your work entitled “A novel role for lipid droplets in the organismal antibacterial response” for consideration at eLife. Your article has been evaluated by a Senior Editor and 2 reviewers, one of whom is a member of eLife's Board of Reviewing Editors. The latter was Roberto Kolter, who wanted to reveal his identity."
+    },
+    "annotation_448": {
+      "type": "emphasis",
+      "id": "annotation_448",
+      "path": [
+        "paragraph_447",
+        "content"
+      ],
+      "target": null,
+      "range": [
+        146,
+        151
+      ]
+    },
+    "annotation_449": {
+      "type": "emphasis",
+      "id": "annotation_449",
+      "path": [
+        "paragraph_447",
+        "content"
+      ],
+      "target": null,
+      "range": [
+        248,
+        255
+      ]
+    },
+    "paragraph_450": {
+      "type": "paragraph",
+      "id": "paragraph_450",
+      "content": "We discussed our comments and concerns before we reached this decision, and the Reviewing Editor has assembled the following comments based on the reviewers' reports. Our goal is to provide the essential revision requirements as a single set of instructions, so that you have a clear view of the revisions that are necessary for us to publish your work."
+    },
+    "paragraph_451": {
+      "type": "paragraph",
+      "id": "paragraph_451",
+      "content": "This is a very nice description of a remarkable new finding – bacteria infected into Drosophila embryos are killed by the release of histones from lipid droplets. The finding that in Jabba mutants histones do not accumulate in lipid droplets allowed a direct test of the involvement of histones in the process. A large difference in bacterial growth was observed, and a four to five fold difference in embryo survival was observed upon injection with bacteria. While the results are outstanding, the manuscript preparation is a bit wanting. In particular, there should be more quantitative assessment of the effects observed."
+    },
+    "annotation_452": {
+      "type": "emphasis",
+      "id": "annotation_452",
+      "path": [
+        "paragraph_451",
+        "content"
+      ],
+      "target": null,
+      "range": [
+        85,
+        95
+      ]
+    },
+    "paragraph_453": {
+      "type": "paragraph",
+      "id": "paragraph_453",
+      "content": "An important point that is currently not discussed in the paper is that, as of now, this phenomenon has been shown to apply to fly embryos (with some interesting results in murine liver added). But we feel there should be some discussion of whether this might apply to the adult organism – perhaps even some presentation as to whether adult Jabba flies are compromised or not when confronted with bacterial pathogens, if such trials have been done. While such experiments are not absolutely required (eLife policy is to suggest just the absolutely essential experiments), the text must be modified to bring forth this important limitation; as of now the effect has been seen only in early embryos and not in adult flies."
+    },
+    "annotation_454": {
+      "type": "emphasis",
+      "id": "annotation_454",
+      "path": [
+        "paragraph_453",
+        "content"
+      ],
+      "target": null,
+      "range": [
+        501,
+        506
+      ]
+    },
+    "paragraph_455": {
+      "type": "paragraph",
+      "id": "paragraph_455",
+      "content": "Aside from this important limitation that needs to be addressed, we recommend that the effect of Jabba be tested in another mutant background (jabba/deficiency) to exclude a possible background effect."
+    },
+    "paragraph_456": {
+      "type": "paragraph",
+      "id": "paragraph_456",
+      "content": "There were also some issues raised regarding the experiments using mammalian cell lines. Firstly, in the context of immunity, measuring the efficiency of an LPS infection is usually defined by cytokine response rather than hepatic injury. Secondly, if histones do act as cytosolic antibacterial agents in mammalian cells, it might to include a bacterial killing assay with intracellular bacteria and mammalian cells. In short, it would be good to tone down this section as well because the experiments presented are also rather limited, if provocative.10.7554/eLife.00003.013"
+    },
+    "heading_457": {
+      "type": "heading",
+      "id": "heading_457",
+      "level": 2,
+      "content": "Author response",
+      "nodes": []
+    },
+    "paragraph_458": {
+      "type": "paragraph",
+      "id": "paragraph_458",
+      "content": "An important point that is currently not discussed in the paper is that, as of now, this phenomenon has been shown to apply to fly embryos (with some interesting results in murine liver added). But we feel there should be some discussion of whether this might apply to the adult organism – perhaps even some presentation as to whether adult Jabba flies are compromised or not when confronted with bacterial pathogens, if such trials have been done. While such experiments are not absolutely required (eLife policy is to suggest just the absolutely essential experiments), the text must be modified to bring forth this important limitation; as of now the effect has been seen only in early embryos and not in adult flies."
+    },
+    "annotation_459": {
+      "type": "emphasis",
+      "id": "annotation_459",
+      "path": [
+        "paragraph_458",
+        "content"
+      ],
+      "target": null,
+      "range": [
+        0,
+        719
+      ]
+    },
+    "paragraph_460": {
+      "type": "paragraph",
+      "id": "paragraph_460",
+      "content": "We agree that this was an interesting and important question. In the new version of the manuscript, we answer it in the affirmative—Figure 4 is entirely new, and shows new data quantifying survival of adult flies challenged with bacteria. Further, Figure 4 shows that we can indeed detect histones in the adult cytosol, and that histone levels are decreased in the Jabba mutant background."
+    },
+    "paragraph_461": {
+      "type": "paragraph",
+      "id": "paragraph_461",
+      "content": "We recommend that the effect of Jabba be tested in another mutant background (jabba/deficiency) to exclude a possible background effect."
+    },
+    "annotation_462": {
+      "type": "emphasis",
+      "id": "annotation_462",
+      "path": [
+        "paragraph_461",
+        "content"
+      ],
+      "target": null,
+      "range": [
+        0,
+        135
+      ]
+    },
+    "paragraph_463": {
+      "type": "paragraph",
+      "id": "paragraph_463",
+      "content": "In fact, this was not an issue—the experiments presented had been done in two entirely different genetic backgrounds, but our description was lacking. We have now modified the text to show the exact details of the two different mutants used in this study to address the background effect. Alleles Jabbazl01 and Jabbaf07560 were derived independently: Jabbazl01 is due to imprecise excision of a P element inserted near the Jabba promoter. Jabbaf07560 is due to the insertion of a PBac element in the middle of the Jabba coding region. As the two alleles were generated in entirely different genetic backgrounds, this rules out any genetic background effects. This has now been clarified in the text."
+    },
+    "annotation_464": {
+      "type": "emphasis",
+      "id": "annotation_464",
+      "path": [
+        "paragraph_463",
+        "content"
+      ],
+      "target": null,
+      "range": [
+        297,
+        302
+      ]
+    },
+    "annotation_465": {
+      "type": "emphasis",
+      "id": "annotation_465",
+      "path": [
+        "paragraph_463",
+        "content"
+      ],
+      "target": null,
+      "range": [
+        302,
+        306
+      ]
+    },
+    "annotation_466": {
+      "type": "superscript",
+      "id": "annotation_466",
+      "path": [
+        "paragraph_463",
+        "content"
+      ],
+      "target": null,
+      "range": [
+        302,
+        306
+      ]
+    },
+    "annotation_467": {
+      "type": "emphasis",
+      "id": "annotation_467",
+      "path": [
+        "paragraph_463",
+        "content"
+      ],
+      "target": null,
+      "range": [
+        311,
+        316
+      ]
+    },
+    "annotation_468": {
+      "type": "emphasis",
+      "id": "annotation_468",
+      "path": [
+        "paragraph_463",
+        "content"
+      ],
+      "target": null,
+      "range": [
+        316,
+        322
+      ]
+    },
+    "annotation_469": {
+      "type": "superscript",
+      "id": "annotation_469",
+      "path": [
+        "paragraph_463",
+        "content"
+      ],
+      "target": null,
+      "range": [
+        316,
+        322
+      ]
+    },
+    "annotation_470": {
+      "type": "emphasis",
+      "id": "annotation_470",
+      "path": [
+        "paragraph_463",
+        "content"
+      ],
+      "target": null,
+      "range": [
+        351,
+        356
+      ]
+    },
+    "annotation_471": {
+      "type": "emphasis",
+      "id": "annotation_471",
+      "path": [
+        "paragraph_463",
+        "content"
+      ],
+      "target": null,
+      "range": [
+        356,
+        360
+      ]
+    },
+    "annotation_472": {
+      "type": "superscript",
+      "id": "annotation_472",
+      "path": [
+        "paragraph_463",
+        "content"
+      ],
+      "target": null,
+      "range": [
+        356,
+        360
+      ]
+    },
+    "annotation_473": {
+      "type": "emphasis",
+      "id": "annotation_473",
+      "path": [
+        "paragraph_463",
+        "content"
+      ],
+      "target": null,
+      "range": [
+        439,
+        444
+      ]
+    },
+    "annotation_474": {
+      "type": "emphasis",
+      "id": "annotation_474",
+      "path": [
+        "paragraph_463",
+        "content"
+      ],
+      "target": null,
+      "range": [
+        444,
+        450
+      ]
+    },
+    "annotation_475": {
+      "type": "superscript",
+      "id": "annotation_475",
+      "path": [
+        "paragraph_463",
+        "content"
+      ],
+      "target": null,
+      "range": [
+        444,
+        450
+      ]
+    },
+    "paragraph_476": {
+      "type": "paragraph",
+      "id": "paragraph_476",
+      "content": "There were also some issues raised regarding the experiments using mammalian cell lines. Firstly, in the context of immunity, measuring the efficiency of an LPS infection is usually defined by cytokine response rather than hepatic injury. Secondly, if histones do act as cytosolic antibacterial agents in mammalian cells, it might do to include a bacterial killing assay with intracellular bacteria and mammalian cells. In short, it would be good to tone down this section as well because the experiments presented are also rather limited, if provocative."
+    },
+    "annotation_477": {
+      "type": "emphasis",
+      "id": "annotation_477",
+      "path": [
+        "paragraph_476",
+        "content"
+      ],
+      "target": null,
+      "range": [
+        0,
+        554
+      ]
+    },
+    "paragraph_478": {
+      "type": "paragraph",
+      "id": "paragraph_478",
+      "content": "The cytokine levels in the murine study are now included in the revised version of the manuscript (see Figure 6). We have not been able to do a bacterial killing assay with the murine droplets, because a great deal of research in Spain (where our collaborators are located) is currently on hold due to the financial crisis there; the mouse facility is closed for a month or two. Given our new data on whole-fly data, and the expected large delay in being able to carry out the murine-droplet killing assays, we propose to leave establishing the efficacy of the murine droplets for future work. Accordingly, this section has been toned down as suggested by the reviewers, and in particular, we now include the sentence: “Determining whether the murine droplet-bound histones actively contribute to host defense remains for future studies.”"
     }
   }
 }
