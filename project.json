@@ -23,7 +23,7 @@
     {
       "repository": "https://github.com/substance/document.git",
       "folder": "node_modules/substance-document",
-      "branch": "0.5.x"
+      "branch": "nested_nodes"
     },
     {
       "repository": "https://github.com/elifesciences/lens-reader.git",
@@ -38,7 +38,7 @@
     {
       "repository": "https://github.com/substance/article.git",
       "folder": "node_modules/substance-article",
-      "branch": "0.1.x"
+      "branch": "nested_nodes"
     },
     {
       "repository": "https://github.com/elifesciences/lens-manual.git",
@@ -63,7 +63,7 @@
     {
       "repository": "https://github.com/substance/converter.git",
       "folder": "node_modules/substance-converter",
-      "branch": "recursive_descent"
+      "branch": "nlm_converter"
     },
     {
       "repository": "https://github.com/substance/operator.git",
@@ -83,7 +83,7 @@
     {
       "repository": "https://github.com/substance/surface.git",
       "folder": "node_modules/substance-surface",
-      "branch": "0.3.x"
+      "branch": "nested_nodes"
     },
     {
       "repository": "https://github.com/substance/test.git",
@@ -98,7 +98,7 @@
     {
       "repository": "https://github.com/elifesciences/lens.git",
       "folder": ".",
-      "branch": "0.2.x"
+      "branch": "nlm_converter"
     }
   ],
   "node_modules": {
@@ -112,5 +112,5 @@
       "node": ">=0.8.x",
       "npm": ">=1.1.x"
     }
-  }  
+  }
 }
