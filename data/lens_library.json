@@ -59,7 +59,7 @@
       "title": "A novel role for lipid droplets in the organismal antibacterial response",
       "authors": ["Preetha Anand", "Silvia Cermelli", "Zhihuan LiAdam Kassan"],
       "type": "record",
-      "url": "/data/00003.json"
+      "url": "/data/00003.xml"
     },
 
     "00005": {
@@ -67,7 +67,7 @@
       "title": "Molecular architecture of human polycomb repressive complex 2",
       "authors": ["Claudio Ciferri", "Gabriel C Lander", "Alessio Maiolica"],
       "type": "record",
-      "url": "/data/00005.json"
+      "url": "/data/00005.xml"
     },
 
     "00311": {
@@ -75,7 +75,7 @@
       "title": "Modelling dynamics in protein crystal structures by ensemble refinement",
       "authors": ["B Tom Burnley", "Pavel V Afonine", "Paul D Adams", "Piet Gros"],
       "type": "record",
-      "url": "/data/00311.json"
+      "url": "/data/00311.xml"
     },
 
     "00049": {
@@ -83,7 +83,7 @@
       "title": "Sodium taurocholate cotransporting polypeptide is a functional receptor for human hepatitis B and D virus",
       "authors": ["Some", "Authors"],
       "type": "record",
-      "url": "/data/00049.json"
+      "url": "/data/00049.xml"
     },
 
     "2013CC4897R": {
