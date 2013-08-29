@@ -6,7 +6,7 @@
     "library": {
       "type": "library",
       "name": "Lens development resources",
-      "collections": ["lens", "elife"]
+      "collections": ["lens", "landesbioscience", "elife"]
     },
 
     "lens": {
@@ -23,6 +23,12 @@
       "records": ["00003", "00005", "00311", "00049"]
     },
 
+    "landesbioscience": {
+      "id": "landesbioscience",
+      "name": "Landes BioScience Examples",
+      "type": "collection",
+      "records": ["2013CC4897R"]
+    },
 
     "manual": {
       "id": "manual",
@@ -78,6 +84,14 @@
       "authors": ["Some", "Authors"],
       "type": "record",
       "url": "/data/00049.json"
+    },
+
+    "2013CC4897R": {
+      "id": "2013CC4897R",
+      "title": "In vivo functional studies of tumor-specific retrogene NanogP8 in transgenic animals",
+      "authors": ["Some", "Authors"],
+      "type": "record",
+      "url": "/data/2013CC4897R.xml"
     }
   }
 }

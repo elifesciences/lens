@@ -3,7 +3,7 @@ var express = require('express');
 var path = require('path');
 
 var CommonJSServer = require("substance-application/commonjs");
-var Converter = require("substance-converter");
+var ConverterServer = require("substance-converter/src/server");
 var Article = require("lens-article");
 
 var _ = require("underscore");
@@ -81,7 +81,7 @@ app.get("/scripts*",
 // Provides on the fly conversion for different markup formats
 // --------
 
-var converter = new Converter.Server(app);
+var converter = new ConverterServer(app);
 converter.serve();
 
 
@@ -94,7 +94,6 @@ converter.serve();
 app.get('/data/lens_article.json', function(req, res) {
   res.json(Article.describe());
 });
-
 
 // Adds some stuff like cover nodes to the converted docs based on some internal assumptions
 // --------

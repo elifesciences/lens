@@ -1,0 +1,2255 @@
+<?xml version="1.0"?>
+<!DOCTYPE article SYSTEM "journalpub-oasis3.dtd">
+<article xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:oasis="http://docs.oasis-open.org/ns/oasis-exchange/table" article-type="research-article" dtd-version="3.0" xml:lang="EN">
+<?release-delay 0|0 ?>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="publisher-id">CC</journal-id>
+      <journal-title-group>
+        <journal-title>Cell Cycle</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1538-4101</issn>
+      <issn pub-type="epub">1551-4005</issn>
+      <publisher>
+        <publisher-name>Landes Bioscience</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="publisher-id">2013CC4897R</article-id>
+      <article-id pub-id-type="doi">10.4161/cc.25402</article-id>
+      <article-id pub-id-type="pmid">23839044</article-id>
+      <article-id pub-id-type="pii">25402</article-id>
+      <article-categories>
+        <subj-group subj-group-type="article_type">
+          <subject>Report</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>In vivo functional studies of tumor-specific retrogene NanogP8 in transgenic animals</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Badeaux</surname>
+            <given-names>Mark A</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1">
+            <sup>1</sup>
+          </xref>
+          <xref ref-type="aff" rid="A2">
+            <sup>2</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Jeter</surname>
+            <given-names>Collene R</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1">
+            <sup>1</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Gong</surname>
+            <given-names>Shuai</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1">
+            <sup>1</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Liu</surname>
+            <given-names>Bigang</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1">
+            <sup>1</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Suraneni</surname>
+            <given-names>Mahipal V</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1">
+            <sup>1</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Rundhaug</surname>
+            <given-names>Joyce</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1">
+            <sup>1</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Fischer</surname>
+            <given-names>Susan M</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1">
+            <sup>1</sup>
+          </xref>
+          <xref ref-type="aff" rid="A2">
+            <sup>2</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Yang</surname>
+            <given-names>Tao</given-names>
+          </name>
+          <xref ref-type="aff" rid="A3">
+            <sup>3</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Kusewitt</surname>
+            <given-names>Donna</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1">
+            <sup>1</sup>
+          </xref>
+          <xref ref-type="aff" rid="A2">
+            <sup>2</sup>
+          </xref>
+        </contrib>
+        <contrib contrib-type="author" corresp="yes">
+          <name>
+            <surname>Tang</surname>
+            <given-names>Dean G</given-names>
+          </name>
+          <xref ref-type="aff" rid="A1">
+            <sup>1</sup>
+          </xref>
+          <xref ref-type="aff" rid="A2">
+            <sup>2</sup>
+          </xref>
+          <xref ref-type="aff" rid="A3">
+            <sup>3</sup>
+          </xref>
+          <xref ref-type="aff" rid="A4">
+            <sup>4</sup>
+          </xref>
+          <xref ref-type="corresp" rid="cor1">*</xref>
+        </contrib>
+        <aff id="A1"><label>1</label>Department of Molecular Carcinogenesis; University of Texas MD Anderson Cancer Center; Smithville, TX USA</aff>
+        <aff id="A2"><label>2</label>Program in Molecular Carcinogenesis; University of Texas Graduate School of Biomedical Sciences (GSBS); Houston, TX USA</aff>
+        <aff id="A3"><label>3</label>Cancer Stem Cell Institute; Research Center for Translational Medicine; East Hospital; Tongji University; Shanghai, China</aff>
+        <aff id="A4"><label>4</label>Centers for Cancer Epigenetics, Stem Cell and Developmental Biology; RNA Interference and Non-Coding RNAs; and Molecular Carcinogenesis; University of Texas MD Anderson Cancer Center; Houston, TX USA</aff>
+      </contrib-group>
+      <author-notes>
+        <corresp id="cor1"><label>*</label>Correspondence to: Dean G Tang, Email: <email xlink:href="dtang@mdanderson.org">dtang@mdanderson.org</email></corresp>
+      </author-notes>
+      <pub-date pub-type="ppub">
+        <day>01</day>
+        <month>08</month>
+        <year>2013</year>
+      </pub-date>
+      <pub-date pub-type="epub">
+        <day>26</day>
+        <month>06</month>
+        <year>2013</year>
+      </pub-date>
+      <volume>12</volume>
+      <issue>15</issue>
+      <fpage>2395</fpage>
+      <lpage>2408</lpage>
+      <supplementary-material id="SUP1" xlink:href="2013CC4897R-Sup.pdf">
+        <label>Additional material</label>
+        <media xlink:href="2013CC4897R-Sup.pdf"/>
+      </supplementary-material>
+      <history>
+        <date date-type="received">
+          <day>21</day>
+          <month>03</month>
+          <year>2013</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>10</day>
+          <month>06</month>
+          <year>2013</year>
+        </date>
+        <date date-type="accepted">
+          <day>13</day>
+          <month>06</month>
+          <year>2013</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>Copyright © 2013 Landes Bioscience</copyright-statement>
+        <copyright-year>2013</copyright-year>
+        <license license-type="open-access" xlink:href="http://creativecommons.org/licenses/by-nc/3.0/">
+          <license-p>This is an open-access article licensed under a Creative Commons Attribution-NonCommercial 3.0 Unported License.  The article may be redistributed, reproduced, and reused for non-commercial purposes, provided the original source is properly cited.</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>The current study was undertaken to investigate potential oncogenic functions of NanogP8, a tumor-specific retrogene homolog of Nanog (expressed in pluripotent cells), in transgenic animal models. To this end, human primary prostate tumor-derived NanogP8 was targeted to the cytokeratin 14 (K14) cellular compartment, and two lines of K14-NanogP8 mice were derived. The line 1 animals, expressing high levels of NanogP8, experienced perinatal lethality and developmental abnormalities in multiple organs, including the skin, tongue, eye, and thymus in surviving animals. On postnatal day 5 transgenic skin, for example, there was increased c-Myc expression and Ki-67<sup>+</sup> cells accompanied by profound abnormalities in skin development such as thickened interfollicular epidermis and dermis and lack of hypodermis and sebaceous glands. The line 3 mice, expressing low levels of NanogP8, were grossly normal except cataract development by 4–6 mo of age. Surprisingly, both lines of mice do not develop spontaneous tumors related to transgene expression. Even more unexpectedly, high levels of NanogP8 expression in L1 mice actually inhibited tumor development in a two-stage chemical carcinogenesis model. Mechanistic studies revealed that constitutive NanogP8 overexpression in adult L1 mice reduced CD34<sup>+</sup>α6<sup>+</sup> and Lrig-1<sup>+</sup> bulge stem cells, impaired keratinocyte migration, and repressed the expression of many stem cell-associated genes, including Bmp5, Fgfr2, Jmjd1a, and Jun. Our study, for the first time, indicates that transgenically expressed human NanogP8 is biologically functional, but suggests that high levels of NanogP8 may disrupt normal developmental programs and inhibit tumor development by depleting stem cells.</p>
+      </abstract>
+      <kwd-group kwd-group-type="author" xml:lang="EN">
+        <title>Keywords: </title>
+        <kwd>NanogP8</kwd>
+        <kwd>stem cells</kwd>
+        <kwd>K14</kwd>
+        <kwd>epidermis</kwd>
+        <kwd>tumor development</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec sec-type="intro">
+      <title>Introduction</title>
+      <p>In embryonic stem (ES) cells, Oct-4, Sox-2, and Nanog are the core triad that maintains the pluripotent state. Interestingly, cancer cells may usurp some of these transcription factors for their own use, as numerous studies have demonstrated re-expression and, in some cases, the functional importance, of embryonic genes in neoplastic growths.<xref ref-type="bibr" rid="R1"><sup>1</sup></xref><sup>-</sup><xref ref-type="bibr" rid="R24"><sup>24</sup></xref> For example, Nanog protein,<xref ref-type="bibr" rid="R1"><sup>1</sup></xref><sup>,</sup><xref ref-type="bibr" rid="R2"><sup>2</sup></xref><sup>,</sup><xref ref-type="bibr" rid="R8"><sup>8</sup></xref><sup>-</sup><xref ref-type="bibr" rid="R10"><sup>10</sup></xref><sup>,</sup><xref ref-type="bibr" rid="R13"><sup>13</sup></xref><sup>,</sup><xref ref-type="bibr" rid="R14"><sup>14</sup></xref><sup>,</sup><xref ref-type="bibr" rid="R20"><sup>20</sup></xref><sup>,</sup><xref ref-type="bibr" rid="R22"><sup>22</sup></xref><sup>-</sup><xref ref-type="bibr" rid="R24"><sup>24</sup></xref> and mRNA<xref ref-type="bibr" rid="R3"><sup>3</sup></xref><sup>-</sup><xref ref-type="bibr" rid="R5"><sup>5</sup></xref><sup>,</sup><xref ref-type="bibr" rid="R8"><sup>8</sup></xref><sup>,</sup><xref ref-type="bibr" rid="R9"><sup>9</sup></xref><sup>,</sup><xref ref-type="bibr" rid="R11"><sup>11</sup></xref><sup>-</sup><xref ref-type="bibr" rid="R16"><sup>16</sup></xref> expression has been reported in various cancers and implicated in regulating cancer cell properties. Several caveats are associated with many of these studies. First, the specificity for the majority of commercially available anti-Nanog antibodies remains uncharacterized. Therefore, it is unclear whether the putative Nanog protein band shown on western blotting (often a cropped strip) or the Nanog protein shown in immunohistochemistry (IHC) truly represents the Nanog protein. Second, rigorous studies,<xref ref-type="bibr" rid="R9"><sup>9</sup></xref><sup>,</sup><xref ref-type="bibr" rid="R13"><sup>13</sup></xref><sup>-</sup><xref ref-type="bibr" rid="R15"><sup>15</sup></xref><sup>,</sup><xref ref-type="bibr" rid="R24"><sup>24</sup></xref> employing differential RT-PCR combined with sequencing and differential sensitivity to the restriction enzyme AlwN1, have demonstrated that somatic cancer cells preferentially express the transcript of a retrotransposed <italic>Nanog</italic> gene called NanogP8 (Chr. 15q14). In fact, our own studies have shown that the <italic>Nanog1</italic> locus (i.e., the “parental” gene located on Chr. 12p13.31 and expressed in ES cells) is silenced in somatic cancer cells.<xref ref-type="bibr" rid="R9"><sup>9</sup></xref> Making the distinction between <italic>Nanog1</italic> and <italic>NanogP8</italic> is important, because the two transcripts are derived from separate genomic loci and have differences at the nucleotide sequence levels. Unfortunately, many early studies did not make such a distinction.</p>
+      <p>Third, many previous studies have been merely correlative without probing the functional importance of NanogP8 expression in cancer cells. Using human prostate cancer (PCa) as a model, we have shown<xref ref-type="bibr" rid="R9"><sup>9</sup></xref> that: (1) NanogP8 protein is expressed as a gradient in PCa cells with readily detectable nuclear NanogP8 staining in only a small fraction of PCa cells; (2) NanogP8 protein-expressing cells are increased in primary PCa compared with matching benign tissues; (3) <italic>NanogP8</italic> mRNA and NanogP8 protein are enriched in CD44<sup>+</sup> and CD44<sup>+</sup>CD133<sup>+</sup> primary PCa cells; (4) shRNA-mediated knockdown of <italic>NanogP8</italic> inhibits tumor regeneration of prostate, breast, and colon cancer cells; and (5) the tumor-inhibitory effects of <italic>NanogP8</italic> knockdown are associated with inhibition of cell proliferation and clonal expansion of tumor cells and disruption of differentiation. Our recent studies have demonstrated that inducible NanogP8 expression in bulk PCa cells is sufficient to confer on CSC properties and promotes androgen-independent PCa growth,<xref ref-type="bibr" rid="R15"><sup>15</sup></xref> and that NanogP8 is enriched in undifferentiated (PSA<sup>−/lo</sup>) PCa cells, and its knockdown significantly retards the development of castration-resistant PCa.<xref ref-type="bibr" rid="R25"><sup>25</sup></xref> Our studies<xref ref-type="bibr" rid="R9"><sup>9</sup></xref><sup>,</sup><xref ref-type="bibr" rid="R15"><sup>15</sup></xref><sup>,</sup><xref ref-type="bibr" rid="R25"><sup>25</sup></xref> point to potential pro-oncogenic functions of NanogP8.</p>
+      <p>Nonetheless, whether cancer-specific NanogP8 has any biological (or oncogenic) functions in vivo (i.e., in an intact organism) remains unanswered. Here, we sought to address this question by establishing transgenic mouse models in which human PCa-derived <italic>NanogP8</italic> is expressed in the cytokeratin 14 (K14) cellular compartment, mainly because K14 is expressed in the basal cell layer of multiple epithelial organs (including the prostate) that is known to harbor stem/progenitor cells. Surprisingly, the K14-NanogP8 mice manifest many developmental defects and do not develop spontaneous tumors even after an extended period of time. More unexpectedly, high levels of NanogP8 expression in K14-NanogP8 mice renders the animals resistant to tumor development in a two-stage skin carcinogenesis protocol. Further mechanistic studies link these unexpected phenotypes to impaired stem cell development and abnormal cellular differentiation induced by NanogP8 overexpression.</p>
+    </sec>
+    <sec sec-type="results">
+      <title>Results</title>
+      <sec>
+        <title>Generation of K14-NanogP8 transgenic (Tg) mice and characterization of transgene expression</title>
+        <p>Transgenic expression of Oct-4 causes proliferative and dysplastic lesions in fast renewing tissues such as the skin and small intestine due to a block in stem/progenitor cell differentiation.<xref ref-type="bibr" rid="R26"><sup>26</sup></xref> Similarly, Tg expression of Sox2 in the mouse lung causes prominent hyperplasia of airway and alveolar epithelium and lung carcinomas.<xref ref-type="bibr" rid="R27"><sup>27</sup></xref> To explore the potential “oncogenic” functions of NanogP8 in vivo, we placed NanogP8 expression under the control of the human keratin 14 (K14) promoter.<xref ref-type="bibr" rid="R28"><sup>28</sup></xref> K14 is expressed in the basal epithelial cells of stratified and pseudostratified epithelial organs including the prostate, which our lab has been focusing on. K14 is also known to be expressed in epithelial components of the thymus and lung (see below). We injected the transgene construct (<xref ref-type="fig" rid="F1">Fig. 1A</xref>) into a total of 1072 embryos and obtained 92 live pups. Of these, 4 were potential Tg founders, as determined by PCR for the transgene (<xref ref-type="fig" rid="F1">Fig. 1B</xref>) and IHC staining of tail clips for NanogP8 protein using several anti-NanogP8 antibodies (<xref ref-type="supplementary-material" rid="SUP1"><bold>Table S1</bold></xref>). (Note that the predicted NanogP8 protein is ~99% identical to the ES cell-specific Nanog1 protein. Hence, most anti-Nanog1 antibodies tested react well with the NanogP8 protein in cancer cells. Consequently, we often term the Nanog1/NanogP8 proteins simply as Nanog). Of the 4 potential Tg founders, one died at P14, and another did not transmit the transgene. The remaining two K14-NanogP8 transgenic mice passed the transgene in the germline and were used to found two lines, designated line 1 (L1) and line 3 (L3), which were used in all subsequent studies.</p>
+        <fig id="F1" position="float" fig-type="figure">
+          <caption>
+            <p><bold>Figure 1.</bold> K14-NanogP8 transgenic animals and their gross phenotypes. (<bold>A</bold>) Schematic of the K14-NanogP8 transgene construct. The human K14 promoter<xref ref-type="bibr" rid="R25"><sup>25</sup></xref> was used to drive the expression of NanogP8 cDNA cloned from the HPCa5 primary prostate tumor.<xref ref-type="bibr" rid="R14"><sup>14</sup></xref> A ~600 bp rabbit β-globin intron 2 (In2) sequence was used to promote correct transgene processing and expression.<xref ref-type="bibr" rid="R23"><sup>23</sup></xref><sup>-</sup><xref ref-type="bibr" rid="R25"><sup>25</sup></xref> Restriction enzyme sites are indicated. (<bold>B</bold>) An example of PCR genotyping using genomic DNA from ear punches. The positive ~300 bp transgene band was detected using the forward primer located in the b-globin intron and reverse primer in the NanogP8 cDNA. Genomic b-casein PCR was used as internal control. (<bold>C</bold>) Epidermal lysate from one-day old WT and L1 Tg animals was used in western blotting analysis of NanogP8 with an anti-human Nanog Ab (#3580, Cell Signaling, <xref ref-type="supplementary-material" rid="SUP1"><bold>Table S1</bold></xref>). Animal numbers are indicated on top. Animals 1211, 1214, and 1215 were Tg animals and all the rest were non-Tg animals (verified by genotyping). (<bold>D</bold>) Western blotting of NanogP8 in adult L1 Tg mouse tissues. Whole-cell lysate prepared from 3-mo-old L1 Tg animal tissues/organs as indicated (f. stomach, forestomach; sm. int., small intestine) was used in western blotting as above. The arrow points to the ~42-kD NanogP8 band and the asterisk indicates the ~35 kD band seen in the liver, kidney, and prostate. The blot was reprobed for β-actin (lower panel). (<bold>E</bold>) Whole-cell lysate prepared from tissues in a 3-mo old L1 Tg animal was used in western blotting of NanogP8 and the blot was reprobed for β-actin. (<bold>F</bold>) Whole-cell lysate prepared from L1 (6 mo old) and L3 (4-mo-old) Tg epidermis was used in western blotting of NanogP8. Note that the L1 Tg epidermis expressed the highest NanogP8 protein and the L3 animals (animal numbers indicated) that had cataracts (catar.) expressed higher levels of NanogP8 than the ones that did not. (<bold>G</bold>) Adult mouse tissues expressed little or only low levels of endogenous mouse Nanog (mNanog) protein. Whole-cell lysate from the indicated tissues of a 3-mo-old WT mouse was used in western blotting with an antibody specific for mouse Nanog (Abcam, #70482; Table S1). Human embryonal carcinoma (N-tera) cells were used as a “negative” control. (<bold>H</bold>) Litter sizes in the WT and L1 F1 Tg animals. (<bold>I and J</bold>) Smaller body sizes of the L1 Tg animals. Shown in I are images of two pairs of WT and L1 Tg animals at P5 and p14, respectively. Shown in (<bold>J</bold>) is quantitative presentation of body weight vs. age. Note that from wk 2 and onwards both Tg males and females are significantly smaller than the age- and sex-matched WT animals (<italic>P</italic> &lt; 0.05; Student <italic>t</italic> test). (<bold>K</bold>) Gross animal hair phenotypes. (<bold>A-C</bold>) The L1 adult (3-mo) Tg mice have rough and sparse hair coat (<bold>B and C</bold>) compared with WT animal (<bold>A</bold>). (<bold>D and E</bold>) An example of curly whiskers in a L1 Tg animal (3 mo), which also showed ocular abnormalities. (<bold>F</bold>) A L3 Tg animal (4 mo) showing sparse hair coat and curly whiskers.</p>
+          </caption>
+          <graphic xlink:href="2013CC4897R-F1.tif"/>
+        </fig>
+        <p>K14 is expressed primarily in the skin with weaker expression in other stratified epithelium, including the basal cell layer of the prostate. IHC staining of tail clips (not shown) and western blotting analysis of multiple tissues/organs (<xref ref-type="fig" rid="F1">Fig. 1C–F</xref>) revealed that the L1 animals expressed higher levels of NanogP8 protein (~42 kD) than the L3 animals. In L1 Tg animals, NanogP8 was most highly expressed in the skin; however, lower levels of expression were seen in the prostate, tongue, thymus, and forestomach (<xref ref-type="fig" rid="F1">Fig. 1D–E</xref>). There was prominent transgene expression in the lung (<xref ref-type="fig" rid="F1">Fig. 1D</xref>), similar to what we observed with K5-driven large T expression in the lung.<xref ref-type="bibr" rid="R29"><sup>29</sup></xref> This was likely due to the expression of K5/K14 in pseudostratified epithelium of the trachea and bronchi.<xref ref-type="bibr" rid="R30"><sup>30</sup></xref> Ovary, small intestine, kidney, liver, spleen, and pancreas did not show detectable transgene expression (<xref ref-type="fig" rid="F1">Fig. 1D–E</xref>). An immunoreactive ~35-kD protein was highly expressed in the liver and had more moderate expression in the kidney and prostate (<xref ref-type="fig" rid="F1">Fig. 1D</xref>, asterisk). This might represent degradation product of NanogP8 or endogenous mouse Nanog protein. Western blotting using a species-specific anti-mouse Nanog antibody (<xref ref-type="supplementary-material" rid="SUP1"><bold>Table S1</bold></xref>) detected the 42-kD Nanog protein in mESCs but not in human embryonal carcinoma (N-tera) cells (<xref ref-type="fig" rid="F1">Fig. 1G</xref>). The mouse liver and kidney showed several faintly immunoreactive bands at 35–42 kD (<xref ref-type="fig" rid="F1">Fig. 1G</xref>), some of which might be endogenous mouse Nanog protein species. Unexpectedly, adult L3 animals expressed the transgene at two different levels (<xref ref-type="fig" rid="F1">Fig. 1F</xref>).</p>
+      </sec>
+      <sec>
+        <title>Gross phenotypes of K14-NanogP8 mice</title>
+        <p>Gross phenotypes correlated with the transgene expression levels, with L1 mice showing more marked abnormalities than L3 mice (<xref ref-type="fig" rid="F1">Fig. 1H–K</xref>). The L1 founder, which had wrinkled skin and sparse hair (not shown), generated small litters (5.3 pups/litter; n = 7 litters) (<xref ref-type="fig" rid="F1">Fig. 1H</xref>). L1 F1 Tg animals were small (<xref ref-type="fig" rid="F1">Fig. 1I and J</xref>) and had wrinkled skin and sparse hair (<xref ref-type="fig" rid="F1">Fig. 1K</xref>). Most (~70%) L1 F1 mice died within ~1 wk after birth, and those F1 Tg animals that survived past ~2 wk remained smaller than WT littermates (<xref ref-type="fig" rid="F1">Fig. 1I</xref>). F1 mice also produced small litters of both sexes (6.1 pups/litter, n = 8). Increasing numbers of L1 F2 mice survived past 2 wk, possibly due to partial transgene silencing. F2 animals also had small litters (6.1 pups/litter; n = 10). The L1 F1/F2 mice that survived beyond 1 mo of age had decreased body size (<xref ref-type="fig" rid="F1">Fig. 1J</xref>), sparse fur, curly whiskers, and small eyes (<xref ref-type="fig" rid="F1">Fig. 1K</xref>). They developed cataracts with 100% penetrance (see below). In contrast, the L3 F1 progeny, which expressed lower levels of transgene, were essentially normal, except that the founder and most F1 mice had slightly sparse hair, curly whiskers (<xref ref-type="fig" rid="F1">Fig. 1K</xref>), and small eyes (not shown). The L3 founder generated normal-sized litters (11 pups/litter; <xref ref-type="fig" rid="F1">Fig.1H</xref>). Adult L3 animals expressed NanogP8 at 2 different levels (<xref ref-type="fig" rid="F1">Fig. 1F</xref>), and those expressing higher levels of the transgene developed bilateral cataracts at ~3 mo of age with ~40% penetrance.</p>
+      </sec>
+      <sec>
+        <title>Skin phenotypes in K14-NanogP8 Tg mice</title>
+        <p>We first focused our histological analysis on the skin (the organ with the highest transgene expression and strongest phenotype) of postnatal day 5 (P5) L1 Tg animals (<xref ref-type="fig" rid="F2">Fig. 2</xref>; <xref ref-type="supplementary-material" rid="SUP1"><bold>Fig. S1</bold></xref>). The skin of all WT mice at P5 was uniform in appearance, with well-developed anagen hair follicles extending deep into a thick hypodermal fat layer, and there was clear evidence of sebaceous gland differentiation (<xref ref-type="fig" rid="F2">Fig. 2A and B</xref>). The skin of the P5 L1 Tg mice, however, varied in appearance among the mice examined (n = 4), ranging from markedly to moderately abnormal in appearance (<xref ref-type="fig" rid="F2">Fig. 2A–D</xref>). The most severely affected mice had greatly reduced or absent hypodermal fat, resulting in a conspicuous phenotype of skin atrophy (<xref ref-type="fig" rid="F2">Fig. 2A and B</xref>; <xref ref-type="supplementary-material" rid="SUP1"><bold>Fig. S1</bold></xref>). In these mice, hair follicles appeared crowded and misoriented, with inconspicuous dermal papillae and shortened root sheaths (<xref ref-type="fig" rid="F2">Fig. 2A and B</xref>), and little sebaceous gland differentiation was apparent based on both morphological observations and IHC staining for the marker protein PPAR-γ (<xref ref-type="fig" rid="F2">Fig. 2E and F</xref>). Three of the four P5 K14-NanogP8 animals analyzed showed increased thicknesses of both interfollicular epidermis (IFE) and dermis, based on quantification using the Aperio ScanScope digital scanning system (<xref ref-type="fig" rid="F2">Fig. 2C and D</xref>). Hyperkeratosis was observed in many Tg mice (e.g., <xref ref-type="fig" rid="F2">Fig. 2A, E, and J</xref>). Nanog protein was detected in both IFE and the outer root sheath of K14-NanogP8 Tg mice (<xref ref-type="fig" rid="F2">Fig. 2A, B, D, and H</xref>). IHC for suprabasal differentiation markers K1 (<xref ref-type="fig" rid="F2">Fig. 2J</xref>, a and b) and K10 (<xref ref-type="fig" rid="F2">Fig. 2J</xref>, c and d) as well as for K14 (<xref ref-type="fig" rid="F2">Fig. 2J</xref>, g and h) did not reveal differences between the Tg and WT epidermis. There was significantly increased cell proliferation in the IFE as revealed by Ki-67 (<xref ref-type="fig" rid="F2">Fig. 2G</xref>) and K6 (<xref ref-type="fig" rid="F2">Fig. 2J</xref>, e and f) IHC, which was confirmed by both counting (<xref ref-type="fig" rid="F2">Fig. 2H</xref>) and Aperio ScanScope digital scanning quantification (<xref ref-type="fig" rid="F2">Fig. 2I</xref>). No significant difference in apoptosis was observed between the P5 WT and L1 Tg skin as assessed by active caspase-3 and TUNEL staining (not shown).</p>
+        <fig id="F2" position="float" fig-type="figure">
+          <caption>
+            <p><bold>Figure 2.</bold> Skin phenotypes in P5 L1 Tg animals. (<bold>A</bold><bold>and B</bold>) H and E and Nanog IHC analysis in the skin of two P5 WT and L1 Tg animals. Nanog immunostaining was performed using anti-human Nanog Ab (R&amp;D; <xref ref-type="supplementary-material" rid="SUP1"><bold>Table S1</bold></xref>). For (<bold>A</bold>), representative low (<bold>A–D</bold>; objective 10×) and high (<bold>E–H</bold>; objective 40×) magnification images are shown. For (<bold>B</bold>), all original magnifications were 200×. (<bold>C</bold>) Quantification of IFE thickness. Four pairs of P5 WT and L1 K14-NanogP8 animals (indicated on the <italic>x</italic>-axis) were subjected to IFE thickness quantification in which 25 randomly selected areas (in each animal) of IFE perpendicular to the basement membrane were measured by Aperio ScanScope. Shown are the mean ± SD *<italic>P</italic> &lt; 0.05 (Student <italic>t</italic> test). (<bold>D</bold>) Quantification of dermal thickness. The same 4 pairs of P5 WT and L1 K14-NanogP8 animals were subjected to dermal thickness quantification in which 25 randomly selected positions (in each animal) of dermis through to the muscle layer (excluding the hypodermis) were measured by Aperio ScanScope. Shown are the mean ± SD <sup>#</sup><italic>P</italic> &lt; 0.001; *<italic>P</italic> = 0.05 (Student <italic>t</italic> test). (<bold>E and F</bold>) The P5 L1 Tg skin shows reduced sebocytes. Shown in (<bold>E</bold>) are PPARγ stained images (200×) and in (<bold>F</bold>) quantification of sebocytes. (<bold>G–I</bold>) The P5 L1 Tg IFE showed increased proliferation. Shown in (<bold>G</bold>) are representative images of Ki-67 immunostaining in pair 1 (left) and pair 2 (right) of WT and L1 Tg epidermis. Shown in (<bold>H</bold>) is the quantification of Ki-67<sup>+</sup> cells (a total of 500 cells counted for each in pair 1). For (<bold>I</bold>), the total Ki-67<sup>+</sup> nuclei were quantified using the Aperio nuclear analysis algorithm over a 3 mm epidermal length. <italic>P</italic> value is indicated. (<bold>J</bold>) Cytokeratin staining in the P5 WT and Tg skin. Note prominent hyperkeratosis in the Tg skin. Original magnifications, ×200.</p>
+          </caption>
+          <graphic xlink:href="2013CC4897R-F2.tif"/>
+        </fig>
+        <p>Next, we analyzed the skin of surviving P15 L1 Tg animals, which were still smaller than the age-matched WT animals (<xref ref-type="supplementary-material" rid="SUP1"><bold>Fig. S2A</bold></xref>). Histologically, the epidermis of L1 Tg animals that survived past 1 wk showed subtle abnormalities, such as slightly reduced numbers of hair follicles and reduced hypodermis (<xref ref-type="supplementary-material" rid="SUP1"><bold>Fig. S2B</bold></xref>). NanogP8 protein was detected in the basal and suprabasal layers of IFE, the outer root sheath of hair follicles, and hair bulbs of ~2-wk-old (P14-P17) L1 Tg animals (<xref ref-type="supplementary-material" rid="SUP1"><bold>Fig. S2C</bold></xref>, c and f). Hyperkeratosis appeared to persist as revealed by K10 staining (<xref ref-type="supplementary-material" rid="SUP1"><bold>Fig. S2C</bold></xref>, g and h). The P15 L1 epidermis did not show significantly increased Ki-67<sup>+</sup> cells compared with the WT P15 IFE (<xref ref-type="supplementary-material" rid="SUP1"><bold>Figs. S2C</bold></xref>, i–l, and <xref ref-type="supplementary-material" rid="SUP1"><bold>S1D</bold></xref>).</p>
+        <p>The histological abnormalities observed in P5 and P15 L1 Tg skin were not apparent in L3 Tg skin. These observations suggested that high levels of NanogP8 expression in the epithelium of perinatal (≤1 wk) L1 animals resulted in a markedly abnormal skin appearance. Perhaps only mice with lower levels of NanogP8 expression and more normal-appearing skin survived to 2 wk of age. Despite the relatively normal histological appearance of the skin in surviving L1 and L3 mice, both exhibited mild generalized alopecia grossly as adults (<xref ref-type="fig" rid="F1">Fig. 1K</xref>).</p>
+      </sec>
+      <sec>
+        <title>Abnormal tongue differentiation in K14-NanogP8 Tg mice</title>
+        <p>L1 Tg animals were smaller than the age-matched WT littermates (<xref ref-type="fig" rid="F1">Fig. 1I and J</xref>; <xref ref-type="supplementary-material" rid="SUP1"><bold>Fig. S2A</bold></xref>). In 1 of the 2 P5 and 2 of the 3 ~2-wk-old (P14–17) Tg pups we examined, no milk was apparent in the stomach, either grossly or histologically (<xref ref-type="supplementary-material" rid="SUP1"><bold>Fig. S3A</bold></xref>; data not shown). Because abnormalities of the tongue could potentially impede feeding, we examined tongue morphology in 2 P5 and 4 P14-P17 L1 Tg animals together with age-matched WT animals (<xref ref-type="fig" rid="F3">Fig. 3</xref>; <xref ref-type="supplementary-material" rid="SUP1"><bold>Fig. S3B</bold></xref>). The transgene was expressed in both basal and suprabasal layers of tongue epithelium in Tg mice (<xref ref-type="fig" rid="F3">Fig. 3</xref>; <xref ref-type="supplementary-material" rid="SUP1"><bold>Fig. S3B</bold></xref>). In the P5 WT tongue, numerous mature filiform papillae were apparent (<xref ref-type="supplementary-material" rid="SUP1"><bold>Fig. S3B</bold></xref>, top left, arrows); however, the number of mature filiform papillae in the P5 L1 Tg tongue was reduced (<xref ref-type="supplementary-material" rid="SUP1"><bold>Fig. S3B</bold></xref>). When we compared the tongue epithelium in the P14–P17 L1 Tg and WT animals, the number of mature filiform papillae were still much reduced or even completely lacking (<xref ref-type="fig" rid="F3">Fig. 3A–C</xref>). Furthermore, although fungiform-like papillae were observed in the Tg tongue epithelium, they appeared to lack the taste bud normally found in the WT fungiform papillae (<xref ref-type="fig" rid="F3">Fig. 3F</xref>). Immunoreactivity for K13, a cytokeratin normally expressed in differentiated tongue epithelium, was overall similar in Tg and WT mice, except that there appeared to be increased numbers of K13-negative papillae in the Tg tongue (<xref ref-type="fig" rid="F3">Fig. 3E</xref>, e, arrows). No significant differences in Ki-67-positive cells were observed in the basal layer of the WT and Tg tongues (<xref ref-type="fig" rid="F3">Fig. 3E</xref>, c and d).</p>
+        <fig id="F3" position="float" fig-type="figure">
+          <caption>
+            <p><bold>Figure 3.</bold> Abnormal differentiation in the K14-NanogP8 Tg tongue epithelia. (<bold>A–D</bold>) Gross images of the P15 WT and L1 Tg tongue. A. Representative composite images of a P15 WT (top) and a P15 L1 Tg (bottom) tongue sections stained for H and E. The orientations of the sections were indicated: d, dorsal; v, ventral; l, lateral. (<bold>B and C</bold>) Enlarged composites showing the presence of differentiated filiform papillae in the WT tongue (B; arrowheads), which were lacking in the Tg tongue (<bold>C</bold>). (<bold>D</bold>) NanogP8 staining in the Tg tongue (original magnification, ×40). The WT tongue did not show NanogP8 staining (not shown). (<bold>E</bold>) Representative IHC images of P15 WT and L1 Tg tongue epithelium stained for Nanog, Ki-67, and K13. Arrows indicate increased numbers of K13-negative dermal papillae in the Tg tongue. Note that in WT epithelium the Ki-67 cells localized mainly to the base of retelike prominences (<bold>D</bold>, arrows) but in Tg epithelium the Ki-67 cells were often contiguous (<bold>C</bold>, black lines). (<bold>F</bold>) Representative H and E and Nanog IHC images from a pair of P17 WT and L1 Tg tongue epithelium. FP, fungiform papillae. Original magnifications, ×200.</p>
+          </caption>
+          <graphic xlink:href="2013CC4897R-F3.tif"/>
+        </fig>
+        <p>These results, together, suggest that constitutive NanogP8 expression leads to abnormal differentiation of the lingual epithelium in L1 Tg animals. In addition to skin and tongue, many other organs examined, including the stomach (<xref ref-type="supplementary-material" rid="SUP1"><bold>Fig. S3A</bold></xref>), thymus (<xref ref-type="supplementary-material" rid="SUP1"><bold>Fig. S3C–E</bold></xref>), and eyes (<xref ref-type="supplementary-material" rid="SUP1"><bold>Fig. S4</bold></xref>), in L1 mice also showed developmental defects (see <xref ref-type="supplementary-material" rid="SUP1"><bold>Supplemental</bold></xref> “Results”).</p>
+      </sec>
+      <sec>
+        <title>Adult K14-NanogP8 mice do not develop spontaneous tumors and are resistant to tumor induction in a two-stage skin carcinogenesis protocol</title>
+        <p>We initially hypothesized that NanogP8 overexpression in a cellular compartment that harbors epithelial stem/progenitor cells, perhaps like Oct-4 or Sox2 overexpression,<xref ref-type="bibr" rid="R26"><sup>26</sup></xref><sup>,</sup><xref ref-type="bibr" rid="R27"><sup>27</sup></xref> might cause spontaneous tumor development. We followed a cohort of more than 40 K14-NanogP8 mice for upwards of 1½  years. During this interval and to date, no spontaneous tumors have been noted. Thus, NanogP8 overexpression in the K14 compartment is not sufficient for spontaneous tumor induction.</p>
+        <p>Subsequently, we asked how NanogP8 expression might impact chemical carcinogen-induced tumor development and progression by employing a two-stage skin carcinogenesis protocol.<xref ref-type="bibr" rid="R31"><sup>31</sup></xref> In this widely used skin tumorigenesis model, a single sub-carcinogenic dose of a carcinogen such as DMBA is applied topically in the mouse skin to initiate mutations (e.g., mutations in the <italic>H-ras</italic> gene) in epidermal stem cells; this initiation step is followed 2 wk later by painting the skin with a tumor promoter such as TPA twice weekly for as long as 20–40 wk.<xref ref-type="bibr" rid="R31"><sup>31</sup></xref> We recruited cohorts of WT, L1, and L3 Tg animals of 6–8 wk and applied 25 μg DMBA to the shaved dorsal skin for a two-stage carcinogenesis experiment (<xref ref-type="fig" rid="F4">Fig. 4</xref>). Two weeks later, we applied 12.5 μg TPA twice weekly for 24 wk, after which time the experiment was terminated (<xref ref-type="fig" rid="F4">Fig. 4A</xref>). In WT and L3 mice, papillomas were observed at 8 wk after TPA treatment, and by 10 wk, most animals developed papillomas (<xref ref-type="fig" rid="F4">Fig. 4B and D</xref>). Both WT and L3 animals also showed a time-dependent increase in the number of tumors developed (<xref ref-type="fig" rid="F4">Fig. 4C and D</xref>). Much to our surprise, L1 Tg mice showed a significantly lower tumor incidence (<xref ref-type="fig" rid="F4">Fig. 4B and D</xref>). Furthermore, the L1 animals that did develop tumors had fewer tumors per mouse (<xref ref-type="fig" rid="F4">Fig. 4C and D</xref>), and these tumors were uniformly smaller than the papillomas found in the WT or L3 cohorts (<xref ref-type="fig" rid="F4">Fig. 4E</xref>). Importantly, although papillomas in the WT and L3 Tg animals progressed to endophytic carcinomas that were attached to the underlying muscle layer, tumors in L1 animals never progressed to carcinomas (<xref ref-type="fig" rid="F4">Fig. 4D, F–H</xref>).</p>
+        <fig id="F4" position="float" fig-type="figure">
+          <caption>
+            <p><bold>Figure 4.</bold> NanogP8 expression unexpectedly inhibits tumor development. (<bold>A</bold>) Two-stage skin carcinogenesis timeline. (<bold>B and C</bold>) Graphs depicting tumor incidence (<bold>B</bold>) and multiplicity (<bold>C</bold>). *<italic>P</italic> &lt; 0.0001 for both (<bold>B and C</bold>) (χ2 test). (<bold>D</bold>) Representative images of mice bearing papillomas or carcinomas. (<bold>E</bold>) Tumors developed in the L1 Tg animals were significantly smaller. All tumors in each group were harvested at study’s conclusion (i.e., the end of 26 wk) and weighed. The line 1 papillomas were roughly one-third the mass of those induced in WT or L3 mice (<italic>P</italic> &lt; 0.01). Shown below were representative images of WT (top) and L1 tumors. (<bold>F</bold>) Table depicting total tumor burden by line. WT papillomas converted to squamous cell carcinomas at ~2%, similar to the conversion rate seen in L3 animals. Papillomas in L1 mice did not progress to carcinomas. (<bold>G</bold>) Histological characterizations of tumors in WT and L1 animals. Shown are representative images of papilloma (a) and carcinoma (e) in WT or well-differentiated papilloma only (f) in L1 animals. Shown are also IHC staining of Ki-67, caspase-3, and NanogP8. Original magnifications: ×200 (for c, h, and j) or ×40 (the rest) (<bold>H</bold>) Histological and IHC characterizations of tumors arising in L3 animals (a-c, ×40; d–f, ×100).</p>
+          </caption>
+          <graphic xlink:href="2013CC4897R-F4.tif"/>
+        </fig>
+        <p>H and E and IHC analyses revealed typical papilloma and carcinoma histological features<xref ref-type="bibr" rid="R31"><sup>31</sup></xref> in WT (<xref ref-type="fig" rid="F4">Fig. 4G</xref>) and L3 (<xref ref-type="fig" rid="F4">Fig. 4H</xref>) tumors. In contrast, only papillomas were observed in L1 animals (<xref ref-type="fig" rid="F4">Fig. 4G</xref>, f). As expected, NanogP8 protein was detected only in Tg tumors (<xref ref-type="fig" rid="F4">Fig. 4G and H</xref>). Ki-67 and active caspase-3 staining did not reveal notable differences in L1 tumors vs. WT or L3 tumors (<xref ref-type="fig" rid="F4">Fig. 4G and H</xref>).</p>
+        <p>What could be the cellular and molecular mechanisms underlying the unexpected inhibition of carcinogen-induced tumor development in high NanogP8 expressing L1 animals? Since the primary genetic determinants of susceptibility to two-stage carcinogenesis lie in response to tumor promotion, and considering that the main molecular target of TPA is protein kinase C (PKC),<xref ref-type="bibr" rid="R31"><sup>31</sup></xref> we first examined the PKCα protein levels in WT and L1 epidermis in response to TPA alone treatment. However, there was no significant difference in PKCα expression between WT and L1 mice (not shown). Likewise, TPA-only treatment for 2 wk resulted in similar epidermal and follicular proliferation, leading to overall similar levels of epidermal hyperplasia in both groups (<xref ref-type="supplementary-material" rid="SUP1"><bold>Fig. S5</bold></xref>). Additionally, no significant difference in apoptosis was noted 48 h after treatment with DMBA alone (not shown). Overall, these results are consistent with lack of differences in proliferation or apoptosis in WT vs. L1 tumors (<xref ref-type="fig" rid="F4">Fig. 4G and H</xref>) and suggest that alterations in cell proliferation and/or apoptosis are unlikely to be responsible for the impaired tumor development observed in L1 animals.</p>
+      </sec>
+      <sec>
+        <title>Long-term wound-healing defects in adult L1 Tg skin and reduced migratory capacity in L1 Tg keratinocytes</title>
+        <p>Interestingly, we consistently observed that some L1 mice in our transgenic colony bore wounded ears in the absence of fighting with littermates (<xref ref-type="fig" rid="F5">Fig. 5A</xref>). We therefore performed wound-healing experiments in which we removed the epidermis by abrasion with a felt wheel, a procedure that leaves the dermis and hair follicles intact.<xref ref-type="bibr" rid="R32"><sup>32</sup></xref> By 1 wk post-wounding, the abraded area was largely re-epithelialized in WT but not in L1 K14-NanogP8 mice (<xref ref-type="fig" rid="F5">Fig. 5B</xref>, top). In fact, the wounds persisted in the L1 Tg mice even at 12 d post-wounding (<xref ref-type="fig" rid="F5">Fig. 5B</xref>, bottom). Forty-eight h post-wounding, the WT and Tg mice showed overall very similar responses in terms of proliferation, as measured by Ki-67 staining, and differentiation, as assessed by K6 staining (<xref ref-type="fig" rid="F5">Fig. 5C</xref>). We then performed an ex vivo scrape assay in which we “wounded” a monolayer of keratinocytes from newborn WT and L1 Tg mice by scraping with a pipet tip. We found that the L1 Tg keratinocytes were less able to migrate into the artificial wound than the WT keratinocytes (<xref ref-type="fig" rid="F5">Fig. 5D</xref>).</p>
+        <fig id="F5" position="float" fig-type="figure">
+          <caption>
+            <p><bold>Figure 5.</bold> Wound-healing defects in adult L1 Tg animals and migratory deficiency in L1 keratinocytes (<bold>A</bold>) Representative ear images of a WT mouse and a L1 Tg mouse (both ~6-mo-old). (<bold>B</bold>) Wound-healing defects in 3-mo-old L1 Tg. Shown on top are representative H and E images (×40) depicting that the WT epidermis completely re-epithelialized and closed the wound 1 wk after injury, whereas the L1 Tg epidermis showed disorganized and incompletely healed wound. Shown at the bottom are gross images of wounds in WT and Tg animals 12 d post epidermal abrasion. Note incomplete wound closure in the L1 Tg epidermis. The H and E and gross images shown are representative of a total 11 (for WT) and 9 (for L1 Tg) animals analyzed. (<bold>C</bold>) IHC staining for Ki-67 and K6 as short-term markers of proliferation and differentiation, respectively. Shown are images 48 h after wounding. Original magnifications, ×100. (<bold>D</bold>) Graph depicting the number of cells that migrated into scrape wound area 12 h post-scrap (left) and microscopic images of newborn keratinocyte cultures at 0 and 12 h post-scrape (right).</p>
+          </caption>
+          <graphic xlink:href="2013CC4897R-F5.tif"/>
+        </fig>
+      </sec>
+      <sec>
+        <title>NanogP8 overexpression impairs keratinocyte stem cells in adult L1 Tg epidermis</title>
+        <p>It is well established that the hair follicle stem cells are critical in re-epithelialization of abrasion wounds.<xref ref-type="bibr" rid="R33"><sup>33</sup></xref> Also, DMBA/TPA-induced papillomas are known to arise from both IFE and the hair follicle stem cells, but carcinomas are generated from the latter only.<xref ref-type="bibr" rid="R34"><sup>34</sup></xref> Moreover, impaired migration may lead to a loss of resident stem cell populations.<xref ref-type="bibr" rid="R35"><sup>35</sup></xref> Our findings that the Tg mice were resistant to DMBA/TPA-induced papilloma/carcinoma development and that the Tg mice showed impaired wound healing with reduced migratory capacity in keratinocytes, led us to suspect a defect in hair follicle stem cells.</p>
+        <p>The murine hair follicles have a number of stem cell populations, chief among which are the CD34 and α6 integrin double-positive cells in the bulge region (<xref ref-type="fig" rid="F6">Fig. 6A</xref>). We first analyzed, by flow cytometry, the proportion of CD34<sup>+</sup>α6<sup>+</sup> cells in age-matched WT and L1 Tg hair follicles and found that the 8-wk-old L1 K14-NanogP8 mice harbored fewer CD34<sup>+</sup>α6<sup>+</sup> bulge stem cells than their WT counterparts (<xref ref-type="fig" rid="F6">Fig. 6B and C</xref>). Subsequently, we analyzed the Lrig1<sup>+</sup> stem cell reservoir that can generate both sebaceous gland and IFE<xref ref-type="bibr" rid="R36"><sup>36</sup></xref> (<xref ref-type="fig" rid="F6">Fig. 6A</xref>). The results showed that the 6–8-wk-old L1 Tg mice also had lower numbers of Lrig1<sup>+</sup> cells than WT controls (<xref ref-type="fig" rid="F6">Fig. 6D and E</xref>). Note that all Lrig1<sup>+</sup> keratinocytes were also positive for α6 (<xref ref-type="fig" rid="F6">Fig. 6D and E</xref>).</p>
+        <fig id="F6" position="float" fig-type="figure">
+          <caption>
+            <p><bold>Figure 6.</bold> Stem cell defects in L1 Tg keratinocytes. (<bold>A</bold>) Schematic showing mouse IFE, hair follicle, and the resident stem cell populations. (<bold>B and C</bold>) Reduced numbers of CD34<sup>+</sup>α6<sup>+</sup> bulge stem cells in the L1 Tg hair follicles. Hair follicles were prepared from 8-wk-old mouse dorsal skin and CD34<sup>+</sup>α6<sup>+</sup> bulge stem cells analyzed by flow cytometry. (<bold>B</bold>) Bar graph presentation of CD34<sup>+</sup>α6<sup>+</sup> cells. (<bold>C</bold>) Representative flow cytometry plots of CD34 and a6 staining. (<bold>D and E</bold>) Reduced numbers of Lrig1<sup>+</sup> stem cells in the L1 Tg hair follicles. Hair follicles were prepared from 6–8-wk-old mouse dorsal skin and Lrig1<sup>+</sup>α6<sup>+</sup> bulge stem cells analyzed by flow cytometry. (<bold>D</bold>) Bar graph presentation of Lrig1<sup>+</sup> stem cells. (<bold>D</bold>) Representative flow cytometry plots of Lrig1 and α6 staining. (<bold>F</bold>) qPCR analysis of 16 genes in keratinocytes prepared from 6–8 wk WT or L1 Tg animals.</p>
+          </caption>
+          <graphic xlink:href="2013CC4897R-F6.tif"/>
+        </fig>
+        <p>To gain insight on how the overexpressed NanogP8 might have generated the observed phenotypes, we employed qPCR to analyze the expression of 16 genes (<xref ref-type="fig" rid="F6">Fig. 6F</xref>; <xref ref-type="supplementary-material" rid="SUP1"><bold>Table S2</bold></xref>) whose promoters have been shown to be bound by Nanog in both human and mouse ES cells.<xref ref-type="bibr" rid="R37"><sup>37</sup></xref><sup>,</sup><xref ref-type="bibr" rid="R38"><sup>38</sup></xref> Interestingly, the majority (11/16) of the genes analyzed showed depressed expression in the L1 Tg keratinocytes, with Bmp5, Fgfr2, Jmjd1a, and c-Jun showing statistically significant reduction in expression (<xref ref-type="fig" rid="F6">Fig. 6F</xref>). The only gene significantly overexpressed in the L1 Tg keratinocytes was Bmp4 (<xref ref-type="fig" rid="F6">Fig. 6F</xref>).</p>
+        <p>To determine whether the gene expression profiles we uncovered (<xref ref-type="fig" rid="F6">Fig. 6F</xref>) have any functional relevance and based on a recent study showing that Bmp5 positively regulates the murine keratinocyte stem cell numbers,<xref ref-type="bibr" rid="R39"><sup>39</sup></xref> we performed ex vivo clonal assays to assess the effect of exogenous recombinant murine Bmp5 on the clonogenicity of adult WT and L1 Tg keratinocytes plated on a layer of irradiated Swiss 3T3 cells (<xref ref-type="fig" rid="F7">Fig. 7A–C</xref>). The results revealed that the L1 Tg keratinocytes established fewer (<xref ref-type="fig" rid="F7">Fig. 7A</xref>) and smaller (<xref ref-type="fig" rid="F7">Fig. 7B and C</xref>) colonies than the age-matched WT keratinocytes. Whereas WT colonies were fairly large and tightly packed with cobblestone-shaped keratinocytes, colonies derived from L1 Tg keratinocytes were much smaller and more diffuse (<xref ref-type="fig" rid="F7">Fig. 7B and C</xref>). Exogenous murine Bmp5 dramatically increased the cloning efficiency of L1 Tg keratinocytes but did not affect the clone sizes (<xref ref-type="fig" rid="F7">Fig. 7A</xref>; data not shown). Bmp5 also slightly increased the cloning efficiency of WT keratinocytes though the increase was not statistically significant (<xref ref-type="fig" rid="F7">Fig. 7A</xref>).</p>
+        <fig id="F7" position="float" fig-type="figure">
+          <caption>
+            <p><bold>Figure 7.</bold> Ex vivo clonal assays in keratinocytes and c-Myc expression. (<bold>A</bold>) Exogenous murine Bmp5 rescues the clonogenic defects in 2–3-mo-old L1 Tg keratinocytes. Shown are the quantification of colonies arising from WT and L1 Tg keratinocytes with or without exogenous Bmp5 (top, bar graph) and representative images of keratinocyte colonies stained with Rhodamine B (bottom). <italic>P</italic> values for relevant comparisons are indicated. (<bold>B</bold>) Microphotographs showing representative WT and L1 Tg keratinocyte colonies. Original magnifications, ×100. (<bold>C</bold>) Scatter plot illustrating differences in colony sizes between WT and L1 keratinocytes. (<bold>D and E</bold>) Increased c-Myc positive cells in the P5 L1 Tg epidermis. Shown in (<bold>D</bold>) are representative images of c-Myc IHC in two WT and L1 Tg animals (original magnifications; 200×). Shown in (<bold>E</bold>) is the quantification of c-Myc positive nuclei per mm epidermal length measured using the Aperio ScanScope “nuclear” algorithm over 3 mm epidermis.</p>
+          </caption>
+          <graphic xlink:href="2013CC4897R-F7.tif"/>
+        </fig>
+        <p>As many of the phenotypes observed in the L1 K14-NanogP8 mice are very similar to those reported in c-Myc transgenic mice,<xref ref-type="bibr" rid="R35"><sup>35</sup></xref><sup>,</sup><xref ref-type="bibr" rid="R40"><sup>40</sup></xref> we assessed c-Myc expression in P5 WT vs. L1 Tg epidermis. The results revealed significantly increased number of nuclear c-Myc-positive cells in Tg epidermis compared with the WT epidermis (<xref ref-type="fig" rid="F7">Fig. 7D and E</xref>).</p>
+      </sec>
+    </sec>
+    <sec sec-type="discussion">
+      <title>Discussion</title>
+      <p>The main goal of the current project is to investigate the biological functions of tumor-derived NanogP8 in an animal model. The results reveal two surprising findings. First, high constitutive NanogP8 expression in the K14 compartment causes perinatal lethality and developmental defects in multiple epithelial organs. Second, unlike inducible expression of Oct-4 or constitutive expression of Sox2, NanogP8 overexpression does not lead to tumor development. In fact, the surviving K14-NanogP8 animals show a dampened sensitivity to DMBA/TPA-induced skin carcinogenesis. Both of these findings may be related to abnormal stem cell numbers and/or properties induced by NanogP8 overexpression.</p>
+      <p>During development, the Nanog expression levels must be tightly controlled, and <italic>Nanog</italic> exerts gene dosage-dependent biological functions. In pre-implantation embryos, the <italic>Nanog</italic> gene is monoallelically expressed to control pluripotency.<xref ref-type="bibr" rid="R41"><sup>41</sup></xref> In ES cell cultures, Nanog expression is heterogeneous, with both too low and too high expression detrimental to the stem cell properties.<xref ref-type="bibr" rid="R42"><sup>42</sup></xref><sup>,</sup><xref ref-type="bibr" rid="R43"><sup>43</sup></xref> Whether <italic>NanogP8</italic> retrogene expression in somatic tumor cells also has to be tightly controlled remains unknown. Interestingly, here we have observed animal phenotypes related to the transgene dosage, i.e., high levels of NanogP8 expression in L1 mice cause perinatal lethality and developmental defects, whereas lower levels of NanogP8 expression in L3 mice elicit much more subtle phenotypes and lead to overall normal animal development. In fact, many L1 K14-NanogP8 embryos probably die in utero, as the L1 litter size is much smaller than that in WT litters.</p>
+      <p>It is presently unclear how high NanogP8 expression leads to perinatal lethality and abnormal organ development, although our studies reveal a developmental time-related effect of NanogP8 expression. The majority of live-born L1 K14-NanogP8 Tg animals die within 2 wk. Analysis of perinatal (i.e., ~P5) animals shows an overall under-development and abnormal differentiation in the skin, tongue, thymus, and some other organs. In the P5 epidermis, there appears to have a hyper-proliferative response leading to follicular hyperplasia with inconspicuous dermal papillae and sebaceous glands. In other L1 P5 organs, such as the tongue, abnormal differentiation (i.e., lack of filiform papillae) is also observed. By ~2 wk of age in surviving animals, these transgene-related phenotypes abate but do not completely disappear as abnormal differentiation and organ hypoplasia can still be evident. Both 2-wk-old and adult animals that have survived the critical period are noticeably smaller than the age-matched WT animals, perhaps related to global organ atrophy. Since organogenesis and early development involve an intricate balance between stem cell commitment, progenitor cell proliferation, and terminal cell differentiation, the striking developmental phenotypes observed in L1 Tg animals imply that high levels of NanogP8 expression have disrupted the dynamic relationships between these processes.</p>
+      <p>Inducible expression of Oct-4 from <italic>col1a1</italic> locus causes dysplasia and tumor-like lesions in epithelial cells as a result of a block of differentiation.<xref ref-type="bibr" rid="R26"><sup>26</sup></xref> Similarly, Sox2 overexpression in the mouse lung driven by the regulatory region of the human surfactant protein C gene induces abnormal lung development, hyperplasia, and adenocarcinoma.<xref ref-type="bibr" rid="R27"><sup>27</sup></xref> Therefore, it came as a surprise to us that adult K14-NanogP8 Tg animals do not have increased spontaneous tumor development, especially when put in the context of our earlier observations implying potential pro-tumorigenic functions of NanogP8 in PCa.<xref ref-type="bibr" rid="R9"><sup>9</sup></xref><sup>,</sup><xref ref-type="bibr" rid="R15"><sup>15</sup></xref><sup>,</sup><xref ref-type="bibr" rid="R25"><sup>25</sup></xref> In fact, neither L1 nor L3 K14-NanogP8 mice show obvious phenotypes in the prostate although the transgene is clearly expressed in the prostatic basal epithelial cells (unpublished observations). On the other hand, the lack of spontaneous tumor development in Tg mice might be partly explained by the fact that Nanog is only weakly oncogenic in a hepatocellular carcinoma reconstitution model.<xref ref-type="bibr" rid="R44"><sup>44</sup></xref> Also, in the majority of cancer cells, NanogP8 is undetectable,<xref ref-type="bibr" rid="R9"><sup>9</sup></xref> and we failed to obtain constitutive NanogP8-overexpressing cancer cell clones (unpublished observations). Even doxycycline-inducible NanogP8 expression only leads to a modest increase in NanogP8 protein in somatic cancer cells.<xref ref-type="bibr" rid="R15"><sup>15</sup></xref> These latter observations in cancer cells,<xref ref-type="bibr" rid="R9"><sup>9</sup></xref><sup>,</sup><xref ref-type="bibr" rid="R15"><sup>15</sup></xref> coupled with studies in K14-NanogP8 animals, raise the possibility that high levels of NanogP8 expression might be “toxic” to cancer cells, which seems to be partially supported by different phenotype severities within the L1 animals and organs. Therefore, many L1 K14-NanogP8 Tg embryos perhaps die in utero, presumably due to very high levels of NanogP8 expression. Most live-born L1 animals die within 2 wk, presumably because they express higher levels of NanogP8 than those Tg animals that survive past 2 wk. Furthermore, in L1 Tg animals, the skin, which expresses the highest levels of NanogP8, also consistently manifests the most consistent and conspicuous abnormalities. Overall, our present study implies distinct and weaker oncogenic functions of NanogP8 than Oct4 and Sox2.</p>
+      <p>More surprisingly, adult L1 K14-NanogP8 mice show apparent resistance to carcinogen-induced tumor development. Several lines of evidence suggest that this resistance may be associated with NanogP8-induced reduction in and functional compromise of keratinocyte stem cells. First, impaired tumor development in L1 animals does not seem to involve alterations in cell proliferation and/or apoptosis. Second, the L1 Tg mice manifest a wound-healing defect, probably associated with reduced migratory capacity of keratinocyte stem cells. Third, adult L1 animals have significantly reduced numbers of CD34<sup>+</sup>CD49f<sup>hi</sup> and the Lrig1<sup>+</sup>(CD49f<sup>hi</sup>) stem cells. Finally, the L1 adult keratinocytes possess reduced clonal capacity compared with the WT keratinocytes. NanogP8 overexpression-induced stem cell defects may provide a unifying explanation to developmental abnormalities, wound-healing defects, and tumor inhibition in the L1 mice. Based on the analyses of P5, P14-P17, and adult skin, a plausible scenario may be proposed in which NanogP8 overexpression, early on (P5), causes a hyperproliferative response in K14-expressing keratinocyte stem/progenitor cells leading to epidermal hyperplasia. To address this possibility, we performed preliminary immunostaining for early keratinocyte stem cell markers, Sox9,<xref ref-type="bibr" rid="R45"><sup>45</sup></xref> and Lgr6<xref ref-type="bibr" rid="R46"><sup>46</sup></xref> in the P5 WT and L1 Tg skin. We found that in the WT skin, nuclear Sox9 was localized in the infundibulum extending down the upper ORS in developing hair follicles (<xref ref-type="supplementary-material" rid="SUP1"><bold>Fig. S6A</bold></xref>, top), as previously reported.<xref ref-type="bibr" rid="R45"><sup>45</sup></xref> In contrast, Sox9-positive cells were reduced in both infundibulum and ORS of the misoriented hair follicles in the P5 Tg skin (<xref ref-type="supplementary-material" rid="SUP1"><bold>Fig. S6A</bold></xref>, bottom). Similarly, in the P5 WT skin, Lgr6 was localized above the nascent bulge in central isthmus of developing hair follicles (<xref ref-type="supplementary-material" rid="SUP1"><bold>Fig. S6B</bold></xref>, top). In contrast, the P5 L1 Tg skin showed reduced numbers and abnormal expression pattern of Lgr6-positive cells in the crowded and misoriented bulbs in the Tg skin (<xref ref-type="supplementary-material" rid="SUP1"><bold>Fig. S6B</bold></xref>, bottom). Reduced Sox9<sup>+</sup> and Lgr6<sup>+</sup> primitive stem cells would suggest that these cells, even at P5, have likely been driven out of the cell cycle, leading to the expansion of more mature and more proliferative progenitors. Since Sox9<sup>+</sup> and Lgr6<sup>+</sup> cells are known to contribute to hair follicle morphogenesis, sebaceous gland formation, and the IFE,<xref ref-type="bibr" rid="R45"><sup>45</sup></xref><sup>,</sup><xref ref-type="bibr" rid="R46"><sup>46</sup></xref> their decrease and aberrant expression in K14-NanogP8 Tg likely have contributed to arrested hair follicle development, sparse sebaceous gland development, and wound-healing defects.</p>
+      <p>Continued NanogP8 overexpression in 2-wk surviving animals results in significantly reduced CD34<sup>+</sup>CD49f<sup>hi</sup> bulge stem cells and Lrig1<sup>+</sup> stem cells that give rise to both IFE and sebaceous glands, leading to epidermal hypoplasia, lack of sebaceous glands, and skin atrophy. Since CD34 and CD34<sup>+</sup> bulge stem cells are required for chemical-induced skin carcinogenesis,<xref ref-type="bibr" rid="R47"><sup>47</sup></xref><sup>,</sup><xref ref-type="bibr" rid="R48"><sup>48</sup></xref> diminished numbers of CD34<sup>+</sup> cells in adult L1 mice should contribute to the resistance in these mice to DMBA/TPA-initiated papilloma and, in particular, carcinoma development. Of note, although both follicular and interfollicular epithelial cells have been implicated in papilloma development in response to carcinogenic chemicals, CD34<sup>+</sup> stem cells are necessary for carcinoma development.<xref ref-type="bibr" rid="R47"><sup>47</sup></xref></p>
+      <p>How might NanogP8 overexpression “deplete” epidermal stem cells? In adult keratinocytes, NanogP8 seems to repress most of the genes examined, including Bmp5, Fgfr2, Gli1, Jmjd1a, and c-Jun. This repression could be related to differentiation defects of the keratinocytes caused by NanogP8 overexpression. In support, we have observed that the Tg adult keratinocytes expressed higher levels of K1 and K10 mRNAs than the age-matched WT keratinocytes (Jeter et al., unpublished observations), suggesting that constitutive high levels of NanogP8 expression may not only “deplete” stem cells, but also promote keratinocyte differentiation. Regardless, reduced Bmp5 levels may be particularly relevant, as this molecule’s expression directly correlates with stem cell numbers.<xref ref-type="bibr" rid="R39"><sup>39</sup></xref> Indeed, exogenous Bmp5 can partially restore colony-forming ability to K14-NanogP8 keratinocytes. Reduced c-Jun levels may also have relevance, as dominant-negative c-Jun mutant mice display hyperplasia in response to TPA but show diminished papilloma formation in a complete two-stage skin carcinogenesis protocol,<xref ref-type="bibr" rid="R49"><sup>49</sup></xref> just like what we have observed in the L1 mice. It is intriguing that transgenic mice overexpressing human c-Myc in the skin<xref ref-type="bibr" rid="R35"><sup>35</sup></xref><sup>,</sup><xref ref-type="bibr" rid="R40"><sup>40</sup></xref> display a significant phenotypic overlap with our K14-NanogP8 mice, including hair loss, wound-healing defects, and reduced keratinocyte migration and stem cell numbers, raising a possibility that some of the phenotypes in our transgenic mice are due to upregulation of mouse c-Myc. In support, the P5 L1 epidermis has a significantly increased number of nuclear c-Myc-positive cells than the P5 WT epidermis. In PCa cells, overexpressed NanogP8 occupies the c-Myc promoter region and induces its expression under certain conditions.<xref ref-type="bibr" rid="R15"><sup>15</sup></xref> Taken together, the current study suggests that constitutive NanogP8 overexpression in K14 cellular compartment, probably in a c-Myc dependent manner, cause early keratinocyte stem cell hyper-proliferation leading to their eventual exhaustion. Future studies will further elucidate the effect of NanogP8 on c-Myc and other key regulators (Bmp5, c-Jun, Lrig1, etc) in modulating stem cell fate and tumor development.</p>
+      <p>It should be noted that there has been very little study on the expression pattern of Nanog in normal skin keratinocytes, either in mouse or human. Only a few studies have examined Nanog expression in melanoma. For example, Nanog expression has been shown to be increased in melanoma spheres.<xref ref-type="bibr" rid="R50"><sup>50</sup></xref> Consequently, our present study sheds novel insights on the involvement of Nanog in normal development and tumorigenesis.</p>
+    </sec>
+    <sec sec-type="materials|methods">
+      <title>Materials and Methods</title>
+      <sec>
+        <title>Generation and genotyping of K14-NanogP8 mice</title>
+        <p>The basic procedures for establishing Tg animals have been previously described.<xref ref-type="bibr" rid="R29"><sup>29</sup></xref><sup>,</sup><xref ref-type="bibr" rid="R51"><sup>51</sup></xref> A <italic>NanogP8</italic> cDNA derived from a primary human prostate tumor (i.e., HPCa5T<xref ref-type="bibr" rid="R9"><sup>9</sup></xref>) was cloned into the multiple cloning site of the pBluescript-human keratin 14 vector<xref ref-type="bibr" rid="R28"><sup>28</sup></xref> (see <xref ref-type="fig" rid="F1">Fig. 1A</xref>). For genotyping, mouse tail snips or ear punches were collected and lysed in a solution containing 25 mM NaOH and 0.2 mM EDTA at 95°C for 30 min, after which neutralization buffer (40 mM TRIS-HCl, pH 5) was added (HotSHOT protocol<xref ref-type="bibr" rid="R52"><sup>52</sup></xref>). Five μL of this sample was added to 20 μL polymerase chain reaction (PCR) reaction mixture consisting of 12.5 μL 2× GoTaq Mastermix (Promega), 5.5 μL ddH<sub>2</sub>O, and 1 μL each of β-globin forward primer (5′<bold>-</bold>GGGCAACGTGCTGGTTAT-3′) and NanogP8 reverse primer (5′-CCTTTGGGACTGGTGGAA-3′) at 10 μM. PCR was performed for 35 cycles, consisting of a standard melting step, an annealing temperature of 58 °C, and a 45 s extension at 72 °C. Products were run on a 1.5% agarose gel containing ethidium bromide and were visualized using UV light. Transgenic mice were identified as those bearing a ~300-bp product. Alpha Imager software (Alpha Innotech) was used to collect images.</p>
+      </sec>
+      <sec>
+        <title>Keratinocyte preparations</title>
+        <p>In general, for adult mouse keratinocyte preparations, the dorsal skin of 2–3-mo-old mice was shaved and Nair was applied to remove hair. Mice were sacrificed, the dorsal skin was removed, and fat was scraped from the underside of the dermis. The skins were floated in 0.25% trypsin for ~2 h, following which time the epidermis was gently scraped away from the dermis, then minced with dissecting scissors. Additional keratinocytes were dislodged from the epidermal fragments by placing the minced epidermis in a medium-containing dish with a magnetic stir bar and stirring for ~10 min. Keratinocytes were isolated by filtration through a 70-mm cell strainer or by centrifugation in a Percoll gradient.</p>
+        <p>Newborn keratinocytes were prepared by washing P1-P3 pups sequentially in Betadine, alcohol, and water, then sacrificing them by decapitation. Sacrificed pups were skinned and the tissue floated on 0.25% trypsin-EDTA for 2 h; subsequent steps were identical to those used for adult mouse keratinocyte preparation.</p>
+      </sec>
+      <sec>
+        <title>Hair follicle isolation and flow cytometry analysis of CD34 and CD49f (integrin α6)</title>
+        <p>Mice (8-wk-old) were shaved dorsally 2 d prior to sacrifice, and Nair was applied to remove remaining stubble. Mice were sacrificed and dorsal skin was removed. Fat was removed from the underside of the skin by thorough scraping with a curved-blade razor, and the skin was floated dermis-side-down on 5% (w/v) dispase in DMEM overnight at 4 °C. The following morning, epidermis was scraped free from the dermis, and the latter was placed in a dish containing 1% collagenase in DMEM and incubated for ~2 h at 37 °C, or until dermal disintegration was evident. Dermal remnants were then mechanically dispersed by pipetting and centrifuged for 5 min. Microscopic inspection revealed intact hair follicles at this stage. Five mL of 0.25% Trypsin-EDTA was added to the hair follicle preparations for 10–15 min until a single-cell suspension was obtained. These cells were then centrifuged at 1000 rpm for 5 min, resuspended in 100 μL of PBS, and incubated with appropriate fluorophore-conjugated antibodies (to CD34 and CD49f). Flow cytometry was performed on a BDAria cytometer (Becton Dickinson) and all flow cytometry data was analyzed using the FlowJo software program.</p>
+      </sec>
+      <sec>
+        <title>Epidermal keratinocyte isolation for analysis for Lrig1 expression</title>
+        <p>Keratinocytes were isolated from telogen dorsal skin of 6–8-wk-old mice using thermolysin.<xref ref-type="bibr" rid="R53"><sup>53</sup></xref> Briefly, the back skin strips were sequentially rinsed in 10% Betadine, PBS, 70% ethanol, and PBS. The dermal side was thoroughly scraped to remove excess fat, and then the tissue was floated in 0.25 mg/ml Thermolysin (Sigma) in calcium-free KBM Gold medium (Lonza) for ~1 h at 37 °C. The epidermis was scraped from the dermis, minced with dissecting scissors, and dispersed by gentle pipetting. Keratinocytes were further liberated by stirring the epidermal fragments using a magnetic stir bar. Thermolysin was inactivated by adding media containing FBS, and the cells were washed with PBS, then pelleted and resuspended in 100 μL PBS for labeling with anti-CD49f and anti-Lrig1 antibodies (<xref ref-type="supplementary-material" rid="SUP1"><bold>Table S1</bold></xref>). Flow cytometry data was analyzed using the FlowJo software program.</p>
+      </sec>
+      <sec>
+        <title>Two-stage carcinogenesis experiments</title>
+        <p>The dorsal skin of 6–8-wk-old mice in telogen was shaved two days prior to application of 25 μg 7,12-dimethylbenz(a)anthracene (DMBA) in 200 μL acetone. Two weeks later, and for the 24-wk duration of the study, dorsal skin was treated twice weekly with 12.5 μg 12-O-tetradecanoylphorbol 13-acetate (TPA) in 200 μL acetone. Papillomas were counted weekly, and carcinomas were evaluated visually and confirmed histologically. Mice were sacrificed prior to the study’s completion if the combined tumor burden was excessive, if morbidity was noted, or if a single tumor exceeded acceptable size limits as prescribed by IACUC guidelines. Both female and male FVB mice were used in this study but were never housed together. Moreover, males were housed in small numbers in order to minimize aggressive behavior (none was noted), which could confound tumor data. At the study’s conclusion, tumors were harvested, counted, weighed, photographed, and histologically analyzed.</p>
+        <p>In some experiments, the dorsal skin of mice in telogen was treated once with DMBA or repeatedly with TPA alone (every other day for 2 wk). Forty-eight hours (for DMBA) or 2 wk (for TPA) after treatment, dorsal skin was collected and prepared for immunohistochemistry.</p>
+      </sec>
+      <sec>
+        <title>Statistics</title>
+        <p>The Mann Whitney non-parametric rank sum test was used to assess statistical significance between mean tumor multiplicities in the two-stage carcinogenesis protocol. Tumor incidences were compared using the chi-square test. All other comparisons between the means were made using the Student <italic>t</italic> test.</p>
+      </sec>
+    </sec>
+  </body>
+  <back>
+    <notes>
+      <title>Disclosure of Potential Conflicts of Interest</title>
+      <p>No potential conflicts of interest were disclosed.</p>
+    </notes>
+    <ack>
+      <title>Acknowledgments</title>
+      <p>We thank P Whitney for FACS, the Histology Core for help in IHC, JJ Shen and L Coletta for qPCR analysis, J DiGiovanni for providing the K14 backbone construct, D Rao for sharing protocols and discussions, C Brown for illustrations in Figure 6A, and other members of the Tang lab for support and helpful discussions. This work was supported, in part, by grants from NIH (R21-CA150009 and R01-CA155693), Department of Defense (PC120817), CPRIT (RP120380), and the MDACC Center for Cancer Epigenetics and RNA Center-Laura and John Arnold Foundation grant (DGT) and by two Center Grants (CCSG-5 P30 CA166672 and ES007784). M Badeaux was supported, in part, by NIH predoctoral training grant 2T32 CA009480–21A2 and NIEHS T32 ES07242. C Jeter was supported, in part, by CPRIT RP120394.</p>
+    </ack>
+    <notes>
+      <title>Supplemental Materials</title>
+      <p>Supplemental materials may be found here:  <ext-link ext-link-type="uri" xlink:href="http://www.landesbioscience.com/journals/cc/article/25402">http://www.landesbioscience.com/journals/cc/article/25402</ext-link></p>
+    </notes>
+    <ref-list>
+      <title>References</title>
+      <ref id="R1">
+        <label>1</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Alldridge</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Metodieva</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Greenwood</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Al-Janabi</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Thwaites</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Sauven</surname>
+              <given-names>P</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Proteome profiling of breast tumors by gel electrophoresis and nanoscale electrospray ionization mass spectrometry</article-title>
+          <source>J Proteome Res</source>
+          <year>2008</year>
+          <volume>7</volume>
+          <fpage>1458</fpage>
+          <lpage>69</lpage>
+          <pub-id pub-id-type="doi">10.1021/pr7007829</pub-id>
+          <pub-id pub-id-type="pmid">18257521</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="R2">
+        <label>2</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ye</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Zhou</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Cheng</surname>
+              <given-names>Q</given-names>
+            </name>
+            <name>
+              <surname>Shen</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>H</given-names>
+            </name>
+          </person-group>
+          <article-title>Stem-cell-abundant proteins Nanog, Nucleostemin and Musashi1 are highly expressed in malignant cervical epithelial cells</article-title>
+          <source>BMC Cancer</source>
+          <year>2008</year>
+          <volume>8</volume>
+          <fpage>108</fpage>
+          <pub-id pub-id-type="doi">10.1186/1471-2407-8-108</pub-id>
+          <pub-id pub-id-type="pmid">18419830</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="R3">
+        <label>3</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chiou</surname>
+              <given-names>SH</given-names>
+            </name>
+            <name>
+              <surname>Yu</surname>
+              <given-names>CC</given-names>
+            </name>
+            <name>
+              <surname>Huang</surname>
+              <given-names>CY</given-names>
+            </name>
+            <name>
+              <surname>Lin</surname>
+              <given-names>SC</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>CJ</given-names>
+            </name>
+            <name>
+              <surname>Tsai</surname>
+              <given-names>TH</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Positive correlations of Oct-4 and Nanog in oral cancer stem-like cells and high-grade oral squamous cell carcinoma</article-title>
+          <source>Clin Cancer Res</source>
+          <year>2008</year>
+          <volume>14</volume>
+          <fpage>4085</fpage>
+          <lpage>95</lpage>
+          <pub-id pub-id-type="doi">10.1158/1078-0432.CCR-07-4404</pub-id>
+          <pub-id pub-id-type="pmid">18593985</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="R4">
+        <label>4</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bussolati</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Bruno</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Grange</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Ferrando</surname>
+              <given-names>U</given-names>
+            </name>
+            <name>
+              <surname>Camussi</surname>
+              <given-names>G</given-names>
+            </name>
+          </person-group>
+          <article-title>Identification of a tumor-initiating stem cell population in human renal carcinomas</article-title>
+          <source>FASEB J</source>
+          <year>2008</year>
+          <volume>22</volume>
+          <fpage>3696</fpage>
+          <lpage>705</lpage>
+          <pub-id pub-id-type="doi">10.1096/fj.08-102590</pub-id>
+          <pub-id pub-id-type="pmid">18614581</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="R5">
+        <label>5</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zhang</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Balch</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Chan</surname>
+              <given-names>MW</given-names>
+            </name>
+            <name>
+              <surname>Lai</surname>
+              <given-names>HC</given-names>
+            </name>
+            <name>
+              <surname>Matei</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Schilder</surname>
+              <given-names>JM</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Identification and characterization of ovarian cancer-initiating cells from primary human tumors</article-title>
+          <source>Cancer Res</source>
+          <year>2008</year>
+          <volume>68</volume>
+          <fpage>4311</fpage>
+          <lpage>20</lpage>
+          <pub-id pub-id-type="doi">10.1158/0008-5472.CAN-08-0364</pub-id>
+          <pub-id pub-id-type="pmid">18519691</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="R6">
+        <label>6</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chang</surname>
+              <given-names>CC</given-names>
+            </name>
+            <name>
+              <surname>Shieh</surname>
+              <given-names>GS</given-names>
+            </name>
+            <name>
+              <surname>Wu</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Lin</surname>
+              <given-names>CC</given-names>
+            </name>
+            <name>
+              <surname>Shiau</surname>
+              <given-names>AL</given-names>
+            </name>
+            <name>
+              <surname>Wu</surname>
+              <given-names>CL</given-names>
+            </name>
+          </person-group>
+          <article-title>Oct-3/4 expression reflects tumor progression and regulates motility of bladder cancer cells</article-title>
+          <source>Cancer Res</source>
+          <year>2008</year>
+          <volume>68</volume>
+          <fpage>6281</fpage>
+          <lpage>91</lpage>
+          <pub-id pub-id-type="doi">10.1158/0008-5472.CAN-08-0094</pub-id>
+          <pub-id pub-id-type="pmid">18676852</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="R7">
+        <label>7</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hu</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Breiter</surname>
+              <given-names>DR</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Tang</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Sun</surname>
+              <given-names>S</given-names>
+            </name>
+          </person-group>
+          <article-title>Octamer 4 small interfering RNA results in cancer stem cell-like cell apoptosis</article-title>
+          <source>Cancer Res</source>
+          <year>2008</year>
+          <volume>68</volume>
+          <fpage>6533</fpage>
+          <lpage>40</lpage>
+          <pub-id pub-id-type="doi">10.1158/0008-5472.CAN-07-6642</pub-id>
+          <pub-id pub-id-type="pmid">18701476</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="R8">
+        <label>8</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bourguignon</surname>
+              <given-names>LY</given-names>
+            </name>
+            <name>
+              <surname>Peyrollier</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Xia</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Gilad</surname>
+              <given-names>E</given-names>
+            </name>
+          </person-group>
+          <article-title>Hyaluronan-CD44 interaction activates stem cell marker Nanog, Stat-3-mediated MDR1 gene expression, and ankyrin-regulated multidrug efflux in breast and ovarian tumor cells</article-title>
+          <source>J Biol Chem</source>
+          <year>2008</year>
+          <volume>283</volume>
+          <fpage>17635</fpage>
+          <lpage>51</lpage>
+          <pub-id pub-id-type="doi">10.1074/jbc.M800109200</pub-id>
+          <pub-id pub-id-type="pmid">18441325</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="R9">
+        <label>9</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jeter</surname>
+              <given-names>CR</given-names>
+            </name>
+            <name>
+              <surname>Badeaux</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Choy</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Chandra</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Patrawala</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>C</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Functional evidence that the self-renewal gene <italic>NANOG</italic> regulates human tumor development</article-title>
+          <source>Stem Cells</source>
+          <year>2009</year>
+          <volume>27</volume>
+          <fpage>993</fpage>
+          <lpage>1005</lpage>
+          <pub-id pub-id-type="doi">10.1002/stem.29</pub-id>
+          <pub-id pub-id-type="pmid">19415763</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="R10">
+        <label>10</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Meng</surname>
+              <given-names>HM</given-names>
+            </name>
+            <name>
+              <surname>Zheng</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>XY</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Sui</surname>
+              <given-names>HM</given-names>
+            </name>
+            <name>
+              <surname>Wu</surname>
+              <given-names>SJ</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Overexpression of nanog predicts tumor progression and poor prognosis in colorectal cancer</article-title>
+          <source>Cancer Biol Ther</source>
+          <year>2010</year>
+          <volume>9</volume>
+          <pub-id pub-id-type="pmid">20026903</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="R11">
+        <label>11</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Meyer</surname>
+              <given-names>MJ</given-names>
+            </name>
+            <name>
+              <surname>Fleming</surname>
+              <given-names>JM</given-names>
+            </name>
+            <name>
+              <surname>Lin</surname>
+              <given-names>AF</given-names>
+            </name>
+            <name>
+              <surname>Hussnain</surname>
+              <given-names>SA</given-names>
+            </name>
+            <name>
+              <surname>Ginsburg</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Vonderhaar</surname>
+              <given-names>BK</given-names>
+            </name>
+          </person-group>
+          <article-title>CD44posCD49fhiCD133/2hi defines xenograft-initiating cells in estrogen receptor-negative breast cancer</article-title>
+          <source>Cancer Res</source>
+          <year>2010</year>
+          <volume>70</volume>
+          <fpage>4624</fpage>
+          <lpage>33</lpage>
+          <pub-id pub-id-type="doi">10.1158/0008-5472.CAN-09-3619</pub-id>
+          <pub-id pub-id-type="pmid">20484027</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="R12">
+        <label>12</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chiou</surname>
+              <given-names>SH</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>ML</given-names>
+            </name>
+            <name>
+              <surname>Chou</surname>
+              <given-names>YT</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>CJ</given-names>
+            </name>
+            <name>
+              <surname>Hong</surname>
+              <given-names>CF</given-names>
+            </name>
+            <name>
+              <surname>Hsieh</surname>
+              <given-names>WJ</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Coexpression of Oct4 and Nanog enhances malignancy in lung adenocarcinoma by inducing cancer stem cell-like properties and epithelial-mesenchymal transdifferentiation</article-title>
+          <source>Cancer Res</source>
+          <year>2010</year>
+          <volume>70</volume>
+          <fpage>10433</fpage>
+          <lpage>44</lpage>
+          <pub-id pub-id-type="doi">10.1158/0008-5472.CAN-10-2638</pub-id>
+          <pub-id pub-id-type="pmid">21159654</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="R13">
+        <label>13</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Po</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Ferretti</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Miele</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>De Smaele</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Paganelli</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Canettieri</surname>
+              <given-names>G</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Hedgehog controls neural stem cells through p53-independent regulation of Nanog</article-title>
+          <source>EMBO J</source>
+          <year>2010</year>
+          <volume>29</volume>
+          <fpage>2646</fpage>
+          <lpage>58</lpage>
+          <pub-id pub-id-type="doi">10.1038/emboj.2010.131</pub-id>
+          <pub-id pub-id-type="pmid">20581804</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="R14">
+        <label>14</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zbinden</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Duquet</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Lorente-Trigos</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Ngwabyt</surname>
+              <given-names>SN</given-names>
+            </name>
+            <name>
+              <surname>Borges</surname>
+              <given-names>I</given-names>
+            </name>
+            <name>
+              <surname>Ruiz i Altaba</surname>
+              <given-names>A</given-names>
+            </name>
+          </person-group>
+          <article-title>NANOG regulates glioma stem cells and is essential in vivo acting in a cross-functional network with GLI1 and p53</article-title>
+          <source>EMBO J</source>
+          <year>2010</year>
+          <volume>29</volume>
+          <fpage>2659</fpage>
+          <lpage>74</lpage>
+          <pub-id pub-id-type="doi">10.1038/emboj.2010.137</pub-id>
+          <pub-id pub-id-type="pmid">20581802</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="R15">
+        <label>15</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jeter</surname>
+              <given-names>CR</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Calhoun-Davis</surname>
+              <given-names>T</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>NANOG promotes cancer stem cell characteristics and prostate cancer resistance to androgen deprivation</article-title>
+          <source>Oncogene</source>
+          <year>2011</year>
+          <volume>30</volume>
+          <fpage>3833</fpage>
+          <lpage>45</lpage>
+          <pub-id pub-id-type="doi">10.1038/onc.2011.114</pub-id>
+          <pub-id pub-id-type="pmid">21499299</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="R16">
+        <label>16</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mathieu</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>Z</given-names>
+            </name>
+            <name>
+              <surname>Zhou</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>AJ</given-names>
+            </name>
+            <name>
+              <surname>Heddleston</surname>
+              <given-names>JM</given-names>
+            </name>
+            <name>
+              <surname>Pinna</surname>
+              <given-names>CM</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>HIF induces human embryonic stem cell markers in cancer cells</article-title>
+          <source>Cancer Res</source>
+          <year>2011</year>
+          <volume>71</volume>
+          <fpage>4640</fpage>
+          <lpage>52</lpage>
+          <pub-id pub-id-type="doi">10.1158/0008-5472.CAN-10-3320</pub-id>
+          <pub-id pub-id-type="pmid">21712410</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="R17">
+        <label>17</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lee</surname>
+              <given-names>TK</given-names>
+            </name>
+            <name>
+              <surname>Castilho</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Cheung</surname>
+              <given-names>VC</given-names>
+            </name>
+            <name>
+              <surname>Tang</surname>
+              <given-names>KH</given-names>
+            </name>
+            <name>
+              <surname>Ma</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Ng</surname>
+              <given-names>IO</given-names>
+            </name>
+          </person-group>
+          <article-title>CD24(+) liver tumor-initiating cells drive self-renewal and tumor initiation through STAT3-mediated NANOG regulation</article-title>
+          <source>Cell Stem Cell</source>
+          <year>2011</year>
+          <volume>9</volume>
+          <fpage>50</fpage>
+          <lpage>63</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.stem.2011.06.005</pub-id>
+          <pub-id pub-id-type="pmid">21726833</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="R18">
+        <label>18</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Noh</surname>
+              <given-names>KH</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>YH</given-names>
+            </name>
+            <name>
+              <surname>Jeon</surname>
+              <given-names>JH</given-names>
+            </name>
+            <name>
+              <surname>Kang</surname>
+              <given-names>TH</given-names>
+            </name>
+            <name>
+              <surname>Mao</surname>
+              <given-names>CP</given-names>
+            </name>
+            <name>
+              <surname>Wu</surname>
+              <given-names>TC</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Cancer vaccination drives Nanog-dependent evolution of tumor cells toward an immune-resistant and stem-like phenotype</article-title>
+          <source>Cancer Res</source>
+          <year>2012</year>
+          <volume>72</volume>
+          <fpage>1717</fpage>
+          <lpage>27</lpage>
+          <pub-id pub-id-type="doi">10.1158/0008-5472.CAN-11-3758</pub-id>
+          <pub-id pub-id-type="pmid">22337995</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="R19">
+        <label>19</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ho</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Olson</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Figel</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Gelman</surname>
+              <given-names>I</given-names>
+            </name>
+            <name>
+              <surname>Cance</surname>
+              <given-names>WG</given-names>
+            </name>
+            <name>
+              <surname>Golubovskaya</surname>
+              <given-names>VM</given-names>
+            </name>
+          </person-group>
+          <article-title>Nanog increases focal adhesion kinase (FAK) promoter activity and expression and directly binds to FAK protein to be phosphorylated</article-title>
+          <source>J Biol Chem</source>
+          <year>2012</year>
+          <volume>287</volume>
+          <fpage>18656</fpage>
+          <lpage>73</lpage>
+          <pub-id pub-id-type="doi">10.1074/jbc.M111.322883</pub-id>
+          <pub-id pub-id-type="pmid">22493428</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="R20">
+        <label>20</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Shan</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Shen</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Xia</surname>
+              <given-names>F</given-names>
+            </name>
+            <name>
+              <surname>Xu</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Duan</surname>
+              <given-names>G</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Nanog regulates self-renewal of cancer stem cells through the insulin-like growth factor pathway in human hepatocellular carcinoma</article-title>
+          <source>Hepatology</source>
+          <year>2012</year>
+          <volume>56</volume>
+          <fpage>1004</fpage>
+          <lpage>14</lpage>
+          <pub-id pub-id-type="doi">10.1002/hep.25745</pub-id>
+          <pub-id pub-id-type="pmid">22473773</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="R21">
+        <label>21</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ibrahim</surname>
+              <given-names>EE</given-names>
+            </name>
+            <name>
+              <surname>Babaei-Jadidi</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Saadeddin</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Spencer-Dene</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Hossaini</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Abuzinadah</surname>
+              <given-names>M</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Embryonic NANOG activity defines colorectal cancer stem cells and modulates through AP1- and TCF-dependent mechanisms</article-title>
+          <source>Stem Cells</source>
+          <year>2012</year>
+          <volume>30</volume>
+          <fpage>2076</fpage>
+          <lpage>87</lpage>
+          <pub-id pub-id-type="doi">10.1002/stem.1182</pub-id>
+          <pub-id pub-id-type="pmid">22851508</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="R22">
+        <label>22</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Noh</surname>
+              <given-names>KH</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>BW</given-names>
+            </name>
+            <name>
+              <surname>Song</surname>
+              <given-names>KH</given-names>
+            </name>
+            <name>
+              <surname>Cho</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>YH</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>JH</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Nanog signaling in cancer promotes stem-like phenotype and immune evasion</article-title>
+          <source>J Clin Invest</source>
+          <year>2012</year>
+          <volume>122</volume>
+          <fpage>4077</fpage>
+          <lpage>93</lpage>
+          <pub-id pub-id-type="doi">10.1172/JCI64057</pub-id>
+          <pub-id pub-id-type="pmid">23093782</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="R23">
+        <label>23</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Siu</surname>
+              <given-names>MK</given-names>
+            </name>
+            <name>
+              <surname>Wong</surname>
+              <given-names>ES</given-names>
+            </name>
+            <name>
+              <surname>Kong</surname>
+              <given-names>DS</given-names>
+            </name>
+            <name>
+              <surname>Chan</surname>
+              <given-names>HY</given-names>
+            </name>
+            <name>
+              <surname>Jiang</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Wong</surname>
+              <given-names>OG</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Stem cell transcription factor NANOG controls cell migration and invasion via dysregulation of E-cadherin and FoxJ1 and contributes to adverse clinical outcome in ovarian cancers</article-title>
+          <source>Oncogene</source>
+          <year>2012</year>
+          <pub-id pub-id-type="doi">10.1038/onc.2012.363</pub-id>
+          <pub-id pub-id-type="pmid">22945654</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="R24">
+        <label>24</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zhang</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Espinoza</surname>
+              <given-names>LA</given-names>
+            </name>
+            <name>
+              <surname>Kinders</surname>
+              <given-names>RJ</given-names>
+            </name>
+            <name>
+              <surname>Lawrence</surname>
+              <given-names>SM</given-names>
+            </name>
+            <name>
+              <surname>Pfister</surname>
+              <given-names>TD</given-names>
+            </name>
+            <name>
+              <surname>Zhou</surname>
+              <given-names>M</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>NANOG modulates stemness in human colorectal cancer</article-title>
+          <source>Oncogene</source>
+          <year>2012</year>
+          <pub-id pub-id-type="doi">10.1038/onc.2012.461</pub-id>
+          <pub-id pub-id-type="pmid">23085761</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="R25">
+        <label>25</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Qin</surname>
+              <given-names>J</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Laffin</surname>
+              <given-names>B</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Choy</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Jeter</surname>
+              <given-names>CR</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>The PSA<sup>(-/lo</sup>) prostate cancer cell population harbors self-renewing long-term tumor-propagating cells that resist castration</article-title>
+          <source>Cell Stem Cell</source>
+          <year>2012</year>
+          <volume>10</volume>
+          <fpage>556</fpage>
+          <lpage>69</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.stem.2012.03.009</pub-id>
+          <pub-id pub-id-type="pmid">22560078</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="R26">
+        <label>26</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hochedlinger</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Yamada</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Beard</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Jaenisch</surname>
+              <given-names>R</given-names>
+            </name>
+          </person-group>
+          <article-title>Ectopic expression of Oct-4 blocks progenitor-cell differentiation and causes dysplasia in epithelial tissues</article-title>
+          <source>Cell</source>
+          <year>2005</year>
+          <volume>121</volume>
+          <fpage>465</fpage>
+          <lpage>77</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.cell.2005.02.018</pub-id>
+          <pub-id pub-id-type="pmid">15882627</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="R27">
+        <label>27</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lu</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Futtner</surname>
+              <given-names>C</given-names>
+            </name>
+            <name>
+              <surname>Rock</surname>
+              <given-names>JR</given-names>
+            </name>
+            <name>
+              <surname>Xu</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Whitworth</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Hogan</surname>
+              <given-names>BL</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Evidence that SOX2 overexpression is oncogenic in the lung</article-title>
+          <source>PLoS One</source>
+          <year>2010</year>
+          <volume>5</volume>
+          <fpage>e11022</fpage>
+          <pub-id pub-id-type="doi">10.1371/journal.pone.0011022</pub-id>
+          <pub-id pub-id-type="pmid">20548776</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="R28">
+        <label>28</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Xian</surname>
+              <given-names>W</given-names>
+            </name>
+            <name>
+              <surname>Rosenberg</surname>
+              <given-names>MP</given-names>
+            </name>
+            <name>
+              <surname>DiGiovanni</surname>
+              <given-names>J</given-names>
+            </name>
+          </person-group>
+          <article-title>Activation of erbB2 and c-src in phorbol ester-treated mouse epidermis: possible role in mouse skin tumor promotion</article-title>
+          <source>Oncogene</source>
+          <year>1997</year>
+          <volume>14</volume>
+          <fpage>1435</fpage>
+          <lpage>44</lpage>
+          <pub-id pub-id-type="doi">10.1038/sj.onc.1200980</pub-id>
+          <pub-id pub-id-type="pmid">9136987</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="R29">
+        <label>29</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chen</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Schneider-Broussard</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Hollowell</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>McArthur</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Jeter</surname>
+              <given-names>CR</given-names>
+            </name>
+            <name>
+              <surname>Benavides</surname>
+              <given-names>F</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Abnormal differentiation, hyperplasia and embryonic/perinatal lethality in BK5-T/t transgenic mice</article-title>
+          <source>Differentiation</source>
+          <year>2009</year>
+          <volume>77</volume>
+          <fpage>324</fpage>
+          <lpage>34</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.diff.2008.10.011</pub-id>
+          <pub-id pub-id-type="pmid">19272531</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="R30">
+        <label>30</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rock</surname>
+              <given-names>JR</given-names>
+            </name>
+            <name>
+              <surname>Onaitis</surname>
+              <given-names>MW</given-names>
+            </name>
+            <name>
+              <surname>Rawlins</surname>
+              <given-names>EL</given-names>
+            </name>
+            <name>
+              <surname>Lu</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Clark</surname>
+              <given-names>CP</given-names>
+            </name>
+            <name>
+              <surname>Xue</surname>
+              <given-names>Y</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Basal cells as stem cells of the mouse trachea and human airway epithelium</article-title>
+          <source>Proc Natl Acad Sci U S A</source>
+          <year>2009</year>
+          <volume>106</volume>
+          <fpage>12771</fpage>
+          <lpage>5</lpage>
+          <pub-id pub-id-type="doi">10.1073/pnas.0906850106</pub-id>
+          <pub-id pub-id-type="pmid">19625615</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="R31">
+        <label>31</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Abel</surname>
+              <given-names>EL</given-names>
+            </name>
+            <name>
+              <surname>Angel</surname>
+              <given-names>JM</given-names>
+            </name>
+            <name>
+              <surname>Kiguchi</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>DiGiovanni</surname>
+              <given-names>J</given-names>
+            </name>
+          </person-group>
+          <article-title>Multi-stage chemical carcinogenesis in mouse skin: fundamentals and applications</article-title>
+          <source>Nat Protoc</source>
+          <year>2009</year>
+          <volume>4</volume>
+          <fpage>1350</fpage>
+          <lpage>62</lpage>
+          <pub-id pub-id-type="doi">10.1038/nprot.2009.120</pub-id>
+          <pub-id pub-id-type="pmid">19713956</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="R32">
+        <label>32</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Argyris</surname>
+              <given-names>T</given-names>
+            </name>
+          </person-group>
+          <article-title>Kinetics of epidermal production during epidermal regeneration following abrasion in mice</article-title>
+          <source>Am J Pathol</source>
+          <year>1976</year>
+          <volume>83</volume>
+          <fpage>329</fpage>
+          <lpage>40</lpage>
+          <pub-id pub-id-type="pmid">1266945</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="R33">
+        <label>33</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Langton</surname>
+              <given-names>AK</given-names>
+            </name>
+            <name>
+              <surname>Herrick</surname>
+              <given-names>SE</given-names>
+            </name>
+            <name>
+              <surname>Headon</surname>
+              <given-names>DJ</given-names>
+            </name>
+          </person-group>
+          <article-title>An extended epidermal response heals cutaneous wounds in the absence of a hair follicle stem cell contribution</article-title>
+          <source>J Invest Dermatol</source>
+          <year>2008</year>
+          <volume>128</volume>
+          <fpage>1311</fpage>
+          <lpage>8</lpage>
+          <pub-id pub-id-type="doi">10.1038/sj.jid.5701178</pub-id>
+          <pub-id pub-id-type="pmid">18037901</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="R34">
+        <label>34</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Morris</surname>
+              <given-names>RJ</given-names>
+            </name>
+            <name>
+              <surname>Tryson</surname>
+              <given-names>KA</given-names>
+            </name>
+            <name>
+              <surname>Wu</surname>
+              <given-names>KQ</given-names>
+            </name>
+          </person-group>
+          <article-title>Evidence that the epidermal targets of carcinogen action are found in the interfollicular epidermis of infundibulum as well as in the hair follicles</article-title>
+          <source>Cancer Res</source>
+          <year>2000</year>
+          <volume>60</volume>
+          <fpage>226</fpage>
+          <lpage>9</lpage>
+          <pub-id pub-id-type="pmid">10667563</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="R35">
+        <label>35</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Waikel</surname>
+              <given-names>RL</given-names>
+            </name>
+            <name>
+              <surname>Kawachi</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Waikel</surname>
+              <given-names>PA</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>XJ</given-names>
+            </name>
+            <name>
+              <surname>Roop</surname>
+              <given-names>DR</given-names>
+            </name>
+          </person-group>
+          <article-title>Deregulated expression of c-Myc depletes epidermal stem cells</article-title>
+          <source>Nat Genet</source>
+          <year>2001</year>
+          <volume>28</volume>
+          <fpage>165</fpage>
+          <lpage>8</lpage>
+          <pub-id pub-id-type="doi">10.1038/88889</pub-id>
+          <pub-id pub-id-type="pmid">11381265</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="R36">
+        <label>36</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jensen</surname>
+              <given-names>KB</given-names>
+            </name>
+            <name>
+              <surname>Collins</surname>
+              <given-names>CA</given-names>
+            </name>
+            <name>
+              <surname>Nascimento</surname>
+              <given-names>E</given-names>
+            </name>
+            <name>
+              <surname>Tan</surname>
+              <given-names>DW</given-names>
+            </name>
+            <name>
+              <surname>Frye</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Itami</surname>
+              <given-names>S</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Lrig1 expression defines a distinct multipotent stem cell population in mammalian epidermis</article-title>
+          <source>Cell Stem Cell</source>
+          <year>2009</year>
+          <volume>4</volume>
+          <fpage>427</fpage>
+          <lpage>39</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.stem.2009.04.014</pub-id>
+          <pub-id pub-id-type="pmid">19427292</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="R37">
+        <label>37</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mathur</surname>
+              <given-names>D</given-names>
+            </name>
+            <name>
+              <surname>Danford</surname>
+              <given-names>TW</given-names>
+            </name>
+            <name>
+              <surname>Boyer</surname>
+              <given-names>LA</given-names>
+            </name>
+            <name>
+              <surname>Young</surname>
+              <given-names>RA</given-names>
+            </name>
+            <name>
+              <surname>Gifford</surname>
+              <given-names>DK</given-names>
+            </name>
+            <name>
+              <surname>Jaenisch</surname>
+              <given-names>R</given-names>
+            </name>
+          </person-group>
+          <article-title>Analysis of the mouse embryonic stem cell regulatory networks obtained by ChIP-chip and ChIP-PET</article-title>
+          <source>Genome Biol</source>
+          <year>2008</year>
+          <volume>9</volume>
+          <fpage>R126</fpage>
+          <pub-id pub-id-type="doi">10.1186/gb-2008-9-8-r126</pub-id>
+          <pub-id pub-id-type="pmid">18700969</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="R38">
+        <label>38</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sharov</surname>
+              <given-names>AA</given-names>
+            </name>
+            <name>
+              <surname>Masui</surname>
+              <given-names>S</given-names>
+            </name>
+            <name>
+              <surname>Sharova</surname>
+              <given-names>LV</given-names>
+            </name>
+            <name>
+              <surname>Piao</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Aiba</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Matoba</surname>
+              <given-names>R</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Identification of Pou5f1, Sox2, and Nanog downstream target genes with statistical confidence by applying a novel algorithm to time course microarray and genome-wide chromatin immunoprecipitation data</article-title>
+          <source>BMC Genomics</source>
+          <year>2008</year>
+          <volume>9</volume>
+          <fpage>269</fpage>
+          <pub-id pub-id-type="doi">10.1186/1471-2164-9-269</pub-id>
+          <pub-id pub-id-type="pmid">18522731</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="R39">
+        <label>39</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kangsamaksin</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Morris</surname>
+              <given-names>RJ</given-names>
+            </name>
+          </person-group>
+          <article-title>Bone morphogenetic protein 5 regulates the number of keratinocyte stem cells from the skin of mice</article-title>
+          <source>J Invest Dermatol</source>
+          <year>2011</year>
+          <volume>131</volume>
+          <fpage>580</fpage>
+          <lpage>5</lpage>
+          <pub-id pub-id-type="doi">10.1038/jid.2010.378</pub-id>
+          <pub-id pub-id-type="pmid">21179110</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="R40">
+        <label>40</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Arnold</surname>
+              <given-names>I</given-names>
+            </name>
+            <name>
+              <surname>Watt</surname>
+              <given-names>FM</given-names>
+            </name>
+          </person-group>
+          <article-title>c-Myc activation in transgenic mouse epidermis results in mobilization of stem cells and differentiation of their progeny</article-title>
+          <source>Curr Biol</source>
+          <year>2001</year>
+          <volume>11</volume>
+          <fpage>558</fpage>
+          <lpage>68</lpage>
+          <pub-id pub-id-type="doi">10.1016/S0960-9822(01)00154-3</pub-id>
+          <pub-id pub-id-type="pmid">11369200</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="R41">
+        <label>41</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Miyanari</surname>
+              <given-names>Y</given-names>
+            </name>
+            <name>
+              <surname>Torres-Padilla</surname>
+              <given-names>ME</given-names>
+            </name>
+          </person-group>
+          <article-title>Control of ground-state pluripotency by allelic regulation of <italic>Nanog.</italic></article-title>
+          <source>Nature</source>
+          <year>2012</year>
+          <volume>483</volume>
+          <fpage>470</fpage>
+          <lpage>3</lpage>
+          <pub-id pub-id-type="doi">10.1038/nature10807</pub-id>
+          <pub-id pub-id-type="pmid">22327294</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="R42">
+        <label>42</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Singh</surname>
+              <given-names>AM</given-names>
+            </name>
+            <name>
+              <surname>Hamazaki</surname>
+              <given-names>T</given-names>
+            </name>
+            <name>
+              <surname>Hankowski</surname>
+              <given-names>KE</given-names>
+            </name>
+            <name>
+              <surname>Terada</surname>
+              <given-names>N</given-names>
+            </name>
+          </person-group>
+          <article-title>A heterogeneous expression pattern for Nanog in embryonic stem cells</article-title>
+          <source>Stem Cells</source>
+          <year>2007</year>
+          <volume>25</volume>
+          <fpage>2534</fpage>
+          <lpage>42</lpage>
+          <pub-id pub-id-type="doi">10.1634/stemcells.2007-0126</pub-id>
+          <pub-id pub-id-type="pmid">17615266</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="R43">
+        <label>43</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Glauche</surname>
+              <given-names>I</given-names>
+            </name>
+            <name>
+              <surname>Herberg</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Roeder</surname>
+              <given-names>I</given-names>
+            </name>
+          </person-group>
+          <article-title>Nanog variability and pluripotency regulation of embryonic stem cells--insights from a mathematical model analysis</article-title>
+          <source>PLoS One</source>
+          <year>2010</year>
+          <volume>5</volume>
+          <fpage>e11238</fpage>
+          <pub-id pub-id-type="doi">10.1371/journal.pone.0011238</pub-id>
+          <pub-id pub-id-type="pmid">20574542</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="R44">
+        <label>44</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Machida</surname>
+              <given-names>K</given-names>
+            </name>
+            <name>
+              <surname>Tsukamoto</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Mkrtchyan</surname>
+              <given-names>H</given-names>
+            </name>
+            <name>
+              <surname>Duan</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Dynnyk</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>HM</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Toll-like receptor 4 mediates synergism between alcohol and HCV in hepatic oncogenesis involving stem cell marker Nanog</article-title>
+          <source>Proc Natl Acad Sci U S A</source>
+          <year>2009</year>
+          <volume>106</volume>
+          <fpage>1548</fpage>
+          <lpage>53</lpage>
+          <pub-id pub-id-type="doi">10.1073/pnas.0807390106</pub-id>
+          <pub-id pub-id-type="pmid">19171902</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="R45">
+        <label>45</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Nowak</surname>
+              <given-names>JA</given-names>
+            </name>
+            <name>
+              <surname>Polak</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Pasolli</surname>
+              <given-names>HA</given-names>
+            </name>
+            <name>
+              <surname>Fuchs</surname>
+              <given-names>E</given-names>
+            </name>
+          </person-group>
+          <article-title>Hair follicle stem cells are specified and function in early skin morphogenesis</article-title>
+          <source>Cell Stem Cell</source>
+          <year>2008</year>
+          <volume>3</volume>
+          <fpage>33</fpage>
+          <lpage>43</lpage>
+          <pub-id pub-id-type="doi">10.1016/j.stem.2008.05.009</pub-id>
+          <pub-id pub-id-type="pmid">18593557</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="R46">
+        <label>46</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Snippert</surname>
+              <given-names>HJ</given-names>
+            </name>
+            <name>
+              <surname>Haegebarth</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Kasper</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Jaks</surname>
+              <given-names>V</given-names>
+            </name>
+            <name>
+              <surname>van Es</surname>
+              <given-names>JH</given-names>
+            </name>
+            <name>
+              <surname>Barker</surname>
+              <given-names>N</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Lgr6 marks stem cells in the hair follicle that generate all cell lineages of the skin</article-title>
+          <source>Science</source>
+          <year>2010</year>
+          <volume>327</volume>
+          <fpage>1385</fpage>
+          <lpage>9</lpage>
+          <pub-id pub-id-type="doi">10.1126/science.1184733</pub-id>
+          <pub-id pub-id-type="pmid">20223988</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="R47">
+        <label>47</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Trempus</surname>
+              <given-names>CS</given-names>
+            </name>
+            <name>
+              <surname>Morris</surname>
+              <given-names>RJ</given-names>
+            </name>
+            <name>
+              <surname>Bortner</surname>
+              <given-names>CD</given-names>
+            </name>
+            <name>
+              <surname>Cotsarelis</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Faircloth</surname>
+              <given-names>RS</given-names>
+            </name>
+            <name>
+              <surname>Reece</surname>
+              <given-names>JM</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Enrichment for living murine keratinocytes from the hair follicle bulge with the cell surface marker CD34</article-title>
+          <source>J Invest Dermatol</source>
+          <year>2003</year>
+          <volume>120</volume>
+          <fpage>501</fpage>
+          <lpage>11</lpage>
+          <pub-id pub-id-type="doi">10.1046/j.1523-1747.2003.12088.x</pub-id>
+          <pub-id pub-id-type="pmid">12648211</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="R48">
+        <label>48</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Trempus</surname>
+              <given-names>CS</given-names>
+            </name>
+            <name>
+              <surname>Morris</surname>
+              <given-names>RJ</given-names>
+            </name>
+            <name>
+              <surname>Ehinger</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Elmore</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Bortner</surname>
+              <given-names>CD</given-names>
+            </name>
+            <name>
+              <surname>Ito</surname>
+              <given-names>M</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>CD34 expression by hair follicle stem cells is required for skin tumor development in mice</article-title>
+          <source>Cancer Res</source>
+          <year>2007</year>
+          <volume>67</volume>
+          <fpage>4173</fpage>
+          <lpage>81</lpage>
+          <pub-id pub-id-type="doi">10.1158/0008-5472.CAN-06-3128</pub-id>
+          <pub-id pub-id-type="pmid">17483328</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="R49">
+        <label>49</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Young</surname>
+              <given-names>MR</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>JJ</given-names>
+            </name>
+            <name>
+              <surname>Rincón</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Flavell</surname>
+              <given-names>RA</given-names>
+            </name>
+            <name>
+              <surname>Sathyanarayana</surname>
+              <given-names>BK</given-names>
+            </name>
+            <name>
+              <surname>Hunziker</surname>
+              <given-names>R</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Transgenic mice demonstrate AP-1 (activator protein-1) transactivation is required for tumor promotion</article-title>
+          <source>Proc Natl Acad Sci U S A</source>
+          <year>1999</year>
+          <volume>96</volume>
+          <fpage>9827</fpage>
+          <lpage>32</lpage>
+          <pub-id pub-id-type="doi">10.1073/pnas.96.17.9827</pub-id>
+          <pub-id pub-id-type="pmid">10449779</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="R50">
+        <label>50</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Perego</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Tortoreto</surname>
+              <given-names>M</given-names>
+            </name>
+            <name>
+              <surname>Tragni</surname>
+              <given-names>G</given-names>
+            </name>
+            <name>
+              <surname>Mariani</surname>
+              <given-names>L</given-names>
+            </name>
+            <name>
+              <surname>Deho</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Carbone</surname>
+              <given-names>A</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Heterogeneous phenotype of human melanoma cells with in vitro and in vivo features of tumor-initiating cells</article-title>
+          <source>J Invest Dermatol</source>
+          <year>2010</year>
+          <volume>130</volume>
+          <fpage>1877</fpage>
+          <lpage>86</lpage>
+          <pub-id pub-id-type="doi">10.1038/jid.2010.69</pub-id>
+          <pub-id pub-id-type="pmid">20376064</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="R51">
+        <label>51</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Suraneni</surname>
+              <given-names>MV</given-names>
+            </name>
+            <name>
+              <surname>Schneider-Broussard</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Moore</surname>
+              <given-names>JR</given-names>
+            </name>
+            <name>
+              <surname>Davis</surname>
+              <given-names>TC</given-names>
+            </name>
+            <name>
+              <surname>Maldonado</surname>
+              <given-names>CJ</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>H</given-names>
+            </name>
+            <etal/>
+          </person-group>
+          <article-title>Transgenic expression of 15-lipoxygenase 2 (15-LOX2) in mouse prostate leads to hyperplasia and cell senescence</article-title>
+          <source>Oncogene</source>
+          <year>2010</year>
+          <volume>29</volume>
+          <fpage>4261</fpage>
+          <lpage>75</lpage>
+          <pub-id pub-id-type="doi">10.1038/onc.2010.197</pub-id>
+          <pub-id pub-id-type="pmid">20514017</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="R52">
+        <label>52</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Truett</surname>
+              <given-names>GE</given-names>
+            </name>
+            <name>
+              <surname>Heeger</surname>
+              <given-names>P</given-names>
+            </name>
+            <name>
+              <surname>Mynatt</surname>
+              <given-names>RL</given-names>
+            </name>
+            <name>
+              <surname>Truett</surname>
+              <given-names>AA</given-names>
+            </name>
+            <name>
+              <surname>Walker</surname>
+              <given-names>JA</given-names>
+            </name>
+            <name>
+              <surname>Warman</surname>
+              <given-names>ML</given-names>
+            </name>
+          </person-group>
+          <article-title>Preparation of PCR-quality mouse genomic DNA with hot sodium hydroxide and tris (HotSHOT)</article-title>
+          <source>Biotechniques</source>
+          <year>2000</year>
+          <volume>29</volume>
+          <fpage>52</fpage>
+          <lpage>4, 54</lpage>
+          <pub-id pub-id-type="pmid">10907076</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="R53">
+        <label>53</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jensen</surname>
+              <given-names>KB</given-names>
+            </name>
+            <name>
+              <surname>Driskell</surname>
+              <given-names>RR</given-names>
+            </name>
+            <name>
+              <surname>Watt</surname>
+              <given-names>FM</given-names>
+            </name>
+          </person-group>
+          <article-title>Assaying proliferation and differentiation capacity of stem cells using disaggregated adult mouse epidermis</article-title>
+          <source>Nat Protoc</source>
+          <year>2010</year>
+          <volume>5</volume>
+          <fpage>898</fpage>
+          <lpage>911</lpage>
+          <pub-id pub-id-type="doi">10.1038/nprot.2010.39</pub-id>
+          <pub-id pub-id-type="pmid">20431535</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+    <fn-group>
+      <fn fn-type="other">
+        <p>Previously published online: <ext-link ext-link-type="uri" xlink:href="http://www.landesbioscience.com/journals/cc/article/25402/">www.landesbioscience.com/journals/cc/article/25402</ext-link></p>
+      </fn>
+    </fn-group>
+  </back>
+</article>

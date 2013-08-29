@@ -35,7 +35,8 @@
     "substance-commander": "git+https://github.com/substance/commander.git#0.1.x",
     "substance-chronicle": "git+https://github.com/substance/chronicle.git#0.2.x",
     "substance-application": "git+https://github.com/substance/application.git#0.1.x",
-    "lens-article": "git+https://github.com/elifesciences/lens-article.git#modularize"
+    "lens-article": "git+https://github.com/elifesciences/lens-article.git#modularize",
+    "lens-converter": "git+https://github.com/elifesciences/lens-converter.git#master"
   },
   "version": "0.2.0",
   "engines": {

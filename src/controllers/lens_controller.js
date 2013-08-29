@@ -8,6 +8,9 @@ var Test = require("substance-test");
 var Library = require("substance-library");
 var LibraryController = Library.Controller;
 var ReaderController = require("lens-reader").Controller;
+var Article = require("lens-article");
+var Chronicle = require("substance-chronicle");
+var Converter = require("lens-converter");
 
 // Lens.Controller
 // -----------------
@@ -57,29 +60,68 @@ LensController.Prototype = function() {
   // Transitions
   // ===================================
 
-  this.openReader = function(collectionId, documentId, context, node, resource, fullscreen) {
+  var _XML_MATCHER = new RegExp("[.]xml$");
+
+  var _open = function(state, documentId) {
+
     var that = this;
 
-    function open() {
-      // The article view state
-      var state = {
-        context: context || "toc",
-        node: node,
-        resource: resource,
-        fullscreen: !!fullscreen,
-        collection: collectionId // TODO: get rid of the library dependency here
-      };
+    var _onDocumentLoad = function(err, doc) {
+      // Hmmm... I don't think that this exception will work as desired...
+      if (err) throw err;
+      that.reader = new ReaderController(doc, state);
+      that.updateState('reader');
+    };
 
-      that.__library.loadDocument(documentId, function(err, doc) {
-        if (err) throw err;
-        that.reader = new ReaderController(doc, state);
-        that.updateState('reader');
+    // HACK: for activating the NLM importer ATM it is not possible
+    // to leave the loading to the library as it needs the Lens Converter for that.
+    // Options:
+    //  - provide the library with a document loader which would be constructed here
+    //  - do the loading here
+    // prefering option2 as it is simpler to achieve...
+
+    var record = this.__library.get(documentId);
+    if (_XML_MATCHER.exec(record.url.toLowerCase()) !== null) {
+      var importer = new Converter.Importer();
+      $.get(record.url)
+        .done(function(data) {
+          var doc, err;
+          try {
+            doc = importer.import(data);
+          } catch (_err) {
+            err = _err;
+          }
+          _onDocumentLoad(err, doc);
+        })
+        .fail(function(err) {
+          console.error(err);
+        });
+    } else {
+      $.getJSON(record.url)
+      .done(function(data) {
+        var doc = Article.fromSnapshot(data, {
+          chronicle: Chronicle.create()
+        });
+        _onDocumentLoad(null, doc);
+      })
+      .fail(function(err) {
+        console.error(err);
       });
     }
+  };
+
+  this.openReader = function(collectionId, documentId, context, node, resource, fullscreen) {
+    // The article view state
+    var state = {
+      context: context || "toc",
+      node: node,
+      resource: resource,
+      fullscreen: !!fullscreen,
+      collection: collectionId // TODO: get rid of the library dependency here
+    };
 
     // Ensure the library is loaded
-    this.loadLibrary(this.config.library_url, open);
-
+    this.loadLibrary(this.config.library_url, _open.bind(this, state, documentId));
   };
 
   this.openLibrary = function(collectionId) {
@@ -92,7 +134,7 @@ LensController.Prototype = function() {
       };
 
       that.library = new LibraryController(that.__library, state);
-      that.updateState('library');      
+      that.updateState('library');
     }
 
     // Ensure the library is loaded
@@ -111,7 +153,7 @@ LensController.Prototype = function() {
   // Provides an array of (context, controller) tuples that describe the
   // current state of responsibilities
   // --------
-  // 
+  //
   // E.g., when a document is opened:
   //    ["application", "document"]
   // with controllers taking responisbility:
