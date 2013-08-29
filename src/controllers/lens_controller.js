@@ -67,8 +67,10 @@ LensController.Prototype = function() {
     var that = this;
 
     var _onDocumentLoad = function(err, doc) {
-      // Hmmm... I don't think that this exception will work as desired...
-      if (err) throw err;
+      if (err) {
+        console.log(err.stack);
+        throw err;
+      }
       that.reader = new ReaderController(doc, state);
       that.updateState('reader');
     };
@@ -93,7 +95,7 @@ LensController.Prototype = function() {
           }
 
           console.log('ON THE FLY CONVERTED DOC', doc);
-          
+
           _onDocumentLoad(err, doc);
         })
         .fail(function(err) {
