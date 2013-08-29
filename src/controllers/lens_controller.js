@@ -57,6 +57,25 @@ LensController.Prototype = function() {
   // Transitions
   // ===================================
 
+  // Used to open an on-the-fly converted
+  // --------
+  // 
+
+  this.openReaderWithXML = function(xmlData) {
+    console.log('OPENING XML');
+
+    // var state = {
+    //   context: context || "toc",
+    //   node: node,
+    //   resource: resource,
+    //   fullscreen: !!fullscreen,
+    //   collection: collectionId // TODO: get rid of the library dependency here
+    // };
+
+    // that.reader = new ReaderController(doc, state);
+    // that.updateState('reader');
+  };
+
   this.openReader = function(collectionId, documentId, context, node, resource, fullscreen) {
     var that = this;
 
@@ -79,7 +98,6 @@ LensController.Prototype = function() {
 
     // Ensure the library is loaded
     this.loadLibrary(this.config.library_url, open);
-
   };
 
   this.openLibrary = function(collectionId) {

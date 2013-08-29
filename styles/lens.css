@@ -62,6 +62,25 @@ General Layout
   background: #000;
 }
 
+
+#container .import-teaser {
+  position: absolute;
+  top: 50px;
+  bottom: 50px;
+  left: 50px;
+  right: 50px;
+  background: green;
+  display: none;
+}
+
+#container.tease-import .import-teaser {
+  display: block;
+}
+
+#container.tease-import #main {
+  display: none;
+}
+
 body, textarea, p, input {
   font-family: 'Source Sans Pro', Helvetica, Arial, Verdana, sans-serif;
   color: #505050;
