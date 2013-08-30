@@ -167,6 +167,21 @@ a.home:hover {
 }
 
 
+a.testsuite {
+  position: absolute;
+  left: 10px;
+  top: 80px;
+  font-size: 20px;
+  background: #eee;
+  display: block;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  opacity: 0.7;
+}
+
+
 
 /* main
    --------------------------------------- */
