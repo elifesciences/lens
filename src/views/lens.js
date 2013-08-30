@@ -41,7 +41,7 @@ LensView.Prototype = function() {
     var reader = new FileReader();
 
     reader.onload = function(e) {
-      ctrl.openReaderWithXML(e.target.result);
+      ctrl.storeXML(e.target.result);
     };
 
     reader.readAsText(file);

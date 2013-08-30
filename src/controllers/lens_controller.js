@@ -12,6 +12,7 @@ var Article = require("lens-article");
 var Chronicle = require("substance-chronicle");
 var Converter = require("lens-converter");
 
+
 // Lens.Controller
 // -----------------
 //
@@ -29,7 +30,6 @@ var LensController = function(config) {
   this.on('open:test_center', this.openTestCenter);
 };
 
-
 LensController.Prototype = function() {
 
   // Initial view creation
@@ -42,6 +42,41 @@ LensController.Prototype = function() {
   };
 
 
+  // After a file gets drag and dropped it will be remembered in Local Storage
+  // ---------  
+
+  this.storeXML = function(xml) {
+    var importer = new Converter.Importer();
+    var doc = importer.import(xml);
+
+    localStorage.setItem("localdoc", JSON.stringify(doc));
+
+    // HACK: don't use the global app.router instance
+    app.router.navigate('/mydocs/'+doc.id, true);
+  };
+
+
+  this.populateLibWithLocalDocs = function(data) {
+    var localDoc = JSON.parse(localStorage.getItem("localdoc"));
+
+    if (localDoc) {
+      var docId = localDoc.nodes.document.guid;
+
+      console.log('DOCID', docId);
+      data.nodes["mydocs"].records.push(docId);
+
+      data.nodes[docId] = {
+        id: docId,
+        type: "record",
+        title: localDoc.nodes.document.title,
+        authors: ["The Uploader"],
+        url: "localstore://"+docId
+      }
+    }
+
+    return data;
+  };
+
   // Loaders
   // --------
 
@@ -50,6 +85,11 @@ LensController.Prototype = function() {
     if (this.__library) return cb(null);
 
     $.getJSON(url, function(data) {
+
+      if (url.match(/lens_library\.json/)) {
+        data = that.populateLibWithLocalDocs(data);  
+      }
+      
       that.__library = new Library({
         seed: data
       });
@@ -61,6 +101,7 @@ LensController.Prototype = function() {
   // ===================================
 
   var _XML_MATCHER = new RegExp("[.]xml$");
+  var _LOCALSTORE_MATCHER = new RegExp("^localstore://(.*)");
 
   var _open = function(state, documentId) {
 
@@ -83,7 +124,19 @@ LensController.Prototype = function() {
     // prefering option2 as it is simpler to achieve...
 
     var record = this.__library.get(documentId);
-    if (_XML_MATCHER.exec(record.url.toLowerCase()) !== null) {
+
+    var match = _LOCALSTORE_MATCHER.exec(record.url);
+
+    if (match) {
+      var docId = match[1];
+      
+      var docData = JSON.parse(localStorage.getItem("localdoc"));
+      var doc = Article.fromSnapshot(docData, {
+        chronicle: Chronicle.create()
+      });
+      _onDocumentLoad(null, doc);
+
+    } else if (_XML_MATCHER.exec(record.url.toLowerCase()) !== null) {
       var importer = new Converter.Importer();
       $.get(record.url)
         .done(function(data) {
