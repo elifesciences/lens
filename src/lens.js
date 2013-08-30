@@ -21,7 +21,6 @@ var Lens = function(config) {
   this.controller = new LensController(config);
 };
 
-
 Lens.Article = require("lens-article");
 Lens.Reader = require("lens-reader");
 Lens.Outline = require("lens-outline");
@@ -87,6 +86,22 @@ var Substance = {
   RegExp: require("substance-regexp"),
   Surface: require("substance-surface")
 };
+
+
+// Register tests
+// --------
+// 
+
+require("lens-converter/tests");
+require("substance-application/tests");
+require("substance-converter/tests");
+require("substance-operator/tests");
+require("substance-chronicle/tests");
+require("substance-data/tests");
+require("substance-document/tests");
+// require("substance-article/tests");
+require("substance-store/tests");
+require("substance-surface/tests");
 
 Lens.Substance = Substance;
 

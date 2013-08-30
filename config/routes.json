@@ -41,5 +41,15 @@
     "route": "",
     "name": "library",
     "command": "openLibrary"
+  },
+  {
+    "route": "tests",
+    "name": "tests",
+    "command": "openTestCenter"
+  },
+  {
+    "route": "tests/:suite",
+    "name": "tests",
+    "command": "openTestCenter"
   }
 ]

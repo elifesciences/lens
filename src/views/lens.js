@@ -4,8 +4,7 @@ var _ = require("underscore");
 var util = require('substance-util');
 var html = util.html;
 var View = require("substance-application").View;
-
-// var TestCenter = Substance.Test.TestCenter;
+var TestCenter = require("substance-test").TestCenter;
 
 // Lens.View Constructor
 // ==========================================================================
@@ -81,7 +80,8 @@ LensView.Prototype = function() {
 
   this.openTestCenter = function(options) {
     // TODO: can this be improved? does TestCenter really need a router?
-    var view = new TestCenter(this.controller.testRunner, this.controller.router, options);
+    var view = new TestCenter(this.controller.testRunner, options);
+    // var view = new TestCenter(this.controller.testRunner, this.controller.router, options);
     this.replaceMainView('test_center', view);
   };
 
@@ -112,6 +112,8 @@ LensView.Prototype = function() {
     if (this.mainView) this.mainView.dispose();
   };
 };
+
+
 
 
 // Export
