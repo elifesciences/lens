@@ -43,7 +43,7 @@ LensController.Prototype = function() {
 
 
   // After a file gets drag and dropped it will be remembered in Local Storage
-  // ---------  
+  // ---------
 
   this.storeXML = function(xml) {
     var importer = new Converter.Importer();
@@ -52,7 +52,7 @@ LensController.Prototype = function() {
     localStorage.setItem("localdoc", JSON.stringify(doc));
 
     // HACK: don't use the global app.router instance
-    app.router.navigate('/mydocs/'+doc.id, true);
+    app.router.navigate('/mydocs/last', true);
   };
 
 
@@ -62,16 +62,20 @@ LensController.Prototype = function() {
     if (localDoc) {
       var docId = localDoc.nodes.document.guid;
 
-      console.log('DOCID', docId);
-      data.nodes["mydocs"].records.push(docId);
+      data.nodes["mydocs"].records = ["last"];
 
-      data.nodes[docId] = {
-        id: docId,
+      var record = {
+        id: "last",
         type: "record",
         title: localDoc.nodes.document.title,
-        authors: ["The Uploader"],
-        url: "localstore://"+docId
+        authors: [],
+        url: "localstore://last"
       }
+
+      _.each(localDoc.nodes.document.authors, function(personId) {
+        record.authors.push(localDoc.nodes[personId].name);
+      });
+      data.nodes["last"] = record;
     }
 
     return data;
@@ -87,9 +91,9 @@ LensController.Prototype = function() {
     $.getJSON(url, function(data) {
 
       if (url.match(/lens_library\.json/)) {
-        data = that.populateLibWithLocalDocs(data);  
+        data = that.populateLibWithLocalDocs(data);
       }
-      
+
       that.__library = new Library({
         seed: data
       });
@@ -129,7 +133,7 @@ LensController.Prototype = function() {
 
     if (match) {
       var docId = match[1];
-      
+
       var docData = JSON.parse(localStorage.getItem("localdoc"));
       var doc = Article.fromSnapshot(docData, {
         chronicle: Chronicle.create()
