@@ -52,6 +52,7 @@ LensController.Prototype = function() {
     localStorage.setItem("localdoc", JSON.stringify(doc));
 
     // HACK: don't use the global app.router instance
+    app.router.navigate('/mydocs', true);
     app.router.navigate('/mydocs/last', true);
   };
 
