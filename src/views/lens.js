@@ -20,13 +20,33 @@ var LensView = function(controller) {
   
   this.listenTo(this.controller, 'state-changed', this.onStateChanged);
 
+  $(document).on('dragover', function () { return false; });
+  $(document).on('ondragend', function () { return false; });
+  $(document).on('drop', this.handleDroppedFile.bind(this));
+
   // DOM events
   // -----------
 
   // this.$el.delegate(".open-document", "click", _.bind(this.convertDocument, this));
 };
 
+
+
 LensView.Prototype = function() {
+
+  this.handleDroppedFile = function(e) {
+    var ctrl = this.controller;
+    var files = event.dataTransfer.files;
+    var file = files[0];
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+      ctrl.openReaderWithXML(e.target.result);
+    };
+
+    reader.readAsText(file);
+    return false;
+  };
 
   // Session Event handlers
   // ==========================================================================

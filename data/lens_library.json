@@ -6,7 +6,7 @@
     "library": {
       "type": "library",
       "name": "Lens development resources",
-      "collections": ["lens", "landesbioscience", "elife"]
+      "collections": ["lens", "landes", "elife"]
     },
 
     "lens": {
@@ -23,11 +23,11 @@
       "records": ["00003", "00005", "00311", "00049"]
     },
 
-    "landesbioscience": {
-      "id": "landesbioscience",
-      "name": "Landes BioScience Examples",
+    "landes": {
+      "id": "landes",
+      "name": "Landes Bioscience Examples",
       "type": "collection",
-      "records": ["2013CC4897R"]
+      "records": ["2013CC4897R", "19016", "10481"]
     },
 
     "manual": {
@@ -92,6 +92,22 @@
       "authors": ["Some", "Authors"],
       "type": "record",
       "url": "/data/2013CC4897R.xml"
+    },
+
+    "19016": {
+      "id": "19016",
+      "title": "Could shame and honor save cooperation?",
+      "authors": ["Preetha Anand", "Silvia Cermelli", "Zhihuan LiAdam Kassan"],
+      "type": "record",
+      "url": "/data/19016.json"
+    },    
+
+    "10481": {
+      "id": "10481",
+      "title": "Slo3, a novel pH-sensitive K+ channel from mammalian spermatocytes",
+      "authors": ["M Schreiber", "A Wei", "A Yuan", "J Gaut", "M Saito", "L Salkoff"],
+      "type": "record",
+      "url": "/data/10481.json"
     }
   }
 }
