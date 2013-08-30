@@ -27,7 +27,7 @@
       "id": "landes",
       "name": "Landes Bioscience Examples",
       "type": "collection",
-      "records": ["2013CC4897_R", "2011CIB0223", "10481"]
+      "records": ["2013CC4897R", "2011CIB0223"]
     },
 
     "mydocs": {
@@ -93,8 +93,8 @@
       "url": "/data/00049.xml"
     },
 
-    "2013CC4897_R": {
-      "id": "2013CC4897_R",
+    "2013CC4897R": {
+      "id": "2013CC4897R",
       "title": "In vivo functional studies of tumor-specific retrogene NanogP8 in transgenic animals",
       "authors": ["Some", "Authors"],
       "type": "record",
@@ -107,14 +107,7 @@
       "authors": ["Preetha Anand", "Silvia Cermelli", "Zhihuan LiAdam Kassan"],
       "type": "record",
       "url": "/data/2011CIB0223.xml"
-    },
-
-    "10481": {
-      "id": "10481",
-      "title": "Slo3, a novel pH-sensitive K+ channel from mammalian spermatocytes",
-      "authors": ["M Schreiber", "A Wei", "A Yuan", "J Gaut", "M Saito", "L Salkoff"],
-      "type": "record",
-      "url": "/data/10481.json"
     }
+
   }
 }
