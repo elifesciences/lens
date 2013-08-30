@@ -27,7 +27,7 @@
       "id": "landes",
       "name": "Landes Bioscience Examples",
       "type": "collection",
-      "records": ["2013CC4897R", "19016", "10481"]
+      "records": ["2013CC4897_R", "2011CIB0223", "10481"]
     },
 
     "mydocs": {
@@ -101,13 +101,13 @@
       "url": "/data/2013CC4897R.xml"
     },
 
-    "19016": {
-      "id": "19016",
+    "2011CIB0223": {
+      "id": "2011CIB0223",
       "title": "Could shame and honor save cooperation?",
       "authors": ["Preetha Anand", "Silvia Cermelli", "Zhihuan LiAdam Kassan"],
       "type": "record",
-      "url": "/data/19016.json"
-    },    
+      "url": "/data/2011CIB0223.xml"
+    },
 
     "10481": {
       "id": "10481",
