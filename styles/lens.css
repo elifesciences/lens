@@ -218,13 +218,112 @@ Media queries
   }
 }
 
+
 /* Responsive design */
-/*@media (max-width: 50.5em) {
-  #document .document {
-    width: 100%;
+
+.resources .context-toggle.default {
+  float:right !important;
+  display:none;
+}    
+
+@media only screen and (max-width: 800px), 
+only screen and (max-device-width: 800px) {
+  
+  #container {
+    padding-left: 0px; 
+    min-width: 300px !important;
   }
 
-  #document .resources {
+  a.home {
+    position: absolute;
+    top: 8px;
+    left: -5px;
+    z-index: 2002;
+  }
+
+  a.home img {
+    max-width: 35px;
+  }
+
+  a.testsuite {
     display: none;
   }
-}*/
+
+
+  .library .collection-toggles, .library .collection {
+    position: relative !important;
+    left: 0px !important;
+    width: 100% !important;
+  }
+  
+  .library .collection-toggles {
+    margin-left: 20px !important;
+    margin-top: -20px !important;
+  }
+
+  .lens-outline {
+    width: 30px !important;
+    top: 40px !important;
+  }
+
+  .lens-outline .node {
+    width: 20px !important;
+  }
+
+  .lens-outline.toc {
+    width: 2%;
+  }
+
+  #main {
+    height: 90%;
+    position: absolute;
+  }
+
+  .article .document {
+    position: fixed !important;
+    width: 100% !important;
+  }
+
+  .article .surface.content {
+    float:right;
+    margin-left: 30px;
+    width: 95% !important;
+  }
+
+  .article .resources {
+    position: fixed !important;
+    width: 95% !important;
+    z-index:2001;
+    margin-left: 30px;
+  }
+
+  .resources .context-toggle.default {
+    display: block;
+  }
+
+  .article:not(.toc):not(.figures):not(.citations):not(.info) .resources {
+    height:40px !important;
+  }
+
+  .resources .context-toggle span {
+    display:none;
+  }
+
+  .document .content-node.cover .authors,
+  .document .content-node.heading,
+  .document .content-node.formula,
+  .document .content-node.text {
+    padding: 0px 30px 0px 10px !important;
+  }
+
+  .document .content-node.cover .title {
+    padding: 30px 10px !important;
+    font-size: 30px;
+  }
+
+  .document .content-node .focus,
+  .document .content-node .focus .focus-mode{
+    width: 40px !important;
+  }
+
+}
