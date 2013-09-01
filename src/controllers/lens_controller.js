@@ -12,7 +12,6 @@ var Article = require("lens-article");
 var Chronicle = require("substance-chronicle");
 var Converter = require("lens-converter");
 
-
 // Lens.Controller
 // -----------------
 //
@@ -53,7 +52,7 @@ LensController.Prototype = function() {
       localStorage.setItem("localdoc", JSON.stringify(doc));
     }catch (e) {
       console.log(e);
-    }   
+    }
 
     // HACK: don't use the global app.router instance
     app.router.navigate('/mydocs', true);
@@ -65,7 +64,7 @@ LensController.Prototype = function() {
     var localDoc = null;
     
     try {
-      JSON.parse(localStorage.getItem("localdoc"));
+      localDoc = JSON.parse(localStorage.getItem("localdoc"));
     }catch (e) {
       console.log(e);
     }
@@ -100,7 +99,6 @@ LensController.Prototype = function() {
     if (this.__library) return cb(null);
 
     $.getJSON(url, function(data) {
-
       if (url.match(/lens_library\.json/)) {
         data = that.populateLibWithLocalDocs(data);
       }
