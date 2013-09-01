@@ -49,7 +49,11 @@ LensController.Prototype = function() {
     var importer = new Converter.Importer();
     var doc = importer.import(xml);
 
-    localStorage.setItem("localdoc", JSON.stringify(doc));
+    try {
+      localStorage.setItem("localdoc", JSON.stringify(doc));
+    }catch (e) {
+      console.log(e);
+    }   
 
     // HACK: don't use the global app.router instance
     app.router.navigate('/mydocs', true);
@@ -58,7 +62,13 @@ LensController.Prototype = function() {
 
 
   this.populateLibWithLocalDocs = function(data) {
-    var localDoc = JSON.parse(localStorage.getItem("localdoc"));
+    var localDoc = null;
+    
+    try {
+      JSON.parse(localStorage.getItem("localdoc"));
+    }catch (e) {
+      console.log(e);
+    }
 
     if (localDoc) {
       var docId = localDoc.nodes.document.guid;
@@ -135,11 +145,15 @@ LensController.Prototype = function() {
     if (match) {
       var docId = match[1];
 
-      var docData = JSON.parse(localStorage.getItem("localdoc"));
-      var doc = Article.fromSnapshot(docData, {
-        chronicle: Chronicle.create()
-      });
-      _onDocumentLoad(null, doc);
+      try {
+        var docData = JSON.parse(localStorage.getItem("localdoc"));
+        var doc = Article.fromSnapshot(docData, {
+            chronicle: Chronicle.create()
+          });
+        _onDocumentLoad(null, doc);
+      }catch (e) {
+        console.log(e);
+      }  
 
     } else if (_XML_MATCHER.exec(record.url.toLowerCase()) !== null) {
       var importer = new Converter.Importer();
