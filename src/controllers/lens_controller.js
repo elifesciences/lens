@@ -48,6 +48,9 @@ LensController.Prototype = function() {
     var importer = new Converter.Importer();
     var doc = importer.import(xml);
 
+    // Always set id to 'last' for imported documents
+    doc.id = "last";
+
     try {
       localStorage.setItem("localdoc", JSON.stringify(doc));
     }catch (e) {

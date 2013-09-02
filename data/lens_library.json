@@ -20,7 +20,7 @@
       "id": "elife",
       "name": "eLife Examples",
       "type": "collection",
-      "records": ["00003", "00005", "00311", "00049"]
+      "records": ["00768", "00003", "00005", "00311", "00049"]
     },
 
     "landes": {
@@ -59,6 +59,14 @@
       "authors": ["Michael Aufreiter", "Ivan Grubisic", "Rebecca Close"],
       "type": "record",
       "url": "/data/lens_article.json"
+    },
+
+    "00768": {
+      "id": "00768",
+      "title": "Functional genomic characterization of neoblast-like stem cells in larval Schistosoma mansoni",
+      "authors": ["Bo Wang", "James J Collins", "Phillip A Newmark"],
+      "type": "record",
+      "url": "/data/00768.xml"
     },
 
     "00003": {
