@@ -161,11 +161,11 @@ LensController.Prototype = function() {
       $.get(record.url)
         .done(function(data) {
           var doc, err;
-          try {
+          // try {
             doc = importer.import(data);
-          } catch (_err) {
-            err = _err;
-          }
+          // } catch (_err) {
+          //   err = _err;
+          // }
 
           console.log('ON THE FLY CONVERTED DOC', doc);
 
