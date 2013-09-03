@@ -27,7 +27,7 @@
       "id": "landes",
       "name": "Landes Bioscience Examples",
       "type": "collection",
-      "records": ["2013CC4897R", "2011CIB0223"]
+      "records": ["2013CC4897R", "2011CIB0223", "2012INTRAVITAL024R"]
     },
 
     "plos": {
@@ -144,7 +144,14 @@
       "authors": ["Preetha Anand", "Silvia Cermelli", "Zhihuan LiAdam Kassan"],
       "type": "record",
       "url": "/data/2011CIB0223.xml"
-    }
+    },
 
+    "2012INTRAVITAL024R": {
+      "id": "2012INTRAVITAL024R",
+      "title": "Novel in vivo imaging techniques for the liver microvasculature",
+      "authors": ["Mynthia Cabrera", "Ute Frevert"],
+      "type": "record",
+      "url": "/data/2012INTRAVITAL024R.xml"
+    }
   }
 }

@@ -167,7 +167,7 @@ LensController.Prototype = function() {
           //   err = _err;
           // }
 
-          console.log('ON THE FLY CONVERTED DOC', doc);
+          console.log('ON THE FLY CONVERTED DOC', doc.toJSON());
 
           _onDocumentLoad(err, doc);
         })
