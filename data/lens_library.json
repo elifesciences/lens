@@ -6,7 +6,7 @@
     "library": {
       "type": "library",
       "name": "Lens development resources",
-      "collections": ["lens", "landes", "elife", "mydocs"]
+      "collections": ["lens", "elife", "landes", "plos", "mydocs"]
     },
 
     "lens": {
@@ -30,6 +30,13 @@
       "records": ["2013CC4897R", "2011CIB0223"]
     },
 
+    "plos": {
+      "id": "plos",
+      "name": "PLOS",
+      "type": "collection",
+      "records": ["pcbi_1003174", "pone_0072727"]
+    },
+
     "mydocs": {
       "id": "mydocs",
       "name": "My Docs (Local)",
@@ -43,6 +50,20 @@
       "authors": ["Michael Aufreiter", "Ivan Grubisic", "Rebecca Close"],
       "type": "record",
       "url": "/data/manual.json"
+    },
+
+    "pcbi_1003174": {
+      "id": "pcbi_1003174",
+      "title": "Conditional Cooperativity of Toxin - Antitoxin Regulation Can Mediate Bistability between Growth and Dormancy",
+      "authors": ["Ilaria CataudellaKim SneppenKenn GerdesNamiko Mitarai"],
+      "url": "/data/plos/journal.pcbi.1003174.xml"
+    },
+
+    "pone_0072727": {
+      "id": "pone_0072727",
+      "title": "What Are You or Who Are You? The Emergence of Social Interaction between Dog and an Unidentified Moving Object (UMO)",
+      "authors": ["Anna GergelyEszter PetróJózsef TopálÁdám Miklósi"],
+      "url": "/data/plos/journal.pone.0072727.xml"
     },
 
     "lorem_ipsum": {
