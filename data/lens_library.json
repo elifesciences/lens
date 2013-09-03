@@ -20,7 +20,7 @@
       "id": "elife",
       "name": "eLife Examples",
       "type": "collection",
-      "records": ["00768", "00003", "00005", "00311", "00049"]
+      "records": ["00778", "00768", "00003", "00005", "00311", "00049"]
     },
 
     "landes": {
@@ -88,6 +88,14 @@
       "authors": ["Bo Wang", "James J Collins", "Phillip A Newmark"],
       "type": "record",
       "url": "/data/00768.xml"
+    },
+
+    "00778": {
+      "id": "00778",
+      "title": "Direct single molecule measurement of TCR triggering by agonist pMHC in living primary T cells",
+      "authors": ["Geoff P O'DonoghueRafal M PielakAlexander A SmoligovetsJenny J LinJay T Groves"],
+      "type": "record",
+      "url": "/data/00778.xml"
     },
 
     "00003": {
