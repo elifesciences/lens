@@ -20,7 +20,7 @@
       "id": "elife",
       "name": "eLife Examples",
       "type": "collection",
-      "records": ["00778", "00768", "00003", "00005", "00311", "00049"]
+      "records": ["00778", "00768", "00003", "00005", "00311", "00049", "00299"]
     },
 
     "landes": {
@@ -129,6 +129,15 @@
       "type": "record",
       "url": "/data/00049.xml"
     },
+
+    "00299": {
+      "id": "00299",
+      "title": "Integrative genomic analysis of the human immune response to influenza vaccination",
+      "authors": ["Luis M Franco", "Kristine L Bucasas", "Janet M Wells", "Diane Niño", "Xueqing Wang", "Gladys E Zapata",
+        "Nancy Arden", "Alexander Renwick", "Peng Yu", "John M Quarles", "Molly S Bray", "Robert B Couch", "John W Belmont", "Chad A Shaw"],
+      "type": "record",
+      "url": "/data/elife00299.xml"
+    },    
 
     "2013CC4897R": {
       "id": "2013CC4897R",
