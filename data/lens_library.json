@@ -71,7 +71,7 @@
       "title": "Lorem Ipsum - A Lens example article that has all available content types",
       "authors": ["Michael Aufreiter", "Ivan Grubisic", "Rebecca Close"],
       "type": "record",
-      "url": "/data/lorem_ipsum.json"
+      "url": "/node_modules/lens-converter/data/lorem_ipsum.xml"
     },
 
     "lens_article": {
