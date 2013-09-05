@@ -29,7 +29,7 @@ var fs = require("fs");
 
 var app = express();
 var commonJSServer = new CommonJSServer(__dirname);
-commonJSServer.boot({alias: "lens", source: "./src/boot.js"});
+commonJSServer.boot({alias: "lens", source: "./src/lens.js"});
 
 var port = process.env.PORT || 4000;
 app.use(express.cookieParser());
