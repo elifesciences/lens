@@ -33,7 +33,7 @@
     {
       "repository": "https://github.com/elifesciences/lens-article.git",
       "folder": "node_modules/lens-article",
-      "branch": "nlm_converter_r"
+      "branch": "nlm_converter_m"
     },
     {
       "repository": "https://github.com/substance/article.git",
@@ -68,7 +68,7 @@
     {
       "repository": "https://github.com/elifesciences/lens-converter.git",
       "folder": "node_modules/lens-converter",
-      "branch": "nlm_converter_r"
+      "branch": "nlm_converter_m"
     },
     {
       "repository": "https://github.com/substance/operator.git",
