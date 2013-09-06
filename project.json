@@ -28,7 +28,7 @@
     {
       "repository": "https://github.com/elifesciences/lens-reader.git",
       "folder": "node_modules/lens-reader",
-      "branch": "0.1.x"
+      "branch": "nlm_converter_m"
     },
     {
       "repository": "https://github.com/elifesciences/lens-article.git",
