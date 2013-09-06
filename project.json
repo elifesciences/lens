@@ -28,12 +28,12 @@
     {
       "repository": "https://github.com/elifesciences/lens-reader.git",
       "folder": "node_modules/lens-reader",
-      "branch": "nlm_converter_m"
+      "branch": "0.1.x"
     },
     {
       "repository": "https://github.com/elifesciences/lens-article.git",
       "folder": "node_modules/lens-article",
-      "branch": "nlm_converter_m"
+      "branch": "0.1.x"
     },
     {
       "repository": "https://github.com/substance/article.git",
@@ -68,7 +68,7 @@
     {
       "repository": "https://github.com/elifesciences/lens-converter.git",
       "folder": "node_modules/lens-converter",
-      "branch": "nlm_converter_m"
+      "branch": "0.1.x"
     },
     {
       "repository": "https://github.com/substance/operator.git",
@@ -103,7 +103,7 @@
     {
       "repository": "https://github.com/elifesciences/lens.git",
       "folder": ".",
-      "branch": "nlm_converter"
+      "branch": "0.2.x"
     }
   ],
   "node_modules": {
