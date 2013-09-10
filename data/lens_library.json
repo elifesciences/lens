@@ -1,166 +1,3397 @@
 {
-  "id": "lens_library",
-  "schema": ["substance-library", "0.1.0"],
-  "nodes": {
+    "nodes": {
+        "01159": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/01159/elife01159.xml", 
+            "authors": [
+                "Hein", 
+                "Wittinghofer", 
+                "D\u00f6tsch"
+            ], 
+            "id": "01159", 
+            "title": "How to switch a master switch"
+        }, 
+        "00762": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00762/elife00762.xml", 
+            "authors": [
+                "Rapicavoli", 
+                "Qu", 
+                "Zhang", 
+                "Mikhail", 
+                "Laberge", 
+                "Chang"
+            ], 
+            "id": "00762", 
+            "title": "A mammalian pseudogene lncRNA at the interface of inflammation and anti-inflammatory therapeutics"
+        }, 
+        "00845": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00845/elife00845.xml", 
+            "authors": [
+                "Armbruster", 
+                "Messa", 
+                "Ferguson", 
+                "De Camilli", 
+                "Ryan"
+            ], 
+            "id": "00845", 
+            "title": "Dynamin phosphorylation controls optimization of endocytosis for brief action potential bursts"
+        }, 
+        "00542": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00542/elife00542.xml", 
+            "authors": [
+                "Olson", 
+                "Donovan", 
+                "Spellberg", 
+                "Marr"
+            ], 
+            "id": "00542", 
+            "title": "The insulin receptor cellular IRES confers resistance to eIF4A inhibition"
+        }, 
+        "00963": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00963/elife00963.xml", 
+            "authors": [
+                "Dent", 
+                "Chandra"
+            ], 
+            "id": "00963", 
+            "title": "The lasting influence of LSD1 in the blood"
+        }, 
+        "00411": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00411/elife00411.xml", 
+            "authors": [
+                "Pallesen", 
+                "Hashem", 
+                "Korkmaz", 
+                "Koripella", 
+                "Huang", 
+                "Ehrenberg", 
+                "Sanyal", 
+                "Frank"
+            ], 
+            "id": "00411", 
+            "title": "Cryo-EM visualization of the ribosome in termination complex with apo-RF3 and RF1"
+        }, 
+        "00704": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00704/elife00704.xml", 
+            "authors": [
+                "Chaudhuri", 
+                "Sancak", 
+                "Mootha", 
+                "Clapham"
+            ], 
+            "id": "00704", 
+            "title": "MCU encodes the pore conducting mitochondrial calcium currents"
+        }, 
+        "00726": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00726/elife00726.xml", 
+            "authors": [
+                "Hu", 
+                "Wan", 
+                "Su", 
+                "Song", 
+                "Zeng", 
+                "Nguyen", 
+                "Shin", 
+                "Cox", 
+                "Rho", 
+                "Woodard", 
+                "Xia", 
+                "Liu", 
+                "Lyu", 
+                "Ming", 
+                "Wade", 
+                "Song", 
+                "Qian", 
+                "Zhu"
+            ], 
+            "id": "00726", 
+            "title": "DNA methylation presents distinct binding sites for human transcription factors"
+        }, 
+        "00415": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00415/elife00415.xml", 
+            "authors": [
+                "Sun", 
+                "Spradling"
+            ], 
+            "id": "00415", 
+            "title": "Ovulation in Drosophila is controlled by secretory cells of the female reproductive tract"
+        }, 
+        "00729": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00729/elife00729.xml", 
+            "authors": [
+                "VijayRaghavan", 
+                "Rath"
+            ], 
+            "id": "00729", 
+            "title": "Evolution, ovulation and cancer"
+        }, 
+        "00666": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00666/elife00666.xml", 
+            "authors": [
+                "Rousso", 
+                "Shewan", 
+                "Mostov", 
+                "Schejter", 
+                "Shilo"
+            ], 
+            "id": "00666", 
+            "title": "Apical targeting of the formin Diaphanous in Drosophila tubular epithelia"
+        }, 
+        "00857": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00857/elife00857.xml", 
+            "authors": [
+                "Jiang", 
+                "Liu", 
+                "Leibly", 
+                "Landau", 
+                "Zhao", 
+                "Hughes", 
+                "Eisenberg"
+            ], 
+            "id": "00857", 
+            "title": "Structure-based discovery of fiber-binding compounds that reduce the cytotoxicity of amyloid beta"
+        }, 
+        "00603": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00603/elife00603.xml", 
+            "authors": [
+                "Thompson", 
+                "Roy", 
+                "Chan", 
+                "Styczynsky", 
+                "Pfiffner", 
+                "French", 
+                "Socha", 
+                "Thielke", 
+                "Napolitano", 
+                "Muller", 
+                "Kellis", 
+                "Konieczka", 
+                "Wapinski", 
+                "Regev"
+            ], 
+            "id": "00603", 
+            "title": "Evolutionary principles of modular gene regulation in yeasts"
+        }, 
+        "00558": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00558/elife00558.xml", 
+            "authors": [
+                "Lavieu", 
+                "Zheng", 
+                "Rothman"
+            ], 
+            "id": "00558", 
+            "title": "Stapled Golgi cisternae remain in place as cargo passes through the stack"
+        }, 
+        "00808": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00808/elife00808.xml", 
+            "authors": [
+                "Kruesi", 
+                "Core", 
+                "Waters", 
+                "Lis", 
+                "Meyer"
+            ], 
+            "id": "00808", 
+            "title": "Condensin controls recruitment of RNA polymerase II to achieve nematode X-chromosome dosage compensation"
+        }, 
+        "00605": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00605/elife00605.xml", 
+            "authors": [
+                "Rangel", 
+                "Eichenbaum"
+            ], 
+            "id": "00605", 
+            "title": "What's new is older"
+        }, 
+        "01387": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/01387/elife01387.xml", 
+            "authors": [
+                "Vermeulen"
+            ], 
+            "id": "01387", 
+            "title": "Making the most of methylation"
+        }, 
+        "00311": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00311/elife00311.xml", 
+            "authors": [
+                "Burnley", 
+                "Afonine", 
+                "Adams", 
+                "Gros"
+            ], 
+            "id": "00311", 
+            "title": "Modelling dynamics in protein crystal structures by ensemble refinement"
+        }, 
+        "00093": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00093/elife00093.xml", 
+            "authors": [
+                "Artzy-Randrup", 
+                "Rorick", 
+                "Day", 
+                "Chen", 
+                "Dobson", 
+                "Pascual"
+            ], 
+            "id": "00093", 
+            "title": "Population structuring of multi-copy, antigen-encoding genes in Plasmodium falciparum"
+        }, 
+        "00090": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00090/elife00090.xml", 
+            "authors": [
+                "Denard", 
+                "Lee", 
+                "Ye"
+            ], 
+            "id": "00090", 
+            "title": "Doxorubicin blocks proliferation of cancer cells through proteolytic activation of CREB3L1"
+        }, 
+        "00312": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00312/elife00312.xml", 
+            "authors": [
+                "Deng", 
+                "Mayford", 
+                "Gage"
+            ], 
+            "id": "00312", 
+            "title": "Selection of distinct populations of dentate granule cells in response to inputs as a mechanism for pattern separation in mice"
+        }, 
+        "00498": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00498/elife00498.xml", 
+            "authors": [
+                "Sidrauski", 
+                "Acosta-Alvear", 
+                "Khoutorsky", 
+                "Vedantham", 
+                "Hearn", 
+                "Li", 
+                "Gamache", 
+                "Gallagher", 
+                "Ang", 
+                "Wilson", 
+                "Okreglak", 
+                "Ashkenazi", 
+                "Hann", 
+                "Nader", 
+                "Arkin", 
+                "Renslo", 
+                "Sonenberg", 
+                "Walter"
+            ], 
+            "id": "00498", 
+            "title": "Pharmacological brake-release of mRNA translation enhances cognitive memory"
+        }, 
+        "00499": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00499/elife00499.xml", 
+            "authors": [
+                "Balbas", 
+                "Evans", 
+                "Hosfield", 
+                "Wongvipat", 
+                "Arora", 
+                "Watson", 
+                "Chen", 
+                "Greene", 
+                "Shen", 
+                "Sawyers"
+            ], 
+            "id": "00499", 
+            "title": "Overcoming mutation-based resistance to antiandrogens with rational drug design"
+        }, 
+        "00012": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00012/elife00012.xml", 
+            "authors": [
+                "Pawlak", 
+                "Greenberg", 
+                "Sprekeler", 
+                "Gerstner", 
+                "Kerr"
+            ], 
+            "id": "00012", 
+            "title": "Changing the responses of cortical neurons from sub- to suprathreshold using single spikes in vivo"
+        }, 
+        "00013": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00013/elife00013.xml", 
+            "authors": [
+                "Alegado", 
+                "Brown", 
+                "Cao", 
+                "Dermenjian", 
+                "Zuzow", 
+                "Fairclough", 
+                "Clardy", 
+                "King"
+            ], 
+            "id": "00013", 
+            "title": "A bacterial sulfonolipid triggers multicellular development in the closest living relatives of animals"
+        }, 
+        "00011": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00011/elife00011.xml", 
+            "authors": [
+                "Menet", 
+                "Rodriguez", 
+                "Abruzzi", 
+                "Rosbash"
+            ], 
+            "id": "00011", 
+            "title": "Nascent-Seq reveals novel features of mouse circadian transcriptional regulation"
+        }, 
+        "00491": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00491/elife00491.xml", 
+            "authors": [
+                "Costa", 
+                "Watt", 
+                "Sj\u00f6str\u00f6m"
+            ], 
+            "id": "00491", 
+            "title": "How to train a neuron"
+        }, 
+        "00422": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00422/elife00422.xml", 
+            "authors": [
+                "Murley", 
+                "Lackner", 
+                "Osman", 
+                "West", 
+                "Voeltz", 
+                "Walter", 
+                "Nunnari"
+            ], 
+            "id": "00422", 
+            "title": "ER-associated mitochondrial division links the distribution of mitochondria and mitochondrial DNA in yeast"
+        }, 
+        "00856": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00856/elife00856.xml", 
+            "authors": [
+                "Pelham"
+            ], 
+            "id": "00856", 
+            "title": "Building for the future"
+        }, 
+        "00691": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00691/elife00691.xml", 
+            "authors": [
+                "Bolduc", 
+                "Rahdar", 
+                "Tu-Sekine", 
+                "Sivakumaren", 
+                "Raben", 
+                "Amzel", 
+                "Devreotes", 
+                "Gabelli", 
+                "Cole"
+            ], 
+            "id": "00691", 
+            "title": "Phosphorylation-mediated PTEN conformational closure and deactivation revealed with protein semisynthesis"
+        }, 
+        "00692": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00692/elife00692.xml", 
+            "authors": [
+                "Josan", 
+                "Katzenellenbogen"
+            ], 
+            "id": "00692", 
+            "title": "Designer antiandrogens join the race against drug resistance"
+        }, 
+        "00855": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00855/elife00855.xml", 
+            "authors": [
+                "Schekman", 
+                "Patterson"
+            ], 
+            "id": "00855", 
+            "title": "Reforming research assessment"
+        }, 
+        "00699": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00699/elife00699.xml", 
+            "authors": [
+                "Teki", 
+                "Chait", 
+                "Kumar", 
+                "Shamma", 
+                "Griffiths"
+            ], 
+            "id": "00699", 
+            "title": "Segregation of complex acoustic scenes based on temporal coherence"
+        }, 
+        "00842": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00842/elife00842.xml", 
+            "authors": [
+                "Rorick", 
+                "Pascual"
+            ], 
+            "id": "00842", 
+            "title": "Influenza evolution navigates stability valleys"
+        }, 
+        "00429": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00429/elife00429.xml", 
+            "authors": [
+                "Zhu", 
+                "Shen", 
+                "Sewell", 
+                "Kniazeva", 
+                "Han"
+            ], 
+            "id": "00429", 
+            "title": "A novel sphingolipid-TORC1 pathway critically promotes postembryonic development in Caenorhabditis elegans"
+        }, 
+        "00426": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00426/elife00426.xml", 
+            "authors": [
+                "Shimomura", 
+                "Kumar", 
+                "Koike", 
+                "Kim", 
+                "Chong", 
+                "Buhr", 
+                "Whiteley", 
+                "Low", 
+                "Omura", 
+                "Fenner", 
+                "Owens", 
+                "Richards", 
+                "Yoo", 
+                "Hong", 
+                "Vitaterna", 
+                "Bass", 
+                "Pletcher", 
+                "Wiltshire", 
+                "Hogenesch", 
+                "Lowrey", 
+                "Takahashi"
+            ], 
+            "id": "00426", 
+            "title": "Usf1, a suppressor of the circadian Clock mutant, reveals the nature of the DNA-binding of the CLOCK:BMAL1 complex in mice"
+        }, 
+        "00425": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00425/elife00425.xml", 
+            "authors": [
+                "Gallivan", 
+                "McLean", 
+                "Valyear", 
+                "Culham"
+            ], 
+            "id": "00425", 
+            "title": "Decoding the neural mechanisms of human tool use"
+        }, 
+        "00036": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00036/elife00036.xml", 
+            "authors": [
+                "Rossell\u00f3", 
+                "Chen", 
+                "Dai", 
+                "Howard", 
+                "Hochgeschwender", 
+                "Jarvis"
+            ], 
+            "id": "00036", 
+            "title": "Mammalian genes induce partially reprogrammed pluripotent stem cells in non-mammalian vertebrate and invertebrate species"
+        }, 
+        "00421": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00421/elife00421.xml", 
+            "authors": [
+                "Allmann", 
+                "Sp\u00e4the", 
+                "Bisch-Knaden", 
+                "Kallenbach", 
+                "Reinecke", 
+                "Sachse", 
+                "Baldwin", 
+                "Hansson"
+            ], 
+            "id": "00421", 
+            "title": "Feeding-induced rearrangement of green leaf volatiles reduces moth oviposition"
+        }, 
+        "00914": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00914/elife00914.xml", 
+            "authors": [
+                "Tan-Wong", 
+                "Proudfoot"
+            ], 
+            "id": "00914", 
+            "title": "Rad51, friend or foe?"
+        }, 
+        "00647": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00647/elife00647.xml", 
+            "authors": [
+               "Cheng", 
+                "Ji"
+            ], 
+            "id": "00647", 
+            "title": "Rigid firing sequences undermine spatial memory codes in a neurodegenerative mouse model"
+        }, 
+        "00757": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00757/elife00757.xml", 
+            "authors": [
+                "Yi", 
+                "Cyster"
+            ], 
+            "id": "00757", 
+            "title": "EBI2-mediated bridging channel positioning supports splenic dendritic cell homeostasis and particulate antigen capture"
+        }, 
+        "01328": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/01328/elife01328.xml", 
+            "authors": [
+                "Guo", 
+                "Zanetti", 
+                "Schekman"
+            ], 
+            "id": "01328", 
+            "title": "Correction: A novel GTP-binding protein\u2013adaptor protein complex responsible for export of Vangl2 from the trans Golgi network"
+        }, 
+        "01252": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/01252/elife01252.xml", 
+            "authors": [
+                "Jiang", 
+                "Liu", 
+                "Leibly", 
+                "Landau", 
+                "Zhao", 
+                "Hughes", 
+                "Eisenberg"
+            ], 
+            "id": "01252", 
+            "title": "Correction: Structure-based discovery of fiber-binding compounds that reduce the cytotoxicity of amyloid beta"
+        }, 
+        "00308": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00308/elife00308.xml", 
+            "authors": [
+                "Verma", 
+                "Oania", 
+                "Kolawa", 
+                "Deshaies"
+            ], 
+            "id": "00308", 
+            "title": "Cdc48/p97 promotes degradation of aberrant nascent polypeptides bound to the ribosome"
+        }, 
+        "00646": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00646/elife00646.xml", 
+            "authors": [
+                "Pewsey"
+            ], 
+            "id": "00646", 
+            "title": "Hip, hip, hooray!"
+        }, 
+        "00306": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00306/elife00306.xml", 
+            "authors": [
+                "Brandes", 
+                "Tienson", 
+                "Lindemann", 
+                "Vitvitsky", 
+                "Reichmann", 
+                "Banerjee", 
+                "Jakob"
+            ], 
+            "id": "00306", 
+            "title": "Time line of redox events in aging postmitotic cells"
+        }, 
+        "00615": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00615/elife00615.xml", 
+            "authors": [
+                "Watt"
+            ], 
+            "id": "00615", 
+            "title": "What does it take to recruit and retain senior women faculty?"
+        }, 
+        "00302": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00302/elife00302.xml", 
+            "authors": [
+                "Kolter"
+            ], 
+            "id": "00302", 
+            "title": "Histones join the fight against bacteria inside cells"
+        }, 
+        "00301": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00301/elife00301.xml", 
+            "authors": [
+                "Chen", 
+                "Ye"
+            ], 
+            "id": "00301", 
+            "title": "Getting to grips with hepatitis"
+        }, 
+        "00386": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00386/elife00386.xml", 
+            "authors": [
+                "Lacefield"
+            ], 
+            "id": "00386", 
+            "title": "Helping chromosomes and chromatids stay on track"
+        }, 
+        "00387": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00387/elife00387.xml", 
+            "authors": [
+                "Patel", 
+                "Kaufmann"
+            ], 
+            "id": "00387", 
+            "title": "How does doxorubicin work?"
+        }, 
+        "00385": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00385/elife00385.xml", 
+            "authors": [
+                "Jha"
+            ], 
+            "id": "00385", 
+            "title": "Mathematics and malaria"
+        }, 
+        "01127": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/01127/elife01127.xml", 
+            "authors": [
+                "Meyer", 
+                "Rape"
+            ], 
+            "id": "01127", 
+            "title": "Caught in the act"
+        }, 
+        "00380": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00380/elife00380.xml", 
+            "authors": [
+                "Nowak", 
+                "Seisenbacher", 
+                "Hafen", 
+                "Stocker"
+            ], 
+            "id": "00380", 
+            "title": "Nutrient restriction enhances the proliferative potential of cells lacking the tumor suppressor PTEN in mitotic tissues"
+        }, 
+        "00220": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00220/elife00220.xml", 
+            "authors": [
+                "Choi", 
+                "Liu", 
+                "Tennert", 
+                "Sugiura", 
+                "Karakatsani", 
+                "Kr\u00f6ger", 
+                "Johnson", 
+                "Hammer", 
+                "Lin", 
+                "Herz"
+            ], 
+            "id": "00220", 
+            "title": "APP interacts with LRP4 and agrin to coordinate the development of the neuromuscular junction in mice"
+        }, 
+        "01084": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/01084/elife01084.xml", 
+            "authors": [
+                "Stockbridge", 
+                "Robertson", 
+                "Kolmakova-Partensky", 
+                "Miller"
+            ], 
+            "id": "01084", 
+            "title": "A family of fluoride-specific ion channels with dual-topology architecture"
+        }, 
+        "01291": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/01291/elife01291.xml", 
+            "authors": [
+                "Bennicelli", 
+                "Bennett"
+            ], 
+            "id": "01291", 
+            "title": "Stem cells set their sights on retinitis pigmentosa"
+        }, 
+        "00642": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00642/elife00642.xml", 
+            "authors": [
+                "Bourne"
+            ], 
+            "id": "00642", 
+            "title": "The writing on the wall"
+        }, 
+        "00712": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00712/elife00712.xml", 
+            "authors": [
+                "Nishino", 
+                "Choy", 
+                "Gushwa", 
+                "Oses-Prieto", 
+                "Koupparis", 
+                "Burlingame", 
+                "Renslo", 
+                "McKerrow", 
+                "Taunton"
+            ], 
+            "id": "00712", 
+            "title": "Hypothemycin, a fungal natural product, identifies therapeutic targets in Trypanosoma brucei"
+        }, 
+        "00868": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00868/elife00868.xml", 
+            "authors": [
+                "Ducret", 
+                "Fleuchot", 
+                "Bergam", 
+                "Mignot"
+            ], 
+            "id": "00868", 
+            "title": "Direct live imaging of cell\u2013cell protein transfer by transient outer membrane fusion in Myxococcus xanthus"
+        }, 
+        "00759": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00759/elife00759.xml", 
+            "authors": [
+                "Shemesh", 
+                "Sztainberg", 
+                "Forkosh", 
+                "Shlapobersky", 
+                "Chen", 
+                "Schneidman"
+            ], 
+            "id": "00759", 
+            "title": "High-order social interactions in groups of mice"
+        }, 
+        "00640": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00640/elife00640.xml", 
+            "authors": [
+                "Weng", 
+                "Chin", 
+                "Yew", 
+                "Bushati", 
+                "Cohen"
+            ], 
+            "id": "00640", 
+            "title": "miR-124 controls male reproductive success in Drosophila"
+        }, 
+        "00863": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00863/elife00863.xml", 
+            "authors": [
+                "Torigoe", 
+                "Patel", 
+                "Khuong", 
+                "Bowman", 
+                "Kadonaga"
+            ], 
+            "id": "00863", 
+            "title": "ATP-dependent chromatin assembly is functionally distinct from chromatin remodeling"
+        }, 
+        "library": {
+            "collections": [
+                "elife",
+                "landes",
+                "lens",
+                "mydocs"
+            ], 
+            "type": "library", 
+            "name": "Lens development resources"
+        },
+        "00534": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00534/elife00534.xml", 
+            "authors": [
+                "Taylor", 
+                "Nik-Zainal", 
+                "Wu", 
+                "Stebbings", 
+                "Raine", 
+                "Campbell", 
+                "Rada", 
+                "Stratton", 
+                "Neuberger"
+            ], 
+            "id": "00534", 
+            "title": "DNA deaminases induce break-associated mutation showers with implication of APOBEC3B and 3A in breast cancer kataegis"
+        }, 
+        "00537": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00537/elife00537.xml", 
+            "authors": [
+                "Zhao", 
+                "Rao", 
+                "O\u2019Connell", 
+                "Garcia-Flores", 
+                "Baltimore"
+            ], 
+            "id": "00537", 
+            "title": "MicroRNA-146a acts as a guardian of the quality and longevity of hematopoietic stem cells in mice"
+        }, 
+        "00358": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00358/elife00358.xml", 
+            "authors": [
+                "Pavlova", 
+                "Pallasch", 
+                "Elia", 
+                "Braun", 
+                "Westbrook", 
+                "Hemann", 
+                "Elledge"
+            ], 
+            "id": "00358", 
+            "title": "A role for PVRL4-driven cell\u2013cell interactions in tumorigenesis"
+        }, 
+        "00899": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00899/elife00899.xml", 
+            "authors": [
+                "Ferreira", 
+                "Dermitzakis"
+            ], 
+            "id": "00899", 
+            "title": "Immune response is a personal matter"
+        }, 
+        "00804": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00804/elife00804.xml", 
+            "authors": [
+                "Nezich", 
+                "Youle"
+            ], 
+            "id": "00804", 
+            "title": "Make or break for mitochondria"
+        }, 
+        "00435": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00435/elife00435.xml", 
+            "authors": [
+                "Sun", 
+                "Xiang", 
+                "Akahata", 
+                "Holdaway", 
+                "Pal", 
+                "Zhang", 
+                "Diamond", 
+                "Nabel", 
+                "Rossmann"
+            ], 
+            "id": "00435", 
+            "title": "Structural analyses at pseudo atomic resolution of Chikungunya virus and antibodies show mechanisms of neutralization"
+        }, 
+        "00669": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00669/elife00669.xml", 
+            "authors": [
+                "Scialdone", 
+                "Mugford", 
+                "Feike", 
+                "Skeffington", 
+                "Borrill", 
+                "Graf", 
+                "Smith", 
+                "Howard"
+            ], 
+            "id": "00669", 
+            "title": "Arabidopsis plants perform arithmetic division to prevent starvation at night"
+        }, 
+        "00668": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00668/elife00668.xml", 
+            "authors": [
+                "Claeys Bouuaert", 
+                "Lipkow", 
+                "Andrews", 
+                "Liu", 
+                "Chalmers"
+            ], 
+            "id": "00668", 
+            "title": "The autoregulation of a eukaryotic DNA transposon"
+        }, 
+        "00744": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00744/elife00744.xml", 
+            "authors": [
+                "Shih", 
+                "Engel", 
+                "Kocabas", 
+                "Bilyard", 
+                "Gennerich", 
+                "Marshall", 
+                "Yildiz"
+            ], 
+            "id": "00744", 
+            "title": "Intraflagellar transport drives flagellar surface motility"
+        }, 
+        "00745": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00745/elife00745.xml", 
+            "authors": [
+                "Andersen", 
+                "Onischenko", 
+                "Tang", 
+                "Kumar", 
+                "Chen", 
+                "Ulrich", 
+                "Liphardt", 
+                "Weis", 
+                "Schwartz"
+            ], 
+            "id": "00745", 
+            "title": "Scaffold nucleoporins Nup188 and Nup192 share structural and functional properties with nuclear transport receptors"
+        }, 
+        "00813": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00813/elife00813.xml", 
+            "authors": [
+                "Iwig", 
+                "Vercoulen", 
+                "Das", 
+                "Barros", 
+                "Limnander", 
+                "Che", 
+                "Pelton", 
+                "Wemmer", 
+                "Roose", 
+                "Kuriyan"
+            ], 
+            "id": "00813", 
+            "title": "Structural analysis of autoinhibition in the Ras-specific exchange factor RasGRP1"
+        }, 
+        "00333": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00333/elife00333.xml", 
+            "authors": [
+                "Ivanovic", 
+                "Choi", 
+                "Whelan", 
+                "van Oijen", 
+                "Harrison"
+            ], 
+            "id": "00333", 
+            "title": "Influenza-virus membrane fusion by cooperative fold-back of stochastically induced hemagglutinin intermediates"
+        }, 
+        "00663": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00663/elife00663.xml", 
+            "authors": [
+                "DeBose-Boyd", 
+                "Horton"
+            ], 
+            "id": "00663", 
+            "title": "Opening up new fronts in the fight against cholesterol"
+        }, 
+        "00337": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00337/elife00337.xml", 
+            "authors": [
+                "Langen", 
+                "Koch", 
+                "Yan", 
+                "De Geest", 
+                "Erfurth", 
+                "Pfeiffer", 
+                "Schmucker", 
+                "Moreau", 
+                "Hassan"
+            ], 
+            "id": "00337", 
+            "title": "Mutual inhibition among postmitotic neurons regulates robustness of brain wiring in Drosophila"
+        }, 
+        "00336": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00336/elife00336.xml", 
+            "authors": [
+                "Saxena", 
+                "Peng", 
+                "Bronner"
+            ], 
+            "id": "00336", 
+            "title": "Sox10-dependent neural crest origin of olfactory microvillous neurons in zebrafish"
+        }, 
+        "00334": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00334/elife00334.xml", 
+            "authors": [
+                "Qi", 
+                "Pugh", 
+                "Spies", 
+                "Chemla"
+            ], 
+            "id": "00334", 
+            "title": "Sequence-dependent base pair stepping dynamics in XPD helicase unwinding"
+        }, 
+        "00655": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00655/elife00655.xml", 
+            "authors": [
+                "Gresham"
+            ], 
+            "id": "00655", 
+            "title": "A sticky solution"
+        }, 
+        "01045": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/01045/elife01045.xml", 
+            "authors": [
+                "Gutierrez-Arcelus", 
+                "Lappalainen", 
+                "Montgomery", 
+                "Buil", 
+                "Ongen", 
+                "Yurovsky", 
+                "Bryois", 
+                "Giger", 
+                "Romano", 
+                "Planchon", 
+                "Falconnet", 
+                "Bielser", 
+                "Gagnebin", 
+                "Padioleau", 
+                "Borel", 
+                "Letourneau", 
+                "Makrythanasis", 
+                "Guipponi", 
+                "Gehrig", 
+                "Antonarakis", 
+                "Dermitzakis"
+            ], 
+            "id": "01045", 
+            "title": "Correction: Passive and active DNA methylation and the interplay with genetic variation in gene regulation"
+        }, 
+        "00133": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00133/elife00133.xml", 
+            "authors": [
+                "Yan", 
+                "Chao", 
+                "Toba", 
+                "Koyasako", 
+                "Yasunaga", 
+                "Hirotsune", 
+                "Shen"
+            ], 
+            "id": "00133", 
+            "title": "Kinesin-1 regulates dendrite microtubule polarity in Caenorhabditis elegans"
+        }, 
+        "00230": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00230/elife00230.xml", 
+            "authors": [
+                "Momeni", 
+                "Brileya", 
+                "Fields", 
+                "Shou"
+            ], 
+            "id": "00230", 
+            "title": "Strong inter-population cooperation leads to partner intermixing in microbial communities"
+        }, 
+        "00231": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00231/elife00231.xml", 
+            "authors": [
+                "Mendes", 
+                "Bartos", 
+                "Akay", 
+                "M\u00e1rka", 
+                "Mann"
+            ], 
+            "id": "00231", 
+            "title": "Quantification of gait parameters in freely walking wild type and sensory deprived Drosophila melanogaster"
+        }, 
+        "00031": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00031/elife00031.xml", 
+            "authors": [
+                "Pretto", 
+                "Bresciani", 
+                "Rainer", 
+                "B\u00fclthoff"
+            ], 
+            "id": "00031", 
+            "title": "Foggy perception slows us down"
+        }, 
+        "00861": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00861/elife00861.xml", 
+            "authors": [
+                "Chen", 
+                "Johnston", 
+                "Shao", 
+                "Meier", 
+                "Staber", 
+                "Zeitlinger"
+            ], 
+            "id": "00861", 
+            "title": "A global change in RNA polymerase II pausing during the Drosophila midblastula transition"
+        }, 
+        "00260": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00260/elife00260.xml", 
+            "authors": [
+                "Yang", 
+                "Xu", 
+                "Koo", 
+                "He", 
+                "Poethig"
+            ], 
+            "id": "00260", 
+            "title": "Sugar promotes vegetative phase change in Arabidopsis thaliana by repressing the expression of MIR156A and MIR156C"
+        }, 
+        "00873": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00873/elife00873.xml", 
+            "authors": [
+                "Swartz"
+            ], 
+            "id": "00873", 
+            "title": "The scorpion toxin and the potassium channel"
+        }, 
+        "00324": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00324/elife00324.xml", 
+            "authors": [
+                "Luo", 
+                "Uehara", 
+                "Zhang", 
+                "Das", 
+                "Olsen", 
+                "Holt", 
+                "Simonis", 
+                "Jackman", 
+                "Singh", 
+                "Miya", 
+                "Huang", 
+                "Ahmed", 
+                "Bastos-Carvalho", 
+                "Le", 
+                "Mamalis", 
+                "Chiodo", 
+                "Hauswirth", 
+                "Baffi", 
+                "Lacal", 
+                "Orecchia", 
+                "Ferrara", 
+                "Gao", 
+                "Young-hee", 
+                "Fu", 
+                "Owen", 
+                "Albuquerque", 
+                "Baehr", 
+                "Thomas", 
+                "Li", 
+                "Chalam", 
+                "Shibuya", 
+                "Grisanti", 
+                "Wilson", 
+                "Ambati", 
+                "Ambati"
+            ], 
+            "id": "00324", 
+            "title": "Photoreceptor avascular privilege is shielded by soluble VEGF receptor-1"
+        }, 
+        "00523": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00523/elife00523.xml", 
+            "authors": [
+                "Gutierrez-Arcelus", 
+                "Lappalainen", 
+                "Montgomery", 
+                "Buil", 
+                "Ongen", 
+                "Yurovsky", 
+                "Bryois", 
+                "Giger", 
+                "Romano", 
+                "Planchon", 
+                "Falconnet", 
+                "Bielser", 
+                "Gagnebin", 
+                "Padioleau", 
+                "Borel", 
+                "Letourneau", 
+                "Makrythanasis", 
+                "Guipponi", 
+                "Gehrig", 
+                "Antonarakis", 
+                "Dermitzakis"
+            ], 
+            "id": "00523", 
+            "title": "Passive and active DNA methylation and the interplay with genetic variation in gene regulation"
+        }, 
+        "00326": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00326/elife00326.xml", 
+            "authors": [
+                "Monahan", 
+                "Lomvardas"
+            ], 
+            "id": "00326", 
+            "title": "How keeping active pays off in the olfactory system"
+        }, 
+        "00327": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00327/elife00327.xml", 
+            "authors": [
+                "Schulze-Gahmen", 
+                "Upton", 
+                "Birnberg", 
+                "Bao", 
+                "Chou", 
+                "Krogan", 
+                "Zhou", 
+                "Alber"
+            ], 
+            "id": "00327", 
+            "title": "The AFF4 scaffold binds human P-TEFb adjacent to HIV Tat"
+        }, 
+        "00321": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00321/elife00321.xml", 
+            "authors": [
+                "Takahashi"
+            ], 
+            "id": "00321", 
+            "title": "Hierarchical organization of context in the hippocampal episodic code"
+        }, 
+        "00288": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00288/elife00288.xml", 
+            "authors": [
+                "Schiffer", 
+                "Swan", 
+                "Al Sallaq", 
+                "Magaret", 
+                "Johnston", 
+                "Mark", 
+                "Selke", 
+                "Ocbamichael", 
+                "Kuntz", 
+                "Zhu", 
+                "Robinson", 
+                "Huang", 
+                "Jerome", 
+                "Wald", 
+                "Corey"
+            ], 
+            "id": "00288", 
+            "title": "Rapid localized spread and immunologic containment define Herpes simplex virus-2 reactivation in the human genital tract"
+        }, 
+        "00286": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00286/elife00286.xml", 
+            "authors": [
+                "Kenyon"
+            ], 
+            "id": "00286", 
+            "title": "Could a hormone point the way to life extension?"
+        }, 
+        "00329": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00329/elife00329.xml", 
+            "authors": [
+                "Song", 
+                "Faumont", 
+                "Lockery", 
+                "Avery"
+            ], 
+            "id": "00329", 
+            "title": "Recognition of familiar food activates feeding via an endocrine serotonin signal in Caenorhabditis elegans"
+        }, 
+        "00281": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00281/elife00281.xml", 
+            "authors": [
+                "Culham"
+            ], 
+            "id": "00281", 
+            "title": "New ideas on how drivers perceive speed emerge from the fog"
+        }, 
+        "00522": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00522/elife00522.xml", 
+            "authors": [
+                "Ilsley", 
+                "Fisher", 
+                "Apweiler", 
+                "DePace", 
+                "Luscombe"
+            ], 
+            "id": "00522", 
+            "title": "Cellular resolution models for even skipped regulation in the entire Drosophila embryo"
+        }, 
+        "00205": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00205/elife00205.xml", 
+            "authors": [
+                "Farcas", 
+                "Blackledge", 
+                "Sudbery", 
+                "Long", 
+                "McGouran", 
+                "Rose", 
+                "Lee", 
+                "Sims", 
+                "Cerase", 
+                "Sheahan", 
+                "Koseki", 
+                "Brockdorff", 
+                "Ponting", 
+                "Kessler", 
+                "Klose"
+            ], 
+            "id": "00205", 
+            "title": "KDM2B links the Polycomb Repressive Complex 1 (PRC1) to recognition of CpG islands"
+        }, 
+        "00736": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00736/elife00736.xml", 
+            "authors": [
+                "Vann"
+            ], 
+            "id": "00736", 
+            "title": "Dismantling the Papez circuit for memory in rats"
+        }, 
+        "00444": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00444/elife00444.xml", 
+            "authors": [
+                "Chen", 
+                "Wang", 
+                "Bajaj", 
+                "Zhang", 
+                "Meng", 
+                "Ma", 
+                "Bai", 
+                "Liu", 
+                "Adams", 
+                "Baines", 
+                "Yu", 
+                "Sartor", 
+                "Zhang", 
+                "Yi", 
+                "Lin", 
+                "Young", 
+                "Schekman", 
+                "Ginsburg"
+            ], 
+            "id": "00444", 
+            "title": "SEC24A deficiency lowers plasma cholesterol through reduced PCSK9 secretion"
+        }, 
+        "00778": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00778/elife00778.xml", 
+            "authors": [
+                "O'Donoghue", 
+                "Pielak", 
+                "Smoligovets", 
+                "Lin", 
+                "Groves"
+            ], 
+            "id": "00778", 
+            "title": "Direct single molecule measurement of TCR triggering by agonist pMHC in living primary T cells"
+        }, 
+        "00676": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00676/elife00676.xml", 
+            "authors": [
+                "Marder"
+            ], 
+            "id": "00676", 
+            "title": "Luck, jobs and learning"
+        }, 
+        "00675": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00675/elife00675.xml", 
+            "authors": [
+                "Chang", 
+                "Zhong", 
+                "Weirauch", 
+                "Hon", 
+                "Pelizzola", 
+                "Li", 
+                "Huang", 
+                "Schmitz", 
+                "Urich", 
+                "Kuo", 
+                "Nery", 
+                "Qiao", 
+                "Yang", 
+                "Jamali", 
+                "Chen", 
+                "Ideker", 
+                "Ren", 
+                "Bar-Joseph", 
+                "Hughes", 
+                "Ecker"
+            ], 
+            "id": "00675", 
+            "title": "Temporal transcriptional response to ethylene gas drives growth hormone cross-regulation in Arabidopsis"
+        }, 
+        "00049": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00049/elife00049.xml", 
+            "authors": [
+                "Yan", 
+                "Zhong", 
+                "Xu", 
+                "He", 
+                "Jing", 
+                "Gao", 
+                "Huang", 
+                "Qi", 
+                "Peng", 
+                "Wang", 
+                "Fu", 
+                "Song", 
+                "Chen", 
+                "Gao", 
+                "Ren", 
+                "Sun", 
+                "Cai", 
+                "Feng", 
+                "Sui", 
+                "Li"
+            ], 
+            "id": "00049", 
+            "title": "Sodium taurocholate cotransporting polypeptide is a functional receptor for human hepatitis B and D virus"
+        }, 
+        "00048": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00048/elife00048.xml", 
+            "authors": [
+                "Kimmig", 
+                "Diaz", 
+                "Zheng", 
+                "Williams", 
+                "Lang", 
+                "Arag\u00f3n", 
+                "Li", 
+                "Walter"
+            ], 
+            "id": "00048", 
+            "title": "The unfolded protein response in fission yeast modulates stability of select mRNAs to maintain protein homeostasis"
+        }, 
+        "01138": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/01138/elife01138.xml", 
+            "authors": [
+                "Bourne"
+            ], 
+            "id": "01138", 
+            "title": "A recipe for mediocrity and disaster, in five axioms"
+        }, 
+        "01233": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/01233/elife01233.xml", 
+            "authors": [
+                "Kononenko", 
+                "Pechstein", 
+                "Haucke"
+            ], 
+            "id": "01233", 
+            "title": "The tortoise and the hare revisited"
+        }, 
+        "01136": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/01136/elife01136.xml", 
+            "authors": [
+                "Dykstra", 
+                "Gutschalk"
+            ], 
+            "id": "01136", 
+            "title": "Time is of the essence for auditory scene analysis"
+        }, 
+        "00047": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00047/elife00047.xml", 
+            "authors": [
+                "Ferguson", 
+                "Mansur", 
+                "Peters", 
+                "Ren", 
+                "Smith"
+            ], 
+            "id": "00047", 
+            "title": "DNA-PK is a DNA sensor for IRF-3-dependent innate immunity"
+        }, 
+        "01135": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/01135/elife01135.xml", 
+            "authors": [
+                "Levine"
+            ], 
+            "id": "01135", 
+            "title": "Computing away the magic?"
+        }, 
+        "00948": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00948/elife00948.xml", 
+            "authors": [
+                "Sim", 
+                "Fruttiger"
+            ], 
+            "id": "00948", 
+            "title": "Keeping blood vessels out of sight"
+        }, 
+        "00767": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00767/elife00767.xml", 
+            "authors": [
+                "Avirutnan", 
+                "Matangkasombut"
+            ], 
+            "id": "00767", 
+            "title": "Unmasking the role of mast cells in dengue"
+        }, 
+        "00967": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00967/elife00967.xml", 
+            "authors": [
+                "Hu", 
+                "Tong", 
+                "Kaplan"
+            ], 
+            "id": "00967", 
+            "title": "UNC-13L, UNC-13S, and Tomosyn form a protein code for fast and slow neurotransmitter release in Caenorhabditis elegans"
+        }, 
+        "01221": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/01221/elife01221.xml", 
+            "authors": [
+                "Derbyshire", 
+                "Clardy"
+            ], 
+            "id": "01221", 
+            "title": "Correction: Closing in on a new treatment for sleeping sickness"
+        }, 
+        "00351": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00351/elife00351.xml", 
+            "authors": [
+                "Smith"
+            ], 
+            "id": "00351", 
+            "title": "Bad medicine"
+        }, 
+        "00299": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00299/elife00299.xml", 
+            "authors": [
+                "Franco", 
+                "Bucasas", 
+                "Wells", 
+                "Ni\u00f1o", 
+                "Wang", 
+                "Zapata", 
+                "Arden", 
+                "Renwick", 
+                "Yu", 
+                "Quarles", 
+                "Bray", 
+                "Couch", 
+                "Belmont", 
+                "Shaw"
+            ], 
+            "id": "00299", 
+            "title": "Integrative genomic analysis of the human immune response to influenza vaccination"
+        }, 
+        "00353": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00353/elife00353.xml", 
+            "authors": [
+                "Marder"
+            ], 
+            "id": "00353", 
+            "title": "A good life"
+        }, 
+        "00352": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00352/elife00352.xml", 
+            "authors": [
+                "Turner"
+            ], 
+            "id": "00352", 
+            "title": "Nerve endings reveal hidden diversity in the skin"
+        }, 
+        "00354": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00354/elife00354.xml", 
+            "authors": [
+                "Stroud", 
+                "Ding", 
+                "Simon", 
+                "Feng", 
+                "Bellizzi", 
+                "Pellegrini", 
+                "Wang", 
+                "Meyers", 
+                "Jacobsen"
+            ], 
+            "id": "00354", 
+            "title": "Plants regenerated from tissue culture contain stable epigenome changes in rice"
+        }, 
+        "00641": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00641/elife00641.xml", 
+            "authors": [
+                "Hatten", 
+                "Lisberger"
+            ], 
+            "id": "00641", 
+            "title": "Multitasking on the run"
+        }, 
+        "00518": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00518/elife00518.xml", 
+            "authors": [
+                "Tao", 
+                "Xie", 
+                "Ding", 
+                "Li", 
+                "Peng", 
+                "Zhang", 
+                "Tan", 
+                "Yuan", 
+                "Dong"
+            ], 
+            "id": "00518", 
+            "title": "CAMKII and Calcineurin regulate the lifespan of Caenorhabditis elegans through the FOXO transcription factor DAF-16"
+        }, 
+        "00290": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00290/elife00290.xml", 
+            "authors": [
+                "Wilbur", 
+                "Heald"
+            ], 
+            "id": "00290", 
+            "title": "Mitotic spindle scaling during Xenopus development by kif2a and importin \u03b1"
+        }, 
+        "00291": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00291/elife00291.xml", 
+            "authors": [
+                "Lee", 
+                "Moon", 
+                "Shu", 
+                "Yuan", 
+                "Newman", 
+                "Schekman", 
+                "Barton"
+            ], 
+            "id": "00291", 
+            "title": "UNC93B1 mediates differential trafficking of endosomal TLRs"
+        }, 
+        "00515": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00515/elife00515.xml", 
+            "authors": [
+                "Barral"
+            ], 
+            "id": "00515", 
+            "title": "A new answer to old questions"
+        }, 
+        "00801": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00801/elife00801.xml", 
+            "authors": [
+                "Wiestler", 
+                "Diedrichsen"
+            ], 
+            "id": "00801", 
+            "title": "Skill learning strengthens cortical representations of motor sequences"
+        }, 
+        "00800": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00800/elife00800.xml", 
+            "authors": [
+                "De Michele", 
+                "Ast", 
+                "Loqu\u00e9", 
+                "Ho", 
+                "Andrade", 
+                "Lanquar", 
+                "Grossmann", 
+                "Gehne", 
+                "Kumke", 
+                "Frommer"
+            ], 
+            "id": "00800", 
+            "title": "Fluorescent sensors reporting the activity of ammonium transceptors in live cells"
+        }, 
+        "00648": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00648/elife00648.xml", 
+            "authors": [
+                "Whitfield"
+            ], 
+            "id": "00648", 
+            "title": "Shedding new light on the origins of olfactory neurons"
+        }, 
+        "00723": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00723/elife00723.xml", 
+            "authors": [
+                "Watanabe", 
+                "Liu", 
+                "Davis", 
+                "Hollopeter", 
+                "Thomas", 
+                "Jorgensen", 
+                "Jorgensen"
+            ], 
+            "id": "00723", 
+            "title": "Ultrafast endocytosis at Caenorhabditis elegans neuromuscular junctions"
+        }, 
+        "00884": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00884/elife00884.xml", 
+            "authors": [
+                "Helgeson", 
+                "Nolen"
+            ], 
+            "id": "00884", 
+            "title": "Mechanism of synergistic activation of Arp2/3 complex by cortactin and N-WASP"
+        }, 
+        "00594": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00594/elife00594.xml", 
+            "authors": [
+                "Banerjee", 
+                "Lee", 
+                "Campbell", 
+                "MacKinnon"
+            ], 
+            "id": "00594", 
+            "title": "Structure of a pore-blocking toxin in complex with a eukaryotic voltage-dependent K+ channel"
+        }, 
+        "00593": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00593/elife00593.xml", 
+            "authors": [
+                "Greally"
+            ], 
+            "id": "00593", 
+            "title": "Bidding the CpG island goodbye"
+        }, 
+        "00592": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00592/elife00592.xml", 
+            "authors": [
+                "Diao", 
+                "Burr\u00e9", 
+                "Vivona", 
+                "Cipriano", 
+                "Sharma", 
+                "Kyoung", 
+                "S\u00fcdhof", 
+                "Brunger"
+            ], 
+            "id": "00592", 
+            "title": "Native \u03b1-synuclein induces clustering of synaptic-vesicle mimics via binding to phospholipids and synaptobrevin-2/VAMP2"
+        }, 
+        "00458": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00458/elife00458.xml", 
+            "authors": [
+                "Song", 
+                "Lauber", 
+                "Costello", 
+                "Lozupone", 
+                "Humphrey", 
+                "Berg-Lyons", 
+                "Caporaso", 
+                "Knights", 
+                "Clemente", 
+                "Nakielny", 
+                "Gordon", 
+                "Fierer", 
+                "Knight"
+            ], 
+            "id": "00458", 
+            "title": "Cohabiting family members share microbiota with one another and with their dogs"
+        }, 
+        "00459": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00459/elife00459.xml", 
+            "authors": [
+                "Zhao", 
+                "MacGurn", 
+                "Liu", 
+                "Emr"
+            ], 
+            "id": "00459", 
+            "title": "The ART-Rsp5 ubiquitin ligase network comprises a plasma membrane quality control system that protects yeast cells from proteotoxic stress"
+        }, 
+        "00218": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00218/elife00218.xml", 
+            "authors": [
+                "Mills", 
+                "Vitt", 
+                "Strauss", 
+                "Shima", 
+                "Vonck"
+            ], 
+            "id": "00218", 
+            "title": "De novo modeling of the F420-reducing [NiFe]-hydrogenase from a methanogenic archaeon by cryo-electron microscopy"
+        }, 
+        "00190": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00190/elife00190.xml", 
+            "authors": [
+                "Gu", 
+                "Liu", 
+                "Watanabe", 
+                "Sun", 
+                "Hollopeter", 
+                "Grant", 
+                "Jorgensen"
+            ], 
+            "id": "00190", 
+            "title": "AP2 hemicomplexes contribute independently to synaptic vesicle endocytosis"
+        }, 
+        "00452": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00452/elife00452.xml", 
+            "authors": [
+                "Brand"
+            ], 
+            "id": "00452", 
+            "title": "Faculty appointments and the record of scholarship"
+        }, 
+        "00450": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00450/elife00450.xml", 
+            "authors": [
+                "Calabrese"
+            ], 
+            "id": "00450", 
+            "title": "Fruit flies step out"
+        }, 
+        "01108": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/01108/elife01108.xml", 
+            "authors": [
+                "Yoshida", 
+                "Schuenemann", 
+                "Cano", 
+                "Pais", 
+                "Mishra", 
+                "Sharma", 
+                "Lanz", 
+                "Martin", 
+                "Kamoun", 
+                "Krause", 
+                "Thines", 
+                "Weigel", 
+                "Burbano"
+            ], 
+            "id": "01108", 
+            "title": "Correction: The rise and fall of the Phytophthora infestans lineage that triggered the Irish potato famine"
+        }, 
+        "01140": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/01140/elife01140.xml", 
+            "authors": [
+                "Marder"
+            ], 
+            "id": "01140", 
+            "title": "Grandmother elephants"
+        }, 
+        "00117": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00117/elife00117.xml", 
+            "authors": [
+                "Miller", 
+                "\u00dcnal", 
+                "Brar", 
+                "Amon"
+            ], 
+            "id": "00117", 
+            "title": "Meiosis I chromosome segregation is established through regulation of microtubule\u2013kinetochore interactions"
+        }, 
+        "00116": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00116/elife00116.xml", 
+            "authors": [
+                "Vogel", 
+                "Petrasek", 
+                "Heinemann", 
+                "Schwille"
+            ], 
+            "id": "00116", 
+            "title": "Myosin motors fragment and compact membrane-bound actin filaments"
+        }, 
+        "00866": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00866/elife00866.xml", 
+            "authors": [
+                "Mahon"
+            ], 
+            "id": "00866", 
+            "title": "Watching the brain in action"
+        }, 
+        "00886": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00886/elife00886.xml", 
+            "authors": [
+                "Marianes", 
+                "Spradling"
+            ], 
+            "id": "00886", 
+            "title": "Physiological and stem cell compartmentalization within the Drosophila midgut"
+        }, 
+        "00051": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00051/elife00051.xml", 
+            "authors": [
+                "Hum", 
+                "Jha", 
+                "McGahan", 
+                "Cheng"
+            ], 
+            "id": "00051", 
+            "title": "Global divergence in critical income for adult and childhood survival: analyses of mortality using Michaelis\u2013Menten"
+        }, 
+        "00791": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00791/elife00791.xml", 
+            "authors": [
+                "Sanchez", 
+                "Yanovsky"
+            ], 
+            "id": "00791", 
+            "title": "Time for a change"
+        }, 
+        "00790": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00790/elife00790.xml", 
+            "authors": [
+                "S\u00e1nchez-Vallet", 
+                "Saleem-Batcha", 
+                "Kombrink", 
+                "Hansen", 
+                "Valkenburg", 
+                "Thomma", 
+                "Mesters"
+            ], 
+            "id": "00790", 
+            "title": "Fungal effector Ecp6 outcompetes host immune receptor for chitin binding through intrachain LysM dimerization"
+        }, 
+        "00792": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00792/elife00792.xml", 
+            "authors": [
+                "Kudryashev", 
+                "Stenta", 
+                "Schmelz", 
+                "Amstutz", 
+                "Wiesand", 
+                "Casta\u00f1o-D\u00edez", 
+                "Degiacomi", 
+                "M\u00fcnnich", 
+                "Bleck", 
+                "Kowal", 
+                "Diepold", 
+                "Heinz", 
+                "Dal Peraro", 
+                "Cornelis", 
+                "Stahlberg"
+            ], 
+            "id": "00792", 
+            "title": "In situ structural analysis of the Yersinia enterocolitica injectisome"
+        }, 
+        "01061": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/01061/elife01061.xml", 
+            "authors": [
+                "Boyd"
+            ], 
+            "id": "01061", 
+            "title": "Making science count in government"
+        }, 
+        "00772": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00772/elife00772.xml", 
+            "authors": [
+                "Karch", 
+                "Kwong", 
+                "Burr", 
+                "Sargent", 
+                "Elrod", 
+                "Peixoto", 
+                "Martinez-Caballero", 
+                "Osinska", 
+                "Cheng", 
+                "Robbins", 
+                "Kinnally", 
+                "Molkentin"
+            ], 
+            "id": "00772", 
+            "title": "Bax and Bak function as the outer membrane component of the mitochondrial permeability pore in regulating necrotic cell death in mice"
+        }, 
+        "00799": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00799/elife00799.xml", 
+            "authors": [
+                "Schekman", 
+                "Watt", 
+                "Weigel"
+            ], 
+            "id": "00799", 
+            "title": "The eLife approach to peer review"
+        }, 
+        "00954": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00954/elife00954.xml", 
+            "authors": [
+                "Birch", 
+                "Cooke"
+            ], 
+            "id": "00954", 
+            "title": "The early days of late blight"
+        }, 
+        "00953": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00953/elife00953.xml", 
+            "authors": [
+                "Foresti", 
+                "Ruggiano", 
+                "Hannibal-Bach", 
+                "Ejsing", 
+                "Carvalho"
+            ], 
+            "id": "00953", 
+            "title": "Sterol homeostasis requires regulated degradation of squalene monooxygenase by the ubiquitin ligase Doa10/Teb4"
+        }, 
+        "00184": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00184/elife00184.xml", 
+            "authors": [
+                "Kong", 
+                "Zeng", 
+                "Ye", 
+                "Chen", 
+                "Sauer", 
+                "Lam", 
+                "Derebe", 
+                "Jiang"
+            ], 
+            "id": "00184", 
+            "title": "Distinct gating mechanisms revealed by the structures of a multi-ligand gated K+ channel"
+        }, 
+        "00340": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00340/elife00340.xml", 
+            "authors": [
+                "Jit", 
+                "Gerland"
+            ], 
+            "id": "00340", 
+            "title": "Enzymes provide demographers with food for thought"
+        }, 
+        "00654": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00654/elife00654.xml", 
+            "authors": [
+                "Ye", 
+                "Breslow", 
+                "Koslover", 
+                "Spakowitz", 
+                "Nelson", 
+                "Nachury"
+            ], 
+            "id": "00654", 
+            "title": "Single molecule imaging reveals a major role for diffusion in the exploration of ciliary space by signaling receptors"
+        }, 
+        "00347": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00347/elife00347.xml", 
+            "authors": [
+                "Gibb", 
+                "Greene"
+            ], 
+            "id": "00347", 
+            "title": "Sliding to the rescue of damaged DNA"
+        }, 
+        "00183": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00183/elife00183.xml", 
+            "authors": [
+                "Martini\u00e8re", 
+                "Bak", 
+                "Macia", 
+                "Lautredou", 
+                "Gargani", 
+                "Doumayrou", 
+                "Garzo", 
+                "Moreno", 
+                "Fereres", 
+                "Blanc", 
+                "Drucker"
+            ], 
+            "id": "00183", 
+            "title": "A virus responds instantly to the presence of the vector on the host and forms transmission morphs"
+        }, 
+        "00658": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00658/elife00658.xml", 
+            "authors": [
+                "Mitrovic", 
+                "Nogueira", 
+                "Cantero-Recasens", 
+                "Kiefer", 
+                "Fern\u00e1ndez-Fern\u00e1ndez", 
+                "Popoff", 
+                "Casano", 
+                "Bard", 
+                "Gomez", 
+                "Valverde", 
+                "Malhotra"
+            ], 
+            "id": "00658", 
+            "title": "TRPM5-mediated calcium uptake regulates mucin secretion from human colon goblet cells"
+        }, 
+        "00659": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00659/elife00659.xml", 
+            "authors": [
+                "Demarque", 
+                "Schibler"
+            ], 
+            "id": "00659", 
+            "title": "Shedding new light on circadian clocks"
+        }, 
+        "00348": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00348/elife00348.xml", 
+            "authors": [
+                "Long", 
+                "Sims", 
+                "Heger", 
+                "Blackledge", 
+                "Kutter", 
+                "Wright", 
+                "Gr\u00fctzner", 
+                "Odom", 
+                "Patient", 
+                "Ponting", 
+                "Klose"
+            ], 
+            "id": "00348", 
+            "title": "Epigenetic conservation at gene regulatory elements revealed by non-methylated DNA profiling in seven vertebrates"
+        }, 
+        "00505": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00505/elife00505.xml", 
+            "authors": [
+                "Wahba", 
+                "Gore", 
+                "Koshland"
+            ], 
+            "id": "00505", 
+            "title": "The homologous recombination machinery modulates the formation of RNA\u2013DNA hybrids and associated chromosome instability"
+        }, 
+        "01008": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/01008/elife01008.xml", 
+            "authors": [
+                "Smith", 
+                "Padrick", 
+                "Doolittle", 
+                "Daugherty-Clarke", 
+                "Corr\u00eaa", 
+                "Xu", 
+                "Goode", 
+                "Rosen", 
+                "Gelles"
+            ], 
+            "id": "01008", 
+            "title": "Three-color single molecule imaging shows WASP detachment from Arp2/3 complex triggers actin filament branch formation"
+        }, 
+        "00067": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00067/elife00067.xml", 
+            "authors": [
+                "Ragunathan", 
+                "Liu", 
+                "Ha"
+            ], 
+            "id": "00067", 
+            "title": "RecA filament sliding on DNA facilitates homology search"
+        }, 
+        "00065": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00065/elife00065.xml", 
+            "authors": [
+                "Zhang", 
+                "Xie", 
+                "Berglund", 
+                "Coate", 
+                "He", 
+                "Katafuchi", 
+                "Xiao", 
+                "Potthoff", 
+                "Wei", 
+                "Wan", 
+                "Yu", 
+                "Evans", 
+                "Kliewer", 
+                "Mangelsdorf"
+            ], 
+            "id": "00065", 
+            "title": "The starvation hormone, fibroblast growth factor-21, extends lifespan in mice"
+        }, 
+        "00895": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00895/elife00895.xml", 
+            "authors": [
+                "Pavitt"
+            ], 
+            "id": "00895", 
+            "title": "Less translational control, more memory"
+        }, 
+        "01114": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/01114/elife01114.xml", 
+            "authors": [
+                "Thompson", 
+                "Roy", 
+                "Chan", 
+                "Styczynski", 
+                "Pfiffner", 
+                "French", 
+                "Socha", 
+                "Thielke", 
+                "Napolitano", 
+                "Muller", 
+                "Kellis", 
+                "Konieczka", 
+                "Wapinski", 
+                "Regev"
+            ], 
+            "id": "01114", 
+            "title": "Correction: Evolutionary principles of modular gene regulation in yeasts"
+        }, 
+        "01115": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/01115/elife01115.xml", 
+            "authors": [
+                "S\u00e1nchez Alvarado"
+            ], 
+            "id": "01115", 
+            "title": "On the trail of a tropical disease"
+        }, 
+        "00710": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00710/elife00710.xml", 
+            "authors": [
+                "Shahmoradian", 
+                "Galaz-Montoya", 
+                "Schmid", 
+                "Cong", 
+                "Ma", 
+                "Spiess", 
+                "Frydman", 
+                "Ludtke", 
+                "Chiu"
+            ], 
+            "id": "00710", 
+            "title": "TRiC\u2019s tricks inhibit huntingtin aggregation"
+        }, 
+        "00461": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00461/elife00461.xml", 
+            "authors": [
+                "Bai", 
+                "Fernandez", 
+                "McMullan", 
+                "Scheres"
+            ], 
+            "id": "00461", 
+            "title": "Ribosome structures to near-atomic resolution from thirty thousand cryo-EM particles"
+        }, 
+        "00631": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00631/elife00631.xml", 
+            "authors": [
+                "Gong", 
+                "Suchard", 
+                "Bloom"
+            ], 
+            "id": "00631", 
+            "title": "Stability-mediated epistasis constrains the evolution of an influenza protein"
+        }, 
+        "00467": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00467/elife00467.xml", 
+            "authors": [
+                "Schwartz", 
+                "Rieke"
+            ], 
+            "id": "00467", 
+            "title": "Controlling gain one photon at a time"
+        }, 
+        "00068": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00068/elife00068.xml", 
+            "authors": [
+                "Maston", 
+                "Zhu", 
+                "Chamberlain", 
+                "Lin", 
+                "Fang", 
+                "Green"
+            ], 
+            "id": "00068", 
+            "title": "Non-canonical TAF complexes regulate active promoters in human embryonic stem cells"
+        }, 
+        "00903": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00903/elife00903.xml", 
+            "authors": [
+                "Pfeffer"
+            ], 
+            "id": "00903", 
+            "title": "Hopping rim to rim through the Golgi"
+        }, 
+        "00828": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00828/elife00828.xml", 
+            "authors": [
+                "Kamadurai", 
+                "Qiu", 
+                "Deng", 
+                "Harrison", 
+                "MacDonald", 
+                "Actis", 
+                "Rodrigues", 
+                "Miller", 
+                "Souphron", 
+                "Lewis", 
+                "Kurinov", 
+                "Fujii", 
+                "Hammel", 
+                "Piper", 
+                "Kuhlman", 
+                "Schulman"
+            ], 
+            "id": "00828", 
+            "title": "Mechanism of ubiquitin ligation and lysine prioritization by a HECT E3"
+        }, 
+        "01029": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/01029/elife01029.xml", 
+            "authors": [
+                "Wang", 
+                "Javitch"
+            ], 
+            "id": "01029", 
+            "title": "Getting to grips with ammonium"
+        }, 
+        "00109": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00109/elife00109.xml", 
+            "authors": [
+                "Diao", 
+                "Grob", 
+                "Cipriano", 
+                "Kyoung", 
+                "Zhang", 
+                "Shah", 
+                "Nguyen", 
+                "Padolina", 
+                "Srivastava", 
+                "Vrljic", 
+                "Shah", 
+                "Nogales", 
+                "Chu", 
+                "Brunger"
+            ], 
+            "id": "00109", 
+            "title": "Synaptic proteins promote calcium-triggered fast transition from point contact to full fusion"
+        }, 
+        "01214": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/01214/elife01214.xml", 
+            "authors": [
+                "Nishino", 
+                "Choy", 
+                "Gushwa", 
+                "Oses-Prieto", 
+                "Koupparis", 
+                "Burlingame", 
+                "Renslo", 
+                "McKerrow", 
+                "Taunton"
+            ], 
+            "id": "01214", 
+            "title": "Correction: Hypothemycin, a fungal natural product, identifies therapeutic targets in Trypanosoma brucei"
+        }, 
+        "00802": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00802/elife00802.xml", 
+            "authors": [
+                "Miao", 
+                "Miner", 
+                "Zhang", 
+                "Hanson", 
+                "Dani", 
+                "Vig"
+            ], 
+            "id": "00802", 
+            "title": "An essential and NSF independent role for \u03b1-SNAP in store-operated calcium entry"
+        }, 
+        "00105": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00105/elife00105.xml", 
+            "authors": [
+                "Orange", 
+                "Blachere", 
+                "Fak", 
+                "Parveen", 
+                "Frank", 
+                "Herre", 
+                "Tian", 
+                "Monette", 
+                "Darnell"
+            ], 
+            "id": "00105", 
+            "title": "Dendritic cells loaded with FK506 kill T cells in an antigen-specific manner and prevent autoimmunity in vivo"
+        }, 
+        "00269": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00269/elife00269.xml", 
+            "authors": [
+                "Yu", 
+                "Cao", 
+                "Zhou", 
+                "Zhang", 
+                "Lian", 
+                "Sun", 
+                "Wu", 
+                "Huang", 
+                "Wang", 
+                "Wang"
+            ], 
+            "id": "00269", 
+            "title": "Sugar is an endogenous cue for juvenile-to-adult phase transition in plants"
+        }, 
+        "00102": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00102/elife00102.xml", 
+            "authors": [
+                "Li", 
+                "Chen"
+            ], 
+            "id": "00102", 
+            "title": "Sequence specific detection of bacterial 23S ribosomal RNA by TLR13"
+        }, 
+        "00782": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00782/elife00782.xml", 
+            "authors": [
+                "Nagy", 
+                "Wright", 
+                "Tramm", 
+                "Labello", 
+                "Burov", 
+                "Biron"
+            ], 
+            "id": "00782", 
+            "title": "A longitudinal study of Caenorhabditis elegans larvae reveals a novel locomotion switch, regulated by G\u03b1s signaling"
+        }, 
+        "00780": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00780/elife00780.xml", 
+            "authors": [
+                "Younis", 
+                "Dittmar", 
+                "Wang", 
+                "Foley", 
+                "Berg", 
+                "Hu", 
+                "Wei", 
+                "Wan", 
+                "Dreyfuss"
+            ], 
+            "id": "00780", 
+            "title": "Minor introns are embedded molecular switches regulated by highly unstable U6atac snRNA"
+        }, 
+        "00785": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00785/elife00785.xml", 
+            "authors": [
+                "Liu", 
+                "Chen", 
+                "Cai", 
+                "Wu", 
+                "Chen", 
+                "Wu", 
+                "Sun", 
+                "Chen"
+            ], 
+            "id": "00785", 
+            "title": "MAVS recruits multiple ubiquitin E3 ligases to activate antiviral signaling cascades"
+        }, 
+        "00473": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00473/elife00473.xml", 
+            "authors": [
+                "Hsu", 
+                "Devisetty", 
+                "Harmer"
+            ], 
+            "id": "00473", 
+            "title": "Accurate timekeeping is controlled by a cycling activator in Arabidopsis"
+        }, 
+        "00947": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00947/elife00947.xml", 
+            "authors": [
+                "Ge", 
+                "Melville", 
+                "Zhang", 
+                "Schekman"
+            ], 
+            "id": "00947", 
+            "title": "The ER\u2013Golgi intermediate compartment is a key membrane source for the LC3 lipidation step of autophagosome biogenesis"
+        }, 
+        "01042": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/01042/elife01042.xml", 
+            "authors": [
+                "Derbyshire", 
+                "Clardy"
+            ], 
+            "id": "01042", 
+            "title": "Closing in on a new treatment for sleeping sickness"
+        }, 
+        "00475": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00475/elife00475.xml", 
+            "authors": [
+                "Gould", 
+                "Bewersdorf"
+            ], 
+            "id": "00475", 
+            "title": "Nanoscopy at low light intensities shows its potential"
+        }, 
+        "00476": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00476/elife00476.xml", 
+            "authors": [
+                "Calarco"
+            ], 
+            "id": "00476", 
+            "title": "\u2018Cryptic\u2019 exons reveal some of their secrets"
+        }, 
+        "00477": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00477/elife00477.xml", 
+            "authors": [
+                "Marder"
+            ], 
+            "id": "00477", 
+            "title": "Crossing oceans"
+        }, 
+        "00471": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00471/elife00471.xml", 
+            "authors": [
+                "Jinek", 
+                "East", 
+                "Cheng", 
+                "Lin", 
+                "Ma", 
+                "Doudna"
+            ], 
+            "id": "00471", 
+            "title": "RNA-programmed genome editing in human cells"
+        }, 
+        "00378": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00378/elife00378.xml", 
+            "authors": [
+                "Li", 
+                "Collins", 
+                "Koelle", 
+                "Shen"
+            ], 
+            "id": "00378", 
+            "title": "LIN-12/Notch signaling instructs postsynaptic muscle arm development by regulating UNC-40/DCC and MADD-2 in Caenorhabditis elegans"
+        }, 
+        "00768": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00768/elife00768.xml", 
+            "authors": [
+                "Wang", 
+                "Collins", 
+                "Newmark"
+            ], 
+            "id": "00768", 
+            "title": "Functional genomic characterization of neoblast-like stem cells in larval Schistosoma mansoni"
+        }, 
+        "01294": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/01294/elife01294.xml", 
+            "authors": [
+                "MacLean"
+            ], 
+            "id": "01294", 
+            "title": "Changing the rules of the game"
+        }, 
+        "00825": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00825/elife00825.xml", 
+            "authors": [
+                "Heinrichs", 
+                "Conover", 
+                "Bueso-Ramos", 
+                "Kilpivaara", 
+                "Stevenson", 
+                "Neuberg", 
+                "Loh", 
+                "Wu", 
+                "Rodig", 
+                "Garcia-Manero", 
+                "Kantarjian", 
+                "Look"
+            ], 
+            "id": "00825", 
+            "title": "MYBL2 is a sub-haploinsufficient tumor suppressor gene in myeloid malignancy"
+        }, 
+        "00824": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00824/elife00824.xml", 
+            "authors": [
+                "Tucker", 
+                "Mullins", 
+                "Streb", 
+                "Anfinson", 
+                "Eyestone", 
+                "Kaalberg", 
+                "Riker", 
+                "Drack", 
+                "Braun", 
+                "Stone"
+            ], 
+            "id": "00824", 
+            "title": "Patient-specific iPSC-derived photoreceptor precursor cells as a means to investigate retinitis pigmentosa"
+        }, 
+        "00070": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00070/elife00070.xml", 
+            "authors": [
+                "Santoro", 
+                "Dulac"
+            ], 
+            "id": "00070", 
+            "title": "The activity-dependent histone variant H2BE modulates the life span of olfactory neurons"
+        }, 
+        "00243": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00243/elife00243.xml", 
+            "authors": [
+                "Cross", 
+                "Ron"
+            ], 
+            "id": "00243", 
+            "title": "New twists in the unfolded protein response"
+        }, 
+        "00708": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00708/elife00708.xml", 
+            "authors": [
+                "Arkhipov", 
+                "Shan", 
+                "Kim", 
+                "Dror", 
+                "Shaw"
+            ], 
+            "id": "00708", 
+            "title": "Her2 activation mechanism reflects evolutionary preservation of asymmetric ectodomain dimers in the human EGFR family"
+        }, 
+        "00626": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00626/elife00626.xml", 
+            "authors": [
+                "Churcher", 
+                "Bousema", 
+                "Walker", 
+                "Drakeley", 
+                "Schneider", 
+                "Ou\u00e9draogo", 
+                "Bas\u00e1\u00f1ez"
+            ], 
+            "id": "00626", 
+            "title": "Predicting mosquito infection from Plasmodium falciparum gametocyte density and estimating the reservoir of infection"
+        }, 
+        "00943": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00943/elife00943.xml", 
+            "authors": [
+                "Tanenbaum", 
+                "Vale", 
+                "McKenney"
+            ], 
+            "id": "00943", 
+            "title": "Cytoplasmic dynein crosslinks and slides anti-parallel microtubules using its two motor domains"
+        }, 
+        "00488": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00488/elife00488.xml", 
+            "authors": [
+                "Ragunathan", 
+                "Liu", 
+                "Ha"
+            ], 
+            "id": "00488", 
+            "title": "Correction: RecA filament sliding on DNA facilitates homology search"
+        }, 
+        "00078": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00078/elife00078.xml", 
+            "authors": [
+                "Ammar", 
+                "Torti", 
+                "Tsui", 
+                "Gebbia", 
+                "Durbic", 
+                "Bader", 
+                "Giaever", 
+                "Nislow"
+            ], 
+            "id": "00078", 
+            "title": "Chromatin is an ancient innovation conserved between Archaea and Eukarya"
+        }, 
+        "00577": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00577/elife00577.xml", 
+            "authors": [
+                "Hill", 
+                "Sundquist"
+            ], 
+            "id": "00577", 
+            "title": "Building a super elongation complex for HIV"
+        }, 
+        "00958": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00958/elife00958.xml", 
+            "authors": [
+                "Brady"
+            ], 
+            "id": "00958", 
+            "title": "When the time is ripe"
+        }, 
+        "00571": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00571/elife00571.xml", 
+            "authors": [
+                "Needleman"
+            ], 
+            "id": "00571", 
+            "title": "Developing cell biology"
+        },
 
-    "library": {
-      "type": "library",
-      "name": "Lens development resources",
-      "collections": ["lens", "elife", "landes", "plos", "mydocs"]
+        "mydocs": {
+          "id": "mydocs",
+          "name": "My Docs (Local)",
+          "type": "collection",
+          "records": []
+        },
+
+        "lens": {
+          "id": "lens",
+          "name": "Lens Documentation",
+          "type": "collection",
+          "records": ["manual", "lorem_ipsum", "lens_article"]
+        },
+
+
+        "landes": {
+          "id": "landes",
+          "name": "Landes Bioscience",
+          "type": "collection",
+          "records": ["2013CC4897R", "2011CIB0223", "2012INTRAVITAL024R"]
+        },
+
+        "elife": {
+            "records": [
+                "00003", 
+                "00005", 
+                "00007", 
+                "00011", 
+                "00012", 
+                "00013", 
+                "00031", 
+                "00036", 
+                "00047", 
+                "00048", 
+                "00049", 
+                "00051", 
+                "00065", 
+                "00067", 
+                "00068", 
+                "00070", 
+                "00078", 
+                "00090", 
+                "00093", 
+                "00102", 
+                "00105", 
+                "00109", 
+                "00116", 
+                "00117", 
+                "00133", 
+                "00160", 
+                "00170", 
+                "00171", 
+                "00173", 
+                "00178", 
+                "00181", 
+                "00183", 
+                "00184", 
+                "00190", 
+                "00205", 
+                "00218", 
+                "00220", 
+                "00230", 
+                "00231", 
+                "00240", 
+                "00242", 
+                "00243", 
+                "00248", 
+                "00260", 
+                "00269", 
+                "00270", 
+                "00278", 
+                "00281", 
+                "00286", 
+                "00288", 
+                "00290", 
+                "00291", 
+                "00299", 
+                "00301", 
+                "00302", 
+                "00306", 
+                "00308", 
+                "00311", 
+                "00312", 
+                "00321", 
+                "00324", 
+                "00326", 
+                "00327", 
+                "00329", 
+                "00333", 
+                "00334", 
+                "00336", 
+                "00337", 
+                "00340", 
+                "00347", 
+                "00348", 
+                "00351", 
+                "00352", 
+                "00353", 
+                "00354", 
+                "00358", 
+                "00362", 
+                "00365", 
+                "00367", 
+                "00378", 
+                "00380", 
+                "00385", 
+                "00386", 
+                "00387", 
+                "00400", 
+                "00411", 
+                "00415", 
+                "00421", 
+                "00422", 
+                "00425", 
+                "00426", 
+                "00429", 
+                "00435", 
+                "00444", 
+                "00450", 
+                "00452", 
+                "00458", 
+                "00459", 
+                "00461", 
+                "00467", 
+                "00471", 
+                "00473", 
+                "00475", 
+                "00476", 
+                "00477", 
+                "00481", 
+                "00482", 
+                "00488", 
+                "00491", 
+                "00498", 
+                "00499", 
+                "00505", 
+                "00515", 
+                "00518", 
+                "00522", 
+                "00523", 
+                "00534", 
+                "00537", 
+                "00542", 
+                "00558", 
+                "00563", 
+                "00565", 
+                "00569", 
+                "00571", 
+                "00572", 
+                "00573", 
+                "00577", 
+                "00592", 
+                "00593", 
+                "00594", 
+                "00603", 
+                "00605", 
+                "00615", 
+                "00625", 
+                "00626", 
+                "00631", 
+                "00632", 
+                "00633", 
+                "00638", 
+                "00639", 
+                "00640", 
+                "00641", 
+                "00642", 
+                "00646", 
+                "00647", 
+                "00648", 
+                "00654", 
+                "00655", 
+                "00658", 
+                "00659", 
+                "00663", 
+                "00666", 
+                "00668", 
+                "00669", 
+                "00675", 
+                "00676", 
+                "00691", 
+                "00692", 
+                "00699", 
+                "00704", 
+                "00708", 
+                "00710", 
+                "00712", 
+                "00723", 
+                "00726", 
+                "00729", 
+                "00731", 
+                "00736", 
+                "00744", 
+                "00745", 
+                "00747", 
+                "00757", 
+                "00759", 
+                "00762", 
+                "00767", 
+                "00768", 
+                "00772", 
+                "00778", 
+                "00780", 
+                "00782", 
+                "00785", 
+                "00790", 
+                "00791", 
+                "00792", 
+                "00799", 
+                "00800", 
+                "00801", 
+                "00802", 
+                "00804", 
+                "00808", 
+                "00813", 
+                "00824", 
+                "00825", 
+                "00828", 
+                "00842", 
+                "00845", 
+                "00855", 
+                "00856", 
+                "00857", 
+                "00861", 
+                "00863", 
+                "00866", 
+                "00868", 
+                "00873", 
+                "00884", 
+                "00886", 
+                "00895", 
+                "00899", 
+                "00903", 
+                "00914", 
+                "00933", 
+                "00943", 
+                "00947", 
+                "00948", 
+                "00953", 
+                "00954", 
+                "00958", 
+                "00963", 
+                "00967", 
+                "00992", 
+                "01008", 
+                "01029", 
+                "01042", 
+                "01045", 
+                "01061", 
+                "01084", 
+                "01089", 
+                "01108", 
+                "01114", 
+                "01115", 
+                "01127", 
+                "01135", 
+                "01136", 
+                "01138", 
+                "01140", 
+                "01159", 
+                "01214", 
+                "01221", 
+                "01233", 
+                "01234", 
+                "01252", 
+                "01270", 
+                "01291", 
+                "01294", 
+                "01328", 
+                "01387"
+            ], 
+            "type": "collection", 
+            "id": "elife", 
+            "name": "eLife"
+        }, 
+        "00573": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00573/elife00573.xml", 
+            "authors": [
+                "Grigorieff"
+            ], 
+            "id": "00573", 
+            "title": "Direct detection pays off for electron cryo-microscopy"
+        }, 
+        "00572": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00572/elife00572.xml", 
+            "authors": [
+                "Hayashi", 
+                "Iwasaki"
+            ], 
+            "id": "00572", 
+            "title": "Different routes to the same destination"
+        }, 
+        "00178": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00178/elife00178.xml", 
+            "authors": [
+                "Eom", 
+                "Zhang", 
+                "Wang", 
+                "Lay", 
+                "Fak", 
+                "Noebels", 
+                "Darnell"
+            ], 
+            "id": "00178", 
+            "title": "NOVA-dependent regulation of cryptic NMD exons controls synaptic protein levels after seizure"
+        }, 
+        "00992": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00992/elife00992.xml", 
+            "authors": [
+                "Allmann", 
+                "Sp\u00e4the", 
+                "Bisch-Knaden", 
+                "Kallenbach", 
+                "Reinecke", 
+                "Sachse", 
+                "Baldwin", 
+                "Hansson"
+            ], 
+            "id": "00992", 
+            "title": "Correction: Feeding-induced rearrangement of green leaf volatiles reduces moth oviposition"
+        }, 
+        "00270": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00270/elife00270.xml", 
+            "authors": [
+                "Schekman", 
+                "Patterson", 
+                "Watt", 
+                "Weigel"
+            ], 
+            "id": "00270", 
+            "title": "Launching eLife, Part 1"
+        }, 
+        "00171": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00171/elife00171.xml", 
+            "authors": [
+                "Aoki", 
+                "Sarkeshik", 
+                "Yates", 
+                "Schedl"
+            ], 
+            "id": "00171", 
+            "title": "Elba, a novel developmentally regulated chromatin boundary factor is a hetero-tripartite DNA binding complex"
+        }, 
+        "00170": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00170/elife00170.xml", 
+            "authors": [
+                "Zhou", 
+                "Kaplan", 
+                "Li", 
+                "Grubisic", 
+                "Zhang", 
+                "Wang", 
+                "Eisen", 
+                "Tjian"
+            ], 
+            "id": "00170", 
+            "title": "Dual functions of TAF7L in adipocyte differentiation"
+        }, 
+        "00173": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00173/elife00173.xml", 
+            "authors": [
+                "Moin", 
+                "Urban"
+            ], 
+            "id": "00173", 
+            "title": "Membrane immersion allows rhomboid proteases to achieve specificity by reading transmembrane segment dynamics"
+        }, 
+        "01089": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/01089/elife01089.xml", 
+            "authors": [
+                "Tiller", 
+                "Tessier"
+            ], 
+            "id": "01089", 
+            "title": "Lifting the veil on amyloid drug design"
+        }, 
+        "00278": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00278/elife00278.xml", 
+            "authors": [
+                "Hedglin", 
+                "Perumal", 
+                "Hu", 
+                "Benkovic"
+            ], 
+            "id": "00278", 
+            "title": "Stepwise assembly of the human replicative polymerase holoenzyme"
+        }, 
+        "00625": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00625/elife00625.xml", 
+            "authors": [
+                "Proveniers"
+            ], 
+            "id": "00625", 
+            "title": "Sugars speed up the circle of life"
+        }, 
+        "00747": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00747/elife00747.xml", 
+            "authors": [
+                "Bozic", 
+                "Reiter", 
+                "Allen", 
+                "Antal", 
+                "Chatterjee", 
+                "Shah", 
+                "Moon", 
+                "Yaqubie", 
+                "Kelly", 
+                "Le", 
+                "Lipson", 
+                "Chapman", 
+                "Diaz", 
+                "Vogelstein", 
+                "Nowak"
+            ], 
+            "id": "00747", 
+            "title": "Evolutionary dynamics of cancer in response to targeted combination therapy"
+        }, 
+        "00400": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00400/elife00400.xml", 
+            "authors": [
+                "Huang", 
+                "Sugino", 
+                "Shima", 
+                "Guo", 
+                "Bai", 
+                "Mensh", 
+                "Nelson", 
+                "Hantman"
+            ], 
+            "id": "00400", 
+            "title": "Convergence of pontine and proprioceptive streams onto multimodal cerebellar granule cells"
+        }, 
+        "00731": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00731/elife00731.xml", 
+            "authors": [
+                "Yoshida", 
+                "Schuenemann", 
+                "Cano", 
+                "Pais", 
+                "Mishra", 
+                "Sharma", 
+                "Lanz", 
+                "Martin", 
+                "Kamoun", 
+                "Krause", 
+                "Thines", 
+                "Weigel", 
+                "Burbano"
+            ], 
+            "id": "00731", 
+            "title": "The rise and fall of the Phytophthora infestans lineage that triggered the Irish potato famine"
+        }, 
+        "00362": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00362/elife00362.xml", 
+            "authors": [
+                "Kirby", 
+                "Muroy", 
+                "Sun", 
+                "Covarrubias", 
+                "Leong", 
+                "Barchas", 
+                "Kaufer"
+            ], 
+            "id": "00362", 
+            "title": "Acute stress enhances adult rat hippocampal neurogenesis and activation of newborn neurons via secreted astrocytic FGF2"
+        }, 
+        "00365": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00365/elife00365.xml", 
+            "authors": [
+                "Schekman", 
+                "Watt", 
+                "Weigel"
+            ], 
+            "id": "00365", 
+            "title": "Launching eLife, Part 2"
+        }, 
+        "00933": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00933/elife00933.xml", 
+            "authors": [
+                "Ragan"
+            ], 
+            "id": "00933", 
+            "title": "Yeast rises to the occasion"
+        }, 
+        "00367": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00367/elife00367.xml", 
+            "authors": [
+                "Koschwanez", 
+                "Foster", 
+                "Murray"
+            ], 
+            "id": "00367", 
+            "title": "Improved use of a public good selects for the evolution of undifferentiated multicellularity"
+        }, 
+        "00482": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00482/elife00482.xml", 
+            "authors": [
+                "Perera", 
+                "Torella", 
+                "Klinge", 
+                "Kilkenny", 
+                "Maman", 
+                "Pellegrini"
+            ], 
+            "id": "00482", 
+            "title": "Mechanism for priming DNA synthesis by yeast DNA Polymerase \u03b1"
+        }, 
+        "00632": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00632/elife00632.xml", 
+            "authors": [
+                "Perlmutter", 
+                "Qiao", 
+                "Hagan"
+            ], 
+            "id": "00632", 
+            "title": "Viral genome structures are optimal for capsid assembly"
+        }, 
+        "00633": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00633/elife00633.xml", 
+            "authors": [
+                "Kerenyi", 
+                "Shao", 
+                "Hsu", 
+                "Guo", 
+                "Luc", 
+                "O'Brien", 
+                "Fujiwara", 
+                "Peng", 
+                "Nguyen", 
+                "Orkin"
+            ], 
+            "id": "00633", 
+            "title": "Histone demethylase Lsd1 represses hematopoietic stem and progenitor cell signatures during blood cell maturation"
+        }, 
+        "01234": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/01234/elife01234.xml", 
+            "authors": [
+                "Herman", 
+                "Rosenmund"
+            ], 
+            "id": "01234", 
+            "title": "Endocytosis gets in tune with action potential bursts"
+        }, 
+        "00569": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00569/elife00569.xml", 
+            "authors": [
+                "Voskoboynik", 
+                "Neff", 
+                "Sahoo", 
+                "Newman", 
+                "Pushkarev", 
+                "Koh", 
+                "Passarelli", 
+                "Fan", 
+                "Mantalas", 
+                "Palmeri", 
+                "Ishizuka", 
+                "Gissi", 
+                "Griggio", 
+                "Ben-Shlomo", 
+                "Corey", 
+                "Penland", 
+                "White", 
+                "Weissman", 
+                "Quake"
+            ], 
+            "id": "00569", 
+            "title": "The genome sequence of the colonial chordate, Botryllus schlosseri"
+        }, 
+        "00565": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00565/elife00565.xml", 
+            "authors": [], 
+            "id": "00565", 
+            "title": "Correction: Quantification of gait parameters in freely walking wild type and sensory deprived Drosophila melanogaster"
+        }, 
+        "00563": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00563/elife00563.xml", 
+            "authors": [
+                "Segal"
+            ], 
+            "id": "00563", 
+            "title": "Bacteria herald a new era of gene editing"
+        }, 
+        "00638": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00638/elife00638.xml", 
+            "authors": [
+                "Huang", 
+                "Rattner", 
+                "Liu", 
+                "Nathans"
+            ], 
+            "id": "00638", 
+            "title": "How to draw the line in biomedical research"
+        }, 
+        "00639": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00639/elife00639.xml", 
+            "authors": [
+                "Bishai"
+            ], 
+            "id": "00639", 
+            "title": "Basic research at the epicenter of an epidemic"
+        }, 
+        "00005": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00005/elife00005.xml", 
+            "authors": [
+                "Ciferri", 
+                "Lander", 
+                "Maiolica", 
+                "Herzog", 
+                "Aebersold", 
+                "Nogales"
+            ], 
+            "id": "00005", 
+            "title": "Molecular architecture of human polycomb repressive complex 2"
+        }, 
+        "00242": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00242/elife00242.xml", 
+            "authors": [
+                "Hadfield"
+            ], 
+            "id": "00242", 
+            "title": "Molecular clue links bacteria to the origin of animals"
+        }, 
+        "00007": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00007/elife00007.xml", 
+            "authors": [
+                "Schuman", 
+                "Barthel", 
+                "Baldwin"
+            ], 
+            "id": "00007", 
+            "title": "Herbivory-induced volatiles function as defenses increasing fitness of the native plant Nicotiana attenuata in nature"
+        }, 
+        "00240": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00240/elife00240.xml", 
+            "authors": [
+                "Pickett"
+            ], 
+            "id": "00240", 
+            "title": "Indirect routes to reproductive success"
+        }, 
+        "00003": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00003/elife00003.xml", 
+            "authors": [
+                "Anand", 
+                "Cermelli", 
+                "Li", 
+                "Kassan", 
+                "Bosch", 
+                "Sigua", 
+                "Huang", 
+                "Ouellette", 
+                "Pol", 
+                "Welte", 
+                "Gross"
+            ], 
+            "id": "00003", 
+            "title": "A novel role for lipid droplets in the organismal antibacterial response"
+        }, 
+        "00481": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00481/elife00481.xml", 
+            "authors": [
+                "St John", 
+                "Rathore", 
+                "Raghavan", 
+                "Ng", 
+                "Abraham"
+            ], 
+            "id": "00481", 
+            "title": "Contributions of mast cells and vasoactive products, leukotrienes and chymase, to dengue virus-induced vascular leakage"
+        }, 
+        "01270": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/01270/elife01270.xml", 
+            "authors": [
+                "Bouazoune", 
+                "Kingston"
+            ], 
+            "id": "01270", 
+            "title": "Assembly, remodelled"
+        }, 
+        "00160": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00160/elife00160.xml", 
+            "authors": [
+                "Guo", 
+                "Zanetti", 
+                "Schekman"
+            ], 
+            "id": "00160", 
+            "title": "A novel GTP-binding protein\u2013adaptor protein complex responsible for export of Vangl2 from the trans Golgi network"
+        }, 
+        "00248": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00248/elife00248.xml", 
+            "authors": [
+                "Grotjohann", 
+                "Testa", 
+                "Reuss", 
+                "Brakemann", 
+                "Eggeling", 
+                "Hell", 
+                "Jakobs"
+            ], 
+            "id": "00248", 
+            "title": "rsEGFP2 enables fast RESOLFT nanoscopy of living cells"
+        }, 
+        "00181": {
+            "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00181/elife00181.xml", 
+            "authors": [
+                "Wu", 
+                "Williams", 
+                "Nathans"
+            ], 
+            "id": "00181", 
+            "title": "Morphologic diversity of cutaneous sensory afferents revealed by genetically directed sparse labeling"
+        },
+        "2013CC4897R": {
+          "id": "2013CC4897R",
+          "title": "In vivo functional studies of tumor-specific retrogene NanogP8 in transgenic animals",
+          "authors": ["Some", "Authors"],
+          "type": "record",
+          "url": "/data/2013CC4897R.xml"
+        },
+
+        "2011CIB0223": {
+          "id": "2011CIB0223",
+          "title": "Could shame and honor save cooperation?",
+          "authors": ["Preetha Anand", "Silvia Cermelli", "Zhihuan LiAdam Kassan"],
+          "type": "record",
+          "url": "/data/2011CIB0223.xml"
+        },
+
+        "2012INTRAVITAL024R": {
+          "id": "2012INTRAVITAL024R",
+          "title": "Novel in vivo imaging techniques for the liver microvasculature",
+          "authors": ["Mynthia Cabrera", "Ute Frevert"],
+          "type": "record",
+          "url": "/data/2012INTRAVITAL024R.xml"
+        },
+
+        "manual": {
+          "id": "manual",
+          "title": "The Lens Manual - A developers guide for Lens application development",
+          "authors": ["Michael Aufreiter", "Ivan Grubisic", "Rebecca Close"],
+          "type": "record",
+          "url": "/data/manual.json"
+        },
+
+        "lorem_ipsum": {
+          "id": "lorem_ipsum",
+          "title": "Lorem Ipsum - A Lens example article that has all available content types",
+          "authors": ["Michael Aufreiter", "Ivan Grubisic", "Rebecca Close"],
+          "type": "record",
+          "url": "/node_modules/lens-converter/data/lorem_ipsum.xml"
+        },
+
+        "lens_article": {
+          "id": "lens_article",
+          "title": "The Anatomy of a Lens Article",
+          "authors": ["Michael Aufreiter", "Ivan Grubisic", "Rebecca Close"],
+          "type": "record",
+          "url": "/data/lens_article.json"
+        }
     },
-
-    "lens": {
-      "id": "lens",
-      "name": "Lens Documentation",
-      "type": "collection",
-      "records": ["manual", "lorem_ipsum", "lens_article"]
-    },
-
-    "elife": {
-      "id": "elife",
-      "name": "eLife Examples",
-      "type": "collection",
-      "records": ["00778", "00768", "00003", "00005", "00311", "00049", "00299"]
-    },
-
-    "landes": {
-      "id": "landes",
-      "name": "Landes Bioscience Examples",
-      "type": "collection",
-      "records": ["2013CC4897R", "2011CIB0223", "2012INTRAVITAL024R"]
-    },
-
-    "plos": {
-      "id": "plos",
-      "name": "PLOS",
-      "type": "collection",
-      "records": ["pcbi_1003174", "pone_0072727"]
-    },
-
-    "mydocs": {
-      "id": "mydocs",
-      "name": "My Docs (Local)",
-      "type": "collection",
-      "records": []
-    },
-
-    "manual": {
-      "id": "manual",
-      "title": "The Lens Manual - A developers guide for Lens application development",
-      "authors": ["Michael Aufreiter", "Ivan Grubisic", "Rebecca Close"],
-      "type": "record",
-      "url": "/data/manual.json"
-    },
-
-    "pcbi_1003174": {
-      "id": "pcbi_1003174",
-      "title": "Conditional Cooperativity of Toxin - Antitoxin Regulation Can Mediate Bistability between Growth and Dormancy",
-      "authors": ["Ilaria CataudellaKim SneppenKenn GerdesNamiko Mitarai"],
-      "url": "/data/plos/journal.pcbi.1003174.xml"
-    },
-
-    "pone_0072727": {
-      "id": "pone_0072727",
-      "title": "What Are You or Who Are You? The Emergence of Social Interaction between Dog and an Unidentified Moving Object (UMO)",
-      "authors": ["Anna GergelyEszter PetróJózsef TopálÁdám Miklósi"],
-      "url": "/data/plos/journal.pone.0072727.xml"
-    },
-
-    "lorem_ipsum": {
-      "id": "lorem_ipsum",
-      "title": "Lorem Ipsum - A Lens example article that has all available content types",
-      "authors": ["Michael Aufreiter", "Ivan Grubisic", "Rebecca Close"],
-      "type": "record",
-      "url": "/node_modules/lens-converter/data/lorem_ipsum.xml"
-    },
-
-    "lens_article": {
-      "id": "lens_article",
-      "title": "The Anatomy of a Lens Article",
-      "authors": ["Michael Aufreiter", "Ivan Grubisic", "Rebecca Close"],
-      "type": "record",
-      "url": "/data/lens_article.json"
-    },
-
-    "00768": {
-      "id": "00768",
-      "title": "Functional genomic characterization of neoblast-like stem cells in larval Schistosoma mansoni",
-      "authors": ["Bo Wang", "James J Collins", "Phillip A Newmark"],
-      "type": "record",
-      "url": "/data/00768.xml"
-    },
-
-    "00778": {
-      "id": "00778",
-      "title": "Direct single molecule measurement of TCR triggering by agonist pMHC in living primary T cells",
-      "authors": ["Geoff P O'DonoghueRafal M PielakAlexander A SmoligovetsJenny J LinJay T Groves"],
-      "type": "record",
-      "url": "/data/00778.xml"
-    },
-
-    "00003": {
-      "id": "00003",
-      "title": "A novel role for lipid droplets in the organismal antibacterial response",
-      "authors": ["Preetha Anand", "Silvia Cermelli", "Zhihuan LiAdam Kassan"],
-      "type": "record",
-      "url": "/data/00003.xml"
-    },
-
-    "00005": {
-      "id": "00005",
-      "title": "Molecular architecture of human polycomb repressive complex 2",
-      "authors": ["Claudio Ciferri", "Gabriel C Lander", "Alessio Maiolica"],
-      "type": "record",
-      "url": "/data/00005.xml"
-    },
-
-    "00311": {
-      "id": "00311",
-      "title": "Modelling dynamics in protein crystal structures by ensemble refinement",
-      "authors": ["B Tom Burnley", "Pavel V Afonine", "Paul D Adams", "Piet Gros"],
-      "type": "record",
-      "url": "/data/00311.xml"
-    },
-
-    "00049": {
-      "id": "00049",
-      "title": "Sodium taurocholate cotransporting polypeptide is a functional receptor for human hepatitis B and D virus",
-      "authors": ["Some", "Authors"],
-      "type": "record",
-      "url": "/data/00049.xml"
-    },
-
-    "00299": {
-      "id": "00299",
-      "title": "Integrative genomic analysis of the human immune response to influenza vaccination",
-      "authors": ["Luis M Franco", "Kristine L Bucasas", "Janet M Wells", "Diane Niño", "Xueqing Wang", "Gladys E Zapata",
-        "Nancy Arden", "Alexander Renwick", "Peng Yu", "John M Quarles", "Molly S Bray", "Robert B Couch", "John W Belmont", "Chad A Shaw"],
-      "type": "record",
-      "url": "/data/elife00299.xml"
-    },    
-
-    "2013CC4897R": {
-      "id": "2013CC4897R",
-      "title": "In vivo functional studies of tumor-specific retrogene NanogP8 in transgenic animals",
-      "authors": ["Some", "Authors"],
-      "type": "record",
-      "url": "/data/2013CC4897R.xml"
-    },
-
-    "2011CIB0223": {
-      "id": "2011CIB0223",
-      "title": "Could shame and honor save cooperation?",
-      "authors": ["Preetha Anand", "Silvia Cermelli", "Zhihuan LiAdam Kassan"],
-      "type": "record",
-      "url": "/data/2011CIB0223.xml"
-    },
-
-    "2012INTRAVITAL024R": {
-      "id": "2012INTRAVITAL024R",
-      "title": "Novel in vivo imaging techniques for the liver microvasculature",
-      "authors": ["Mynthia Cabrera", "Ute Frevert"],
-      "type": "record",
-      "url": "/data/2012INTRAVITAL024R.xml"
-    }
-  }
+    "id": "lens_library", 
+    "schema": [
+        "substance-library", 
+        "0.1.0"
+    ]
 }
