@@ -765,8 +765,8 @@
         }, 
         "library": {
             "collections": [
-                "examples",
                 "elife",
+                "examples",
                 "landes",
                 "lens",
                 "mydocs"
