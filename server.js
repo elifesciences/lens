@@ -85,6 +85,8 @@ var converter = new ConverterServer(app);
 converter.serve();
 
 
+
+
 // Serves auto-generated doc, that describes the Lens.Article specification
 // --------
 //
@@ -96,7 +98,9 @@ app.get('/data/lens_article.json', function(req, res) {
 // Adds some stuff like cover nodes to the converted docs based on some internal assumptions
 // --------
 
-function enhanceDoc(doc) {
+function lensify(doc) {
+  // Hotpatch schema
+  doc.schema = ["lens-article", "0.1.0"];
   var docNode = doc.nodes.document;
   docNode.title = docNode.guid;
   docNode.authors = ["michael", "ivan", "rebecca"];
@@ -156,7 +160,7 @@ app.get('/data/:doc.json', function(req, res) {
       output.nodes.document.guid = docId;
 
       if (err) return res.send(500, err);
-      enhanceDoc(output);
+      lensify(output);
       res.send(output);
     });
   } catch (err) {
