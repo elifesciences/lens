@@ -62,6 +62,25 @@ LensView.Prototype = function() {
     } else {
       console.log("Unknown application state: " + newState);
     }
+
+    this.updateMenu();
+  };
+
+  this.updateMenu = function() {
+    console.log('updating menu', window.location.hash);
+    var hash = window.location.hash;
+
+    this.$('.toggle-view').removeClass('active');
+    if (hash.match(/#examples/)) {
+      this.$('.toggle-view.examples').addClass('active')
+      console.log(this.$('.toggle-view.examples')[0]);
+    } else if (hash.match(/lens-article/)) {
+      this.$('.toggle-view.lens-article').addClass('active');
+    } else if (hash.match(/manual/)) {
+      this.$('.toggle-view.manual').addClass('active');
+    } else {
+      this.$('.toggle-view.about').addClass('active');
+    }
   };
 
   this.convertDocument = function() {

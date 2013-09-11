@@ -225,7 +225,6 @@ a.testsuite {
 }
 
 #menu .views {
-  /*background: blue;*/
   text-align: right;
 }
 
@@ -237,6 +236,11 @@ a.testsuite {
   font-family: 'Avenir LT W01 85 Heavy', 'Montserrat', 'Source Sans Pro';
   font-size: 14px;
   /*text-align: center;*/
+}
+
+
+#menu .views a.toggle-view.active {
+  color: rgba(0,0,0, 1);
 }
 
 #menu .views a.toggle-view:hover {
@@ -279,11 +283,17 @@ a.testsuite {
 }
 
 #container .library .collection {
+  padding-top: 30px;
   left: 0px;
-  width: 815px;
+  width: 1000px;
   overflow: auto;
+  background: inherit;
 }
 
+#container .library .collection .document {
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
 
 /* main
    --------------------------------------- */

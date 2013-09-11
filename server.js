@@ -105,6 +105,8 @@ function enhanceDoc(doc) {
 
   if (docNode.title === "manual") {
     docNode.title = "The Lens Manual - A developers guide for Lens application development";
+  } else if (docNode.title === "about") {
+    docNode.title = "eLife Lens: A novel way of seeing content";
   } else if (docNode.title === "lens_article") {
     docNode.title = "The anatomy of a Lens Article";
   }
@@ -112,8 +114,10 @@ function enhanceDoc(doc) {
   _.extend(doc.nodes, {
     "cover": {
       "id": "cover",
+      "authors": [],
       "type": "cover"
     },
+
     "michael": {
       "id": "michael",
       "type": "person",

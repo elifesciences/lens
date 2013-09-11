@@ -765,6 +765,7 @@
         }, 
         "library": {
             "collections": [
+                "examples",
                 "elife",
                 "landes",
                 "lens",
@@ -2638,7 +2639,14 @@
           "id": "lens",
           "name": "Lens Documentation",
           "type": "collection",
-          "records": ["manual", "lorem_ipsum", "lens_article"]
+          "records": ["about", "manual", "lorem_ipsum", "lens_article"]
+        },
+
+        "examples": {
+          "id": "examples",
+          "name": "Examples",
+          "type": "collection",
+          "records": ["00768", "2013CC4897R", "2011CIB0223", "2012INTRAVITAL024R"]
         },
 
 
@@ -3371,6 +3379,14 @@
           "authors": ["Michael Aufreiter", "Ivan Grubisic", "Rebecca Close"],
           "type": "record",
           "url": "/data/manual.json"
+        },
+
+        "about": {
+          "id": "about",
+          "title": "eLife Lens - A novel way of seeing content",
+          "authors": ["Michael Aufreiter", "Ivan Grubisic", "Rebecca Close"],
+          "type": "record",
+          "url": "/data/about.json"
         },
 
         "lorem_ipsum": {

@@ -145,45 +145,45 @@ LensController.Prototype = function() {
     if (match) {
       var docId = match[1];
 
-      try {
-        var docData = JSON.parse(localStorage.getItem("localdoc"));
-        var doc = Article.fromSnapshot(docData, {
-            chronicle: Chronicle.create()
-          });
-        _onDocumentLoad(null, doc);
-      }catch (e) {
-        console.log(e);
-      }  
+      // try {
+      var docData = JSON.parse(localStorage.getItem("localdoc"));
+      var doc = Article.fromSnapshot(docData, {
+          chronicle: Chronicle.create()
+        });
+      _onDocumentLoad(null, doc);
+      // } catch (e) {
+      //   console.log(e);
+      // }  
 
     } else {
       $.get(record.url)
       .done(function(data) {
           var doc, err;
 
-          try {
-            // Determine type of resource
-            var xml = $.isXMLDoc(data);
+          // try {
+          // Determine type of resource
+          var xml = $.isXMLDoc(data);
 
-            // Process XML file
-            if(xml) {
-              var importer = new Converter.Importer();
-              doc = importer.import(data);
+          // Process XML file
+          if(xml) {
+            var importer = new Converter.Importer();
+            doc = importer.import(data);
 
-              // Hotpatch the doc id, so it conforms to the id specified in the library file
-              doc.id = documentId;
-              console.log('ON THE FLY CONVERTED DOC', doc.toJSON());
+            // Hotpatch the doc id, so it conforms to the id specified in the library file
+            doc.id = documentId;
+            console.log('ON THE FLY CONVERTED DOC', doc.toJSON());
 
-            // Process JSON file
-            }else {
-              if(typeof data == 'string') data = $.parseJSON(data);
-              doc = Article.fromSnapshot(data, {
-                  chronicle: Chronicle.create()
-                });
-            }
-            _onDocumentLoad(err, doc);  
-          }catch (e) {
-            console.log(e);
+          // Process JSON file
+          }else {
+            if(typeof data == 'string') data = $.parseJSON(data);
+            doc = Article.fromSnapshot(data, {
+                chronicle: Chronicle.create()
+              });
           }
+          _onDocumentLoad(err, doc);  
+          // }catch (e) {
+          //   console.log(e);
+          // }
         })
       .fail(function(err) {
         console.error(err);
@@ -203,6 +203,11 @@ LensController.Prototype = function() {
 
     // Ensure the library is loaded
     this.loadLibrary(this.config.library_url, _open.bind(this, state, documentId));
+  };
+
+  this.openAbout = function() {
+    this.openReader("lens", "about", "toc");
+    app.router.navigate('lens/about', false);
   };
 
   this.openLibrary = function(collectionId) {

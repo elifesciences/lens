@@ -40,7 +40,7 @@
   {
     "route": "",
     "name": "library",
-    "command": "openLibrary"
+    "command": "openAbout"
   },
   {
     "route": "tests",
