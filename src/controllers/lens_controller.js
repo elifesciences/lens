@@ -174,11 +174,11 @@ LensController.Prototype = function() {
             console.log('ON THE FLY CONVERTED DOC', doc.toJSON());
 
           // Process JSON file
-          }else {
+          } else {
             if(typeof data == 'string') data = $.parseJSON(data);
             doc = Article.fromSnapshot(data, {
-                chronicle: Chronicle.create()
-              });
+              chronicle: Chronicle.create()
+            });
           }
           _onDocumentLoad(err, doc);  
           // }catch (e) {
@@ -201,6 +201,10 @@ LensController.Prototype = function() {
       collection: collectionId // TODO: get rid of the library dependency here
     };
 
+    if (collectionId === "lens" && documentId === "lens_article") {
+      return this.openLensArticle(state);
+    }
+
     // Ensure the library is loaded
     this.loadLibrary(this.config.library_url, _open.bind(this, state, documentId));
   };
@@ -208,6 +212,17 @@ LensController.Prototype = function() {
   this.openAbout = function() {
     this.openReader("lens", "about", "toc");
     app.router.navigate('lens/about', false);
+  };
+
+  this.openLensArticle = function(state) {
+    console.log('opening lens article');
+
+    var doc = Article.describe();
+    this.reader = new ReaderController(doc, state);
+    this.updateState('reader');
+
+    // _
+    // console.log('MEH', doc);
   };
 
   this.openLibrary = function(collectionId) {

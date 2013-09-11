@@ -67,14 +67,13 @@ LensView.Prototype = function() {
   };
 
   this.updateMenu = function() {
-    console.log('updating menu', window.location.hash);
     var hash = window.location.hash;
 
     this.$('.toggle-view').removeClass('active');
     if (hash.match(/#examples/)) {
       this.$('.toggle-view.examples').addClass('active')
       console.log(this.$('.toggle-view.examples')[0]);
-    } else if (hash.match(/lens-article/)) {
+    } else if (hash.match(/lens_article/)) {
       this.$('.toggle-view.lens-article').addClass('active');
     } else if (hash.match(/manual/)) {
       this.$('.toggle-view.manual').addClass('active');

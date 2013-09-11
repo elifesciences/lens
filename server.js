@@ -85,8 +85,6 @@ var converter = new ConverterServer(app);
 converter.serve();
 
 
-
-
 // Serves auto-generated doc, that describes the Lens.Article specification
 // --------
 //
