@@ -25,13 +25,12 @@ General Layout
 
 #container {
   position: relative;
-  margin: 0 auto;
+  /*margin: 0 auto;*/
   min-width: 800px;
   max-width: 1400px; /* 988px / 16px = 61.75em */
   height: 100%;
-  padding-left: 60px;
+  margin-left: 130px;
 }
-
 
 #container .browser-not-supported {
   text-align: center;
@@ -146,13 +145,11 @@ p:last-child { padding-bottom: 0; }
   -moz-box-sizing: border-box;
 }
 
-
-
 /*
 Layout 
 --------------------------------------- */
 
-a.home {
+/*a.home {
   position: absolute;
   left: 0px;
   top: 20px;
@@ -175,16 +172,15 @@ a.home .go-back {
   font-size: 12px;
   font-family: 'Avenir LT W01 85 Heavy', 'Montserrat', 'Source Sans Pro';
   text-transform: uppercase;
-}
+}*/
 
-a.home:hover .go-back {
+/*a.home:hover .go-back {
   opacity: 1;
 }
 
 a.home:hover {
   opacity: 1;
 }
-
 
 a.testsuite {
   position: absolute;
@@ -198,8 +194,95 @@ a.testsuite {
   text-align: center;
   line-height: 40px;
   opacity: 0.7;
+}*/
+
+
+/* Main Menu Bar
+-------------------------------------------------------------------------------*/
+
+#menu {
+  background: black;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  bottom: 0px;
+  width: 130px;
+  background: #F5F5F5;
+  padding: 20px;
+  /*background: #fff;*/
 }
 
+#menu .site-title {
+  display: none;
+  font-family: 'Avenir LT W01 85 Heavy', 'Montserrat', 'Source Sans Pro';
+  font-size: 22px;
+}
+
+#menu .site-subtitle {
+  display: none;
+  font-size: 12px;
+  color: #888;
+}
+
+#menu .views {
+  /*background: blue;*/
+  text-align: right;
+}
+
+#menu .views a.toggle-view {
+  border: none;
+  display: block;
+  color: rgba(0,0,0, 0.4);
+  line-height: 40px;
+  font-family: 'Avenir LT W01 85 Heavy', 'Montserrat', 'Source Sans Pro';
+  font-size: 14px;
+  /*text-align: center;*/
+}
+
+#menu .views a.toggle-view:hover {
+  color: rgba(0,0,0, 0.8);
+  /*background: rgba(0,0,0, 0.3);*/
+  /*color: #fff;*/
+}
+
+#menu .actions {
+  position: absolute;
+  bottom: 0px;
+  width: 60px;
+}
+
+#menu .actions a.action {
+  border: none;
+  display: block;
+  height: 40px;
+  line-height: 40px;
+  color: rgba(255,255,255, 0.5);
+  /*text-align: center;*/
+}
+
+#menu .actions a.action:hover {
+  background: rgba(0,0,0, 0.3);
+  color: #fff;
+}
+
+#help {
+  padding-top: 50px;
+  text-align: center;
+}
+
+
+/* Library override
+-------------------------------------------------------------------------------*/
+
+#container .library .collection-toggles {
+  display: none;
+}
+
+#container .library .collection {
+  left: 0px;
+  width: 815px;
+  overflow: auto;
+}
 
 
 /* main
