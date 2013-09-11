@@ -167,7 +167,10 @@ LensController.Prototype = function() {
             // Process XML file
             if(xml) {
               var importer = new Converter.Importer();
-              doc = importer.import(data); 
+              doc = importer.import(data);
+
+              // Hotpatch the doc id, so it conforms to the id specified in the library file
+              doc.id = documentId;
               console.log('ON THE FLY CONVERTED DOC', doc.toJSON());
 
             // Process JSON file
@@ -177,16 +180,14 @@ LensController.Prototype = function() {
                   chronicle: Chronicle.create()
                 });
             }
-
             _onDocumentLoad(err, doc);  
           }catch (e) {
             console.log(e);
           }
-
         })
       .fail(function(err) {
-          console.error(err);
-        });                         
+        console.error(err);
+      });
     }
   };
 
