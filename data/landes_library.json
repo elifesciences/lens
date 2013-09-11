@@ -1,5 +1,17 @@
 {
   "nodes": {
+    "library": {
+      "id": "library",
+      "collections": ["landes"],
+      "type": "library",
+      "name": "Landes Bioscience"
+    },
+    "landes": {
+      "id": "landes",
+      "name": "Landes Bioscience",
+      "type": "collection",
+      "records": ["7818", "9040", "12280"]
+    },
     "7818": {
       "url": "https:\/\/www.landesbioscience.com\/article\/7818\/full_text_xml\/",
       "authors": [
