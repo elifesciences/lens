@@ -109,6 +109,8 @@ function lensify(doc) {
     docNode.title = "The Lens Manual - A developers guide for Lens application development";
   } else if (docNode.title === "about") {
     docNode.title = "eLife Lens: A novel way of seeing content";
+  } else if (docNode.title === "substance_scientist") {
+    docNode.title = "Substance Scientist: A web-based editor component designed for academics";
   } else if (docNode.title === "lens_article") {
     docNode.title = "The anatomy of a Lens Article";
   }

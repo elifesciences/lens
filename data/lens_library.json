@@ -3381,6 +3381,14 @@
           "url": "/data/manual.json"
         },
 
+        "substance_scientist": {
+          "id": "substance_scientist",
+          "title": "Substance.Scientist - A web-based editor component designed for academics",
+          "authors": ["Michael Aufreiter", "Ivan Grubisic", "Rebecca Close"],
+          "type": "record",
+          "url": "/data/substance_scientist.json"
+        },
+
         "about": {
           "id": "about",
           "title": "eLife Lens - A novel way of seeing content",
