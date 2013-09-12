@@ -2642,9 +2642,9 @@
           "records": ["about", "manual", "lorem_ipsum", "lens_article"]
         },
 
-        "examples": {
-          "id": "examples",
-          "name": "Examples",
+        "elife": {
+          "id": "elife",
+          "name": "eLife",
           "type": "collection",
           "records": ["00768", "2013CC4897R", "2011CIB0223", "2012INTRAVITAL024R"]
         },
@@ -2657,7 +2657,7 @@
           "records": ["2013CC4897R", "2011CIB0223", "2012INTRAVITAL024R"]
         },
 
-        "elife": {
+        "examples": {
             "records": [
                 "00003", 
                 "00005", 
@@ -2907,8 +2907,8 @@
                 "01387"
             ], 
             "type": "collection", 
-            "id": "elife", 
-            "name": "eLife"
+            "id": "examples", 
+            "name": "Examples"
         }, 
         "00573": {
             "url": "https://s3.amazonaws.com/elife-cdn/elife-articles/00573/elife00573.xml", 
