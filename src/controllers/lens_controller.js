@@ -9,7 +9,7 @@ var Library = require("substance-library");
 var LibraryController = Library.Controller;
 var ReaderController = require("lens-reader").Controller;
 var Article = require("lens-article");
-var Chronicle = require("substance-chronicle");
+// var Chronicle = require("substance-chronicle");
 var Converter = require("lens-converter");
 
 // Lens.Controller
@@ -148,7 +148,7 @@ LensController.Prototype = function() {
       // try {
       var docData = JSON.parse(localStorage.getItem("localdoc"));
       var doc = Article.fromSnapshot(docData, {
-          chronicle: Chronicle.create()
+          // chronicle: Chronicle.create()
         });
       _onDocumentLoad(null, doc);
       // } catch (e) {
@@ -177,7 +177,7 @@ LensController.Prototype = function() {
           } else {
             if(typeof data == 'string') data = $.parseJSON(data);
             doc = Article.fromSnapshot(data, {
-              chronicle: Chronicle.create()
+              // chronicle: Chronicle.create()
             });
           }
           _onDocumentLoad(err, doc);  
