@@ -80,5 +80,15 @@
       "node": ">=0.8.x",
       "npm": ">=1.1.x"
     }
+  },
+  "bundle": {
+    "name": "lens",
+    "dist_folder": "./dist",
+    "source": "src/lens.js",
+    "assets": [
+      "index.html",
+      "index_bundled.html",
+      "styles"
+    ]
   }
 }

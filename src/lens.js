@@ -84,5 +84,4 @@ var Substance = {
 };
 
 Lens.Substance = Substance;
-
 module.exports = Lens;

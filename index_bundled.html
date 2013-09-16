@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:mml="http://www.w3.org/1998/Math/MathML">
+  <head>
+    <title>eLife Lens</title>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href='styles/font-awesome.css' rel='stylesheet' type='text/css'/>
+
+    <link href="styles/lens.css" media="screen" rel="stylesheet" type="text/css" />
+
+    <!-- TOC styles -->
+    <link href="../lib/substance/substance-toc/toc.css" media="screen" rel="stylesheet" type="text/css" />
+
+    <!-- Generic Surface Styles -->
+    <link href="../lib/substance/substance-surface/styles/surface.css" media="screen" rel="stylesheet" type="text/css" />
+
+    <!-- Lens.Article related styles -->
+    <link href="../lib/substance/lens-article/article.css" media="screen" rel="stylesheet" type="text/css" />
+
+    <link href="../lib/substance/lens-article/nodes/cover/cover.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="../lib/substance/lens-article/nodes/node/node.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="../lib/substance/lens-article/nodes/text/text.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="../lib/substance/lens-article/nodes/supplement/supplement.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="../lib/substance/lens-article/nodes/paragraph/paragraph.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="../lib/substance/lens-article/nodes/heading/heading.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="../lib/substance/lens-article/nodes/list/list.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="../lib/substance/lens-article/nodes/formula/formula.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="../lib/substance/lens-article/nodes/codeblock/codeblock.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="../lib/substance/lens-article/nodes/citation/citation.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="../lib/substance/lens-article/nodes/figure/figure.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="../lib/substance/lens-article/nodes/image/image.css" media="screen" rel="stylesheet" type="text/css" />
+
+    <link href="../lib/substance/lens-article/nodes/table/table.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="../lib/substance/lens-article/nodes/video/video.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="../lib/substance/lens-article/nodes/caption/caption.css" media="screen" rel="stylesheet" type="text/css" />
+
+    <link href="../lib/substance/lens-article/nodes/person/person.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="../lib/substance/lens-article/nodes/publication_info/publication_info.css" media="screen" rel="stylesheet" type="text/css" />
+
+    <!-- Lens.Outline styles -->
+    <link href="../lib/substance/lens-outline/outline.css" media="screen" rel="stylesheet" type="text/css"/>
+    <script src="../lib/jquery-2.0.3.min.js"></script>
+
+    <script src="./lens.js"></script>
+
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "HTML-CSS": { linebreaks: { automatic: true } },
+             SVG: { linebreaks: { automatic: true } }
+    });
+    </script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <script>
+
+      // Create a new Lens app instance
+      // --------
+      //
+      // Injects itself into body
+
+      var app = new Lens({
+        // Endpoint must have CORS enabled, or file is served from the same domain as the app
+        document_url: "https://s3.amazonaws.com/elife-cdn/elife-articles/00778/elife00778.xml"
+      });
+
+      $(function() {
+        app.start();
+      });
+
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
