@@ -40,150 +40,12 @@ LensController.Prototype = function() {
   // After a file gets drag and dropped it will be remembered in Local Storage
   // ---------
 
-  this.storeXML = function(xml) {
+  this.importXML = function(xml) {
     var importer = new Converter.Importer();
     var doc = importer.import(xml);
-
-    // Always set id to 'last' for imported documents
-    doc.id = "last";
-
-    try {
-      localStorage.setItem("localdoc", JSON.stringify(doc));
-    } catch (e) {
-      console.log(e);
-    }
-
-    // HACK: don't use the global app.router instance
-    app.router.navigate('/mydocs', true);
-    app.router.navigate('/mydocs/last', true);
+    this.createReader(doc, {});
   };
 
-
-  // this.populateLibWithLocalDocs = function(data) {
-  //   var localDoc = null;
-    
-  //   try {
-  //     localDoc = JSON.parse(localStorage.getItem("localdoc"));
-  //   }catch (e) {
-  //     console.log(e);
-  //   }
-
-  //   if (localDoc) {
-  //     var docId = localDoc.nodes.document.guid;
-
-  //     data.nodes["mydocs"].records = ["last"];
-
-  //     var record = {
-  //       id: "last",
-  //       type: "record",
-  //       title: localDoc.nodes.document.title,
-  //       authors: [],
-  //       url: "localstore://last"
-  //     }
-
-  //     _.each(localDoc.nodes.document.authors, function(personId) {
-  //       record.authors.push(localDoc.nodes[personId].name);
-  //     });
-  //     data.nodes["last"] = record;
-  //   }
-
-  //   return data;
-  // };
-
-  // Loaders
-  // --------
-
-  // this.loadLibrary = function(url, cb) {
-  //   var that = this;
-  //   if (this.__library) return cb(null);
-
-  //   $.getJSON(url, function(data) {
-  //     if (url.match(/lens_library\.json/)) {
-  //       data = that.populateLibWithLocalDocs(data);
-  //     }
-
-  //     that.__library = new Library({
-  //       seed: data
-  //     });
-  //     cb(null);
-  //   }).error(cb);
-  // };
-
-  // Transitions
-  // ===================================
-
-  // var _LOCALSTORE_MATCHER = new RegExp("^localstore://(.*)");
-  // var _open = function(state, documentId) {
-  //   var that = this;
-
-  //   var _onDocumentLoad = function(err, doc) {
-  //     if (err) {
-  //       console.log(err.stack);
-  //       throw err;
-  //     }
-  //     that.reader = new ReaderController(doc, state);
-  //     that.updateState('reader');
-  //   };
-
-  //   // HACK: for activating the NLM importer ATM it is not possible
-  //   // to leave the loading to the library as it needs the Lens Converter for that.
-  //   // Options:
-  //   //  - provide the library with a document loader which would be constructed here
-  //   //  - do the loading here
-  //   // prefering option2 as it is simpler to achieve...
-
-  //   var record = this.__library.get(documentId);
-
-  //   var match = _LOCALSTORE_MATCHER.exec(record.url);
-
-  //   if (match) {
-  //     var docId = match[1];
-
-  //     // try {
-  //     var docData = JSON.parse(localStorage.getItem("localdoc"));
-  //     var doc = Article.fromSnapshot(docData, {
-  //         // chronicle: Chronicle.create()
-  //       });
-  //     _onDocumentLoad(null, doc);
-  //     // } catch (e) {
-  //     //   console.log(e);
-  //     // }  
-
-  //   } else {
-  //     $.get(record.url)
-  //     .done(function(data) {
-  //         var doc, err;
-
-  //         // try {
-  //         // Determine type of resource
-  //         var xml = $.isXMLDoc(data);
-
-  //         // Process XML file
-  //         if(xml) {
-  //           var importer = new Converter.Importer();
-  //           doc = importer.import(data);
-
-  //           // Hotpatch the doc id, so it conforms to the id specified in the library file
-  //           doc.id = documentId;
-  //           console.log('ON THE FLY CONVERTED DOC', doc.toJSON());
-
-  //         // Process JSON file
-  //         } else {
-  //           if(typeof data == 'string') data = $.parseJSON(data);
-  //           doc = Article.fromSnapshot(data, {
-  //             // chronicle: Chronicle.create()
-  //           });
-  //         }
-  //         _onDocumentLoad(err, doc);  
-  //         // }catch (e) {
-  //         //   console.log(e);
-  //         // }
-  //       })
-  //     .fail(function(err) {
-  //       console.error(^);
-  //     });
-  //   }
-  // };
 
   // Update URL Fragment
   // -------
@@ -216,7 +78,22 @@ LensController.Prototype = function() {
       trigger: false,
       replace: false
     });
-  },
+  };
+
+  this.createReader = function(doc, state) {
+    var that = this;
+    // if (err) {
+    //   console.log(err.stack);
+    //   throw err;
+    // }
+
+    // Create new reader controller instance
+    this.reader = new ReaderController(doc, state);
+    this.reader.on('state-changed', function() {
+      that.updatePath(that.reader.state);
+    });
+    this.updateState('reader');
+  };
 
   this.openReader = function(context, node, resource, fullscreen) {
     var that = this;
@@ -227,22 +104,6 @@ LensController.Prototype = function() {
       node: node,
       resource: resource,
       fullscreen: !!fullscreen
-    };
-
-    var _onDocumentLoad = function(err, doc) {
-      if (err) {
-        console.log(err.stack);
-        throw err;
-      }
-
-      // Create new reader controller instance
-      that.reader = new ReaderController(doc, state);
-
-      that.reader.on('state-changed', function() {
-        that.updatePath(that.reader.state);
-      });
-
-      that.updateState('reader');
     };
 
     var url = "https://s3.amazonaws.com/elife-cdn/elife-articles/00778/elife00778.xml";
@@ -265,48 +126,15 @@ LensController.Prototype = function() {
         doc = Article.fromSnapshot(data);
       }
 
-      _onDocumentLoad(err, doc);
+      that.createReader(doc, state);
     })
     .fail(function(err) {
       console.error(err);
     });
 
-    // Ensure the library is loaded
-    // this.loadLibrary(this.config.library_url, _open.bind(this, state, documentId));
   };
 
-  // this.openAbout = function() {
-  //   this.openReader("lens", "about", "toc");
-  //   app.router.navigate('lens/about', false);
-  // };
 
-  // this.openLensArticle = function(state) {
-  //   console.log('opening lens article');
-
-  //   var doc = Article.describe();
-  //   this.reader = new ReaderController(doc, state);
-  //   this.updateState('reader');
-
-  //   // _
-  //   // console.log('MEH', doc);
-  // };
-
-  // this.openLibrary = function(collectionId) {
-  //   var that = this;
-
-  //   function open() {
-  //     // Defaults to lens collection
-  //     var state = {
-  //       collection: collectionId || that.__library.collections[0].id // "lens"
-  //     };
-
-  //     that.library = new LibraryController(that.__library, state);
-  //     that.updateState('library');
-  //   }
-
-  //   // Ensure the library is loaded
-  //   this.loadLibrary(this.config.library_url, open);
-  // };
 
 
   // Provides an array of (context, controller) tuples that describe the
@@ -321,21 +149,6 @@ LensController.Prototype = function() {
   // The child controller (e.g., document) should itself be allowed to have sub-controllers.
   // For sake of prototyping this is implemented manually right now.
   // TODO: discuss naming
-
-  // this.getActiveControllers = function() {
-  //   var result = [ ["sandbox", this] ];
-
-  //   var state = this.state;
-
-  //   if (state === "article") {
-  //     result = result.concat(this.article.getActiveControllers());
-  //   } else if (state === "library") {
-  //     result = result.concat(["library", this.library]);
-  //   } else if (state === "test_center") {
-  //     result.push(["test_center", this.testRunner]);
-  //   }
-  //   return result;
-  // };
 
   this.getActiveControllers = function() {
     var result = [["lens", this]];

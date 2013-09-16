@@ -6,6 +6,7 @@ var html = util.html;
 var View = require("substance-application").View;
 var $$ = require("substance-application").$$;
 
+
 // Lens.View Constructor
 // ========
 // 
@@ -26,8 +27,6 @@ var LensView = function(controller) {
   $(document).on('drop', this.handleDroppedFile.bind(this));
 };
 
-
-
 LensView.Prototype = function() {
 
   this.handleDroppedFile = function(e) {
@@ -37,7 +36,7 @@ LensView.Prototype = function() {
     var reader = new FileReader();
 
     reader.onload = function(e) {
-      ctrl.storeXML(e.target.result);
+      ctrl.importXML(e.target.result);
     };
 
     reader.readAsText(file);
