@@ -8,23 +8,7 @@ var util = require("substance-util");
 var html = util.html;
 
 
-// The Lens Application
-// ========
-//
-
-var Lens = function(config) {
-  config = config || {};
-  Application.call(this, config);
-
-  this.controller = new LensController(config);
-};
-
-Lens.Article = require("lens-article");
-Lens.Reader = require("lens-reader");
-Lens.Outline = require("lens-outline");
-
-
-Lens.routes = [
+var ROUTES = [
   {
     "route": ":context/:node/:resource/:fullscreen",
     "name": "document-resource",
@@ -56,6 +40,23 @@ Lens.routes = [
     "command": "openReader"
   }
 ];
+
+// The Lens Application
+// ========
+//
+
+var Lens = function(config) {
+  config = config || {};
+  config.routes = ROUTES;
+  Application.call(this, config);
+
+  this.controller = new LensController(config);
+};
+
+Lens.Article = require("lens-article");
+Lens.Reader = require("lens-reader");
+Lens.Outline = require("lens-outline");
+
 
 Lens.Prototype = function() {
 

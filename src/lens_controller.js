@@ -54,8 +54,6 @@ LensController.Prototype = function() {
   // integration.
 
   this.updatePath = function(state) {
-    // This should be moved outside
-    // var state = this.readerCtrl.state;
     var path = [];
 
     path.push(state.context);
@@ -82,17 +80,16 @@ LensController.Prototype = function() {
 
   this.createReader = function(doc, state) {
     var that = this;
-    // if (err) {
-    //   console.log(err.stack);
-    //   throw err;
-    // }
 
     // Create new reader controller instance
     this.reader = new ReaderController(doc, state);
     this.reader.on('state-changed', function() {
       that.updatePath(that.reader.state);
     });
-    this.updateState('reader');
+
+    this.modifyState({
+      context: 'reader'
+    });
   };
 
   this.openReader = function(context, node, resource, fullscreen) {
@@ -131,24 +128,12 @@ LensController.Prototype = function() {
     .fail(function(err) {
       console.error(err);
     });
-
   };
-
-
-
 
   // Provides an array of (context, controller) tuples that describe the
   // current state of responsibilities
   // --------
   //
-  // E.g., when a document is opened:
-  //    ["application", "document"]
-  // with controllers taking responisbility:
-  //    [this, this.document]
-  //
-  // The child controller (e.g., document) should itself be allowed to have sub-controllers.
-  // For sake of prototyping this is implemented manually right now.
-  // TODO: discuss naming
 
   this.getActiveControllers = function() {
     var result = [["lens", this]];
