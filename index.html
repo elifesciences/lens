@@ -2,17 +2,10 @@
 <html xmlns:mml="http://www.w3.org/1998/Math/MathML">
   <head>
     <title>eLife Lens</title>
-    <link href='styles/fonts/open-sans/open-sans.css' rel='stylesheet' type='text/css'/>
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
     <link href='styles/font-awesome.css' rel='stylesheet' type='text/css'/>
 
     <link href="styles/lens.css" media="screen" rel="stylesheet" type="text/css" />
-
-    <!-- Substance.TestCenter -->
-    <link href="lib/substance/substance-test/testcenter.css" media="screen" rel="stylesheet" type="text/css" />
-
-    <!-- Library View Styles -->
-    <link href="lib/substance/substance-library/library.css" media="screen" rel="stylesheet" type="text/css" />
 
     <!-- TOC styles -->
     <link href="lib/substance/substance-toc/toc.css" media="screen" rel="stylesheet" type="text/css" />
@@ -42,49 +35,9 @@
 
     <link href="lib/substance/lens-article/nodes/person/person.css" media="screen" rel="stylesheet" type="text/css" />
     <link href="lib/substance/lens-article/nodes/publication_info/publication_info.css" media="screen" rel="stylesheet" type="text/css" />
-    <link href="lib/substance/lens-article/nodes/richparagraph/richparagraph.css" media="screen" rel="stylesheet" type="text/css" />
 
     <!-- Lens.Outline styles -->
-    <link href="lib/substance/lens-outline/outline.css" media="screen" rel="stylesheet" type="text/css" />
-
-    <!-- Templates -->
-    <script type="text/html" name="lens">
-      <div class="browser-not-supported" style="display: none;">
-        <h1>eLife Lens</h1>
-        <p>
-          Lens is in its early days and has not yet been tested against the browser that you are using.
-          It might break on your system. If it does, let us know, we are very interested in finding
-          out where it works well, and where it doesn not.
-        </p>
-        <a href="#" class="hide-browser-warning">Okay</a>
-      </div>
-
-      <div id="menu">
-        <div class="site-title">Lens</div>
-        <div class="site-subtitle">Digital content viewer</div>
-        <div class="views">
-          <a href="#lens/about" class="toggle-view about" title="About Lens">About</a>
-          <a href="#examples" class="toggle-view examples">Examples</a>
-          <a href="#lens/lens_article" class="toggle-view lens-article">Lens.Article</a>
-          <a href="#lens/manual" class="toggle-view manual">Manual</a>
-        </div>
-
-        <div class="actions">
-        </div>
-      </div>
-
-
-      <div class="loading" style="display: none;"></div>
-
-      <div class="import-teaser">
-        Drop a valid NLM XML File here.
-      </div>
-
-      <div id="main">
-
-      </div>
-    </script>
-
+    <link href="lib/substance/lens-outline/outline.css" media="screen" rel="stylesheet" type="text/css"/>
 
     <script src="lib/underscore.js"></script>
     <script src="lib/jquery-2.0.3.min.js"></script>
@@ -102,14 +55,19 @@
     #####scripts#####
 
     <script>
+
       var Lens = require("/src/lens.js");
+      window.Lens = Lens;
 
       // Create a new Lens app instance
       // --------
       //
       // Injects itself into body
 
-      var app = new Lens();
+      var app = new Lens({
+        // Endpoint must have CORS enabled, or file is served from the same domain as the app
+        document_url: "https://s3.amazonaws.com/elife-cdn/elife-articles/00778/elife00778.xml"
+      });
 
       $(function() {
         app.start();

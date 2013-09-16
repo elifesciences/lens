@@ -11,11 +11,6 @@
       "branch": "0.2.x"
     },
     {
-      "repository": "https://github.com/substance/commander.git",
-      "folder": "node_modules/substance-commander",
-      "branch": "0.1.x"
-    },
-    {
       "repository": "https://github.com/michael/data.git",
       "folder": "node_modules/substance-data",
       "branch": "0.8.x"
@@ -36,19 +31,9 @@
       "branch": "0.1.x"
     },
     {
-      "repository": "https://github.com/substance/article.git",
-      "folder": "node_modules/substance-article",
-      "branch": "0.1.x"
-    },
-    {
       "repository": "https://github.com/substance/nodes.git",
       "folder": "node_modules/substance-nodes",
       "branch": "0.1.x"
-    },
-    {
-      "repository": "https://github.com/elifesciences/lens-manual.git",
-      "folder": "node_modules/lens-manual",
-      "branch": "master"
     },
     {
       "repository": "https://github.com/elifesciences/lens-outline.git",
@@ -56,18 +41,8 @@
       "branch": "0.1.x"
     },
     {
-      "repository": "https://github.com/substance/library.git",
-      "folder": "node_modules/substance-library",
-      "branch": "0.1.x"
-    },
-    {
       "repository": "https://github.com/substance/toc.git",
       "folder": "node_modules/substance-toc",
-      "branch": "0.1.x"
-    },
-    {
-      "repository": "https://github.com/substance/converter.git",
-      "folder": "node_modules/substance-converter",
       "branch": "0.1.x"
     },
     {
@@ -81,24 +56,9 @@
       "branch": "0.2.x"
     },
     {
-      "repository": "https://github.com/substance/regexp.git",
-      "folder": "node_modules/substance-regexp",
-      "branch": "0.1.x"
-    },
-    {
-      "repository": "https://github.com/substance/store.git",
-      "folder": "node_modules/substance-store",
-      "branch": "0.1.x"
-    },
-    {
       "repository": "https://github.com/substance/surface.git",
       "folder": "node_modules/substance-surface",
       "branch": "0.3.x"
-    },
-    {
-      "repository": "https://github.com/substance/test.git",
-      "folder": "node_modules/substance-test",
-      "branch": "0.2.x"
     },
     {
       "repository": "https://github.com/substance/util.git",
@@ -113,9 +73,7 @@
   ],
   "node_modules": {
     "underscore": "1.5.x",
-    "express": "3.3.x",
-    "handlebars": "1.0.x",
-    "mocha": "1.12.x"
+    "express": "3.3.x"
   },
   "npm": {
     "engines": {
