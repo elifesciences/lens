@@ -10,13 +10,21 @@ Lens is composed of some independent modules. Those are:
 - The [Lens Reader](http://github.com/elifesciences/lens-reader) is the implementation of the article reader, it can be embedded into any page
 - The [Lens Outline](http://github.com/elifesciences/lens-outline) is the visual document map we are using in Lens. It can be used independently.
 
-
 ### Installing and contributing
 
-For install instructions and how to contribute see the manual [here](https://github.com/elifesciences/lens-manual/blob/master/manual.md). 
+For install instructions and how to contribute see the official [Lens Manual](http://lens.substance.io/#lens/manual). 
 
+### Journal integration
+
+The easiest way to integrate Lens into your journal is by creating one HTML file per document and adapt the url to the document you want to display. 
+
+    var app = new Lens({
+      // Endpoint must have CORS enabled, or file is served from the same domain as the app
+      document_url: "https://s3.amazonaws.com/elife-cdn/elife-articles/00778/elife00778.xml"
+    });
+
+Keep in mind, with eLife Lens you can display any NLM-compatible XML file or JSON documents that . You can enrich your HTML file with `<meta>` tags etc. to ensure Google crawlablility. There is no server infrastructure needed to run Lens. It's 100% browser-based. If you have questions please consult the [Lens Mailinglist](https://groups.google.com/forum/#!forum/elife-lens).
 
 ### Roadmap
 
 The Roadmap is covered on the [project wiki](https://github.com/elifesciences/lens/wiki/Product-Roadmap)
-
