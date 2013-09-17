@@ -18,12 +18,21 @@ app.use(express.methodOverride());
 
 app.get("/",
   function(req, res, next) {
+    var config = require("./project.json");
     var template = fs.readFileSync(__dirname + "/index.html", 'utf8');
     var scripts = commonJSServer.list();
+
     var scriptsTags = scripts.map(function(script) {
       return ['<script type="text/javascript" src="/scripts', script, '"></script>'].join('');
     }).join('\n');
+
+    var styleTags = _.map(config.styles, function(path, alias) {
+      return ['<link href="', path, '" rel="stylesheet" type="text/css"/>'].join('');
+    }).join("\n");
+
     var result = template.replace('#####scripts#####', scriptsTags);
+    result = result.replace('#####styles#####', styleTags);
+
     res.send(result);
   }
 );
