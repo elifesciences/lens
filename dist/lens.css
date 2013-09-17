@@ -1,0 +1,1649 @@
+/*
+  Typography / Basics
+---------------------------------------------*/
+
+* {
+	margin: 0;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+html,body {
+  height:100%;
+  background: #F5F5F5;
+  -webkit-font-smoothing: antialiased;
+}
+
+
+/*
+General Layout 
+--------------------------------------- */
+
+#container {
+  position: relative;
+  /*margin: 0 auto;*/
+  min-width: 800px;
+  max-width: 1400px; /* 988px / 16px = 61.75em */
+  height: 100%;
+  margin-left: 130px;
+}
+
+#container .browser-not-supported {
+  text-align: center;
+  padding-top: 130px;
+  width: 500px;
+  margin: 0 auto;
+  font-size: 20px;
+  line-height: 30px;
+}
+
+#container .browser-not-supported h1 {
+  font-family: 'Avenir LT W01 85 Heavy', 'Montserrat', 'Source Sans Pro';
+  font-size: 30px;
+}
+
+#container .browser-not-supported p {
+  padding: 30px 0;
+}
+
+#container .browser-not-supported a {
+  background: #444;
+  padding: 2px 10px;
+  color: #fff;
+  font-family: 'Avenir LT W01 85 Heavy', 'Montserrat', 'Source Sans Pro';
+}
+
+#container .browser-not-supported a:hover {
+  background: #000;
+}
+
+
+#container .import-teaser {
+  position: absolute;
+  top: 50px;
+  bottom: 50px;
+  left: 50px;
+  right: 50px;
+  background: green;
+  display: none;
+}
+
+#container.tease-import .import-teaser {
+  display: block;
+}
+
+#container.tease-import #main {
+  display: none;
+}
+
+body, textarea, p, input {
+  font-family: 'Source Sans Pro', Helvetica, Arial, Verdana, sans-serif;
+  color: #505050;
+}
+
+a {
+  color: #1B6685;
+  font-weight: normal;
+  text-decoration: none;
+  -moz-transition: background-color 100ms linear, color 100ms linear, opacity 100ms linear;
+  -o-transition: background-color 100ms linear, color 100ms linear, opacity 100ms linear;
+  -webkit-transition: background-color 100ms linear, color 100ms linear, opacity 100ms linear;
+  transition: background-color 100ms linear, color 100ms linear, opacity 100ms linear;
+}
+
+a:hover {
+  color: rgba(11, 157, 217, 1);
+}
+
+img {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+strong { font-weight: 700; }
+
+h1, h2, h3 { 
+  font-weight: 700;
+}
+
+h1 a { color: white; }
+h1 a:hover { color: white; }
+
+h2 {
+  font-size: 1.75em; 
+  padding-bottom: 20px;
+}
+  
+h3, h4, h5, h6 {
+  margin-bottom: 20px;
+  font-size: 1em;
+  font-weight: 700;
+}
+
+/*p:last-child { padding-bottom: 0; }*/
+
+/*.small {
+  color: #505050;
+  font-size: .75em;
+  font-weight: 400;
+}*/
+
+/* Use border-box box model */
+
+* {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+
+
+/* Library override
+-------------------------------------------------------------------------------*/
+
+#container .library .collection-toggles {
+  display: none;
+}
+
+#container .library .collection {
+  padding-top: 30px;
+  left: 0px;
+  width: 1000px;
+  overflow: auto;
+  background: inherit;
+}
+
+#container .library .collection .document {
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+/* Main
+-------------------------------------------------------------------------------*/
+
+#main {
+  height: 100%;
+  position: relative;
+}
+
+#container .loading {
+  font-family: 'Avenir LT W01 85 Heavy', 'Montserrat', 'Source Sans Pro';
+  position: absolute;
+  top: 15px;
+  left: 70px;
+  right: 0px;
+  height: 49px;
+  line-height: 50px;
+  font-size: 12px;
+}
+
+/*
+TOC 
+--------------------------------------- */
+
+
+.resource-view.toc .heading-ref {
+  cursor: pointer;
+  display: block;
+  color: rgba(0,0,0,0.5);
+  font-size: 17px;
+  padding: 4px 10px;
+  line-height: 20px;
+  font-family: 'Avenir LT W01 85 Heavy', 'Montserrat', 'Source Sans Pro';
+  margin-right: 10px;
+  border: 1px solid transparent;
+}
+
+.resource-view.toc .heading-ref.active {
+  color: rgba(0,0,0,0.9);
+  background: #fff;
+  border: 1px solid #eee;
+}
+
+.resource-view.toc .heading-ref.level-2 {
+  padding-left: 30px;
+  font-size: 13px;
+}
+
+.resource-view.toc .heading-ref.level-3 {
+  padding-left: 60px;
+  font-size: 13px;
+}
+
+.resource-view.toc .heading-ref.level-4 {
+  padding-left: 80px;
+  font-size: 12px;
+}
+
+.resource-view.toc .heading-ref:hover {
+  color: rgba(0,0,0,1.0);
+}
+
+/* Surface
+-------------------------------------------------------------------------------*/
+
+.surface {
+  position: relative;
+}
+
+/* Very important dude */
+/* Makes sure .nodes is used as a reference for absolute positioning */
+.surface .nodes {
+  position: relative;
+}
+
+/* Generic node styles */
+.surface .content-node {
+  position: relative;
+}
+
+.surface .nodes > .content-node {
+  /*margin: 0 60px;*/
+}
+
+
+/* Cursor
+-------------------------------------------------------------------------------*/
+
+.surface .cursor {
+  position: absolute;
+  top: 0px;
+  height: 20px;
+  width: 2px;
+  background: #00ACEA;
+}
+
+/*
+  blinking from http://codepen.io/hofweber/pen/vbJHc
+  thanks patch!
+*/
+
+.surface .cursor {
+  -webkit-animation: blink 1.2s step-end infinite;
+     -moz-animation: blink 1.2s step-end infinite;
+      -ms-animation: blink 1.2s step-end infinite;
+       -o-animation: blink 1.2s step-end infinite;
+          animation: blink 1.2s step-end infinite;
+}
+
+@-webkit-keyframes blink {0% {background: #00ACEA} 50% {background: transparent;}}
+   @-moz-keyframes blink {0% {background: #00ACEA} 50% {background: transparent;}}
+    @-ms-keyframes blink {0% {background: #00ACEA} 50% {background: transparent;}}
+     @-o-keyframes blink {0% {background: #00ACEA} 50% {background: transparent;}}
+        @keyframes blink {0% {background: #00ACEA} 50% {background: transparent;}}
+
+/* Article
+-------------------------------------------------------------------------------*/
+
+.article {
+  height: 100%;
+}
+
+/* Surface specific styles */
+
+.content-node {
+  margin: 0px;
+  /*margin: 0 60px; -> causes the scrollbar to disappear */
+}
+
+.content-node .content {
+  margin: 0px;
+  background: white;
+  /*margin: 0 60px; -> causes the scrollbar to disappear */
+}
+
+
+/* Main content panel 
+======================================================================= */
+
+
+.article .document {
+  line-height: 28.5px;
+  font-size: 18px;
+  position: relative;
+  float: left;
+  overflow: hidden;
+  height: 100%;
+  width: 55%;
+}
+
+.article .document .surface.content {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  /*overflow: auto;*/
+  -webkit-overflow-scrolling: touch;
+}
+
+.article .document .surface.content .nodes {
+  margin-right: 15px;
+  background: #FFFFFF;
+}
+
+.article .document .surface.content::-webkit-scrollbar {
+  width: 2px;
+  height: 2px; 
+}
+
+.article .document .surface.content::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.article .document .scrollbar-mask {
+  position: absolute;
+  right: 0px;
+
+}
+
+
+
+/* Context Toggles 
+=======================================================================
+
+/* Switcher */
+.article .context-toggles {
+  background: #F5F5F5;
+  overflow: hidden;
+  height: 60px;
+  position: absolute;
+  right: 20px;
+  left: 0px;
+  top: 0px;
+  z-index: 3000;
+  padding: 10px 0px;
+}
+
+.article.focus-mode .context-toggles {
+  opacity: 0.5
+}
+
+.article .context-toggles .context-toggle {
+  cursor: pointer;
+  float: left;
+  padding: 0 10px;
+  line-height: 40px;
+  font-size: 14px;
+  color: #777;
+  font-family: 'Avenir LT W01 85 Heavy', 'Montserrat', 'Source Sans Pro';
+}
+
+.article .context-toggles .context-toggle i {
+  /*display: none;*/
+}
+
+.article .context-toggles .context-toggle span {
+  /*display: none;*/
+}
+
+.article .context-toggles .context-toggle:hover {
+  /*background: rgba(0,0,0,0.05);*/
+  color: #555;
+}
+
+/*Active states depend on the global reader context */
+
+.article.figures .context-toggles .context-toggle.figures {
+  /*color: rgba(255,255,255,0.9);*/
+  color: #111;
+  /*background: #5c6570;*/
+}
+
+.article.citations .context-toggles .context-toggle.citations {
+  color: #111;
+  /*color: rgba(255,255,255,0.9);*/
+  /*background: #5c6570;*/
+}
+
+.article.toc .context-toggles .context-toggle.toc {
+  color: #111;
+  /*color: rgba(255,255,255,0.9);*/
+  /*background: #5c6570;*/
+}
+
+.article.info .context-toggles .context-toggle.info {
+  color: #111;
+  /*color: rgba(255,255,255,0.9);*/
+  /*background: #5c6570;*/
+}
+
+
+/* Resources Panel 
+======================================================================= */
+
+
+.article .resources {
+  float: right;
+  line-height: 20px;
+  width: 44%;
+  font-size: 14px;
+  background: #F5F5F5;
+  height: 100%;
+  position: relative;
+  /*overflow: hidden;*/
+  overflow: auto;
+}
+
+.article .resources .surface {
+  /*margin-top: 50px;*/
+  padding-top: 60px;
+}
+
+.article .resources .nodes > .content-node {
+  color: #333;
+  position: relative;
+  background: #EBEBEB;
+  margin-bottom: 30px;
+  margin-right: 20px;
+  padding: 0px;
+}
+
+.article .resources .content-node .resource-header:hover {
+  background: rgba(0,0,0,0.05);
+}
+
+/* Clickable header */
+
+.article .resources .content-node .resource-header {
+  min-height: 80px;
+  /*background: rgba(0,0,0,0.02);*/
+  
+  position: relative;
+}
+
+/* Shared styles for selected and mouseover states
+----------------------------------------------------------------------- */
+
+/* Active resource */
+.article .resources .content-node.active .resource-header .name {
+  color: #fff;
+}
+
+/* active figure */
+.article .resources .figures .content-node.active .resource-header {
+  background: rgba(145, 187, 4, 1);
+  color: #fff;
+}
+
+/* active citation */
+.article .resources .citations .content-node.active .resource-header {
+  background: rgba(11, 157, 217, 1);
+  color: #fff;
+}
+
+/* active person */
+.article .resources .info .content-node.active .resource-header {
+  background: #5c6570;
+  color: #fff;
+}
+
+.article .resources .content-node .resource-header .reference-count {
+  display: none;
+  opacity: 0.6;
+}
+
+
+.article .resources .content-node .type {
+  display: none;
+  position: absolute;
+  right: 10px;
+  top: 0px;
+  height: 35px;
+  width: 120px;
+  text-align: center;
+  background: rgba(0,0,0,0.05);
+  font-size: 12px;
+  padding: 0 15px;
+  line-height: 35px;
+  font-weight: bold;
+}
+
+.article .resources .content-node .type i {
+  padding-right: 10px;
+}
+
+.article .resources .content-node.publication.active .type {
+  color: white;
+}
+
+.article .resources .content-node.active .type {
+  color: white;
+}
+
+.article .resources .number {
+  font-size: 11px;
+  position: absolute;
+  text-align: center;
+  color: #fff;
+  left: 25px;
+  top: 25px;
+  font-weight: bold;
+  width: 24px;
+  line-height: 24px;
+  border-radius: 12px;
+  background: rgba(0,0,0, 0.3);
+}
+
+.article .resources .publication.active .number {
+  background: rgba(11, 157, 217, 1);
+}
+
+
+/* Figures View
+----------------------------------------------------------------------- */
+
+.article .resources .surface.figures {
+  display: none;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+.article.figures .resources .resource-view.figures {
+  display: block;
+}
+
+/* Citations View
+----------------------------------------------------------------------- */
+
+.article .resources .surface.citations {
+  display: none;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+.article.citations .resources .resource-view.citations {
+  display: block;
+}
+
+/* TOC View
+----------------------------------------------------------------------- */
+
+.resource-view.toc {
+  display: none;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-top: 60px;
+}
+
+.article.toc .resources .resource-view.toc {
+  display: block;
+}
+
+
+/* Info View
+----------------------------------------------------------------------- */
+
+.article .resources .surface.info {
+  display: none;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+.article.info .resources .resource-view.info {
+  display: block;
+}
+
+
+/* Consistent Resource Header for figures captions and person cards 
+----------------------------------------------------------------------- */
+
+.article .resources .resource-header .name {
+  display: block;
+  color: #444;
+  font-family: 'Avenir LT W01 85 Medium', 'Montserrat', 'Source Sans Pro';
+  font-size: 16px;
+  /*margin-right: 80px;*/
+  line-height: 21px;
+  padding: 10px 20px;
+}
+
+
+.article .resources .content-node .reference-count {
+  font-size: 13px;
+  position: absolute;
+  right: 20px;
+  top: 40px;
+  text-align: right;
+}
+
+
+/* Resource Fullscreen Mode 
+======================================================================= */
+
+
+/* Styles for fullscreen toggle on resource cards */
+
+.article .resources .content-node .resource-header .toggle-fullscreen {
+  /*background: rgba(0,0,0,0.05);*/
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  font-size: 30px;
+  bottom: 0px;
+  text-align: center;
+  line-height: 81px;
+  color: rgba(0,0,0, 0.2);
+  width: 81px;
+}
+
+.article .resources .content-node .resource-header .toggle-fullscreen:hover {
+  color: rgba(0,0,0, 0.5);
+}
+
+/* Active state adjustments */
+
+.article .resources .content-node.active .resource-header .toggle-fullscreen {
+  color: rgba(255,255,255, 0.5);
+}
+
+.article .resources .content-node.active .resource-header .toggle-fullscreen:hover {
+  color: rgba(255,255,255, 1);
+}
+
+
+/* Hide resize small icon by default */
+#container .article .content-node .icon-resize-small {
+  display: none;
+}
+
+#container .article .content-node.fullscreen {
+  position: fixed;
+  
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  /* Override margins */
+  /*background: white;*/
+  z-index: 100000;
+
+  margin-bottom: 0px;
+  margin-right: 0px;
+  /*color: white;*/
+}
+
+#container .article .content-node.fullscreen .icon-resize-small {
+  display: inline;
+}
+
+#container .article .content-node.fullscreen .icon-resize-full {
+  display: none;
+}
+
+#container .article .content-node.fullscreen > .content {
+  position: absolute;
+  top: 80px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+
+  overflow: auto;
+}
+
+
+
+/* Info panel overrides 
+----------------------------------------------------------------------- */
+
+
+#container .article .surface.info .content-node.caption .content {
+  padding: 20px;
+}
+
+
+/* Annotations 
+----------------------------------------------------------------------- */
+
+.article span.annotation {
+  -webkit-transition-property: background, color;
+  -moz-transition-property: background, color;
+  transition-property: background, color;
+
+  -webkit-transition-duration: 0.1s;
+  -moz-transition-duration: 0.1s;
+  transition-duration: 0.1s;
+}
+
+span.annotation.formula_reference, span.publication_reference {
+  padding-left: 3px; padding-right: 3px;
+}
+
+.article span.emphasis, .article em {
+  font-style: italic;
+}
+
+.article span.superscript, .article span.subscript, .article sup, .article sub {
+  vertical-align: baseline;
+  position: relative;
+  top: -0.4em;
+  font-size: 12px;
+}
+
+.article span.subscript, .article sub {
+  top: 0.4em;
+}
+
+.article span.strong, .article strong {
+  font-weight: bold;
+}
+
+.article span.underline {
+  text-decoration: underline;
+}
+
+
+.content-node .idea { background-color: rgba(102, 182, 32, 0.3); }
+.content-node .question { background-color: rgba(16, 167, 222, 0.3); }
+.content-node .error { background-color: rgba(237, 96, 48, 0.3); }
+
+.content-node .link { color: #1B6685; font-weight: bold; }
+.content-node .link:hover, .content-node .link.active { color: rgba(11, 157, 217, 1); }
+
+/* Inline Code Annotations */
+
+.content-node .code {
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+  background: #eee;
+  font-size: 13px;
+  padding: 2px 3px;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+/* Highlighted states */
+
+.content-node .idea.highlight { background-color: rgba(102, 182, 32, 0.6); }
+.content-node .question.highlight { background-color: rgba(16, 167, 222, 0.6);}
+.content-node .error.highlight { background-color: rgba(237, 96, 48, 0.6); }
+
+/* Selected states */
+
+.content-node .content span.selected { background: rgba(0,0,0,0.08); }
+.content-node .content .idea.selected { background-color: rgba(102, 182, 32, 0.4); }
+.content-node .content .question.selected { background-color: rgba(16, 167, 222, 0.4);}
+.content-node .content .error.selected { background-color: rgba(237, 96, 48, 0.4); }
+
+/* Em, Strong, Link */
+
+.content-node .emphasis { font-style: italic; }
+.content-node .strong { font-weight: bold; }
+
+
+/* Figure Reference */
+
+.content-node .figure_reference {
+  background: rgba(145, 187, 4, 0.15);
+  border-bottom: 1px solid rgba(145, 187, 4, 0.8);
+  color: #495A11;
+  cursor: pointer;
+}
+
+.content-node .person_reference {
+  
+  padding: 2px 5px;
+  cursor: pointer;
+}
+
+.content-node .citation_reference { 
+  background: rgba(11, 157, 217, 0.075);
+  color: #1B6685;
+  border-bottom: 1px solid rgba(11, 157, 217, 0.4);
+  cursor: pointer;
+}
+
+.content-node .cross_reference {
+  background: rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+
+/* Hover states */
+.content-node .figure_reference:hover { background-color: rgba(145, 187, 4, 0.35); }
+.content-node .citation_reference:hover { background-color: rgba(11, 157, 217, 0.30); }
+.content-node .person_reference:hover { background-color: rgba(0,0,0, 0.1); }
+
+.content-node .figure_reference.active { background: rgba(145, 187, 4, 0.7); }
+.content-node .citation_reference.active { background: rgba(11, 157, 217, 0.6); }
+.content-node .person_reference.active { background-color: rgba(0,0,0, 0.4); color: white; }
+
+/* Cross Reference */
+.content-node .cross_reference:hover {
+  background-color: rgba(0, 0, 0, 0.10);
+}
+
+/*.content-node .cross_reference { color: #1B6685; cursor: pointer; }
+.content-node .cross_reference.active { color: rgba(11, 157, 217, 1); cursor: pointer; }
+*/
+
+.content-node.cover {
+  background: #5c6570;
+  margin-bottom: 50px;
+  color: white;
+}
+
+.content-node.cover .content {
+  background: none;
+}
+
+.content-node.cover .title {
+  font-family: 'Avenir LT W01 85 Heavy', 'Montserrat', 'Source Sans Pro';
+  line-height: 1.3em;
+  font-size: 40px;
+  padding: 50px 60px;
+  padding-left: 100px;
+}
+
+.content-node.cover .content .authors {
+  /*padding: 10px 60px;*/
+  /*padding-left: 100px;*/
+  padding: 10px 60px;
+  padding-left: 100px;
+
+  color: rgba(255,255,255, 0.7);
+  padding-bottom: 30px;
+  overflow: auto;
+  /*background: blue;*/
+}
+
+/* One para per author */
+.content-node.cover .authors .text {
+  float: left;
+  padding: 0px;
+  margin: 0px;
+  font-size: 20px;
+  margin-right: 10px;
+  margin-bottom: 8px;
+  /*background: blue;*/
+  color: rgba(255,255,255, 0.7);
+}
+
+/* One para per author */
+.content-node.cover .authors .text:hover {
+  background: rgba(0,0,0,0.1);
+  color: #fff;
+}
+
+
+
+/*.content-node.cover .authors {
+  padding: 10px 60px;
+  padding-left: 100px;
+  color: rgba(255,255,255, 0.7);
+  padding-bottom: 30px;
+  overflow: auto;
+}
+
+.content-node.cover .authors .author {
+  color: rgba(255,255,255, 0.7);
+  display: block;
+  float: left;
+  padding: 0 5px;
+  margin-right: 10px;
+  font-size: 20px;
+  line-height: 30px;
+}
+
+
+
+.content-node.cover .authors .author.active {
+  color: #fff;
+  background: rgba(0,0,0,0.5);
+}
+
+.content-node.cover .abstract {
+  color: #777;
+  font-size: 20px;
+  padding: 30px 60px;
+  padding-left: 100px;
+  padding-top: 80px;
+}
+
+/* Node
+-------------------------------------------------------------------------------*/
+
+.content-node {
+  padding: 20px 0px;
+}
+
+/* Focus Toggles
+-------------------------------------------------------------------------------*/
+
+.document .content-node .focus {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  width: 50px;
+  color: #888;
+  border-top: 1px solid #eee;
+}
+
+.document .content-node .focus i {
+  padding-top: 15px;
+  display: block;
+  font-size: 12px;
+  text-align: center;
+}
+
+.document .content-node .focus .focus-mode {
+  width: 50px;
+  height: 70px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  position: relative;
+}
+
+
+.document .content-node .focus-mode.figure:hover, .article.figures .document .content-node.active .focus-mode.figure {
+  color: rgba(145, 187, 4, 1.0);
+}
+
+.document .content-node .focus-mode.citation:hover, .article.citations .document .content-node.active .focus-mode.citation {
+  color: rgba(11, 157, 217, 1);
+}
+
+.document .content-node .focus-mode.node:hover, .article .content-node.active .focus-mode.node {
+  color: black;
+}
+
+/* Override anchor toggle in figures mode */
+.article.figures .content-node.active .focus-mode.node {
+  color: rgba(145, 187, 4, 1.0);
+}
+
+/* Override anchor toggle in citations mode */
+.article.citations .content-node.active .focus-mode.node {
+  color: rgba(11, 157, 217, 1);
+}
+
+.article.figure .content-node.active .focus-mode.figure {
+  color: rgba(145, 187, 4, 1.0);
+}
+
+.article.citation .content-node.active .focus-mode.citation {
+  color: rgba(11, 157, 217, 1);
+}
+
+.document .content-node .focus .arrow {
+  display: none;
+}
+
+
+/* The stripe which marks the focussed node
+-------------------------------------------------------------------------------*/
+
+.document .content-node.active .focus .stripe {
+  display: block;
+  opacity: 1;
+}
+
+.document .content-node .focus .stripe {
+  opacity: 0;
+  position: absolute;
+  right: -3px;
+  width: 3px;
+  top: 0px;
+  bottom: 0px;
+  background: black;
+}
+
+
+.document .content-node .focus .arrow {
+  position: absolute;
+  top: 30px;
+  right: -13px;
+  width: 0; 
+  height: 0; 
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid black;
+}
+
+.article.figures .content-node.active .focus .focus-mode .arrow {
+  border-left: 10px solid rgba(145, 187, 4, 1.0);
+  display: block;
+}
+
+.article.citations .content-node.active .focus .focus-mode .arrow {
+  border-left: 10px solid rgba(11, 157, 217, 1);
+  display: block;
+}
+
+.article.figures .content-node.active .focus .stripe {
+  background: rgba(145, 187, 4, 1.0);
+  opacity: 1;
+}
+
+.article.citations .content-node.active .focus .stripe {
+  background: rgba(11, 157, 217, 1);
+}
+
+.article.citation .content-node.active .focus.anchor .stripe {
+  background: black;
+}
+
+.document .content-node:hover .focus .stripe {
+}
+
+
+
+.document .content-node .focus:hover {
+
+}
+
+.content-node.active .focus {
+  opacity: 1.0;
+}
+
+/* Textish Styles
+-------------------------------------------------------------------------------*/
+
+/* Is this necessary in view mode? */
+
+.content-node.text .content {
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+}
+
+
+/* When rendered in main panel */
+.document .content-node.text {
+  padding: 20px 60px;
+  padding-left: 100px;
+}
+.content-node.supplement > .content {
+  padding: 10px 20px;
+}
+
+.content-node.supplement .content .file {
+  padding: 20px 0;
+  font-weight: bold;
+  font-size: 16px;
+}
+/* Paragraph Node
+-------------------------------------------------------------------------------*/
+
+.document .content-node.paragraph {
+  /*padding-left: 100px;*/
+  padding: 20px 60px 20px 100px;
+  /*padding-left: 100px;*/
+}
+
+.content-node.paragraph .content-node.text {
+  padding: 0px;
+  display:inline;
+  width: auto;
+}
+
+.content-node.paragraph .content-node.text div {
+  display:inline;
+  width: auto;
+}
+
+.content-node.paragraph .content-node.image div img {
+  display:inline;
+  width: auto;
+}
+
+.content-node.paragraph .content-node.formula.inline {
+  display: inline;
+  padding: 0px;
+}
+
+/* Heading Node
+-------------------------------------------------------------------------------*/
+
+.content-node.heading {
+  padding: 20px 0px;
+  padding-top: 0px;
+}
+
+.content-node.heading .content {
+  min-height: 40px;
+}
+
+.content-node.heading { }
+
+
+.content-node.heading .content {
+  font-family: 'Montserrat';
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 40px;
+}
+
+.content-node.heading.level-2 .content {
+  font-size: 17px;
+}
+
+.content-node.heading.level-3 .content {
+  font-size: 14px;
+}
+
+.content-node.heading.level-4 .content {
+  font-size: 14px;
+}
+
+
+.document .content-node.heading {
+  font-size: 24px;
+  padding: 20px 60px;
+  font-family: 'Avenir LT W01 85 Heavy', 'Montserrat', 'Source Sans Pro';
+  font-weight: bold;
+  padding-left: 100px;
+}
+
+
+/* Lens specific */
+
+/*.document .content-node.heading.level-2 {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 20px 60px;
+  padding-left: 100px;
+}
+
+.document .content-node.heading.level-3 {
+  font-size: 16px;
+  font-weight: bold;
+  padding: 20px 60px;
+  padding-left: 100px;
+}*/
+
+/* List Node
+-------------------------------------------------------------------------------*/
+
+.content-node.list {
+/*  padding: 10px 0px;
+  padding-top: 0px;*/
+  padding: 20px 60px;
+  padding-left: 100px;
+}
+
+.content-node.list .content-node {
+  padding: 0;
+  margin: 0;
+}
+
+.content-node.list .listitem {
+  padding: 2px 0px;
+  padding-left: 20px;
+  position: relative;
+}
+
+.content-node .listitem .bullet {
+  position: absolute;
+  left: 0px;
+  top: 14px;
+  width: 4px;
+  height: 4px;
+  background: #bbb;
+}
+
+.content-node.list .content {
+  min-height: 30px;
+}
+
+.content-node.list { }
+
+.content-node.list .content {
+
+}
+
+.content-node.list.level-2 .content {
+  font-size: 20px;
+}
+
+.content-node.list.level-3 .content {
+  font-size: 17px;
+}
+.document .content-node.formula {
+  padding: 30px 60px;
+  /*padding-right: 60px;*/
+  padding-left: 100px;
+  min-height: 80px;
+  text-align: center;
+}
+
+.document .content-node.formula .label {
+  position: absolute;
+  right: 50px;
+  top: 0px;
+  bottom: 0px;
+  line-height: 90px;
+}
+
+/* TODO: This must be smarter */
+.document .content-node .MathJax_Display {
+  margin: 0;
+  padding: 20px;
+  overflow: auto;
+}
+/* Codeblock Node
+-------------------------------------------------------------------------------*/
+
+.content-node.codeblock {
+  line-height: 20px;
+  padding: 10px 10px;
+}
+
+.content-node.codeblock .content {
+  border: 1px dotted #ccc;
+  background: rgba(0,0,0, 0.01);
+  font-family: 'Monaco', 'Source Code Pro', 'Courier New';
+  font-size: 12px;
+  color: #777;
+  padding: 10px;
+  min-height: 28px;
+}
+
+.content-node.codeblock {
+  padding: 20px 60px;
+  padding-left: 100px;
+}
+
+
+
+/*
+Citations 
+--------------------------------------- */
+
+.content-node.citation .content .authors {
+  padding-top: 20px;
+  font-size: 17px;
+}
+
+.content-node.citation .content .source {
+  color: #777;
+}
+
+.content-node.citation .content > div {
+  padding: 10px 20px;
+}
+
+/* Figure Node
+-------------------------------------------------------------------------------*/
+
+.content-node.figure { 
+/*  padding: 20px 60px;
+  padding-left: 100px;*/
+}
+
+.content-node.figure .content {
+  /*text-align: center;*/
+  padding: 0px;
+}
+
+.content-node.figure div.image-wrapper {
+  text-align: center;
+  /*width: 100%;*/
+}
+
+.content-node.figure div.image-char img {
+  
+}
+
+.content-node.figure > .content {
+  background: #fff;
+  padding: 20px;
+}
+
+.content-node.figure .paragraph .content {
+  background: #fff;
+}
+
+.content-node.figure div .image-wrapper img {
+  width: 100%;
+}
+/* Image Node
+-------------------------------------------------------------------------------*/
+
+.content-node.image { 
+  padding: 20px 60px;
+  padding-left: 100px;
+}
+
+
+.content-node.image .content {
+  text-align: center;
+  padding: 0px;
+}
+
+.content-node.image div.image-char {
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.content-node.image div.image-char img {
+  width: 100%;
+}
+
+.content-node.image > .content {
+  background: #fff;
+  padding: 20px;
+}
+
+.content-node.image .paragraph .content {
+  background: #fff;
+}
+
+.content-node.image div img.medium {
+  width: 100%;
+}
+
+.content-node.image div img.large {
+  display: none;
+}
+
+/* Table */ 
+
+.content-node.table > .content {
+  padding: 20px;
+}
+
+.content-node.table .table-wrapper {
+  width: 100%;
+  overflow: auto;
+}
+
+.content-node.table .caption {
+  padding-top: 20px; 
+}
+
+.content-node.table table {
+  position: relative;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin-bottom: 20px;
+  margin: 0 auto;
+}
+
+.content-node.table thead tr {
+  background: #eee;
+}
+
+.content-node.table thead td {
+  font-weight: bold;
+}
+
+/* Table sub tags */
+.content-node.table table sub {
+   vertical-align: baseline;
+   position: relative;
+   top: 0.4em;
+   font-size: 11px;
+}
+
+.content-node.table table td {
+  padding: 5px;
+  font-size: 12px;
+  border: 1px solid lightgrey;
+}
+
+.content-node.table .footers {
+
+  padding: 0 20px;
+  padding-top: 10px;
+  font-size: 12px;
+  background: #fff;
+}
+.resources .content-node.video .video-wrapper {
+  background: black;
+  padding: 10px 0;
+  text-align: center;
+}
+
+.resources .content-node.video .content video {
+  background: #000;
+  padding: 10px;
+  max-width: 100%;
+  max-height: 500px;
+}
+
+.resources .content-node.video .content .title {
+  padding: 10px 20px;
+}
+
+.resources .content-node.video .content .doi {
+  padding: 10px 20px;
+}
+
+/* Video Caption  */
+.resources .content-node.video .content .paragraph {
+  padding: 10px 20px;
+  margin-bottom: 0px; /* override default margin of paragraphs */
+  background: #fff;
+}
+
+/* Fullscreen overrides */
+
+.resources .content-node.video.fullscreen .content .video-wrapper {
+  background: black;
+  padding: 50px 0;
+  text-align: center;
+}
+
+
+.content-node.caption .caption-title {
+  font-weight: bold;
+  font-size: 16px;
+}
+/*
+Person 
+--------------------------------------- */
+
+.content-node.person .content {
+  padding: 20px;
+}
+
+.content-node.person .affiliation {
+  margin-top: 10px;
+  font-size: 17px;
+}
+
+.content-node.person .label {
+  margin-top: 10px;
+  color: #777;
+}
+/* Publication Info */
+
+.content-node.publication-info {
+  padding: 30px 0;
+  background: #EBEBEB;
+  color: #333;
+}
+
+.content-node.publication-info table {
+  padding: 30px 0;
+  border: none;
+  width: 100%;
+}
+
+.content-node.publication-info .label.links {
+  padding-left: 30px;
+}
+
+
+.content-node.publication-info .links {
+  overflow: auto;
+}
+
+.content-node.publication-info .links .link {
+  margin-top: 10px;
+  padding: 10px;
+  float: left;
+  display: block;
+  margin-right: 10px;
+  background: #fff;
+  border-radius: 5px;
+}
+
+.content-node.publication-info table.dates {
+  background: #fff;
+  margin-top: 30px;
+}
+
+.content-node.publication-info table.dates td {  
+  border: none;
+  padding-left: 30px;
+  padding-bottom: 10px;
+  text-align: center;
+  font-size: 13px;
+  width: 33%;
+}
+
+.content-node.publication-info table.categorization td {
+  border: none;
+  font-size: 13px;
+  padding-left: 30px;
+  width: 50%;
+}
+
+.content-node.publication-info .value {
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.content-node.publication-info .links {
+  padding-left: 30px;
+}
+/*
+Outline
+--------------------------------------- */
+
+.lens-outline {
+  background: #fff;
+  position: absolute;
+  left: 0px;
+  width:60px;
+  top: 0px;
+  bottom: 0px;
+}
+
+.lens-outline .node.cover {
+  background: #5c6570;
+  opacity: 1;
+}
+
+.lens-outline .node .arrow {
+  display: none;
+  position: absolute;
+  top: -7px;
+  left: -17px;
+  
+  width: 0; 
+  height: 0; 
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 8px solid black;
+}
+
+.lens-outline .node.selected .arrow {
+  display: block;
+}
+
+.lens-outline .visible-area {
+  position: absolute;
+  cursor: pointer;
+  top: 40px;
+  left: 0px;
+  right: 0px;
+  height: 80px;
+  z-index: 2000;
+  background-color: rgba(0,0,0, 0.2);
+}
+
+.lens-outline .visible-area:hover {
+  background-color: rgba(0,0,0, 0.3); 
+}
+
+.lens-outline .node {
+  margin: 0 5px;
+  width: 50px;
+  background: rgba(0,0,0, 0.4);
+  opacity: 0.1;
+  cursor: pointer;
+}
+
+.lens-outline .node:hover {
+  opacity: 0.6;
+}
+
+.lens-outline .text {
+}
+
+.lens-outline .heading {
+  background: rgba(0,0,0, 0.5);
+}
+
+
+.lens-outline .node.selected {
+  opacity: 1.0;
+}
+
+.node.highlighted {
+  background: #5c6570;
+  opacity: 0.7;
+}
+
+/* Greenish highlighted nodes (figures) */
+
+.lens-outline.figures .node.highlighted {
+  opacity: 0.7;
+  background: rgba(145, 187, 4, 1);
+  /*border: 1px solid rgba(145, 187, 4, 1);*/
+}
+
+/* Blueish highlighted nodes (citations) */
+
+.lens-outline.citations .node.highlighted {
+  opacity: 0.7;
+  background: rgba(11, 157, 217, 1);
+}
+
+.lens-outline.figures .node.selected {
+  opacity: 1;
+  background: rgba(145, 187, 4, 1);
+  /*border: 1px solid rgba(145, 187, 4, 1);*/
+}
+
+/* Blueish highlighted nodes (citations) */
+
+.lens-outline.citations .node.selected {
+  opacity: 1;
+  background: rgba(11, 157, 217, 1);
+}
+
+
