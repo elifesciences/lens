@@ -63,6 +63,14 @@ LensView.Prototype = function() {
   this.openReader = function() {
     var view = this.controller.reader.createView();
     this.replaceMainView('reader', view);
+
+    var doc = this.controller.reader.__document;
+    var publicationInfo = doc.get('publication_info');
+    
+    // Update URL
+    this.$('.go-back').attr({
+      href: publicationInfo.doi
+    });
   };
 
   // Rendering
@@ -88,6 +96,11 @@ LensView.Prototype = function() {
     this.el.appendChild($$('.browser-not-supported', {
       text: "Sorry, your browser is not supported.",
       style: "display: none;"
+    }));
+
+    this.el.appendChild($$('a.go-back', {
+      href: "#",
+      html: '<i class="icon-chevron-left"></i>'
     }));
 
     // Loading indicator

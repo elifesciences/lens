@@ -29,8 +29,22 @@ General Layout
   min-width: 800px;
   max-width: 1400px; /* 988px / 16px = 61.75em */
   height: 100%;
-  margin-left: 130px;
+  padding-left: 100px;
+  overflow: visible;
 }
+
+#container .go-back {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  width: 50px;
+  height: 50px;
+  font-size: 30px;
+  text-align: center;
+  line-height: 50px;
+  z-index: 2000;
+}
+
 
 #container .browser-not-supported {
   text-align: center;
