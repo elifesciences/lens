@@ -2,7 +2,7 @@ var http = require('http');
 var express = require('express');
 var path = require('path');
 var CommonJSServer = require("substance-application/commonjs");
-var ConverterServer = require("substance-converter/src/server");
+// var ConverterServer = require("substance-converter/src/server");
 var Article = require("lens-article");
 var _ = require("underscore");
 var fs = require("fs");
@@ -59,7 +59,7 @@ app.get("/scripts*",
   }
 );
 
-// Serve the Substance Converter
+// Serve Lens in dev mode
 // --------
 
 app.use(app.router);

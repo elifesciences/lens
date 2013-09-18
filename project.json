@@ -11,7 +11,12 @@
       "branch": "0.2.x"
     },
     {
-      "repository": "https://github.com/michael/data.git",
+      "repository": "https://github.com/substance/commander.git",
+      "folder": "node_modules/substance-commander",
+      "branch": "0.1.x"
+    },
+    {
+      "repository": "https://github.com/substance/data.git",
       "folder": "node_modules/substance-data",
       "branch": "0.8.x"
     },
@@ -54,6 +59,11 @@
       "repository": "https://github.com/substance/operator.git",
       "folder": "node_modules/substance-operator",
       "branch": "0.2.x"
+    },
+    {
+      "repository": "https://github.com/substance/regexp.git",
+      "folder": "node_modules/substance-regexp",
+      "branch": "0.1.x"
     },
     {
       "repository": "https://github.com/substance/surface.git",
