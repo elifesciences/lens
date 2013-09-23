@@ -20,7 +20,7 @@ var LensView = function(controller) {
   // Handle state transitions
   // --------
   
-  this.listenTo(this.controller, 'state-changed', this.onStateChanged);
+  this.listenTo(this.controller, 'context-changed', this.onContextChanged);
 
   $(document).on('dragover', function () { return false; });
   $(document).on('ondragend', function () { return false; });
@@ -47,8 +47,8 @@ LensView.Prototype = function() {
   // --------
   //
 
-  this.onStateChanged = function(newState, oldState, options) {
-    if (newState === "reader") {
+  this.onContextChanged = function(context) {
+    if (context === "reader") {
       this.openReader();
     } else {
       console.log("Unknown application state: " + newState);
