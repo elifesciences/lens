@@ -103,6 +103,7 @@
     "styles/nodes/paragraph.css": "node_modules/lens-article/nodes/paragraph/paragraph.css",
     "styles/nodes/heading.css": "node_modules/lens-article/nodes/heading/heading.css",
     "styles/nodes/list.css": "node_modules/lens-article/nodes/list/list.css",
+    "styles/nodes/box.css": "node_modules/lens-article/nodes/box/box.css",
     "styles/nodes/formula.css": "node_modules/lens-article/nodes/formula/formula.css",
     "styles/nodes/codeblock.css": "node_modules/lens-article/nodes/codeblock/codeblock.css",
     "styles/nodes/citation.css": "node_modules/lens-article/nodes/citation/citation.css",

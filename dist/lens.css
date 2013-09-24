@@ -438,7 +438,6 @@ TOC
   line-height: 20px;
   width: 44%;
   font-size: 14px;
-  background: #F5F5F5;
   height: 100%;
   position: relative;
   /*overflow: hidden;*/
@@ -453,7 +452,7 @@ TOC
 .article .resources .nodes > .content-node {
   color: #333;
   position: relative;
-  background: #EBEBEB;
+  background: rgba(0,0,0,0.05);
   margin-bottom: 30px;
   margin-right: 20px;
   padding: 0px;
@@ -627,6 +626,36 @@ TOC
   display: block;
 }
 
+.article.info .resources .resource-view.info #articleinfo {
+  background: white;
+  padding: 20px;
+}
+
+.article.info .resources .resource-view.info #articleinfo .content > .content-node {
+  display: block;
+  /*display: block;*/
+  /*background: #ccc;*/
+}
+
+.article.info .resources .resource-view.info #articleinfo .content > .content-node.paragraph {
+  display: block;
+  padding-top: 0px;
+  /*display: block;*/
+  /*background: #ccc;*/
+}
+
+.article.info .resources .resource-view.info #articleinfo .content-node.heading .content {
+  font-size: 14px;
+  color: #444;
+  padding-bottom: 10px;
+  /*background: green;*/
+  /*display: block;*/
+  /*background: #ccc;*/
+}
+
+.article.info .resources .resource-view.info #articleinfo {
+
+}
 
 /* Consistent Resource Header for figures captions and person cards 
 ----------------------------------------------------------------------- */
@@ -1243,6 +1272,14 @@ span.annotation.formula_reference, span.publication_reference {
 .content-node.list.level-3 .content {
   font-size: 17px;
 }
+/*
+Box 
+--------------------------------------- */
+
+.content-node.box > .content {
+  padding: 20px;
+}
+
 .document .content-node.formula {
   padding: 30px 60px;
   /*padding-right: 60px;*/
