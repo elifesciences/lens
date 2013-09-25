@@ -21277,7 +21277,6 @@ LensController.Prototype = function() {
     return view;
   };
 
-
   // After a file gets drag and dropped it will be remembered in Local Storage
   // ---------
 
@@ -21344,6 +21343,8 @@ LensController.Prototype = function() {
       fullscreen: !!fullscreen
     };
 
+    this.trigger("loading:started", "Loading document ...");
+
     var url = "https://s3.amazonaws.com/elife-cdn/elife-articles/00778/elife00778.xml";
     $.get(this.config.document_url)
     .done(function(data) {
@@ -21378,7 +21379,6 @@ LensController.Prototype = function() {
 
   this.getActiveControllers = function() {
     var result = [["lens", this]];
-
     result.push(["reader", this.reader]);
     return result;
   };
@@ -21418,6 +21418,7 @@ var LensView = function(controller) {
   // --------
   
   this.listenTo(this.controller, 'context-changed', this.onContextChanged);
+  this.listenTo(this.controller, 'loading:started', this.displayLoadingIndicator);
 
   $(document).on('dragover', function () { return false; });
   $(document).on('ondragend', function () { return false; });
@@ -21425,6 +21426,11 @@ var LensView = function(controller) {
 };
 
 LensView.Prototype = function() {
+
+  this.displayLoadingIndicator = function(msg) {
+    this.$('#main').empty();
+    this.$('.loading').html(msg).show();
+  };
 
   this.handleDroppedFile = function(e) {
     var ctrl = this.controller;
@@ -21464,6 +21470,9 @@ LensView.Prototype = function() {
     var doc = this.controller.reader.__document;
     var publicationInfo = doc.get('publication_info');
     
+    // Hide loading indicator
+    this.$('.loading').hide();
+
     // Update URL
     this.$('.go-back').attr({
       href: publicationInfo.doi

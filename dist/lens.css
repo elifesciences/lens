@@ -25,7 +25,7 @@ General Layout
 
 #container {
   position: relative;
-  /*margin: 0 auto;*/
+
   min-width: 800px;
   max-width: 1400px; /* 988px / 16px = 61.75em */
   height: 100%;
@@ -44,7 +44,6 @@ General Layout
   line-height: 50px;
   z-index: 2000;
 }
-
 
 #container .browser-not-supported {
   text-align: center;
@@ -188,8 +187,8 @@ h3, h4, h5, h6 {
 #container .loading {
   font-family: 'Avenir LT W01 85 Heavy', 'Montserrat', 'Source Sans Pro';
   position: absolute;
-  top: 15px;
-  left: 70px;
+  top: 20px;
+  left: 130px;
   right: 0px;
   height: 49px;
   line-height: 50px;
