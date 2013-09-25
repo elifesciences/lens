@@ -36,7 +36,6 @@ LensController.Prototype = function() {
     return view;
   };
 
-
   // After a file gets drag and dropped it will be remembered in Local Storage
   // ---------
 
@@ -103,6 +102,8 @@ LensController.Prototype = function() {
       fullscreen: !!fullscreen
     };
 
+    this.trigger("loading:started", "Loading document ...");
+
     var url = "https://s3.amazonaws.com/elife-cdn/elife-articles/00778/elife00778.xml";
     $.get(this.config.document_url)
     .done(function(data) {
@@ -137,7 +138,6 @@ LensController.Prototype = function() {
 
   this.getActiveControllers = function() {
     var result = [["lens", this]];
-
     result.push(["reader", this.reader]);
     return result;
   };
