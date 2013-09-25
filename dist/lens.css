@@ -233,6 +233,11 @@ TOC
   font-size: 12px;
 }
 
+.resource-view.toc .heading-ref.level-5 {
+  padding-left: 100px;
+  font-size: 12px;
+}
+
 .resource-view.toc .heading-ref:hover {
   color: rgba(0,0,0,1.0);
 }
@@ -659,8 +664,15 @@ TOC
 /* Consistent Resource Header for figures captions and person cards 
 ----------------------------------------------------------------------- */
 
+
 .article .resources .resource-header .name {
   display: block;
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  
   color: #444;
   font-family: 'Avenir LT W01 85 Medium', 'Montserrat', 'Source Sans Pro';
   font-size: 16px;
@@ -1279,6 +1291,27 @@ Box
   padding: 20px;
 }
 
+.surface.content .content-node.box {
+  /*margin-left: 60px;*/
+  padding-left: 100px;
+  padding-right: 60px;
+
+  /*padding: 0px;*/
+  /*background: #ccc;*/
+}
+
+.document .content-node.box .content-node.paragraph {
+  padding: 0px;
+  /*padding: 20px 60px 20px 100px;*/
+}
+
+.surface.content .content-node.box {
+  /*background: #ccc;*/
+}
+
+.surface.content .content-node.box .content {
+  background: #eee;
+}
 .document .content-node.formula {
   padding: 30px 60px;
   /*padding-right: 60px;*/

@@ -1,6 +1,6 @@
 ;(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 window.Lens = require("./src/lens");
-},{"./src/lens":145}],2:[function(require,module,exports){
+},{"./src/lens":146}],2:[function(require,module,exports){
 "use strict";
 
 var _ = require("underscore");
@@ -631,7 +631,7 @@ Object.defineProperties(Article.prototype, {
 
 module.exports = Article;
 
-},{"./nodes":31,"substance-document":87,"substance-util":139,"underscore":144}],3:[function(require,module,exports){
+},{"./nodes":31,"substance-document":88,"substance-util":140,"underscore":145}],3:[function(require,module,exports){
 "use strict";
 
 var Article = require("./article");
@@ -709,7 +709,7 @@ _.each(Affiliation.type.properties, function(prop, key) {
 Object.defineProperties(Affiliation.prototype, getters);
 
 module.exports = Affiliation;
-},{"substance-document":87,"underscore":144}],5:[function(require,module,exports){
+},{"substance-document":88,"underscore":145}],5:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -738,7 +738,7 @@ Box.type = {
   "parent": "content",
   "properties": {
     "source_id": "string",
-    "label": "string", // full author name
+    "label": "string",
     "children": ["array", "paragraph"]
   }
 };
@@ -766,7 +766,7 @@ Box.description = {
 Box.example = {
   "id": "box_1",
   "type": "box",
-  "name": "Box 1",
+  "label": "Box 1",
   "children": ["paragraph_1", "paragraph_2"]
 };
 
@@ -805,7 +805,7 @@ Object.defineProperties(Box.prototype, getters);
 
 module.exports = Box;
 
-},{"substance-document":87,"underscore":144}],7:[function(require,module,exports){
+},{"substance-document":88,"underscore":145}],7:[function(require,module,exports){
 "use strict";
 
 var _ = require("underscore");
@@ -858,7 +858,7 @@ BoxView.prototype = new BoxView.Prototype();
 
 module.exports = BoxView;
 
-},{"../node":33,"substance-application":62,"substance-util":139,"underscore":144}],8:[function(require,module,exports){
+},{"../node":33,"substance-application":63,"substance-util":140,"underscore":145}],8:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -943,7 +943,7 @@ Document.Node.defineProperties(Caption.prototype, ["title", "children"]);
 
 module.exports = Caption;
 
-},{"substance-document":87}],10:[function(require,module,exports){
+},{"substance-document":88}],10:[function(require,module,exports){
 "use strict";
 
 var CompositeView = require("../composite").View;
@@ -1010,7 +1010,7 @@ CaptionView.prototype = new CaptionView.Prototype();
 
 module.exports = CaptionView;
 
-},{"../composite":17,"substance-application":62,"substance-document":87}],11:[function(require,module,exports){
+},{"../composite":17,"substance-application":63,"substance-document":88}],11:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -1140,7 +1140,7 @@ Object.defineProperties(Citation.prototype, getters);
 
 module.exports = Citation;
 
-},{"substance-document":87,"underscore":144}],13:[function(require,module,exports){
+},{"substance-document":88,"underscore":145}],13:[function(require,module,exports){
 "use strict";
 
 var _ = require('underscore');
@@ -1224,7 +1224,7 @@ CitationView.prototype.constructor = CitationView;
 
 module.exports = CitationView;
 
-},{"../node":33,"substance-application":62,"substance-util":139,"underscore":144}],14:[function(require,module,exports){
+},{"../node":33,"substance-application":63,"substance-util":140,"underscore":145}],14:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -1263,14 +1263,14 @@ module.exports = {
   View: require('./codeblock_view')
 };
 
-},{"./codeblock_view":15,"substance-nodes":98}],17:[function(require,module,exports){
+},{"./codeblock_view":15,"substance-nodes":99}],17:[function(require,module,exports){
 "use strict";
 
 var SubstanceNodes = require("substance-nodes");
 
 module.exports = SubstanceNodes["composite"];
 
-},{"substance-nodes":98}],18:[function(require,module,exports){
+},{"substance-nodes":99}],18:[function(require,module,exports){
 var _ = require('underscore');
 var Node = require('substance-document').Node;
 
@@ -1356,7 +1356,7 @@ Object.defineProperties(Cover.prototype, {
 
 module.exports = Cover;
 
-},{"substance-document":87,"underscore":144}],19:[function(require,module,exports){
+},{"substance-document":88,"underscore":145}],19:[function(require,module,exports){
 "use strict";
 
 var _ = require("underscore");
@@ -1417,7 +1417,7 @@ CoverView.prototype = new CoverView.Prototype();
 
 module.exports = CoverView;
 
-},{"../node":33,"substance-application":62,"substance-util":139,"underscore":144}],20:[function(require,module,exports){
+},{"../node":33,"substance-application":63,"substance-util":140,"underscore":145}],20:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -1441,7 +1441,8 @@ Figure.type = {
     "source_id": "string",
     "label": "string",
     "url": "string",
-    "caption": "caption"
+    "caption": "caption",
+    "attrib": "string"
   }
 };
 
@@ -1459,7 +1460,10 @@ Figure.description = {
     "A figure is a figure is figure.",
   ],
   "properties": {
-    
+    "label": "Label used as header for the figure cards",
+    "url": "Image url",
+    "caption": "A reference to a caption node that describes the figure",
+    "attrib": "Figure attribution"
   }
 };
 
@@ -1494,7 +1498,7 @@ Figure.Prototype.prototype = Document.Composite.prototype;
 Figure.prototype = new Figure.Prototype();
 Figure.prototype.constructor = Figure;
 
-Document.Node.defineProperties(Figure.prototype, ["source_id", "label", "url", "caption"]);
+Document.Node.defineProperties(Figure.prototype, ["source_id", "label", "url", "caption", "attrib"]);
 
 Object.defineProperties(Figure.prototype, {
   // Used as a resource header
@@ -1505,7 +1509,7 @@ Object.defineProperties(Figure.prototype, {
 
 module.exports = Figure;
 
-},{"substance-document":87}],22:[function(require,module,exports){
+},{"substance-document":88}],22:[function(require,module,exports){
 "use strict";
 
 var CompositeView = require("../composite").View;
@@ -1536,11 +1540,6 @@ FigureView.Prototype = function() {
 
     this.content.appendChild(imgEl);
 
-    // var i;
-    // // dispose existing children views if called multiple times
-    // for (i = 0; i < this.childrenViews.length; i++) {
-    //   this.childrenViews[i].dispose();
-    // }
 
     var caption = this.node.getCaption();
     if (caption) {
@@ -1548,6 +1547,12 @@ FigureView.Prototype = function() {
       var captionEl = captionView.render().el;
       this.content.appendChild(captionEl);
       this.childrenViews.push(captionView);
+    }
+
+    // Attrib
+    if (this.node.attrib) {
+      console.log('ATTRIB!!');
+      this.content.appendChild($$('.figure-attribution', {text: this.node.attrib}));
     }
 
     this.el.appendChild(this.content);
@@ -1560,7 +1565,7 @@ FigureView.prototype = new FigureView.Prototype();
 
 module.exports = FigureView;
 
-},{"../composite":17,"substance-application":62}],23:[function(require,module,exports){
+},{"../composite":17,"substance-application":63}],23:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -1653,7 +1658,7 @@ Object.defineProperties(Formula.prototype, getters);
 
 module.exports = Formula;
 
-},{"substance-document":87,"underscore":144}],25:[function(require,module,exports){
+},{"substance-document":88,"underscore":145}],25:[function(require,module,exports){
 "use strict";
 
 var NodeView = require('../node').View;
@@ -1712,7 +1717,7 @@ var SubstanceNodes = require("substance-nodes");
 
 module.exports = SubstanceNodes["heading"];
 
-},{"substance-nodes":98}],28:[function(require,module,exports){
+},{"substance-nodes":99}],28:[function(require,module,exports){
 "use strict";
 
 var Node = require("substance-document").Node;
@@ -1840,7 +1845,7 @@ Object.defineProperties(Image.prototype, {
 
 module.exports = Image;
 
-},{"substance-document":87}],29:[function(require,module,exports){
+},{"substance-document":88}],29:[function(require,module,exports){
 "use strict";
 
 var NodeView = require("../node").View;
@@ -1954,7 +1959,7 @@ ImageView.prototype = new ImageView.Prototype();
 
 module.exports = ImageView;
 
-},{"../node":33,"substance-application":62}],30:[function(require,module,exports){
+},{"../node":33,"substance-application":63}],30:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -1992,21 +1997,21 @@ var SubstanceNodes = require("substance-nodes");
 
 module.exports = SubstanceNodes["list"];
 
-},{"substance-nodes":98}],33:[function(require,module,exports){
+},{"substance-nodes":99}],33:[function(require,module,exports){
 "use strict";
 
 var SubstanceNodes = require("substance-nodes");
 
 module.exports = SubstanceNodes["node"];
 
-},{"substance-nodes":98}],34:[function(require,module,exports){
+},{"substance-nodes":99}],34:[function(require,module,exports){
 "use strict";
 
 var SubstanceNodes = require("substance-nodes");
 
 module.exports = SubstanceNodes["paragraph"];
 
-},{"substance-nodes":98}],35:[function(require,module,exports){
+},{"substance-nodes":99}],35:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -2042,7 +2047,8 @@ Person.type = {
     "fundings": ["array", "string"],
     "image": "string", // optional
     "emails": ["array", "string"],
-    "contribution": "string"
+    "contribution": "string",
+    "equal_contrib": ["array", "string"]
   }
 };
 
@@ -2060,6 +2066,7 @@ Person.description = {
   }
 };
 
+
 // Example Video
 // -----------------
 //
@@ -2067,7 +2074,13 @@ Person.description = {
 Person.example = {
   "id": "person_1",
   "type": "person",
-  "name": "John Doe"
+  "name": "John Doe",
+  "affiliations": ["affiliation_1", "affiliation_2"],
+  "role": "Author",
+  "fundings": ["Funding Organisation 1"],
+  "emails": ["a@b.com"],
+  "contribution": "Revising the article, data cleanup",
+  "equal_contrib": ["John Doe", "Jane Doe"]
 };
 
 
@@ -2113,7 +2126,7 @@ Object.defineProperties(Person.prototype, getters);
 
 module.exports = Person;
 
-},{"substance-document":87,"underscore":144}],37:[function(require,module,exports){
+},{"substance-document":88,"underscore":145}],37:[function(require,module,exports){
 "use strict";
 
 var _ = require("underscore");
@@ -2164,6 +2177,14 @@ PersonView.Prototype = function() {
     this.content.appendChild($$('.label', {text: 'Contribution'}));
     this.content.appendChild($$('.contribution', {text: this.node.contribution}));
 
+    // Equal contribution
+    // -------
+
+    if (this.node.equal_contrib && this.node.equal_contrib.length > 0) {
+      this.content.appendChild($$('.label', {text: 'Contributed equally with'}));
+      this.content.appendChild($$('.equal-contribution', {text: this.node.equal_contrib}));
+    }
+
     // Funding
     // -------
 
@@ -2195,7 +2216,7 @@ PersonView.prototype = new PersonView.Prototype();
 
 module.exports = PersonView;
 
-},{"../node":33,"substance-application":62,"substance-util":139,"underscore":144}],38:[function(require,module,exports){
+},{"../node":33,"substance-application":63,"substance-util":140,"underscore":145}],38:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -2218,7 +2239,7 @@ PublicationInfo.type = {
   "parent": "content",
   "properties": {
     "received_on": "string",
-    "accpeted_on": "string",
+    "accepted_on": "string",
     "published_on": "string",
     "journal": "string",
     "article_type": "string",
@@ -2241,7 +2262,7 @@ PublicationInfo.description = {
   ],
   "properties": {
     "received_on": "Submission received",
-    "accpeted_on": "Paper accepted on",
+    "accepted_on": "Paper accepted on",
     "published_on": "Paper published on",
     "journal": "The Journal",
     "article_type": "Research Article vs. Insight, vs. Correction etc.",
@@ -2311,7 +2332,7 @@ _.each(PublicationInfo.type.properties, function(prop, key) {
 Object.defineProperties(PublicationInfo.prototype, getters);
 
 module.exports = PublicationInfo;
-},{"substance-document":87,"underscore":144}],40:[function(require,module,exports){
+},{"substance-document":88,"underscore":145}],40:[function(require,module,exports){
 "use strict";
 
 var NodeView = require("../node").View;
@@ -2450,7 +2471,7 @@ PublicationInfoView.prototype = new PublicationInfoView.Prototype();
 
 module.exports = PublicationInfoView;
 
-},{"../node":33,"substance-application":62}],41:[function(require,module,exports){
+},{"../node":33,"substance-application":63}],41:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -2568,7 +2589,7 @@ Object.defineProperties(Supplement.prototype, getters);
 
 module.exports = Supplement;
 
-},{"substance-document":87,"underscore":144}],43:[function(require,module,exports){
+},{"substance-document":88,"underscore":145}],43:[function(require,module,exports){
 "use strict";
 
 var _ = require("underscore");
@@ -2624,7 +2645,7 @@ SupplementView.prototype.constructor = SupplementView;
 
 module.exports = SupplementView;
 
-},{"../composite":17,"substance-application":62,"substance-util":139,"underscore":144}],44:[function(require,module,exports){
+},{"../composite":17,"substance-application":63,"substance-util":140,"underscore":145}],44:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -2733,7 +2754,7 @@ Object.defineProperties(Table.prototype, getters);
 
 module.exports = Table;
 
-},{"substance-document":87,"underscore":144}],46:[function(require,module,exports){
+},{"substance-document":88,"underscore":145}],46:[function(require,module,exports){
 "use strict";
 
 var _ = require("underscore");
@@ -2831,14 +2852,14 @@ TableView.prototype = new TableView.Prototype();
 
 module.exports = TableView;
 
-},{"../node":33,"substance-application":62,"substance-util":139,"underscore":144}],47:[function(require,module,exports){
+},{"../node":33,"substance-application":63,"substance-util":140,"underscore":145}],47:[function(require,module,exports){
 "use strict";
 
 var SubstanceNodes = require("substance-nodes");
 
 module.exports = SubstanceNodes["text"];
 
-},{"substance-nodes":98}],48:[function(require,module,exports){
+},{"substance-nodes":99}],48:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -2961,7 +2982,7 @@ Object.defineProperties(Video.prototype, _.extend(getters, {
 
 module.exports = Video;
 
-},{"substance-document":87,"underscore":144}],50:[function(require,module,exports){
+},{"substance-document":88,"underscore":145}],50:[function(require,module,exports){
 "use strict";
 
 var _ = require("underscore");
@@ -3081,14 +3102,14 @@ VideoView.prototype = new VideoView.Prototype();
 
 module.exports = VideoView;
 
-},{"../node":33,"substance-application":62,"substance-util":139,"underscore":144}],51:[function(require,module,exports){
+},{"../node":33,"substance-application":63,"substance-util":140,"underscore":145}],51:[function(require,module,exports){
 "use strict";
 
 var LensConverter = require("./src/lens_converter");
 
 module.exports = LensConverter;
 
-},{"./src/lens_converter":56}],52:[function(require,module,exports){
+},{"./src/lens_converter":57}],52:[function(require,module,exports){
 
 var DefaultConfiguration = function() {
 
@@ -3271,9 +3292,7 @@ ElifeConfiguration.Prototype = function() {
     //
     // <self-uri content-type="pdf" xlink:href="elife00007.pdf"/>
     
-    var pdfURI = article.querySelector("self-uri[content-type=pdf]");
-    console.log('PDFURI', pdfURI);
-    
+    var pdfURI = article.querySelector("self-uri[content-type=pdf]");    
 
     var pdfLink = [
       "http://cdn.elifesciences.org/elife-articles/",
@@ -3300,7 +3319,6 @@ ElifeConfiguration.Prototype = function() {
       "xml_link": "https://s3.amazonaws.com/elife-cdn/elife-articles/"+state.doc.id+"/elife"+state.doc.id+".xml", // "http://mickey.com/mouse.xml",
       "json_link": "http://mickey.com/mouse.json",
       "doi": articleDOI ? ["http://dx.doi.org/", articleDOI.textContent].join("") : "",
-      // TODO add actual properties
     };
 
 
@@ -3439,9 +3457,7 @@ ElifeConfiguration.Prototype = function() {
       
     }
     
-    //nodes = nodes.concat(converter.bodyNodes(state, util.dom.getChildren(body)));
     doc.create(articleInfo);
-    console.log(JSON.stringify(articleInfo))
     doc.show("info", articleInfo.id);
   };
 
@@ -3516,7 +3532,7 @@ ElifeConfiguration.prototype.constructor = ElifeConfiguration;
 
 module.exports = ElifeConfiguration;
 
-},{"./default":52,"substance-util":139,"underscore":144}],54:[function(require,module,exports){
+},{"./default":52,"substance-util":140,"underscore":145}],54:[function(require,module,exports){
 var DefaultConfiguration = require('./default');
 
 var LandesConfiguration = function() {
@@ -3595,6 +3611,42 @@ module.exports = LandesConfiguration;
 },{"./default":52}],55:[function(require,module,exports){
 var DefaultConfiguration = require('./default');
 
+var PeerJConfiguration = function() {
+
+};
+
+PeerJConfiguration.Prototype = function() {
+
+  // Resolve figure urls
+  // --------
+  // 
+
+  this.enhanceFigure = function(state, node, element) {
+    var graphic = element.querySelector("graphic");
+    var url = graphic.getAttribute("xlink:href");
+
+    node.url = url;
+  };
+
+  // Assign video url
+  // --------
+  // 
+
+  this.enhanceVideo = function(state, node, element) {
+    node.url = "http://mickey.com/mouse.mp4";
+  };
+};
+
+
+PeerJConfiguration.Prototype.prototype = DefaultConfiguration.prototype;
+PeerJConfiguration.prototype = new PeerJConfiguration.Prototype();
+PeerJConfiguration.prototype.constructor = PeerJConfiguration;
+
+module.exports = PeerJConfiguration;
+
+},{"./default":52}],56:[function(require,module,exports){
+var DefaultConfiguration = require('./default');
+
 var PLOSConfiguration = function() {
 
 };
@@ -3612,7 +3664,7 @@ PLOSConfiguration.Prototype = function() {
     url = [
       "http://www.plosone.org/article/fetchObject.action?uri=",
       url,
-      "&representation=PNG_M"
+      "&representation=PNG_L"
     ].join('');
 
     node.url = url;
@@ -3634,7 +3686,7 @@ PLOSConfiguration.prototype.constructor = PLOSConfiguration;
 
 module.exports = PLOSConfiguration;
 
-},{"./default":52}],56:[function(require,module,exports){
+},{"./default":52}],57:[function(require,module,exports){
 "use strict";
 
 var _ = require("underscore");
@@ -3649,6 +3701,7 @@ var ElifeConfiguration = require("./configurations/elife");
 var LandesConfiguration = require("./configurations/landes");
 var DefaultConfiguration = require("./configurations/default");
 var PLOSConfiguration = require("./configurations/plos");
+var PeerJConfiguration = require("./configurations/peerj");
 
 var LensImporter = function(options) {
   this.options = options;
@@ -3782,6 +3835,14 @@ LensImporter.Prototype = function() {
       this.affiliation(state, affiliations[i]);
     }
 
+    // Extract equal contributors
+    var equalContribs = contribGroup.querySelectorAll("contrib[equal-contrib=yes]");
+
+    state.equalContribs = _.map(equalContribs, function(c) {
+      return _getName(c);
+    });
+
+
     var contribs = contribGroup.querySelectorAll("contrib");
     for (i = 0; i < contribs.length; i++) {
       this.contributor(state, contribs[i]);
@@ -3831,8 +3892,12 @@ LensImporter.Prototype = function() {
     };
 
 
+    // Extracting equal contributions
     var nameEl = contrib.querySelector("name");
     personNode.name = _getName(nameEl);
+    if (_.include(state.equalContribs, personNode.name)) {
+      personNode.equal_contrib = _.without(state.equalContribs, personNode.name);
+    }
 
     // extract affiliations stored as xrefs
     var xrefs = contrib.querySelectorAll("xref");
@@ -3857,11 +3922,12 @@ LensImporter.Prototype = function() {
         if (!email) return;
         personNode.emails.push(email.textContent);
       } else if (xref.getAttribute("ref-type") === "fn") {
-        // Extract contribution
         var elem = state.xmlDoc.getElementById(xref.getAttribute("rid"));
+
         if (elem && elem.getAttribute("fn-type") === "con") {
           personNode.contribution = elem.textContent;
         } else {
+          console.log(elem);
           // skipping...
         }
       }
@@ -4003,6 +4069,8 @@ LensImporter.Prototype = function() {
       state.config = new ElifeConfiguration();
     } else if (publisherName === "Public Library of Science") {
       state.config = new PLOSConfiguration();
+    } else if (publisherName === 'PeerJ Inc.') {
+      state.config = new PeerJConfiguration();
     } else {
       state.config = new DefaultConfiguration();
     }
@@ -4110,7 +4178,7 @@ LensImporter.Prototype = function() {
       "type": "figure",
       "id": state.nextId("figure"),
       "source_id": figure.getAttribute("id"),
-      "label": label ? label.textContent : "",
+      "label": label ? label.textContent : "Figure",
       "url": "http://images.wisegeek.com/young-calico-cat.jpg",
       "caption": null
     };
@@ -4120,6 +4188,11 @@ LensImporter.Prototype = function() {
     if (caption) {
       var captionNode = this.caption(state, caption);
       if (captionNode) figureNode.caption = captionNode.id;
+    }
+
+    var attrib = figure.querySelector("attrib");
+    if (attrib) {
+      figureNode.attrib = attrib.textContent;
     }
 
     // Lets the configuration patch the figure node properties
@@ -4503,7 +4576,18 @@ LensImporter.Prototype = function() {
   //
 
   this.body = function(state, body) {
-    var nodes = this.bodyNodes(state, util.dom.getChildren(body));
+
+    var heading = {
+      id: state.nextId("heading"),
+      type: "heading",
+      level: 1,
+      content: "Main Text"
+    };
+    doc.create(heading);
+
+
+    var nodes = [heading].concat(this.bodyNodes(state, util.dom.getChildren(body)));
+
     if (nodes.length > 0) {
       this.show(state, nodes);
     }
@@ -4544,6 +4628,11 @@ LensImporter.Prototype = function() {
         var node = this.boxedText(state, child);
         if (node) nodes.push(node);
         // nodes = nodes.concat(this.bodyNodes(state, util.dom.getChildren(child)));
+      }
+      else if (type === "disp-quote") {
+        // Just treat as another container
+        var node = this.boxedText(state, child);
+        if (node) nodes.push(node);
       }
       // Note: here are some node types ignored which are
       // processed in an extra pass (figures, tables, etc.)
@@ -5100,7 +5189,7 @@ LensImporter.State = function(xmlDoc, doc, options) {
   // of processed nodes to be able to associate other things (e.g., annotations) correctly.
   this.stack = [];
 
-  this.sectionLevel = 0;
+  this.sectionLevel = 1;
 
   // an id generator for different types
   var ids = {};
@@ -5118,14 +5207,14 @@ module.exports = {
   Importer: LensImporter
 };
 
-},{"./configurations/default":52,"./configurations/elife":53,"./configurations/landes":54,"./configurations/plos":55,"lens-article":3,"substance-util":139,"underscore":144}],57:[function(require,module,exports){
+},{"./configurations/default":52,"./configurations/elife":53,"./configurations/landes":54,"./configurations/peerj":55,"./configurations/plos":56,"lens-article":3,"substance-util":140,"underscore":145}],58:[function(require,module,exports){
 "use strict";
 
 var Outline = require('./outline');
 
 module.exports = Outline;
 
-},{"./outline":58}],58:[function(require,module,exports){
+},{"./outline":59}],59:[function(require,module,exports){
 "use strict";
 
 var View = require("substance-application").View;
@@ -5311,7 +5400,7 @@ Outline.prototype = new Outline.Prototype();
 
 module.exports = Outline;
 
-},{"substance-application":62,"underscore":144}],59:[function(require,module,exports){
+},{"substance-application":63,"underscore":145}],60:[function(require,module,exports){
 "use strict";
 
 var Reader = {
@@ -5320,7 +5409,7 @@ var Reader = {
 };
 
 module.exports = Reader;
-},{"./reader_controller":60,"./reader_view":61}],60:[function(require,module,exports){
+},{"./reader_controller":61,"./reader_view":62}],61:[function(require,module,exports){
 "use strict";
 
 var Document = require("substance-document");
@@ -5405,7 +5494,7 @@ ReaderController.prototype = new ReaderController.Prototype();
 
 module.exports = ReaderController;
 
-},{"./reader_view":61,"substance-application":62,"substance-document":87,"substance-util":139}],61:[function(require,module,exports){
+},{"./reader_view":62,"substance-application":63,"substance-document":88,"substance-util":140}],62:[function(require,module,exports){
 "use strict";
 
 var _ = require("underscore");
@@ -5414,15 +5503,12 @@ var html = util.html;
 var Surface = require("substance-surface");
 var Outline = require("lens-outline");
 var View = require("substance-application").View;
-// var ContentRenderer = require("./renderers/content_renderer");
-// var ResourceRenderer = require("./renderers/resource_renderer");
 var TOC = require("substance-toc");
 var Data = require("substance-data");
 var Index = Data.Graph.Index;
 var $$ = require("substance-application").$$;
 
 var CORRECTION = -100; // Extra offset from the top
-
 
 
 var modes = {
@@ -5441,7 +5527,8 @@ var modeAssignments = {
   "formula": ["node"],
   "heading": ["node"],
   "paragraph": ["node"],
-  "list": ["node"]
+  "list": ["node"],
+  "box": ["node"]
 };
 
 
@@ -6039,7 +6126,6 @@ ReaderView.Prototype = function() {
       that.updateOutline();
     }, 1);
 
-
     // Jump marks for teh win
     if (state.node) {
       _.delay(function() {
@@ -6084,7 +6170,7 @@ ReaderView.prototype.constructor = ReaderView;
 
 module.exports = ReaderView;
 
-},{"lens-outline":57,"substance-application":62,"substance-data":80,"substance-surface":135,"substance-toc":137,"substance-util":139,"underscore":144}],62:[function(require,module,exports){
+},{"lens-outline":58,"substance-application":63,"substance-data":81,"substance-surface":136,"substance-toc":138,"substance-util":140,"underscore":145}],63:[function(require,module,exports){
 "use strict";
 
 var Application = require("./src/application");
@@ -6096,7 +6182,7 @@ Application.$$ = Application.ElementRenderer.$$;
 
 module.exports = Application;
 
-},{"./src/application":63,"./src/controller":64,"./src/renderers/element_renderer":65,"./src/router":66,"./src/view":67}],63:[function(require,module,exports){
+},{"./src/application":64,"./src/controller":65,"./src/renderers/element_renderer":66,"./src/router":67,"./src/view":68}],64:[function(require,module,exports){
 "use strict";
 
 var View = require("./view");
@@ -6153,7 +6239,7 @@ Application.prototype = new Application.Prototype();
 
 module.exports = Application;
 
-},{"./router":66,"./view":67,"substance-util":139,"underscore":144}],64:[function(require,module,exports){
+},{"./router":67,"./view":68,"substance-util":140,"underscore":145}],65:[function(require,module,exports){
 "use strict";
 
 var util = require("substance-util");
@@ -6210,7 +6296,7 @@ Controller.Prototype.prototype = util.Events;
 Controller.prototype = new Controller.Prototype();
 
 module.exports = Controller;
-},{"substance-util":139,"underscore":144}],65:[function(require,module,exports){
+},{"substance-util":140,"underscore":145}],66:[function(require,module,exports){
 "use strict";
 
 var util = require("substance-util");
@@ -6321,7 +6407,7 @@ ElementRenderer.Prototype.prototype = util.Events;
 ElementRenderer.prototype = new ElementRenderer.Prototype();
 
 module.exports = ElementRenderer;
-},{"substance-regexp":133,"substance-util":139}],66:[function(require,module,exports){
+},{"substance-regexp":134,"substance-util":140}],67:[function(require,module,exports){
 "use strict";
 
 var util = require("substance-util");
@@ -6641,7 +6727,7 @@ Router.history = new History;
 
 
 module.exports = Router;
-},{"substance-util":139,"underscore":144}],67:[function(require,module,exports){
+},{"substance-util":140,"underscore":145}],68:[function(require,module,exports){
 "use strict";
 
 var util = require("substance-util");
@@ -6716,7 +6802,7 @@ View.prototype = new View.Prototype();
 
 module.exports = View;
 
-},{"substance-util":139}],68:[function(require,module,exports){
+},{"substance-util":140}],69:[function(require,module,exports){
 "use strict";
 
 var Chronicle = require('./src/chronicle');
@@ -6735,7 +6821,7 @@ Chronicle.TextOperationAdapter = require('./src/text_adapter');
 
 module.exports = Chronicle;
 
-},{"./src/array_adapter":69,"./src/chronicle":70,"./src/chronicle_impl":71,"./src/diff_impl":72,"./src/index_impl":73,"./src/text_adapter":74,"./src/tmp_index":75}],69:[function(require,module,exports){
+},{"./src/array_adapter":70,"./src/chronicle":71,"./src/chronicle_impl":72,"./src/diff_impl":73,"./src/index_impl":74,"./src/text_adapter":75,"./src/tmp_index":76}],70:[function(require,module,exports){
 "use strict";
 
 var util = require('substance-util');
@@ -6777,7 +6863,7 @@ ArrayOperationAdapter.prototype = new ArrayOperationAdapter.Prototype();
 
 module.exports = ArrayOperationAdapter;
 
-},{"./chronicle":70,"substance-operator":126,"substance-util":139}],70:[function(require,module,exports){
+},{"./chronicle":71,"substance-operator":127,"substance-util":140}],71:[function(require,module,exports){
 "use strict";
 
 /*jshint unused: false*/ // deactivating this, as we define abstract interfaces here
@@ -7478,7 +7564,7 @@ Chronicle.mergeConflict = function(a, b) {
 
 module.exports = Chronicle;
 
-},{"substance-util":139,"underscore":144}],71:[function(require,module,exports){
+},{"substance-util":140,"underscore":145}],72:[function(require,module,exports){
 "use strict";
 
 // Imports
@@ -8124,7 +8210,7 @@ ChronicleImpl.create = function(options) {
 
 module.exports = ChronicleImpl;
 
-},{"./chronicle":70,"substance-util":139,"underscore":144}],72:[function(require,module,exports){
+},{"./chronicle":71,"substance-util":140,"underscore":145}],73:[function(require,module,exports){
 var _ = require("underscore");
 var Chronicle = require("./chronicle");
 
@@ -8194,7 +8280,7 @@ DiffImpl.create = function(id, reverts, applies) {
 
 module.exports = DiffImpl;
 
-},{"./chronicle":70,"underscore":144}],73:[function(require,module,exports){
+},{"./chronicle":71,"underscore":145}],74:[function(require,module,exports){
 "use strict";
 
 // Imports
@@ -8518,7 +8604,7 @@ IndexImpl.create = function(options) {
 
 module.exports = IndexImpl;
 
-},{"./chronicle":70,"substance-util":139,"underscore":144}],74:[function(require,module,exports){
+},{"./chronicle":71,"substance-util":140,"underscore":145}],75:[function(require,module,exports){
 "use strict";
 
 var util = require('substance-util');
@@ -8558,7 +8644,7 @@ TextOperationAdapter.prototype = new TextOperationAdapter.Prototype();
 
 module.exports = TextOperationAdapter;
 
-},{"./chronicle":70,"substance-operator":126,"substance-util":139}],75:[function(require,module,exports){
+},{"./chronicle":71,"substance-operator":127,"substance-util":140}],76:[function(require,module,exports){
 var _ = require("underscore");
 var util = require("substance-util");
 var errors = util.errors;
@@ -8640,7 +8726,7 @@ TmpIndex.prototype = new TmpIndex.Prototype();
 
 module.exports = TmpIndex;
 
-},{"./index_impl":73,"substance-util":139,"underscore":144}],76:[function(require,module,exports){
+},{"./index_impl":74,"substance-util":140,"underscore":145}],77:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -8648,7 +8734,7 @@ module.exports = {
   Mousetrap: require("./src/mousetrap")
 };
 
-},{"./src/keyboard":78,"./src/mousetrap":79}],77:[function(require,module,exports){
+},{"./src/keyboard":79,"./src/mousetrap":80}],78:[function(require,module,exports){
 /*global define:false */
 /**
  * Copyright 2013 Craig Campbell
@@ -9594,7 +9680,7 @@ module.exports = {
     }
 }) ();
 
-},{}],78:[function(require,module,exports){
+},{}],79:[function(require,module,exports){
 "use strict";
 
 require("../lib/mousetrap");
@@ -9800,7 +9886,7 @@ Keyboard.prototype = new Keyboard.Prototype();
 
 module.exports = Keyboard;
 
-},{"../lib/mousetrap":77}],79:[function(require,module,exports){
+},{"../lib/mousetrap":78}],80:[function(require,module,exports){
 "use strict";
 
 /**
@@ -10739,7 +10825,7 @@ Mousetrap.prototype = new Mousetrap.Prototype();
 
 module.exports = Mousetrap;
 
-},{}],80:[function(require,module,exports){
+},{}],81:[function(require,module,exports){
 "use strict";
 
 var Data = {};
@@ -10751,7 +10837,7 @@ Data.Graph = require('./src/graph');
 
 module.exports = Data;
 
-},{"./src/graph":82}],81:[function(require,module,exports){
+},{"./src/graph":83}],82:[function(require,module,exports){
 "use strict";
 
 var Chronicle = require('substance-chronicle');
@@ -10798,7 +10884,7 @@ ChronicleAdapter.prototype = new ChronicleAdapter.Prototype();
 
 module.exports = ChronicleAdapter;
 
-},{"substance-chronicle":68,"substance-operator":126}],82:[function(require,module,exports){
+},{"substance-chronicle":69,"substance-operator":127}],83:[function(require,module,exports){
 //     (c) 2013 Michael Aufreiter, Oliver Buchtala
 //     Data.js is freely distributable under the MIT license.
 //     Portions of Data.js are inspired or borrowed from Underscore.js,
@@ -11571,7 +11657,7 @@ Graph.Index = Index;
 
 module.exports = Graph;
 
-},{"./chronicle_adapter":81,"./graph_index":83,"./persistence_adapter":84,"./property":85,"./schema":86,"substance-chronicle":68,"substance-operator":126,"substance-util":139,"underscore":144}],83:[function(require,module,exports){
+},{"./chronicle_adapter":82,"./graph_index":84,"./persistence_adapter":85,"./property":86,"./schema":87,"substance-chronicle":69,"substance-operator":127,"substance-util":140,"underscore":145}],84:[function(require,module,exports){
 var _ = require("underscore");
 var util = require("substance-util");
 
@@ -11759,7 +11845,7 @@ Index.typeFilter = function(schema, types) {
 
 module.exports = Index;
 
-},{"substance-util":139,"underscore":144}],84:[function(require,module,exports){
+},{"substance-util":140,"underscore":145}],85:[function(require,module,exports){
 "use strict";
 
 var Operator = require('substance-operator');
@@ -11802,7 +11888,7 @@ PersistenceAdapter.prototype = new PersistenceAdapter.Prototype();
 
 module.exports = PersistenceAdapter;
 
-},{"substance-operator":126}],85:[function(require,module,exports){
+},{"substance-operator":127}],86:[function(require,module,exports){
 "use strict";
 
 var _ = require("underscore");
@@ -11905,7 +11991,7 @@ Object.defineProperties(Property.prototype, {
 
 module.exports = Property;
 
-},{"underscore":144}],86:[function(require,module,exports){
+},{"underscore":145}],87:[function(require,module,exports){
 "use strict";
 
 var _ = require("underscore");
@@ -12080,7 +12166,7 @@ Schema.prototype = new Schema.Prototype();
 
 module.exports = Schema;
 
-},{"substance-util":139,"underscore":144}],87:[function(require,module,exports){
+},{"substance-util":140,"underscore":145}],88:[function(require,module,exports){
 "use strict";
 
 var _ = require("underscore");
@@ -12105,7 +12191,7 @@ Document.Writer = require('./src/controller');
 
 module.exports = Document;
 
-},{"./src/annotator":88,"./src/composite":90,"./src/container":91,"./src/controller":92,"./src/cursor":93,"./src/document":94,"./src/node":95,"./src/selection":96,"./src/text_node":97,"underscore":144}],88:[function(require,module,exports){
+},{"./src/annotator":89,"./src/composite":91,"./src/container":92,"./src/controller":93,"./src/cursor":94,"./src/document":95,"./src/node":96,"./src/selection":97,"./src/text_node":98,"underscore":145}],89:[function(require,module,exports){
 "use strict";
 
 // Import
@@ -12797,7 +12883,7 @@ Annotator.Fragmenter = Fragmenter;
 
 module.exports = Annotator;
 
-},{"./document":94,"./selection":96,"substance-data":80,"substance-operator":126,"substance-util":139,"underscore":144}],89:[function(require,module,exports){
+},{"./document":95,"./selection":97,"substance-data":81,"substance-operator":127,"substance-util":140,"underscore":145}],90:[function(require,module,exports){
 "use strict";
 
 var _ = require("underscore");
@@ -12842,7 +12928,7 @@ Clipboard.prototype = new Clipboard.Prototype();
 
 module.exports = Clipboard;
 
-},{"substance-util":139,"underscore":144}],90:[function(require,module,exports){
+},{"substance-util":140,"underscore":145}],91:[function(require,module,exports){
 var DocumentNode = require("./node");
 
 var Composite = function(node, doc) {
@@ -12945,7 +13031,7 @@ Composite.prototype = new Composite.Prototype();
 
 module.exports = Composite;
 
-},{"./node":95}],91:[function(require,module,exports){
+},{"./node":96}],92:[function(require,module,exports){
 "use strict";
 
 var _ = require("underscore");
@@ -13179,7 +13265,7 @@ Object.defineProperties(Container.prototype, {
 
 module.exports = Container;
 
-},{"./composite":90,"substance-util":139,"underscore":144}],92:[function(require,module,exports){
+},{"./composite":91,"substance-util":140,"underscore":145}],93:[function(require,module,exports){
 "use strict";
 
 var _ = require("underscore");
@@ -13779,7 +13865,7 @@ Controller.ManipulationSession = ManipulationSession;
 
 module.exports = Controller;
 
-},{"./annotator":88,"./clipboard":89,"./composite":90,"./selection":96,"substance-operator":126,"substance-util":139,"underscore":144}],93:[function(require,module,exports){
+},{"./annotator":89,"./clipboard":90,"./composite":91,"./selection":97,"substance-operator":127,"substance-util":140,"underscore":145}],94:[function(require,module,exports){
 var _ = require("underscore");
 var SRegExp = require("substance-regexp");
 var util = require("substance-util");
@@ -14016,7 +14102,7 @@ Object.defineProperties(Cursor.prototype, {
 
 module.exports = Cursor;
 
-},{"substance-regexp":133,"substance-util":139,"underscore":144}],94:[function(require,module,exports){
+},{"substance-regexp":134,"substance-util":140,"underscore":145}],95:[function(require,module,exports){
 "use strict";
 
 // Substance.Document 0.5.0
@@ -14344,7 +14430,7 @@ Document.DocumentError = DocumentError;
 
 module.exports = Document;
 
-},{"./container":91,"substance-chronicle":68,"substance-data":80,"substance-operator":126,"substance-util":139,"underscore":144}],95:[function(require,module,exports){
+},{"./container":92,"substance-chronicle":69,"substance-data":81,"substance-operator":127,"substance-util":140,"underscore":145}],96:[function(require,module,exports){
 "use strict";
 
 var _ = require("underscore");
@@ -14483,7 +14569,7 @@ Node.defineProperties(Node.prototype, ["id", "type"]);
 
 module.exports = Node;
 
-},{"underscore":144}],96:[function(require,module,exports){
+},{"underscore":145}],97:[function(require,module,exports){
 "use strict";
 
 var _ = require("underscore");
@@ -15040,7 +15126,7 @@ Selection.SelectionError = SelectionError;
 
 module.exports = Selection;
 
-},{"./cursor":93,"substance-util":139,"underscore":144}],97:[function(require,module,exports){
+},{"./cursor":94,"substance-util":140,"underscore":145}],98:[function(require,module,exports){
 "use strict";
 
 var _ = require("underscore");
@@ -15219,7 +15305,7 @@ DocumentNode.defineProperties(Text.prototype, ["content"]);
 
 module.exports = Text;
 
-},{"./node":95,"substance-operator":126,"substance-regexp":133,"underscore":144}],98:[function(require,module,exports){
+},{"./node":96,"substance-operator":127,"substance-regexp":134,"underscore":145}],99:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -15234,7 +15320,7 @@ module.exports = {
   "image": require("./src/image")
 };
 
-},{"./src/codeblock":101,"./src/composite":104,"./src/heading":107,"./src/image":110,"./src/list":111,"./src/node":114,"./src/paragraph":117,"./src/text":120,"./src/web_resource":123}],99:[function(require,module,exports){
+},{"./src/codeblock":102,"./src/composite":105,"./src/heading":108,"./src/image":111,"./src/list":112,"./src/node":115,"./src/paragraph":118,"./src/text":121,"./src/web_resource":124}],100:[function(require,module,exports){
 "use strict";
 
 var Text = require("../text/text_node");
@@ -15293,7 +15379,7 @@ Codeblock.prototype.constructor = Codeblock;
 module.exports = Codeblock;
 
 
-},{"../text/text_node":121}],100:[function(require,module,exports){
+},{"../text/text_node":122}],101:[function(require,module,exports){
 "use strict";
 
 var TextView = require('../text/text_view');
@@ -15314,7 +15400,7 @@ CodeblockView.prototype = new CodeblockView.Prototype();
 
 module.exports = CodeblockView;
 
-},{"../text/text_view":122}],101:[function(require,module,exports){
+},{"../text/text_view":123}],102:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -15322,14 +15408,14 @@ module.exports = {
   View: require("./codeblock_view")
 };
 
-},{"./codeblock":99,"./codeblock_view":100}],102:[function(require,module,exports){
+},{"./codeblock":100,"./codeblock_view":101}],103:[function(require,module,exports){
 "use strict";
 
 // Note: we leave the Composite in `substance-document` as it is an essential part of the API.
 var Document = require("substance-document");
 module.exports = Document.Composite;
 
-},{"substance-document":87}],103:[function(require,module,exports){
+},{"substance-document":88}],104:[function(require,module,exports){
 "use strict";
 
 var NodeView = require("../node").View;
@@ -15408,7 +15494,7 @@ CompositeView.prototype = new CompositeView.Prototype();
 
 module.exports = CompositeView;
 
-},{"../node":114}],104:[function(require,module,exports){
+},{"../node":115}],105:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -15416,7 +15502,7 @@ module.exports = {
   View: require("./composite_view")
 };
 
-},{"./composite":102,"./composite_view":103}],105:[function(require,module,exports){
+},{"./composite":103,"./composite_view":104}],106:[function(require,module,exports){
 "use strict";
 
 var DocumentNode = require("substance-document").Node;
@@ -15479,7 +15565,7 @@ DocumentNode.defineProperties(Heading.prototype, ["level"]);
 
 module.exports = Heading;
 
-},{"../text/text_node":121,"substance-document":87}],106:[function(require,module,exports){
+},{"../text/text_node":122,"substance-document":88}],107:[function(require,module,exports){
 "use strict";
 
 var TextView = require('../text/text_view');
@@ -15502,7 +15588,7 @@ HeadingView.prototype = new HeadingView.Prototype();
 
 module.exports = HeadingView;
 
-},{"../text/text_view":122}],107:[function(require,module,exports){
+},{"../text/text_view":123}],108:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -15510,7 +15596,7 @@ module.exports = {
   View: require("./heading_view")
 };
 
-},{"./heading":105,"./heading_view":106}],108:[function(require,module,exports){
+},{"./heading":106,"./heading_view":107}],109:[function(require,module,exports){
 "use strict";
 
 var DocumentNode = require("substance-document").Node;
@@ -15563,7 +15649,7 @@ ImageNode.prototype.constructor = ImageNode;
 
 module.exports = ImageNode;
 
-},{"../web_resource/web_resource":124,"substance-document":87}],109:[function(require,module,exports){
+},{"../web_resource/web_resource":125,"substance-document":88}],110:[function(require,module,exports){
 "use strict";
 
 var NodeView = require("../node").View;
@@ -15654,7 +15740,7 @@ ImageView.prototype = new ImageView.Prototype();
 
 module.exports = ImageView;
 
-},{"../node":114}],110:[function(require,module,exports){
+},{"../node":115}],111:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -15662,7 +15748,7 @@ module.exports = {
   View: require("./image_view")
 };
 
-},{"./image":108,"./image_view":109}],111:[function(require,module,exports){
+},{"./image":109,"./image_view":110}],112:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -15670,7 +15756,7 @@ module.exports = {
   View: require("./list_view")
 };
 
-},{"./list":112,"./list_view":113}],112:[function(require,module,exports){
+},{"./list":113,"./list_view":114}],113:[function(require,module,exports){
 "use strict";
 
 var _ = require("underscore");
@@ -15804,7 +15890,7 @@ DocumentNode.defineProperties(List.prototype, ["items", "ordered"]);
 
 module.exports = List;
 
-},{"substance-document":87,"underscore":144}],113:[function(require,module,exports){
+},{"substance-document":88,"underscore":145}],114:[function(require,module,exports){
 "use strict";
 
 var CompositeView = require("../composite/composite_view");
@@ -15873,7 +15959,7 @@ ListView.prototype = new ListView.Prototype();
 
 module.exports = ListView;
 
-},{"../composite/composite_view":103,"./list":112}],114:[function(require,module,exports){
+},{"../composite/composite_view":104,"./list":113}],115:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -15881,14 +15967,14 @@ module.exports = {
   View: require("./node_view")
 };
 
-},{"./node":115,"./node_view":116}],115:[function(require,module,exports){
+},{"./node":116,"./node_view":117}],116:[function(require,module,exports){
 "use strict";
 
 // Note: we leave the Node in `substance-document` as it is an essential part of the API.
 var Document = require("substance-document");
 module.exports = Document.Node;
 
-},{"substance-document":87}],116:[function(require,module,exports){
+},{"substance-document":88}],117:[function(require,module,exports){
 var View = require("substance-application").View;
 
 // Substance.Node.View
@@ -15962,7 +16048,7 @@ NodeView.prototype = new NodeView.Prototype();
 
 module.exports = NodeView;
 
-},{"substance-application":62}],117:[function(require,module,exports){
+},{"substance-application":63}],118:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -15970,7 +16056,7 @@ module.exports = {
   View: require("./paragraph_view")
 };
 
-},{"./paragraph":118,"./paragraph_view":119}],118:[function(require,module,exports){
+},{"./paragraph":119,"./paragraph_view":120}],119:[function(require,module,exports){
 "use strict";
 
 var _ = require("underscore");
@@ -16101,7 +16187,7 @@ DocumentNode.defineProperties(Paragraph.prototype, ["children"]);
 
 module.exports = Paragraph;
 
-},{"substance-document":87,"underscore":144}],119:[function(require,module,exports){
+},{"substance-document":88,"underscore":145}],120:[function(require,module,exports){
 "use strict";
 
 var CompositeView = require("../composite/composite_view");
@@ -16127,7 +16213,7 @@ ParagraphView.prototype = new ParagraphView.Prototype();
 
 module.exports = ParagraphView;
 
-},{"../composite/composite_view":103}],120:[function(require,module,exports){
+},{"../composite/composite_view":104}],121:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -16135,7 +16221,7 @@ module.exports = {
   View: require("./text_view")
 };
 
-},{"./text_node":121,"./text_view":122}],121:[function(require,module,exports){
+},{"./text_node":122,"./text_view":123}],122:[function(require,module,exports){
 "use strict";
 
 // Note: for now, we have left the Text node implementation in substance-document
@@ -16145,7 +16231,7 @@ module.exports = {
 var Document = require("substance-document");
 module.exports = Document.TextNode;
 
-},{"substance-document":87}],122:[function(require,module,exports){
+},{"substance-document":88}],123:[function(require,module,exports){
 var NodeView = require('../node/node_view');
 var Document = require("substance-document");
 var Annotator = Document.Annotator;
@@ -16383,7 +16469,7 @@ TextView.prototype = new TextView.Prototype();
 
 module.exports = TextView;
 
-},{"../node/node_view":116,"substance-application":62,"substance-document":87}],123:[function(require,module,exports){
+},{"../node/node_view":117,"substance-application":63,"substance-document":88}],124:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -16391,7 +16477,7 @@ module.exports = {
   View: require("./web_resource_view")
 };
 
-},{"./web_resource":124,"./web_resource_view":125}],124:[function(require,module,exports){
+},{"./web_resource":125,"./web_resource_view":126}],125:[function(require,module,exports){
 "use strict";
 
 var DocumentNode = require("substance-document").Node;
@@ -16437,12 +16523,12 @@ DocumentNode.defineProperties(WebResource.prototype, ["url"]);
 
 module.exports = WebResource;
 
-},{"substance-document":87}],125:[function(require,module,exports){
+},{"substance-document":88}],126:[function(require,module,exports){
 "use strict";
 
 module.exports = require("../node").View;
 
-},{"../node":114}],126:[function(require,module,exports){
+},{"../node":115}],127:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -16454,7 +16540,7 @@ module.exports = {
   Helpers: require('./src/operation_helpers')
 };
 
-},{"./src/array_operation":127,"./src/compound":128,"./src/object_operation":129,"./src/operation":130,"./src/operation_helpers":131,"./src/text_operation":132}],127:[function(require,module,exports){
+},{"./src/array_operation":128,"./src/compound":129,"./src/object_operation":130,"./src/operation":131,"./src/operation_helpers":132,"./src/text_operation":133}],128:[function(require,module,exports){
 "use strict";
 
 // Import
@@ -17120,7 +17206,7 @@ ArrayOperation.MOVE = MOV;
 
 module.exports = ArrayOperation;
 
-},{"./compound":128,"./operation":130,"substance-util":139,"underscore":144}],128:[function(require,module,exports){
+},{"./compound":129,"./operation":131,"substance-util":140,"underscore":145}],129:[function(require,module,exports){
 "use strict";
 
 // Import
@@ -17245,7 +17331,7 @@ Compound.createTransform = function(primitive_transform) {
 
 module.exports = Compound;
 
-},{"./operation":130,"substance-util":139,"underscore":144}],129:[function(require,module,exports){
+},{"./operation":131,"substance-util":140,"underscore":145}],130:[function(require,module,exports){
 "use strict";
 
 // Import
@@ -17790,7 +17876,7 @@ ObjectOperation.SET = SET;
 
 module.exports = ObjectOperation;
 
-},{"./array_operation":127,"./compound":128,"./operation":130,"./text_operation":132,"substance-util":139,"underscore":144}],130:[function(require,module,exports){
+},{"./array_operation":128,"./compound":129,"./operation":131,"./text_operation":133,"substance-util":140,"underscore":145}],131:[function(require,module,exports){
 "use strict";
 
 // Import
@@ -17841,7 +17927,7 @@ Operation.Conflict = Conflict;
 
 module.exports = Operation;
 
-},{"substance-util":139}],131:[function(require,module,exports){
+},{"substance-util":140}],132:[function(require,module,exports){
 var Helpers = {};
 
 Helpers.last = function(op) {
@@ -17886,7 +17972,7 @@ Helpers.each = function(op, iterator, context, reverse) {
 
 module.exports = Helpers;
 
-},{}],132:[function(require,module,exports){
+},{}],133:[function(require,module,exports){
 "use strict";
 
 // Import
@@ -18381,12 +18467,12 @@ TextOperation.DELETE = DEL;
 
 module.exports = TextOperation;
 
-},{"./compound":128,"./operation":130,"substance-util":139,"underscore":144}],133:[function(require,module,exports){
+},{"./compound":129,"./operation":131,"substance-util":140,"underscore":145}],134:[function(require,module,exports){
 "use strict";
 
 module.exports = require("./src/regexp");
 
-},{"./src/regexp":134}],134:[function(require,module,exports){
+},{"./src/regexp":135}],135:[function(require,module,exports){
 "use strict";
 
 // Substanc.RegExp.Match
@@ -18465,14 +18551,14 @@ RegExp.Match = Match;
 
 module.exports = RegExp;
 
-},{}],135:[function(require,module,exports){
+},{}],136:[function(require,module,exports){
 "use strict";
 
 var Surface = require("./src/surface");
 
 module.exports = Surface;
 
-},{"./src/surface":136}],136:[function(require,module,exports){
+},{"./src/surface":137}],137:[function(require,module,exports){
 "use strict";
 
 var _ = require("underscore");
@@ -18902,13 +18988,13 @@ Surface.prototype = new Surface.Prototype();
 
 module.exports = Surface;
 
-},{"substance-application":62,"substance-commander":76,"substance-util":139,"underscore":144}],137:[function(require,module,exports){
+},{"substance-application":63,"substance-commander":77,"substance-util":140,"underscore":145}],138:[function(require,module,exports){
 "use strict";
 
 var TOC = require("./toc_view");
 
 module.exports = TOC;
-},{"./toc_view":138}],138:[function(require,module,exports){
+},{"./toc_view":139}],139:[function(require,module,exports){
 "use strict";
 
 var View = require("substance-application").View;
@@ -18969,7 +19055,7 @@ TOCView.prototype = new TOCView.Prototype();
 
 module.exports = TOCView;
 
-},{"substance-application":62,"substance-data":80,"underscore":144}],139:[function(require,module,exports){
+},{"substance-application":63,"substance-data":81,"underscore":145}],140:[function(require,module,exports){
 "use strict";
 
 var util = require("./src/util");
@@ -18980,7 +19066,7 @@ util.dom = require("./src/dom");
 
 module.exports = util;
 
-},{"./src/dom":140,"./src/errors":141,"./src/html":142,"./src/util":143}],140:[function(require,module,exports){
+},{"./src/dom":141,"./src/errors":142,"./src/html":143,"./src/util":144}],141:[function(require,module,exports){
 "use strict";
 
 var _ = require("underscore");
@@ -19042,7 +19128,7 @@ dom.getNodeType = function(el) {
 
 module.exports = dom;
 
-},{"underscore":144}],141:[function(require,module,exports){
+},{"underscore":145}],142:[function(require,module,exports){
 "use strict";
 
 // Imports
@@ -19113,7 +19199,7 @@ errors.define = function(className, code) {
 
 module.exports = errors;
 
-},{"./util":143,"underscore":144}],142:[function(require,module,exports){
+},{"./util":144,"underscore":145}],143:[function(require,module,exports){
 "use strict";
 
 var html = {};
@@ -19159,7 +19245,7 @@ html.tpl = function (tpl, ctx) {
 
 module.exports = html;
 
-},{"underscore":144}],143:[function(require,module,exports){
+},{"underscore":145}],144:[function(require,module,exports){
 "use strict";
 
 // Imports
@@ -19870,7 +19956,7 @@ util.isEmpty = function(str) {
 
 module.exports = util;
 
-},{"fs":148,"underscore":144}],144:[function(require,module,exports){
+},{"fs":149,"underscore":145}],145:[function(require,module,exports){
 //     Underscore.js 1.5.2
 //     http://underscorejs.org
 //     (c) 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -21148,7 +21234,7 @@ module.exports = util;
 
 }).call(this);
 
-},{}],145:[function(require,module,exports){
+},{}],146:[function(require,module,exports){
 "use strict";
 
 var _ = require("underscore");
@@ -21238,7 +21324,7 @@ var Substance = {
 Lens.Substance = Substance;
 module.exports = Lens;
 
-},{"./lens_controller":146,"./lens_view":147,"lens-article":3,"lens-outline":57,"lens-reader":59,"substance-application":62,"substance-chronicle":68,"substance-data":80,"substance-document":87,"substance-operator":126,"substance-surface":135,"substance-util":139,"underscore":144}],146:[function(require,module,exports){
+},{"./lens_controller":147,"./lens_view":148,"lens-article":3,"lens-outline":58,"lens-reader":60,"substance-application":63,"substance-chronicle":69,"substance-data":81,"substance-document":88,"substance-operator":127,"substance-surface":136,"substance-util":140,"underscore":145}],147:[function(require,module,exports){
 "use strict";
 
 var _ = require("underscore");
@@ -21394,7 +21480,7 @@ _.extend(LensController.prototype, util.Events);
 
 module.exports = LensController;
 
-},{"./lens_view":147,"lens-article":3,"lens-converter":51,"lens-reader":59,"substance-application":62,"substance-util":139,"underscore":144}],147:[function(require,module,exports){
+},{"./lens_view":148,"lens-article":3,"lens-converter":51,"lens-reader":60,"substance-application":63,"substance-util":140,"underscore":145}],148:[function(require,module,exports){
 "use strict";
 
 var _ = require("underscore");
@@ -21537,7 +21623,7 @@ LensView.Prototype.prototype = View.prototype;
 LensView.prototype = new LensView.Prototype();
 
 module.exports = LensView;
-},{"substance-application":62,"substance-util":139,"underscore":144}],148:[function(require,module,exports){
+},{"substance-application":63,"substance-util":140,"underscore":145}],149:[function(require,module,exports){
 // nothing to see here... no file methods for the browser
 
 },{}]},{},[1])
