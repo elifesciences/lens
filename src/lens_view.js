@@ -20,7 +20,7 @@ var LensView = function(controller) {
   // Handle state transitions
   // --------
   
-  this.listenTo(this.controller, 'context-changed', this.onContextChanged);
+  this.listenTo(this.controller, 'state-changed', this.onStateChanged);
   this.listenTo(this.controller, 'loading:started', this.displayLoadingIndicator);
 
   $(document).on('dragover', function () { return false; });
@@ -53,11 +53,12 @@ LensView.Prototype = function() {
   // --------
   //
 
-  this.onContextChanged = function(context) {
-    if (context === "reader") {
+  this.onStateChanged = function() {
+    var state = this.controller.state;
+    if (state.context === "reader") {
       this.openReader();
     } else {
-      console.log("Unknown application state: " + newState);
+      console.log("Unknown application state: " + state);
     }
   };
 
@@ -76,10 +77,12 @@ LensView.Prototype = function() {
     // Hide loading indicator
     this.$('.loading').hide();
 
-    // Update URL
-    this.$('.go-back').attr({
-      href: publicationInfo.doi
-    });
+    if (publicationInfo) {
+      // Update URL
+      this.$('.go-back').attr({
+        href: publicationInfo.doi
+      });
+    }
   };
 
   // Rendering
@@ -102,6 +105,7 @@ LensView.Prototype = function() {
 
     // Browser not supported dialogue
     // ------------
+
     this.el.appendChild($$('.browser-not-supported', {
       text: "Sorry, your browser is not supported.",
       style: "display: none;"
@@ -109,7 +113,17 @@ LensView.Prototype = function() {
 
     this.el.appendChild($$('a.go-back', {
       href: "#",
-      html: '<i class="icon-chevron-left"></i>'
+      html: '<i class="icon-chevron-left"></i>',
+      title: "Back to original article"
+    }));
+
+
+    // About Lens
+    // ------------
+
+    this.el.appendChild($$('a.about-lens', {
+      href: "http://lens.substance.io",
+      html: 'Lens 0.2.0'
     }));
 
     // Loading indicator

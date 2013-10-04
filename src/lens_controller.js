@@ -42,9 +42,10 @@ LensController.Prototype = function() {
   this.importXML = function(xml) {
     var importer = new Converter.Importer();
     var doc = importer.import(xml);
-    this.createReader(doc, {});
+    this.createReader(doc, {
+      context: 'toc'
+    });
   };
-
 
   // Update URL Fragment
   // -------
@@ -82,6 +83,7 @@ LensController.Prototype = function() {
 
     // Create new reader controller instance
     this.reader = new ReaderController(doc, state);
+
     this.reader.on('state-changed', function() {
       that.updatePath(that.reader.state);
     });
@@ -104,7 +106,6 @@ LensController.Prototype = function() {
 
     this.trigger("loading:started", "Loading document ...");
 
-    var url = "https://s3.amazonaws.com/elife-cdn/elife-articles/00778/elife00778.xml";
     $.get(this.config.document_url)
     .done(function(data) {
       var doc, err;
@@ -116,14 +117,11 @@ LensController.Prototype = function() {
       if(xml) {
         var importer = new Converter.Importer();
         doc = importer.import(data);
-
-        console.log('ON THE FLY CONVERTED DOC', doc.toJSON());
         // Process JSON file
       } else {
         if(typeof data == 'string') data = $.parseJSON(data);
         doc = Article.fromSnapshot(data);
       }
-
       that.createReader(doc, state);
     })
     .fail(function(err) {

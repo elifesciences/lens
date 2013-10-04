@@ -38,12 +38,12 @@
     {
       "repository": "https://github.com/substance/article.git",
       "folder": "node_modules/substance-article",
-      "branch": "extended_nodeset"
+      "branch": "0.1.x"
     },
     {
       "repository": "https://github.com/substance/nodes.git",
       "folder": "node_modules/substance-nodes",
-      "branch": "extended_nodeset"
+      "branch": "0.1.x"
     },
     {
       "repository": "https://github.com/elifesciences/lens-outline.git",
@@ -97,8 +97,9 @@
     }
   },
   "styles": {
-    "styles/lens.css":  "styles/lens.css",
     "styles/surface.css": "node_modules/substance-surface/styles/surface.css",
+    "styles/lens-outline.css": "node_modules/lens-outline/outline.css",
+
     "styles/nodes/text.css": "node_modules/substance-article/nodes/text/text.css",
     "styles/nodes/paragraph.css": "node_modules/substance-article/nodes/paragraph/paragraph.css",
     "styles/nodes/heading.css": "node_modules/substance-article/nodes/heading/heading.css",
@@ -106,6 +107,7 @@
     "styles/nodes/image.css": "node_modules/substance-article/nodes/image/image.css",
     "styles/nodes/formula.css": "node_modules/substance-article/nodes/formula/formula.css",
     "styles/nodes/codeblock.css": "node_modules/substance-article/nodes/codeblock/codeblock.css",
+
     "styles/nodes/cover.css": "node_modules/lens-article/nodes/cover/cover.css",
     "styles/nodes/supplement.css": "node_modules/lens-article/nodes/supplement/supplement.css",
     "styles/nodes/box.css": "node_modules/lens-article/nodes/box/box.css",
@@ -116,9 +118,13 @@
     "styles/nodes/caption.css": "node_modules/lens-article/nodes/caption/caption.css",
     "styles/nodes/person.css": "node_modules/lens-article/nodes/person/person.css",
     "styles/nodes/publication_info.css": "node_modules/lens-article/nodes/publication_info/publication_info.css",
-    "styles/toc.css": "node_modules/substance-toc/toc.css",
+
     "styles/reader.css": "node_modules/lens-reader/reader.css",
-    "styles/lens-outline.css": "node_modules/lens-outline/outline.css"
+    
+    "styles/toc.css": "node_modules/substance-toc/toc.css",
+    "styles/library.css": "node_modules/substance-library/library.css",
+    "styles/lens.css":  "styles/lens.css"
+
   },
   "assets": {
     "lib/jquery-2.0.3.min.js": "lib/jquery-2.0.3.min.js",

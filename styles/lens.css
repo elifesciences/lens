@@ -45,6 +45,15 @@ General Layout
   z-index: 2000;
 }
 
+#container .about-lens {
+  position: absolute;
+  left: 25px;
+  bottom: 25px;
+  font-size: 13px;
+  text-align: center;
+  z-index: 2000;
+}
+
 #container .browser-not-supported {
   text-align: center;
   padding-top: 130px;
@@ -137,14 +146,6 @@ h3, h4, h5, h6 {
   font-size: 1em;
   font-weight: 700;
 }
-
-/*p:last-child { padding-bottom: 0; }*/
-
-/*.small {
-  color: #505050;
-  font-size: .75em;
-  font-weight: 400;
-}*/
 
 /* Use border-box box model */
 
