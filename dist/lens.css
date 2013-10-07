@@ -1317,6 +1317,13 @@ span.annotation.formula_reference, span.publication_reference {
 }
 
 
+/* Hide focus toggles for cover
+----------------------------------------------------------------------- */
+
+.surface.content .nodes > .content-node.cover .focus {
+  display: none;
+}
+
 /* For the resources panel
 ----------------------------------------------------------------------- */
 
@@ -1376,81 +1383,6 @@ TOC
 
 .resource-view.toc .heading-ref:hover {
   color: rgba(0,0,0,1.0);
-}
-
-.library {
-  overflow: auto;
-}
-
-.library .collection-toggles {
-  padding: 20px;
-  
-  font-size: 14px;
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  bottom: 0px;
-  width: 300px;
-}
-
-.library .toggle-collection {
-  font-family: 'Avenir LT W01 85 Heavy', 'Montserrat', 'Source Sans Pro';
-  font-size: 16px;
-  display: block;
-  padding: 20px 10px;
-}
-
-.library .toggle-collection:hover {
-  background: rgba(255,255,255,0.6);
-}
-
-.library .toggle-collection.active {
-  background: #fff;
-}
-
-.library .navigation .label {
-  margin-top: 30px;
-  padding-bottom: 20px;
-  font-family: 'Avenir LT W01 85 Heavy', 'Montserrat', 'Source Sans Pro';
-  font-size: 16px;
-}
-
-
-.library .collection {
-   background: white;
-   position: absolute;
-   left: 300px;
-   top: 0px;
-   bottom: 0px;
-   width: 800px;
-}
-
-
-.library .collection a.document {
-  display: block;
-  background: white;
-  width: 400px;
-  height: 160px;
-  padding: 30px 30px;
-  border-right: 1px solid #eee;
-  border-bottom: 1px solid #eee;
-  float: left;
-}
-
-.library .collection a.document .title {
-  color: #1B6685;
-  font-family: 'Avenir LT W01 85 Heavy', 'Montserrat', 'Source Sans Pro';
-  font-size: 16px;
-}
-
-.library .collection a.document .authors {
-  color: #777;
-  font-size: 15px;
-  padding: 10px 0;
-}
-
-.library .collection a.document:hover .title {
-  color: rgba(11, 157, 217, 1);
 }
 
 /*
@@ -1608,28 +1540,6 @@ h3, h4, h5, h6 {
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
-}
-
-
-
-/* Library override
--------------------------------------------------------------------------------*/
-
-#container .library .collection-toggles {
-  display: none;
-}
-
-#container .library .collection {
-  padding-top: 30px;
-  left: 0px;
-  width: 1000px;
-  overflow: auto;
-  background: inherit;
-}
-
-#container .library .collection .document {
-  margin-right: 20px;
-  margin-bottom: 20px;
 }
 
 /* Main

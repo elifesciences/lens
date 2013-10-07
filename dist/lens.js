@@ -22223,7 +22223,10 @@ LensView.prototype = new LensView.Prototype();
 
 module.exports = LensView;
 },{"substance-application":59,"substance-util":151,"underscore":156}],160:[function(require,module,exports){
-// nothing to see here... no file methods for the browser
+
+// not implemented
+// The reason for having an empty file and not throwing is to allow
+// untraditional implementation of this module.
 
 },{}]},{},[1])
 ;

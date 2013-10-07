@@ -155,28 +155,6 @@ h3, h4, h5, h6 {
   -moz-box-sizing: border-box;
 }
 
-
-
-/* Library override
--------------------------------------------------------------------------------*/
-
-#container .library .collection-toggles {
-  display: none;
-}
-
-#container .library .collection {
-  padding-top: 30px;
-  left: 0px;
-  width: 1000px;
-  overflow: auto;
-  background: inherit;
-}
-
-#container .library .collection .document {
-  margin-right: 20px;
-  margin-bottom: 20px;
-}
-
 /* Main
 -------------------------------------------------------------------------------*/
 
