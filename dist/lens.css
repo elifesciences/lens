@@ -1,200 +1,3 @@
-/*
-  Typography / Basics
----------------------------------------------*/
-
-* {
-	margin: 0;
-}
-
-body {
-  padding: 0;
-  margin: 0;
-  overflow: hidden;
-}
-
-html,body {
-  height:100%;
-  background: #F5F5F5;
-  -webkit-font-smoothing: antialiased;
-}
-
-
-/*
-General Layout 
---------------------------------------- */
-
-#container {
-  position: relative;
-
-  min-width: 800px;
-  max-width: 1400px; /* 988px / 16px = 61.75em */
-  height: 100%;
-  padding-left: 100px;
-  overflow: visible;
-}
-
-#container .go-back {
-  position: absolute;
-  left: 20px;
-  top: 20px;
-  width: 50px;
-  height: 50px;
-  font-size: 30px;
-  text-align: center;
-  line-height: 50px;
-  z-index: 2000;
-}
-
-#container .browser-not-supported {
-  text-align: center;
-  padding-top: 130px;
-  width: 500px;
-  margin: 0 auto;
-  font-size: 20px;
-  line-height: 30px;
-}
-
-#container .browser-not-supported h1 {
-  font-family: 'Avenir LT W01 85 Heavy', 'Montserrat', 'Source Sans Pro';
-  font-size: 30px;
-}
-
-#container .browser-not-supported p {
-  padding: 30px 0;
-}
-
-#container .browser-not-supported a {
-  background: #444;
-  padding: 2px 10px;
-  color: #fff;
-  font-family: 'Avenir LT W01 85 Heavy', 'Montserrat', 'Source Sans Pro';
-}
-
-#container .browser-not-supported a:hover {
-  background: #000;
-}
-
-
-#container .import-teaser {
-  position: absolute;
-  top: 50px;
-  bottom: 50px;
-  left: 50px;
-  right: 50px;
-  background: green;
-  display: none;
-}
-
-#container.tease-import .import-teaser {
-  display: block;
-}
-
-#container.tease-import #main {
-  display: none;
-}
-
-body, textarea, p, input {
-  font-family: 'Source Sans Pro', Helvetica, Arial, Verdana, sans-serif;
-  color: #505050;
-}
-
-a {
-  color: #1B6685;
-  font-weight: normal;
-  text-decoration: none;
-  -moz-transition: background-color 100ms linear, color 100ms linear, opacity 100ms linear;
-  -o-transition: background-color 100ms linear, color 100ms linear, opacity 100ms linear;
-  -webkit-transition: background-color 100ms linear, color 100ms linear, opacity 100ms linear;
-  transition: background-color 100ms linear, color 100ms linear, opacity 100ms linear;
-}
-
-a:hover {
-  color: rgba(11, 157, 217, 1);
-}
-
-img {
-  border: none;
-  padding: 0;
-  margin: 0;
-}
-
-strong { font-weight: 700; }
-
-h1, h2, h3 { 
-  font-weight: 700;
-}
-
-h1 a { color: white; }
-h1 a:hover { color: white; }
-
-h2 {
-  font-size: 1.75em; 
-  padding-bottom: 20px;
-}
-  
-h3, h4, h5, h6 {
-  margin-bottom: 20px;
-  font-size: 1em;
-  font-weight: 700;
-}
-
-/*p:last-child { padding-bottom: 0; }*/
-
-/*.small {
-  color: #505050;
-  font-size: .75em;
-  font-weight: 400;
-}*/
-
-/* Use border-box box model */
-
-* {
-  box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-}
-
-
-
-/* Library override
--------------------------------------------------------------------------------*/
-
-#container .library .collection-toggles {
-  display: none;
-}
-
-#container .library .collection {
-  padding-top: 30px;
-  left: 0px;
-  width: 1000px;
-  overflow: auto;
-  background: inherit;
-}
-
-#container .library .collection .document {
-  margin-right: 20px;
-  margin-bottom: 20px;
-}
-
-/* Main
--------------------------------------------------------------------------------*/
-
-#main {
-  height: 100%;
-  position: relative;
-}
-
-#container .loading {
-  font-family: 'Avenir LT W01 85 Heavy', 'Montserrat', 'Source Sans Pro';
-  position: absolute;
-  top: 20px;
-  left: 130px;
-  right: 0px;
-  height: 49px;
-  line-height: 50px;
-  font-size: 12px;
-}
-
 /* Surface
 -------------------------------------------------------------------------------*/
 
@@ -247,6 +50,115 @@ h3, h4, h5, h6 {
     @-ms-keyframes blink {0% {background: #00ACEA} 50% {background: transparent;}}
      @-o-keyframes blink {0% {background: #00ACEA} 50% {background: transparent;}}
         @keyframes blink {0% {background: #00ACEA} 50% {background: transparent;}}
+
+/*
+Outline
+--------------------------------------- */
+
+.lens-outline {
+  background: #fff;
+  position: absolute;
+  left: 0px;
+  width:60px;
+  top: 0px;
+  bottom: 0px;
+}
+
+.lens-outline .node.cover {
+  background: #5c6570;
+  opacity: 1;
+}
+
+.lens-outline .node .arrow {
+  display: none;
+  position: absolute;
+  top: -7px;
+  left: -17px;
+  
+  width: 0; 
+  height: 0; 
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 8px solid black;
+}
+
+.lens-outline .node.selected .arrow {
+  display: block;
+}
+
+.lens-outline .visible-area {
+  position: absolute;
+  cursor: pointer;
+  top: 40px;
+  left: 0px;
+  right: 0px;
+  height: 80px;
+  z-index: 2000;
+  background-color: rgba(0,0,0, 0.1);
+}
+
+.lens-outline .visible-area:hover {
+  background-color: rgba(0,0,0, 0.15); 
+}
+
+.lens-outline .node {
+  margin: 0 5px;
+  width: 50px;
+  background: rgba(0,0,0, 0.4);
+  opacity: 0.1;
+  cursor: pointer;
+}
+
+.lens-outline .node:hover {
+  opacity: 0.6;
+}
+
+.lens-outline .text {
+}
+
+.lens-outline .heading {
+  background: rgba(0,0,0, 0.5);
+}
+
+
+.lens-outline .node.selected {
+  opacity: 1.0;
+}
+
+.node.highlighted {
+  background: #5c6570;
+  opacity: 0.7;
+}
+
+/* Greenish highlighted nodes (figures) */
+
+.lens-outline.figures .node.highlighted {
+  opacity: 0.7;
+  background: rgba(145, 187, 4, 1);
+  /*border: 1px solid rgba(145, 187, 4, 1);*/
+}
+
+/* Blueish highlighted nodes (citations) */
+
+.lens-outline.citations .node.highlighted {
+  opacity: 0.7;
+  background: rgba(11, 157, 217, 1);
+}
+
+.lens-outline.figures .node.selected {
+  opacity: 1;
+  background: rgba(145, 187, 4, 1);
+  /*border: 1px solid rgba(145, 187, 4, 1);*/
+}
+
+/* Blueish highlighted nodes (citations) */
+
+.lens-outline.citations .node.selected {
+  opacity: 1;
+  background: rgba(11, 157, 217, 1);
+}
+
+
 
 /* Textish Styles
 -------------------------------------------------------------------------------*/
@@ -450,12 +362,6 @@ h3, h4, h5, h6 {
   margin-bottom: 8px;
   color: rgba(255,255,255, 0.7);
 }
-
-/* One para per author */
-.lens-article .content-node.cover .authors .text:hover {
-  background: rgba(0,0,0,0.1);
-  color: #fff;
-}
 .content-node.supplement > .content {
   padding: 10px 20px;
 }
@@ -575,6 +481,7 @@ Citations
 .resources .content-node.video .video-wrapper {
   background: black;
   text-align: center;
+  margin-bottom: 20px;
 }
 
 .resources .content-node.video .content video {
@@ -588,10 +495,11 @@ Citations
 
 .resources .content-node.video.fullscreen .content .video-wrapper {
   background: black;
+
   padding: 50px 0;
   text-align: center;
+  
 }
-
 .lens-article .content-node.caption .caption-title {
   font-weight: bold;
   font-size: 16px;
@@ -621,16 +529,17 @@ Person
 
 .lens-article .content-node.publication-info {
   /*padding: 30px 0;*/
-  background: #EBEBEB;
+  /*background: rgba(0,0,0,0.1);*/
   color: #333;
 }
 
 .lens-article .content-node.publication-info .content {
-  background: #EBEBEB;
+  /*background: #EBEBEB;*/
+  background: rgba(0,0,0,0.01);
 }
 
 .lens-article .content-node.publication-info table {
-  padding: 30px 0;
+  padding: 10px 0;
   border: none;
   width: 100%;
 }
@@ -682,53 +591,6 @@ Person
 .lens-article .content-node.publication-info .links {
   padding-left: 30px;
 }
-/*
-TOC 
---------------------------------------- */
-
-
-.resource-view.toc .heading-ref {
-  cursor: pointer;
-  display: block;
-  color: rgba(0,0,0,0.5);
-  font-size: 17px;
-  padding: 4px 10px;
-  line-height: 20px;
-  font-family: 'Avenir LT W01 85 Heavy', 'Montserrat', 'Source Sans Pro';
-  margin-right: 10px;
-  border: 1px solid transparent;
-}
-
-.resource-view.toc .heading-ref.active {
-  color: rgba(0,0,0,0.9);
-  background: #fff;
-  border: 1px solid #eee;
-}
-
-.resource-view.toc .heading-ref.level-2 {
-  padding-left: 30px;
-  font-size: 13px;
-}
-
-.resource-view.toc .heading-ref.level-3 {
-  padding-left: 60px;
-  font-size: 13px;
-}
-
-.resource-view.toc .heading-ref.level-4 {
-  padding-left: 80px;
-  font-size: 12px;
-}
-
-.resource-view.toc .heading-ref.level-5 {
-  padding-left: 100px;
-  font-size: 12px;
-}
-
-.resource-view.toc .heading-ref:hover {
-  color: rgba(0,0,0,1.0);
-}
-
 /* Article
 -------------------------------------------------------------------------------*/
 
@@ -745,24 +607,9 @@ TOC
 .content-node .content {
   margin: 0px;
   background: white;
-  /*margin: 0 60px; -> causes the scrollbar to disappear */
 }
 
 
-
-
-
-
-
-
-
-
-/* Node
--------------------------------------------------------------------------------*/
-
-/*.content-node {
-  padding: 20px 0px;
-}*/
 
 /* Focus Toggles
 -------------------------------------------------------------------------------*/
@@ -772,7 +619,7 @@ TOC
   top: 0px;
   bottom: 0px;
   right: 0px;
-  width: 50px;
+  width: 40px;
   color: #888;
   border-top: 1px solid #eee;
 }
@@ -785,7 +632,7 @@ TOC
 }
 
 .document .content-node .focus .focus-mode {
-  width: 50px;
+  width: 40px;
   height: 70px;
   cursor: pointer;
   text-align: center;
@@ -886,40 +733,12 @@ TOC
 .document .content-node:hover .focus .stripe {
 }
 
-
-
 .document .content-node .focus:hover {
-
 }
 
 .content-node.active .focus {
   opacity: 1.0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /* Main content panel 
@@ -940,6 +759,8 @@ TOC
   position: absolute;
   top: 0px;
   bottom: 0px;
+  right: 0px;
+  left: 0px;
   overflow-y: scroll;
   overflow-x: hidden;
 
@@ -967,9 +788,7 @@ TOC
 .article .document .scrollbar-mask {
   position: absolute;
   right: 0px;
-
 }
-
 
 
 /* Context Toggles 
@@ -1003,42 +822,33 @@ TOC
 }
 
 .article .context-toggles .context-toggle i {
-  /*display: none;*/
+
 }
 
 .article .context-toggles .context-toggle span {
-  /*display: none;*/
+
 }
 
 .article .context-toggles .context-toggle:hover {
-  /*background: rgba(0,0,0,0.05);*/
   color: #555;
 }
 
 /*Active states depend on the global reader context */
 
 .article.figures .context-toggles .context-toggle.figures {
-  /*color: rgba(255,255,255,0.9);*/
   color: #111;
-  /*background: #5c6570;*/
 }
 
 .article.citations .context-toggles .context-toggle.citations {
   color: #111;
-  /*color: rgba(255,255,255,0.9);*/
-  /*background: #5c6570;*/
 }
 
 .article.toc .context-toggles .context-toggle.toc {
   color: #111;
-  /*color: rgba(255,255,255,0.9);*/
-  /*background: #5c6570;*/
 }
 
 .article.info .context-toggles .context-toggle.info {
   color: #111;
-  /*color: rgba(255,255,255,0.9);*/
-  /*background: #5c6570;*/
 }
 
 
@@ -1053,7 +863,6 @@ TOC
   font-size: 14px;
   height: 100%;
   position: relative;
-  /*overflow: hidden;*/
   overflow: auto;
 }
 
@@ -1075,11 +884,8 @@ TOC
 }
 
 /* Clickable header */
-
 .article .resources .content-node .resource-header {
   min-height: 80px;
-  /*background: rgba(0,0,0,0.02);*/
-  
   position: relative;
 }
 
@@ -1244,16 +1050,11 @@ TOC
 
 .article .resources .resource-header .name {
   display: block;
-  position: absolute;
-  left: 0px;
-  right: 0px;
-  top: 0px;
-  bottom: 0px;
+  min-height: 80px;
   
   color: #444;
   font-family: 'Avenir LT W01 85 Medium', 'Montserrat', 'Source Sans Pro';
   font-size: 16px;
-  /*margin-right: 80px;*/
   line-height: 21px;
   padding: 10px 20px;
 }
@@ -1275,7 +1076,6 @@ TOC
 /* Styles for fullscreen toggle on resource cards */
 
 .article .resources .content-node .resource-header .toggle-fullscreen {
-  /*background: rgba(0,0,0,0.05);*/
   position: absolute;
   right: 0px;
   top: 0px;
@@ -1314,13 +1114,9 @@ TOC
   bottom: 0px;
   left: 0px;
   right: 0px;
-  /* Override margins */
-  /*background: white;*/
   z-index: 100000;
-
   margin-bottom: 0px;
   margin-right: 0px;
-  /*color: white;*/
 }
 
 #container .article .content-node.fullscreen .icon-resize-small {
@@ -1479,11 +1275,9 @@ span.annotation.formula_reference, span.publication_reference {
 .surface.content .nodes > .content-node {
   padding-top: 20px;
   padding-bottom: 20px;
-  padding-left: 60px;
-  padding-right: 60px;
-  /*overflow:hidden;*/
+  padding-left: 40px;
+  padding-right: 50px;
   word-wrap: break-word;
-  /*width: 300px;*/
 }
 
 /* Some extra cover spacing */
@@ -1491,6 +1285,37 @@ span.annotation.formula_reference, span.publication_reference {
   padding-top: 60px;
   padding-bottom: 60px;
 }
+
+
+/* Optimizations for smaller screen sizes */
+@media (max-width: 70.5em) {
+  .article .document .surface.content .nodes {
+    padding-left: 40px;
+  }
+
+  .article .resources {
+    width: 30%;
+  }
+
+  .article .document {
+    width: 68%;
+  }
+
+  .lens-outline {
+    width: 40px;
+  }
+
+  .lens-outline .node {
+    width: 30px;
+  }
+
+  .surface.content .nodes > .content-node {
+    padding-left: 20px;
+    padding-right: 30px;
+    word-wrap: break-word;
+  }
+}
+
 
 /* For the resources panel
 ----------------------------------------------------------------------- */
@@ -1506,113 +1331,322 @@ span.annotation.formula_reference, span.publication_reference {
   padding: 20px 0;
 }
 
+/*
+TOC 
+--------------------------------------- */
+
+
+.resource-view.toc .heading-ref {
+  cursor: pointer;
+  display: block;
+  color: rgba(0,0,0,0.5);
+  font-size: 17px;
+  padding: 4px 10px;
+  line-height: 20px;
+  font-family: 'Avenir LT W01 85 Heavy', 'Montserrat', 'Source Sans Pro';
+  margin-right: 10px;
+  border: 1px solid transparent;
+}
+
+.resource-view.toc .heading-ref.active {
+  color: rgba(0,0,0,0.9);
+  background: #fff;
+  border: 1px solid #eee;
+}
+
+.resource-view.toc .heading-ref.level-2 {
+  padding-left: 30px;
+  font-size: 13px;
+}
+
+.resource-view.toc .heading-ref.level-3 {
+  padding-left: 60px;
+  font-size: 13px;
+}
+
+.resource-view.toc .heading-ref.level-4 {
+  padding-left: 80px;
+  font-size: 12px;
+}
+
+.resource-view.toc .heading-ref.level-5 {
+  padding-left: 100px;
+  font-size: 12px;
+}
+
+.resource-view.toc .heading-ref:hover {
+  color: rgba(0,0,0,1.0);
+}
+
+.library {
+  overflow: auto;
+}
+
+.library .collection-toggles {
+  padding: 20px;
+  
+  font-size: 14px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  bottom: 0px;
+  width: 300px;
+}
+
+.library .toggle-collection {
+  font-family: 'Avenir LT W01 85 Heavy', 'Montserrat', 'Source Sans Pro';
+  font-size: 16px;
+  display: block;
+  padding: 20px 10px;
+}
+
+.library .toggle-collection:hover {
+  background: rgba(255,255,255,0.6);
+}
+
+.library .toggle-collection.active {
+  background: #fff;
+}
+
+.library .navigation .label {
+  margin-top: 30px;
+  padding-bottom: 20px;
+  font-family: 'Avenir LT W01 85 Heavy', 'Montserrat', 'Source Sans Pro';
+  font-size: 16px;
+}
+
+
+.library .collection {
+   background: white;
+   position: absolute;
+   left: 300px;
+   top: 0px;
+   bottom: 0px;
+   width: 800px;
+}
+
+
+.library .collection a.document {
+  display: block;
+  background: white;
+  width: 400px;
+  height: 160px;
+  padding: 30px 30px;
+  border-right: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  float: left;
+}
+
+.library .collection a.document .title {
+  color: #1B6685;
+  font-family: 'Avenir LT W01 85 Heavy', 'Montserrat', 'Source Sans Pro';
+  font-size: 16px;
+}
+
+.library .collection a.document .authors {
+  color: #777;
+  font-size: 15px;
+  padding: 10px 0;
+}
+
+.library .collection a.document:hover .title {
+  color: rgba(11, 157, 217, 1);
+}
+
+/*
+  Typography / Basics
+---------------------------------------------*/
+
+* {
+	margin: 0;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+html,body {
+  height:100%;
+  background: #F5F5F5;
+  -webkit-font-smoothing: antialiased;
+}
 
 
 /*
-Outline
+General Layout 
 --------------------------------------- */
 
-.lens-outline {
-  background: #fff;
+#container {
+  position: relative;
+
+  min-width: 800px;
+  max-width: 1400px; /* 988px / 16px = 61.75em */
+  height: 100%;
+  padding-left: 100px;
+  overflow: visible;
+}
+
+#container .go-back {
   position: absolute;
-  left: 0px;
-  width:60px;
-  top: 0px;
-  bottom: 0px;
+  left: 20px;
+  top: 20px;
+  width: 50px;
+  height: 50px;
+  font-size: 30px;
+  text-align: center;
+  line-height: 50px;
+  z-index: 2000;
 }
 
-.lens-outline .node.cover {
-  background: #5c6570;
-  opacity: 1;
+#container .about-lens {
+  position: absolute;
+  left: 25px;
+  bottom: 25px;
+  font-size: 13px;
+  text-align: center;
+  z-index: 2000;
 }
 
-.lens-outline .node .arrow {
+#container .browser-not-supported {
+  text-align: center;
+  padding-top: 130px;
+  width: 500px;
+  margin: 0 auto;
+  font-size: 20px;
+  line-height: 30px;
+}
+
+#container .browser-not-supported h1 {
+  font-family: 'Avenir LT W01 85 Heavy', 'Montserrat', 'Source Sans Pro';
+  font-size: 30px;
+}
+
+#container .browser-not-supported p {
+  padding: 30px 0;
+}
+
+#container .browser-not-supported a {
+  background: #444;
+  padding: 2px 10px;
+  color: #fff;
+  font-family: 'Avenir LT W01 85 Heavy', 'Montserrat', 'Source Sans Pro';
+}
+
+#container .browser-not-supported a:hover {
+  background: #000;
+}
+
+
+#container .import-teaser {
+  position: absolute;
+  top: 50px;
+  bottom: 50px;
+  left: 50px;
+  right: 50px;
+  background: green;
   display: none;
-  position: absolute;
-  top: -7px;
-  left: -17px;
-  
-  width: 0; 
-  height: 0; 
-  border-top: 8px solid transparent;
-  border-bottom: 8px solid transparent;
-  border-left: 8px solid black;
 }
 
-.lens-outline .node.selected .arrow {
+#container.tease-import .import-teaser {
   display: block;
 }
 
-.lens-outline .visible-area {
-  position: absolute;
-  cursor: pointer;
-  top: 40px;
+#container.tease-import #main {
+  display: none;
+}
+
+body, textarea, p, input {
+  font-family: 'Source Sans Pro', Helvetica, Arial, Verdana, sans-serif;
+  color: #505050;
+}
+
+a {
+  color: #1B6685;
+  font-weight: normal;
+  text-decoration: none;
+  -moz-transition: background-color 100ms linear, color 100ms linear, opacity 100ms linear;
+  -o-transition: background-color 100ms linear, color 100ms linear, opacity 100ms linear;
+  -webkit-transition: background-color 100ms linear, color 100ms linear, opacity 100ms linear;
+  transition: background-color 100ms linear, color 100ms linear, opacity 100ms linear;
+}
+
+a:hover {
+  color: rgba(11, 157, 217, 1);
+}
+
+img {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+strong { font-weight: 700; }
+
+h1, h2, h3 { 
+  font-weight: 700;
+}
+
+h1 a { color: white; }
+h1 a:hover { color: white; }
+
+h2 {
+  font-size: 1.75em; 
+  padding-bottom: 20px;
+}
+  
+h3, h4, h5, h6 {
+  margin-bottom: 20px;
+  font-size: 1em;
+  font-weight: 700;
+}
+
+/* Use border-box box model */
+
+* {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+
+
+/* Library override
+-------------------------------------------------------------------------------*/
+
+#container .library .collection-toggles {
+  display: none;
+}
+
+#container .library .collection {
+  padding-top: 30px;
   left: 0px;
+  width: 1000px;
+  overflow: auto;
+  background: inherit;
+}
+
+#container .library .collection .document {
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+/* Main
+-------------------------------------------------------------------------------*/
+
+#main {
+  height: 100%;
+  position: relative;
+}
+
+#container .loading {
+  font-family: 'Avenir LT W01 85 Heavy', 'Montserrat', 'Source Sans Pro';
+  position: absolute;
+  top: 20px;
+  left: 130px;
   right: 0px;
-  height: 80px;
-  z-index: 2000;
-  background-color: rgba(0,0,0, 0.2);
+  height: 49px;
+  line-height: 50px;
+  font-size: 12px;
 }
-
-.lens-outline .visible-area:hover {
-  background-color: rgba(0,0,0, 0.3); 
-}
-
-.lens-outline .node {
-  margin: 0 5px;
-  width: 50px;
-  background: rgba(0,0,0, 0.4);
-  opacity: 0.1;
-  cursor: pointer;
-}
-
-.lens-outline .node:hover {
-  opacity: 0.6;
-}
-
-.lens-outline .text {
-}
-
-.lens-outline .heading {
-  background: rgba(0,0,0, 0.5);
-}
-
-
-.lens-outline .node.selected {
-  opacity: 1.0;
-}
-
-.node.highlighted {
-  background: #5c6570;
-  opacity: 0.7;
-}
-
-/* Greenish highlighted nodes (figures) */
-
-.lens-outline.figures .node.highlighted {
-  opacity: 0.7;
-  background: rgba(145, 187, 4, 1);
-  /*border: 1px solid rgba(145, 187, 4, 1);*/
-}
-
-/* Blueish highlighted nodes (citations) */
-
-.lens-outline.citations .node.highlighted {
-  opacity: 0.7;
-  background: rgba(11, 157, 217, 1);
-}
-
-.lens-outline.figures .node.selected {
-  opacity: 1;
-  background: rgba(145, 187, 4, 1);
-  /*border: 1px solid rgba(145, 187, 4, 1);*/
-}
-
-/* Blueish highlighted nodes (citations) */
-
-.lens-outline.citations .node.selected {
-  opacity: 1;
-  background: rgba(11, 157, 217, 1);
-}
-
-
