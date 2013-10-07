@@ -1,0 +1,197 @@
+/*
+  Typography / Basics
+---------------------------------------------*/
+
+* {
+	margin: 0;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+html,body {
+  height:100%;
+  background: #F5F5F5;
+  -webkit-font-smoothing: antialiased;
+}
+
+
+/*
+General Layout 
+--------------------------------------- */
+
+#container {
+  position: relative;
+
+  min-width: 800px;
+  max-width: 1400px; /* 988px / 16px = 61.75em */
+  height: 100%;
+  padding-left: 100px;
+  overflow: visible;
+}
+
+#container .go-back {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  width: 50px;
+  height: 50px;
+  font-size: 30px;
+  text-align: center;
+  line-height: 50px;
+  z-index: 2000;
+}
+
+#container .about-lens {
+  position: absolute;
+  left: 25px;
+  bottom: 25px;
+  font-size: 13px;
+  text-align: center;
+  z-index: 2000;
+}
+
+#container .browser-not-supported {
+  text-align: center;
+  padding-top: 130px;
+  width: 500px;
+  margin: 0 auto;
+  font-size: 20px;
+  line-height: 30px;
+}
+
+#container .browser-not-supported h1 {
+  font-family: 'Avenir LT W01 85 Heavy', 'Montserrat', 'Source Sans Pro';
+  font-size: 30px;
+}
+
+#container .browser-not-supported p {
+  padding: 30px 0;
+}
+
+#container .browser-not-supported a {
+  background: #444;
+  padding: 2px 10px;
+  color: #fff;
+  font-family: 'Avenir LT W01 85 Heavy', 'Montserrat', 'Source Sans Pro';
+}
+
+#container .browser-not-supported a:hover {
+  background: #000;
+}
+
+
+#container .import-teaser {
+  position: absolute;
+  top: 50px;
+  bottom: 50px;
+  left: 50px;
+  right: 50px;
+  background: green;
+  display: none;
+}
+
+#container.tease-import .import-teaser {
+  display: block;
+}
+
+#container.tease-import #main {
+  display: none;
+}
+
+body, textarea, p, input {
+  font-family: 'Source Sans Pro', Helvetica, Arial, Verdana, sans-serif;
+  color: #505050;
+}
+
+a {
+  color: #1B6685;
+  font-weight: normal;
+  text-decoration: none;
+  -moz-transition: background-color 100ms linear, color 100ms linear, opacity 100ms linear;
+  -o-transition: background-color 100ms linear, color 100ms linear, opacity 100ms linear;
+  -webkit-transition: background-color 100ms linear, color 100ms linear, opacity 100ms linear;
+  transition: background-color 100ms linear, color 100ms linear, opacity 100ms linear;
+}
+
+a:hover {
+  color: rgba(11, 157, 217, 1);
+}
+
+img {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+strong { font-weight: 700; }
+
+h1, h2, h3 { 
+  font-weight: 700;
+}
+
+h1 a { color: white; }
+h1 a:hover { color: white; }
+
+h2 {
+  font-size: 1.75em; 
+  padding-bottom: 20px;
+}
+  
+h3, h4, h5, h6 {
+  margin-bottom: 20px;
+  font-size: 1em;
+  font-weight: 700;
+}
+
+/* Use border-box box model */
+
+* {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+
+
+/* Library override
+-------------------------------------------------------------------------------*/
+
+#container .library .collection-toggles {
+  display: none;
+}
+
+#container .library .collection {
+  padding-top: 30px;
+  left: 0px;
+  width: 1000px;
+  overflow: auto;
+  background: inherit;
+}
+
+#container .library .collection .document {
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+/* Main
+-------------------------------------------------------------------------------*/
+
+#main {
+  height: 100%;
+  position: relative;
+}
+
+#container .loading {
+  font-family: 'Avenir LT W01 85 Heavy', 'Montserrat', 'Source Sans Pro';
+  position: absolute;
+  top: 20px;
+  left: 130px;
+  right: 0px;
+  height: 49px;
+  line-height: 50px;
+  font-size: 12px;
+}

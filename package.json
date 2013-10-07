@@ -1,0 +1,46 @@
+{
+  "name": "lens",
+  "description": "A novel way of seeing content.",
+  "url": "http://github.com/elifesciences/lens",
+  "keywords": [
+    "digital documents",
+    "linked-data",
+    "research",
+    "science"
+  ],
+  "author": "Michael Aufreiter",
+  "contributors": [
+    "Ivan Grubisic",
+    "Ian Mulvany",
+    "Ian Hamilton",
+    "Graham Nott",
+    "Samo Korosec"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/elifesciences/lens.git"
+  },
+  "dependencies": {
+    "underscore": "1.5.x",
+    "express": "3.3.x",
+    "handlebars": "1.0.x",
+    "substance-util": "git+https://github.com/substance/util.git#0.2.x",
+    "substance-test": "git+https://github.com/substance/test.git#0.2.x",
+    "substance-surface": "git+https://github.com/substance/surface.git#0.3.x",
+    "substance-regexp": "git+https://github.com/substance/regexp.git#0.1.x",
+    "substance-store": "git+https://github.com/substance/store.git#0.1.x",
+    "substance-operator": "git+https://github.com/substance/operator.git#0.2.x",
+    "substance-document": "git+https://github.com/substance/document.git#0.5.x",
+    "substance-data": "git+https://github.com/michael/data.git#0.8.x",
+    "substance-commander": "git+https://github.com/substance/commander.git#0.1.x",
+    "substance-chronicle": "git+https://github.com/substance/chronicle.git#0.2.x",
+    "substance-application": "git+https://github.com/substance/application.git#0.1.x",
+    "lens-article": "git+https://github.com/elifesciences/lens-article.git#modularize",
+    "lens-converter": "git+https://github.com/elifesciences/lens-converter.git#master"
+  },
+  "version": "0.2.0",
+  "engines": {
+    "node": ">=0.8.x",
+    "npm": ">=1.1.x"
+  }
+}

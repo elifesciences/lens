@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article SYSTEM "journalpub-oasis3.dtd">
+
+<article xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:oasis="http://docs.oasis-open.org/ns/oasis-exchange/table" article-type="research-article" dtd-version="3.0" xml:lang="EN">
+  <front>
+    <journal-meta>
+      <!--<journal-id journal-id-type="nlm-ta">elife</journal-id>-->
+
+      <journal-title-group>
+        <journal-title>Lorem</journal-title>
+      </journal-title-group>
+      <issn pub-type="epub">2050-084X</issn>
+      <publisher>
+        <publisher-name>eLife Lens</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+
+      <!-- 
+        <article-id pub-id-type="publisher-id">lorem_ipsum</article-id>
+        <article-id pub-id-type="doi">10.7554/lorem.ipsum</article-id>
+      -->
+
+      <title-group>
+        <article-title>eLife Lens: A novel way of seeing content</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Grubisic</surname>
+            <given-names>Ivan</given-names>
+          </name>
+          <xref ref-type="aff" rid="aff1">2</xref>
+          <xref ref-type="fn" rid="con1"/>
+        </contrib>
+
+        <contrib contrib-type="author">
+          <name>
+            <surname>Aufreiter</surname>
+            <given-names>Michael</given-names>
+          </name>
+          <xref ref-type="fn" rid="con2"/>
+        </contrib>
+
+
+        <aff id="aff1">
+          <label>2</label>
+          <institution>Li Ka Shing Center For Biomedical and Health Sciences, CIRM Center of Excellence, University of California, Berkeley</institution>,
+          <addr-line>
+          <named-content content-type="city">Berkeley</named-content>
+          </addr-line>,
+          <country>United States</country>
+        </aff>
+
+        <fn fn-type="con" id="con1">
+          <p>Conception of the idea, XML to JSON conversion, drafting and revising the article</p>
+        </fn>
+        <fn fn-type="con" id="con2">
+          <p>Design and implementation of Lens, revising the article</p>
+        </fn>
+      </contrib-group>
+    </article-meta>
+  </front>
+  <body>
+      <p>eLife Lens provides a novel way of looking at content on the web. It is designed to make life easier for researchers, reviewers, authors and readers. For example, have you tried to look at a figure in an online article, while at the same time trying to see what the author says about the figure, jumping all around the article, losing track of what you were looking for in the first place? The reason for this is that most online research articles are published in a fixed digital version of the original paper. With eLife Lens, we take full advantage of the dynamic nature of HTML combined with javascript (<xref ref-type="fig" rid="video1">Video 1</xref>).
+      </p>
+      <media id="video1" content-type="glencoe play-in-place height-250 width-310" xlink:href="http://cdn.elifesciences.org/video/eLifeLensIntro2.mp4" mimetype="video" mime-subtype="avi">
+        <object-id pub-id-type="doi">10.7554/eLife.00116.004</object-id>
+        <label>Video 1</label>
+        <caption>
+        <title>Introducing eLife Lens.</title>
+          <p>Watch Ian Mulvany from eLife demonstrating Lens.</p>
+        </caption>
+      </media>
+    <sec id="s1" sec-type="motivation">
+      <title>Motivation</title>
+      <p>Working with digital documents has been difficult for the most part, because they come in presentation-centric formats, optimized for print and with the intent to have the same display across multiple devices. Ultimately, the display of these documents is preserved to allow the user to print the exact same document across any device. Content today, however, is no longer being printed out readily; instead, it is read on a variety of platforms spanning computers and mobile devices. The limitations presented by different screen sizes, the lack of tactile feedback that comes from flipping between pages and inability to purely focus on the author’s arguments are problems present in all disciplines.</p>
+    </sec>
+    <sec id="s2" sec-type="presentation">
+      <title>The Presentation of Lens</title>
+      <p>When designing Lens, we worked to provide a flexible experience that supports a variety of use cases. On the far left the document map (<xref ref-type="fig" rid="fig2">Figure 2A</xref>) identifies the readers position in the context of the whole article. It also outlines each paragraph in the article. The left panel includes all of the textual content of the article (Figure 2B). The right panel includes the resources (Figure 2C). The resources are defined as the table of contents, figures, tables, videos, supplemental data, references and information about the article. By splitting apart the content into individual panels, we enable the reader to focus on multiple content bits at the same time.</p>
+
+      <fig id="fig2">
+      <label>Figure 2.</label>
+      <caption>
+        <title>The workspace of Lens.</title>
+        <p>A. The document map. Each gray bar identifies an individual paragraph within the article. B. The article’s text content. C. All of the associated resources. This includes the Table of Contents, figures, references and additional information, including meta-data, about the article.</p>
+      </caption>
+      <graphic xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="elife00116f001"/>
+      </fig>
+
+    </sec>
+
+  </body>
+  <back>
+  </back>
+</article>
