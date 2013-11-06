@@ -23,8 +23,15 @@ The easiest way to integrate Lens into your journal is by creating one HTML file
       document_url: "https://s3.amazonaws.com/elife-cdn/elife-articles/00778/elife00778.xml"
     });
 
-Keep in mind, with eLife Lens you can display any NLM-compatible XML file or JSON documents that . You can enrich your HTML file with `<meta>` tags etc. to ensure Google crawlablility. There is no server infrastructure needed to run Lens. It's 100% browser-based. If you have questions please consult the [Lens Mailinglist](https://groups.google.com/forum/#!forum/elife-lens).
+Keep in mind, with eLife Lens you can display any NLM-compatible XML file or JSON documents that correspond to the Lens Article Format. You can enrich your HTML file with `<meta>` tags etc. to ensure Google crawlablility. There is no server infrastructure needed to run Lens. It's 100% browser-based. If you have questions please consult the [Lens Mailinglist](https://groups.google.com/forum/#!forum/elife-lens).
 
 ### Roadmap
 
 The Roadmap is covered on the [project wiki](https://github.com/elifesciences/lens/wiki/Product-Roadmap)
+
+
+### Lens in the wild
+
+- [eLife Journal](http://lens.elifesciences.org/01120/index.html)
+- [Landes Bioscience](https://www.landesbioscience.com/article/25414/full_text/#load/info/all)
+- [PeerJ Lens Demo](http://peerj.github.io/lens-demo/)
