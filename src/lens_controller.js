@@ -104,29 +104,35 @@ LensController.Prototype = function() {
       fullscreen: !!fullscreen
     };
 
-    this.trigger("loading:started", "Loading document ...");
+    // Already loaded?
+    if (this.reader) {
+      this.reader.modifyState(state);
+      // HACK: monkey patch alert
+      if (state.resource) this.reader.view.jumpToResource(state.resource);
+    } else {
+      this.trigger("loading:started", "Loading document ...");
+      $.get(this.config.document_url)
+      .done(function(data) {
+        var doc, err;
 
-    $.get(this.config.document_url)
-    .done(function(data) {
-      var doc, err;
+        // Determine type of resource
+        var xml = $.isXMLDoc(data);
 
-      // Determine type of resource
-      var xml = $.isXMLDoc(data);
-
-      // Process XML file
-      if(xml) {
-        var importer = new Converter.Importer();
-        doc = importer.import(data);
-        // Process JSON file
-      } else {
-        if(typeof data == 'string') data = $.parseJSON(data);
-        doc = Article.fromSnapshot(data);
-      }
-      that.createReader(doc, state);
-    })
-    .fail(function(err) {
-      console.error(err);
-    });
+        // Process XML file
+        if(xml) {
+          var importer = new Converter.Importer();
+          doc = importer.import(data);
+          // Process JSON file
+        } else {
+          if(typeof data == 'string') data = $.parseJSON(data);
+          doc = Article.fromSnapshot(data);
+        }
+        that.createReader(doc, state);
+      })
+      .fail(function(err) {
+        console.error(err);
+      });
+    }
   };
 
   // Provides an array of (context, controller) tuples that describe the
