@@ -35,3 +35,10 @@ The Roadmap is covered on the [project wiki](https://github.com/elifesciences/le
 - [eLife Journal](http://lens.elifesciences.org/01120/index.html)
 - [Landes Bioscience](https://www.landesbioscience.com/article/25414/full_text/#load/info/all)
 - [PeerJ Lens Demo](http://peerj.github.io/lens-demo/)
+
+### Changelog
+
+### 0.3.0
+
+- Support for mobile devices
+- No reload on route navigation (makes navigating back/forward much faster)
