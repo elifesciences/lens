@@ -3,21 +3,28 @@
 ---------------------------------------------*/
 
 * {
-	margin: 0;
+  margin: 0;
 }
 
 body {
   padding: 0;
   margin: 0;
-  overflow: hidden;
 }
 
-html,body {
+html {
   height:100%;
-  background: #F5F5F5;
   -webkit-font-smoothing: antialiased;
 }
 
+body.reader {
+  height: 100%;
+  overflow: hidden;
+  position: fixed;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+}
 
 /*
 General Layout 
@@ -25,38 +32,19 @@ General Layout
 
 #container {
   position: relative;
+  margin: 0 auto;
+}
 
-  min-width: 800px;
+/* In reader view */
+body.reader #container {
   max-width: 1400px; /* 988px / 16px = 61.75em */
   height: 100%;
-  padding-left: 100px;
-  overflow: visible;
 }
 
-#container .go-back {
-  position: absolute;
-  left: 20px;
-  top: 20px;
-  width: 50px;
-  height: 50px;
-  font-size: 30px;
-  text-align: center;
-  line-height: 50px;
-  z-index: 2000;
-}
 
-#container .about-lens {
-  position: absolute;
-  left: 25px;
-  bottom: 25px;
-  font-size: 13px;
+/*#container .browser-not-supported {
   text-align: center;
-  z-index: 2000;
-}
-
-#container .browser-not-supported {
-  text-align: center;
-  padding-top: 130px;
+  padding-top: 200px;
   width: 500px;
   margin: 0 auto;
   font-size: 20px;
@@ -82,25 +70,9 @@ General Layout
 #container .browser-not-supported a:hover {
   background: #000;
 }
+*/
 
 
-#container .import-teaser {
-  position: absolute;
-  top: 50px;
-  bottom: 50px;
-  left: 50px;
-  right: 50px;
-  background: green;
-  display: none;
-}
-
-#container.tease-import .import-teaser {
-  display: block;
-}
-
-#container.tease-import #main {
-  display: none;
-}
 
 body, textarea, p, input {
   font-family: 'Source Sans Pro', Helvetica, Arial, Verdana, sans-serif;
@@ -146,6 +118,18 @@ h3, h4, h5, h6 {
   font-size: 1em;
   font-weight: 700;
 }
+  
+p {
+  padding-bottom: 20px;
+}
+
+p:last-child { padding-bottom: 0; }
+
+.small {
+  color: #505050;
+  font-size: .75em;
+  font-weight: 400;
+}
 
 /* Use border-box box model */
 
@@ -155,19 +139,32 @@ h3, h4, h5, h6 {
   -moz-box-sizing: border-box;
 }
 
-/* Main
--------------------------------------------------------------------------------*/
+
+
+
+/* Article Overrides */
+#container .article .resources .info .content-node.active .resource-header {
+  background: #4A4A4A;
+}
+
+
+
+/* main
+   --------------------------------------- */
 
 #main {
-  height: 100%;
   position: relative;
+}
+
+body.reader #main {
+  height: 100%;
 }
 
 #container .loading {
   font-family: 'Avenir LT W01 85 Heavy', 'Montserrat', 'Source Sans Pro';
   position: absolute;
-  top: 20px;
-  left: 130px;
+  top: 15px;
+  left: 70px;
   right: 0px;
   height: 49px;
   line-height: 50px;

@@ -54,7 +54,7 @@ var Lens = function(config) {
 };
 
 Lens.Article = require("lens-article");
-Lens.Reader = require("lens-reader");
+Lens.Reader = require("substance-reader");
 Lens.Outline = require("lens-outline");
 
 

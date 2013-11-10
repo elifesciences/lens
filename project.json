@@ -3,7 +3,7 @@
     {
       "repository": "https://github.com/substance/application.git",
       "folder": "node_modules/substance-application",
-      "branch": "0.1.x"
+      "branch": "0.2.x"
     },
     {
       "repository": "https://github.com/substance/chronicle.git",
@@ -26,39 +26,39 @@
       "branch": "0.5.x"
     },
     {
-      "repository": "https://github.com/elifesciences/lens-reader.git",
-      "folder": "node_modules/lens-reader",
-      "branch": "0.1.x"
+      "repository": "https://github.com/substance/reader.git",
+      "folder": "node_modules/substance-reader",
+      "branch": "0.2.x"
     },
     {
       "repository": "https://github.com/elifesciences/lens-article.git",
       "folder": "node_modules/lens-article",
-      "branch": "0.1.x"
+      "branch": "0.2.x"
     },
     {
       "repository": "https://github.com/substance/article.git",
       "folder": "node_modules/substance-article",
-      "branch": "0.1.x"
+      "branch": "0.3.x"
     },
     {
       "repository": "https://github.com/substance/nodes.git",
       "folder": "node_modules/substance-nodes",
-      "branch": "0.1.x"
+      "branch": "0.3.x"
     },
     {
       "repository": "https://github.com/elifesciences/lens-outline.git",
       "folder": "node_modules/lens-outline",
-      "branch": "0.1.x"
+      "branch": "0.2.x"
     },
     {
       "repository": "https://github.com/substance/toc.git",
       "folder": "node_modules/substance-toc",
-      "branch": "0.1.x"
+      "branch": "0.2.x"
     },
     {
       "repository": "https://github.com/elifesciences/lens-converter.git",
       "folder": "node_modules/lens-converter",
-      "branch": "0.1.x"
+      "branch": "0.2.x"
     },
     {
       "repository": "https://github.com/substance/operator.git",
@@ -68,7 +68,7 @@
     {
       "repository": "https://github.com/substance/regexp.git",
       "folder": "node_modules/substance-regexp",
-      "branch": "0.1.x"
+      "branch": "0.2.x"
     },
     {
       "repository": "https://github.com/substance/surface.git",
@@ -83,7 +83,7 @@
     {
       "repository": "https://github.com/elifesciences/lens.git",
       "folder": ".",
-      "branch": "0.2.x"
+      "branch": "0.3.x"
     }
   ],
   "node_modules": {
@@ -119,7 +119,7 @@
     "styles/nodes/person.css": "node_modules/lens-article/nodes/person/person.css",
     "styles/nodes/publication_info.css": "node_modules/lens-article/nodes/publication_info/publication_info.css",
 
-    "styles/reader.css": "node_modules/lens-reader/reader.css",
+    "styles/reader.css": "node_modules/substance-reader/reader.css",
     "styles/toc.css": "node_modules/substance-toc/toc.css",
     "styles/lens.css":  "styles/lens.css"
   },
