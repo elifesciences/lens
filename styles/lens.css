@@ -140,13 +140,14 @@ p:last-child { padding-bottom: 0; }
 }
 
 
-
-
 /* Article Overrides */
 #container .article .resources .info .content-node.active .resource-header {
   background: #4A4A4A;
 }
 
+.article .resources .nodes > #articleinfo > .content {
+  border-top: 1px solid #ddd;
+}
 
 
 /* main
