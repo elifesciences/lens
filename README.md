@@ -42,3 +42,4 @@ The Roadmap is covered on the [project wiki](https://github.com/elifesciences/le
 
 - Support for mobile devices
 - No reload on route navigation (makes navigating back/forward much faster)
+- Improved scrollbar mouse interaction (dragging outside the document outline is now possible)
