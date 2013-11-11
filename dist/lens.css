@@ -59,14 +59,14 @@ Outline
   background: #fff;
   position: absolute;
   left: 0px;
-  width:60px;
+  width:50px;
   top: 0px;
   bottom: 0px;
 }
 
 .lens-outline .node.cover {
-  background: #5c6570;
-  opacity: 1;
+  /*background: #5c6570;*/
+  /*opacity: 1;*/
 }
 
 .lens-outline .node .arrow {
@@ -94,23 +94,27 @@ Outline
   right: 0px;
   height: 80px;
   z-index: 2000;
-  background-color: rgba(0,0,0, 0.1);
+  background-color: rgba(0,0,0, 0.2);
 }
 
 .lens-outline .visible-area:hover {
-  background-color: rgba(0,0,0, 0.15); 
+  background-color: rgba(0,0,0, 0.25); 
 }
 
 .lens-outline .node {
   margin: 0 5px;
-  width: 50px;
+  width: 40px;
   background: rgba(0,0,0, 0.4);
-  opacity: 0.1;
+  opacity: 0.15;
   cursor: pointer;
 }
 
 .lens-outline .node:hover {
-  opacity: 0.6;
+  opacity: 0.4;
+}
+
+.lens-outline .node.highlighted:hover {
+  opacity: 1.0;
 }
 
 .lens-outline .text {
@@ -135,7 +139,6 @@ Outline
 .lens-outline.figures .node.highlighted {
   opacity: 0.7;
   background: rgba(145, 187, 4, 1);
-  /*border: 1px solid rgba(145, 187, 4, 1);*/
 }
 
 /* Blueish highlighted nodes (citations) */
@@ -148,7 +151,6 @@ Outline
 .lens-outline.figures .node.selected {
   opacity: 1;
   background: rgba(145, 187, 4, 1);
-  /*border: 1px solid rgba(145, 187, 4, 1);*/
 }
 
 /* Blueish highlighted nodes (citations) */
@@ -215,8 +217,11 @@ Outline
 .content-node.heading .content {
   font-family: 'Montserrat';
   font-weight: bold;
-  font-size: 24px;
   line-height: 40px;
+}
+
+.content-node.heading.level-1 .content {
+  font-size: 24px;
 }
 
 .content-node.heading.level-2 .content {
@@ -226,6 +231,7 @@ Outline
 .content-node.heading.level-3 .content {
   font-size: 17px;
 }
+
 /* List Node
 -------------------------------------------------------------------------------*/
 
@@ -319,20 +325,20 @@ Outline
 
 .content-node.codeblock > .content {
   border: 1px dashed #ddd;
-  margin-bottom: 20px;
   line-height: 20px;
   padding: 10px 10px;
 }
 
 .content-node.codeblock > .content {
-  font-family: 'Source Code Pro';
+  font-family: 'Source Code Pro', 'Menlo', monospace;
   font-size: 14px;
   color: #777;
   min-height: 28px;
 }
+
 .lens-article .content-node.cover {
-  background: #5c6570;
-  color: white;
+  /*background: #5c6570;*/
+  color: rgba(0,0,0,0.8);
 }
 
 .lens-article .content-node.cover .content {
@@ -347,7 +353,7 @@ Outline
 
 .lens-article .content-node.cover .content .authors {
   padding-top: 30px;
-  color: rgba(255,255,255, 0.7);
+  /*color: rgba(255,255,255, 0.7);*/
   overflow: auto;
 }
 
@@ -359,7 +365,7 @@ Outline
   font-size: 20px;
   margin-right: 10px;
   margin-bottom: 8px;
-  color: rgba(255,255,255, 0.7);
+  /*color: rgba(255,255,255, 0.7);*/
 }
 .content-node.supplement > .content {
   padding: 10px 20px;
@@ -532,9 +538,8 @@ Person
   color: #333;
 }
 
-.lens-article .content-node.publication-info .content {
-  /*background: #EBEBEB;*/
-  background: rgba(0,0,0,0.01);
+.article .resources .nodes > .content-node.publication-info > .content {
+  border-top: 1px solid #ddd;
 }
 
 .lens-article .content-node.publication-info table {
@@ -544,7 +549,7 @@ Person
 }
 
 .lens-article .content-node.publication-info .label.links {
-  padding-left: 30px;
+  padding-right: 30px;
 }
 
 .lens-article .content-node.publication-info .links {
@@ -568,7 +573,7 @@ Person
 
 .lens-article .content-node.publication-info table.dates td {  
   border: none;
-  padding-left: 30px;
+  padding-right: 30px;
   padding-bottom: 10px;
   text-align: center;
   font-size: 13px;
@@ -578,7 +583,7 @@ Person
 .lens-article .content-node.publication-info table.categorization td {
   border: none;
   font-size: 13px;
-  padding-left: 30px;
+  padding-right: 30px;
   width: 50%;
 }
 
@@ -588,8 +593,21 @@ Person
 }
 
 .lens-article .content-node.publication-info .links {
-  padding-left: 30px;
+  padding-right: 30px;
 }
+/* Fix weird behavior
+-------------------------------------------------------------------------------*/
+
+/*
+When using event delegation if the parent element has a click handler, when
+the user touches anything inside this element, the whole region will gray 
+out (on iOS 5.1), or flicker (on iOS 6). */
+
+* {
+  -webkit-tap-highlight-color:transparent;
+}
+
+
 /* Article
 -------------------------------------------------------------------------------*/
 
@@ -608,141 +626,8 @@ Person
   background: white;
 }
 
-
-
-/* Focus Toggles
--------------------------------------------------------------------------------*/
-
-.document .content-node .focus {
-  position: absolute;
-  top: 0px;
-  bottom: 0px;
-  right: 0px;
-  width: 40px;
-  color: #888;
-  border-top: 1px solid #eee;
-}
-
-.document .content-node .focus i {
-  padding-top: 15px;
-  display: block;
-  font-size: 12px;
-  text-align: center;
-}
-
-.document .content-node .focus .focus-mode {
-  width: 40px;
-  height: 70px;
-  cursor: pointer;
-  text-align: center;
-  font-size: 14px;
-  font-weight: bold;
-  position: relative;
-}
-
-
-.document .content-node .focus-mode.figure:hover, .article.figures .document .content-node.active .focus-mode.figure {
-  color: rgba(145, 187, 4, 1.0);
-}
-
-.document .content-node .focus-mode.citation:hover, .article.citations .document .content-node.active .focus-mode.citation {
-  color: rgba(11, 157, 217, 1);
-}
-
-.document .content-node .focus-mode.node:hover, .article .content-node.active .focus-mode.node {
-  color: black;
-}
-
-/* Override anchor toggle in figures mode */
-.article.figures .content-node.active .focus-mode.node {
-  color: rgba(145, 187, 4, 1.0);
-}
-
-/* Override anchor toggle in citations mode */
-.article.citations .content-node.active .focus-mode.node {
-  color: rgba(11, 157, 217, 1);
-}
-
-.article.figure .content-node.active .focus-mode.figure {
-  color: rgba(145, 187, 4, 1.0);
-}
-
-.article.citation .content-node.active .focus-mode.citation {
-  color: rgba(11, 157, 217, 1);
-}
-
-.document .content-node .focus .arrow {
-  display: none;
-}
-
-
-/* The stripe which marks the focussed node
--------------------------------------------------------------------------------*/
-
-.document .content-node.active .focus .stripe {
-  display: block;
-  opacity: 1;
-}
-
-.document .content-node .focus .stripe {
-  opacity: 0;
-  position: absolute;
-  right: -3px;
-  width: 3px;
-  top: 0px;
-  bottom: 0px;
-  background: black;
-}
-
-
-.document .content-node .focus .arrow {
-  position: absolute;
-  top: 30px;
-  right: -13px;
-  width: 0; 
-  height: 0; 
-  border-top: 10px solid transparent;
-  border-bottom: 10px solid transparent;
-  border-left: 10px solid black;
-}
-
-.article.figures .content-node.active .focus .focus-mode .arrow {
-  border-left: 10px solid rgba(145, 187, 4, 1.0);
-  display: block;
-}
-
-.article.citations .content-node.active .focus .focus-mode .arrow {
-  border-left: 10px solid rgba(11, 157, 217, 1);
-  display: block;
-}
-
-.article.figures .content-node.active .focus .stripe {
-  background: rgba(145, 187, 4, 1.0);
-  opacity: 1;
-}
-
-.article.citations .content-node.active .focus .stripe {
-  background: rgba(11, 157, 217, 1);
-}
-
-.article.citation .content-node.active .focus.anchor .stripe {
-  background: black;
-}
-
-.document .content-node:hover .focus .stripe {
-}
-
-.document .content-node .focus:hover {
-}
-
-.content-node.active .focus {
-  opacity: 1.0;
-}
-
-
 /* Main content panel 
 ======================================================================= */
-
 
 .article .document {
   line-height: 28.5px;
@@ -751,7 +636,8 @@ Person
   float: left;
   overflow: hidden;
   height: 100%;
-  width: 55%;
+  width: 50%;
+  border-right: 1px solid #ddd;
 }
 
 .article .document .surface.content {
@@ -769,54 +655,87 @@ Person
 
 .article .document .surface.content .nodes {
   min-height: 100%;
-  padding-left: 60px;
+  padding-left: 40px;
   padding-right: 0px;
-  margin-right: 15px;
   background: #FFFFFF;
 }
 
-.article .document .surface.content::-webkit-scrollbar {
-  width: 2px;
-  height: 2px; 
-}
 
-.article .document .surface.content::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0);
-}
+/* Back Navigation 
+=======================================================================*/
 
-.article .document .scrollbar-mask {
-  position: absolute;
-  right: 0px;
-}
 
 
 /* Context Toggles 
-=======================================================================
+=======================================================================*/
 
 /* Switcher */
-.article .context-toggles {
-  background: #F5F5F5;
+
+.article .medial-strip {
   overflow: hidden;
-  height: 60px;
+  width: 40px;
   position: absolute;
-  right: 20px;
-  left: 0px;
+  left: -18px;
   top: 0px;
+  bottom: 0px;
+  background: #fff;
   z-index: 3000;
-  padding: 10px 0px;
 }
 
-.article.focus-mode .context-toggles {
-  opacity: 0.5
+.article .back-nav {
+  display: block;
+  overflow: hidden;
+  width: 40px;
+  position: absolute;
+  top: 20px;
+  z-index: 5000;
+  /*left: -20px;*/
+  /*top: 10px;*/
+  font-size: 22px;
+
+  /*z-index: 3000;*/
+  background: #fff;
+  /*padding: 10px 0px;*/
+  color: #aaa;
+  padding: 10px 10px;
 }
+
+
+.article .back-nav:hover {
+  color: #333;
+}
+
+
+.article .medial-strip .separator-line {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 20px;
+  width: 1px;
+  background: #ddd;
+  z-index: 4000;
+}
+
+.article .context-toggles {
+  position: absolute;
+  top: 100px;
+  left: 0px;
+  right: 0px;
+  
+  background: #fff;
+  z-index: 5000;
+}
+
 
 .article .context-toggles .context-toggle {
   cursor: pointer;
-  float: left;
+  display: block;
+  /*float: left;*/
+  z-index: 5000;
   padding: 0 10px;
   line-height: 40px;
-  font-size: 14px;
-  color: #777;
+  font-size: 22px;
+  color: #aaa;
   font-family: 'Avenir LT W01 85 Heavy', 'Montserrat', 'Source Sans Pro';
 }
 
@@ -825,7 +744,7 @@ Person
 }
 
 .article .context-toggles .context-toggle span {
-
+  display: none;
 }
 
 .article .context-toggles .context-toggle:hover {
@@ -834,12 +753,24 @@ Person
 
 /*Active states depend on the global reader context */
 
+/*.article .context-toggles .context-toggle.figures:hover {
+  color: rgba(145, 187, 4, 1);
+}
+
+.article .context-toggles .context-toggle.citations:hover {
+  color: rgba(11, 157, 217, 1);
+}
+*/
+
+
 .article.figures .context-toggles .context-toggle.figures {
-  color: #111;
+  /*color: rgba(145, 187, 4, 1);*/
+  color: #111; 
 }
 
 .article.citations .context-toggles .context-toggle.citations {
-  color: #111;
+  /*color: rgba(11, 157, 217, 1);*/
+  color: #111; 
 }
 
 .article.toc .context-toggles .context-toggle.toc {
@@ -858,34 +789,49 @@ Person
 .article .resources {
   float: right;
   line-height: 20px;
-  width: 44%;
+  width: 50%;
   font-size: 14px;
   height: 100%;
+  padding-left: 50px;
+  padding-right: 50px;
   position: relative;
-  overflow: auto;
+  /*overflow: auto;*/
 }
 
 .article .resources .surface {
   padding-top: 60px;
 }
 
+.article .nodes {
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+
 .article .resources .nodes > .content-node {
   color: #333;
   position: relative;
-  background: rgba(0,0,0,0.05);
+  /* background: rgba(0,0,0,0.01); */
+  background: #fff;
+  
   margin-bottom: 30px;
-  margin-right: 20px;
   padding: 0px;
 }
 
+.article .resources .nodes > .content-node > .content {
+  border: 1px solid #ddd;
+  border-top: none;
+}
+
 .article .resources .content-node .resource-header:hover {
-  background: rgba(0,0,0,0.05);
+  background: rgba(0,0,0,0.15);
 }
 
 /* Clickable header */
 .article .resources .content-node .resource-header {
   min-height: 80px;
   position: relative;
+  background: rgba(0,0,0,0.1);
 }
 
 /* Shared styles for selected and mouseover states
@@ -897,73 +843,47 @@ Person
 }
 
 /* active figure */
-.article .resources .figures .content-node.active .resource-header {
-  background: rgba(145, 187, 4, 1);
-  color: #fff;
+.article .resources .figures .content-node.active {
+  /*border-color: rgba(145, 187, 4, 1);*/
 }
 
+.article .resources .figures .content-node.active .resource-header {
+  background: rgba(145, 187, 4, 1);
+}
+
+.article .resources .figures .content-node.active .resource-header a {
+  /*color: rgba(145, 187, 4, 1);*/
+}
+
+
 /* active citation */
+
+.article .resources .citations .content-node.active {
+  /*border-color: rgba(11, 157, 217, 1);*/
+}
+
 .article .resources .citations .content-node.active .resource-header {
   background: rgba(11, 157, 217, 1);
-  color: #fff;
+}
+
+.article .resources .citations .content-node.active .resource-header a {
+  /*color: rgba(11, 157, 217, 1);*/
 }
 
 /* active person */
+.article .resources .info .content-node.active {
+  /*border-color: #5c6570;*/
+}
+
 .article .resources .info .content-node.active .resource-header {
-  background: #5c6570;
-  color: #fff;
+  border-color: #5c6570;
 }
 
-.article .resources .content-node .resource-header .reference-count {
-  display: none;
-  opacity: 0.6;
+.article .resources .info .content-node.active .resource-header a {
+  /*color: #5c6570;*/
 }
 
 
-.article .resources .content-node .type {
-  display: none;
-  position: absolute;
-  right: 10px;
-  top: 0px;
-  height: 35px;
-  width: 120px;
-  text-align: center;
-  background: rgba(0,0,0,0.05);
-  font-size: 12px;
-  padding: 0 15px;
-  line-height: 35px;
-  font-weight: bold;
-}
-
-.article .resources .content-node .type i {
-  padding-right: 10px;
-}
-
-.article .resources .content-node.publication.active .type {
-  color: white;
-}
-
-.article .resources .content-node.active .type {
-  color: white;
-}
-
-.article .resources .number {
-  font-size: 11px;
-  position: absolute;
-  text-align: center;
-  color: #fff;
-  left: 25px;
-  top: 25px;
-  font-weight: bold;
-  width: 24px;
-  line-height: 24px;
-  border-radius: 12px;
-  background: rgba(0,0,0, 0.3);
-}
-
-.article .resources .publication.active .number {
-  background: rgba(11, 157, 217, 1);
-}
 
 
 /* Figures View
@@ -1012,8 +932,9 @@ Person
   position: absolute;
   top: 0px;
   bottom: 0px;
-  left: 0px;
-  right: 0px;
+  left: 50px;
+  right: 50px;
+
   overflow: auto;
   -webkit-overflow-scrolling: touch;
   padding-top: 60px;
@@ -1108,7 +1029,6 @@ Person
 
 #container .article .content-node.fullscreen {
   position: fixed;
-  
   top: 0px;
   bottom: 0px;
   left: 0px;
@@ -1255,7 +1175,7 @@ span.annotation.formula_reference, span.publication_reference {
 
 .content-node .figure_reference.active { background: rgba(145, 187, 4, 0.7); }
 .content-node .citation_reference.active { background: rgba(11, 157, 217, 0.6); }
-.content-node .person_reference.active { background-color: rgba(0,0,0, 0.4); color: white; }
+.content-node .person_reference.active { background-color: rgba(0,0,0, 0.8); color: white; }
 
 /* Cross Reference */
 .content-node .cross_reference:hover {
@@ -1266,16 +1186,14 @@ span.annotation.formula_reference, span.publication_reference {
 /* Reader-specific overrides for content nodes
 ======================================================================= */
 
-
 /* For the main content area 
 ----------------------------------------------------------------------- */
 
-
 .surface.content .nodes > .content-node {
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 10px;
+  padding-bottom: 15px;
   padding-left: 40px;
-  padding-right: 50px;
+  padding-right: 40px;
   word-wrap: break-word;
 }
 
@@ -1286,42 +1204,16 @@ span.annotation.formula_reference, span.publication_reference {
 }
 
 
-/* Optimizations for smaller screen sizes */
-@media (max-width: 70.5em) {
-  .article .document .surface.content .nodes {
-    padding-left: 40px;
-  }
-
-  .article .resources {
-    width: 30%;
-  }
-
-  .article .document {
-    width: 68%;
-  }
-
-  .lens-outline {
-    width: 40px;
-  }
-
-  .lens-outline .node {
-    width: 30px;
-  }
-
-  .surface.content .nodes > .content-node {
-    padding-left: 20px;
-    padding-right: 30px;
-    word-wrap: break-word;
-  }
-}
-
-
 /* Hide focus toggles for cover
 ----------------------------------------------------------------------- */
 
-.surface.content .nodes > .content-node.cover .focus {
+/*.surface.content .nodes > .content-node.cover .focus {
   display: none;
 }
+
+.surface.content .nodes > .content-node .focus {
+  display: none;
+}*/
 
 /* For the resources panel
 ----------------------------------------------------------------------- */
@@ -1336,6 +1228,307 @@ span.annotation.formula_reference, span.publication_reference {
 .resources .info .nodes > .content-node.paragraph > .content > .content-node {
   padding: 20px 0;
 }
+
+.article .document .surface.content::-webkit-scrollbar {
+  width: 2px;
+  height: 2px; 
+}
+
+.article .document .surface.content::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+
+
+.article .document .content-node.heading {
+  cursor: pointer;
+}
+
+/* Responsiveness */
+/* ---------------------------------------*/
+
+
+/*@media all and (orientation:portrait) {
+
+}*/
+
+/* Hide fullscreen toggle for small screens */
+#container.touchable .toggle-fullscreen {
+  display: none;
+}
+
+#container.touchable .article .document .surface.content {
+  right: 20px;
+}
+
+/*#container.touchable .article .document .surface.content .nodes {
+  padding-left: 0px;
+}*/
+
+/*#container.touchable .lens-outline {
+  background: transparent;
+  left: auto;
+  right: 30px;
+  width: 12px;
+  overflow: hidden;
+}*/
+
+
+/* Only hide for IOS devices because of scrolling issues! */
+#container.touchable.ios .lens-outline .visible-area {
+  display: none;
+}
+
+#container.touchable .lens-outline .node:hover {
+  opacity: 0.15;
+}
+
+#container.touchable .lens-outline .arrow {
+  display: none;
+}
+
+/* Smaller screens */
+/*@media (max-width: 70.5em) {
+  .article .document {
+    width: 55%;
+  }
+
+  .article .resources {
+    width: 45%;
+  }
+}*/
+
+
+/* Mobile (iPad Portrait, iPhone) */
+@media (max-width: 850px) {
+
+  /* body.reader {
+    overflow: auto;
+    height: auto;
+  }
+
+  body.reader #container {
+    overflow: auto;
+    height: auto;
+  }
+
+  body.reader #main {
+    height: auto;
+  }*/
+
+  html body.reader {
+    height: auto;
+    overflow: visible;
+    position: relative;
+    
+    /* left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px; */
+  }
+
+  /* Hide fullscreen toggle for small screens */
+  #container .toggle-fullscreen {
+    display: none;
+  }
+
+  /* Reset back */
+  #container.touchable .article .document .surface.content {
+    right: 0px;
+  }
+
+  .surface.content .nodes > .content-node {
+    padding-top: 10px;
+    padding-bottom: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    word-wrap: break-word;
+  }
+
+  .article .document .surface.content .nodes {
+    padding-left: 40px;
+  }
+
+  .article .document {
+    width: 100%;
+    /*width: auto;*/
+    height: auto;
+    position: relative;
+
+    /* left: 0px;
+    right: 0px;
+    bottom: 0px;
+    top: 0px;*/
+    /* font-size: 24px;
+    line-height: 30px; */
+    z-index: 100;
+  }
+
+  .article .document .surface.content {
+    position: absolute;
+    position: relative;
+    overflow: visible;
+
+    /*top: 0px;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;*/
+
+    /* overflow-y: scroll;
+    overflow-x: hidden;
+    overflow: auto;*/
+    /*-webkit-overflow-scrolling: touch;*/
+  }
+
+  .article .resources .surface.resource-view {
+    position: absolute;
+    position: relative;
+    overflow: visible;
+
+    /*top: 0px;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;*/
+
+  /*    overflow-y: scroll;
+    overflow-x: hidden;
+    overflow: auto;*/
+    /*-webkit-overflow-scrolling: touch;*/
+  }
+
+  .article.toc .document {
+    z-index: 200;
+  }
+
+  #container .article .resources {
+    background: #fff;
+    position: relative;
+    width: 100%;
+    height: auto;
+
+    /* left: 0px;
+    right: 0px;
+    bottom: 50px;
+    top: 0px;*/
+
+    padding-left: 0px;
+    padding-right: 0px;
+
+    z-index: 300;
+    word-wrap: break-word;
+  }
+
+  #container .article .resources .nodes {
+    padding: 0px 20px;
+  }
+
+  .article .document .surface.content .nodes {
+    padding-left: 0;
+  }
+
+  #container .article .resources .resource-view {
+    display: none;
+  }
+
+  #container .article.figures .resources .resource-view.figures {
+    display: block;
+    z-index: 200;
+  }
+
+  /* Hide document when in resource mode */
+  #container .article.figures .document,
+  #container .article.citations .document,
+  #container .article.info .document
+  {
+    display: none;
+  }
+
+  #container .article.info .resources .resource-view.info {
+    display: block;
+    z-index: 200;
+  }
+
+  #container .article.citations .resources .resource-view.citations {
+    display: block;
+    z-index: 200;
+  }
+
+  .article .resources .medial-strip {
+    background: #252525;
+    /*border-bottom: 1px solid #ddd;*/
+    position: fixed;
+    
+    top: 0px;
+    bottom: auto;
+    left: 0px;
+    right: 0px;
+    height: 50px;
+    width: auto;
+  }
+
+  .article .resources .medial-strip .context-toggles {
+    background: #252525;
+    /*line-height: 80px;*/
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    top: 0px;
+    /*padding: 5px 20px;*/
+  }
+
+  .article .resources .medial-strip .context-toggles .context-toggle {
+    float: left;
+    height: 50px;
+    width: 80px;
+    padding-top: 8px;
+    color: rgba(255,255,255,0.4);
+    text-align: center;
+    line-height: 17px;
+    /*background: green;*/
+  }
+
+  .article .resources .medial-strip .context-toggles .context-toggle span {
+    display: block;
+    font-size: 11px;
+  }
+
+  .article.figures .context-toggles .context-toggle.figures {
+    /*color: rgba(145, 187, 4, 1);*/
+    color: white;
+    background: #000;
+  }
+
+  .article.citations .context-toggles .context-toggle.citations {
+    /*color: rgba(11, 157, 217, 1);*/
+    color: white;
+    background: #000;
+  }
+
+  .article.toc .context-toggles .context-toggle.toc {
+    color: white;
+    background: #000;
+  }
+
+  .article.info .context-toggles .context-toggle.info {
+    color: white;
+    background: #000;
+  }
+
+
+
+
+
+
+  .article .resources .medial-strip .back-nav {
+    display: none;
+  }
+
+  .article .lens-outline {
+    display: none;
+  }
+}
+
 
 /*
 TOC 
@@ -1361,22 +1554,22 @@ TOC
 }
 
 .resource-view.toc .heading-ref.level-2 {
-  padding-left: 30px;
+  padding-left: 20px;
   font-size: 13px;
 }
 
 .resource-view.toc .heading-ref.level-3 {
-  padding-left: 60px;
+  padding-left: 40px;
   font-size: 13px;
 }
 
 .resource-view.toc .heading-ref.level-4 {
-  padding-left: 80px;
+  padding-left: 60px;
   font-size: 12px;
 }
 
 .resource-view.toc .heading-ref.level-5 {
-  padding-left: 100px;
+  padding-left: 80px;
   font-size: 12px;
 }
 
@@ -1389,21 +1582,28 @@ TOC
 ---------------------------------------------*/
 
 * {
-	margin: 0;
+  margin: 0;
 }
 
 body {
   padding: 0;
   margin: 0;
-  overflow: hidden;
 }
 
-html,body {
+html {
   height:100%;
-  background: #F5F5F5;
   -webkit-font-smoothing: antialiased;
 }
 
+body.reader {
+  height: 100%;
+  overflow: hidden;
+  position: fixed;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+}
 
 /*
 General Layout 
@@ -1411,38 +1611,19 @@ General Layout
 
 #container {
   position: relative;
+  margin: 0 auto;
+}
 
-  min-width: 800px;
+/* In reader view */
+body.reader #container {
   max-width: 1400px; /* 988px / 16px = 61.75em */
   height: 100%;
-  padding-left: 100px;
-  overflow: visible;
 }
 
-#container .go-back {
-  position: absolute;
-  left: 20px;
-  top: 20px;
-  width: 50px;
-  height: 50px;
-  font-size: 30px;
-  text-align: center;
-  line-height: 50px;
-  z-index: 2000;
-}
 
-#container .about-lens {
-  position: absolute;
-  left: 25px;
-  bottom: 25px;
-  font-size: 13px;
+/*#container .browser-not-supported {
   text-align: center;
-  z-index: 2000;
-}
-
-#container .browser-not-supported {
-  text-align: center;
-  padding-top: 130px;
+  padding-top: 200px;
   width: 500px;
   margin: 0 auto;
   font-size: 20px;
@@ -1468,25 +1649,9 @@ General Layout
 #container .browser-not-supported a:hover {
   background: #000;
 }
+*/
 
 
-#container .import-teaser {
-  position: absolute;
-  top: 50px;
-  bottom: 50px;
-  left: 50px;
-  right: 50px;
-  background: green;
-  display: none;
-}
-
-#container.tease-import .import-teaser {
-  display: block;
-}
-
-#container.tease-import #main {
-  display: none;
-}
 
 body, textarea, p, input {
   font-family: 'Source Sans Pro', Helvetica, Arial, Verdana, sans-serif;
@@ -1532,6 +1697,18 @@ h3, h4, h5, h6 {
   font-size: 1em;
   font-weight: 700;
 }
+  
+p {
+  padding-bottom: 20px;
+}
+
+p:last-child { padding-bottom: 0; }
+
+.small {
+  color: #505050;
+  font-size: .75em;
+  font-weight: 400;
+}
 
 /* Use border-box box model */
 
@@ -1541,19 +1718,33 @@ h3, h4, h5, h6 {
   -moz-box-sizing: border-box;
 }
 
-/* Main
--------------------------------------------------------------------------------*/
+
+/* Article Overrides */
+#container .article .resources .info .content-node.active .resource-header {
+  background: #4A4A4A;
+}
+
+.article .resources .nodes > #articleinfo > .content {
+  border-top: 1px solid #ddd;
+}
+
+
+/* main
+   --------------------------------------- */
 
 #main {
-  height: 100%;
   position: relative;
+}
+
+body.reader #main {
+  height: 100%;
 }
 
 #container .loading {
   font-family: 'Avenir LT W01 85 Heavy', 'Montserrat', 'Source Sans Pro';
   position: absolute;
-  top: 20px;
-  left: 130px;
+  top: 15px;
+  left: 70px;
   right: 0px;
   height: 49px;
   line-height: 50px;

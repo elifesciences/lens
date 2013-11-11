@@ -5,6 +5,10 @@
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
     <link href='styles/font-awesome.css' rel='stylesheet' type='text/css'/>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
     <link href='lens.css' rel='stylesheet' type='text/css'/>
 
     <script src="lib/jquery-2.0.3.min.js"></script>
@@ -18,12 +22,37 @@
     </script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
+
     <script src='lens.js'></script>
 
     <script>
 
       if (window.Lens === undefined) {
         window.Lens = require("/src/lens.js");
+      }
+
+      function isIOSDevice() {
+        var iPadAgent = navigator.userAgent.match(/iPad/i) != null;
+        var iPodAgent = navigator.userAgent.match(/iPhone/i) != null;
+        return iPadAgent || iPodAgent;
+      }
+
+      function isIphone() {
+        var iPhoneAgent = navigator.userAgent.match(/iPhone/i) != null;
+        return iPhoneAgent;
+      }
+
+      function isMobile() {
+        var iPadAgent = navigator.userAgent.match(/iPad/i) != null;
+        var iPodAgent = navigator.userAgent.match(/iPhone/i) != null;
+        var AndroidAgent = navigator.userAgent.match(/Android/i) != null;
+        var webOSAgent = navigator.userAgent.match(/webOS/i) != null;
+
+        return iPadAgent || iPodAgent || AndroidAgent || webOSAgent;
+      }
+
+      function isTouchDevice() {
+        return 'ontouchstart' in document.documentElement;
       }
 
       // Create a new Lens app instance
@@ -33,12 +62,25 @@
 
       var app = new Lens({
         // Endpoint must have CORS enabled, or file is served from the same domain as the app
-        document_url: "https://s3.amazonaws.com/elife-cdn/elife-articles/00778/elife00778.xml"
+        // document_url: "https://s3.amazonaws.com/elife-cdn/elife-articles/00778/elife00778.xml"
+        document_url: "data/00778/index.xml"
         // document_url: "data/about/index.xml"
       });
 
       $(function() {
         app.start();
+
+        if (isTouchDevice()) {
+          $('#container').addClass('touchable');
+        }
+
+        if (isIOSDevice()) {
+          $('#container').addClass('ios');
+        }
+
+        if (isIphone()) {
+          $('#container').addClass('iphone');
+        }
       });
 
     </script>
