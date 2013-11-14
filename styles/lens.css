@@ -142,7 +142,8 @@ p:last-child { padding-bottom: 0; }
 
 /* Article Overrides */
 #container .article .resources .info .content-node.active .resource-header {
-  background: #4A4A4A;
+  /*background: #4A4A4A;*/
+  background: #5c6570;
 }
 
 .article .resources .nodes > #articleinfo > .content {
