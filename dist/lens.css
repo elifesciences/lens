@@ -801,7 +801,7 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 
 .article .resources {
   float: right;
-  line-height: 20px;
+  line-height: 25px;
   width: 50%;
   font-size: 14px;
   height: 100%;
@@ -812,7 +812,7 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 }
 
 .article .resources .surface {
-  padding-top: 60px;
+  padding-top: 20px;
 }
 
 .article .nodes {
@@ -1212,7 +1212,7 @@ span.annotation.formula_reference, span.publication_reference {
 
 /* Some extra cover spacing */
 .surface.content .nodes > .content-node.cover {
-  padding-top: 60px;
+  padding-top: 20px;
   padding-bottom: 60px;
 }
 
@@ -1478,11 +1478,13 @@ span.annotation.formula_reference, span.publication_reference {
     margin-left: 0px;
     height: 60px;
     width: auto;
+    border-bottom: 1px solid #eee;
   }
 
   .article .medial-strip .context-toggles {
     /*background: #252525;*/
-    background: #5c6570;
+    /*background: #5c6570;*/
+    background: white;
     /*line-height: 80px;*/
 
     position: absolute;
@@ -1498,7 +1500,7 @@ span.annotation.formula_reference, span.publication_reference {
     height: 70px;
     width: 80px;
     padding-top: 10px;
-    color: rgba(255,255,255,0.8);
+    /*color: rgba(255,255,255,0.8);*/
     text-align: center;
     line-height: 17px;
   }
@@ -1510,29 +1512,28 @@ span.annotation.formula_reference, span.publication_reference {
 
   .article.figures .context-toggles .context-toggle.figures {
     /*color: rgba(145, 187, 4, 1);*/
-    color: white;
-    background: rgba(0,0,0,0.6);
+    
+    color: rgba(0,0,0,1);
+    /*color: white;
+    background: rgba(0,0,0,0.6);*/
   }
 
   .article.citations .context-toggles .context-toggle.citations {
     /*color: rgba(11, 157, 217, 1);*/
-    color: white;
-    background: rgba(0,0,0,0.6);
+    color: rgba(0,0,0,1);
+    /*background: rgba(0,0,0,0.6);*/
   }
 
   .article.toc .context-toggles .context-toggle.toc {
-    color: white;
-    background: rgba(0,0,0,0.6);
+/*    color: white;
+    background: rgba(0,0,0,0.6);*/
   }
 
   .article.info .context-toggles .context-toggle.info {
-    color: white;
-    background: rgba(0,0,0,0.6);
+    color: rgba(0,0,0,1);
+/*    color: white;
+    background: rgba(0,0,0,0.6);*/
   }
-
-
-
-
 
 
   .article .medial-strip .back-nav {

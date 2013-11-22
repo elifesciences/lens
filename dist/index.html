@@ -5,7 +5,7 @@
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
     <link href='styles/font-awesome.css' rel='stylesheet' type='text/css'/>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=4.0, user-scalable=yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=10.0, user-scalable=yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-capable" content="yes">
 
@@ -63,9 +63,12 @@
       var app = new Lens({
         // Endpoint must have CORS enabled, or file is served from the same domain as the app
         // document_url: "https://s3.amazonaws.com/elife-cdn/elife-articles/00778/elife00778.xml"
-        // document_url: "data/00778/index.xml"
+        document_url: "data/00778/index.xml"
+
         // document_url: "https://s3.amazonaws.com/elife-cdn/elife-articles/01608/elife01608.xml"
-        document_url: "https://s3.amazonaws.com/elife-cdn/elife-articles/00311/elife00311.xml"
+        // document_url: "https://s3.amazonaws.com/elife-cdn/elife-articles/01541/elife01541.xml"
+        
+        // document_url: "https://s3.amazonaws.com/elife-cdn/elife-articles/00311/elife00311.xml"
         // document_url: "data/about/index.xml"
       });
 

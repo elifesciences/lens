@@ -1,8 +1,22583 @@
-!function t(e,n,r){function i(s,a){if(!n[s]){if(!e[s]){var c="function"==typeof require&&require;if(!a&&c)return c(s,!0);if(o)return o(s,!0);throw new Error("Cannot find module '"+s+"'")}var h=n[s]={exports:{}};e[s][0].call(h.exports,function(t){var n=e[s][1][t];return i(n?n:t)},h,h.exports,t,e,n,r)}return n[s].exports}for(var o="function"==typeof require&&require,s=0;s<r.length;s++)i(r[s]);return i}({1:[function(t){window.Lens=t("./src/lens")},{"./src/lens":160}],2:[function(t,e){"use strict";var n=t("underscore"),r=t("substance-util"),i=t("substance-document"),o=function(t){t=t||{},t.schema=r.deepclone(i.schema),t.schema.id="lens-article",t.schema.version="0.1.0",n.each(o.types,function(e,n){t.schema.types[n]=e}),n.each(o.annotations,function(e,n){t.schema.types[n]=e}),n.each(o.nodeTypes,function(e,n){t.schema.types[n]=e.Model.type}),n.each(o.indexes,function(e,n){t.schema.indexes[n]=e}),i.call(this,t),this.bySourceId=this.addIndex("by_source_id",{types:["content"],property:"source_id"}),this.nodeTypes=o.nodeTypes,void 0===t.seed&&(this.create({id:"document",type:"document",guid:t.id,creator:t.creator,created_at:t.created_at,views:["content"],title:"","abstract":""}),n.each(o.views,function(t){this.create({id:t,type:"view",nodes:[]})},this))};o.Renderer=function(t,e){this.docCtrl=t,this.nodeTypes=o.nodeTypes,this.options=e||{},this.nodes={},n.each(this.docCtrl.getNodes(),function(t){this.nodes[t.id]=this.createView(t)},this)},o.Renderer.Prototype=function(){this.createView=function(t){var e=this.nodeTypes[t.type].View;if(!e)throw new Error('Node type "'+t.type+'" not supported');var n=new e(t,this);return n.listenTo(this.docCtrl,"operation:applied",n.onGraphUpdate),n},this.render=function(){n.each(this.nodes,function(t){t.dispose()});var t=document.createDocumentFragment(),e=this.docCtrl.container.getTopLevelNodes();return n.each(e,function(e){this.renderNode(e,t)},this),t},this.renderNode=function(t,e){var n=this.createView(t);e.appendChild(n.render().el),this.options.afterRender&&this.options.afterRender(this.docCtrl,n)}},o.Renderer.prototype=new o.Renderer.Prototype,o.Prototype=function(){this.fromSnapshot=function(t,e){return o.fromSnapshot(t,e)},this.getNodeBySourceId=function(t){var e=this.bySourceId.get(t),n=Object.keys(e)[0],r=e[n];return r}},o.fromSnapshot=function(t,e){return e=e||{},e.seed=t,new o(e)},o.views=["content","figures","citations","info"],o.nodeTypes=t("./nodes"),o.annotations={strong:{parent:"annotation",properties:{}},emphasis:{properties:{},parent:"annotation"},subscript:{properties:{},parent:"annotation"},superscript:{properties:{},parent:"annotation"},underline:{properties:{},parent:"annotation"},code:{parent:"annotation",properties:{}},link:{parent:"annotation",properties:{url:"string"}},idea:{parent:"annotation",properties:{}},error:{parent:"annotation",properties:{}},question:{parent:"annotation",properties:{}},person_reference:{parent:"annotation",properties:{target:"person"}},figure_reference:{parent:"annotation",properties:{target:"figure"}},citation_reference:{parent:"annotation",properties:{target:"content"}},cross_reference:{parent:"annotation",properties:{target:"content"}},formula_reference:{parent:"annotation",properties:{target:"content"}}},o.types={annotation:{properties:{path:["array","string"],range:"object"}},figure:{properties:{}},institution:{properties:{}},email:{properties:{}},funding:{properties:{}},caption:{properties:{}},citation:{properties:{}},document:{properties:{views:["array","view"],guid:"string",creator:"string",title:"string",authors:["array","person"],"abstract":"string"}},comment:{properties:{content:"string",created_at:"string",creator:"string",node:"node"}}};var s={id:"lens_article",nodes:{document:{type:"document",id:"document",views:["content"],title:"The Anatomy of a Lens Article",authors:["person_1","person_2","person_3"],guid:"lens_article"},content:{type:"view",id:"content",nodes:["cover"]},cover:{id:"cover",type:"cover"},person_1:{id:"person_1",type:"person",name:"Michael Aufreiter"},person_2:{id:"person_2",type:"person",name:"Ivan Grubisic"},person_3:{id:"person_3",type:"person",name:"Rebecca Close"}}};o.describe=function(){var t=new o({seed:s}),e=0;return n.each(o.nodeTypes,function(r){r=r.Model,console.log("NAME",r.description.name,r.type.id);var i="heading_"+r.type.id;t.create({id:i,type:"heading",content:r.description.name,level:1});var o=r.description.remarks.join(" "),s="text_"+r.type.id+"_intro";t.create({id:s,type:"text",content:o}),t.show("content",[i,s],-1),t.create({id:i+"_properties",type:"text",content:r.description.name+" uses the following properties:"}),t.show("content",[i+"_properties"],-1);var a=[];n.each(r.description.properties,function(n,r){var i="text_"+ ++e;t.create({id:i,type:"text",content:r+": "+n}),t.create({id:e+"_annotation",type:"code",path:[i,"content"],range:[0,r.length]}),a.push(i)}),t.create({id:i+"_property_list",type:"list",items:a,ordered:!1}),t.show("content",[i+"_property_list"],-1),t.create({id:i+"_example",type:"text",content:"Here's an example:"}),t.create({id:i+"_example_codeblock",type:"codeblock",content:JSON.stringify(r.example,null,"  ")}),t.show("content",[i+"_example",i+"_example_codeblock"],-1)}),t},o.Prototype.prototype=i.prototype,o.prototype=new o.Prototype,o.prototype.constructor=o,Object.defineProperties(o.prototype,{id:{get:function(){return this.get("document").guid},set:function(t){this.get("document").guid=t}},creator:{get:function(){return this.get("document").creator},set:function(t){this.get("document").creator=t}},created_at:{get:function(){return this.get("document").created_at},set:function(t){this.get("document").created_at=t}},title:{get:function(){return this.get("document").title},set:function(t){this.get("document").title=t}},"abstract":{get:function(){return this.get("document").abstract},set:function(t){this.get("document").abstract=t}},authors:{get:function(){var t=this.get("document");return t.authors?n.map(t.authors,function(t){return this.get(t)},this):""},set:function(t){var e=this.get("document");e.authors=n.clone(t)}},views:{get:function(){return this.get("document").views.slice(0)}}}),e.exports=o},{"./nodes":26,"substance-document":81,"substance-util":154,underscore:159}],3:[function(t,e){"use strict";var n=t("./article");e.exports=n},{"./article":2}],4:[function(t,e){"use strict";var n=t("substance-document").Node,r=t("underscore"),i=function(t,e){n.call(this,t,e)};i.type={id:"affiliation",parent:"content",properties:{source_id:"string",city:"string",country:"string",department:"string",institution:"string",label:"string"}},i.description={name:"Affiliation",description:"Person affiliation",remarks:["Name of a institution or organization, such as a university or corporation, that is the affiliation for a contributor such as an author or an editor."],properties:{coming:"soon"}},i.example={id:"affiliation_1",source_id:"aff1",city:"Jena",country:"Germany",department:"Department of Molecular Ecology",institution:"Max Planck Institute for Chemical Ecology",label:"1",type:"affiliation"},i.Prototype=function(){},i.Prototype.prototype=n.prototype,i.prototype=new i.Prototype,i.prototype.constructor=i;var o={};r.each(i.type.properties,function(t,e){o[e]={get:function(){return this.properties[e]}}}),Object.defineProperties(i.prototype,o),e.exports=i},{"substance-document":81,underscore:159}],5:[function(t,e){"use strict";e.exports={Model:t("./affiliation")}},{"./affiliation":4}],6:[function(t,e){var n=t("underscore"),r=t("substance-document").Node,i=function(t,e){r.call(this,t,e)};i.type={id:"box",parent:"content",properties:{source_id:"string",label:"string",children:["array","paragraph"]}},i.description={name:"Box",remarks:["A box type."],properties:{label:"string",children:"0..n Paragraph nodes"}},i.example={id:"box_1",type:"box",label:"Box 1",children:["paragraph_1","paragraph_2"]},i.Prototype=function(){},i.Prototype.prototype=r.prototype,i.prototype=new i.Prototype,i.prototype.constructor=i;var o={},o={header:{get:function(){return this.properties.label}}};n.each(i.type.properties,function(t,e){o[e]={get:function(){return this.properties[e]}}}),Object.defineProperties(i.prototype,o),e.exports=i},{"substance-document":81,underscore:159}],7:[function(t,e){"use strict";var n=t("underscore"),r=t("substance-util");r.html;var i=t("../node").View;t("substance-application").$$;var o=function(t,e){i.call(this,t,e),this.$el.attr({id:t.id}),this.$el.addClass("content-node box")};o.Prototype=function(){this.render=function(){i.prototype.render.call(this);var t=this.node.children;return n.each(t,function(t){var e=this.node.document.get(t),n=this.viewFactory.createView(e),r=n.render().el;this.content.appendChild(r)},this),this.el.appendChild(this.content),this}},o.Prototype.prototype=i.prototype,o.prototype=new o.Prototype,e.exports=o},{"../node":28,"substance-application":56,"substance-util":154,underscore:159}],8:[function(t,e){"use strict";e.exports={Model:t("./box"),View:t("./box_view")}},{"./box":6,"./box_view":7}],9:[function(t,e){"use strict";var n=t("substance-document"),r=function(t,e){n.Composite.call(this,t,e)};r.type={id:"caption",parent:"content",properties:{source_id:"string",title:"paragraph",children:["array","paragraph"]}},r.description={name:"Caption",remarks:["Container element for the textual description that is associated with a Figure, Table, Video node etc.","This is the title for the figure or the description of the figure that prints or displays with the figure."],properties:{title:"Caption title (optional)",children:"0..n Paragraph nodes"}},r.example={id:"caption_1",children:["paragraph_1","paragraph_2"]},r.Prototype=function(){this.hasTitle=function(){return!!this.properties.title},this.getNodes=function(){var t=[];return this.properties.children&&(t=t.concat(this.properties.children)),t},this.getTitle=function(){return this.properties.title?this.document.get(this.properties.title):void 0}},r.Prototype.prototype=n.Composite.prototype,r.prototype=new r.Prototype,r.prototype.constructor=r,n.Node.defineProperties(r.prototype,["title","children"]),e.exports=r},{"substance-document":81}],10:[function(t,e){"use strict";var n=t("../composite").View;t("substance-document").List;var r=t("substance-application").$$,i=function(t,e){n.call(this,t,e)};i.Prototype=function(){this.render=function(){this.content=r("div.content");var t;for(t=0;t<this.childrenViews.length;t++)this.childrenViews[t].dispose();var e=this.node.getTitle();if(e){var n=this.viewFactory.createView(e),i=n.render().el;i.classList.add("caption-title"),this.content.appendChild(i)}var o=this.node.getNodes();for(t=0;t<o.length;t++){var s=this.node.document.get(o[t]),a=this.viewFactory.createView(s),c=a.render().el;this.content.appendChild(c),this.childrenViews.push(a)}return this.el.appendChild(this.content),this},this.onNodeUpdate=function(t){t.path[0]===this.node.id&&"items"===t.path[1]&&this.render()}},i.Prototype.prototype=n.prototype,i.prototype=new i.Prototype,e.exports=i},{"../composite":16,"substance-application":56,"substance-document":81}],11:[function(t,e){"use strict";e.exports={Model:t("./caption"),View:t("./caption_view")}},{"./caption":9,"./caption_view":10}],12:[function(t,e){var n=t("underscore"),r=t("substance-document").Node,i=function(t){r.call(this,t)};i.type={id:"article_citation",parent:"content",properties:{source_id:"string",title:"string",label:"string",authors:["array","string"],doi:"string",source:"string",volume:"string",publisher_name:"string",publisher_location:"string",fpage:"string",lpage:"string",year:"string",citation_urls:["array","string"]}},i.description={name:"Citation",remarks:["A journal citation.","This element can be used to describe all kinds of citations."],properties:{title:"The article's title",label:"Optional label (could be a number for instance)",doi:"DOI reference",source:"Usually the journal name",volume:"Issue number",publisher_name:"Publisher Name",publisher_location:"Publisher Location",fpage:"First page",lpage:"Last page",year:"The year of publication",citation_urls:"A list of links for accessing the article on the web"}},i.example={id:"article_nature08160",type:"article_citation",label:"5",title:"The genome of the blood fluke Schistosoma mansoni",authors:["M Berriman","BJ Haas","PT LoVerde"],doi:"http://dx.doi.org/10.1038/nature08160",source:"Nature",volume:"460",fpage:"352",lpage:"8",year:"1984",citation_urls:["http://www.ncbi.nlm.nih.gov/pubmed/19606141"]},i.Prototype=function(){this.urls=function(){return this.properties.citation_urls.length>0?this.properties.citation_urls:[this.properties.doi]}},i.Prototype.prototype=r.prototype,i.prototype=new i.Prototype,i.prototype.constructor=i;var o={header:{get:function(){return this.properties.title}}};n.each(i.type.properties,function(t,e){o[e]={get:function(){return this.properties[e]}}}),Object.defineProperties(i.prototype,o),e.exports=i},{"substance-document":81,underscore:159}],13:[function(t,e){"use strict";t("underscore");var n=t("substance-util");n.html;var r=t("../node").View,i=t("substance-application").$$,o=function(t){var e=document.createDocumentFragment(),n=t.node;e.appendChild(i(".authors",{html:n.authors.join(", ")}));var r=[];return n.source&&n.volume&&r.push([n.source,n.volume].join(", ")+": "),n.fpage&&n.lpage&&r.push([n.fpage,n.lpage].join("-")+", "),n.publisher_name&&n.publisher_location&&r.push([n.publisher_name,n.publisher_location].join(", ")+", "),n.year&&r.push(n.year),e.appendChild(i(".source",{html:r.join("")})),n.doi&&e.appendChild(i(".doi",{children:[i("b",{text:"DOI: "}),i("a",{href:n.doi,target:"_new",text:n.doi})]})),e},s=function(t){r.call(this,t),this.$el.attr({id:t.id}),this.$el.addClass("citation")};s.Prototype=function(){this.render=function(){return r.prototype.render.call(this),this.content.appendChild(new o(this)),this}},s.Prototype.prototype=r.prototype,s.prototype=new s.Prototype,s.prototype.constructor=s,e.exports=s},{"../node":28,"substance-application":56,"substance-util":154,underscore:159}],14:[function(t,e){"use strict";e.exports={Model:t("./citation"),View:t("./citation_view")}},{"./citation":12,"./citation_view":13}],15:[function(t,e){"use strict";var n=t("substance-nodes");e.exports=n.codeblock},{"substance-nodes":92}],16:[function(t,e){"use strict";var n=t("substance-nodes");e.exports=n.composite},{"substance-nodes":92}],17:[function(t,e){var n=t("underscore"),r=t("substance-document").Node,i=function(t,e){r.call(this,t,e)};i.type={id:"cover",parent:"content",properties:{source_id:"string",authors:["array","paragraph"],breadcrumbs:"object"}},i.description={name:"Cover",remarks:["Virtual view on the title and authors of the paper."],properties:{authors:"A paragraph that has the authors names plus references to the person cards"}},i.example={id:"cover",type:"cover"},i.Prototype=function(){this.getAuthors=function(){return n.map(this.properties.authors,function(t){return this.document.get(t)},this)}},i.Prototype.prototype=r.prototype,i.prototype=new i.Prototype,i.prototype.constructor=i,Object.defineProperties(i.prototype,{title:{get:function(){return this.document.title}},authors:{get:function(){return this.document.authors}},breadcrumbs:{get:function(){return this.properties.breadcrumbs}}}),e.exports=i},{"substance-document":81,underscore:159}],18:[function(t,e){"use strict";var n=t("underscore"),r=t("substance-util");r.html;var i=t("../node").View,o=t("substance-application").$$,s=function(t,e){i.call(this,t,e),this.$el.attr({id:t.id}),this.$el.addClass("content-node cover")};s.Prototype=function(){this.render=function(){i.prototype.render.call(this);var t=this.node;if(t.breadcrumbs&&t.breadcrumbs.length>0)var e=o(".breadcrumbs",{children:n.map(t.breadcrumbs,function(t){return o("a",{href:t.url,text:t.name})})});this.content.appendChild(e),this.content.appendChild(o(".title",{text:t.title}));var r=o(".authors",{children:n.map(t.getAuthors(),function(t){var e=this.viewFactory.createView(t),n=e.render().el;return this.content.appendChild(n),n},this)});return this.content.appendChild(r),this}},s.Prototype.prototype=i.prototype,s.prototype=new s.Prototype,e.exports=s},{"../node":28,"substance-application":56,"substance-util":154,underscore:159}],19:[function(t,e){"use strict";e.exports={Model:t("./cover"),View:t("./cover_view")}},{"./cover":17,"./cover_view":18}],20:[function(t,e){"use strict";var n=t("substance-document"),r=function(t,e){n.Composite.call(this,t,e)};r.type={parent:"content",properties:{source_id:"string",label:"string",url:"string",caption:"caption",attrib:"string"}},r.config={zoomable:!0},r.description={name:"Figure",remarks:["A figure is a figure is figure."],properties:{label:"Label used as header for the figure cards",url:"Image url",caption:"A reference to a caption node that describes the figure",attrib:"Figure attribution"}},r.example={id:"figure_1",label:"Figure 1",url:"http://example.com/fig1.png",caption:"caption_1"},r.Prototype=function(){this.hasCaption=function(){return!!this.properties.caption},this.getNodes=function(){var t=[];return this.properties.caption&&t.push(this.properties.caption),t},this.getCaption=function(){return this.properties.caption?this.document.get(this.properties.caption):void 0}},r.Prototype.prototype=n.Composite.prototype,r.prototype=new r.Prototype,r.prototype.constructor=r,n.Node.defineProperties(r.prototype,["source_id","label","url","caption","attrib"]),Object.defineProperties(r.prototype,{header:{get:function(){return this.properties.label}}}),e.exports=r},{"substance-document":81}],21:[function(t,e){"use strict";var n=t("../composite").View,r=t("substance-application").$$,i=function(t,e){n.call(this,t,e)};i.Prototype=function(){this.render=function(){this.el.innerHTML="",this.content=r("div.content");var t=r(".image-wrapper",{children:[r("a",{href:this.node.url,target:"_blank",children:[r("img",{src:this.node.url})]})]});this.content.appendChild(t);var e=this.node.getCaption();if(e){var n=this.viewFactory.createView(e),i=n.render().el;this.content.appendChild(i),this.childrenViews.push(n)}return this.node.attrib&&(console.log("ATTRIB!!"),this.content.appendChild(r(".figure-attribution",{text:this.node.attrib}))),this.el.appendChild(this.content),this}},i.Prototype.prototype=n.prototype,i.prototype=new i.Prototype,e.exports=i},{"../composite":16,"substance-application":56}],22:[function(t,e){"use strict";e.exports={Model:t("./figure"),View:t("./figure_view")}},{"./figure":20,"./figure_view":21}],23:[function(t,e){"use strict";var n=t("substance-nodes");e.exports=n.formula},{"substance-nodes":92}],24:[function(t,e){"use strict";var n=t("substance-nodes");e.exports=n.heading},{"substance-nodes":92}],25:[function(t,e){"use strict";var n=t("substance-nodes");e.exports=n.image},{"substance-nodes":92}],26:[function(t,e){"use strict";e.exports={publication_info:t("./publication_info"),box:t("./box"),cover:t("./cover"),text:t("./text"),paragraph:t("./paragraph"),heading:t("./heading"),figure:t("./figure"),caption:t("./caption"),image:t("./image"),webresource:t("./web_resource"),table:t("./table"),supplement:t("./supplement"),video:t("./video"),person:t("./person"),citation:t("./citation"),formula:t("./formula"),list:t("./list"),codeblock:t("./codeblock"),affiliation:t("./_affiliation")}},{"./_affiliation":5,"./box":8,"./caption":11,"./citation":14,"./codeblock":15,"./cover":19,"./figure":22,"./formula":23,"./heading":24,"./image":25,"./list":27,"./paragraph":29,"./person":30,"./publication_info":33,"./supplement":36,"./table":39,"./text":42,"./video":43,"./web_resource":46}],27:[function(t,e){"use strict";var n=t("substance-nodes");e.exports=n.list},{"substance-nodes":92}],28:[function(t,e){"use strict";var n=t("substance-nodes");e.exports=n.node},{"substance-nodes":92}],29:[function(t,e){"use strict";var n=t("substance-nodes");e.exports=n.paragraph},{"substance-nodes":92}],30:[function(t,e){"use strict";e.exports={Model:t("./person"),View:t("./person_view")}},{"./person":31,"./person_view":32}],31:[function(t,e){var n=t("underscore"),r=t("substance-document").Node,i=function(t,e){r.call(this,t,e)};i.type={id:"person",parent:"content",properties:{source_id:"string",name:"string",role:"string",affiliations:["array","affiliation"],fundings:["array","string"],image:"string",emails:["array","string"],contribution:"string",equal_contrib:["array","string"]}},i.description={name:"Person",remarks:["A person entity."],properties:{name:"Full name."}},i.example={id:"person_1",type:"person",name:"John Doe",affiliations:["affiliation_1","affiliation_2"],role:"Author",fundings:["Funding Organisation 1"],emails:["a@b.com"],contribution:"Revising the article, data cleanup",equal_contrib:["John Doe","Jane Doe"]},i.Prototype=function(){this.getAffiliations=function(){return n.map(this.properties.affiliations,function(t){return this.document.get(t)},this)}},i.Prototype.prototype=r.prototype,i.prototype=new i.Prototype,i.prototype.constructor=i;var o={},o={header:{get:function(){return this.properties.name}}};n.each(i.type.properties,function(t,e){o[e]={get:function(){return this.properties[e]}}}),Object.defineProperties(i.prototype,o),e.exports=i},{"substance-document":81,underscore:159}],32:[function(t,e){"use strict";var n=t("underscore"),r=t("substance-util");r.html;var i=t("../node").View,o=t("substance-application").$$,s=function(t){i.call(this,t),this.$el.attr({id:t.id}),this.$el.addClass("content-node person")};s.Prototype=function(){this.render=function(){return i.prototype.render.call(this),this.content.appendChild(o(".affiliations",{children:n.map(this.node.getAffiliations(),function(t){var e=n.compact([t.department,t.institution,t.city,t.country]).join(", ");return o(".affiliation",{text:e})})})),this.content.appendChild(o(".label",{text:"Contribution"})),this.content.appendChild(o(".contribution",{text:this.node.contribution})),this.node.equal_contrib&&this.node.equal_contrib.length>0&&(this.content.appendChild(o(".label",{text:"Contributed equally with"})),this.content.appendChild(o(".equal-contribution",{text:this.node.equal_contrib}))),this.node.fundings.length>0&&(this.content.appendChild(o(".label",{text:"Funding"})),this.content.appendChild(o(".fundings",{children:n.map(this.node.fundings,function(t){return o(".funding",{text:t})})}))),this.node.emails.length>0&&(this.content.appendChild(o(".label",{text:"For correspondence"})),this.content.appendChild(o(".label",{children:n.map(this.node.emails,function(t){return o("a",{href:"mailto:"+t,text:t})})}))),this}},s.Prototype.prototype=i.prototype,s.prototype=new s.Prototype,e.exports=s},{"../node":28,"substance-application":56,"substance-util":154,underscore:159}],33:[function(t,e){"use strict";e.exports={Model:t("./publication_info"),View:t("./publication_info_view")}},{"./publication_info":34,"./publication_info_view":35}],34:[function(t,e){"use strict";var n=t("substance-document").Node,r=t("underscore"),i=function(t,e){n.call(this,t,e)};i.type={id:"publication_info",parent:"content",properties:{received_on:"string",accepted_on:"string",published_on:"string",journal:"string",article_type:"string",keywords:["array","string"],research_organisms:["array","string"],subjects:["array","string"],pdf_link:"string",xml_link:"string",json_link:"string",doi:"string"}},i.description={name:"PublicationInfo",description:"PublicationInfo Node",remarks:["Summarizes the article's meta information. Meant to be customized by publishers"],properties:{received_on:"Submission received",accepted_on:"Paper accepted on",published_on:"Paper published on",journal:"The Journal",article_type:"Research Article vs. Insight, vs. Correction etc.",keywords:"Article's keywords",research_organisms:"Research Organisms",subjects:"Article Subjects",pdf_link:"A link referencing the PDF version for print",xml_link:"A link referencing the original NLM XML file",json_link:"A link pointing to the JSON version of the article",doi:"Article DOI"}},i.example={id:"publication_info",received_on:"2012-06-20",accepted_on:"2012-09-05",published_on:"2012-11-13",journal:"eLife",article_type:"Research Article",keywords:["innate immunity","histones","lipid droplet","anti-bacterial"],research_organisms:["B. subtilis","D. melanogaster","E. coli","Mouse"],subjects:["Immunology","Microbiology and infectious disease"],pdf_link:"http://elife.elifesciences.org/content/1/e00003.full-text.pdf",xml_link:"https://s3.amazonaws.com/elife-cdn/elife-articles/00003/elife00003.xml",json_link:"http://cdn.elifesciences.org/documents/elife/00003.json",doi:"http://dx.doi.org/10.7554/eLife.00003"},i.Prototype=function(){},i.Prototype.prototype=n.prototype,i.prototype=new i.Prototype,i.prototype.constructor=i;var o={};r.each(i.type.properties,function(t,e){o[e]={get:function(){return this.properties[e]}}}),Object.defineProperties(i.prototype,o),e.exports=i},{"substance-document":81,underscore:159}],35:[function(t,e){"use strict";var n=t("../node").View,r=t("substance-application").$$,i=function(t,e){n.call(this,t,e),this.$el.addClass("publication-info"),this.$el.attr("id",this.node.id)};i.Prototype=function(){this.render=function(){n.prototype.render.call(this);var t=[r("tr",{children:[r("td",{children:[r("div.label",{text:"Subject"}),r("div.value",{text:this.node.subjects.join(", ")})]}),r("td",{children:[r("div.label",{text:"Organism"}),r("div.value",{text:this.node.research_organisms.join(", ")})]})]}),r("tr",{children:[r("td",{colspan:2,children:[r("div.label",{text:"Keywords"}),r("div.value",{text:this.node.keywords.join(", ")})]})]})],e=r("table.categorization",{children:[r("tbody",{children:t})]});this.content.appendChild(e),this.content.appendChild(r(".label.links",{text:"Links"}));var i=JSON.stringify(this.node.document.toJSON(),null,"  "),o=new Blob([i],{type:"application/json"}),s=r(".links",{children:[r("a.link pdf-link",{href:this.node.pdf_link,html:'<i class="icon-download-alt"></i> PDF'}),r("a.link.json-link",{href:window.URL?window.URL.createObjectURL(o):"#",html:'<i class="icon-download-alt"></i> JSON'}),r("a.link.xml-link",{href:this.node.xml_link,html:'<i class="icon-download-alt"></i> XML'}),r("a.link.doi-link",{href:this.node.doi,html:'<i class="icon-external-link-sign"></i> DOI'})]});this.content.appendChild(s);var a=[r("tr",{children:[r("td",{children:[r("div.label",{text:"Received"}),r("div.value",{text:this.node.received_on||"-"})]}),r("td",{children:[r("div.label",{text:"Accepted"}),r("div.value",{text:this.node.accepted_on||"-"})]}),r("td",{children:[r("div.label",{text:"Published"}),r("div.value",{text:this.node.published_on||"-"})]})]})],c=r("table.dates",{children:[r("tbody",{children:a})]});return this.content.appendChild(c),this},this.dispose=function(){n.prototype.dispose.call(this)}},i.Prototype.prototype=n.prototype,i.prototype=new i.Prototype,e.exports=i},{"../node":28,"substance-application":56}],36:[function(t,e){"use strict";e.exports={Model:t("./supplement"),View:t("./supplement_view")}},{"./supplement":37,"./supplement_view":38}],37:[function(t,e){var n=t("underscore"),r=t("substance-document"),i=function(t,e){r.Composite.call(this,t,e)};i.type={id:"supplement",parent:"content",properties:{source_id:"string",label:"string",url:"string",caption:"caption"}},i.description={name:"Supplement",remarks:["A Supplement entity."],properties:{source_id:"Supplement id as it occurs in the source NLM file",label:"Supplement label",caption:"References a caption node, that has all the content",url:"URL of downloadable file"}},i.example={id:"supplement_1",source_id:"SD1-data",type:"supplement",label:"Supplementary file 1.",url:"http://myserver.com/myfile.pdf",caption:"caption_supplement_1"},i.Prototype=function(){this.getNodes=function(){var t=[];return this.properties.caption&&t.push(this.properties.caption),t},this.getCaption=function(){return this.properties.caption?this.document.get(this.properties.caption):null}},i.Prototype.prototype=r.Composite.prototype,i.prototype=new i.Prototype,i.prototype.constructor=i;var o={};n.each(i.type.properties,function(t,e){o[e]={get:function(){return this.properties[e]}}}),o.header={get:function(){return this.properties.label}},Object.defineProperties(i.prototype,o),e.exports=i},{"substance-document":81,underscore:159}],38:[function(t,e){"use strict";t("underscore");var n=t("substance-util");n.html;var r=t("../composite").View,i=t("substance-application").$$,o=function(t,e){r.call(this,t,e),this.$el.attr({id:t.id}),this.$el.addClass("content-node supplement")};o.Prototype=function(){this.render=function(){var t=this.node;this.content=i("div.content");var e=t.getCaption();if(e){var n=this.viewFactory.createView(e),r=n.render().el;this.content.appendChild(r),this.childrenViews.push(n)}var o=i("div.file",{children:[i("a",{href:t.url,html:'<i class="icon-download-alt"/> Download'})]});return this.content.appendChild(o),this.el.appendChild(this.content),this}},o.Prototype.prototype=r.prototype,o.prototype=new o.Prototype,o.prototype.constructor=o,e.exports=o},{"../composite":16,"substance-application":56,"substance-util":154,underscore:159}],39:[function(t,e){"use strict";e.exports={Model:t("./table"),View:t("./table_view")}},{"./table":40,"./table_view":41}],40:[function(t,e){var n=t("underscore"),r=t("substance-document").Node,i=function(t,e){r.call(this,t,e)};i.type={id:"table",parent:"content",properties:{source_id:"string",label:"string",content:"string",footers:["array","string"],caption:"caption"}},i.config={zoomable:!0},i.description={name:"Table",remarks:["A table figure which is expressed in HTML notation"],properties:{source_id:"string",label:"Label shown in the resource header.",title:"Full table title",content:"HTML data",footers:"Table footers expressed as an array strings",caption:"References a caption node, that has all the content"}},i.example={id:"table_1",type:"table",label:"Table 1.",title:"Lorem ipsum table",content:"<table>...</table>",footers:[],caption:"caption_1"},i.Prototype=function(){this.getCaption=function(){return this.properties.caption?this.document.get(this.properties.caption):void 0}},i.Prototype.prototype=r.prototype,i.prototype=new i.Prototype,i.prototype.constructor=i;var o={header:{get:function(){return this.properties.label}}};n.each(i.type.properties,function(t,e){o[e]={get:function(){return this.properties[e]}}}),Object.defineProperties(i.prototype,o),e.exports=i},{"substance-document":81,underscore:159}],41:[function(t,e){"use strict";var n=t("underscore"),r=t("substance-util");r.html;var i=t("../node").View,o=t("substance-application").$$,s=function(t,e){i.call(this,t),this.viewFactory=e,this.$el.attr({id:t.id}),this.$el.addClass("content-node table")};s.Prototype=function(){this.render=function(){var t=this.node;i.prototype.render.call(this);var e=o(".table-wrapper",{html:t.content});this.content.appendChild(e);var r=o(".footers",{children:n.map(t.footers,function(t){return o(".footer",{html:"<b>"+t.label+"</b> "+t.content})})}),s=this.node.getCaption();if(s){var a=this.viewFactory.createView(s),c=a.render().el;this.content.appendChild(c)}return this.content.appendChild(r),this}},s.Prototype.prototype=i.prototype,s.prototype=new s.Prototype,e.exports=s},{"../node":28,"substance-application":56,"substance-util":154,underscore:159}],42:[function(t,e){"use strict";var n=t("substance-nodes");e.exports=n.text},{"substance-nodes":92}],43:[function(t,e){"use strict";e.exports={Model:t("./video"),View:t("./video_view")}},{"./video":44,"./video_view":45}],44:[function(t,e){var n=t("underscore"),r=t("substance-document").Node,i=function(t,e){r.call(this,t,e)};i.type={id:"video",parent:"content",properties:{source_id:"string",label:"string",url:"string",url_webm:"string",url_ogv:"string",caption:"caption",poster:"string"}},i.config={zoomable:!0},i.description={name:"Video",remarks:["A video type intended to refer to video resources.","MP4, WebM and OGV formats are supported."],properties:{label:"Label shown in the resource header.",url:"URL to mp4 version of the video.",url_webm:"URL to WebM version of the video.",url_ogv:"URL to OGV version of the video.",poster:"Video poster image.",caption:"References a caption node, that has all the content"}},i.example={id:"video_1",type:"video",label:"Video 1.",url:"http://cdn.elifesciences.org/video/eLifeLensIntro2.mp4",url_webm:"http://cdn.elifesciences.org/video/eLifeLensIntro2.webm",url_ogv:"http://cdn.elifesciences.org/video/eLifeLensIntro2.ogv",poster:"http://cdn.elifesciences.org/video/eLifeLensIntro2.png",caption:"caption_25"},i.Prototype=function(){},i.Prototype.prototype=r.prototype,i.prototype=new i.Prototype,i.prototype.constructor=i;
-var o={};n.each(i.type.properties,function(t,e){o[e]={get:function(){return this.properties[e]}}}),Object.defineProperties(i.prototype,n.extend(o,{header:{get:function(){return this.properties.label}},caption:{get:function(){return this.properties.caption?this.document.get(this.properties.caption):""}}})),e.exports=i},{"substance-document":81,underscore:159}],45:[function(t,e){"use strict";t("underscore");var n=t("substance-util");n.html;var r=t("../node").View,i=t("substance-application").$$,o=function(t,e){r.call(this,t,e),this.$el.attr({id:t.id}),this.$el.addClass("content-node video")};o.Prototype=function(){this.render=function(){r.prototype.render.call(this);var t=this.node,e=[i("source",{src:t.url,type:"video/mp4; codecs=&quot;avc1.42E01E, mp4a.40.2&quot;"})];t.url_ogv&&e.push(i("source",{src:t.url_ogv,type:"video/ogg; codecs=&quot;theora, vorbis&quot;"})),t.url_webm&&e.push(i("source",{src:t.url_webm,type:"video/webm; codecs=&quot;vp8, vorbis%quot;"}));var n=i(".video-wrapper",{children:[i("video",{controls:"controls",poster:t.poster,preload:"none",children:e})]});if(this.content.appendChild(n),t.title&&this.content.appendChild(i(".title",{text:t.title})),this.node.caption){var o=this.viewFactory.createView(this.node.caption);this.content.appendChild(o.render().el),this.captionView=o}return t.doi&&this.content.appendChild(i(".doi",{children:[i("b",{text:"DOI: "}),i("a",{href:t.doi,target:"_new",text:t.doi})]})),this}},o.Prototype.prototype=r.prototype,o.prototype=new o.Prototype,e.exports=o},{"../node":28,"substance-application":56,"substance-util":154,underscore:159}],46:[function(t,e){"use strict";var n=t("substance-nodes");e.exports=n.webresource},{"substance-nodes":92}],47:[function(t,e){"use strict";var n=t("./src/lens_converter");e.exports=n},{"./src/lens_converter":53}],48:[function(t,e){t("underscore");var n=function(){};n.Prototype=function(){this.enhanceSupplement=function(){},this.enhanceTable=function(){},this.enhanceCover=function(){},this.enhanceVideo=function(t,e,n){n.querySelector("media")||n;var r=n.getAttribute("xlink:href");if(r.match(/http:/)){var i=r.lastIndexOf("."),o=r.substring(0,i);return e.url=o+".mp4",e.url_ogv=o+".ogv",e.url_webm=o+".webm",e.poster=o+".png",void 0}var o=r.split(".")[0];e.url=t.options.baseURL+o+".mp4",e.url_ogv=t.options.baseURL+o+".ogv",e.url_webm=t.options.baseURL+o+".webm",e.poster=t.options.baseURL+o+".png"},this.enhanceFigure=function(t,e,n){var r=n.querySelector("graphic"),i=r.getAttribute("xlink:href");e.url=this.resolveURL(t,i)},this.enhanceArticle=function(){},this.extractPublicationInfo=function(){},this.resolveURL=function(t){return t},this.resolveURL=function(t,e){return e.match(/http:/)?e:[t.options.baseURL,e].join("")}},n.prototype=new n.Prototype,e.exports=n},{underscore:159}],49:[function(t,e){"use strict";var n=t("substance-util"),r=t("underscore"),i=t("./default"),o=function(){};o.Prototype=function(){this.enhanceCover=function(t,e,n){var r=n.querySelector("subj-group[subj-group-type=display-channel] subject").textContent,i=n.querySelector("subj-group[subj-group-type=heading] subject").textContent;e.breadcrumbs=[{name:"eLife",url:"http://elife.elifesciences.org/"},{name:r,url:"http://elife.elifesciences.org/category/"+r.replace(/ /g,"-").toLowerCase()},{name:i,url:"http://elife.elifesciences.org/category/"+i.replace(/ /g,"-").toLowerCase()}]},this.enhanceFigure=function(t,e,n){var r=n.querySelector("graphic"),i=r.getAttribute("xlink:href");e.url=this.resolveURL(t,i)},this.enhanceVideo=function(t,e,n){n.querySelector("media")||n;var r=n.getAttribute("xlink:href").split("."),i=r[0];e.url="http://static.movie-usa.glencoesoftware.com/mp4/10.7554/"+i+".mp4",e.url_ogv="http://static.movie-usa.glencoesoftware.com/ogv/10.7554/"+i+".ogv",e.url_webm="http://static.movie-usa.glencoesoftware.com/webm/10.7554/"+i+".webm",e.poster="http://static.movie-usa.glencoesoftware.com/jpg/10.7554/"+i+".jpg"},this.resolveURL=function(t,e){return e.match(/http:\/\//)?e:["http://cdn.elifesciences.org/elife-articles/",t.doc.id,"/svg/",e,".svg"].join("")},this.enhanceSupplement=function(t,e){e.url=["http://cdn.elifesciences.org/elife-articles/",t.doc.id,"/suppl/",e.url].join("")},this.extractPublicationInfo=function(t,e,n){function i(t){if(!t)return null;var e=t.querySelector("day").textContent,n=t.querySelector("month").textContent,r=t.querySelector("year").textContent;return[r,n,e].join("-")}var o=e.doc,s=n.querySelector("article-meta"),a=s.querySelector("pub-date"),c=s.querySelector("date[date-type=received]"),h=s.querySelector("date[date-type=accepted]"),u=s.querySelectorAll("kwd-group[kwd-group-type=author-keywords] kwd"),p=s.querySelectorAll("kwd-group[kwd-group-type=research-organism] kwd"),l=s.querySelectorAll("subj-group[subj-group-type=heading] subject"),d=s.querySelector("subj-group[subj-group-type=display-channel] subject"),f=n.querySelector("journal-title"),g=n.querySelector("article-id[pub-id-type=doi]"),y=n.querySelector("self-uri[content-type=pdf]"),v=["http://cdn.elifesciences.org/elife-articles/",e.doc.id,"/pdf/",y?y.getAttribute("xlink:href"):"#"].join(""),m={id:"publication_info",type:"publication_info",published_on:i(a),received_on:i(c),accepted_on:i(h),keywords:r.pluck(u,"textContent"),research_organisms:r.pluck(p,"textContent"),subjects:r.pluck(l,"textContent"),article_type:d?d.textContent:"",journal:f?f.textContent:"",pdf_link:v,xml_link:"https://s3.amazonaws.com/elife-cdn/elife-articles/"+e.doc.id+"/elife"+e.doc.id+".xml",json_link:"http://mickey.com/mouse.json",doi:g?["http://dx.doi.org/",g.textContent].join(""):""};o.create(m),o.show("info",m.id,0)},this.enhanceInfo=function(t,e,r){var i=e.doc,o={id:"articleinfo",type:"paragraph",children:[]},s=o.children,a=r.querySelectorAll("meta-value"),c=a[1],h={type:"heading",id:e.nextId("heading"),level:1,content:"Impact"};if(i.create(h),s.push(h.id),c){var u=t.paragraphGroup(e,c);s.push(u[0].id)}for(var p=r.querySelectorAll("fn"),l=0;l<p.length;l++){var d=p[l],f=d.getAttribute("fn-type");if("conflict"===f){var h={type:"heading",id:e.nextId("heading"),level:1,content:"Competing Interests"};i.create(h),s.push(h.id);var u=t.bodyNodes(e,n.dom.getChildren(d));s.push(u[0].id)}}for(var g=r.querySelectorAll("sec"),l=0;l<g.length;l++){var y=g[l],f=y.getAttribute("sec-type");if("datasets"===f){var h={type:"heading",id:e.nextId("heading"),level:1,content:"Major Datasets"};i.create(h),s.push(h.id);for(var v=t.datasets(e,n.dom.getChildren(y)),m=0;m<v.length;m++)v[m]&&s.push(v[m])}}var b=r.querySelector("ack");if(b){var h={type:"heading",id:e.nextId("heading"),level:1,content:"Acknowledgements"};i.create(h),s.push(h.id);var u=t.bodyNodes(e,n.dom.getChildren(b));s.push(u[0].id)}var w=r.querySelector("permissions");if(w){var h={type:"heading",id:e.nextId("heading"),level:1,content:"Copyright and License"};i.create(h),s.push(h.id);var _=w.querySelector("copyright-statement");if(_){var u=t.paragraphGroup(e,_),x=u[0].children[0];i.nodes[x].content+=". ",s.push(u[0].id)}for(var C=w.querySelector("license"),P=n.dom.getChildren(C),l=0;l<P.length;l++){var S=P[l],f=n.dom.getNodeType(S);if("p"===f||"license-p"===f){var u=t.paragraphGroup(e,S);s.push(u[0].id)}}}i.create(o),i.show("info",o.id)},this.enhanceArticle=function(t,e,r){var i=[],o=r.querySelector("#SA1");if(o){var s={id:e.nextId("heading"),type:"heading",level:1,content:"Article Commentary"};doc.create(s),i.push(s);var s={id:e.nextId("heading"),type:"heading",level:2,content:"Decision letter"};doc.create(s),i.push(s);var a=o.querySelector("body");i=i.concat(t.bodyNodes(e,n.dom.getChildren(a)))}var c=r.querySelector("#SA2");if(c){var s={id:e.nextId("heading"),type:"heading",level:2,content:"Author response"};doc.create(s),i.push(s);var a=c.querySelector("body");i=i.concat(t.bodyNodes(e,n.dom.getChildren(a)))}i.length>0&&t.show(e,i),this.enhanceInfo(t,e,r)}},o.Prototype.prototype=i.prototype,o.prototype=new o.Prototype,o.prototype.constructor=o,e.exports=o},{"./default":48,"substance-util":154,underscore:159}],50:[function(t,e){var n=t("./default"),r=function(){};r.Prototype=function(){var t={CC:"cc",INTV:"intravital",CIB:"cib"};n.prototype,this.enhanceSupplement=function(e,n,r){var i=r.querySelector("graphic, media")||r,o=i.getAttribute("xlink:href"),s=e.xmlDoc.querySelector("journal-id").textContent,o=["https://www.landesbioscience.com/journals/",t[s],"/",o].join("");n.url=o},this.enhanceVideo=function(t,e){e.url="provide_url_here"},this.enhanceFigure=function(e,n,r){var i=r.querySelector("graphic"),o=i.getAttribute("xlink:href"),s=e.xmlDoc.querySelector("journal-id").textContent,o=["https://www.landesbioscience.com/article_figure/journals/",t[s],"/",o].join("");if(n.url=o,!n.label){var a=n.type;n.label=a.charAt(0).toUpperCase()+a.slice(1)}}},r.Prototype.prototype=n.prototype,r.prototype=new r.Prototype,r.prototype.constructor=r,e.exports=r},{"./default":48}],51:[function(t,e){var n=t("./default"),r=function(){};r.Prototype=function(){this.enhanceFigure=function(t,e,n){var r=n.querySelector("graphic"),i=r.getAttribute("xlink:href");e.url=i},this.enhanceVideo=function(t,e){e.url="http://mickey.com/mouse.mp4"}},r.Prototype.prototype=n.prototype,r.prototype=new r.Prototype,r.prototype.constructor=r,e.exports=r},{"./default":48}],52:[function(t,e){var n=t("./default"),r=function(){};r.Prototype=function(){this.enhanceFigure=function(t,e,n){var r=n.querySelector("graphic"),i=r.getAttribute("xlink:href");i=["http://www.plosone.org/article/fetchObject.action?uri=",i,"&representation=PNG_L"].join(""),e.url=i},this.enhanceVideo=function(t,e){e.url="http://mickey.com/mouse.mp4"}},r.Prototype.prototype=n.prototype,r.prototype=new r.Prototype,r.prototype.constructor=r,e.exports=r},{"./default":48}],53:[function(t,e){"use strict";var n=t("underscore"),r=t("substance-util"),i=r.errors,o=i.define("ImporterError"),s=t("./configurations/elife"),a=t("./configurations/landes"),c=t("./configurations/default"),h=t("./configurations/plos"),u=t("./configurations/peerj"),p=function(t){this.options=t};p.Prototype=function(){var e=function(t){var e=[],n=t.querySelector("surname"),r=t.querySelector("given-names");return r&&e.push(r.textContent),n&&e.push(n.textContent),e.join(" ")},i=function(t){var e=document.createElement("DIV");return e.appendChild(t.cloneNode(!0)),e.innerHTML};this.import=function(t,e){var r;if(n.isString(t)){var i=new DOMParser;r=i.parseFromString(t,"text/xml")}else r=t;var o=this.createDocument();window.doc=o;var s=new p.State(r,o,e);return this.document(s,r)},this.createDocument=function(){var e=t("lens-article"),n=new e;return n};var l={box:"content",supplement:"figures",figure:"figures",table:"figures",video:"figures"};this.show=function(t,e){var r=t.doc;n.each(e,function(t){var e=l[t.type]||"content";r.show(e,t.id)})},this.extractCover=function(t,e){var r=t.doc,i=r.get("document"),o={id:"cover",type:"cover",title:i.title,authors:[],"abstract":i.abstract};n.each(i.authors,function(e){var n=r.get(e),i={id:"text_"+e+"_reference",type:"text",content:n.name};r.create(i),o.authors.push(i.id);var s={id:t.nextId("person_reference"),type:"person_reference",path:["text_"+e+"_reference","content"],range:[0,n.name.length],target:e};r.create(s)},this),t.config.enhanceCover(t,o,e),r.create(o),r.show("content",o.id,0)},this.contribGroup=function(t,r){var i,o=r.querySelectorAll("aff");for(i=0;i<o.length;i++)this.affiliation(t,o[i]);var s=r.querySelectorAll("contrib[equal-contrib=yes]");t.equalContribs=n.map(s,function(t){return e(t)});var a=r.querySelectorAll("contrib");for(i=0;i<a.length;i++)this.contributor(t,a[i])},this.affiliation=function(t,e){var n=t.doc,r=e.querySelector("institution"),i=e.querySelector("country"),o=e.querySelector("label"),s=e.querySelector("addr-line named-content[content-type=department]"),a=e.querySelector("addr-line named-content[content-type=city]"),c={id:t.nextId("affiliation"),type:"affiliation",source_id:e.getAttribute("id"),label:o?o.textContent:null,department:s?s.textContent:null,city:a?a.textContent:null,institution:r?r.textContent:null,country:i?i.textContent:null};n.create(c)},this.contributor=function(t,r){var i=t.doc,o=t.nextId("person"),s={id:o,source_id:r.getAttribute("id"),type:"person",name:"",affiliations:[],fundings:[],image:"",emails:[],contribution:""},a=r.querySelector("name");s.name=e(a),n.include(t.equalContribs,s.name)&&(s.equal_contrib=n.without(t.equalContribs,s.name));var c=r.querySelectorAll("xref");n.each(c,function(e){if("aff"===e.getAttribute("ref-type")){var n=e.getAttribute("rid"),r=i.getNodeBySourceId(n);r&&s.affiliations.push(r.id)}else if("other"===e.getAttribute("ref-type")){var o=t.xmlDoc.getElementById(e.getAttribute("rid"));if(!o)return;var a=o.querySelector("funding-source");if(!a)return;s.fundings.push(a.textContent)}else if("corresp"===e.getAttribute("ref-type")){var c=t.xmlDoc.getElementById(e.getAttribute("rid"));if(!c)return;var h=c.querySelector("email");if(!h)return;s.emails.push(h.textContent)}else if("fn"===e.getAttribute("ref-type")){var u=t.xmlDoc.getElementById(e.getAttribute("rid"));u&&"con"===u.getAttribute("fn-type")&&(s.contribution=u.textContent)}}),"author"===r.getAttribute("contrib-type")&&i.nodes.document.authors.push(o),i.create(s),i.show("info",s.id)};var d={bold:"strong",italic:"emphasis",monospace:"code",sub:"subscript",sup:"superscript",underline:"underline","ext-link":"link",xref:""};this.isAnnotation=function(t){return void 0!==d[t]},this.createAnnotation=function(t,e,r,i){var o=e.tagName.toLowerCase(),s={path:n.last(t.stack).path,range:[r,i]};if("xref"===o){var a=e.getAttribute("ref-type"),c=e.getAttribute("rid");s.type="bibr"===a?"citation_reference":"fig"===a||"table"===a||"supplementary-material"===a||"other"===a?"figure_reference":"cross_reference",c&&(s.target=c.split(" ")[0])}else{if(void 0===d[o])return console.log("Ignoring annotation: ",o,e),void 0;s.type=d[o],"ext-link"===o&&(s.url=e.getAttribute("xlink:href"),"doi"===e.getAttribute("ext-link-type")&&(s.url=["http://dx.doi.org/",s.url].join("")))}s.id=t.nextId(s.type),t.annotations.push(s)},this.annotatedText=function(t,e,n,i){var s="";for(void 0===n&&(n=0);e.hasNext();){var a=e.next();if(a.nodeType===Node.TEXT_NODE)s+=a.textContent,n+=a.textContent.length;else{var c=r.dom.getNodeType(a);if(!this.isAnnotation(c)){if(i)throw new o("Node not yet supported in annoted text: "+c);e.back();break}var h=n,u=new r.dom.ChildNodeIterator(a),p=this.annotatedText(t,u,n,"nested");s+=p,n+=p.length,this.createAnnotation(t,a,h,n)}}return s},this.document=function(t,e){var r=e.querySelector("publisher-name").textContent;t.config="Landes Bioscience"===r?new a:"eLife Sciences Publications, Ltd"===r?new s:"Public Library of Science"===r?new h:"PeerJ Inc."===r?new u:new c;var i=t.doc,p=e.querySelector("article");if(!p)throw new o("Expected to find an 'article' element.");this.article(t,p);for(var l=0;l<t.annotations.length;l++){var d=t.annotations[l];if(d.target){var f=t.doc.getNodeBySourceId(d.target);f&&(d.target=f.id)}i.create(t.annotations[l])}return n.each(i.views,function(t){i.get(t).rebuild()}),i},this.extractContributors=function(t,e){var n=e.querySelector("article-meta contrib-group");n&&this.contribGroup(t,n)},this.extractFigures=function(t,e){for(var n,i=e.querySelectorAll("fig, table-wrap, supplementary-material, media[mimetype=video]"),o=[],s=0;s<i.length;s++){var a=i[s],c=r.dom.getNodeType(a);"fig"===c?(n=this.figure(t,a),n&&o.push(n)):"table-wrap"===c?(n=this.tableWrap(t,a),n&&o.push(n)):"media"===c?(n=this.video(t,a),n&&o.push(n)):"supplementary-material"===c&&(n=this.supplement(t,a),n&&o.push(n))}o.length>0&&this.show(t,o)},this.extractCitations=function(t,e){var n=e.querySelector("ref-list");n&&this.refList(t,n)},this.figure=function(t,e){var n=t.doc,r=e.querySelector("label"),i={type:"figure",id:t.nextId("figure"),source_id:e.getAttribute("id"),label:r?r.textContent:"Figure",url:"http://images.wisegeek.com/young-calico-cat.jpg",caption:null},o=e.querySelector("caption");if(o){var s=this.caption(t,o);s&&(i.caption=s.id)}var a=e.querySelector("attrib");return a&&(i.attrib=a.textContent),t.config.enhanceFigure(t,i,e),n.create(i),i},this.supplement=function(t,e){var n=t.doc,r=e.querySelector("label"),i="http://meh.com",o=e.querySelector("media"),i=o?o.getAttribute("xlink:href"):null,s=e.querySelector("object-id[pub-id-type='doi']");s=s?"http://dx.doi.org/"+s.textContent:"";var a={id:t.nextId("supplement"),source_id:e.getAttribute("id"),type:"supplement",label:r?r.textContent:"",url:i,caption:null},c=e.querySelector("caption");if(c){var h=this.caption(t,c);h&&(a.caption=h.id)}return t.config.enhanceSupplement(t,a,e),n.create(a),a},this.caption=function(t,e){var r=t.doc,i=e.querySelector("title"),o=n.select(e.querySelectorAll("p"),function(t){return t.parentNode===e});if(0===o.length)return null;var s={id:t.nextId("caption"),source_id:e.getAttribute("id"),type:"caption",title:"",children:[]};if(i){var a=this.paragraph(t,i);a&&(s.title=a.id)}var c=[];return n.each(o,function(e){var n=this.paragraph(t,e);n&&c.push(n.id)},this),s.children=c,r.create(s),s},this.video=function(t,e){var n=t.doc,r=e.querySelector("label").textContent,i=t.nextId("video"),o={id:i,source_id:e.getAttribute("id"),type:"video",label:r,title:"",caption:null,poster:""},s=e.querySelector("caption");if(s){var a=this.caption(t,s);a&&(o.caption=a.id)}return t.config.enhanceVideo(t,o,e),n.create(o),o},this.tableWrap=function(t,e){var n=t.doc,r=e.querySelector("label"),o={id:t.nextId("table"),source_id:e.getAttribute("id"),type:"table",title:"",label:r?r.textContent:"Table",content:"",caption:null,footers:[]},s=e.querySelector("table");o.content=i(s);var a=e.querySelector("caption");if(a){var c=this.caption(t,a);c&&(o.caption=c.id)}return t.config.enhanceTable(t,o,e),n.create(o),o},this.article=function(t,e){var n=t.doc,i=e.querySelector("article-id");n.id=i?i.textContent:r.uuid(),this.extractContributors(t,e),this.extractCitations(t,e),this.extractFigures(t,e),this.extractCover(t,e),this.extractArticleMeta(t,e);var o=e.querySelector("body");o&&this.body(t,o),t.config.enhanceArticle(this,t,e)},this.extractArticleMeta=function(t,e){var r=e.querySelector("article-meta");if(!r)throw new o("Expected element: 'article-meta'");var i=r.querySelectorAll("article-id");this.articleIds(t,i);var s=r.querySelector("title-group");s&&this.titleGroup(t,s);var a=r.querySelectorAll("pub-date");this.pubDates(t,a);var c=r.querySelectorAll("abstract");n.each(c,function(e){this.abstract(t,e)},this),t.config.extractPublicationInfo(this,t,e)},this.articleIds=function(t,e){var n=t.doc;n.id=e.length>0?e[0].textContent:r.uuid()},this.titleGroup=function(t,e){var n=t.doc,r=e.querySelector("article-title");r&&(n.title=r.textContent)},this.pubDates=function(t,e){var n=t.doc;if(e.length>0){var r=this.pubDate(t,e[0]);n.created_at=r.date}},this.pubDate=function(t,e){var i=-1,o=-1,s=-1;n.each(r.dom.getChildren(e),function(t){var e=r.dom.getNodeType(t),n=t.textContent;"day"===e?i=parseInt(n,10):"month"===e?o=parseInt(n,10):"year"===e&&(s=parseInt(n,10))},this);var a=new Date(s,o,i);return{date:a}},this.abstract=function(t,e){var n=t.doc,i=[],o=e.querySelector("title"),s={id:t.nextId("heading"),type:"heading",level:1,content:o?o.textContent:"Abstract"};n.create(s),i.push(s),i=i.concat(this.bodyNodes(t,r.dom.getChildren(e))),i.length>0&&this.show(t,i)},this.body=function(t,e){var n={id:t.nextId("heading"),type:"heading",level:1,content:"Main Text"};doc.create(n);var i=[n].concat(this.bodyNodes(t,r.dom.getChildren(e)));i.length>0&&this.show(t,i)},this.bodyNodes=function(t,e,n){var i,o=[];n=n||0;for(var s=n;s<e.length;s++){var a=e[s],c=r.dom.getNodeType(a);if("p"===c)o=o.concat(this.paragraphGroup(t,a));else if("sec"===c)o=o.concat(this.section(t,a));else if("list"===c)i=this.list(t,a),i&&o.push(i);else if("disp-formula"===c)i=this.formula(t,a),i&&o.push(i);else if("caption"===c)i=this.caption(t,a),i&&o.push(i);else if("boxed-text"===c){var i=this.boxedText(t,a);i&&o.push(i)}else if("disp-quote"===c){var i=this.boxedText(t,a);i&&o.push(i)}}return o},this.boxedText=function(t,e){var i=t.doc,o=this.bodyNodes(t,r.dom.getChildren(e)),s=e.querySelector("label"),a=t.nextId("box"),c={type:"box",id:a,source_id:e.getAttribute("id"),label:s?s.textContent:a.replace("_"," "),children:n.pluck(o,"id")};return i.create(c),s?(i.show("figures",a,-1),null):c},this.datasets=function(t,e){for(var n=[],i=0;i<e.length;i++){var o=e[i],s=r.dom.getNodeType(o);if("p"===s){var a=o.querySelector("related-object");if(a)n=n.concat(this.indivdata(t,a));else{var c=this.paragraphGroup(t,o);n.push(c[0].id)}}}return n},this.indivdata=function(t,e){var n={type:"paragraph",id:t.nextId("paragraph"),children:[]},i={type:"text",id:t.nextId("text"),content:""};n.children.push(i.id);for(var o=r.dom.getChildren(e),s=0;s<o.length;s++){var a=o[s],c=r.dom.getNodeType(a);if("name"===c)for(var h=r.dom.getChildren(a),u=0;u<h.length;u++){var p=h[u];if(0===u){var l=this.paragraphGroup(t,p);n.children.push(l[0].children[0])}else{var d={type:"text",id:t.nextId("text"),content:", "};doc.create(d),n.children.push(d.id);var l=this.paragraphGroup(t,p);n.children.push(l[0].children[0])}}else{var l=this.paragraphGroup(t,a);l&&l[0]&&l[0].children&&n.children.push(l[0].children[0])}}return doc.create(n),doc.create(i),n.id},this.section=function(t,e){t.sectionLevel++;var n=t.doc,i=r.dom.getChildren(e),o=i[0],s={id:t.nextId("heading"),source_id:e.getAttribute("id"),type:"heading",level:t.sectionLevel,content:o.textContent};n.create(s);var a=this.bodyNodes(t,i,1);return a.unshift(s),t.sectionLevel--,a},this.ignoredParagraphElements={comment:!0,"supplementary-material":!0,fig:!0,"fig-group":!0,"table-wrap":!0,media:!0},this.acceptedParagraphElements={"boxed-text":{handler:"boxedText"},list:{handler:"list"},"disp-formula":{handler:"formula"}},this.inlineParagraphElements={"inline-graphic":!0,"inline-formula":!0},this.segmentParagraphElements=function(t){for(var e=[],i="",o=new r.dom.ChildNodeIterator(t);o.hasNext();){var s=o.next(),a=r.dom.getNodeType(s);this.ignoredParagraphElements[a]||("text"===a||this.isAnnotation(a)||this.inlineParagraphElements[a]?("paragraph"!==i&&(e.push({handler:"paragraph",nodes:[]}),i="paragraph"),n.last(e).nodes.push(s)):(this.acceptedParagraphElements[a]&&e.push(n.extend({node:s},this.acceptedParagraphElements[a])),i=a))}return e},this.paragraphGroup=function(t,e){for(var n=[],r=this.segmentParagraphElements(e),i=0;i<r.length;i++){var o,s=r[i];"paragraph"===s.handler?(o=this.paragraph(t,s.nodes),o&&(o.source_id=e.getAttribute("id"))):o=this[s.handler](t,s.node),o&&n.push(o)}return n},this.paragraph=function(t,e){for(var i=t.doc,o={id:t.nextId("paragraph"),type:"paragraph",children:null},s=[],a=new r.dom.ChildNodeIterator(e);a.hasNext();){var c=a.next(),h=r.dom.getNodeType(c);if("text"===h||this.isAnnotation(h)){var u={id:t.nextId("text"),type:"text",content:null};t.stack.push({node:u,path:[u.id,"content"]});var p=this.annotatedText(t,a.back(),0);p.length>0&&(u.content=p,i.create(u),s.push(u)),t.stack.pop()}else if("inline-graphic"===h){var l=c.getAttribute("xlink:href"),d={id:t.nextId("image"),type:"image",url:t.config.resolveURL(t,l)};i.create(d),s.push(d)}else if("inline-formula"===h){var f=this.formula(t,c,"inline");f&&s.push(f)}}return 0===s.length?null:(o.children=n.map(s,function(t){return t.id}),i.create(o),o)},this.list=function(t,e){var n=t.doc,i={id:t.nextId("list"),source_id:e.getAttribute("id"),type:"list",items:[],ordered:!1};"ordered"===e.getAttribute("list-type")&&(i.ordered=!0);for(var o=e.querySelectorAll("list-item"),s=0;s<o.length;s++)for(var a=o[s],c=this.bodyNodes(t,r.dom.getChildren(a),0),h=0;h<c.length;h++)i.items.push(c[h].id);return n.create(i),i};var f=function(t,e){for(var n=r.dom.getChildren(t),o=0;o<n.length;o++){var s=n[o],a=r.dom.getNodeType(s);if("mml:math"===a)return e||s.setAttribute("display","block"),{format:"mathml",data:i(s)};if("tex-math"===a)return{format:"latex",data:s.textContent}}return null};this.formula=function(t,e,n){var r=t.doc,i=n?t.nextId("inline_formula"):t.nextId("formula"),o={id:i,source_id:e.getAttribute("id"),type:"formula",label:"",data:"",format:""};n&&(o.inline=!0);var s=e.querySelector("label");s&&(o.label=s.textContent);var a=f(e,n);return a?(o.format=a.format,o.data=a.data,r.create(o),o):null},this.refList=function(t,e){for(var n=e.querySelectorAll("ref"),r=0;r<n.length;r++)this.ref(t,n[r])},this.ref=function(t,e){for(var n=r.dom.getChildren(e),i=0;i<n.length;i++){var o=n[i],s=r.dom.getNodeType(o);"mixed-citation"===s||"element-citation"===s?this.citation(t,e,o):"label"===s||console.error("Not supported in 'ref': ",s)}},this.citation=function(t,n,r){var i,o,s=t.doc,a=t.nextId("article_citation"),c=r.querySelector("person-group");if(!c)return console.error("FIXME: there is one of those 'mixed-citation' without any structure. Skipping ...",r),void 0;i={id:a,source_id:n.getAttribute("id"),type:"citation",title:"N/A",label:"",authors:[],doi:"",source:"",volume:"",fpage:"",lpage:"",citation_urls:[]};var h=c.querySelectorAll("name");for(o=0;o<h.length;o++)i.authors.push(e(h[o]));var u=r.querySelector("article-title");if(u)i.title=u.textContent;else{var p=r.querySelector("comment");p?i.title=p.textContent:console.error("FIXME: this citation has no title",r)}var l=r.querySelector("source");l&&(i.source=l.textContent);var d=r.querySelector("volume");d&&(i.volume=d.textContent);var f=r.querySelector("publisher-loc");f&&(i.publisher_location=f.textContent);var g=r.querySelector("publisher-name");g&&(i.publisher_name=g.textContent);var y=r.querySelector("fpage");y&&(i.fpage=y.textContent);var v=r.querySelector("lpage");v&&(i.lpage=v.textContent);var m=r.querySelector("year");m&&(i.year=m.textContent);var b=n.querySelector("label");b&&(i.label=b.textContent);var w=r.querySelector("pub-id[pub-id-type='doi'], ext-link[ext-link-type='doi']");w&&(i.doi="http://dx.doi.org/"+w.textContent),s.create(i),s.show("citations",a)}},p.State=function(t,e,n){this.xmlDoc=t,this.doc=e,this.options=n||{},this.annotations=[],this.stack=[],this.sectionLevel=1;var r={};this.nextId=function(t){return r[t]=r[t]||0,r[t]++,t+"_"+r[t]}},p.prototype=new p.Prototype,e.exports={Importer:p}},{"./configurations/default":48,"./configurations/elife":49,"./configurations/landes":50,"./configurations/peerj":51,"./configurations/plos":52,"lens-article":3,"substance-util":154,underscore:159}],54:[function(t,e){"use strict";var n=t("./outline");e.exports=n},{"./outline":55}],55:[function(t,e){"use strict";var n=t("substance-application").View,r=t("substance-application").$$,i=t("underscore"),o=function(t){n.call(this),this.surface=t,this.state={selectedNode:null,highlightedNodes:[]},this.$el.addClass("lens-outline"),i.bindAll(this,"mouseDown","mouseUp","mouseMove","updateVisibleArea"),this.$el.mousedown(this.mouseDown),this.$el.mousemove(this.mouseMove),this.$el.mouseup(this.mouseUp)};o.Prototype=function(){this.render=function(){var t=this,e=0,n=document.createDocumentFragment();n.appendChild(r(".visible-area"));var o=this.surface.$(".nodes").height(),s=this.surface.$el.height(),a=o/s;this.factor=a;var c=this.surface.doc.container,h=c.getTopLevelNodes();i.each(h,function(t){var r=this.surface.$("#"+t.id),i=r.outerHeight(!0)/a,o=$('<div class="node">').attr({id:"outline_"+t.id}).css({position:"absolute",height:i-1,top:e}).addClass(t.type).append('<div class="arrow">');n.appendChild(o[0]),e+=i},this);var u=t.surface.$el.scrollTop(),t=this;return t.el.innerHTML="",t.el.appendChild(n),t.updateVisibleArea(u),this},this.updateVisibleArea=function(t){this.$(".visible-area").css({top:t/this.factor,height:this.surface.$el.height()/this.factor})},this.update=function(t){this.render(),this.state=t,this.$(".node").removeClass("selected").removeClass("highlighted"),this.$el.removeClass("figures").removeClass("citations"),this.$el.addClass(t.context),this.$("#outline_"+t.selectedNode).addClass("selected"),i.each(t.highlightedNodes,function(t){this.$("#outline_"+t).addClass("highlighted")},this)},this.mouseDown=function(t){this._mouseDown=!0;var e=t.pageY;return this.offset=e-$(".visible-area").position().top,!1},this.mouseUp=function(){this._mouseDown=!1},this.mouseMove=function(t){if(this._mouseDown){var e=t.pageY,n=(e-this.offset)*this.factor;this.surface.$el.scrollTop(n)}}},o.Prototype.prototype=n.prototype,o.prototype=new o.Prototype,e.exports=o},{"substance-application":56,underscore:159}],56:[function(t,e){"use strict";var n=t("./src/application");n.View=t("./src/view"),n.Router=t("./src/router"),n.Controller=t("./src/controller"),n.ElementRenderer=t("./src/renderers/element_renderer"),n.$$=n.ElementRenderer.$$,e.exports=n},{"./src/application":57,"./src/controller":58,"./src/renderers/element_renderer":59,"./src/router":60,"./src/view":61}],57:[function(t,e){"use strict";var n=t("./view"),r=t("./router");t("substance-util");var i=t("underscore"),o=function(t){n.call(this),this.config=t};o.Prototype=function(){this.initRouter=function(){this.router=new r,i.each(this.config.routes,function(t){this.router.route(t.route,t.name,i.bind(this.controller[t.command],this.controller))},this),r.history.start()},this.start=function(){this.$el=$("body"),this.el=this.$el[0],this.render(),this.initRouter()}},o.Prototype.prototype=n.prototype,o.prototype=new o.Prototype,e.exports=o},{"./router":60,"./view":61,"substance-util":154,underscore:159}],58:[function(t,e){"use strict";var n=t("substance-util"),r=t("underscore"),i=function(){this.state={},this.context=null};i.Prototype=function(){this.updateState=function(t,e){console.error("updateState is deprecated, use modifyState. State is now a rich object where context replaces the old state variable");var n=this.context;this.context=t,this.state=e,this.trigger("state-changed",this.context,n,e)},this.modifyState=function(t){var e=this.state.context;r.extend(this.state,t),t.context&&t.context!==e&&this.trigger("context-changed",t.context),this.trigger("state-changed",this.state.context)}},i.Prototype.prototype=n.Events,i.prototype=new i.Prototype,e.exports=i},{"substance-util":154,underscore:159}],59:[function(t,e){"use strict";var n=t("substance-util"),r=t("substance-regexp"),i=function(t){return this.attributes=t,this.tagName=t.tag,this.children=t.children||[],this.text=t.text||"",this.html=t.html,delete t.children,delete t.text,delete t.html,delete t.tag,this.render()};i.Prototype=function(){this.render=function(){var t=document.createElement(this.tagName);this.html?t.innerHTML=this.html:t.textContent=this.text;for(var e in this.attributes){var n=this.attributes[e];t.setAttribute(e,n)}for(var r=0;r<this.children.length;r++){var i=this.children[r];t.appendChild(i)}return this.el=t,t}};var o=function(t,e){var e=e||{},n=/^([a-zA-Z0-9]*)/.exec(t);e.tag=n&&n[1]?n[1]:"div";var o=/#([a-zA-Z0-9_]*)/.exec(t);o&&o[1]&&(e.id=o[1]);var s=new r(/\.([a-zA-Z0-9_-]*)/g);return e.class||(e.class=s.match(t).map(function(t){return t.match[1]}).join(" ")),new i(e)};i.$$=o,i.Prototype.prototype=n.Events,i.prototype=new i.Prototype,e.exports=i},{"substance-regexp":148,"substance-util":154}],60:[function(t,e){"use strict";var n=t("substance-util"),r=t("underscore"),i=function(t){t||(t={}),t.routes&&(this.routes=t.routes),this._bindRoutes(),this.initialize.apply(this,arguments)},o=/\((.*?)\)/g,s=/(\(\?)?:\w+/g,a=/\*\w+/g,c=/[\-{}\[\]+?.,\\\^$|#\s]/g;r.extend(i.prototype,n.Events,{initialize:function(){},route:function(t,e,n){r.isRegExp(t)||(t=this._routeToRegExp(t)),r.isFunction(e)&&(n=e,e=""),n||(n=this[e]);var o=this;return i.history.route(t,function(r){var s=o._extractParameters(t,r);n&&n.apply(o,s),o.trigger.apply(o,["route:"+e].concat(s)),o.trigger("route",e,s),i.history.trigger("route",o,e,s)}),this},navigate:function(t,e){return i.history.navigate(t,e),this},_bindRoutes:function(){if(this.routes){this.routes=r.result(this,"routes");for(var t,e=r.keys(this.routes);null!=(t=e.pop());)this.route(t,this.routes[t])}},_routeToRegExp:function(t){return t=t.replace(c,"\\$&").replace(o,"(?:$1)?").replace(s,function(t,e){return e?t:"([^/]+)"
-}).replace(a,"(.*?)"),new RegExp("^"+t+"$")},_extractParameters:function(t,e){var n=t.exec(e).slice(1);return r.map(n,function(t){return t?decodeURIComponent(t):null})}});var h=i.History=function(){this.handlers=[],r.bindAll(this,"checkUrl"),"undefined"!=typeof window&&(this.location=window.location,this.history=window.history)},u=/^[#\/]|\s+$/g,p=/^\/+|\/+$/g,l=/msie [\w.]+/,d=/\/$/;h.started=!1,r.extend(h.prototype,n.Events,{interval:50,getHash:function(t){var e=(t||this).location.href.match(/#(.*)$/);return e?e[1]:""},getFragment:function(t,e){if(null==t)if(this._hasPushState||!this._wantsHashChange||e){t=this.location.pathname;var n=this.root.replace(d,"");t.indexOf(n)||(t=t.substr(n.length))}else t=this.getHash();return t.replace(u,"")},start:function(t){if(h.started)throw new Error("Router.history has already been started");h.started=!0,this.options=r.extend({},{root:"/"},this.options,t),this.root=this.options.root,this._wantsHashChange=this.options.hashChange!==!1,this._wantsPushState=!!this.options.pushState,this._hasPushState=!!(this.options.pushState&&this.history&&this.history.pushState);var e=this.getFragment(),n=document.documentMode,i=l.exec(navigator.userAgent.toLowerCase())&&(!n||7>=n);this.root=("/"+this.root+"/").replace(p,"/"),i&&this._wantsHashChange&&(this.iframe=$('<iframe src="javascript:0" tabindex="-1" />').hide().appendTo("body")[0].contentWindow,this.navigate(e)),this._hasPushState?$(window).on("popstate",this.checkUrl):this._wantsHashChange&&"onhashchange"in window&&!i?$(window).on("hashchange",this.checkUrl):this._wantsHashChange&&(this._checkUrlInterval=setInterval(this.checkUrl,this.interval)),this.fragment=e;var o=this.location,s=o.pathname.replace(/[^\/]$/,"$&/")===this.root;return this._wantsHashChange&&this._wantsPushState&&!this._hasPushState&&!s?(this.fragment=this.getFragment(null,!0),this.location.replace(this.root+this.location.search+"#"+this.fragment),!0):(this._wantsPushState&&this._hasPushState&&s&&o.hash&&(this.fragment=this.getHash().replace(u,""),this.history.replaceState({},document.title,this.root+this.fragment+o.search)),this.options.silent?void 0:this.loadUrl())},stop:function(){$(window).off("popstate",this.checkUrl).off("hashchange",this.checkUrl),clearInterval(this._checkUrlInterval),h.started=!1},route:function(t,e){this.handlers.unshift({route:t,callback:e})},checkUrl:function(){var t=this.getFragment();return t===this.fragment&&this.iframe&&(t=this.getFragment(this.getHash(this.iframe))),t===this.fragment?!1:(this.iframe&&this.navigate(t),this.loadUrl()||this.loadUrl(this.getHash()),void 0)},loadUrl:function(t){var e=this.fragment=this.getFragment(t),n=r.any(this.handlers,function(t){return t.route.test(e)?(t.callback(e),!0):void 0});return n},navigate:function(t,e){if(!h.started)return!1;if(e&&e!==!0||(e={trigger:e}),t=this.getFragment(t||""),this.fragment!==t){this.fragment=t;var n=this.root+t;if(this._hasPushState)this.history[e.replace?"replaceState":"pushState"]({},document.title,n);else{if(!this._wantsHashChange)return this.location.assign(n);this._updateHash(this.location,t,e.replace),this.iframe&&t!==this.getFragment(this.getHash(this.iframe))&&(e.replace||this.iframe.document.open().close(),this._updateHash(this.iframe.location,t,e.replace))}e.trigger&&this.loadUrl(t)}},_updateHash:function(t,e,n){if(n){var r=t.href.replace(/(javascript:|#).*$/,"");t.replace(r+"#"+e)}else t.hash="#"+e}}),i.history=new h,e.exports=i},{"substance-util":154,underscore:159}],61:[function(t,e){"use strict";var n=t("substance-util"),r=function(){this.$el=$("<div/>"),this.el=this.$el[0],this.dispatchDOMEvents()};r.Prototype=function(){this.$=function(t){return this.$el.find(t)},this.dispatchDOMEvents=function(){function t(t){var e=/(\w+)\((.*)\)/.exec(t);if(!e)throw new Error("Invalid click handler '"+t+"'");return{method:e[1],args:e[2].split(",")}}var e=this;this.$el.delegate("[sbs-click]","click",function(n){var r=t($(n.currentTarget).attr("sbs-click")),i=e[r.method];return i?(i.apply(e,r.args),!1):void 0})}},r.Prototype.prototype=n.Events,r.prototype=new r.Prototype,e.exports=r},{"substance-util":154}],62:[function(t,e){"use strict";var n=t("./src/chronicle");n.IndexImpl=t("./src/index_impl"),n.ChronicleImpl=t("./src/chronicle_impl"),n.DiffImpl=t("./src/diff_impl"),n.TmpIndex=t("./src/tmp_index"),n.create=n.ChronicleImpl.create,n.Index.create=n.IndexImpl.create,n.Diff.create=n.DiffImpl.create,n.ArrayOperationAdapter=t("./src/array_adapter"),n.TextOperationAdapter=t("./src/text_adapter"),e.exports=n},{"./src/array_adapter":63,"./src/chronicle":64,"./src/chronicle_impl":65,"./src/diff_impl":66,"./src/index_impl":67,"./src/text_adapter":68,"./src/tmp_index":69}],63:[function(t,e){"use strict";var n=t("substance-util"),r=t("./chronicle"),i=t("substance-operator").ArrayOperation,o=function(t,e){r.Versioned.call(this,t),this.array=e};o.Prototype=function(){var t=n.prototype(this);this.apply=function(t){i.fromJSON(t).apply(this.array)},this.invert=function(t){return i.fromJSON(t).invert()},this.transform=function(t,e,n){return i.transform(t,e,n)},this.reset=function(){for(t.reset.call(this);this.array.length>0;)this.array.shift()}},o.Prototype.prototype=r.Versioned.prototype,o.prototype=new o.Prototype,e.exports=o},{"./chronicle":64,"substance-operator":138,"substance-util":154}],64:[function(t,e){"use strict";var n=t("underscore"),r=t("substance-util"),i=r.errors;i.define("ChronicleError",-1),i.define("ChangeError",-1);var o=function(t,e,n){if(this.type="change",!t)throw new i.ChangeError("Every change needs a unique id.");if(this.id=t,!e)throw new i.ChangeError("Every change needs a parent.");this.parent=e,this.data=n,this.uuid=r.uuid};o.prototype={toJSON:function(){return{type:this.type,id:this.id,parent:this.parent,data:this.data}}},o.fromJSON=function(t){return t.type===c.TYPE?new c(t):t.type===h.TYPE?new h(t):new o(t.parent,t.data,t)};var s="ROOT",a=new o(s,!0,null);a.parent=s;var c=function(t,e,n){if(o.call(this,t,e),this.type=c.TYPE,!n)throw new i.ChangeError("Missing branches.");this.branches=n};c.Prototype=function(){var t=r.prototype(this);this.toJSON=function(){var e=t.toJSON.call(this);return e.type=c.TYPE,e.branches=this.branches,e}},c.Prototype.prototype=o.prototype,c.prototype=new c.Prototype,c.TYPE="merge",c.fromJSON=function(t){if(t.type!==c.TYPE)throw new i.ChangeError("Illegal data for deserializing a Merge node.");return new c(t.parent,t.branches,t)};var h=function(t,e,n,r){o.call(this,t,e,n),this.type=h.TYPE,this.original=r};h.Prototype=function(){var t=r.prototype(this);this.toJSON=function(){var e=t.toJSON.call(this);return e.type=h.TYPE,e.original=this.original,e}},h.TYPE="transformed",h.fromJSON=function(t){if(t.type!==h.TYPE)throw new i.ChangeError("Illegal data for deserializing a Transformed node.");return new h(t.parent,t.data,t.original,t)},h.Prototype.prototype=o.prototype,h.prototype=new h.Prototype;var u=function(){};u.prototype={hasReverts:function(){throw new i.SubstanceError("Not implemented.")},reverts:function(){throw new i.SubstanceError("Not implemented.")},hasApplies:function(){throw new i.SubstanceError("Not implemented.")},applies:function(){throw new i.SubstanceError("Not implemented.")},sequence:function(){throw new i.SubstanceError("Not implemented.")},mine:function(){throw new i.SubstanceError("Not implemented.")},theirs:function(){throw new i.SubstanceError("Not implemented.")},root:function(){throw new i.SubstanceError("Not implemented.")},start:function(){throw new i.SubstanceError("Not implemented.")},end:function(){throw new i.SubstanceError("Not implemented.")},inverted:function(){throw new i.SubstanceError("Not implemented.")}},u.create=function(){throw new i.SubstanceError("Not implemented.")};var p=function(t,e){e=e||{},this.index=t,this.versioned=null,this.__mode__=e.mode||p.DEFAULT_MODE};p.Prototype=function(){this.record=function(){throw new i.SubstanceError("Not implemented.")},this.open=function(){throw new i.SubstanceError("Not implemented.")},this.step=function(){throw new i.SubstanceError("Not implemented.")},this.forward=function(t){var e=this.versioned.getState();if(e!==t){var n=this.index.children[e];if(0!==n.length){var r;if(1===n.length)r=n[0];else if(t){var i=this.index.shortestPath(e,t);i.shift(),r=i.shift()}else r=n[n.length-1];return r?this.step(r):void 0}}},this.rewind=function(){var t,e=this.index.get(this.versioned.getState());return e.id===s?null:(t=e.parent,this.step(t))},this.merge=function(){throw new i.SubstanceError("Not implemented.")},this.manage=function(t){this.versioned=t},this.mark=function(t){this.index.setRef(t,this.versioned.getState())},this.find=function(t){this.index.getRef(t)},this.getState=function(){return this.versioned.getState()},this.getChanges=function(t,e){var r=[],i=this.path(t,e);return n.each(i,function(t){r.push(this.index.get(t))},this),r}},p.prototype=new p.Prototype,p.PEDANTIC_RECORD=2,p.PEDANTIC_IMPORT=4,p.HYSTERICAL=p.PEDANTIC_RECORD|p.PEDANTIC_IMPORT,p.DEFAULT_MODE=p.PEDANTIC_IMPORT,p.create=function(){throw new i.SubstanceError("Not implemented.")};var l=function(){this.__id__=r.uuid(),this.changes={},this.refs={},this.children={},this.changes[s]=a,this.children[s]=[]};l.Prototype=function(){this.add=function(){throw new i.SubstanceError("Not implemented.")},this.remove=function(){throw new i.SubstanceError("Not implemented.")},this.contains=function(){throw new i.SubstanceError("Not implemented.")},this.path=function(){throw new i.SubstanceError("Not implemented.")},this.get=function(){throw new i.SubstanceError("Not implemented.")},this.getChildren=function(){throw new i.SubstanceError("Not implemented.")},this.list=function(){throw new i.SubstanceError("Not implemented.")},this.diff=function(){throw new i.SubstanceError("Not implemented.")},this.setRef=function(t,e){if(void 0===this.changes[e])throw new i.ChronicleError("Unknown change: "+e);this.refs[t]=e},this.getRef=function(t){return this.refs[t]},this.listRefs=function(){return Object.keys(this.refs)},this.import=function(){throw new i.SubstanceError("Not implemented.")}},l.prototype=new l.Prototype,l.INVALID="INVALID",l.ROOT=a,l.create=function(){throw new i.SubstanceError("Not implemented.")};var d=function(t){this.chronicle=t,this.state=s,t.manage(this)};d.Prototype=function(){this.apply=function(){throw new i.SubstanceError("Not implemented.")},this.revert=function(t){t=this.invert(t),this.apply(t)},this.invert=function(){throw new i.SubstanceError("Not implemented.")},this.transform=function(){throw new i.SubstanceError("Not implemented.")},this.getState=function(){return this.state},this.setState=function(t){this.state=t},this.reset=function(){this.state=s}},d.prototype=new d.Prototype,p.Change=o,p.Merge=c,p.Transformed=h,p.Diff=u,p.Index=l,p.Versioned=d,p.ROOT=s,p.mergeConflict=function(t,e){var n=new i.MergeConflict("Merge conflict: "+JSON.stringify(t)+" vs "+JSON.stringify(e));return n.a=t,n.b=e,n},e.exports=p},{"substance-util":154,underscore:159}],65:[function(t,e){"use strict";var n=t("underscore"),r=t("substance-util"),i=r.errors,o=t("./chronicle"),s=function(t,e){o.call(this,t,e)};s.Prototype=function(){var t=new s.__private__,e=o.Index.ROOT.id;this.uuid=r.uuid,this.internal_uuid=r.uuid,this.record=function(t){(this.__mode__&o.PEDANTIC_RECORD)>0&&(this.versioned.revert(t),this.versioned.apply(t));var e=this.versioned.getState(),n=this.uuid(),r=new o.Change(n,e,t);return this.index.add(r),this.versioned.setState(n),n},this.reset=function(e,n){if(n=n||this.index,!n.contains(e))throw new i.ChronicleError("Invalid argument: unknown change "+e);var r=this.versioned.getState(),o=n.shortestPath(r,e);t.applySequence.call(this,o,n)},this.open=this.reset,this.path=function(t,n){if(n){if(!t)throw new i.ChronicleError("Illegal argument: "+t);return this.index.shortestPath(t,n)}var r=this.index.shortestPath(e,t||this.versioned.getState());return r.shift(),r},this.apply=function(e){return n.isArray(e)?t.applySequence.call(this,e):t.applySequence.call(this,arguments)},this.step=function(t){var e=this.index,n=this.versioned.getState();try{var r=e.get(n);if(r.id===t)return null;var o,s=e.get(t);if(r.parent===t)o=this.versioned.invert(r.data);else{if(s.parent!==r.id)throw new i.ChronicleError("Invalid apply sequence: "+t+" is not parent or child of "+r.id);o=s.data}return this.versioned.apply(o),this.versioned.setState(t),o}catch(a){throw this.reset(n,e),a}},this.merge=function(e,n,r){if(!this.index.contains(e))throw new i.ChronicleError("Invalid argument: unknown change "+e);1==arguments.length&&(n="auto",r={}),r=r||{};var s=this.versioned.getState(),a=this.index.diff(s,e);if(!a.hasApplies())return s;if(!a.hasReverts()&&!r.no_ff)return t.applyDiff.call(this,a),this.versioned.getState();var c;if("mine"===n)c=new o.Merge(this.uuid(),s,[s,e]);else if("theirs"===n)c=new o.Merge(this.uuid(),e,[s,e]);else{if("manual"!==n)throw new i.ChronicleError("Unsupported merge strategy: "+n);if(!r.sequence)throw new i.ChronicleError("Invalid argument: sequence is missing for manual merge");var h=r.sequence;c=t.manualMerge.call(this,s,e,a,h,r)}return this.index.add(c),this.reset(c.id),c.id},this.import=function(e){var n=this.index.import(e);(this.__mode__&o.PEDANTIC_IMPORT)>0&&t.importSanityCheck.call(this,n)}},s.__private__=function(){var t=this;this.applyDiff=function(e,n){if(n=n||this.index,e){var r=this.versioned.getState();if(r!==e.start())throw new i.ChronicleError("Diff can not applied on to this state. Expected: "+e.start()+", Actual: "+r);var s=null,a=[],c=[];try{var h,u,p=e.reverts(),l=e.applies();for(h=0;h<p.length;h++)u=p[h],t.revertTo.call(this,u,n),a.push(u);for(h=0;h<l.length;h++)u=l[h],t.apply.call(this,u,n),c.push(u)}catch(d){s=d}if(s&&(a.length>0||c.length>0)){var f=o.Diff.create(e.start(),a,c),g=f.inverted();try{t.applyDiff.call(this,g,n)}catch(d){console.log("Ohohhhh.... could not rollback partially applied diff.","Without bugs and in HYSTERICAL mode this should not happen.","Resetting to original state"),this.versioned.reset(),this.reset(r,n)}}if(s)throw s}},this.applySequence=function(e,r){r=r||this.index;var o=this.versioned.getState();try{var s=r.get(o);n.each(e,function(e){if(s.id!==e){var n=r.get(e);if(s.parent===e)t.revertTo.call(this,e,r);else{if(n.parent!==s.id)throw new i.ChronicleError("Invalid apply sequence: "+e+" is not parent or child of "+s.id);t.apply.call(this,e,r)}s=n}},this)}catch(a){throw this.reset(o,r),a}},this.revertTo=function(t,e){e=e||this.index;var n=this.versioned.getState(),r=e.get(n);if(!r)throw new i.ChangeError("Illegal state. 'head' is unknown: "+n);if(r.parent!==t)throw new i.ChangeError("Can not revert: change is not parent of current");r.data&&this.versioned.revert(r.data),this.versioned.setState(t)},this.apply=function(t,e){e=e||this.index;var n=e.get(t);if(!n)throw new i.ChangeError("Illegal argument. change is unknown: "+t);n.data&&this.versioned.apply(n.data),this.versioned.setState(t)},this.eliminate=function(e,n,r,s,a){if(!(s instanceof o.TmpIndex))throw new i.ChronicleError("'eliminate' must be called on a TmpIndex instance");var c,h,u=s.get(n),p=s.get(e);return c=new o.Change(this.internal_uuid(),n,this.versioned.invert(u.data)),s.add(c),h=t.rebase0.call(this,c.id,p.id,r,s,a,!0),s.reconnect(h,u.parent),p=s.get(h),p.id},this.rebase0=function(t,e,n,r,s,a){r=r||this.index;var c=r.get(t),h=r.get(e);if(c.parent!==h.parent)throw new i.ChronicleError("Illegal arguments: principal rebase can only be applied on siblings.");for(var u,p,l,d,f,g=[[c.data,c.id,h]],y=null,v=[];g.length>0;){u=g.pop(),p=u[0],t=u[1],h=u[2],l=h.data;var m;if(h instanceof o.Merge)m=[p],d=new o.Merge(this.uuid(),t,h.branches),v.push(d);else{m=this.versioned.transform(p,l,{check:a});var b=h instanceof o.Transformed?h.original:h.id;d=new o.Transformed(this.internal_uuid(),t,m[1],b),n[b]=d.id}n[h.id]=d.id,y||(y=d),r.add(d);var w=r.getChildren(h.id);for(f=0;f<w.length;f++){var _=r.get(w[f]);if(s){var x=_ instanceof o.Transformed?_.original:_.id;if(!s[x])continue}g.unshift([m[0],d.id,_])}}for(f=0;f<v.length;f++){for(var C=v[f],P=[],S=0;S<C.branches.length;S++)P.push(n[C.branches[S]]);C.branches=P}return y.id},this.eliminateToSelection=function(e,r,i,s){var a=new o.TmpIndex(s),c=n.intersection(e,r);if(0===c.length)return null;var h=n.difference(e,r).reverse();if(0===h.length)return i[c[0]];for(var u,p,l,d=0,f=0,g=null;d<e.length&&f<h.length;)p=e[e.length-1-d],l=h[f],p===l?(g&&(g=t.eliminate.call(this,g,p,i,a,i)),d++,f++):(g=p,d++);for(u=0;u<c.length;u++)p=c[u],a.save(i[p]);return i[c[0]]},this.manualMerge=function(e,r,s,a,c){if(0===a.length)throw new i.ChronicleError("Nothing selected for merge.");var h=n.intersection(a,s.sequence());if(h.length!==a.length)throw new i.ChronicleError("Illegal merge selection: contains changes that are not contained in the merged branches.");var u=new o.TmpIndex(this.index),p=s.mine(),l=s.theirs(),d=n.object(a,a);t.eliminateToSelection.call(this,p,a,d,u),t.eliminateToSelection.call(this,l,a,d,u),p=n.intersection(p,a),l=n.intersection(l,a);for(var f=0;f<a.length;f++){var g,y,v=a[f];if(0===p.length||0===l.length)break;if(p[0]===v)p.shift(),g=d[v],y=d[l[0]];else{if(l[0]!==v)throw new i.ChronicleError("Reordering of commmits is not supported.");l.shift(),g=d[v],y=d[p[0]]}t.rebase0.call(this,g,y,d,u,null,!c.force)}var m=d[n.last(a)];try{this.reset(m,u)}catch(b){throw this.reset(e,u),b}for(f=0;f<a.length;f++)u.save(d[a[f]]);return new o.Merge(this.uuid(),m,[e,r])},this.importSanityCheck=function(t){var e,n=this.versioned.getState(),r=null;try{for(e=0;e<t.length;e++)this.reset(t[e])}catch(o){r=o,console.log(r.stack)}if(this.reset(n),r){for(t.reverse(),e=0;e<t.length;e++)this.index.remove(t[e]);if(r)throw new i.ChronicleError("Import did not pass sanity check: "+r.toString())}}},s.Prototype.prototype=o.prototype,s.prototype=new s.Prototype,s.create=function(t){t=t||{};var e=o.Index.create(t);return new s(e,t)},e.exports=s},{"./chronicle":64,"substance-util":154,underscore:159}],66:[function(t,e){var n=t("underscore"),r=t("./chronicle"),i=function(t){this.data=t};i.Prototype=function(){this.reverts=function(){return this.data[1].slice(1,this.data[0]+1)},this.applies=function(){return this.data[1].slice(this.data[0]+1)},this.hasReverts=function(){return this.data[0]>0},this.hasApplies=function(){return this.data[1].length-1-this.data[0]>0},this.start=function(){return this.data[1][0]},this.end=function(){return n.last(this.data[1])},this.root=function(){return this.data[1][this.data[0]]},this.sequence=function(){return this.data[1].slice(0)},this.mine=function(){return this.data[1].slice(0,this.data[0]).reverse()},this.theirs=function(){return this.applies()},this.inverted=function(){return new i([this.data[1].length-1-this.data[0],this.data[1].slice(0).reverse()])},this.toJSON=function(){return{data:this.data}}},i.Prototype.prototype=r.Diff.prototype,i.prototype=new i.Prototype,i.create=function(t,e,n){return new i([e.length,[t].concat(e).concat(n)])},e.exports=i},{"./chronicle":64,underscore:159}],67:[function(t,e){"use strict";var n=t("underscore"),r=t("substance-util"),i=r.errors,o=t("./chronicle"),s=function(){o.Index.call(this)};s.Prototype=function(){var t=new s.__private__,e=o.ROOT;this.add=function(t){t.data=r.freeze(t.data);var e=t.id;if(!t.parent)throw new i.ChronicleError("Change does not have a parent.");if(!this.contains(t.parent))throw new i.ChronicleError("Illegal change: parent is unknown - change="+e+", parent="+t.parent);this.changes[e]=t,this.children[e]=[],this.children[t.parent]||(this.children[t.parent]=[]),this.children[t.parent].push(e)},this.remove=function(t){if(this.children[t].length>0)throw new i.ChronicleError("Can not remove: other changes depend on it.");var e=this.changes[t];delete this.changes[t],delete this.children[t],this.children[e.parent]=n.without(this.children[e.parent],t)},this.contains=function(t){return!!this.changes[t]},this.get=function(t){return this.changes[t]},this.list=function(){return n.keys(this.changes)},this.getChildren=function(t){return this.children[t]},this.diff=function(n,r){var i,s,a=t.getPathToRoot.call(this,n),c=t.getPathToRoot.call(this,r),h=[],u=[],p={};for(s=0;s<c.length;s++)p[c[s]]=!0;for(s=0;s<a.length&&(i=a[s],s>0&&h.push(i),!p[i]);s++);var l=i;for(s=0;s<c.length&&(i=c[s],i!==l&&i!==e);s++)u.unshift(i);return o.Diff.create(n,h,u)},this.shortestPath=function(n,r){if(n===r)return[];if(r===e)return t.getPathToRoot.call(this,n).slice(1);if(n===e)return t.getPathToRoot.call(this,r).reverse().slice(1);for(var o,s,a,c,h,u,p,l={},d=[[n,n]];d.length>0;)if(o=d.shift(),s=o[0],a=o[1],c=this.get(a),!l[a]){if(l[a]=s,a===r){for(var f,g=[];a!==n;)if(g.unshift(a),f=l[a],l[a]=null,a=f,!a)throw new i.SubstanceError("Illegal state: bug in implementation of Index.shortestPath.");return g}for(l[c.parent]||d.push([a,c.parent]),p=this.getChildren(a),h=0;h<p.length;h++)u=p[h],l[u]||d.push([a,u])}throw new i.SubstanceError("Illegal state: no path found.")},this.import=function(e){var r=n.difference(e.list(),this.list());if(0!==r.length){var i=t.computeDependencyOrder.call(this,e,r);r.sort(function(t,e){return i[t]-i[e]});for(var o=0;o<r.length;o++)this.add(e.get(r[o]));return r}}},s.__private__=function(){var t=o.ROOT;this.getPathToRoot=function(e){var n=[];if(e===t)return n;var r=this.get(e);if(!r)throw new i.ChronicleError("Unknown change: "+e);for(var o;;){if(n.push(r.id),r.id===t)break;o=r.parent,r=this.get(o)}return n},this.computeDependencyOrder=function(e,n){function r(n){if(i[n])return i[n];if(n===t)return 0;var o=e.get(n),s=r(o.parent)+1;return i[n]=s,s}for(var i={},o=0;o<n.length;o++)r(n[o]);return i}},s.Prototype.prototype=o.Index.prototype,s.prototype=new s.Prototype;var a=function(t,e){t.store=e,t.__changes__=e.hash("changes"),t.__refs__=e.hash("refs"),t.__changes__.list=t.__changes__.keys;var r=t.add;t.add=function(t){r.call(this,t),this.__changes__.set(t.id,t)};var i=t.remove;t.remove=function(t){i.call(this,t),this.__changes__.delete(t)};var o=t.setRef;t.setRef=function(t,e){o.call(this,t,e),this.__refs__.set(t,e)},t.load=function(){this.import(this.__changes__),n.each(this.__refs__.keys(),function(t){this.setRef(t,this.__refs__.get(t))},this)},t.load()};s.create=function(t){t=t||{};var e=new s;return t.store&&a(e,t.store),e},e.exports=s},{"./chronicle":64,"substance-util":154,underscore:159}],68:[function(t,e){"use strict";var n=t("substance-util"),r=t("./chronicle"),i=t("substance-operator").TextOperation,o=function(t,e){r.Versioned.call(this,t),this.doc=e};o.Prototype=function(){var t=n.prototype(this);this.apply=function(t){this.doc.setText(t.apply(this.doc.getText()))},this.invert=function(t){return t.invert()},this.transform=function(t,e,n){return i.transform(t,e,n)},this.reset=function(){t.reset.call(this),this.doc.setText("")}},o.Prototype.prototype=r.Versioned.prototype,o.prototype=new o.Prototype,e.exports=o},{"./chronicle":64,"substance-operator":138,"substance-util":154}],69:[function(t,e){var n=t("underscore"),r=t("substance-util"),i=r.errors,o=t("./index_impl"),s=function(t){o.call(this),this.index=t};s.Prototype=function(){var t=r.prototype(this);this.get=function(e){return t.contains.call(this,e)?t.get.call(this,e):this.index.get(e)},this.contains=function(e){return t.contains.call(this,e)||this.index.contains(e)},this.getChildren=function(e){var n=t.getChildren.call(this,e)||[];return this.index.contains(e)&&(n=n.concat(this.index.getChildren(e))),n},this.list=function(){return t.list.call(this).concat(this.index.list())},this.save=function(t,e){if(e)for(var n,r,i=[t];i.length>0;){n=i.pop(),r=this.changes[n],this.changes[n]&&this.index.add(r);for(var o=0;o<r.children;o++)i.unshift(r.children[o])}else this.changes[t]&&this.index.add(this.changes[t])},this.reconnect=function(t,e){if(!this.changes[t])throw new i.ChronicleError("Change does not exist to this index.");var r=this.get(t);if(!this.contains(e))throw new i.ChronicleError("Illegal change: parent is unknown parent="+e);this.children[r.parent]||(this.children[r.parent]=[]),this.children[r.parent]=n.without(this.children[r.parent],r.id),r.parent=e,this.children[r.parent]||(this.children[r.parent]=[]),this.children[r.parent].push(t)}},s.Prototype.prototype=o.prototype,s.prototype=new s.Prototype,e.exports=s},{"./index_impl":67,"substance-util":154,underscore:159}],70:[function(t,e){"use strict";e.exports={Keyboard:t("./src/keyboard"),Mousetrap:t("./src/mousetrap")}},{"./src/keyboard":72,"./src/mousetrap":73}],71:[function(){!function(){function t(t,e,n){return t.addEventListener?(t.addEventListener(e,n,!1),void 0):(t.attachEvent("on"+e,n),void 0)}function e(t){if("keypress"==t.type){var e=String.fromCharCode(t.which);return t.shiftKey||(e=e.toLowerCase()),e}return w[t.which]?w[t.which]:_[t.which]?_[t.which]:String.fromCharCode(t.which).toLowerCase()}function n(t,e){return t.sort().join(",")===e.sort().join(",")}function r(t){t=t||{};var e,n=!1;for(e in N)t[e]?n=!0:N[e]=0;n||(O=!1)}function i(t,e,r,i,o,s){var a,c,u=[],p=r.type;if(!P[t])return[];for("keyup"==p&&h(t)&&(e=[t]),a=0;a<P[t].length;++a)if(c=P[t][a],(i||!c.seq||N[c.seq]==c.level)&&p==c.action&&("keypress"==p&&!r.metaKey&&!r.ctrlKey||n(e,c.modifiers))){var l=!i&&c.combo==o,d=i&&c.seq==i&&c.level==s;(l||d)&&P[t].splice(a,1),u.push(c)}return u}function o(t){var e=[];return t.shiftKey&&e.push("shift"),t.altKey&&e.push("alt"),t.ctrlKey&&e.push("ctrl"),t.metaKey&&e.push("meta"),e}function s(t,e,n){A.stopCallback(e,e.target||e.srcElement,n)||t(e,n)===!1&&(e.preventDefault&&e.preventDefault(),e.stopPropagation&&e.stopPropagation(),e.returnValue=!1,e.cancelBubble=!0)}function a(t,e,n){var o,a=i(t,e,n),c={},u=0,p=!1;for(o=0;o<a.length;++o)a[o].seq&&(u=Math.max(u,a[o].level));for(o=0;o<a.length;++o)if(a[o].seq){if(a[o].level!=u)continue;p=!0,c[a[o].seq]=1,s(a[o].callback,n,a[o].combo)}else A.TRIGGER_PREFIX_COMBOS?s(a[o].callback,n,a[o].combo):p||s(a[o].callback,n,a[o].combo);var l="keypress"==n.type&&k;return n.type!=O||h(t)||l||r(c),k=p&&"keydown"==n.type,a.length>0}function c(t){"number"!=typeof t.which&&(t.which=t.keyCode);var n=e(t);if(n)return"keyup"==t.type&&E===n?(E=!1,void 0):(A.handleKey(n,o(t),t),void 0)}function h(t){return"shift"==t||"ctrl"==t||"alt"==t||"meta"==t}function u(){clearTimeout(b),b=setTimeout(r,1e3)}function p(){if(!m){m={};for(var t in w)t>95&&112>t||w.hasOwnProperty(t)&&(m[w[t]]=t)}return m}function l(t,e,n){return n||(n=p()[t]?"keydown":"keypress"),"keypress"==n&&e.length&&(n="keydown"),n}function d(t,n,i,o){function a(e){return function(){O=e,++N[t],u()}}function c(n){s(i,n,t),"keyup"!==o&&(E=e(n)),setTimeout(r,10)}N[t]=0;for(var h=0;h<n.length;++h){var p=h+1===n.length,l=p?c:a(o||g(n[h+1]).action);y(n[h],l,o,t,h)}}function f(t){return"+"===t?["+"]:t.split("+")}function g(t,e){var n,r,i,o=[];for(n=f(t),i=0;i<n.length;++i)r=n[i],C[r]&&(r=C[r]),e&&"keypress"!=e&&x[r]&&(r=x[r],o.push("shift")),h(r)&&o.push(r);return e=l(r,o,e),{key:r,modifiers:o,action:e}}function y(t,e,n,r,o){S[t+":"+n]=e,t=t.replace(/\s+/g," ");var s,a=t.split(" ");return a.length>1?(d(t,a,e,n),void 0):(s=g(t,n),P[s.key]=P[s.key]||[],i(s.key,s.modifiers,{type:s.action},r,t,o),P[s.key][r?"unshift":"push"]({callback:e,modifiers:s.modifiers,action:s.action,seq:r,level:o,combo:t}),void 0)}function v(t,e,n){for(var r=0;r<t.length;++r)y(t[r],e,n)}for(var m,b,w={8:"backspace",9:"tab",13:"enter",16:"shift",17:"ctrl",18:"alt",20:"capslock",27:"esc",32:"space",33:"pageup",34:"pagedown",35:"end",36:"home",37:"left",38:"up",39:"right",40:"down",45:"ins",46:"del",91:"meta",93:"meta",224:"meta"},_={106:"*",107:"+",109:"-",110:".",111:"/",186:";",187:"=",188:",",189:"-",190:".",191:"/",192:"`",219:"[",220:"\\",221:"]",222:"'"},x={"~":"`","!":"1","@":"2","#":"3",$:"4","%":"5","^":"6","&":"7","*":"8","(":"9",")":"0",_:"-","+":"=",":":";",'"':"'","<":",",">":".","?":"/","|":"\\"},C={option:"alt",command:"meta","return":"enter",escape:"esc",mod:/Mac|iPod|iPhone|iPad/.test(navigator.platform)?"meta":"ctrl"},P={},S={},N={},E=!1,k=!1,O=!1,T=1;20>T;++T)w[111+T]="f"+T;for(T=0;9>=T;++T)w[T+96]=T;t(document,"keypress",c),t(document,"keydown",c),t(document,"keyup",c);var A={bind:function(t,e,n){return t=t instanceof Array?t:[t],v(t,e,n),this},unbind:function(t,e){return A.bind(t,function(){},e)},trigger:function(t,e){return S[t+":"+e]&&S[t+":"+e]({},t),this},reset:function(){return P={},S={},this},stopCallback:function(t,e){return(" "+e.className+" ").indexOf(" mousetrap ")>-1?!1:"INPUT"==e.tagName||"SELECT"==e.tagName||"TEXTAREA"==e.tagName||e.contentEditable&&"true"==e.contentEditable},handleKey:a,TRIGGER_PREFIX_COMBOS:!1};window.Mousetrap=A,"function"==typeof define&&define.amd&&define(A)}()},{}],72:[function(t,e){"use strict";t("../lib/mousetrap");var n=window.Mousetrap,r=function(t){this.__bindings={},this.__mainControl=t,this.__controls=[],this.__defaultHandler=null};r.Prototype=function(){function t(t,e){for(var n=e.split("."),r=t.__bindings,i=0;i<n.length;i++){var o=n[i];r.contexts=r.contexts||{},r.contexts[o]=r.contexts[o]||{},r=r.contexts[o]}return r}function e(e,n){var r=t(e,n.context);r.commands=r.commands||[],r.commands=r.commands.concat(n.commands)}function r(t,e){var n=t;e.scope&&(n=t[e.scope]);var r="false"!==e.preventDefault;return function(t){n[e.command].apply(n,e.args),r&&t.preventDefault()}}function i(t,e){if(void 0!==e)for(var i=0;i<e.length;i++){var o=e[i];n.bind(o.keys,r(t,o))}}function o(t){if(t&&0!==t.length){var e=function(e,n,r){if(!a(e,n,r))for(var i=t.length-1;i>=0;i--){var o=t[i],s=o.handler(e,n,r);if(s){var c=o.control,h=s.command,u=s.args;return c[h].apply(c,u),void 0}}};n.handleKey=e}}function s(t){function e(t,e,n){i(e,n.commands),void 0!==n.default&&r.push({context:t,control:e,handler:n.default})}n.reset(),n.handleKey=a;var r=[],s=t.__controls,c=t.__bindings,h="",u=t.__mainControl;e(h,u,c);for(var p=0;p<s.length&&(h=s[p][0],u=s[p][1],void 0!==c.contexts&&void 0!==c.contexts[h]);p++)c=c.contexts[h],e(h,u,c);o(r)}var a=n.handleKey;this.registerBindings=function(t){console.log("Keyboard.registerBindings: definition=",t);for(var n=0;n<t.length;n++){var r=t[n];e(this,r)}this.stateChanged()},this.setDefaultHandler=function(e,n){var r=t(this,e);r.default=n},this.stateChanged=function(){this.__controls=this.__mainControl.getActiveControllers(),s(this)},this.enter=function(t,e){this.__controls.push([t,e]),s(this)},this.exit=function(t){for(var e=-1,n=this.__controls.length-1;n>=0;n--)if(this.__controls[n][0]===t){e=n;break}if(0>e)throw new Error("Unknown context: "+t,", expected one of: "+JSON.stringify(this.__contexts));this.__controls=this.__controls.slice(0,e),s(this)},this.set=function(t,e){n[t]=e}},r.prototype=new r.Prototype,e.exports=r},{"../lib/mousetrap":71}],73:[function(t,e){"use strict";function n(t,e,n){t.addEventListener?t.addEventListener(e,n,!1):t.attachEvent("on"+e,n)}function r(t,e,n){t.removeEventListener?t.removeEventListener(e,n,!1):t.detachEvent("on"+e,n)}function i(t){if("keypress"==t.type){var e=String.fromCharCode(t.which);return t.shiftKey||(e=e.toLowerCase()),e}return h[t.which]?h[t.which]:u[t.which]?u[t.which]:String.fromCharCode(t.which).toLowerCase()}function o(t,e){return t.sort().join(",")===e.sort().join(",")}function s(t){var e=[];return t.shiftKey&&e.push("shift"),t.altKey&&e.push("alt"),t.ctrlKey&&e.push("ctrl"),t.metaKey&&e.push("meta"),e}function a(t){return"shift"==t||"ctrl"==t||"alt"==t||"meta"==t}function c(t){return"+"===t?["+"]:t.split("+")}for(var h={8:"backspace",9:"tab",13:"enter",16:"shift",17:"ctrl",18:"alt",20:"capslock",27:"esc",32:"space",33:"pageup",34:"pagedown",35:"end",36:"home",37:"left",38:"up",39:"right",40:"down",45:"ins",46:"del",91:"meta",93:"meta",224:"meta"},u={106:"*",107:"+",109:"-",110:".",111:"/",186:";",187:"=",188:",",189:"-",190:".",191:"/",192:"`",219:"[",220:"\\",221:"]",222:"'"},p={"~":"`","!":"1","@":"2","#":"3",$:"4","%":"5","^":"6","&":"7","*":"8","(":"9",")":"0",_:"-","+":"=",":":";",'"':"'","<":",",">":".","?":"/","|":"\\"},l={option:"alt",command:"meta","return":"enter",escape:"esc",mod:/Mac|iPod|iPhone|iPad/.test(navigator.platform)?"meta":"ctrl"},d=1;20>d;++d)h[111+d]="f"+d;
-for(d=0;9>=d;++d)h[d+96]=d;var f=function(){this._REVERSE_MAP={},this._callbacks={},this._directMap={},this._sequenceLevels={},this._resetTimer=null,this._ignoreNextKeyup=!1,this._ignoreNextKeypress=!1,this._nextExpectedAction=!1,this._handler=this._handleKeyEvent.bind(this)};f.Prototype=function(){function t(t){t=t||{};var e,n=!1;for(e in this._sequenceLevels)t[e]?n=!0:this._sequenceLevels[e]=0;n||(this._nextExpectedAction=!1)}function e(t,e,n,r,i,s){var c,h,u=[],p=n.type;if(!this._callbacks[t])return[];for("keyup"==p&&a(t)&&(e=[t]),c=0;c<this._callbacks[t].length;++c)if(h=this._callbacks[t][c],(r||!h.seq||this._sequenceLevels[h.seq]==h.level)&&p==h.action&&("keypress"==p&&!n.metaKey&&!n.ctrlKey||o(e,h.modifiers))){var l=!r&&h.combo==i,d=r&&h.seq==r&&h.level==s;(l||d)&&this._callbacks[t].splice(c,1),u.push(h)}return u}function u(t,e,n){this.NOT_IN_EDITABLES&&this.stopCallback(e,e.target||e.srcElement,n)||t.call(this,e,n)===!1&&(e.preventDefault&&e.preventDefault(),e.stopPropagation&&e.stopPropagation(),e.returnValue=!1,e.cancelBubble=!0)}function d(t,e){var n,r,i,o=[];for(n=c(t),i=0;i<n.length;++i)r=n[i],l[r]&&(r=l[r]),e&&"keypress"!=e&&p[r]&&(r=p[r],o.push("shift")),a(r)&&o.push(r);return e=b.call(this,r,o,e),{key:r,modifiers:o,action:e}}function g(t,n,r,i,o){this._directMap[t+":"+r]=n,t=t.replace(/\s+/g," ");var s,a=t.split(" ");return a.length>1?(w.call(this,t,a,n,r),void 0):(s=d.call(this,t,r),this._callbacks[s.key]=this._callbacks[s.key]||[],e.call(this,s.key,s.modifiers,{type:s.action},i,t,o),this._callbacks[s.key][i?"unshift":"push"]({callback:n,modifiers:s.modifiers,action:s.action,seq:i,level:o,combo:t}),void 0)}function y(t,e,n){for(var r=0;r<t.length;++r)g.call(this,t[r],e,n)}function v(){clearTimeout(this._resetTimer),this._resetTimer=setTimeout(t.bind(this),1e3)}function m(){if(!this._REVERSE_MAP){this._REVERSE_MAP={};for(var t in h)t>95&&112>t||h.hasOwnProperty(t)&&(this._REVERSE_MAP[h[t]]=t)}return this._REVERSE_MAP}function b(t,e,n){return n||(n=m.call(this)[t]?"keydown":"keypress"),"keypress"==n&&e.length&&(n="keydown"),n}function w(e,n,r,o){function s(t){return function(){c._nextExpectedAction=t,++c._sequenceLevels[e],v.call(c)}}function a(n){u.call(this,r,n,e),"keyup"!==o&&(this._ignoreNextKeyup=i(n)),setTimeout(t.bind(this),10)}var c=this;this._sequenceLevels[e]=0;for(var h=0;h<n.length;++h){var p=h+1===n.length,l=p?a:s.call(this,o||d(n[h+1]).action);g.call(this,n[h],l,o,e,h)}}this.handleKey=function(n,r,i){var o,s=e.call(this,n,r,i),c={},h=0,p=!1;for(o=0;o<s.length;++o)s[o].seq&&(h=Math.max(h,s[o].level));for(o=0;o<s.length;++o)if(s[o].seq){if(s[o].level!=h)continue;p=!0,c[s[o].seq]=1,u.call(this,s[o].callback,i,s[o].combo)}else f.TRIGGER_PREFIX_COMBOS?u.call(this,s[o].callback,i,s[o].combo):p||u.call(this,s[o].callback,i,s[o].combo);var l="keypress"==i.type&&this._ignoreNextKeypress;return i.type!=this._nextExpectedAction||a(n)||l||t.call(this,c),this._ignoreNextKeypress=p&&"keydown"==i.type,s.length>0},this._handleKeyEvent=function(t){"number"!=typeof t.which&&(t.which=t.keyCode);var e=i(t);if(e)return"keyup"==t.type&&this._ignoreNextKeyup===e?(this._ignoreNextKeyup=!1,void 0):(this.handleKey(e,s(t),t),void 0)},this.bind=function(t,e,n){return t=t instanceof Array?t:[t],y.call(this,t,e,n),this},this.unbind=function(t,e){return this.bind(t,function(){},e)},this.trigger=function(t,e){return this._directMap[t+":"+e]&&this._directMap[t+":"+e].call(this,{},t),this},this.reset=function(){return this._callbacks={},this._directMap={},this},this.stopCallback=function(t,e){return(" "+e.className+" ").indexOf(" mousetrap ")>-1?!1:"INPUT"==e.tagName||"SELECT"==e.tagName||"TEXTAREA"==e.tagName||e.contentEditable&&"true"==e.contentEditable},this.connect=function(t){this._el=t,n(this._el,"keypress",this._handler),n(this._el,"keydown",this._handler),n(this._el,"keyup",this._handler)},this.disconnect=function(){r(this._el,"keypress",this._handler),r(this._el,"keydown",this._handler),r(this._el,"keyup",this._handler)},this.TRIGGER_PREFIX_COMBOS=!1,this.NOT_IN_EDITABLES=!1},f.prototype=new f.Prototype,e.exports=f},{}],74:[function(t,e){"use strict";var n={};n.VERSION="0.8.0",n.Graph=t("./src/graph"),e.exports=n},{"./src/graph":76}],75:[function(t,e){"use strict";var n=t("substance-chronicle"),r=t("substance-operator"),i=function(t){this.graph=t,this.graph.state="ROOT"};i.Prototype=function(){this.apply=function(t){this.graph.__apply__(t),this.graph.updated_at=new Date(t.timestamp)},this.invert=function(t){return r.ObjectOperation.fromJSON(t).invert()},this.transform=function(t,e,n){return r.ObjectOperation.transform(t,e,n)},this.reset=function(){this.graph.reset()},this.getState=function(){return this.graph.state},this.setState=function(t){this.graph.state=t}},i.Prototype.prototype=n.Versioned.prototype,i.prototype=new i.Prototype,e.exports=i},{"substance-chronicle":62,"substance-operator":138}],76:[function(t,e){"use strict";var n=t("underscore"),r=t("substance-util"),i=r.errors,o=t("./schema"),s=t("./property"),a=t("substance-chronicle"),c=t("substance-operator"),h=t("./persistence_adapter"),u=t("./chronicle_adapter"),p=t("./graph_index"),l=i.define("GraphError"),d=["object","array","string","number","boolean","date"],f=function(t){return n.isArray(t)&&(t=t[0]),d.indexOf(t)>=0},g=function(t,e){if(e=e||{},this.schema=new o(t),this.schema.id&&e.seed&&e.seed.schema&&!n.isEqual(e.seed.schema,[this.schema.id,this.schema.version]))throw new l(["Graph does not conform to schema. Expected: ",this.schema.id+"@"+this.schema.version," Actual: ",e.seed.schema[0]+"@"+e.seed.schema[1]].join(""));if(this.objectAdapter=new g.ObjectAdapter(this),this.nodes={},this.indexes={},this.__mode__=e.mode||g.DEFAULT_MODE,this.__seed__=e.seed,this.isVersioned=!!e.chronicle,this.isPersistent=!!e.store,this.isVersioned&&(this.chronicle=e.chronicle,this.chronicle.manage(new g.ChronicleAdapter(this))),this.isPersistent){var r=e.store.hash("nodes");this.__store__=e.store,this.__nodes__=r,this.isVersioned&&(this.__version__=e.store.hash("__version__")),this.objectAdapter=new h(this.objectAdapter,r)}e.load?this.load():this.init(),e.graph&&this.merge(e.graph)};g.Prototype=function(){var t=new g.Private;n.extend(this,r.Events),this.create=function(t){var e=c.ObjectOperation.Create([t.id],t);return this.apply(e)},this.delete=function(t){var e=this.get(t);if(void 0===e)throw new l("Could not resolve a node with id "+t);e.toJSON&&(e=e.toJSON());var n=c.ObjectOperation.Delete([t],e);return this.apply(n)},this.update=function(t,e){var r=this.resolve(t);if(!r)throw new l("Could not resolve property with path "+JSON.stringify(t));if(n.isArray(e))if("string"===r.baseType)e=c.TextOperation.fromSequence(r.get(),e);else{if("array"!==r.baseType)throw new l("There is no convenient notation supported for this type: "+r.baseType);e=c.ArrayOperation.create(r.get(),e)}if(e){var i=c.ObjectOperation.Update(t,e,r.baseType);return this.apply(i)}},this.set=function(t,e){var n=this.resolve(t);if(!n)throw new l("Could not resolve property with path "+JSON.stringify(t));var r=n.get(),i=c.ObjectOperation.Set(t,r,e);return this.apply(i)},this.__apply__=function(t){c.Helpers.each(t,function(t){t.apply(this.objectAdapter),this.updated_at=new Date,this._internalUpdates(t),n.each(this.indexes,function(e){e.onGraphChange(t)},this),this.trigger("operation:applied",t,this)},this)},this._internalUpdates=function(t){c.Helpers.each(t,function(t){n.each(this.indexes,function(e){e.onGraphChange(t)},this)},this)},this.apply=function(t){return this.__apply__(t),!this.__is_initializing__&&this.isVersioned&&(t.timestamp=new Date,this.chronicle.record(r.clone(t))),t},this.get=function(t){if(!n.isArray(t)&&!n.isString(t))throw new l("Invalid argument path. Must be String or Array");if(arguments.length>1&&(t=n.toArray(arguments)),n.isString(t))return this.nodes[t];var e=this.resolve(t);return e.get()},this.query=function(e){var n=this.resolve(e),r=n.type,i=n.baseType,o=n.get();return"array"===i?t.queryArray.call(this,o,r):f(i)?o:this.get(o)},this.toJSON=function(){return{id:this.id,schema:[this.schema.id,this.schema.version],nodes:r.deepclone(this.nodes)}},this.contains=function(t){return!!this.nodes[t]},this.resolve=function(t){return new s(this,t)},this.reset=function(){this.isPersistent&&this.__nodes__&&this.__nodes__.clear(),this.init(),this.isVersioned&&(this.state=a.ROOT),this.trigger("graph:reset")},this.init=function(){this.__is_initializing__=!0,this.nodes=this.__seed__?r.clone(this.__seed__.nodes):{},n.each(this.indexes,function(t){t.reset()}),this.isPersistent&&n.each(this.nodes,function(t,e){this.__nodes__.set(e,t)},this),delete this.__is_initializing__},this.merge=function(t){return n.each(t.nodes,function(t){this.create(t)},this),this},this.traverse=function(t){return n.map(this.getView(t),function(t){return this.get(t)},this)},this.load=function(){if(!this.isPersistent)return console.log("Graph is not persistent."),void 0;this.__is_initializing__=!0,this.nodes={},this.indexes={};for(var e=this.__nodes__.keys(),n=0;n<e.length;n++)t.create.call(this,this.__nodes__.get(e[n]));return this.isVersioned&&(this.state=this.__version__.get("state")||"ROOT"),delete this.__is_initializing__,this},this.cotransform=function(t,e){if("create"===e.type)t.create(e.val);else if("delete"===e.type)t.delete(e.val);else{var r,i=this.resolve(e.path),o=i.get();if(void 0===o)return;r="set"===e.type?e.original:e.diff.invert().apply(n.clone(o)),t.update(i.node,i.key,o,r)}},this.addIndex=function(t,e){if(this.indexes[t])throw new l("Index with name "+t+"already exists.");var n=new p(this,e);return this.indexes[t]=n,n},this.removeIndex=function(t){delete this.indexes[t]}},g.STRICT_INDEXING=2,g.DEFAULT_MODE=g.STRICT_INDEXING,g.Private=function(){var t=this;this.createNode=function(t,e){if(!e.id||!e.type)throw new l("Can not create Node: 'id' and 'type' are mandatory.");var i=t.type(e.type);if(!i)throw new l("Type '"+e.type+"' not found in the schema");var o=t.properties(e.type),s={type:e.type,id:e.id};return n.each(o,function(n,i){var o=t.propertyBaseType(e.type,i),a=void 0!==e[i]?e[i]:t.defaultValue(o);s[i]=r.deepclone(a)}),s},this.create=function(e){var n=t.createNode(this.schema,e);if(this.contains(n.id))throw new l("Node already exists: "+n.id);return this.nodes[n.id]=n,this.trigger("node:created",n),this},this.delete=function(t){delete this.nodes[t.id],this.trigger("node:deleted",t.id)},this.set=function(t,e){var n=this.resolve(t),i=r.deepclone(n.get());n.set(e),this.trigger("property:set",t,i,e)};var e=function(t,e){c.Helpers.each(e,function(e){this.trigger("property:updated",t,e,this)},this)};this.update=function(t,n,r){var i=this.resolve(t);i.set(n),e.call(this,t,r)},this.queryArray=function(e,r){if(!n.isArray(r))throw new l("Illegal argument: array types must be specified as ['array'(, 'array')*, <type>]");var i,o;if("array"===r[1])for(i=[],o=0;o<e.length;o++)i.push(t.queryArray.call(this,e[o],r.slice(1)));else if(f(r[1]))i=e;else for(i=[],o=0;o<e.length;o++)i.push(this.get(e[o]));return i}},g.prototype=new g.Prototype,g.ObjectAdapter=function(t){this.graph=t},g.ObjectAdapter.Prototype=function(){var t=new g.Private;this.get=function(t){var e=this.graph.resolve(t);return e.get()},this.create=function(e,n){t.create.call(this.graph,n)},this.set=function(e,n){t.set.call(this.graph,e,n)},this.update=function(e,n,r){t.update.call(this.graph,e,n,r)},this.delete=function(e,n){t.delete.call(this.graph,n)},this.inplace=function(){return!1}},g.ObjectAdapter.Prototype.prototype=c.ObjectOperation.Object.prototype,g.ObjectAdapter.prototype=new g.ObjectAdapter.Prototype,g.Schema=o,g.Property=s,g.PersistenceAdapter=h,g.ChronicleAdapter=u,g.Index=p,e.exports=g},{"./chronicle_adapter":75,"./graph_index":77,"./persistence_adapter":78,"./property":79,"./schema":80,"substance-chronicle":62,"substance-operator":138,"substance-util":154,underscore:159}],77:[function(t,e){var n=t("underscore"),r=t("substance-util"),i=function(t,e){e=e||{},this.graph=t,this.nodes={},this.scopes={},e.filter?this.filter=e.filter:e.types&&(this.filter=i.typeFilter(t.schema,e.types)),e.property&&(this.property=e.property),this.createIndex()};i.Prototype=function(){var t=function(t){var e=this;if(null!==t)for(var n=0;n<t.length;n++){var r=t[n];e.scopes[r]=e.scopes[r]||{nodes:{},scopes:{}},e=e.scopes[r]}return e},e=function(t){if(!this.property)return null;var e=t[this.property]?t[this.property]:null;return n.isString(e)&&(e=[e]),e},r=function(t){var e=n.extend({},t.nodes);return n.each(t.scopes,function(t,i){"nodes"!==i&&n.extend(e,r(t))}),e},i=function(e,n){var r=t.call(this,e);r.nodes[n.id]=n.id},o=function(e,n){var r=t.call(this,e);delete r.nodes[n.id]};this.onGraphChange=function(t){var r=this,s={create:function(t){if(!r.filter||r.filter(t)){var n=e.call(r,t);i.call(r,n,t)}},"delete":function(t){if(!r.filter||r.filter(t)){var n=e.call(r,t);o.call(r,n,t)}},update:function(t,e,s,a){if(r.property===e&&(!r.filter||r.filter(t))){var c=a;n.isString(c)&&(c=[c]),o.call(r,c,t),c=s,n.isString(c)&&(c=[c]),i.call(r,c,t)}}};this.graph.cotransform(s,t)},this.createIndex=function(){this.reset();var t=this.graph.nodes;n.each(t,function(t){if(!this.filter||this.filter(t)){var n=e.call(this,t);i.call(this,n,t)}},this)},this.get=function(e){0===arguments.length?e=null:n.isString(e)&&(e=[e]);var i,o=t.call(this,e);return i=r(o),n.each(i,function(t){i[t]=this.graph.get(t)},this),i},this.reset=function(){this.nodes={},this.scopes={}},this.dispose=function(){this.stopListening()}},i.prototype=n.extend(new i.Prototype,r.Events.Listener),i.typeFilter=function(t,e){return function(n){for(var r=t.typeChain(n.type),i=0;i<e.length;i++)if(r.indexOf(e[i])>=0)return!0;return!1}},e.exports=i},{"substance-util":154,underscore:159}],78:[function(t,e){"use strict";var n=t("substance-operator"),r=function(t,e){this.delegate=t,this.nodes=e};r.Prototype=function(){this.get=function(t){return this.delegate.get(t)},this.create=function(t,e){this.delegate.create(t,e),this.nodes.set(e.id,e)},this.set=function(t,e){this.delegate.set(t,e);var n=t[0],r=this.delegate.get([n]);this.nodes.set(n,r)},this.delete=function(t,e){this.delegate.delete(t,e),this.nodes.delete(e.id)},this.inplace=function(){return!1}},r.Prototype.prototype=n.ObjectOperation.Object.prototype,r.prototype=new r.Prototype,e.exports=r},{"substance-operator":138}],79:[function(t,e){"use strict";var n=t("underscore"),r=function(t,e){if(!e)throw new Error("Illegal argument: path is null/undefined.");this.graph=t,this.schema=t.schema,n.extend(this,this.resolve(e))};r.Prototype=function(){this.resolve=function(t){for(var e,n,r=this.graph,i=r,o="graph",s=0;s<t.length;s++)if("graph"===o||void 0!==this.schema.types[o]){if(i=this.graph.get(t[s]),void 0===i)return void 0;r=i,o=this.schema.properties(i.type),n=r,e=void 0}else{if(void 0===i)return void 0;e=t[s];var a=t[s];o=o[a],n=i[e],s<t.length-1&&(i=i[a])}return{node:r,parent:i,type:o,key:e,value:n}},this.get=function(){return void 0!==this.key?this.parent[this.key]:this.node},this.set=function(t){if(void 0===this.key)throw new Error("'set' is only supported for node properties.");this.parent[this.key]=this.schema.parseValue(this.baseType,t)}},r.prototype=new r.Prototype,Object.defineProperties(r.prototype,{baseType:{get:function(){return n.isArray(this.type)?this.type[0]:this.type}},path:{get:function(){return[this.node.id,this.key]}}}),e.exports=r},{underscore:159}],80:[function(t,e){"use strict";var n=t("underscore"),r=t("substance-util"),i=function(t){n.extend(this,t)};i.Prototype=function(){this.defaultValue=function(t){return"object"===t?{}:"array"===t?[]:"string"===t?"":"number"===t?0:"boolean"===t?!1:"date"===t?new Date:null},this.parseValue=function(t,e){if(null===e)return e;if(n.isString(e)){if("object"===t)return JSON.parse(e);if("array"===t)return JSON.parse(e);if("string"===t)return e;if("number"===t)return parseInt(e,10);if("boolean"===t){if("true"===e)return!0;if("false"===e)return!1;throw new Error("Can not parse boolean value from: "+e)}return"date"===t?new Date(e):e}if("array"===t){if(!n.isArray(e))throw new Error("Illegal value type: expected array.");e=r.deepclone(e)}else if("string"===t){if(!n.isString(e))throw new Error("Illegal value type: expected string.")}else if("object"===t){if(!n.isObject(e))throw new Error("Illegal value type: expected object.");e=r.deepclone(e)}else if("number"===t){if(!n.isNumber(e))throw new Error("Illegal value type: expected number.")}else if("boolean"===t){if(!n.isBoolean(e))throw new Error("Illegal value type: expected boolean.")}else{if("date"!==t)throw new Error("Unsupported value type: "+t);e=new Date(e)}return e},this.type=function(t){return this.types[t]},this.typeChain=function(t){var e=this.types[t];if(!e)throw new Error("Type "+t+" not found in schema");var n=e.parent?this.typeChain(e.parent):[];return n.push(t),n},this.isInstanceOf=function(t,e){var n=this.typeChain(t);return n&&n.indexOf(e)>=0?!0:!1},this.baseType=function(t){return this.typeChain(t)[0]},this.properties=function(t){t=n.isObject(t)?t:this.type(t);var e=t.parent?this.properties(t.parent):{};return n.extend(e,t.properties),e},this.propertyType=function(t,e){var r=this.properties(t),i=r[e];if(!i)throw new Error("Property not found for"+t+"."+e);return n.isArray(i)?i:[i]},this.propertyBaseType=function(t,e){return this.propertyType(t,e)[0]}},i.prototype=new i.Prototype,e.exports=i},{"substance-util":154,underscore:159}],81:[function(t,e){"use strict";t("underscore");var n=t("./src/document");n.Annotator=t("./src/annotator"),n.Container=t("./src/container"),n.Cursor=t("./src/cursor"),n.Selection=t("./src/selection"),n.Controller=t("./src/controller"),n.Node=t("./src/node"),n.Composite=t("./src/composite"),n.TextNode=t("./src/text_node"),n.Writer=t("./src/controller"),e.exports=n},{"./src/annotator":82,"./src/composite":84,"./src/container":85,"./src/controller":86,"./src/cursor":87,"./src/document":88,"./src/node":89,"./src/selection":90,"./src/text_node":91,underscore:159}],82:[function(t,e){"use strict";var n=t("underscore"),r=t("substance-util");t("substance-data");var i=t("./document");t("./selection");var o=i.DocumentError,s=t("substance-operator"),a=function(t,e){e=e||{},this.document=t,this.document.on("operation:applied",this.handleOperation,this),this.group={emphasis:"style",strong:"style",link:"style",question:"marker",idea:"marker",error:"marker"},this.expansion={emphasis:{left:a.isOnNodeStart},strong:{left:a.isOnNodeStart}},this.splittable=["emphasis","strong"],this._index=a.createIndex(t),this.withTransformation=e.withTransformation};a.Prototype=function(){var t=function(t,e){for(var n=e.getNodes(),r={},i=0;i<n.length;i++){var o=n[i],s=[0,null];0===i&&(s[0]=e.startChar()),i===n.length-1&&(s[1]=e.endChar()),r[o.id]=s}return r},e=function(t,e,i,o,s){var a={id:r.uuid(),type:i,path:e,range:o};return s&&n.extend(a,s),t.create(a)},i=function(t,e){t.document.delete(e.id)},a=function(t,e,n){t.document.apply(s.ObjectOperation.Set([e.id,"range"],e.range,n))},c=function(t,e,r){var i=this._index.get(e);if(r){var o=r[0],s=r[1],a={};n.each(i,function(t){var e=t.range[0],n=t.range[1],r=n>=o;s&&(r&=s>=e),r&&(a[t.id]=t)}),i=a}return i},h=function(t,n,r){var o,s=n.range[0],c=r[0],h=n.range[1],u=r[1];if(s>=c&&u>=h)i(t,n);else if(s>=c&&h>u)o=[u,h],a(t,n,o);else if(c>s&&u>=h)o=[s,c],a(t,n,o);else if(t.isSplittable(n.type)){o=[s,c],a(t,n,o);var p=[u,h];e(t,n.path,n.type,p)}else i(t,n)};this.handleOperation=function(t){var e,r,o;if("delete"===t.type||"create"===t.type)e=this.document.schema.typeChain(t.val.type),e.indexOf("annotation")>=0?(o=t.val,this.triggerLater("annotation:changed",t.type,o)):"delete"===t.type&&(r=this._index.get(t.path),n.each(r,function(t){i(this,t)},this));else if("update"===t.type||"set"===t.type){var s=this.document.get(t.path[0]);if(void 0===s)return;if(e=this.document.schema.typeChain(s.type),e.indexOf("annotation")>=0){if("range"!==t.path[1])return;this.triggerLater("annotation:changed","update",s)}else this.withTransformation&&this.transform(t)}},this.create=function(t){return this.document.create(t),t};var u=function(t,e){if(n.isEqual(e.path,t.path))if("update"===t.type){var o=!1,a=!1,c=this.expansion[e.type];c&&(c.left&&(o=c.left(e)),c.right&&(a=c.right(e)));var h=r.clone(e.range),u=s.TextOperation.Range.transform(h,t.diff,o,a);u&&(h[0]===h[1]?i(this,e):this.document.set([e.id,"range"],h))}else("delete"===t.type||"set"===t.type)&&i(this,e)};this.transform=function(t){var e=this._index.get(t.path);n.each(e,function(e){u.call(this,t,e)},this)},this.paste=function(t,e,r){for(var i=0;i<t.length;i++){var o=t[i];void 0!==e&&(o.path=n.clone(o.path),o.path[0]=e),void 0!==r&&(o.range[0]+=r,o.range[1]+=r),this.create(o)}},this.copy=function(e){var i=t(this,e),o=this.getAnnotations({selection:e}),s=[];return n.each(o,function(t){var e,n=i[t.path[0]],o=n[0]>t.range[0]||n[1]<t.range[1];o?this.isSplittable(t.type)&&(e=r.clone(t),e.id=r.uuid(),e.range=[Math.max(0,t.range[0]-n[0]),t.range[1]-n[0]],s.push(e)):(e=r.clone(t),e.id=r.uuid(),e.range=[e.range[0]-n[0],e.range[1]-n[0]],s.push(e))},this),s},this.getAnnotations=function(t){t=t||{},t.view||(t.view="content");var e=this.document,r={};if(t.node)r=c.call(this,t.view,t.node,t.range);else if(t.selection)for(var i=t.selection,o=i.getRanges(),s=0;s<o.length;s++){var a=o[s];n.extend(r,c.call(this,t.view,a.node.id,[a.start,a.end]))}else n.each(e.nodes,function(t){var n=e.schema.baseType(t.type);"annotation"===n&&(r[t.id]=t)});if(t.filter){var h={};n.each(r,function(e){t.filter(e)&&(h[e.id]=e)}),r=h}return r},this.isExclusive=function(t,e){return this.group[t]===this.group[e]},this.isSplittable=function(t){return this.splittable.indexOf(t)>=0},this.annotate=function(t,r,s){var a=t.range(),c=t.cursor.node;if(a.start[0]!==a.end[0])throw new o("Multi-node annotations are not supported.");var u=[a.start[1],a.end[1]],p=this.getAnnotations({node:c.id,range:u});if(t.isCollapsed())n.each(p,function(t){t.type===r&&i(this,t)},this);else{var l=!1;if(n.each(p,function(t){this.isExclusive(r,t.type)&&(h(this,t,u),r===t.type&&(l=!0))},this),!l)return e(this,[c.id,"content"],r,u,s)}}},a.Prototype.prototype=r.Events,a.prototype=new a.Prototype,a.isOnNodeStart=function(t){return 0===t.range[0]},a.isTrue=function(){return!0},a.createIndex=function(t){if(void 0===t.indexes.annotations){var e={types:["annotation"],property:"path"},n=t.addIndex("annotations",e);n.ENABLE_LOGGING=!0,t.indexes.annotations=n}return t.indexes.annotations};var c={idea:1,question:1,error:1,link:1,strong:2,emphasis:2,code:2,subscript:2,superscript:2,underline:2,cross_reference:1,figure_reference:1,person_reference:1,citation_reference:1},h=1,u=-1,p=function(t){this.levels=t.levels||c};p.Prototype=function(){var t=function(t,e){if(t.pos<e.pos)return-1;if(t.pos>e.pos)return 1;if(t.mode<e.mode)return-1;if(t.mode>e.mode)return 1;if(t.mode===h){if(t.level<e.level)return-1;if(t.level>e.level)return 1}if(t.mode===u){if(t.level>e.level)return-1;if(t.level<e.level)return 1}return 0},e=function(t){var e=[];return n.each(t,function(t){var n=this.levels[t.type];void 0!==n&&(e.push({pos:t.range[0],mode:h,level:n,id:t.id,type:t.type}),e.push({pos:t.range[1],mode:u,level:n,id:t.id,type:t.type}))},this),e};this.onText=function(){},this.onEnter=function(){return null},this.enter=function(t,e){return this.onEnter(t,e)},this.createText=function(t,e){this.onText(t,e)},this.start=function(n,r,i){var o=e.call(this,i);o.sort(t.bind(this));for(var s=[{context:n,entry:null}],a=0,c=0;c<o.length;c++){var p=o[c];this.createText(s[s.length-1].context,r.substring(a,p.pos)),a=p.pos;var l,d=1;if(p.mode===h){for(;d<s.length&&!(p.level<s[d].entry.level);d++);s.splice(d,0,{entry:p})}else if(p.mode===u){for(;d<s.length&&s[d].entry.id!==p.id;d++);s.splice(d,1)}for(l=d;l<s.length;l++)s[l].context=this.enter(s[l].entry,s[l-1].context)}this.createText(n,r.substring(a))}},p.prototype=new p.Prototype,a.Fragmenter=p,e.exports=a},{"./document":88,"./selection":90,"substance-data":74,"substance-operator":138,"substance-util":154,underscore:159}],83:[function(t,e){"use strict";t("underscore");var n=t("substance-util"),r=function(){};r.Prototype=function(){this.setContent=function(t){this.content=t},this.getContent=function(){return this.content}},r.Prototype.prototype=n.Events,r.prototype=new r.Prototype,e.exports=r},{"substance-util":154,underscore:159}],84:[function(t,e){var n=t("./node"),r=function(t,e){n.call(this,t,e)};r.type={id:"composite",parent:"content",properties:{}},r.description={name:"Composite",remarks:["A file reference to an external resource."],properties:{}},r.example={no_example:"yet"},r.Prototype=function(){this.getLength=function(){throw new Error("Composite.getLength() is abstract.")},this.getNodes=function(){throw new Error("Composite.getNodes() is abstract.")},this.isMutable=function(){return!1},this.insertOperation=function(){return null},this.deleteOperation=function(){return null},this.insertChild=function(){throw new Error("This composite is immutable.")},this.deleteChild=function(){throw new Error("This composite is immutable.")},this.getChangePosition=function(){return 0}},r.Prototype.prototype=n.prototype,r.prototype=new r.Prototype,e.exports=r},{"./node":89}],85:[function(t,e){"use strict";var n=t("underscore"),r=t("substance-util"),i=t("./composite"),o=function(t,e){this.document=t,this.view=e,this.treeView=[],this.listView=[],this.__parents={},this.__composites={},this.rebuild()};o.Prototype=function(){var t=function(t,e){var n,r=[];for(n=this.treeView.length-1;n>=0;n--)r.unshift({id:this.treeView[n],parent:null});for(var o,s;r.length>0;){if(o=r.shift(),s=this.document.get(o.id),s instanceof i){var a=s.getNodes();for(n=a.length-1;n>=0;n--)r.unshift({id:a[n],parent:s.id})}t.call(e,s,o.parent)}};this.rebuild=function(){this.treeView.splice(0,this.treeView.length),this.listView.splice(0,this.listView.length),this.treeView=n.clone(this.view.nodes);for(var e=0;e<this.view.length;e++)this.treeView.push(this.view[e]);this.__parents={},this.__composites={},t.call(this,function(t,e){if(t instanceof i)this.__parents[t.id]=e,this.__composites[e]=e;else{if(this.listView.push(t.id),this.__parents[t.id])throw new Error("Nodes must be unique in one view.");this.__parents[t.id]=e,this.__composites[e]=e}},this)},this.getTopLevelNodes=function(){return n.map(this.treeView,function(t){return this.document.get(t)},this)},this.getNodes=function(t){var e=this.listView;if(t)return n.clone(e);for(var r=[],i=0;i<e.length;i++)r.push(this.document.get(e[i]));return r},this.getPosition=function(t){var e=this.listView;return e.indexOf(t)},this.getNodeFromPosition=function(t){var e=this.listView,n=e[t];return void 0!==n?this.document.get(n):null},this.getParent=function(t){return this.__parents[t]},this.getRoot=function(t){for(var e=t;e;)t=e,e=this.getParent(t);return t},this.update=function(t){var e=t.path,n=e[0]===this.view.id||void 0!==this.__composites[e[0]];n&&this.rebuild()},this.getLength=function(){return this.listView.length},this.hasSuccessor=function(t){var e=this.getLength();return e-1>t},this.hasPredecessor=function(t){return t>0},this.getPredecessor=function(t){var e=this.getPosition(t);return 0>=e?null:this.getNodeFromPosition(e-1)},this.getSuccessor=function(t){var e=this.getPosition(t);return e>=this.getLength()-1?null:this.getNodeFromPosition(e+1)},this.firstChild=function(t){if(t instanceof i){var e=this.document.get(t.getNodes()[0]);return this.firstChild(e)}return t},this.lastChild=function(t){if(t instanceof i){var e=this.document.get(n.last(t.getNodes()));return this.lastChild(e)}return t},this.before=function(t){var e=this.firstChild(t),n=this.getPosition(e.id);return[n,0]},this.after=function(t){var e=this.lastChild(t),n=this.getPosition(e.id),r=e.getLength();return[n,r]}},o.prototype=n.extend(new o.Prototype,r.Events.Listener),Object.defineProperties(o.prototype,{id:{get:function(){return this.view.id}},type:{get:function(){return this.view.type}},nodes:{get:function(){return this.view.nodes},set:function(t){this.view.nodes=t}}}),e.exports=o},{"./composite":84,"substance-util":154,underscore:159}],86:[function(t,e){"use strict";var n=t("underscore"),r=t("substance-util"),i=t("substance-operator"),o=t("./selection"),s=t("./annotator"),a=t("./clipboard"),c=t("./composite"),h=function(t,e){e=e||{},this.view=e.view||"content",this.__document=t,this.chronicle=t.chronicle,this.annotator=new s(t),this.container=t.get(this.view),this.selection=new o(this.container),this.clipboard=new a};h.Prototype=function(){this.getNodes=function(t){return this.container.getNodes(t)},this.getContainer=function(){return this.container},this.getPosition=function(t,e){return this.container.getPosition(t,e)},this.getNodeFromPosition=function(t){return this.container.getNodeFromPosition(t)},this.getAnnotations=function(t){return t=t||{},t.view=this.view,this.annotator.getAnnotations(t)},this.delete=function(t){var e=this.startManipulation(),n=e.sel,r=n.container;if(!n.isNull())if(n.isCollapsed()&&n.expand(t,"char"),e.deleteSelection(),e.save(),0===r.getLength())this.selection.clear();else{var i=r.listView.length;if(n.cursor.nodePos>=i){var o=r.getNodeFromPosition(i-1).getLength();this.selection.set([i-1,o])}else n.collapse("left"),this.selection.set(n)}},this.copy=function(){console.log("I am sorry. Currently disabled.")},this.cut=function(){this.copy(),this.delete()},this.paste=function(){console.log("I am sorry. Currently disabled.")},this.modifyNode=function(){this.breakNode()},this.breakNode=function(){if(this.selection.isNull())return console.log("Can not write, as no position has been selected."),void 0;var t=this.startManipulation(),e=t.doc,n=t.sel,r=n.container;n.isCollapsed()||t.deleteSelection();var i=n.getNodes()[0];n.start[0];var o=n.start[1];if(i.isBreakable()){var s,a=r.getParent(i.id);if(a){var c=e.get(a);c.isBreakable()?(c.getNodes(),s=c.break(e,i.id,o)):console.log("Node type '"+c.type+"' is not splittable.")}else{s=i.break(e,o);var h=r.treeView.indexOf(i.id)+1;e.show(this.view,s.id,h)}}if(s){var u=r.before(s);n.set(u)}t.save(),this.selection.set(n)},this.insertNode=function(t,e){console.log("I am sorry. Currently disabled.",t,e)},this.annotate=function(t,e){return this.annotator.annotate(this.selection,t,e)},this.startManipulation=function(){var t=this.__document.startSimulation();new s(t,{withTransformation:!0});var e=new o(t.get(this.view),this.selection);return new h.ManipulationSession(t,e)},this.write=function(t){if(this.selection.isNull())return console.log("Can not write, as no position has been selected."),void 0;var e=this.startManipulation(),n=e.doc,r=e.sel;r.isCollapsed()||e.deleteSelection();var i=r.getNodes()[0],o=r.start[0],s=r.start[1],a=i.insertOperation(s,t);a&&n.apply(a),e.save(),this.selection.set([o,s+t.length])},this.get=function(){return this.__document.get.apply(this.__document,arguments)},this.on=function(){return this.__document.on.apply(this.__document,arguments)},this.off=function(){return this.__document.off.apply(this.__document,arguments)};var t=function(t){function e(t){if("update"===t.type||"set"===t.type){var e=n.get(t.path[0]);if(!e)return console.log("Hmmm... this.should not happen, though."),void 0;var i=-1,o=-1;return e instanceof c||e.getChangePosition&&(i=r.getPosition(e.id),o=e.getChangePosition(t)),i>=0&&o>=0?[i,o]:void 0}}if(t){this.view;var n=this.__document,r=this.container;i.Helpers.each(t,function(t){var n=e(t);return n?(this.selection.set(n),!1):void 0},this,"reverse")}};this.undo=function(){var e=this.chronicle.rewind();t.call(this,e)},this.redo=function(){var e=this.chronicle.forward();t.call(this,e)}},h.prototype=n.extend(new h.Prototype,r.Events.Listener),Object.defineProperties(h.prototype,{id:{get:function(){return this.__document.id},set:function(){throw"immutable property"}},nodeTypes:{get:function(){return this.__document.nodeTypes},set:function(){throw"immutable property"}},title:{get:function(){return this.__document.get("document").title},set:function(){throw"immutable property"
-}},updated_at:{get:function(){return this.__document.get("document").updated_at},set:function(){throw"immutable property"}},creator:{get:function(){return this.__document.get("document").creator},set:function(){throw"immutable property"}}});var u=function(t,e){this.doc=t,this.sel=e,this.container=e.container,this.viewId=this.container.view.id};u.Prototype=function(){this.save=function(){this.doc.save()},this.join=function(t,e){var n=this.doc,r=this.container,i=n.get(t),o=n.get(e),s=r.getParent(t),a=r.getParent(e),c=s?n.get(s):null;if(!i.canJoin(o)||c&&!c.isMutable())return!1;i.join(n,o),this.deleteNode(o.id);var h=a?n.get(a):null;if(c&&h&&c.id!==h.id&&c.canJoin(h)&&r.getParent(s)!==a){var u=c.getNodes(),p=h.getNodes(),l=u.indexOf(t)+1;if(l===u.length){this.deleteNode(h.id);for(var d=0;d<p.length;d++)c.insertChild(n,l+d,p[d])}}return!0},this.deleteNode=function(t){var e=this.doc,n=this.container.getParent(t),r=n?e.get(n):null;n?(r.deleteChild(e,t),0===r.getLength()&&this.deleteNode(r.id)):(e.hide(this.viewId,t),e.delete(t))},this.deleteSelection=function(){function t(t){var e=n.clone(t.getNodes());for(r.deleteNode(t.id);e.length>0;){var o=e.shift();i.delete(o),p[o]=!0}p[t.id]=!0}function e(n){if(void 0===p[n.id]){var r=s.firstChild(n),o=u[r.id],a=s.lastChild(n),c=u[a.id];if(o&&c&&o.isFull()&&c.isFull()){var h=s.getParent(n.id);h&&e(i.get(h)),p[h]||t(n)}else p[n.id]=!1}return p[n.id]}var r=this,i=this.doc,o=this.sel,s=o.container,a=o.getRanges(),c=a.length>1&&!a[0].isFull()&&!n.last(a).isFull(),h=0,u={};for(h=0;h<a.length;h++)u[a[h].node.id]=a[h];var p={};for(h=0;h<a.length;h++){var l=a[h],d=l.node;if(!p[d.id])if(l.isFull()){var f=s.getParent(d.id);if(f&&e(i.get(f)),!p[f])if(0===l.node.getLength())this.deleteNode(d.id);else{var g=l.node.deleteOperation(l.start,l.end);g&&!g.isNOP()&&i.apply(g),h>0&&this.deleteNode(d.id)}}else{var g=l.node.deleteOperation(l.start,l.end);g&&!g.isNOP()&&i.apply(g)}}c&&this.join(a[0].node.id,a[a.length-1].node.id)}},u.prototype=new u.Prototype,h.ManipulationSession=u,e.exports=h},{"./annotator":82,"./clipboard":83,"./composite":84,"./selection":90,"substance-operator":138,"substance-util":154,underscore:159}],87:[function(t,e){var n=t("underscore");t("substance-regexp");var r=t("substance-util"),i=r.errors,o=i.define("CursorError"),s=function(t,e,r,i){if(this.container=t,this.view=i||"content",this.nodePos=e,this.charPos=r,null!==e&&!n.isNumber(e))throw new o("Illegal argument: expected nodePos as number");if(null!==r&&!n.isNumber(r))throw new o("Illegal argument: expected charPos as number")};s.Prototype=function(){this.copy=function(){return new s(this.container,this.nodePos,this.charPos,this.view)},this.isValid=function(){if(null===this.nodePos||null===this.charPos)return!1;if(this.nodePos<0||this.charPos<0)return!1;var t=this.container.getNodeFromPosition(this.nodePos);return t?this.charPos>=t.getLength()?!1:!0:!1},this.isRightBound=function(){return this.charPos===this.node.getLength()},this.isLeftBound=function(){return 0===this.charPos},this.isEndOfDocument=function(){return this.isRightBound()&&this.nodePos===this.container.getLength()-1},this.isBeginOfDocument=function(){return this.isLeftBound()&&0===this.nodePos},this.prevNode=function(){this.isLeftBound()?this.nodePos>0&&(this.nodePos-=1,this.charPos=this.node.length):this.charPos=0},this.nextNode=function(){this.isRightBound()?this.nodePos<this.container.getLength()-1&&(this.nodePos+=1,this.charPos=0):this.charPos=this.node.length},this.prevWord=function(){if(!this.node)throw new o("Invalid node position");if(this.isLeftBound())this.prevChar();else{if(!this.node.prevWord)return this.prevChar();this.charPos=this.node.prevWord(this.charPos)}},this.nextWord=function(){if(!this.node)throw new o("Invalid node position");this.isRightBound()?this.nextChar():this.node.nextWord?this.charPos=this.node.nextWord(this.charPos):this.nextChar()},this.nextChar=function(){if(!this.node)throw new o("Invalid node position");this.isRightBound()?this.nodePos<this.container.getLength()-1&&(this.nodePos+=1,this.charPos=0):this.charPos+=1},this.prevChar=function(){if(!this.node)throw new o("Invalid node position");if(this.charPos<0)throw new o("Invalid char position");this.isLeftBound()?this.nodePos>0&&(this.nodePos-=1,this.charPos=this.node.getLength()):this.charPos-=1},this.move=function(t,e){"left"===t?"word"===e?this.prevWord():"char"===e?this.prevChar():"node"===e&&this.prevNode():"word"===e?this.nextWord():"char"===e?this.nextChar():"node"===e&&this.nextNode()},this.set=function(t,e){if(this.nodePos=t,this.charPos=e,null!==t&&!n.isNumber(t))throw new o("Illegal argument: expected nodePos as number");if(null!==e&&!n.isNumber(e))throw new o("Illegal argument: expected charPos as number");if(null!==t){if(!n.isNumber(t))throw new o("Illegal argument: expected nodePos as number");var r=this.container.getLength();if(0>t||t>=r)throw new o("Invalid node position: "+t);var i=this.container.getNodeFromPosition(t),s=i.getLength();if(0>e||e>s)throw new o("Invalid char position: "+e)}},this.position=function(){return[this.nodePos,this.charPos]}},s.prototype=new s.Prototype,Object.defineProperties(s.prototype,{node:{get:function(){return this.container.getNodeFromPosition(this.nodePos)}}}),e.exports=s},{"substance-regexp":148,"substance-util":154,underscore:159}],88:[function(t,e){"use strict";var n=t("underscore"),r=t("substance-util"),i=r.errors,o=t("substance-data"),s=t("substance-operator");t("substance-chronicle");var a=t("./container"),c=i.define("DocumentError"),h=function(t){o.Graph.call(this,t.schema,t),this.containers={}};h.schema={indexes:{},types:{content:{properties:{}},view:{properties:{nodes:["array","content"]}}}},h.Prototype=function(){var t=r.prototype(this);this.__apply__=function(e){var r=t.__apply__.call(this,e,"silent");return s.Helpers.each(e,function(t){("set"===t.type||"update"===t.type)&&n.each(this.containers,function(e){e.update(t)},this)},this),r},this.getIndex=function(t){return this.indexes[t]},this.getSchema=function(){return this.schema},this.create=function(e){return t.create.call(this,e),this.get(e.id)},this.get=function(e){var n=t.get.call(this,e);if(!n)return n;if("view"===n.type)return this.containers[n.id]||(this.containers[n.id]=new a(this,n)),this.containers[n.id];var r=this.nodeTypes[n.type],i=void 0!==r?r.Model:null;return!i||n instanceof i||(n=new i(n,this),this.nodes[n.id]=n),n},this.toJSON=function(){var e=t.toJSON.call(this);return e.id=this.id,e},this.hide=function(t,e){var r=this.get(t);if(!r)throw new c("Invalid view id: "+t);n.isString(e)&&(e=[e]);var i=[];if(n.each(e,function(t){var e=r.nodes.indexOf(t);e>=0&&i.push(e)},this),0!==i.length){i=i.sort().reverse(),i=n.uniq(i);var o=n.map(i,function(t){return s.ArrayOperation.Delete(t,r.nodes[t])}),a=s.ObjectOperation.Update([t,"nodes"],s.ArrayOperation.Compound(o));return this.apply(a)}},this.show=function(t,e,r){void 0===r&&(r=-1);var i=this.get(t);if(!i)throw new c("Invalid view id: "+t);n.isString(e)&&(e=[e]);var o=i.nodes.length;r=Math.min(r,o),0>r&&(r=Math.max(0,o+r+1));for(var a=[],h=0;h<e.length;h++){var u=e[h];if(void 0===this.nodes[u])throw new c("Invalid node id: "+u);a.push(s.ArrayOperation.Insert(r+h,u))}if(a.length>0){var p=s.ObjectOperation.Update([t,"nodes"],s.ArrayOperation.Compound(a));return this.apply(p)}},this.startSimulation=function(){var t=this,e=this.fromSnapshot(this.toJSON()),n=[];e.ops=n;var r=e.apply;return e.apply=function(t){return n.push(t),t=r.call(e,t)},e.save=function(){for(var e=[],r=0;r<n.length;r++)"compound"!==n[r].type?e.push(n[r]):e=e.concat(n[r].ops);if(0!==e.length){var i=s.ObjectOperation.Compound(e);t.apply(i)}},e},this.fromSnapshot=function(t,e){return h.fromSnapshot(t,e)},this.uuid=function(t){return t+"_"+r.uuid()}},h.Prototype.prototype=o.Graph.prototype,h.prototype=new h.Prototype,h.fromSnapshot=function(t,e){return e=e||{},e.seed=t,new h(e)},h.DocumentError=c,e.exports=h},{"./container":85,"substance-chronicle":62,"substance-data":74,"substance-operator":138,"substance-util":154,underscore:159}],89:[function(t,e){"use strict";var n=t("underscore"),r=function(t,e){this.document=e,this.properties=t};r.type={parent:"content",properties:{}},r.properties={"abstract":!0,immutable:!0,mergeableWith:[],preventEmpty:!0,allowedAnnotations:[]},r.Prototype=function(){this.toJSON=function(){return n.clone(this.properties)},this.getLength=function(){throw new Error("Node.getLength() is abstract.")},this.getChangePosition=function(){throw new Error("Node.getCharPosition() is abstract.")},this.insertOperation=function(){throw new Error("Node.insertOperation() is abstract.")},this.deleteOperation=function(){throw new Error("Node.deleteOperation() is abstract.")},this.canJoin=function(){return!1},this.join=function(){throw new Error("Node.join() is abstract.")},this.isBreakable=function(){return!1},this.break=function(){throw new Error("Node.split() is abstract.")},this.getAnnotations=function(){return this.document.getIndex("annotations").get(this.properties.id)}},r.prototype=new r.Prototype,r.prototype.constructor=r,r.defineProperties=function(t,e,r){n.each(e,function(e){var n={get:function(){return this.properties[e]}};r||(n.set=function(t){return this.properties[e]=t,this}),Object.defineProperty(t,e,n)})},r.defineProperties(r.prototype,["id","type"]),e.exports=r},{underscore:159}],90:[function(t,e){"use strict";var n=t("underscore"),r=t("substance-util"),i=r.errors,o=t("./cursor"),s=i.define("SelectionError"),a=function(t,e){this.container=t,this.start=null,this.__cursor=new o(t,null,null),e&&this.set(e)};a.Prototype=function(){this.__node=function(t){return this.container.getNodeFromPosition(t)},this.copy=function(){var t=new a(this.container);return this.isNull()||t.set(this),t},this.set=function(t){var e=this.__cursor;t instanceof a?(this.start=n.clone(t.start),e.set(t.__cursor.nodePos,t.__cursor.charPos)):n.isArray(t)?(this.start=n.clone(t),e.set(t[0],t[1])):(this.start=n.clone(t.start),e.set(t.end[0],t.end[1]));var r=this.start,i=this.container.getLength();if(r[0]<0||r[0]>=i)throw new s("Invalid node position: "+r[0]);var o=this.__node(r[0]).getLength();if(r[1]<0||r[1]>o)throw new s("Invalid char position: "+r[1]);return this.trigger("selection:changed",this.range()),this},this.clear=function(){this.start=null,this.__cursor.set(null,null),this.trigger("selection:changed",null)},this.range=function(){if(this.isNull())return null;var t=this.start,e=this.__cursor.position();return this.isReverse()?{start:e,end:t}:{start:t,end:e}},this.isReverse=function(){var t=this.__cursor;return t.nodePos<this.start[0]||t.nodePos===this.start[0]&&t.charPos<this.start[1]},this.setCursor=function(t){return this.__cursor.set(t[0],t[1]),this.start=t,this},this.getCursor=function(){return this.__cursor.copy()},this.getCursorPosition=function(){return[this.__cursor.nodePos,this.__cursor.charPos]},this.selectNode=function(t){var e=this.container.getPosition(t);if(0>e)throw new s("Node is not visible: "+t);var n=this.container.getNodeFromPosition(e);this.set({start:[e,0],end:[e,n.getLength()]})},this.getPredecessor=function(){var t=this.isReverse()?this.__cursor.nodePos:this.start[0];return 0===t?null:this.__node(t-1)},this.getSuccessor=function(){var t=this.isReverse()?this.start[0]:this.__cursor.nodePos;return this.__node(t+1)},this.hasPredecessor=function(t){return t>0},this.hasSuccessor=function(t){var e=this.container.getLength();return e-1>t},this.collapse=function(t){if("right"!==t&&"left"!==t&&"start"!==t&&"cursor"!==t)throw new s("Invalid direction: "+t);if(!this.isCollapsed()&&!this.isNull()){if("start"===t)this.__cursor.set(this.start[0],this.start[1]);else if("cursor"===t)this.start[0]=this.__cursor.nodePos,this.start[1]=this.__cursor.charPos;else{var e=this.range();this.isReverse()?"left"===t?this.start=e.start:this.__cursor.set(e.end[0],e.end[1]):"left"===t?this.__cursor.set(e.start[0],e.start[1]):this.start=e.end}this.trigger("selection:changed",this.range())}},this.move=function(t,e){this.isCollapsed()||"char"!==e?(this.__cursor.move(t,e),this.start=this.__cursor.position()):this.collapse(t),this.trigger("selection:changed",this.range())},this.expand=function(t,e){this.__cursor.move(t,e),this.trigger("selection:changed",this.range())},this.toJSON=function(){return this.range()},this.getNodes=function(){var t=this.container.getNodes();if(this.isNull())return[];var e=this.range();return t.slice(e.start[0],e.end[0]+1)},this.getRanges=function(){for(var t=[],e=this.range(),r=e.start[0];r<=e.end[0];r++){var i=0,o=null;if(r===e.start[0]&&(i=e.start[1]),r===e.end[0]&&(o=e.end[1]),!n.isNumber(o)){var s=this.__node(r);o=s.getLength()}t.push(new a.Range(this,r,i,o))}return t},this.startNode=function(){return this.isReverse()?this.__cursor.nodePos:this.start[0]},this.endNode=function(){return this.isReverse()?this.start[0]:this.__cursor.nodePos},this.startChar=function(){return this.isReverse()?this.__cursor.charPos:this.start[1]},this.endChar=function(){return this.isReverse()?this.start[1]:this.__cursor.charPos},this.isNull=function(){return null===this.start},this.isCollapsed=function(){return this.start[0]===this.__cursor.nodePos&&this.start[1]===this.__cursor.charPos},this.hasMultipleNodes=function(){return!this.isNull()&&this.startNode()!==this.endNode()}},a.Prototype.prototype=r.Events,a.prototype=new a.Prototype,Object.defineProperties(a.prototype,{cursor:{get:function(){return this.__cursor.copy()},set:function(){throw"immutable property"}}});var c=function(t,e,n,r){this.selection=t,this.nodePos=e,this.node=t.__node(e),this.start=n,this.end=r};c.Prototype=function(){this.isFirst=function(){return this.nodePos===this.selection.startNode()},this.isLast=function(){return this.nodePos===this.selection.endNode()},this.hasPredecessor=function(){return!this.isFirst()},this.hasSuccessor=function(){return!this.isLast()},this.isEnclosed=function(){return this.hasPredecessor()&&this.hasSuccessor()},this.isRightBound=function(){return this.end===this.node.getLength()},this.isLeftBound=function(){return 0===this.start},this.length=function(){return this.end-this.start},this.content=function(){return this.node.content.slice(this.start,this.end)},this.isFull=function(){return this.isLeftBound()&&this.isRightBound()},this.isPartial=function(){return!this.isFull()}},c.prototype=new c.Prototype,a.Range=c,a.SelectionError=s,e.exports=a},{"./cursor":87,"substance-util":154,underscore:159}],91:[function(t,e){"use strict";var n=t("underscore"),r=t("substance-operator"),i=t("substance-regexp"),o=r.ObjectOperation,s=r.TextOperation,a=t("./node"),c=function(t,e){a.call(this,t,e)};c.type={id:"text",parent:"content",properties:{source_id:"Text element source id",content:"string"}},c.description={name:"Text",remarks:["A simple text fragement that can be annotated. Usually text nodes are combined in a paragraph."],properties:{content:"Content"}},c.example={type:"paragraph",id:"paragraph_1",content:"Lorem ipsum dolor sit amet, adipiscing elit."},c.Prototype=function(){this.getChangePosition=function(t){if("content"===t.path[1]){var e=r.Helpers.last(t.diff);if(e.isInsert())return e.pos+e.length();if(e.isDelete())return e.pos}return-1},this.getLength=function(){return this.properties.content.length},this.insertOperation=function(t,e){return o.Update([this.properties.id,"content"],s.Insert(t,e))},this.deleteOperation=function(t,e){var n=this.properties.content;return o.Update([this.properties.id,"content"],s.Delete(t,n.substring(t,e)),"string")},this.prevWord=function(t){var e=this.properties.content,r=new i(/\b\w/g).match(e),o=n.select(r,function(e){return e.index<t},this);return 0===o.length?0:n.last(o).index},this.nextWord=function(t){var e=this.properties.content,n=new i(/\w\b/g).match(e.substring(t));if(0===n.length)return e.length;var r=n[0];return t+r.index+1},this.canJoin=function(t){return t instanceof c},this.join=function(t,e){var r=this.properties.content.length,i=e.content;t.update([this.id,"content"],[r,i]);var o=t.indexes.annotations.get(e.id);n.each(o,function(e){t.set([e.id,"path"],[this.properties.id,"content"]),t.set([e.id,"range"],[e.range[0]+r,e.range[1]+r])},this)},this.isBreakable=function(){return!0},this.break=function(t,e){var r=this.properties.content.substring(e),i=this.toJSON();i.type=this.splitInto?this.splitInto:this.properties.type,i.id=t.uuid(this.properties.type),i.content=r,t.create(i);var o=t.indexes.annotations.get(this.properties.id);return n.each(o,function(n){n.range[0]>=e&&(t.set([n.id,"path"],[i.id,"content"]),t.set([n.id,"range"],[n.range[0]-e,n.range[1]-e]))}),t.update([this.properties.id,"content"],s.Delete(e,r)),i}},c.Prototype.prototype=a.prototype,c.prototype=new c.Prototype,c.prototype.constructor=c,a.defineProperties(c.prototype,["content"]),e.exports=c},{"./node":89,"substance-operator":138,"substance-regexp":148,underscore:159}],92:[function(t,e){"use strict";e.exports={node:t("./src/node"),composite:t("./src/composite"),text:t("./src/text"),paragraph:t("./src/paragraph"),heading:t("./src/heading"),list:t("./src/list"),codeblock:t("./src/codeblock"),webresource:t("./src/web_resource"),image:t("./src/image"),formula:t("./src/formula"),table:t("./src/table"),figure:t("./src/figure"),collaborator:t("./src/collaborator"),cover:t("./src/cover"),description:t("./src/description")}},{"./src/codeblock":95,"./src/collaborator":98,"./src/composite":101,"./src/cover":104,"./src/description":107,"./src/figure":110,"./src/formula":113,"./src/heading":116,"./src/image":119,"./src/list":120,"./src/node":123,"./src/paragraph":126,"./src/table":129,"./src/text":132,"./src/web_resource":135}],93:[function(t,e){"use strict";var n=t("../text/text_node"),r=function(t,e){n.call(this,t,e)};r.type={id:"codeblock",parent:"content",properties:{source_id:"string",content:"string"}},r.config={zoomable:!0},r.description={name:"Codeblock",remarks:["Text in a codeblock is displayed in a fixed-width font, and it preserves both spaces and line breaks"],properties:{content:"Content"}},r.example={type:"codeblock",id:"codeblock_1",content:'var text = "Sun";\nvar op1 = Operator.TextOperation.Delete(2, "n");\ntext = op2.apply(op1.apply(text));\nconsole.log(text);'},r.Prototype=function(){},r.Prototype.prototype=n.prototype,r.prototype=new r.Prototype,r.prototype.constructor=r,e.exports=r},{"../text/text_node":133}],94:[function(t,e){"use strict";var n=t("../text/text_view"),r=function(t){n.call(this,t),this.$el.addClass("content-node codeblock")};r.Prototype=function(){},r.Prototype.prototype=n.prototype,r.prototype=new r.Prototype,e.exports=r},{"../text/text_view":134}],95:[function(t,e){"use strict";e.exports={Model:t("./codeblock"),View:t("./codeblock_view")}},{"./codeblock":93,"./codeblock_view":94}],96:[function(t,e){var n=t("underscore"),r=t("substance-document").Node,i=function(t,e){r.call(this,t,e)};i.type={id:"collaborator",parent:"content",properties:{source_id:"string",name:"string",role:"string",organization:"string",image:"string",email:"string",contribution:"string"}},i.description={name:"Collaborator",remarks:["Describes an article collaborator such as an author or editor."],properties:{name:"Full name."}},i.example={id:"collaborator_1",type:"collaborator",role:"author",name:"John Doe",image:"http://john.com/doe.png",email:"a@b.com",contribution:"Revising the article, data cleanup"},i.Prototype=function(){this.getAffiliations=function(){return n.map(this.properties.affiliations,function(t){return this.document.get(t)},this)}},i.Prototype.prototype=r.prototype,i.prototype=new i.Prototype,i.prototype.constructor=i;var o={},o={header:{get:function(){return this.properties.name}}};n.each(i.type.properties,function(t,e){o[e]={get:function(){return this.properties[e]}}}),Object.defineProperties(i.prototype,o),e.exports=i},{"substance-document":81,underscore:159}],97:[function(t,e){"use strict";t("underscore");var n=t("substance-util");n.html;var r=t("../node").View,i=t("substance-application").$$,o=function(t){r.call(this,t),this.$el.attr({id:t.id}),this.$el.addClass("content-node collaborator")};o.Prototype=function(){this.render=function(){return r.prototype.render.call(this),this.node.image&&this.content.appendChild(i(".image",{children:[i("img",{src:this.node.image})]})),this.node.organization&&this.content.appendChild(i(".organization",{text:this.node.organization})),this.node.contribution&&(this.content.appendChild(i(".label",{text:"Contribution"})),this.content.appendChild(i(".contribution",{text:this.node.contribution}))),this.node.email&&(this.content.appendChild(i(".label",{text:"Email"})),this.content.appendChild(i(".email",{children:[i("a",{href:"mailto:"+this.node.email,text:this.node.email})]}))),this}},o.Prototype.prototype=r.prototype,o.prototype=new o.Prototype,e.exports=o},{"../node":123,"substance-application":56,"substance-util":154,underscore:159}],98:[function(t,e){"use strict";e.exports={Model:t("./collaborator"),View:t("./collaborator_view")}},{"./collaborator":96,"./collaborator_view":97}],99:[function(t,e){"use strict";var n=t("substance-document");e.exports=n.Composite},{"substance-document":81}],100:[function(t,e){"use strict";var n=t("../node").View,r=function(t,e){n.call(this,t,e),this.$el.addClass(t.type),this.$el.attr("id",this.node.id),this.childrenViews=[]};r.Prototype=function(){this.render=function(){this.content=document.createElement("DIV"),this.content.classList.add("content");var t;for(t=0;t<this.childrenViews.length;t++)this.childrenViews[t].dispose();var e=this.node.getNodes();for(t=0;t<e.length;t++){var n=this.node.document.get(e[t]),r=this.viewFactory.createView(n);this.content.appendChild(r.render().el),this.childrenViews.push(r)}return this.el.appendChild(this.content),this},this.dispose=function(){n.prototype.dispose.call(this);for(var t=0;t<this.childrenViews.length;t++)this.childrenViews[t].dispose()},this.delete=function(){},this.getCharPosition=function(){return 0},this.getDOMPosition=function(){var t=this.$(".content")[0],e=document.createRange();return e.setStartBefore(t.childNodes[0]),e}},r.Prototype.prototype=n.prototype,r.prototype=new r.Prototype,e.exports=r},{"../node":123}],101:[function(t,e){"use strict";e.exports={Model:t("./composite"),View:t("./composite_view")}},{"./composite":99,"./composite_view":100}],102:[function(t,e){var n=t("underscore"),r=t("../node/node"),i=function(t,e){r.call(this,t,e)};i.type={id:"cover",parent:"content",properties:{source_id:"string",authors:["array","person_reference"],image:"string"}},i.description={name:"Cover",remarks:["Virtual view on the title and authors of the paper."],properties:{authors:"An array of references to collaborators"}},i.example={id:"cover",type:"cover",authors:["collaborator_reference_1","collaborator_reference_2"]},i.Prototype=function(){this.getAuthorRefs=function(){return n.map(this.properties.authors,function(t){return this.document.get(t)},this)}},i.Prototype.prototype=r.prototype,i.prototype=new i.Prototype,i.prototype.constructor=i,Object.defineProperties(i.prototype,{title:{get:function(){return this.document.title}},authors:{get:function(){return this.properties.authors}},image:{get:function(){return this.properties.image}}}),e.exports=i},{"../node/node":124,underscore:159}],103:[function(t,e){"use strict";t("underscore");var n=t("../node/node_view"),r=t("substance-application").$$,i=function(t,e){n.call(this,t,e),this.$el.attr({id:t.id}),this.$el.addClass("content-node cover")};i.Prototype=function(){this.render=function(){n.prototype.render.call(this);var t=this.node;this.node.document.published_on&&this.content.appendChild(r(".published-on",{html:new Date(this.node.document.published_on).toDateString()})),this.content.appendChild(r(".title",{text:t.title}));var e=this.node.getAuthorRefs();if(e){var i=document.createElement("DIV");i.classList.add("authors");for(var o,s=0;s<e.length;s++){var a=e[s],c=this.node.document.get(a.target);o=document.createElement("SPAN"),o.setAttribute("id",a.id),o.classList.add("annotation"),o.classList.add("person_reference"),o.innerHTML=c.name,i.appendChild(o)}this.content.appendChild(i)}return this.node.image&&(this.el.style.backgroundImage="url('"+this.node.image+"')"),this}},i.Prototype.prototype=n.prototype,i.prototype=new i.Prototype,e.exports=i},{"../node/node_view":125,"substance-application":56,underscore:159}],104:[function(t,e,n){arguments[4][19][0].apply(n,arguments)},{"./cover":102,"./cover_view":103}],105:[function(t,e){"use strict";t("underscore");var n=t("substance-document"),r=n.Node,i=n.Composite,o=function(t,e){i.call(this,t,e)};o.type={id:"description",parent:"content",properties:{source_id:"string",topic:"text",body:"paragraph"}},o.description={name:"Description",remarks:["A Description consists of two components: a topic and its textual description."],properties:{topic:"The entity to be described",body:"A paragraph containing content which describe the topic"}},o.example={type:"description",id:"description_1",topic:"text_1",body:"paragraph_2"},o.Prototype=function(){this.getLength=function(){return 2},this.getNodes=function(){return[this.properties.topic,this.properties.body]},this.getTopic=function(){return this.document.get(this.properties.topic)},this.getBody=function(){return this.document.get(this.properties.body)}},o.Prototype.prototype=i.prototype,o.prototype=new o.Prototype,o.prototype.constructor=o,r.defineProperties(o.prototype,["topic","body"]),e.exports=o},{"substance-document":81,underscore:159}],106:[function(t,e){"use strict";var n=t("../node").View,r=function(t,e){n.call(this,t,e),this.$el.addClass("description"),this.$el.attr("id",this.node.id)};r.Prototype=function(){this.render=function(){var t=document.createElement("div");t.className="content";var e=document.createElement("div");e.className="topic";var n=this.viewFactory.createView(this.node.getTopic());e.appendChild(n.render().el),this._topicEl=e;var r=document.createElement("div");r.className="body";var i=this.viewFactory.createView(this.node.getBody());return r.appendChild(i.render().el),this._bodyEl=r,t.appendChild(e),t.appendChild(r),this.el.appendChild(t),this}},r.Prototype.prototype=n.prototype,r.prototype=new r.Prototype,e.exports=r},{"../node":123}],107:[function(t,e){"use strict";e.exports={Model:t("./description"),View:t("./description_view")}},{"./description":105,"./description_view":106}],108:[function(t,e){"use strict";var n=t("substance-document"),r=function(t,e){n.Composite.call(this,t,e)};r.type={id:"figure",parent:"content",properties:{url:"string",label:"string",caption:"paragraph"}},r.description={name:"Figure",remarks:["A figure is a figure is figure."],properties:{label:"Figure label (e.g. Figure 1)",url:"Image url",caption:"A reference to a paragraph that describes the figure"}},r.example={id:"figure_1",label:"Figure 1",url:"http://example.com/fig1.png",caption:"paragraph_1"},r.config={zoomable:!0},r.Prototype=function(){this.insertOperation=function(){return null},this.deleteOperation=function(){return null},this.hasCaption=function(){return!!this.properties.caption},this.getNodes=function(){var t=[];return this.properties.caption&&t.push(this.properties.caption),t},this.getCaption=function(){return this.properties.caption?this.document.get(this.properties.caption):void 0}},r.Prototype.prototype=n.Composite.prototype,r.prototype=new r.Prototype,r.prototype.constructor=r,r.create=function(t){var e={},n=t.id,r={id:n,type:"figure",label:t.label,url:t.url};if(t.caption){var i="caption_"+t.id,o={id:i,type:"text",content:t.caption};e[i]=o,r.caption=i}return e[n]=r,e},n.Node.defineProperties(r.prototype,["url","caption"]),Object.defineProperties(r.prototype,{header:{get:function(){return this.properties.label}}}),e.exports=r},{"substance-document":81}],109:[function(t,e){"use strict";var n=t("../composite").View,r=t("substance-application").$$,i=function(t,e){n.call(this,t,e)};i.Prototype=function(){this.render=function(){this.el.innerHTML="",this.content=r("div.content");var t=r(".image-wrapper",{children:[r("img",{src:this.node.url})]});this.content.appendChild(t);var e;for(e=0;e<this.childrenViews.length;e++)this.childrenViews[e].dispose();var n=this.node.getCaption();if(n){var i=this.viewFactory.createView(n),o=i.render().el;this.content.appendChild(o),this.childrenViews.push(i)}return this.el.appendChild(this.content),this}},i.Prototype.prototype=n.prototype,i.prototype=new i.Prototype,e.exports=i},{"../composite":101,"substance-application":56}],110:[function(t,e,n){arguments[4][22][0].apply(n,arguments)},{"./figure":108,"./figure_view":109}],111:[function(t,e){var n=t("underscore"),r=t("substance-document").Node,i=function(t){r.call(this,t)};i.type={id:"formula",parent:"content",properties:{source_id:"string",label:"string",data:"string",format:"string",inline:"boolean"}},i.description={name:"Formula",remarks:["Can either be expressed in MathML format or using an image url"],properties:{label:"Formula label (4)",data:"Formula data, either MathML or image url",format:"Can either be `mathml` or `image`"}},i.example={type:"formula",id:"formula_eqn1",label:"(1)",content:"<mml:mrow>...</mml:mrow>",format:"mathml"},i.Prototype=function(){this.inline=!1},i.Prototype.prototype=r.prototype,i.prototype=new i.Prototype,i.prototype.constuctor=new i;var o={};n.each(i.type.properties,function(t,e){o[e]={get:function(){return this.properties[e]}}}),Object.defineProperties(i.prototype,o),e.exports=i},{"substance-document":81,underscore:159}],112:[function(t,e){"use strict";var n=t("../node").View,r=function(t){n.call(this,t),this.$el.attr({id:t.id}),this.$el.addClass("content-node formula"),this.node.inline&&this.$el.addClass("inline")};r.Prototype=function(){this.render=function(){var t=this.node.format;switch(t){case"mathml":this.$el.html(this.node.data);break;case"image":this.$el.append('<img src="'+this.node.url+'"/>');break;case"latex":this.node.inline?this.$el.html("\\("+this.node.data+"\\)"):this.$el.html("\\["+this.node.data+"\\]");break;default:console.error("Unknown formula format:",t)}return this.node.label&&this.$el.append($('<div class="label">').html(this.node.label)),this}},r.Prototype.prototype=n.prototype,r.prototype=new r.Prototype,e.exports=r},{"../node":123}],113:[function(t,e){"use strict";e.exports={Model:t("./formula"),View:t("./formula_view")}},{"./formula":111,"./formula_view":112}],114:[function(t,e){"use strict";var n=t("substance-document").Node,r=t("../text/text_node"),i=function(t,e){r.call(this,t,e)};i.type={id:"heading",parent:"content",properties:{source_id:"string",content:"string",level:"number"}},i.example={type:"heading",id:"heading_1",content:"Introduction",level:1},i.description={name:"Heading",remarks:["Denotes a section or sub section in your article."],properties:{content:"Heading content",level:"Heading level. Ranges from 1..4"}},i.Prototype=function(){this.splitInto="paragraph"},i.Prototype.prototype=r.prototype,i.prototype=new i.Prototype,i.prototype.constructor=i,n.defineProperties(i.prototype,["level"]),e.exports=i},{"../text/text_node":133,"substance-document":81}],115:[function(t,e){"use strict";var n=t("../text/text_view"),r=function(t){n.call(this,t),this.$el.addClass("heading"),this.$el.addClass("level-"+this.node.level),this.$el.attr("title","Click to set anchor. Great for sharing!")};r.Prototype=function(){},r.Prototype.prototype=n.prototype,r.prototype=new r.Prototype,e.exports=r},{"../text/text_view":134}],116:[function(t,e){"use strict";e.exports={Model:t("./heading"),View:t("./heading_view")}},{"./heading":114,"./heading_view":115}],117:[function(t,e){"use strict";t("substance-document").Node;var n=t("../web_resource/web_resource"),r=function(t,e){n.call(this,t,e)};r.type={id:"image",parent:"webresource",properties:{source_id:"string"}},r.example={type:"image",id:"image_1",url:"http://substance.io/image_1.png"},r.description={name:"Image",remarks:["Represents a web-resource for an image."],properties:{}},r.Prototype=function(){},r.Prototype.prototype=n.prototype,r.prototype=new r.Prototype,r.prototype.constructor=r,e.exports=r
-},{"../web_resource/web_resource":136,"substance-document":81}],118:[function(t,e){"use strict";var n=t("../node").View,r=function(t,e){n.call(this,t,e),this.$el.addClass("image"),this.$el.attr("id",this.node.id)};r.Prototype=function(){var t=Array.prototype.indexOf;this.render=function(){var e=document.createElement("div");e.className="content";var n=document.createElement("div");n.className="image-char",this._imgChar=n;var r=document.createElement("img");return r.src=this.node.url,r.alt="alt text",r.title="alt text",n.appendChild(r),e.appendChild(n),this.el.appendChild(e),this._imgPos=t.call(n.childNodes,r),this},this.delete=function(t,e){for(var n=this.$(".content")[0],r=n.childNodes,i=e-1;i>=0;i--)n.removeChild(r[t+i])},this.getCharPosition=function(t,e){return t===this._imgChar?e>this._imgPos?1:0:(console.log("Errhhh.."),void 0)},this.getDOMPosition=function(t){var e=this.$(".content")[0],n=document.createRange();return 0===t?n.setStartBefore(e.childNodes[0]):n.setStartAfter(e.childNodes[0]),n}},r.Prototype.prototype=n.prototype,r.prototype=new r.Prototype,e.exports=r},{"../node":123}],119:[function(t,e){"use strict";e.exports={Model:t("./image"),View:t("./image_view")}},{"./image":117,"./image_view":118}],120:[function(t,e){"use strict";e.exports={Model:t("./list"),View:t("./list_view")}},{"./list":121,"./list_view":122}],121:[function(t,e){"use strict";var n=t("underscore"),r=t("substance-document"),i=r.Node,o=r.Composite,s=function(t,e){o.call(this,t,e)};s.type={id:"list",parent:"content",properties:{source_id:"string",items:["array","paragraph"],ordered:"boolean"}},s.description={name:"List",remarks:["Lists can either be numbered or bullet lists"],properties:{ordered:"Specifies wheter the list is ordered or not",items:"An array of paragraph references"}},s.example={type:"list",id:"list_1","items ":["paragraph_listitem_1","paragraph_listitem_2"]},s.Prototype=function(){this.getLength=function(){return this.properties.items.length},this.getNodes=function(){return n.clone(this.items)},this.getItems=function(){return n.map(this.properties.items,function(t){return this.document.get(t)},this)},this.getChangePosition=function(t){if("items"===t.path[1])if("update"===t.type){var e=t.diff;if(e.isInsert())return t.diff.pos+1;if(e.isDelete())return t.diff.pos;if(e.isMove())return t.diff.target}else if("set"===t.type)return this.properties.items.length-1;return-1},this.isMutable=function(){return!0},this.insertChild=function(t,e,n){t.update([this.id,"items"],["+",e,n])},this.deleteChild=function(t,e){var n=this.items.indexOf(e);t.update([this.id,"items"],["-",n,e]),t.delete(e)},this.canJoin=function(t){return"list"===t.type},this.isBreakable=function(){return!0},this.break=function(t,e,n){var r=this.properties.items.indexOf(e);if(0>r)throw new Error("Unknown child "+e);var i=t.get(e),o=i.break(t,n);return t.update([this.id,"items"],["+",r+1,o.id]),o}},s.Prototype.prototype=o.prototype,s.prototype=new s.Prototype,s.prototype.constructor=s,i.defineProperties(s.prototype,["items","ordered"]),e.exports=s},{"substance-document":81,underscore:159}],122:[function(t,e){"use strict";var n=t("../composite/composite_view"),r=t("./list"),i=function(t,e){n.call(this,t,e)};i.whoami="SubstanceListView",i.Prototype=function(){this.render=function(){this.el.innerHTML="";var t=this.node.ordered?"OL":"UL";this.content=document.createElement(t),this.content.classList.add("content");var e;for(e=0;e<this.childrenViews.length;e++)this.childrenViews[e].dispose();var n=this.node.getNodes();for(e=0;e<n.length;e++){var i,o=this.node.document.get(n[e]),s=this.viewFactory.createView(o);o instanceof r?i=s.render().el:(i=document.createElement("LI"),i.appendChild(s.render().el)),this.content.appendChild(i),this.childrenViews.push(s)}return this.el.appendChild(this.content),this},this.onNodeUpdate=function(t){t.path[0]===this.node.id&&"items"===t.path[1]&&this.render()}},i.Prototype.prototype=n.prototype,i.prototype=new i.Prototype,e.exports=i},{"../composite/composite_view":100,"./list":121}],123:[function(t,e){"use strict";e.exports={Model:t("./node"),View:t("./node_view")}},{"./node":124,"./node_view":125}],124:[function(t,e){"use strict";var n=t("substance-document"),r=n.Node;r.description={name:"Node",remarks:["Abstract node type."],properties:{source_id:"Useful for document conversion where the original id of an element should be remembered."}},e.exports=r},{"substance-document":81}],125:[function(t,e){var n=t("substance-application").View,r=function(t,e){n.call(this),this.node=t,this.viewFactory=e,this.$el.addClass("content-node"),this.$el.attr("id",this.node.id)};r.Prototype=function(){this.render=function(){return this.content=document.createElement("DIV"),this.content.classList.add("content"),this.el.appendChild(this.content),this},this.dispose=function(){this.stopListening()},this.getCharPosition=function(){throw new Error("NodeView.getCharPosition() is abstract.")},this.getDOMPosition=function(){throw new Error("NodeView.getDOMPosition() is abstract.")},this.onGraphUpdate=function(t){t.path[0]!==this.node.id||"update"!==t.type&&"set"!==t.type||this.onNodeUpdate(t)},this.onNodeUpdate=function(){}},r.Prototype.prototype=n.prototype,r.prototype=new r.Prototype,e.exports=r},{"substance-application":56}],126:[function(t,e){"use strict";e.exports={Model:t("./paragraph"),View:t("./paragraph_view")}},{"./paragraph":127,"./paragraph_view":128}],127:[function(t,e){"use strict";var n=t("underscore"),r=t("substance-document"),i=r.Node,o=r.Composite,s=function(t,e){o.call(this,t,e)};s.type={id:"paragraph",parent:"content",properties:{children:["array","content"]}},s.description={name:"Paragraph",remarks:["A Paragraph can have inline elements such as images."],properties:{children:"An array of content node references"}},s.example={type:"paragraph",id:"paragraph_1","children ":["text_1","image_1","text_2"]},s.Prototype=function(){this.getLength=function(){return this.properties.children.length},this.getNodes=function(){return n.clone(this.properties.children)},this.getChildren=function(){return n.map(this.properties.children,function(t){return this.document.get(t)},this)},this.getChangePosition=function(t){if("children"===t.path[1])if("update"===t.type){var e=t.diff;if(e.isInsert())return t.diff.pos+1;if(e.isDelete())return t.diff.pos;if(e.isMove())return t.diff.target}else if("set"===t.type)return this.properties.children.length-1;return-1},this.isMutable=function(){return!0},this.insertChild=function(t,e,n){t.update([this.id,"children"],["+",e,n])},this.deleteChild=function(t,e){var n=this.children.indexOf(e);t.update([this.id,"children"],["-",n,e]),t.delete(e)},this.canJoin=function(t){return"paragraph"===t.type},this.isBreakable=function(){return!0},this.break=function(t,e,n){var r=this.properties.children.indexOf(e);if(0>r)throw new Error("Unknown child "+e);var i=t.get(e),o=i.break(t,n);return t.update([this.id,"children"],["+",r+1,o.id]),o}},s.Prototype.prototype=o.prototype,s.prototype=new s.Prototype,s.prototype.constructor=s,i.defineProperties(s.prototype,["children"]),e.exports=s},{"substance-document":81,underscore:159}],128:[function(t,e){"use strict";var n=t("../composite/composite_view"),r=function(t,e){n.call(this,t,e)};r.Prototype=function(){this.onNodeUpdate=function(t){t.path[0]===this.node.id&&"children"===t.path[1]&&this.render()}},r.Prototype.prototype=n.prototype,r.prototype=new r.Prototype,e.exports=r},{"../composite/composite_view":100}],129:[function(t,e){"use strict";e.exports={Model:t("./table"),View:t("./table_view")}},{"./table":130,"./table_view":131}],130:[function(t,e){"use strict";var n=t("substance-document"),r=t("underscore"),i=n.Node,o=n.Composite,s=function(t,e){o.call(this,t,e)};s.type={id:"table",parent:"content",properties:{label:"string",source_id:"string",headers:["array","content"],cells:["array","array","content"],caption:"content"}},s.description={name:"Table",remarks:[],properties:{items:"An array of references which contain the content of each cell"}},s.example={type:"table",id:"table_1",headers:["text_1","text_2"],cells:[["cell_1_1","cell_1_2"],["cell_2_1","cell_2_2"]]},s.Prototype=function(){this.getLength=function(){var t=0;t+=this.properties.headers.length;for(var e=0;e<this.properties.cells.length;e++){var n=this.properties.cells[e];t+=n.length}return this.properties.caption&&(t+=1),t},this.getNodes=function(){for(var t=[],e=0;e<this.properties.headers.length;e++)t.push(this.properties.headers[e]);for(var n=0;n<this.properties.cells.length;n++){var r=this.properties.cells[n];t=t.concat(r)}return this.properties.caption&&t.push(this.properties.caption),t},this.getHeaders=function(){return r.map(this.properties.headers,function(t){return this.document.get(t)},this)},this.getCells=function(){for(var t=[],e=0;e<this.properties.cells.length;e++){for(var n=this.properties.cells[e],r=[],i=0;i<n.length;i++)r.push(this.document.get(n[i]));t.push(r)}return t},this.getCaption=function(){var t;return this.properties.caption&&(t=this.document.get(this.properties.caption)),t},this.getChangePosition=function(){return-1},this.isMutable=function(){return!1},this.canJoin=function(){return!1},this.isBreakable=function(){return!1}},s.Prototype.prototype=o.prototype,s.prototype=new s.Prototype,s.prototype.constructor=s,s.create=function(t){var e,n,r={},i=t.id,o={id:i,type:"table",label:t.label,headers:[],cells:[]};if(t.headers)for(var s=0;s<t.headers.length;s++){var a=t.headers[s];e="th_"+s+"_"+i,n={id:e,type:"text",content:a},r[e]=n,o.headers.push(e)}for(var c=0;c<t.cells.length;c++){for(var h=t.cells[c],u=[],p=0;p<h.length;p++){var l=h[p];e="td__"+c+"_"+p+"_"+i,n={id:e,type:"text",content:l},r[e]=n,u.push(e)}o.cells.push(u)}return t.caption&&(e="caption_"+i,n={id:e,type:"text",content:t.caption},r[e]=n,o.caption=e),r[o.id]=o,r},i.defineProperties(s.prototype,["headers","cells","caption"]),Object.defineProperties(s.prototype,{header:{get:function(){return this.properties.label}}}),e.exports=s},{"substance-document":81,underscore:159}],131:[function(t,e){"use strict";var n=t("../composite/composite_view");t("underscore");var r=function(t,e){n.call(this,t,e)};r.Prototype=function(){this.render=function(){this.el.innerHTML="",this.content=document.createElement("div"),this.content.classList.add("content");for(var t=0;t<this.childrenViews.length;t++)this.childrenViews[t].dispose();var e,n,r=document.createElement("table"),i=this.node.getHeaders(),o=document.createElement("thead");if(i.length>0){for(var s=document.createElement("tr"),t=0;t<i.length;t++){e=i[t],n=this.viewFactory.createView(e);var a=document.createElement("th");a.appendChild(n.render().el),s.appendChild(a),this.childrenViews.push(n)}o.appendChild(s)}r.appendChild(o);for(var c=this.node.getCells(),h=document.createElement("tbody"),u=0;u<c.length;u++){for(var p=c[u],s=document.createElement("tr"),l=0;l<p.length;l++){e=p[l],n=this.viewFactory.createView(e);var a=document.createElement("td");a.appendChild(n.render().el),s.appendChild(a),this.childrenViews.push(n)}h.appendChild(s)}if(r.appendChild(h),this.content.appendChild(r),this.node.caption){var d=this.node.getCaption(),f=this.viewFactory.createView(d),g=f.render().el;g.classList.add("caption"),this.content.appendChild(g),this.childrenViews.push(f)}return this.el.appendChild(this.content),this},this.onNodeUpdate=function(t){t.path[0]===this.node.id&&("headers"===t.path[1]||"cells"===t.path[1])&&this.render()}},r.Prototype.prototype=n.prototype,r.prototype=new r.Prototype,r.prototype.constructor=r,e.exports=r},{"../composite/composite_view":100,underscore:159}],132:[function(t,e){"use strict";e.exports={Model:t("./text_node"),View:t("./text_view")}},{"./text_node":133,"./text_view":134}],133:[function(t,e){"use strict";var n=t("substance-document");e.exports=n.TextNode},{"substance-document":81}],134:[function(t,e){var n=t("../node/node_view"),r=t("substance-document"),i=r.Annotator,o=t("substance-application").$$,s=!1,a=function(t){n.call(this,t),this.$el.addClass("content-node text"),this.$el.attr("id",this.node.id),this._annotations={}};a.Prototype=function(){this.render=function(t){return n.prototype.render.call(this,t),this.renderContent(),this},this.dispose=function(){n.prototype.dispose.call(this),console.log("disposing paragraph view")},this.renderContent=function(){this.content.innerHTML="",this._annotations=this.node.getAnnotations(),this.renderWithAnnotations(this._annotations)},this.insert=function(t,e){var n=this.getDOMPosition(t),r=n.startContainer,i=n.startOffset,o=r.textContent;o=o.substring(0,i)+e+o.substring(i),r.textContent=o},this.delete=function(t,e){var n=this.getDOMPosition(t),r=n.startContainer,i=n.startOffset,o=r.textContent;o=o.substring(0,i)+o.substring(i+e),r.textContent=o},this.onNodeUpdate=function(t){if("content"===t.path[1])if(console.log("Updating text view: ",t),"update"===t.type){var e=t.diff;e.isInsert()?this.insert(e.pos,e.str):e.isDelete()&&this.delete(e.pos,e.str.length)}else"set"===t.type&&this.renderContent()},this.onGraphUpdate=function(t){n.prototype.onGraphUpdate.call(this,t);var e,r=this.node.document,i=r.getSchema();if(e="delete"!==t.type?r.get(t.path[0]):t.val,i.isInstanceOf(e.type,"annotation")){var o=!1;e.path[0]===this.node.id?o=!0:"set"===t.type&&"path"===t.path[1]&&t.original[0]===this.node.id&&(o=!0),o&&(console.log("Rerendering TextView due to annotation update",t),this.renderContent())}},this.getCharPosition=function(t,e){var n=document.createRange();n.setStart(this.content.childNodes[0],0),n.setEnd(t,e);var r=n.toString(),i=Math.min(this.node.content.length,r.length);return i},this.getDOMPosition=function(t){if(void 0===this.content)throw new Error("Not rendered yet.");var e=document.createRange();if(0===this.node.content.length)return e.setStart(this.content.childNodes[0],0),e;for(var n=[this.content];n.length>0;){var r=n.pop();if(r.nodeType===Node.TEXT_NODE){var i=r;if(i.length>=t)return e.setStart(r,t),e;t-=i.length}else if(r.childNodes.length>0)for(var o=r.childNodes.length-1;o>=0;o--)n.push(r.childNodes[o])}console.log("Bug-Alarm: the model and the view are out of sync."),console.log("The model as "+t+" more characters"),console.log("Returning the last available position... but please fix me. Anyone?");var s=this.content.childNodes,a=s[s.length-1];return e.setStart(a,a.length),e},this.createAnnotationElement=function(t){var e;return e="link"===t.type?o("a.annotation."+t.type,{id:t.id,href:this.node.document.get(t.id).url}):o("span.annotation."+t.type,{id:t.id})},this.renderWithAnnotations=function(t){var e=this,n=this.node.content,r=document.createDocumentFragment(),o=new i.Fragmenter(r,n,t);o.onText=function(t,e){t.appendChild(document.createTextNode(e))},o.onEnter=function(t,n){var r=e.createAnnotationElement(t);return n.appendChild(r),r},o.start(r,n,t),s&&r.appendChild(document.createTextNode(" ")),this.content.innerHTML="",this.content.appendChild(r)},this.dispose=function(){this.stopListening()}},a.Prototype.prototype=n.prototype,a.prototype=new a.Prototype,e.exports=a},{"../node/node_view":125,"substance-application":56,"substance-document":81}],135:[function(t,e){"use strict";e.exports={Model:t("./web_resource"),View:t("./web_resource_view")}},{"./web_resource":136,"./web_resource_view":137}],136:[function(t,e){"use strict";var n=t("substance-document").Node,r=function(t,e){n.call(this,t,e)};r.type={id:"webresource",parent:"content",properties:{source_id:"string",url:"string"}},r.description={name:"WebResource",description:"A resource which can be accessed via URL",remarks:["This element is a parent for several other nodes such as Image."],properties:{url:"URL to a resource"}},r.example={type:"webresource",id:"webresource_3",url:"http://elife.elifesciences.org/content/elife/1/e00311/F3.medium.gif"},r.Prototype=function(){},r.Prototype.prototype=n.prototype,r.prototype=new r.Prototype,r.prototype.constructor=r,n.defineProperties(r.prototype,["url"]),e.exports=r},{"substance-document":81}],137:[function(t,e){"use strict";e.exports=t("../node").View},{"../node":123}],138:[function(t,e){"use strict";e.exports={Operation:t("./src/operation"),Compound:t("./src/compound"),ArrayOperation:t("./src/array_operation"),TextOperation:t("./src/text_operation"),ObjectOperation:t("./src/object_operation"),Helpers:t("./src/operation_helpers")}},{"./src/array_operation":139,"./src/compound":140,"./src/object_operation":141,"./src/operation":142,"./src/operation_helpers":143,"./src/text_operation":144}],139:[function(t,e){"use strict";function n(t,e,n){t.pos===e.pos?n?e.pos+=1:t.pos+=1:t.pos<e.pos?e.pos+=1:t.pos+=1}function r(t,e){return t.pos===e.pos?(e.type=l,t.type=l,void 0):(t.pos<e.pos?e.pos-=1:t.pos-=1,void 0)}function i(t,e){if(t.type===d){var n=t;t=e,e=n}t.pos<=e.pos?e.pos+=1:t.pos-=1}function o(t,e,n,r){if(t.type!==g)return o(e,t,n,!r);var i={type:d,pos:t.pos},s={type:f,pos:t.target},a={inplace:!0,check:n};e.type===d&&t.pos===e.pos?(t.type=l,e.pos=t.target):e.type===g&&t.pos===e.pos?r?(e.pos=t.target,t.type=l):(t.pos=e.target,e.type=l):(r?(C(i,e,a),C(s,e,a)):(C(e,i,a),C(e,s,a)),t.pos=i.pos,t.target=s.pos)}var s,a=t("underscore"),c=t("substance-util"),h=c.errors,u=t("./operation"),p=t("./compound"),l="NOP",d="delete",f="insert",g="move",y=function(t){if(void 0===t.type)throw new h.OperationError("Illegal argument: insufficient data.");if(this.type=t.type,this.type!==l){if(this.pos=t.pos,this.val=t.val,this.target=t.target,this.type!==l&&this.type!==f&&this.type!==d&&this.type!==g)throw new h.OperationError("Illegal type.");if(this.type===f||this.type===d){if(void 0===this.pos||void 0===this.val)throw new h.OperationError("Illegal argument: insufficient data.");if(!a.isNumber(this.pos)&&this.pos<0)throw new h.OperationError("Illegal argument: expecting positive number as pos.")}else if(this.type===g){if(void 0===this.pos||void 0===this.target)throw new h.OperationError("Illegal argument: insufficient data.");if(!a.isNumber(this.pos)&&this.pos<0)throw new h.OperationError("Illegal argument: expecting positive number as pos.");if(!a.isNumber(this.target)&&this.target<0)throw new h.OperationError("Illegal argument: expecting positive number as target.")}}};y.fromJSON=function(t){if(a.isArray(t))return t[0]===g?new s(t[1],t[2]):new y(t);if(t.type===g)return s.fromJSON(t);if(t.type===p.TYPE){for(var e=[],n=0;n<t.ops.length;n++)e.push(y.fromJSON(t.ops[n]));return y.Compound(e)}return new y(t)},y.Prototype=function(){this.clone=function(){return new y(this)},this.apply=function(t){if(this.type===l)return t;var e=t instanceof y.ArrayAdapter?t:new y.ArrayAdapter(t);if(this.type===f)e.insert(this.pos,this.val);else{if(this.type!==d)throw new h.OperationError("Illegal state.");e.delete(this.pos,this.val)}return t},this.invert=function(){var t=this.toJSON();if(this.type===f)t.type=d;else if(this.type===d)t.type=f;else{if(this.type!==l)throw new h.OperationError("Illegal state.");t.type=l}return new y(t)},this.hasConflict=function(t){return y.hasConflict(this,t)},this.toJSON=function(){var t={type:this.type};return this.type===l?t:(t.pos=this.pos,t.val=this.val,t)},this.isInsert=function(){return this.type===f},this.isDelete=function(){return this.type===d},this.isNOP=function(){return this.type===l},this.isMove=function(){return this.type===g}},y.Prototype.prototype=u.prototype,y.prototype=new y.Prototype;var v=0,m=1,b=2,w=4,_={};_[l]=v,_[d]=m,_[f]=b,_[g]=w;var x=[];x[m|m]=function(t,e){return t.pos===e.pos},x[m|b]=function(){return!1},x[b|b]=function(t,e){return t.pos===e.pos};var C,P=function(t,e){if(t.type===l||e.type===l)return!1;var n=_[t.type]|_[e.type];return x[n]?x[n](t,e):!1};C=function(t,e,s){if(s=s||{},s.check&&P(t,e))throw u.conflict(t,e);return s.inplace||(t=c.clone(t),e=c.clone(e)),t.type===l||e.type===l||(t.type===f&&e.type===f?n(t,e,!0):t.type===d&&e.type===d?r(t,e,!0):t.type===g||e.type===g?o(t,e,s.check,!0):i(t,e,!0)),[t,e]};var S=function(t,e){return a.isArray(t)?t=t[0]===g?new s(t[1],t[2]):new y(t):t instanceof y||(t=y.fromJSON(t)),t.apply(e)};y.transform=p.createTransform(C),y.hasConflict=P,y.perform=S,y.apply=S;var s=function(t,e){if(this.type=g,this.pos=t,this.target=e,!a.isNumber(this.pos)||!a.isNumber(this.target)||this.pos<0||this.target<0)throw new h.OperationError("Illegal argument")};s.Prototype=function(){this.clone=function(){return new s(this.pos,this.target)},this.apply=function(t){if(this.type===l)return t;var e=t instanceof y.ArrayAdapter?t:new y.ArrayAdapter(t),n=t[this.pos];return e.move(n,this.pos,this.target),t},this.invert=function(){return new s(this.target,this.pos)},this.toJSON=function(){return{type:g,pos:this.pos,target:this.target}}},s.Prototype.prototype=y.prototype,s.prototype=new s.Prototype,s.fromJSON=function(t){return new s(t.pos,t.target)};var N=function(t,e){var n,r,i=[0];for(n=0;n<t.length;n++)for(r=0;r<e.length;r++)i[r+1]=i[r+1]||0,i[r+1]=a.isEqual(t[n],e[r])?Math.max(i[r+1],i[r]+1):Math.max(i[r+1],i[r]);var o=[];for(r=e.length;r>=0;r--)i[r]>i[r-1]&&o.unshift(e[r-1]);return o};y.Insert=function(t,e){return new y({type:f,pos:t,val:e})},y.Delete=function(t,e){return a.isArray(t)&&(t=t.indexOf(e)),0>t?new y({type:l}):new y({type:d,pos:t,val:e})},y.Move=function(t,e){return new s(t,e)},y.Push=function(t,e){var n=t.length;return y.Insert(n,e)},y.Pop=function(t){var e=t.length-1;return y.Delete(e,t[e])},y.Update=function(t,e){var n,r,i,o=N(t,e),s=o,a=t,c=e;for(n=0,r=0,i=0,o=[];r<a.length||i<c.length;)s[n]===a[r]&&a[r]===c[i]?(n++,r++,i++,o.push(1)):s[n]===a[r]?o.push(["+",c[i++]]):o.push(["-",a[r++]]);return y.Sequence(o)},y.Compound=function(t){return 1===t.length?t[0]:new p(t)},y.Clear=function(t){for(var e=[],n=0;n<t.length;n++)e.push(y.Delete(0,t[n]));return y.Compound(e)},y.Sequence=function(t){for(var e=0,n=[],r=0;r<t.length;r++){var i=t[r];if(a.isNumber(i)&&i>0)e+=i;else if("+"===i[0])n.push(y.Insert(e,i[1])),e+=1;else{if("-"!==i[0])throw new h.OperationError("Illegal operation.");n.push(y.Delete(e,i[1]))}}return new p(n)},y.create=function(t,e){var n,r,i=e[0];if(i===f||"+"===i)return r=e[1],n=e[2],y.Insert(r,n);if(i===d||"-"===i)return r=e[1],n=t[r],y.Delete(r,n);if(i===g||">>"===i){r=e[1];var o=e[2];return y.Move(r,o)}throw new h.OperationError("Illegal specification.")};var E=function(t){this.array=t};E.prototype={insert:function(t,e){if(this.array.length<t)throw new h.OperationError("Provided array is too small.");this.array.splice(t,0,e)},"delete":function(t,e){if(this.array.length<t)throw new h.OperationError("Provided array is too small.");if(this.array[t]!==e)throw new h.OperationError("Unexpected value at position "+t+". Expected "+e+", found "+this.array[t]);this.array.splice(t,1)},move:function(t,e,n){if(this.array.length<e)throw new h.OperationError("Provided array is too small.");if(this.array.splice(e,1),this.array.length<n)throw new h.OperationError("Provided array is too small.");this.array.splice(n,0,t)}},y.ArrayAdapter=E,y.NOP=l,y.DELETE=d,y.INSERT=f,y.MOVE=g,e.exports=y},{"./compound":140,"./operation":142,"substance-util":154,underscore:159}],140:[function(t,e){"use strict";t("underscore");var n=t("substance-util"),r=t("./operation"),i="compound",o=function(t){if(this.type=i,this.ops=t,this.alias=void 0,!t||0===t.length)throw new r.OperationError("No operations given.")};o.Prototype=function(){this.clone=function(){for(var t=[],e=0;e<this.ops.length;e++)t.push(n.clone(this.ops[e]));return new o(t)},this.apply=function(t){for(var e=0;e<this.ops.length;e++)t=this.ops[e].apply(t);return t},this.invert=function(){for(var t=[],e=0;e<this.ops.length;e++)t.unshift(this.ops[e].invert());return new o(t)},this.toJSON=function(){var t={type:i,ops:this.ops};return this.alias&&(t.alias=this.alias),t}},o.Prototype.prototype=r.prototype,o.prototype=new o.Prototype,o.TYPE=i;var s=function(t,e,n,r,o){var a;if(e.type===i)for(a=0;a<e.ops.length;a++)s(t,e.ops[a],n,r,o);else for(a=0;a<t.ops.length;a++){var c,h;n?(c=t.ops[a],h=e):(c=e,h=t.ops[a]),o(c,h,{inplace:!0,check:r})}};o.createTransform=function(t){return function(e,r,o){return o=o||{},e.type===i||r.type===i?(o.inplace||(e=n.clone(e),r=n.clone(r)),e.type===i?s(e,r,!0,o.check,t):r.type===i&&s(r,e,!1,o.check,t),[e,r]):t(e,r,o)}},e.exports=o},{"./operation":142,"substance-util":154,underscore:159}],141:[function(t,e){"use strict";function n(t){return t instanceof a?n(t.ops[0]):t instanceof c?"string":t instanceof h?"array":"other"}var r=t("underscore"),i=t("substance-util"),o=i.errors,s=t("./operation"),a=t("./compound"),c=t("./text_operation"),h=t("./array_operation"),u="NOP",p="create",l="delete",d="update",f="set",g=function(t){if(this.type=t.type,this.path=t.path,this.type===p||this.type===l)this.val=t.val;else if(this.type===d){if(void 0===t.diff)throw new o.OperationError("Illegal argument: update by value or by diff must be provided");this.diff=t.diff,this.propertyType=t.propertyType}else this.type===f&&(this.val=t.val,this.original=t.original)};g.fromJSON=function(t){if(t.type===a.TYPE){for(var e=[],n=0;n<t.ops.length;n++)e.push(g.fromJSON(t.ops[n]));return g.Compound(e)}return new g(t)},g.Prototype=function(){this.clone=function(){return new g(this)},this.isNOP=function(){return this.type===u?!0:this.type===d?this.diff.isNOP():void 0},this.apply=function(t){if(this.type===u)return t;var e=t instanceof g.Object?t:new g.Object(t);if(this.type===p)return e.create(this.path,i.clone(this.val)),t;var n=e.get(this.path);if(this.type===l){if(void 0===n)throw new o.OperationError("Property "+JSON.stringify(this.path)+" not found.");e.delete(this.path,n)}else if(this.type===d)if("object"===this.propertyType)n=g.apply(this.diff,n),e.inplace()||e.update(this.path,n,this.diff);else if("array"===this.propertyType)n=h.apply(this.diff,n),e.inplace()||e.update(this.path,n,this.diff);else{if("string"!==this.propertyType)throw new o.OperationError("Unsupported type for operational update.");n=c.apply(this.diff,n),e.update(this.path,n,this.diff)}else{if(this.type!==f)throw new o.OperationError("Illegal state.");e.set(this.path,i.clone(this.val))}return t},this.invert=function(){if(this.type===u)return{type:u};var t=new g(this);if(this.type===p)t.type=l;else if(this.type===l)t.type=p;else if(this.type===d){var e;"string"===this.propertyType?e=c.fromJSON(this.diff).invert():"array"===this.propertyType&&(e=h.fromJSON(this.diff).invert()),t.diff=e,t.propertyType=this.propertyType}else{if(this.type!==f)throw new o.OperationError("Illegal state.");t.val=this.original,t.original=this.val}return t},this.hasConflict=function(t){return g.hasConflict(this,t)},this.toJSON=function(){if(this.type===u)return{type:u};var t={type:this.type,path:this.path};return this.type===p||this.type===l?t.val=this.val:this.type===d?(t.diff=this.diff,t.propertyType=this.propertyType):this.type===f&&(t.val=this.val,t.original=this.original),t}},g.Prototype.prototype=s.prototype,g.prototype=new g.Prototype,g.Object=function(t){this.obj=t},g.Object.Prototype=function(){function t(t,e,n,r){for(var i=e,o=0;o<n.length-1;o++){if(void 0===i)throw new Error("Key error: could not find element for path "+JSON.stringify(t.path));void 0===i[n[o]]&&r&&(i[n[o]]={}),i=i[n[o]]}return{parent:i,key:n[o]}}this.get=function(e){var n=t(this,this.obj,e);return n.parent[n.key]},this.create=function(e,n){var r=t(this,this.obj,e,!0);if(void 0!==r.parent[r.key])throw new o.OperationError("Value already exists. path ="+JSON.stringify(e));r.parent[r.key]=n},this.update=function(t,e){this.set(t,e)},this.set=function(e,n){var r=t(this,this.obj,e);r.parent[r.key]=n},this.delete=function(e){var n=t(this,this.obj,e);delete n.parent[n.key]},this.inplace=function(){return!0}},g.Object.prototype=new g.Object.Prototype;var y=function(t,e){return t.type===u||e.type===u?!1:r.isEqual(t.path,e.path)},v=function(t,e){t.type=u,e.type=u},m=function(){throw new o.OperationError("Can not transform two concurring creates of the same property")},b=function(t,e,n){return t.type!==l?b(e,t,!0):(n?(t.val=e.val,e.type=u):t.type=u,void 0)},w=function(t,e,n){if(t.type!==l)return w(e,t,!0);var r;"string"===e.propertyType?r=c.fromJSON(e.diff):"array"===e.propertyType&&(r=h.fromJSON(e.diff)),n?(t.val=r.apply(t.val),e.type=u):(t.type=u,e.type=p,e.val=r.apply(t.val))},_=function(){throw new o.OperationError("Can not transform a concurring create and update of the same property")},x=function(t,e){var n,r,i;"string"===e.propertyType?(n=c.fromJSON(t.diff),r=c.fromJSON(e.diff),i=c.transform(n,r,{inplace:!0})):"array"===e.propertyType?(n=h.fromJSON(t.diff),r=h.fromJSON(e.diff),i=h.transform(n,r,{inplace:!0})):"object"===e.propertyType&&(n=g.fromJSON(t.diff),r=g.fromJSON(e.diff),i=g.transform(n,r,{inplace:!0})),t.diff=i[0],e.diff=i[1]},C=function(t,e,n){return t.type!==p?C(e,t,!0):(n?(t.type=f,t.original=e.val,e.type=u):(t.type=u,e.original=t.val),void 0)},P=function(t,e,n){return t.type!==l?P(e,t,!0):(n?(t.val=e.val,e.type=u):(t.type=u,e.type=p,e.original=void 0),void 0)},S=function(){throw new o.OperationError("Can not transform update/set of the same property.")},N=function(t,e){t.type=u,e.original=t.val},E=0,k=1,O=2,T=4,A=8,I={};I[u]=E,I[p]=k,I[l]=O,I[d]=T,I[f]=A;var V=[];V[O|O]=v,V[O|k]=b,V[O|T]=w,V[k|k]=m,V[k|T]=_,V[T|T]=x,V[k|A]=C,V[O|A]=P,V[T|A]=S,V[A|A]=N;var j=function(t,e,n){n=n||{};var r=y(t,e);if(n.check&&r)throw s.conflict(t,e);return n.inplace||(t=i.clone(t),e=i.clone(e)),r?(V[I[t.type]|I[e.type]](t,e),[t,e]):[t,e]};g.transform=a.createTransform(j),g.hasConflict=y;var R=function(t,e){return t instanceof g||(t=g.fromJSON(t)),t.apply(e)};g.apply=R,g.Create=function(t,e){return new g({type:p,path:t,val:e})},g.Delete=function(t,e){return new g({type:l,path:t,val:e})},g.Update=function(t,e,r){return r=r||n(e),new g({type:d,path:t,diff:e,propertyType:r})},g.Set=function(t,e,n){return new g({type:f,path:t,val:n,original:e})},g.Compound=function(t){return 0===t.length?null:new a(t)};var $=function(t,e,n,i,s,a){for(var c=Object.getOwnPropertyNames(e),h=0;h<c.length;h++){var u=c[h],p=n.concat(u);if(void 0===e[u]&&void 0!==t[u])i.push(g.Delete(p,t[u]));else if(r.isObject(e[u])){if(!r.isObject(t[u]))throw new o.OperationError("Incompatible arguments: newVals must have same structure as obj.");$(t[u],e[u],p,i,s,a)}else if(void 0===t[u])s.push(g.Create(p,e[u]));else{var l=t[u],d=e[u];r.isEqual(l,d)||a.push(g.Set(p,l,d))}}};g.Extend=function(t,e){var n=[],r=[],i=[];return $(t,e,[],n,r,i),g.Compound(n.concat(r).concat(i))},g.NOP=u,g.CREATE=p,g.DELETE=l,g.UPDATE=d,g.SET=f,e.exports=g},{"./array_operation":139,"./compound":140,"./operation":142,"./text_operation":144,"substance-util":154,underscore:159}],142:[function(t,e){"use strict";var n=t("substance-util"),r=n.errors,i=r.define("OperationError",-1),o=r.define("Conflict",-1),s=function(){};s.Prototype=function(){this.clone=function(){throw new Error("Not implemented.")},this.apply=function(){throw new Error("Not implemented.")},this.invert=function(){throw new Error("Not implemented.")},this.hasConflict=function(){throw new Error("Not implemented.")}},s.prototype=new s.Prototype,s.conflict=function(t,e){var n=new r.Conflict("Conflict: "+JSON.stringify(t)+" vs "+JSON.stringify(e));return n.a=t,n.b=e,n},s.OperationError=i,s.Conflict=o,e.exports=s},{"substance-util":154}],143:[function(t,e){var n={};n.last=function(t){return"compound"===t.type?t.ops[t.ops.length-1]:t},n.each=function(t,e,r,i){if("compound"===t.type){for(var o=t.ops.length,s=0;o>s;s++){var a=t.ops[s];if(i&&(a=t.ops[o-s-1]),"compound"===a.type){if(n.each(a,e,r,i)===!1)return!1}else if(e.call(r,a)===!1)return!1}return!0}return e.call(r,t)},e.exports=n},{}],144:[function(t,e){"use strict";function n(t,e,n){t.pos===e.pos?n?e.pos+=t.str.length:t.pos+=e.str.length:t.pos<e.pos?e.pos+=t.str.length:t.pos+=e.str.length}function r(t,e,n){if(t.pos>e.pos)return r(e,t,!n);if(t.pos===e.pos&&t.str.length>e.str.length)return r(e,t,!n);if(e.pos<t.pos+t.str.length){var i=e.pos-t.pos,o=t.str.length-i,s=i+e.str.length;t.str=t.str.slice(0,i)+t.str.slice(s),e.str=e.str.slice(o),e.pos-=i}else e.pos-=t.str.length}function i(t,e){if(t.type===p)return i(e,t);
-if(t.pos<=e.pos)e.pos+=t.str.length;else if(t.pos>=e.pos+e.str.length)t.pos-=e.str.length;else{var n=t.pos-e.pos;e.str=e.str.slice(0,n)+t.str+e.str.slice(n),t.str=""}}var o=t("underscore"),s=t("substance-util"),a=s.errors,c=t("./operation"),h=t("./compound"),u="+",p="-",l=function(t){if(o.isArray(t)&&(t={type:t[0],pos:t[1],str:t[2]}),void 0===t.type||void 0===t.pos||void 0===t.str)throw new a.OperationError("Illegal argument: insufficient data.");if(this.type=t.type,this.pos=t.pos,this.str=t.str,!this.isInsert()&&!this.isDelete())throw new a.OperationError("Illegal type.");if(!o.isString(this.str))throw new a.OperationError("Illegal argument: expecting string.");if(!o.isNumber(this.pos)&&this.pos<0)throw new a.OperationError("Illegal argument: expecting positive number as pos.")};l.fromJSON=function(t){if(t.type===h.TYPE){for(var e=[],n=0;n<t.ops.length;n++)e.push(l.fromJSON(t.ops[n]));return l.Compound(e)}return new l(t)},l.Prototype=function(){this.clone=function(){return new l(this)},this.isNOP=function(){return"NOP"===this.type||0===this.str.length},this.isInsert=function(){return this.type===u},this.isDelete=function(){return this.type===p},this.length=function(){return this.str.length},this.apply=function(t){if(this.isEmpty())return t;var e=t instanceof l.StringAdapter?t:new l.StringAdapter(t);if(this.type===u)e.insert(this.pos,this.str);else{if(this.type!==p)throw new a.OperationError("Illegal operation type: "+this.type);e.delete(this.pos,this.str.length)}return e.get()},this.invert=function(){var t={type:this.isInsert()?"-":"+",pos:this.pos,str:this.str};return new l(t)},this.hasConflict=function(t){return l.hasConflict(this,t)},this.isEmpty=function(){return 0===this.str.length},this.toJSON=function(){return{type:this.type,pos:this.pos,str:this.str}}},l.Prototype.prototype=c.prototype,l.prototype=new l.Prototype;var d=function(t,e){if(t.type===u&&e.type===u)return t.pos===e.pos;if(t.type===p&&e.type===p)return!(t.pos>=e.pos+e.str.length||e.pos>=t.pos+t.str.length);var n,r;return t.type===p?(n=t,r=e):(n=e,r=t),r.pos>=n.pos&&r.pos<n.pos+n.str.length},f=function(t,e,o){if(o=o||{},o.check&&d(t,e))throw c.conflict(t,e);return o.inplace||(t=s.clone(t),e=s.clone(e)),t.type===u&&e.type===u?n(t,e,!0):t.type===p&&e.type===p?r(t,e,!0):i(t,e),[t,e]},g=function(t,e){return o.isArray(t)?t=new l(t):t instanceof l||(t=l.fromJSON(t)),t.apply(e)};l.transform=h.createTransform(f),l.apply=g;var y=function(t){this.str=t};y.prototype={insert:function(t,e){if(this.str.length<t)throw new a.OperationError("Provided string is too short.");this.str=this.str.slice(0,t)+e+this.str.slice(t)},"delete":function(t,e){if(this.str.length<t+e)throw new a.OperationError("Provided string is too short.");this.str=this.str.slice(0,t)+this.str.slice(t+e)},get:function(){return this.str}},l.Insert=function(t,e){return new l(["+",t,e])},l.Delete=function(t,e){return new l(["-",t,e])},l.Compound=function(t){return 1===t.length?t[0]:new h(t)},l.fromOT=function(t,e){var n=[],r=0,i=0;return o.isArray(e)||(e=o.toArray(arguments).slice(1)),o.each(e,function(e){if(o.isString(e))n.push(l.Insert(i,e)),i+=e.length;else if(0>e){var s=-e;n.push(l.Delete(i,t.slice(r,r+s))),r+=s}else r+=e,i+=e}),0===n.length?null:l.Compound(n)},l.fromSequence=l.fromOT;var v=function(t){o.isArray(t)?(this.start=t[0],this.length=t[1]):(this.start=t.start,this.length=t.length)},m=function(t,e,n,r){var i=!1;{if(e.type!==h.TYPE){var s,a;if(o.isArray(t)?(s=t[0],a=t[1]):(s=t.start,a=s+t.length),e.type===p){var c=e.pos,l=e.pos+e.str.length;s>=c&&(s-=Math.min(l-c,s-c),i=!0),a>=c&&(a-=Math.min(l-c,a-c),i=!0)}else if(e.type===u){var d=e.pos,f=e.str.length;(s>d||d===s&&!n)&&(s+=f,i=!0),(a>d||d===a&&r)&&(a+=f,i=!0)}return i&&(o.isArray(t)?(t[0]=s,t[1]=a):(t.start=s,t.length=a-s)),i}for(var g=0;g<e.ops.length;g++){var y=e.ops[g];m(t,y)}}};v.Prototype=function(){this.clone=function(){return new v(this)},this.toJSON=function(){var t={start:this.start,length:this.length};return t},this.transform=function(t,e){return m(this.range,t,e)}},v.prototype=new v.Prototype,v.transform=function(t,e,n,r){return m(t,e,n,r)},v.fromJSON=function(t){return new v(t)},l.StringAdapter=y,l.Range=v,l.INSERT=u,l.DELETE=p,e.exports=l},{"./compound":140,"./operation":142,"substance-util":154,underscore:159}],145:[function(t,e){"use strict";var n={Controller:t("./src/reader_controller"),View:t("./src/reader_view")};e.exports=n},{"./src/reader_controller":146,"./src/reader_view":147}],146:[function(t,e){"use strict";var n=t("substance-document"),r=t("substance-application").Controller,i=t("./reader_view");t("substance-util");var o=function(t,e,r){this.__document=t,this.options=r||{},this.content=new n.Controller(t,{view:"content"}),t.get("figures")&&(this.figures=new n.Controller(t,{view:"figures"})),t.get("citations")&&(this.citations=new n.Controller(t,{view:"citations"})),t.get("info")&&(this.info=new n.Controller(t,{view:"info"})),this.state=e,this.currentContext="toc"};o.Prototype=function(){this.createView=function(){return this.view||(this.view=new i(this)),this.view},this.switchContext=function(t){this.currentContext=t,this.modifyState({context:t,node:null,resource:null})},this.modifyState=function(t){r.prototype.modifyState.call(this,t)},this.getActiveControllers=function(){var t=[];return t.push(["article",this]),t.push(["reader",this.content]),t}},o.Prototype.prototype=r.prototype,o.prototype=new o.Prototype,e.exports=o},{"./reader_view":147,"substance-application":56,"substance-document":81,"substance-util":154}],147:[function(t,e){"use strict";var n=t("underscore"),r=t("substance-util");r.html;var i=t("substance-surface"),o=t("lens-outline"),s=t("substance-application").View,a=t("substance-toc"),c=t("substance-data"),h=c.Graph.Index,u=t("substance-application").$$,p=-100,l=function(t,e){var n=e.node;if(n.constructor.description,"info"!==t.view||"person"===n.type||"collaborator"===n.type){var r=[u("a.name",{href:"#",text:n.header,"sbs-click":"toggleResource("+n.id+")"})],i=n.constructor.config;i&&i.zoomable&&r.push(u("a.toggle-fullscreen",{href:"#",html:'<i class="icon-resize-full"></i><i class="icon-resize-small"></i>',"sbs-click":"toggleFullscreen("+n.id+")"}));var o=u(".resource-header",{children:r});e.el.insertBefore(o,e.content)}},d=function(t){var e=document.createDocumentFragment(),n=u(".document");n.appendChild(t.contentView.render().el);var r=[];t.tocView&&r.push(u("a.context-toggle.toc",{href:"#","sbs-click":"switchContext(toc)",title:"Text",html:'<i class="icon-align-left"></i><span> Text</span>'})),t.figuresView&&r.push(u("a.context-toggle.figures",{href:"#","sbs-click":"switchContext(figures)",title:"Figures",html:'<i class="icon-picture"></i><span> Figures</span>'})),t.citationsView&&r.push(u("a.context-toggle.citations",{href:"#","sbs-click":"switchContext(citations)",title:"Citations",html:'<i class="icon-link"></i><span> Citations</span>'})),t.infoView&&r.push(u("a.context-toggle.info",{href:"#","sbs-click":"switchContext(info)",title:"Article Info",html:'<i class="icon-info-sign"></i><span>Info</span>'}));var i=u(".context-toggles",{children:r}),o=u(".medial-strip"),s=t.readerCtrl.options.collection;s&&o.appendChild(u("a.back-nav",{href:s.url,title:"Go back",html:'<i class=" icon-chevron-up"></i>'})),o.appendChild(u(".separator-line")),o.appendChild(i),e.appendChild(o);var a=u(".resources");return a.appendChild(t.tocView.render().el),t.figuresView&&a.appendChild(t.figuresView.render().el),t.citationsView&&a.appendChild(t.citationsView.render().el),t.infoView&&a.appendChild(t.infoView.render().el),e.appendChild(n),e.appendChild(a),e},f=function(t){s.call(this),this.readerCtrl=t;var e=this.readerCtrl.content.__document;this.$el.addClass("article"),this.$el.addClass(e.schema.id),this.bodyScroll={};var r=this.readerCtrl.content.__document.constructor.Renderer;if(this.contentView=new i(this.readerCtrl.content,{editable:!1,renderer:new r(this.readerCtrl.content,{})}),this.tocView=new a(this.readerCtrl),this.tocView.headings.length<=2){var c;c=e.get("figures").nodes.length>0?"figures":"info",this.readerCtrl.modifyState({context:c})}this.tocView.$el.addClass("resource-view"),this.readerCtrl.figures&&this.readerCtrl.figures.get("figures").nodes.length&&(this.figuresView=new i(this.readerCtrl.figures,{editable:!1,renderer:new r(this.readerCtrl.figures,{afterRender:l})}),this.figuresView.$el.addClass("resource-view")),this.readerCtrl.citations&&this.readerCtrl.citations.get("citations").nodes.length&&(this.citationsView=new i(this.readerCtrl.citations,{editable:!1,renderer:new r(this.readerCtrl.citations,{afterRender:l})}),this.citationsView.$el.addClass("resource-view")),this.readerCtrl.info&&this.readerCtrl.info.get("info").nodes.length&&(this.infoView=new i(this.readerCtrl.info,{editable:!1,renderer:new r(this.readerCtrl.info,{afterRender:l})}),this.infoView.$el.addClass("resource-view")),this.listenTo(this.readerCtrl,"state-changed",this.updateState),this.resources=new h(this.readerCtrl.__document,{types:["figure_reference","citation_reference","person_reference"],property:"target"}),this.outline=new o(this.contentView),this.contentView.$el.on("scroll",n.bind(this.onContentScroll,this)),this.$el.on("click",".annotation.figure_reference",n.bind(this.toggleFigureReference,this)),this.$el.on("click",".annotation.citation_reference",n.bind(this.toggleCitationReference,this)),this.$el.on("click",".annotation.person_reference",n.bind(this.togglePersonReference,this)),this.$el.on("click",".annotation.cross_reference",n.bind(this.followCrossReference,this)),this.$el.on("click",".document .content-node.heading",n.bind(this.setAnchor,this)),this.outline.$el.on("click",".node",n.bind(this._jumpToNode,this))};f.Prototype=function(){this.setAnchor=function(t){this.toggleNode("toc",$(t.currentTarget).attr("id"))},this.toggleFullscreen=function(t){var e=this.readerCtrl.state;this.readerCtrl.modifyState({resource:t,fullscreen:!e.fullscreen})},this._jumpToNode=function(t){var e=$(t.currentTarget).attr("id").replace("outline_","");return this.jumpToNode(e),!1},this.toggleFigureReference=function(t){this.toggleResourceReference("figures",t),t.preventDefault()},this.toggleCitationReference=function(t){this.toggleResourceReference("citations",t),t.preventDefault()},this.togglePersonReference=function(t){this.toggleResourceReference("info",t),t.preventDefault()},this.toggleResourceReference=function(t,e){var n=this.readerCtrl.state,r=$(e.currentTarget).attr("id"),i=this.readerCtrl.__document.get(r),o=this.readerCtrl.content.container.getRoot(i.path[0]),s=i.target;s===n.resource?this.readerCtrl.modifyState({context:this.readerCtrl.currentContext,node:null,resource:null}):(this.saveScroll(),this.readerCtrl.modifyState({context:t,node:o,resource:s}),this.jumpToResource(s))},this.followCrossReference=function(t){var e=$(t.currentTarget).attr("id"),n=this.readerCtrl.__document.get(e);this.jumpToNode(n.target)},this.onContentScroll=function(){var t=this.contentView.$el.scrollTop();this.outline.updateVisibleArea(t),this.markActiveHeading(t)},this.markActiveHeading=function(t){var e=$(".nodes").height();if(0!==this.tocView.headings.length){var r=n.first(this.tocView.headings).id;this.contentView.$(".content-node.heading").each(function(){t>=$(this).position().top+p&&(r=this.id)}),t+this.contentView.$el.height()>=e&&(r=n.last(this.tocView.headings).id),this.tocView.setActiveNode(r)}},this.toggleResource=function(t){var e=this.readerCtrl.state,n=e.node;e.resource===t&&(t=null,n=null),this.readerCtrl.modifyState({fullscreen:!1,resource:t,node:n})},this.jumpToNode=function(t){var e=$("#"+t);if(e.length>0){var n=e.position().top+p;this.contentView.$el.scrollTop(n)}},this.jumpToResource=function(t){var e=$("#"+t);if(e.length>0){var n=e.position().top;console.log("topoffset of: "+t,n),this.figuresView&&this.figuresView.$el.scrollTop(n),this.citationsView&&this.citationsView.$el.scrollTop(n),this.infoView&&this.infoView.$el.scrollTop(n),$("body").scrollTop(n)}},this.toggleNode=function(t,e){var n=this.readerCtrl.state;n.node===e&&n.context===t?this.readerCtrl.modifyState({context:this.readerCtrl.currentContext,node:null,resource:null}):this.readerCtrl.modifyState({context:t,node:e,resource:null})},this.getScroll=function(){return $("body").scrollTop()},this.recoverScroll=function(){var t=this.bodyScroll[this.readerCtrl.state.context];t?($("body").scrollTop(t),console.log("recovered scroll",t,this.readerCtrl.state.context)):$("body").scrollTop(0)},this.saveScroll=function(){this.bodyScroll[this.readerCtrl.state.context]=this.getScroll(),console.log("scroll saved",this.bodyScroll[this.readerCtrl.state.context],this.readerCtrl.state.context)},this.switchContext=function(t){this.saveScroll(),this.readerCtrl.switchContext(t),this.recoverScroll()},this.updateState=function(t){t=t||{};var e=this.readerCtrl.state;this.$el.removeClass("toc figures citations info"),this.contentView.$(".content-node.active").removeClass("active"),this.$el.addClass(e.context),e.node&&this.contentView.$("#"+e.node).addClass("active"),this.updateResource()},this.updateResource=function(){var t=this.readerCtrl.state;if(this.$(".resources .content-node.active").removeClass("active fullscreen"),this.contentView.$(".annotation.active").removeClass("active"),t.resource){var e=this.$("#"+t.resource);e.addClass("active"),t.fullscreen&&e.addClass("fullscreen");var r=this.resources.get(t.resource);n.each(r,function(t){this.contentView.$("#"+t.id).addClass("active")},this)}else this.recoverScroll();this.updateOutline()},this.isMobile=function(){},this.updateOutline=function(){var t=this,e=this.readerCtrl.state,r=this.readerCtrl.content.container,i=n.filter(this.readerCtrl.content.getAnnotations(),function(t){return t.target&&t.target===e.resource},this),o=n.uniq(n.map(i,function(t){var e=r.getRoot(t.path[0]);return e}));t.outline.update({context:e.context,selectedNode:e.node,highlightedNodes:o})},this.annotate=function(t){return this.readerCtrl.content.annotate(t),!1},this.render=function(){var t=this,e=this.readerCtrl.state;this.el.appendChild(new d(this)),this.$(".document").append(t.outline.el),n.delay(function(){t.updateState(),MathJax.Hub.Queue(["Typeset",MathJax.Hub])},1),n.delay(function(){t.updateOutline()},2e3);var r=n.debounce(function(){t.updateOutline()},1);return e.node&&n.delay(function(){t.jumpToNode(e.node),e.resource&&t.jumpToResource(e.resource)},100),$(window).resize(r),this},this.dispose=function(){this.contentView.dispose(),this.figuresView&&this.figuresView.dispose(),this.citationsView&&this.citationsView.dispose(),this.infoView&&this.infoView.dispose(),this.stopListening()}},f.Prototype.prototype=s.prototype,f.prototype=new f.Prototype,f.prototype.constructor=f,e.exports=f},{"lens-outline":54,"substance-application":56,"substance-data":74,"substance-surface":150,"substance-toc":152,"substance-util":154,underscore:159}],148:[function(t,e){"use strict";e.exports=t("./src/regexp")},{"./src/regexp":149}],149:[function(t,e){"use strict";var n=function(t){this.index=t.index,this.match=[];for(var e=0;e<t.length;e++)this.match.push(t[e])};n.Prototype=function(){this.captures=function(){return this.match.slice(1)},this.toString=function(){return this.match[0]}},n.prototype=new n.Prototype;var r=function(t){this.exp=t};r.Prototype=function(){this.match=function(t){if(void 0===t)throw new Error("No string given");if(this.exp.global){var e,r=[];for(this.exp.compile(this.exp);null!==(e=this.exp.exec(t));)r.push(new n(e));return r}return this.exp.exec(t)}},r.prototype=new r.Prototype,r.Match=n,e.exports=r},{}],150:[function(t,e){"use strict";var n=t("./src/surface");e.exports=n},{"./src/surface":151}],151:[function(t,e){"use strict";var n=t("underscore"),r=t("substance-application").View,i=t("substance-util"),o=t("substance-commander"),s=function(t,e){e=n.extend({editable:!0},e),r.call(this);var i=this;if(this.options=e,this.renderer=this.options.renderer?this.options.renderer:new t.__document.constructor.Renderer(t),this.doc=t,this.nodeTypes=t.__document.nodeTypes,this.listenTo(this.doc.selection,"selection:changed",this.renderSelection),this.listenTo(this.doc.__document,"property:updated",this.onUpdateView),this.listenTo(this.doc.__document,"graph:reset",this.reset),this.build(),this.$el.addClass("surface"),this.$el.addClass(this.doc.view),e.editable){this.el.setAttribute("contenteditable","true"),this.el.spellcheck=!1,this.$el.mouseup(function(t){this.ignoreNextSelection=!0,this.updateSelection(t)}.bind(this)),this.$el.delegate("img","click",function(t){var e=$(t.currentTarget).parent().parent().parent(),n=e.attr("id");return i.doc.selection.selectNode(n),!1}),this._dirt=[],this._onKeyDown=function(){this._dirtPossible=!0}.bind(this),this._onTextInput=function(t){for(this._dirtPossible=!1;this._dirt.length>0;){var e=this._dirt.shift();e[0].textContent=e[1]}this.doc.write(t.data),t.preventDefault()}.bind(this);var s=function(t,e){return function(n){i._dirtPossible=!1,setTimeout(t,0),e!==!0&&n.preventDefault()}};this.keyboard=new o.Mousetrap,this.keyboard.bind(["up","down","left","right","shift+up","shift+down","shift+left","shift+right","ctrl+up","ctrl+down","ctrl+left","ctrl+right","ctrl+shift+up","ctrl+shift+down","ctrl+shift+left","ctrl+shift+right","alt+up","alt+down","alt+left","alt+right"],function(){setTimeout(function(){i.ignoreNextSelection=!0,i.updateSelection()},0)},"keydown"),this.keyboard.bind(["backspace"],s(function(){i.doc.delete("left")}),"keydown"),this.keyboard.bind(["del"],s(function(){i.doc.delete("right")}),"keydown"),this.keyboard.bind(["enter"],s(function(){i.doc.modifyNode()}),"keydown"),this.keyboard.bind(["shift+enter"],s(function(){i.doc.write("\n")}),"keydown"),this.keyboard.bind(["space"],s(function(){i.doc.write(" ")}),"keydown"),this.keyboard.bind(["tab"],s(function(){i.doc.write("  ")}),"keydown"),this.keyboard.bind(["ctrl+z"],s(function(){i.doc.undo()}),"keydown"),this.keyboard.bind(["ctrl+shift+z"],s(function(){i.doc.redo()}),"keydown"),this.makeEditable(this.el)}};s.Prototype=function(){function t(t,e,n){var r=t.childNodes;if(e<r.length){var i=r[e];t.insertBefore(n,i)}else t.appendChild(n)}var e=function(t){for(var e=t;void 0!==e;){if($(e).is(".content-node"))return e;e=e.parentElement}return null};this.makeEditable=function(t){var e=this;t.addEventListener("keydown",this._onKeyDown),t.addEventListener("textInput",this._onTextInput,!0),t.addEventListener("input",this._onTextInput,!0),this._dirt=[],this._observer=new MutationObserver(function(t){t.forEach(function(t){e._dirtPossible&&e._dirt.push([t.target,t.oldValue])})});var n={subtree:!0,characterData:!0,characterDataOldValue:!0};this._observer.observe(t,n),this.keyboard.connect(t)},this.updateSelection=function(){var t=window.getSelection();if(null!==t.anchorNode){if($(t.anchorNode.parentElement).is(".cursor"))return this.doc.selection.collapse("cursor"),void 0;var n,r,i=t.getRangeAt(0);if(n=[i.startContainer,i.startOffset],r=[i.endContainer,i.endOffset],i.endContainer===t.anchorNode&&i.endOffset===t.anchorOffset){var o=n;n=r,r=o}var s=e.call(this,n[0]),a=e.call(this,r[0]),c=s.getAttribute("id"),h=this.doc.getPosition(c),u=this.nodes[c].getCharPosition(n[0],n[1]),p=a.getAttribute("id"),l=this.doc.getPosition(p),d=this.nodes[p].getCharPosition(r[0],r[1]),f=[h,u],g=[l,d];this.doc.selection.set({start:f,end:g})}},this.renderSelection=function(){if(this.ignoreNextSelection===!0)return this.ignoreNextSelection=!1,void 0;if(this.doc.selection.isNull())return this.$cursor.hide(),void 0;var t=window.getSelection(),e=this.doc.selection.range(),n=this.doc.getNodeFromPosition(e.start[0]),r=this.renderer.nodes[n.id],i=r.getDOMPosition(e.start[1]),o=this.doc.getNodeFromPosition(e.end[0]),s=this.renderer.nodes[o.id],a=s.getDOMPosition(e.end[1]),c=document.createRange();c.setStart(i.startContainer,i.startOffset),c.setEnd(a.endContainer,a.endOffset),t.removeAllRanges(),t.addRange(c)},this.build=function(){this.nodes=this.renderer.nodes},this.render=function(){var t=document.createElement("input");t.className="image-files",t.setAttribute("type","file"),t.setAttribute("name","files[]");var e=document.createElement("div");e.className="controls";var n=document.createElement("div");n.className="nodes";var r=document.createElement("div");return r.className="cursor",this.el.appendChild(t),this.el.appendChild(e),this.el.appendChild(n),this.el.appendChild(r),n.appendChild(this.renderer.render()),this.$("input.image-files").hide(),this.$cursor=this.$(".cursor"),this.$cursor.hide(),this._nodesEl=n,this},this.reset=function(){n.each(this.nodes,function(t){t.dispose()}),this.build(),this.render()},this.dispose=function(){this.stopListening(),n.each(this.nodes,function(t){t.dispose()},this)},this.onUpdateView=function(e,n){if(2===e.length&&"content"===e[0]&&"nodes"===e[1]){var r,i,o,s,a=this._nodesEl;if(n.isInsert()){if(r=n.val,i=this.doc.get(r),this.nodeTypes[i.type]){var c=this.renderer.createView(i);this.nodes[r]=c,s=c.render().el,t(a,n.pos,s)}}else if(n.isDelete())r=n.val,this.nodes[r]&&this.nodes[r].dispose(),delete this.nodes[r],o=a.children,a.removeChild(o[n.pos]);else if(n.isMove())o=a.children,s=o[n.pos],a.removeChild(s),t(a,n.target,s);else if("NOP"!==n.type)throw new Error("Illegal state.")}}},n.extend(s.Prototype,i.Events.Listener),s.Prototype.prototype=r.prototype,s.prototype=new s.Prototype,e.exports=s},{"substance-application":56,"substance-commander":70,"substance-util":154,underscore:159}],152:[function(t,e){"use strict";var n=t("./toc_view");e.exports=n},{"./toc_view":153}],153:[function(t,e){"use strict";var n=t("substance-application").View,r=t("substance-application").$$,i=t("substance-data");i.Graph.Index;var o=t("underscore"),s=function(t){n.call(this),this.doc=t,this.headings=o.filter(this.doc.content.getNodes(),function(t){return"heading"===t.type}),this.$el.addClass("toc")};s.Prototype=function(){this.render=function(){return this.headings.length<=2?this:(o.each(this.headings,function(t){this.el.appendChild(r("a.heading-ref.level-"+t.level,{id:"toc_"+t.id,text:t.content,"sbs-click":"jumpToNode("+t.id+")"}))},this),this)},this.setActiveNode=function(t){this.$(".heading-ref.active").removeClass("active"),this.$("#toc_"+t).addClass("active")}},s.Prototype.prototype=n.prototype,s.prototype=new s.Prototype,e.exports=s},{"substance-application":56,"substance-data":74,underscore:159}],154:[function(t,e){"use strict";var n=t("./src/util");n.errors=t("./src/errors"),n.html=t("./src/html"),n.dom=t("./src/dom"),e.exports=n},{"./src/dom":155,"./src/errors":156,"./src/html":157,"./src/util":158}],155:[function(t,e){"use strict";var n=t("underscore"),r={};r.ChildNodeIterator=function(t){this.nodes=n.isArray(t)?t:t.childNodes,this.length=this.nodes.length,this.pos=-1},r.ChildNodeIterator.prototype={hasNext:function(){return this.pos<this.length-1},next:function(){return this.pos+=1,this.nodes[this.pos]},back:function(){return this.pos>=0&&(this.pos-=1),this}},r.getChildren=function(t){if(void 0!==t.children)return t.children;for(var e=[],n=t.firstElementChild;n;)e.push(n),n=n.nextElementSibling;return e},r.getNodeType=function(t){if(t.nodeType===Node.TEXT_NODE)return"text";if(t.nodeType===Node.COMMENT_NODE)return"comment";if(t.tagName)return t.tagName.toLowerCase();throw new Error("Unknown node type")},e.exports=r},{underscore:159}],156:[function(t,e){"use strict";t("underscore");var n=t("./util"),r={};r.SubstanceError=function(t,e,r){1==arguments.length&&(r=t,t="SubstanceError",e=-1),this.message=r,this.name=t,this.code=e,this.__stack=n.callstack(1)},r.SubstanceError.Prototype=function(){this.toString=function(){return this.name+":"+this.message},this.toJSON=function(){return{name:this.name,message:this.message,code:this.code,stack:this.stack}},this.printStackTrace=function(){n.printStackTrace(this)}},r.SubstanceError.prototype=new r.SubstanceError.Prototype,Object.defineProperty(r.SubstanceError.prototype,"stack",{get:function(){for(var t=[],e=0;e<this.__stack.length;e++){var n=this.__stack[e];t.push(n.file+":"+n.line+":"+n.col+" ("+n.func+")")}return t.join("\n")},set:function(){throw new Error("immutable.")}}),r.define=function(t,e){return void 0===e&&(e=-1),r[t]=r.SubstanceError.bind(null,t,e),r[t].prototype=r.SubstanceError.prototype,r[t]},e.exports=r},{"./util":158,underscore:159}],157:[function(t,e){"use strict";var n={},r=t("underscore");n.templates={},n.renderTemplate=function(t,e){return n.templates[t](e)},"undefined"!=typeof window&&(window.console||(window.console={log:function(){}})),n.tpl=function(t,e){e=e||{};var n=$("script[name="+t+"]").html();return r.template(n,e)},e.exports=n},{underscore:159}],158:[function(t,e,n){"use strict";function r(t,e){function n(t){var e=a[c];if(!e)return u.length>0?r(new Error("Multiple errors occurred.",t)):r(null,t);var i=p(function(t,e){if(t){if(h)return r(t,null);u.push(t)}c+=1,n(e)});try{1===e.length?e(i):e(t,i)}catch(o){console.log("util.async caught error:",o),s.printStackTrace(o),r(o)}}var r=t.finally||function(t,n){e(t,n)};r=p(r);var i=t.data||{},a=t.functions;if(!o.isFunction(e))return e("Illegal arguments: a callback function must be provided");var c=0,h=void 0===t.stopOnError?!0:t.stopOnError,u=[];n(i)}function i(t){return function(e,n){function i(t,e){return function(n,r){2===p.length?p(t,r):3===p.length?p(t,e,r):p(t,e,n,r)}}function s(t,e){return function(n,r){2===p.length?p(t,r):3===p.length?p(t,e,r):p(t,e,n,r)}}var a=t.selector?t.selector(e):t.items,c=t.finally||function(t,e){n(t,e)};if(!a)return c(null,e);var h=o.isArray(a);t.before&&t.before(e);var u=[],p=t.iterator;if(h)for(var l=0;l<a.length;l++)u.push(i(a[l],l));else for(var d in a)u.push(s(a[d],d));var f={functions:u,data:e,"finally":c,stopOnError:t.stopOnError};r(f,n)}}var o=t("underscore"),s={};s.uuid=function(t,e){var n,r="0123456789abcdefghijklmnopqrstuvwxyz".split(""),i=[],o=16;if(e=e||32)for(n=0;e>n;n++)i[n]=r[0|Math.random()*o];else{var s;for(i[8]=i[13]=i[18]=i[23]="-",i[14]="4",n=0;36>n;n++)i[n]||(s=0|16*Math.random(),i[n]=r[19==n?8|3&s:s])}return(t?t:"")+i.join("")},s.uuidGen=function(t){var e=1;return t=void 0!==t?t:"uuid_",function(n){return n=n||t,n+e++}};var a=function(t,e){var n,r=-1,i=t.length,o=e[0],s=e[1],a=e[2];switch(e.length){case 0:for(;++r<i;)(n=t[r]).callback.call(n.ctx);return;case 1:for(;++r<i;)(n=t[r]).callback.call(n.ctx,o);return;case 2:for(;++r<i;)(n=t[r]).callback.call(n.ctx,o,s);return;case 3:for(;++r<i;)(n=t[r]).callback.call(n.ctx,o,s,a);return;default:for(;++r<i;)(n=t[r]).callback.apply(n.ctx,e)}},c=/\s+/,h=function(t,e,n,r){if(!n)return!0;if("object"==typeof n){for(var i in n)t[e].apply(t,[i,n[i]].concat(r));return!1}if(c.test(n)){for(var o=n.split(c),s=0,a=o.length;a>s;s++)t[e].apply(t,[o[s]].concat(r));return!1}return!0};s.Events={on:function(t,e,n){if(!h(this,"on",t,[e,n])||!e)return this;this._events=this._events||{};var r=this._events[t]||(this._events[t]=[]);return r.push({callback:e,context:n,ctx:n||this}),this},once:function(t,e,n){if(!h(this,"once",t,[e,n])||!e)return this;var r=this,i=o.once(function(){r.off(t,i),e.apply(this,arguments)});return i._callback=e,this.on(t,i,n)},off:function(t,e,n){var r,i,s,a,c,u,p,l;if(!this._events||!h(this,"off",t,[e,n]))return this;if(!t&&!e&&!n)return this._events={},this;for(a=t?[t]:o.keys(this._events),c=0,u=a.length;u>c;c++)if(t=a[c],s=this._events[t]){if(this._events[t]=r=[],e||n)for(p=0,l=s.length;l>p;p++)i=s[p],(e&&e!==i.callback&&e!==i.callback._callback||n&&n!==i.context)&&r.push(i);r.length||delete this._events[t]}return this},trigger:function(t){if(!this._events)return this;var e=Array.prototype.slice.call(arguments,1);if(!h(this,"trigger",t,e))return this;var n=this._events[t],r=this._events.all;return n&&a(n,e),r&&a(r,arguments),this},triggerLater:function(){var t=this,e=arguments;setTimeout(function(){t.trigger.apply(t,e)},0)},stopListening:function(t,e,n){var r=this._listeners;if(!r)return this;var i=!e&&!n;"object"==typeof e&&(n=this),t&&((r={})[t._listenerId]=t);for(var o in r)r[o].off(e,n,this),i&&delete this._listeners[o];return this}};var u={listenTo:"on",listenToOnce:"once"};o.each(u,function(t,e){s.Events[e]=function(e,n,r){var i=this._listeners||(this._listeners={}),s=e._listenerId||(e._listenerId=o.uniqueId("l"));return i[s]=e,"object"==typeof n&&(r=this),e[t](n,r,this),this}}),s.Events.bind=s.Events.on,s.Events.unbind=s.Events.off,s.Events.Listener={listenTo:function(t,e,n){if(!o.isFunction(n))throw new Error("Illegal argument: expecting function as callback, was: "+n);return this._handlers=this._handlers||[],t.on(e,n,this),this._handlers.push({unbind:function(){t.off(e,n)}}),this},stopListening:function(){for(var t=0;t<this._handlers.length;t++)this._handlers[t].unbind()}};var p=o.once;s.async={},s.async.sequential=function(t,e){o.isArray(t)&&(t={functions:t}),r(t,e)},s.async.iterator=function(t,e){var n;return n=1==arguments.length?t:{items:t,iterator:e},i(n)},s.async.each=function(t,e){var n=i(t);n(null,e)},s.propagate=function(t,e){if(!o.isFunction(e))throw"Illegal argument: provided callback is not a function";return function(n){return n?e(n):(e(null,t),void 0)}};var l=function(){};s.inherits=function(t,e,n){var r;return r=e&&e.hasOwnProperty("constructor")?e.constructor:function(){t.apply(this,arguments)},o.extend(r,t),l.prototype=t.prototype,r.prototype=new l,e&&o.extend(r.prototype,e),n&&o.extend(r,n),r.prototype.constructor=r,r.__super__=t.prototype,r},s.getJSON=function(e,r){if("undefined"!=typeof n){var i=t("fs"),o=JSON.parse(i.readFileSync(e,"utf8"));r(null,o)}else $.getJSON(e).done(function(t){r(null,t)}).error(function(t){r(t,null)})},s.prototype=function(t){return Object.getPrototypeOf?Object.getPrototypeOf(t):t.__proto__},s.inherit=function(t,e){var n,r=o.isFunction(t)?new t:t;if(o.isFunction(e))e.prototype=r,n=new e;else{var i=function(){};i.prototype=r,n=o.extend(new i,e)}return n},s.pimpl=function(t){var e=function(t){this.self=t};return e.prototype=t,function(t){return t=t||this,new e(t)}},s.parseStackTrace=function(t){var e,n=/([^@]*)@(.*):(\d+)/,r=/\s*at ([^(]*)[(](.*):(\d+):(\d+)[)]/,i=t.stack.split("\n"),o=[];for(e=0;e<i.length;e++){var s=n.exec(i[e]);if(s||(s=r.exec(i[e])),s){var a={func:s[1],file:s[2],line:s[3],col:s[4]||0};""===a.func&&(a.func="<anonymous>"),o.push(a)}}return o},s.callstack=function(t){var e;try{throw new Error}catch(n){e=n}var r=s.parseStackTrace(e);return t=t||0,r.splice(t+1)},s.stacktrace=function(t){var e=0===arguments.length?s.callstack().splice(1):s.parseStackTrace(t),n=[];return o.each(e,function(t){n.push(t.file+":"+t.line+":"+t.col+" ("+t.func+")")}),n.join("\n")},s.printStackTrace=function(t,e){if(t.stack){var n;if(void 0!==t.__stack)n=t.__stack;else{if(!o.isString(t.stack))return;n=s.parseStackTrace(t)}e=e||n.length,e=Math.min(e,n.length);for(var r=0;e>r;r++){var i=n[r];console.log(i.file+":"+i.line+":"+i.col,"("+i.func+")")}}},s.diff=function(t,e){var n;return o.isArray(t)&&o.isArray(e)?(n=o.difference(e,t),0===n.length?null:n):o.isObject(t)&&o.isObject(e)?(n={},o.each(Object.keys(e),function(r){var i=s.diff(t[r],e[r]);i&&(n[r]=i)}),o.isEmpty(n)?null:n):t!==e?e:void 0},s.deepclone=function(t){return JSON.parse(JSON.stringify(t))},s.clone=function(t){return null===t||void 0===t?t:o.isFunction(t.clone)?t.clone():s.deepclone(t)},s.freeze=function(t){var e;if(o.isObject(t)){if(Object.isFrozen(t))return t;var n=Object.keys(t);for(e=0;e<n.length;e++){var r=n[e];t[r]=s.freeze(t[r])}return Object.freeze(t)}if(o.isArray(t)){var i=t;for(e=0;e<i.length;e++)i[e]=s.freeze(i[e]);return Object.freeze(i)}return t},s.later=function(t,e){return function(){var n=arguments;setTimeout(function(){t.apply(e,n)},0)}},s.isEmpty=function(t){return!t.match(/\w/)},e.exports=s},{fs:163,underscore:159}],159:[function(t,e,n){(function(){var t=this,r=t._,i={},o=Array.prototype,s=Object.prototype,a=Function.prototype,c=o.push,h=o.slice,u=o.concat,p=s.toString,l=s.hasOwnProperty,d=o.forEach,f=o.map,g=o.reduce,y=o.reduceRight,v=o.filter,m=o.every,b=o.some,w=o.indexOf,_=o.lastIndexOf,x=Array.isArray,C=Object.keys,P=a.bind,S=function(t){return t instanceof S?t:this instanceof S?(this._wrapped=t,void 0):new S(t)
-};"undefined"!=typeof n?("undefined"!=typeof e&&e.exports&&(n=e.exports=S),n._=S):t._=S,S.VERSION="1.5.2";var N=S.each=S.forEach=function(t,e,n){if(null!=t)if(d&&t.forEach===d)t.forEach(e,n);else if(t.length===+t.length){for(var r=0,o=t.length;o>r;r++)if(e.call(n,t[r],r,t)===i)return}else for(var s=S.keys(t),r=0,o=s.length;o>r;r++)if(e.call(n,t[s[r]],s[r],t)===i)return};S.map=S.collect=function(t,e,n){var r=[];return null==t?r:f&&t.map===f?t.map(e,n):(N(t,function(t,i,o){r.push(e.call(n,t,i,o))}),r)};var E="Reduce of empty array with no initial value";S.reduce=S.foldl=S.inject=function(t,e,n,r){var i=arguments.length>2;if(null==t&&(t=[]),g&&t.reduce===g)return r&&(e=S.bind(e,r)),i?t.reduce(e,n):t.reduce(e);if(N(t,function(t,o,s){i?n=e.call(r,n,t,o,s):(n=t,i=!0)}),!i)throw new TypeError(E);return n},S.reduceRight=S.foldr=function(t,e,n,r){var i=arguments.length>2;if(null==t&&(t=[]),y&&t.reduceRight===y)return r&&(e=S.bind(e,r)),i?t.reduceRight(e,n):t.reduceRight(e);var o=t.length;if(o!==+o){var s=S.keys(t);o=s.length}if(N(t,function(a,c,h){c=s?s[--o]:--o,i?n=e.call(r,n,t[c],c,h):(n=t[c],i=!0)}),!i)throw new TypeError(E);return n},S.find=S.detect=function(t,e,n){var r;return k(t,function(t,i,o){return e.call(n,t,i,o)?(r=t,!0):void 0}),r},S.filter=S.select=function(t,e,n){var r=[];return null==t?r:v&&t.filter===v?t.filter(e,n):(N(t,function(t,i,o){e.call(n,t,i,o)&&r.push(t)}),r)},S.reject=function(t,e,n){return S.filter(t,function(t,r,i){return!e.call(n,t,r,i)},n)},S.every=S.all=function(t,e,n){e||(e=S.identity);var r=!0;return null==t?r:m&&t.every===m?t.every(e,n):(N(t,function(t,o,s){return(r=r&&e.call(n,t,o,s))?void 0:i}),!!r)};var k=S.some=S.any=function(t,e,n){e||(e=S.identity);var r=!1;return null==t?r:b&&t.some===b?t.some(e,n):(N(t,function(t,o,s){return r||(r=e.call(n,t,o,s))?i:void 0}),!!r)};S.contains=S.include=function(t,e){return null==t?!1:w&&t.indexOf===w?-1!=t.indexOf(e):k(t,function(t){return t===e})},S.invoke=function(t,e){var n=h.call(arguments,2),r=S.isFunction(e);return S.map(t,function(t){return(r?e:t[e]).apply(t,n)})},S.pluck=function(t,e){return S.map(t,function(t){return t[e]})},S.where=function(t,e,n){return S.isEmpty(e)?n?void 0:[]:S[n?"find":"filter"](t,function(t){for(var n in e)if(e[n]!==t[n])return!1;return!0})},S.findWhere=function(t,e){return S.where(t,e,!0)},S.max=function(t,e,n){if(!e&&S.isArray(t)&&t[0]===+t[0]&&t.length<65535)return Math.max.apply(Math,t);if(!e&&S.isEmpty(t))return-1/0;var r={computed:-1/0,value:-1/0};return N(t,function(t,i,o){var s=e?e.call(n,t,i,o):t;s>r.computed&&(r={value:t,computed:s})}),r.value},S.min=function(t,e,n){if(!e&&S.isArray(t)&&t[0]===+t[0]&&t.length<65535)return Math.min.apply(Math,t);if(!e&&S.isEmpty(t))return 1/0;var r={computed:1/0,value:1/0};return N(t,function(t,i,o){var s=e?e.call(n,t,i,o):t;s<r.computed&&(r={value:t,computed:s})}),r.value},S.shuffle=function(t){var e,n=0,r=[];return N(t,function(t){e=S.random(n++),r[n-1]=r[e],r[e]=t}),r},S.sample=function(t,e,n){return arguments.length<2||n?t[S.random(t.length-1)]:S.shuffle(t).slice(0,Math.max(0,e))};var O=function(t){return S.isFunction(t)?t:function(e){return e[t]}};S.sortBy=function(t,e,n){var r=O(e);return S.pluck(S.map(t,function(t,e,i){return{value:t,index:e,criteria:r.call(n,t,e,i)}}).sort(function(t,e){var n=t.criteria,r=e.criteria;if(n!==r){if(n>r||void 0===n)return 1;if(r>n||void 0===r)return-1}return t.index-e.index}),"value")};var T=function(t){return function(e,n,r){var i={},o=null==n?S.identity:O(n);return N(e,function(n,s){var a=o.call(r,n,s,e);t(i,a,n)}),i}};S.groupBy=T(function(t,e,n){(S.has(t,e)?t[e]:t[e]=[]).push(n)}),S.indexBy=T(function(t,e,n){t[e]=n}),S.countBy=T(function(t,e){S.has(t,e)?t[e]++:t[e]=1}),S.sortedIndex=function(t,e,n,r){n=null==n?S.identity:O(n);for(var i=n.call(r,e),o=0,s=t.length;s>o;){var a=o+s>>>1;n.call(r,t[a])<i?o=a+1:s=a}return o},S.toArray=function(t){return t?S.isArray(t)?h.call(t):t.length===+t.length?S.map(t,S.identity):S.values(t):[]},S.size=function(t){return null==t?0:t.length===+t.length?t.length:S.keys(t).length},S.first=S.head=S.take=function(t,e,n){return null==t?void 0:null==e||n?t[0]:h.call(t,0,e)},S.initial=function(t,e,n){return h.call(t,0,t.length-(null==e||n?1:e))},S.last=function(t,e,n){return null==t?void 0:null==e||n?t[t.length-1]:h.call(t,Math.max(t.length-e,0))},S.rest=S.tail=S.drop=function(t,e,n){return h.call(t,null==e||n?1:e)},S.compact=function(t){return S.filter(t,S.identity)};var A=function(t,e,n){return e&&S.every(t,S.isArray)?u.apply(n,t):(N(t,function(t){S.isArray(t)||S.isArguments(t)?e?c.apply(n,t):A(t,e,n):n.push(t)}),n)};S.flatten=function(t,e){return A(t,e,[])},S.without=function(t){return S.difference(t,h.call(arguments,1))},S.uniq=S.unique=function(t,e,n,r){S.isFunction(e)&&(r=n,n=e,e=!1);var i=n?S.map(t,n,r):t,o=[],s=[];return N(i,function(n,r){(e?r&&s[s.length-1]===n:S.contains(s,n))||(s.push(n),o.push(t[r]))}),o},S.union=function(){return S.uniq(S.flatten(arguments,!0))},S.intersection=function(t){var e=h.call(arguments,1);return S.filter(S.uniq(t),function(t){return S.every(e,function(e){return S.indexOf(e,t)>=0})})},S.difference=function(t){var e=u.apply(o,h.call(arguments,1));return S.filter(t,function(t){return!S.contains(e,t)})},S.zip=function(){for(var t=S.max(S.pluck(arguments,"length").concat(0)),e=new Array(t),n=0;t>n;n++)e[n]=S.pluck(arguments,""+n);return e},S.object=function(t,e){if(null==t)return{};for(var n={},r=0,i=t.length;i>r;r++)e?n[t[r]]=e[r]:n[t[r][0]]=t[r][1];return n},S.indexOf=function(t,e,n){if(null==t)return-1;var r=0,i=t.length;if(n){if("number"!=typeof n)return r=S.sortedIndex(t,e),t[r]===e?r:-1;r=0>n?Math.max(0,i+n):n}if(w&&t.indexOf===w)return t.indexOf(e,n);for(;i>r;r++)if(t[r]===e)return r;return-1},S.lastIndexOf=function(t,e,n){if(null==t)return-1;var r=null!=n;if(_&&t.lastIndexOf===_)return r?t.lastIndexOf(e,n):t.lastIndexOf(e);for(var i=r?n:t.length;i--;)if(t[i]===e)return i;return-1},S.range=function(t,e,n){arguments.length<=1&&(e=t||0,t=0),n=arguments[2]||1;for(var r=Math.max(Math.ceil((e-t)/n),0),i=0,o=new Array(r);r>i;)o[i++]=t,t+=n;return o};var I=function(){};S.bind=function(t,e){var n,r;if(P&&t.bind===P)return P.apply(t,h.call(arguments,1));if(!S.isFunction(t))throw new TypeError;return n=h.call(arguments,2),r=function(){if(!(this instanceof r))return t.apply(e,n.concat(h.call(arguments)));I.prototype=t.prototype;var i=new I;I.prototype=null;var o=t.apply(i,n.concat(h.call(arguments)));return Object(o)===o?o:i}},S.partial=function(t){var e=h.call(arguments,1);return function(){return t.apply(this,e.concat(h.call(arguments)))}},S.bindAll=function(t){var e=h.call(arguments,1);if(0===e.length)throw new Error("bindAll must be passed function names");return N(e,function(e){t[e]=S.bind(t[e],t)}),t},S.memoize=function(t,e){var n={};return e||(e=S.identity),function(){var r=e.apply(this,arguments);return S.has(n,r)?n[r]:n[r]=t.apply(this,arguments)}},S.delay=function(t,e){var n=h.call(arguments,2);return setTimeout(function(){return t.apply(null,n)},e)},S.defer=function(t){return S.delay.apply(S,[t,1].concat(h.call(arguments,1)))},S.throttle=function(t,e,n){var r,i,o,s=null,a=0;n||(n={});var c=function(){a=n.leading===!1?0:new Date,s=null,o=t.apply(r,i)};return function(){var h=new Date;a||n.leading!==!1||(a=h);var u=e-(h-a);return r=this,i=arguments,0>=u?(clearTimeout(s),s=null,a=h,o=t.apply(r,i)):s||n.trailing===!1||(s=setTimeout(c,u)),o}},S.debounce=function(t,e,n){var r,i,o,s,a;return function(){o=this,i=arguments,s=new Date;var c=function(){var h=new Date-s;e>h?r=setTimeout(c,e-h):(r=null,n||(a=t.apply(o,i)))},h=n&&!r;return r||(r=setTimeout(c,e)),h&&(a=t.apply(o,i)),a}},S.once=function(t){var e,n=!1;return function(){return n?e:(n=!0,e=t.apply(this,arguments),t=null,e)}},S.wrap=function(t,e){return function(){var n=[t];return c.apply(n,arguments),e.apply(this,n)}},S.compose=function(){var t=arguments;return function(){for(var e=arguments,n=t.length-1;n>=0;n--)e=[t[n].apply(this,e)];return e[0]}},S.after=function(t,e){return function(){return--t<1?e.apply(this,arguments):void 0}},S.keys=C||function(t){if(t!==Object(t))throw new TypeError("Invalid object");var e=[];for(var n in t)S.has(t,n)&&e.push(n);return e},S.values=function(t){for(var e=S.keys(t),n=e.length,r=new Array(n),i=0;n>i;i++)r[i]=t[e[i]];return r},S.pairs=function(t){for(var e=S.keys(t),n=e.length,r=new Array(n),i=0;n>i;i++)r[i]=[e[i],t[e[i]]];return r},S.invert=function(t){for(var e={},n=S.keys(t),r=0,i=n.length;i>r;r++)e[t[n[r]]]=n[r];return e},S.functions=S.methods=function(t){var e=[];for(var n in t)S.isFunction(t[n])&&e.push(n);return e.sort()},S.extend=function(t){return N(h.call(arguments,1),function(e){if(e)for(var n in e)t[n]=e[n]}),t},S.pick=function(t){var e={},n=u.apply(o,h.call(arguments,1));return N(n,function(n){n in t&&(e[n]=t[n])}),e},S.omit=function(t){var e={},n=u.apply(o,h.call(arguments,1));for(var r in t)S.contains(n,r)||(e[r]=t[r]);return e},S.defaults=function(t){return N(h.call(arguments,1),function(e){if(e)for(var n in e)void 0===t[n]&&(t[n]=e[n])}),t},S.clone=function(t){return S.isObject(t)?S.isArray(t)?t.slice():S.extend({},t):t},S.tap=function(t,e){return e(t),t};var V=function(t,e,n,r){if(t===e)return 0!==t||1/t==1/e;if(null==t||null==e)return t===e;t instanceof S&&(t=t._wrapped),e instanceof S&&(e=e._wrapped);var i=p.call(t);if(i!=p.call(e))return!1;switch(i){case"[object String]":return t==String(e);case"[object Number]":return t!=+t?e!=+e:0==t?1/t==1/e:t==+e;case"[object Date]":case"[object Boolean]":return+t==+e;case"[object RegExp]":return t.source==e.source&&t.global==e.global&&t.multiline==e.multiline&&t.ignoreCase==e.ignoreCase}if("object"!=typeof t||"object"!=typeof e)return!1;for(var o=n.length;o--;)if(n[o]==t)return r[o]==e;var s=t.constructor,a=e.constructor;if(s!==a&&!(S.isFunction(s)&&s instanceof s&&S.isFunction(a)&&a instanceof a))return!1;n.push(t),r.push(e);var c=0,h=!0;if("[object Array]"==i){if(c=t.length,h=c==e.length)for(;c--&&(h=V(t[c],e[c],n,r)););}else{for(var u in t)if(S.has(t,u)&&(c++,!(h=S.has(e,u)&&V(t[u],e[u],n,r))))break;if(h){for(u in e)if(S.has(e,u)&&!c--)break;h=!c}}return n.pop(),r.pop(),h};S.isEqual=function(t,e){return V(t,e,[],[])},S.isEmpty=function(t){if(null==t)return!0;if(S.isArray(t)||S.isString(t))return 0===t.length;for(var e in t)if(S.has(t,e))return!1;return!0},S.isElement=function(t){return!(!t||1!==t.nodeType)},S.isArray=x||function(t){return"[object Array]"==p.call(t)},S.isObject=function(t){return t===Object(t)},N(["Arguments","Function","String","Number","Date","RegExp"],function(t){S["is"+t]=function(e){return p.call(e)=="[object "+t+"]"}}),S.isArguments(arguments)||(S.isArguments=function(t){return!(!t||!S.has(t,"callee"))}),"function"!=typeof/./&&(S.isFunction=function(t){return"function"==typeof t}),S.isFinite=function(t){return isFinite(t)&&!isNaN(parseFloat(t))},S.isNaN=function(t){return S.isNumber(t)&&t!=+t},S.isBoolean=function(t){return t===!0||t===!1||"[object Boolean]"==p.call(t)},S.isNull=function(t){return null===t},S.isUndefined=function(t){return void 0===t},S.has=function(t,e){return l.call(t,e)},S.noConflict=function(){return t._=r,this},S.identity=function(t){return t},S.times=function(t,e,n){for(var r=Array(Math.max(0,t)),i=0;t>i;i++)r[i]=e.call(n,i);return r},S.random=function(t,e){return null==e&&(e=t,t=0),t+Math.floor(Math.random()*(e-t+1))};var j={escape:{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#x27;"}};j.unescape=S.invert(j.escape);var R={escape:new RegExp("["+S.keys(j.escape).join("")+"]","g"),unescape:new RegExp("("+S.keys(j.unescape).join("|")+")","g")};S.each(["escape","unescape"],function(t){S[t]=function(e){return null==e?"":(""+e).replace(R[t],function(e){return j[t][e]})}}),S.result=function(t,e){if(null==t)return void 0;var n=t[e];return S.isFunction(n)?n.call(t):n},S.mixin=function(t){N(S.functions(t),function(e){var n=S[e]=t[e];S.prototype[e]=function(){var t=[this._wrapped];return c.apply(t,arguments),D.call(this,n.apply(S,t))}})};var $=0;S.uniqueId=function(t){var e=++$+"";return t?t+e:e},S.templateSettings={evaluate:/<%([\s\S]+?)%>/g,interpolate:/<%=([\s\S]+?)%>/g,escape:/<%-([\s\S]+?)%>/g};var L=/(.)^/,q={"'":"'","\\":"\\","\r":"r","\n":"n","	":"t","\u2028":"u2028","\u2029":"u2029"},M=/\\|'|\r|\n|\t|\u2028|\u2029/g;S.template=function(t,e,n){var r;n=S.defaults({},n,S.templateSettings);var i=new RegExp([(n.escape||L).source,(n.interpolate||L).source,(n.evaluate||L).source].join("|")+"|$","g"),o=0,s="__p+='";t.replace(i,function(e,n,r,i,a){return s+=t.slice(o,a).replace(M,function(t){return"\\"+q[t]}),n&&(s+="'+\n((__t=("+n+"))==null?'':_.escape(__t))+\n'"),r&&(s+="'+\n((__t=("+r+"))==null?'':__t)+\n'"),i&&(s+="';\n"+i+"\n__p+='"),o=a+e.length,e}),s+="';\n",n.variable||(s="with(obj||{}){\n"+s+"}\n"),s="var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};\n"+s+"return __p;\n";try{r=new Function(n.variable||"obj","_",s)}catch(a){throw a.source=s,a}if(e)return r(e,S);var c=function(t){return r.call(this,t,S)};return c.source="function("+(n.variable||"obj")+"){\n"+s+"}",c},S.chain=function(t){return S(t).chain()};var D=function(t){return this._chain?S(t).chain():t};S.mixin(S),N(["pop","push","reverse","shift","sort","splice","unshift"],function(t){var e=o[t];S.prototype[t]=function(){var n=this._wrapped;return e.apply(n,arguments),"shift"!=t&&"splice"!=t||0!==n.length||delete n[0],D.call(this,n)}}),N(["concat","join","slice"],function(t){var e=o[t];S.prototype[t]=function(){return D.call(this,e.apply(this._wrapped,arguments))}}),S.extend(S.prototype,{chain:function(){return this._chain=!0,this},value:function(){return this._wrapped}})}).call(this)},{}],160:[function(t,e){"use strict";t("underscore");var n=t("substance-application"),r=t("./lens_controller");t("./lens_view");var i=t("substance-util");i.html;var o=[{route:":context/:node/:resource/:fullscreen",name:"document-resource",command:"openReader"},{route:":context/:node/:resource",name:"document-resource",command:"openReader"},{route:":context/:node/:resource",name:"document-resource",command:"openReader"},{route:":context/:node",name:"document-node",command:"openReader"},{route:":context",name:"document-context",command:"openReader"},{route:"",name:"document",command:"openReader"}],s=function(t){t=t||{},t.routes=o,n.call(this,t),this.controller=new r(t)};s.Article=t("lens-article"),s.Reader=t("substance-reader"),s.Outline=t("lens-outline"),s.Prototype=function(){this.render=function(){this.view=this.controller.createView(),this.$el.html(this.view.render().el)}},s.Prototype.prototype=n.prototype,s.prototype=new s.Prototype,s.prototype.constructor=s;var a={util:t("substance-util"),Application:t("substance-application"),Document:t("substance-document"),Operator:t("substance-operator"),Chronicle:t("substance-chronicle"),Data:t("substance-data"),Surface:t("substance-surface")};s.Substance=a,e.exports=s},{"./lens_controller":161,"./lens_view":162,"lens-article":3,"lens-outline":54,"substance-application":56,"substance-chronicle":62,"substance-data":74,"substance-document":81,"substance-operator":138,"substance-reader":145,"substance-surface":150,"substance-util":154,underscore:159}],161:[function(t,e){"use strict";var n=t("underscore"),r=t("substance-util"),i=t("substance-application").Controller,o=t("./lens_view"),s=t("substance-reader").Controller,a=t("lens-article"),c=t("lens-converter"),h=function(t){i.call(this),this.config=t,this.on("open:reader",this.openReader),this.on("open:library",this.openLibrary),this.on("open:login",this.openLogin),this.on("open:test_center",this.openTestCenter)};h.Prototype=function(){this.createView=function(){var t=new o(this);return this.view=t,t},this.importXML=function(t){var e=new c.Importer,n=e.import(t);this.createReader(n,{context:"toc"})},this.updatePath=function(t){var e=[];e.push(t.context),t.node?e.push(t.node):e.push("all"),t.resource&&e.push(t.resource),t.fullscreen&&e.push("fullscreen"),window.app.router.navigate(e.join("/"),{trigger:!1,replace:!1})},this.createReader=function(t,e){var n=this;this.reader=new s(t,e),this.reader.on("state-changed",function(){n.updatePath(n.reader.state)}),this.modifyState({context:"reader"})},this.openReader=function(t,e,n,r){var i=this,o={context:t||"toc",node:e,resource:n,fullscreen:!!r};this.reader?(this.reader.modifyState(o),o.resource&&this.reader.view.jumpToResource(o.resource)):(this.trigger("loading:started","Loading document ..."),$.get(this.config.document_url).done(function(t){var e,n=$.isXMLDoc(t);if(n){var r=new c.Importer;e=r.import(t)}else"string"==typeof t&&(t=$.parseJSON(t)),e=a.fromSnapshot(t);i.createReader(e,o)}).fail(function(t){console.error(t)}))},this.getActiveControllers=function(){var t=[["lens",this]];return t.push(["reader",this.reader]),t}},h.Prototype.prototype=i.prototype,h.prototype=new h.Prototype,n.extend(h.prototype,r.Events),e.exports=h},{"./lens_view":162,"lens-article":3,"lens-converter":47,"substance-application":56,"substance-reader":145,"substance-util":154,underscore:159}],162:[function(t,e){"use strict";t("underscore");var n=t("substance-util");n.html;var r=t("substance-application").View,i=t("substance-application").$$,o=function(t){r.call(this),this.controller=t,this.$el.attr({id:"container"}),this.listenTo(this.controller,"state-changed",this.onStateChanged),this.listenTo(this.controller,"loading:started",this.displayLoadingIndicator),$(document).on("dragover",function(){return!1}),$(document).on("ondragend",function(){return!1}),$(document).on("drop",this.handleDroppedFile.bind(this))};o.Prototype=function(){this.displayLoadingIndicator=function(t){this.$("#main").empty(),this.$(".loading").html(t).show()},this.handleDroppedFile=function(){var t=this.controller,e=event.dataTransfer.files,n=e[0],r=new FileReader;return r.onload=function(e){t.importXML(e.target.result)},r.readAsText(n),!1},this.onStateChanged=function(){var t=this.controller.state;"reader"===t.context?this.openReader():console.log("Unknown application state: "+t)},this.openReader=function(){var t=this.controller.reader.createView();this.replaceMainView("reader",t);var e=this.controller.reader.__document;e.get("publication_info"),this.$(".loading").hide()},this.replaceMainView=function(t,e){$("body").removeClass().addClass("current-view "+t),this.mainView&&this.mainView!==e&&this.mainView.dispose(),this.mainView=e,this.$("#main").html(e.render().el)},this.render=function(){return this.el.innerHTML="",this.el.appendChild(i(".browser-not-supported",{text:"Sorry, your browser is not supported.",style:"display: none;"})),this.el.appendChild(i(".loading",{style:"display: none;"})),this.el.appendChild(i("#main")),this},this.dispose=function(){this.stopListening(),this.mainView&&this.mainView.dispose()}},o.Prototype.prototype=r.prototype,o.prototype=new o.Prototype,e.exports=o},{"substance-application":56,"substance-util":154,underscore:159}],163:[function(){},{}]},{},[1]);
+;(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+window.Lens = require("./src/lens");
+},{"./src/lens":160}],2:[function(require,module,exports){
+"use strict";
+
+var _ = require("underscore");
+var util = require("substance-util");
+var Document = require("substance-document");
+
+// Lens.Article
+// -----------------
+
+var Article = function(options) {
+  options = options || {};
+
+  // Check if format is compatible
+
+  // Extend Schema
+  // --------
+
+  options.schema = util.deepclone(Document.schema);
+
+  options.schema.id = "lens-article";
+  options.schema.version = "0.1.0";
+
+  // Merge in custom types
+  _.each(Article.types, function(type, key) {
+    options.schema.types[key] = type;
+  });
+
+  // Register annotation types
+  _.each(Article.annotations, function(aType, key) {
+    options.schema.types[key] = aType;
+  });
+
+
+  // Merge in node types
+  _.each(Article.nodeTypes, function(nodeSpec, key) {
+    options.schema.types[key] = nodeSpec.Model.type;
+  });
+
+  // Merge in custom indexes
+  _.each(Article.indexes, function(index, key) {
+    options.schema.indexes[key] = index;
+  });
+
+  // Call parent constructor
+  // --------
+
+  Document.call(this, options);
+
+  // Index for easy mapping from NLM sourceIds to generated nodeIds
+  // Needed for resolving figrefs / citationrefs etc.
+  this.bySourceId = this.addIndex("by_source_id", {
+    types: ["content"],
+    property: "source_id"
+  });
+
+  this.nodeTypes = Article.nodeTypes;
+
+  // Seed the doc
+  // --------
+
+  if (options.seed === undefined) {
+    this.create({
+      id: "document",
+      type: "document",
+      guid: options.id, // external global document id
+      creator: options.creator,
+      created_at: options.created_at,
+      views: ["content"], // is views really needed on the instance level
+      title: "",
+      abstract: ""
+    });
+
+    // Create views on the doc
+    _.each(Article.views, function(view) {
+      this.create({
+        id: view,
+        "type": "view",
+        nodes: []
+      });
+    }, this);
+  }
+};
+
+
+// Renders an article
+// --------
+//
+
+Article.Renderer = function(docCtrl, options) {
+  this.docCtrl = docCtrl;
+
+  this.nodeTypes = Article.nodeTypes;
+
+  this.options = options || {};
+
+  // Collect all node views
+  this.nodes = {};
+
+  // Build views
+  _.each(this.docCtrl.getNodes(), function(node) {
+    this.nodes[node.id] = this.createView(node);
+  }, this);
+
+};
+
+Article.Renderer.Prototype = function() {
+
+  // Create a node view
+  // --------
+  //
+  // Experimental: using a factory which creates a view for a given node type
+  // As we want to be able to reuse views
+  // However, as the matter is still under discussion consider the solution here only as provisional.
+  // We should create views, not only elements, as we need more, e.g., event listening stuff
+  // which needs to be disposed later.
+
+  this.createView = function(node) {
+    var NodeView = this.nodeTypes[node.type].View;
+
+    if (!NodeView) {
+      throw new Error('Node type "'+node.type+'" not supported');
+    }
+
+    // Note: passing the factory to the node views
+    // to allow creation of nested views
+    var nodeView = new NodeView(node, this);
+
+    // we connect the listener here to avoid to pass the document itself into the nodeView
+    nodeView.listenTo(this.docCtrl, "operation:applied", nodeView.onGraphUpdate);
+    return nodeView;
+  };
+
+  // Render it
+  // --------
+  //
+
+  this.render = function() {
+    _.each(this.nodes, function(nodeView) {
+      nodeView.dispose();
+    });
+
+    var frag = document.createDocumentFragment();
+
+    var docNodes = this.docCtrl.container.getTopLevelNodes();
+    _.each(docNodes, function(n) {
+      this.renderNode(n, frag);
+    }, this);
+    
+    return frag;
+  };
+
+
+  this.renderNode = function(n, frag) {
+    var view = this.createView(n);
+    frag.appendChild(view.render().el);
+    // Lets you customize the resulting DOM sticking on the el element
+    // Example: Lens focus controls
+    if (this.options.afterRender) this.options.afterRender(this.docCtrl, view);
+  };
+
+};
+
+Article.Renderer.prototype = new Article.Renderer.Prototype();
+
+
+Article.Prototype = function() {
+  this.fromSnapshot = function(data, options) {
+    return Article.fromSnapshot(data, options);
+  };
+
+  // For a given NLM source id, returns the corresponding node in the document graph
+  // --------
+
+  this.getNodeBySourceId = function(sourceId) {
+    var nodes = this.bySourceId.get(sourceId);
+    var nodeId = Object.keys(nodes)[0];
+    var node = nodes[nodeId];
+    return node;
+  };
+};
+
+// Factory method
+// --------
+//
+// TODO: Ensure the snapshot doesn't get chronicled
+
+Article.fromSnapshot = function(data, options) {
+  options = options || {};
+  options.seed = data;
+  return new Article(options);
+};
+
+
+// Define available views
+// --------
+
+Article.views = ["content", "figures", "citations", "info"];
+
+
+// Register node types
+// --------
+
+Article.nodeTypes = require("./nodes");
+
+
+// Define annotation types
+// --------
+
+Article.annotations = {
+
+  "strong": {
+    "parent": "annotation",
+    "properties": {
+    }
+  },
+
+  "emphasis": {
+    "properties": {
+    },
+    "parent": "annotation"
+  },
+
+  "subscript": {
+    "properties": {
+    },
+    "parent": "annotation"
+  },
+
+  "superscript": {
+    "properties": {
+    },
+    "parent": "annotation"
+  },
+
+  "underline": {
+    "properties": {
+    },
+    "parent": "annotation"
+  },
+
+  "code": {
+    "parent": "annotation",
+    "properties": {
+    }
+  },
+
+  "link": {
+    "parent": "annotation",
+    "properties": {
+      "url": "string"
+    }
+  },
+
+  "idea": {
+    "parent": "annotation",
+    "properties": {
+    }
+  },
+
+  "error": {
+    "parent": "annotation",
+    "properties": {
+    }
+  },
+
+  "question": {
+    "parent": "annotation",
+    "properties": {
+    }
+  },
+
+  // Dark blueish person references in the cover
+  // They should work everywhere else too
+
+  "person_reference": {
+    "parent": "annotation",
+    "properties": {
+      "target": "person"
+    }
+  },
+
+  // Greenish figure references in the text
+
+  "figure_reference": {
+    "parent": "annotation",
+    "properties": {
+      "target": "figure"
+    }
+  },
+
+  // Blueish citation references in the text
+
+  "citation_reference": {
+    "parent": "annotation",
+    "properties": {
+      "target": "content"
+    }
+  },
+
+  "cross_reference": {
+    "parent": "annotation",
+    "properties": {
+      "target": "content"
+    }
+  },
+
+  "formula_reference": {
+    "parent": "annotation",
+    "properties": {
+      "target": "content"
+    }
+  }
+
+};
+
+// Custom type definitions
+// --------
+//
+// Holds comments
+
+Article.types = {
+
+  // Abstarct Annotation Node
+  // --------
+
+  "annotation": {
+    "properties": {
+      "path": ["array", "string"], // -> e.g. ["text_1", "content"]
+      "range": "object"
+    }
+  },
+
+  // Abstract Figure Type
+  // --------
+
+  "figure": {
+    "properties": {
+    }
+  },
+
+  // "file": {
+  //   "properties": {
+  //   }
+  // },
+
+  "institution": {
+    "properties": {
+    }
+  },
+
+  "email": {
+    "properties": {
+    }
+  },
+
+  "funding": {
+    "properties": {
+    }
+  },
+
+  "caption": {
+    "properties": {
+    }
+  },
+
+  // Abstract Citation Type
+  // --------
+
+  "citation": {
+    "properties": {
+    }
+  },
+
+  // Document
+  // --------
+
+  "document": {
+    "properties": {
+      "views": ["array", "view"],
+      "guid": "string",
+      "creator": "string",
+      "title": "string",
+      "authors": ["array", "person"],
+      "abstract": "string"
+    }
+  },
+
+  // Comments
+  // --------
+
+  "comment": {
+    "properties": {
+      "content": "string",
+      "created_at": "string", // should be date
+      "creator": "string", // should be date
+      "node": "node" // references either a content node or annotation
+    }
+  }
+};
+
+// From article definitions generate a nice reference document
+// --------
+//
+
+
+var ARTICLE_DOC_SEED = {
+  "id": "lens_article",
+  "nodes": {
+    "document": {
+      "type": "document",
+      "id": "document",
+      "views": [
+        "content"
+      ],
+      "title": "The Anatomy of a Lens Article",
+      "authors": ["person_1", "person_2", "person_3"],
+      "guid": "lens_article"
+    },
+
+
+    "content": {
+      "type": "view",
+      "id": "content",
+      "nodes": [
+        "cover",
+      ]
+    },
+
+    "cover": {
+      "id": "cover",
+      "type": "cover"
+    },
+
+    "person_1": {
+      "id": "person_1",
+      "type": "person",
+      "name": "Michael Aufreiter"
+    },
+
+    "person_2": {
+      "id": "person_2",
+      "type": "person",
+      "name": "Ivan Grubisic"
+    },
+
+    "person_3": {
+      "id": "person_3",
+      "type": "person",
+      "name": "Rebecca Close"
+    }
+  }
+};
+
+Article.describe = function() {
+  var doc = new Article({seed: ARTICLE_DOC_SEED});
+
+  var id = 0;
+
+  _.each(Article.nodeTypes, function(nodeType) {
+    nodeType = nodeType.Model;
+    console.log('NAME', nodeType.description.name, nodeType.type.id);
+
+    // Create a heading for each node type
+    var headingId = "heading_"+nodeType.type.id;
+
+    doc.create({
+      id: headingId,
+      type: "heading",
+      content: nodeType.description.name,
+      level: 1
+    });
+
+    // Turn remarks and description into an introduction paragraph
+    var introText = nodeType.description.remarks.join(' ');
+    var introId = "text_"+nodeType.type.id+"_intro";
+
+    doc.create({
+      id: introId,
+      type: "text",
+      content: introText,
+    });
+
+
+    // Show it in the content view
+    doc.show("content", [headingId, introId], -1);
+
+
+    // Include property description
+    // --------
+    //
+
+    doc.create({
+      id: headingId+"_properties",
+      type: "text",
+      content: nodeType.description.name+ " uses the following properties:"
+    });
+
+    doc.show("content", [headingId+"_properties"], -1);
+
+    var items = [];
+
+    _.each(nodeType.description.properties, function(propertyDescr, key) {
+
+      var listItemId = "text_" + (++id);
+      doc.create({
+        id: listItemId,
+        type: "text",
+        content: key +": " + propertyDescr
+      });
+
+      // Create code annotation for the propertyName
+      doc.create({
+        "id": id+"_annotation",
+        "type": "code",
+        "path": [listItemId, "content"],
+        "range":[0, key.length]
+      });
+
+      items.push(listItemId);
+    });
+
+    // Create list
+    doc.create({
+      id: headingId+"_property_list",
+      type: "list",
+      items: items,
+      ordered: false
+    });
+
+    // And show it
+    doc.show("content", [headingId+"_property_list"], -1);
+
+    // Include example
+    // --------
+    //
+
+    doc.create({
+      id: headingId+"_example",
+      type: "text",
+      content: "Here's an example:"
+    });
+
+    doc.create({
+      id: headingId+"_example_codeblock",
+      type: "codeblock",
+      content: JSON.stringify(nodeType.example, null, '  '),
+    });
+
+    doc.show("content", [headingId+"_example", headingId+"_example_codeblock"], -1);
+
+  });
+
+  return doc;
+};
+
+
+Article.Prototype.prototype = Document.prototype;
+Article.prototype = new Article.Prototype();
+Article.prototype.constructor = Article;
+
+
+// Add convenience accessors for builtin document attributes
+Object.defineProperties(Article.prototype, {
+  id: {
+    get: function () {
+      return this.get("document").guid;
+    },
+    set: function(id) {
+      this.get("document").guid = id;
+    }
+  },
+  creator: {
+    get: function () {
+      return this.get("document").creator;
+    },
+    set: function(creator) {
+      this.get("document").creator = creator;
+    }
+  },
+  created_at: {
+    get: function () {
+      return this.get("document").created_at;
+    },
+    set: function(created_at) {
+      this.get("document").created_at = created_at;
+    }
+  },
+  title: {
+    get: function () {
+
+      return this.get("document").title;
+    },
+    set: function(title) {
+      this.get("document").title = title;
+    }
+  },
+  abstract: {
+    get: function () {
+      return this.get("document").abstract;
+    },
+    set: function(abstract) {
+      this.get("document").abstract = abstract;
+    }
+  },
+  authors: {
+    get: function () {
+      var docNode = this.get("document");
+      if (docNode.authors) {
+        return _.map(docNode.authors, function(personId) {
+          return this.get(personId);
+        }, this);
+      } else {
+        return "";
+      }
+    },
+    set: function(val) {
+      var docNode = this.get("document");
+      docNode.authors = _.clone(val);
+    }
+  },
+  views: {
+    get: function () {
+      // Note: returing a copy to avoid inadvertent changes
+      return this.get("document").views.slice(0);
+    }
+  },
+});
+
+module.exports = Article;
+
+},{"./nodes":26,"substance-document":81,"substance-util":154,"underscore":159}],3:[function(require,module,exports){
+"use strict";
+
+var Article = require("./article");
+
+module.exports = Article;
+},{"./article":2}],4:[function(require,module,exports){
+"use strict";
+
+var Node = require("substance-document").Node;
+var _ = require("underscore");
+
+var Affiliation = function(node, doc) {
+  Node.call(this, node, doc);
+};
+
+Affiliation.type = {
+  "id": "affiliation",
+  "parent": "content",
+  "properties": {
+    "source_id": "string",
+    "city": "string",
+    "country": "string",
+    "department": "string",
+    "institution": "string",
+    "label": "string"
+  }
+};
+
+
+Affiliation.description = {
+  "name": "Affiliation",
+  "description": "Person affiliation",
+  "remarks": [
+    "Name of a institution or organization, such as a university or corporation, that is the affiliation for a contributor such as an author or an editor."
+  ],
+  "properties": {
+    "coming": "soon"
+  }
+};
+
+
+Affiliation.example = {
+  "id": "affiliation_1",
+  "source_id": "aff1",
+  "city": "Jena",
+  "country": "Germany",
+  "department": "Department of Molecular Ecology",
+  "institution": "Max Planck Institute for Chemical Ecology",
+  "label": "1",
+  "type": "affiliation"
+};
+
+Affiliation.Prototype = function() {
+
+};
+
+Affiliation.Prototype.prototype = Node.prototype;
+Affiliation.prototype = new Affiliation.Prototype();
+Affiliation.prototype.constructor = Affiliation;
+
+
+// Generate getters
+// --------
+
+var getters = {};
+
+_.each(Affiliation.type.properties, function(prop, key) {
+  getters[key] = {
+    get: function() {
+      return this.properties[key];
+    }
+  };
+});
+
+Object.defineProperties(Affiliation.prototype, getters);
+
+module.exports = Affiliation;
+
+},{"substance-document":81,"underscore":159}],5:[function(require,module,exports){
+"use strict";
+
+module.exports = {
+  Model: require('./affiliation')
+};
+
+},{"./affiliation":4}],6:[function(require,module,exports){
+var _ = require('underscore');
+var Node = require('substance-document').Node;
+
+// Lens.Box
+// -----------------
+//
+
+var Box = function(node, doc) {
+  Node.call(this, node, doc);
+};
+
+
+// Type definition
+// -----------------
+//
+
+Box.type = {
+  "id": "box",
+  "parent": "content",
+  "properties": {
+    "source_id": "string",
+    "label": "string",
+    "children": ["array", "paragraph"]
+  }
+};
+
+// This is used for the auto-generated docs
+// -----------------
+//
+
+Box.description = {
+  "name": "Box",
+  "remarks": [
+    "A box type.",
+  ],
+  "properties": {
+    "label": "string",
+    "children": "0..n Paragraph nodes",
+  }
+};
+
+
+// Example Box
+// -----------------
+//
+
+Box.example = {
+  "id": "box_1",
+  "type": "box",
+  "label": "Box 1",
+  "children": ["paragraph_1", "paragraph_2"]
+};
+
+Box.Prototype = function() {
+
+};
+
+Box.Prototype.prototype = Node.prototype;
+Box.prototype = new Box.Prototype();
+Box.prototype.constructor = Box;
+
+
+// Generate getters
+// --------
+
+var getters = {};
+
+var getters = {
+  header: {
+    get: function() {
+      return this.properties.label;
+    }
+  }
+};
+
+_.each(Box.type.properties, function(prop, key) {
+  getters[key] = {
+    get: function() {
+      return this.properties[key];
+    }
+  };
+});
+
+
+Object.defineProperties(Box.prototype, getters);
+
+module.exports = Box;
+
+},{"substance-document":81,"underscore":159}],7:[function(require,module,exports){
+"use strict";
+
+var _ = require("underscore");
+var util = require("substance-util");
+var html = util.html;
+var NodeView = require("../node").View;
+var $$ = require("substance-application").$$;
+
+
+// Lens.Box.View
+// ==========================================================================
+
+var BoxView = function(node, viewFactory) {
+  NodeView.call(this, node, viewFactory);
+
+  this.$el.attr({id: node.id});
+  this.$el.addClass("content-node box");
+};
+
+BoxView.Prototype = function() {
+
+  // Render it
+  // --------
+  //
+
+  this.render = function() {
+    NodeView.prototype.render.call(this);
+
+    // Create children views
+    // --------
+    // 
+
+    var children = this.node.children;
+
+    _.each(children, function(nodeId) {
+      var child = this.node.document.get(nodeId);
+      var childView = this.viewFactory.createView(child);
+      var childViewEl = childView.render().el;
+      this.content.appendChild(childViewEl);
+    }, this);
+
+    this.el.appendChild(this.content);
+
+    return this;
+  };
+};
+
+BoxView.Prototype.prototype = NodeView.prototype;
+BoxView.prototype = new BoxView.Prototype();
+
+module.exports = BoxView;
+
+},{"../node":28,"substance-application":56,"substance-util":154,"underscore":159}],8:[function(require,module,exports){
+"use strict";
+
+module.exports = {
+  Model: require('./box'),
+  View: require('./box_view')
+};
+
+},{"./box":6,"./box_view":7}],9:[function(require,module,exports){
+"use strict";
+
+var Document = require("substance-document");
+
+var Caption = function(node, document) {
+  Document.Composite.call(this, node, document);
+};
+
+Caption.type = {
+  "id": "caption",
+  "parent": "content",
+  "properties": {
+    "source_id": "string",
+    "title": "paragraph",
+    "children": ["array", "paragraph"]
+  }
+};
+
+// This is used for the auto-generated docs
+// -----------------
+//
+
+Caption.description = {
+  "name": "Caption",
+  "remarks": [
+    "Container element for the textual description that is associated with a Figure, Table, Video node etc.",
+    "This is the title for the figure or the description of the figure that prints or displays with the figure."
+  ],
+  "properties": {
+    "title": "Caption title (optional)",
+    "children": "0..n Paragraph nodes",
+  }
+};
+
+
+// Example File
+// -----------------
+//
+
+Caption.example = {
+  "id": "caption_1",
+  "children": [
+    "paragraph_1",
+    "paragraph_2"
+  ]
+};
+
+Caption.Prototype = function() {
+
+  this.hasTitle = function() {
+    return (!!this.properties.title);
+  };
+
+  // The nodes the composite should spit out
+  this.getNodes = function() {
+    var nodes = [];
+
+    if (this.properties.children) {
+      nodes = nodes.concat(this.properties.children);
+    }
+    return nodes;
+  };
+
+  this.getTitle = function() {
+    if (this.properties.title) return this.document.get(this.properties.title);
+  };
+
+  // this.getCaption = function() {
+  //   if (this.properties.caption) return this.document.get(this.properties.caption);
+  // };
+};
+
+Caption.Prototype.prototype = Document.Composite.prototype;
+Caption.prototype = new Caption.Prototype();
+Caption.prototype.constructor = Caption;
+
+Document.Node.defineProperties(Caption.prototype, ["title", "children"]);
+
+module.exports = Caption;
+
+},{"substance-document":81}],10:[function(require,module,exports){
+"use strict";
+
+var CompositeView = require("../composite").View;
+var List = require("substance-document").List;
+var $$ = require("substance-application").$$;
+
+// Lens.Caption.View
+// ==========================================================================
+
+var CaptionView = function(node, viewFactory) {
+  CompositeView.call(this, node, viewFactory);
+};
+
+
+CaptionView.Prototype = function() {
+
+  // Rendering
+  // =============================
+  //
+
+  this.render = function() {
+    this.content = $$('div.content');
+
+    var i;
+
+    // dispose existing children views if called multiple times
+    for (i = 0; i < this.childrenViews.length; i++) {
+      this.childrenViews[i].dispose();
+    }
+
+    // Add title paragraph
+    var titleNode = this.node.getTitle();
+    if (titleNode) {
+      var titleView = this.viewFactory.createView(titleNode);
+      var titleEl = titleView.render().el;
+      titleEl.classList.add('caption-title');
+      this.content.appendChild(titleEl);
+    }
+
+    // create children views
+    var children = this.node.getNodes();
+    for (i = 0; i < children.length; i++) {
+      var child = this.node.document.get(children[i]);
+      var childView = this.viewFactory.createView(child);
+      var childViewEl = childView.render().el;
+      this.content.appendChild(childViewEl);
+      this.childrenViews.push(childView);
+    }
+
+    this.el.appendChild(this.content);
+    return this;
+  };
+
+  this.onNodeUpdate = function(op) {
+    if (op.path[0] === this.node.id && op.path[1] === "items") {
+      this.render();
+    }
+  };
+
+};
+
+CaptionView.Prototype.prototype = CompositeView.prototype;
+CaptionView.prototype = new CaptionView.Prototype();
+
+module.exports = CaptionView;
+
+},{"../composite":16,"substance-application":56,"substance-document":81}],11:[function(require,module,exports){
+"use strict";
+
+module.exports = {
+  Model: require("./caption"),
+  View: require("./caption_view")
+};
+
+},{"./caption":9,"./caption_view":10}],12:[function(require,module,exports){
+var _ = require('underscore');
+var Node = require('substance-document').Node;
+
+// Lens.Citation
+// -----------------
+//
+
+var Citation = function(node) {
+  Node.call(this, node);
+};
+
+// Type definition
+// -----------------
+//
+
+Citation.type = {
+  "id": "article_citation", // type name
+  "parent": "content",
+  "properties": {
+    "source_id": "string",
+    "title": "string",
+    "label": "string",
+    "authors": ["array", "string"],
+    "doi": "string",
+    "source": "string",
+    "volume": "string",
+    "publisher_name": "string",
+    "publisher_location": "string",
+    "fpage": "string",
+    "lpage": "string",
+    "year": "string",
+    "citation_urls": ["array", "string"]
+  }
+};
+
+// This is used for the auto-generated docs
+// -----------------
+//
+
+Citation.description = {
+  "name": "Citation",
+  "remarks": [
+    "A journal citation.",
+    "This element can be used to describe all kinds of citations."
+  ],
+  "properties": {
+    "title": "The article's title",
+    "label": "Optional label (could be a number for instance)",
+    "doi": "DOI reference",
+    "source": "Usually the journal name",
+    "volume": "Issue number",
+    "publisher_name": "Publisher Name",
+    "publisher_location": "Publisher Location",
+    "fpage": "First page",
+    "lpage": "Last page",
+    "year": "The year of publication",
+    "citation_urls": "A list of links for accessing the article on the web"
+  }
+};
+
+
+
+// Example Citation
+// -----------------
+//
+
+Citation.example = {
+  "id": "article_nature08160",
+  "type": "article_citation",
+  "label": "5",
+  "title": "The genome of the blood fluke Schistosoma mansoni",
+  "authors": [
+    "M Berriman",
+    "BJ Haas",
+    "PT LoVerde"
+  ],
+  "doi": "http://dx.doi.org/10.1038/nature08160",
+  "source": "Nature",
+  "volume": "460",
+  "fpage": "352",
+  "lpage": "8",
+  "year": "1984",
+  "citation_urls": [
+    "http://www.ncbi.nlm.nih.gov/pubmed/19606141"
+  ]
+};
+
+
+Citation.Prototype = function() {
+  // Returns the citation URLs if available
+  // Falls back to the DOI url
+  // Always returns an array;
+  this.urls = function() {
+    return this.properties.citation_urls.length > 0 ? this.properties.citation_urls
+                                                    : [this.properties.doi];
+  };
+};
+
+Citation.Prototype.prototype = Node.prototype;
+Citation.prototype = new Citation.Prototype();
+Citation.prototype.constructor = Citation;
+
+// Generate getters
+// --------
+
+var getters = {
+  header: {
+    get: function() {
+      return this.properties.title;
+    }
+  }
+};
+
+_.each(Citation.type.properties, function(prop, key) {
+  getters[key] = {
+    get: function() {
+      return this.properties[key];
+    }
+  };
+});
+
+Object.defineProperties(Citation.prototype, getters);
+
+module.exports = Citation;
+
+},{"substance-document":81,"underscore":159}],13:[function(require,module,exports){
+"use strict";
+
+var _ = require('underscore');
+var util = require('substance-util');
+var html = util.html;
+var NodeView = require("../node").View;
+
+var $$ = require("substance-application").$$;
+
+var Renderer = function(view) {
+    var frag = document.createDocumentFragment(),
+        node = view.node;
+
+
+    // Add Authors
+    // -------
+
+    frag.appendChild($$('.authors', {
+      html: node.authors.join(', ')
+    }));
+
+
+    // Add Source
+    // -------
+
+    var source = [];
+
+    if (node.source && node.volume) {
+      source.push([node.source, node.volume].join(', ')+": ");
+    }
+
+    if (node.fpage && node.lpage) {
+      source.push([node.fpage, node.lpage].join('-')+", ");
+    }
+
+    if (node.publisher_name && node.publisher_location) {
+      source.push([node.publisher_name, node.publisher_location].join(', ')+", ");
+    }
+
+    if (node.year) {
+      source.push(node.year);
+    }
+
+    frag.appendChild($$('.source', {
+      html: source.join('')
+    }));
+
+    // Add DOI (if available)
+    // -------
+
+    if (node.doi) {
+      frag.appendChild($$('.doi', {
+        children: [
+          $$('b', {text: "DOI: "}),
+          $$('a', {
+            href: node.doi,
+            target: "_new",
+            text: node.doi
+          })
+        ]
+      }));
+    }
+
+    // TODO: Add display citations urls
+    // -------
+
+    return frag;
+};
+
+
+// Lens.Citation.View
+// ==========================================================================
+
+
+var CitationView = function(node) {
+  NodeView.call(this, node);
+
+  this.$el.attr({id: node.id});
+  this.$el.addClass('citation');
+};
+
+
+CitationView.Prototype = function() {
+
+  this.render = function() {
+    NodeView.prototype.render.call(this);
+    this.content.appendChild(new Renderer(this));
+    return this;
+  };
+
+};
+
+CitationView.Prototype.prototype = NodeView.prototype;
+CitationView.prototype = new CitationView.Prototype();
+CitationView.prototype.constructor = CitationView;
+
+module.exports = CitationView;
+
+},{"../node":28,"substance-application":56,"substance-util":154,"underscore":159}],14:[function(require,module,exports){
+"use strict";
+
+module.exports = {
+  Model: require('./citation'),
+  View: require('./citation_view')
+};
+
+},{"./citation":12,"./citation_view":13}],15:[function(require,module,exports){
+"use strict";
+
+var SubstanceNodes = require("substance-nodes");
+
+module.exports = SubstanceNodes["codeblock"];
+
+},{"substance-nodes":92}],16:[function(require,module,exports){
+"use strict";
+
+var SubstanceNodes = require("substance-nodes");
+
+module.exports = SubstanceNodes["composite"];
+
+},{"substance-nodes":92}],17:[function(require,module,exports){
+var _ = require('underscore');
+var Node = require('substance-document').Node;
+
+// Lens.Cover
+// -----------------
+//
+
+var Cover = function(node, doc) {
+  Node.call(this, node, doc);
+};
+
+// Type definition
+// -----------------
+//
+
+Cover.type = {
+  "id": "cover",
+  "parent": "content",
+  "properties": {
+    "source_id": "string",
+    "authors": ["array", "paragraph"],
+    "breadcrumbs": "object"
+    // No properties as they are all derived from the document node
+  }
+};
+
+
+// This is used for the auto-generated docs
+// -----------------
+//
+
+Cover.description = {
+  "name": "Cover",
+  "remarks": [
+    "Virtual view on the title and authors of the paper."
+  ],
+  "properties": {
+    "authors": "A paragraph that has the authors names plus references to the person cards"
+  }
+};
+
+// Example Cover
+// -----------------
+//
+
+Cover.example = {
+  "id": "cover",
+  "type": "cover"
+};
+
+Cover.Prototype = function() {
+
+  this.getAuthors = function() {
+    return _.map(this.properties.authors, function(paragraphId) {
+      return this.document.get(paragraphId);
+    }, this);
+  };
+
+};
+
+Cover.Prototype.prototype = Node.prototype;
+Cover.prototype = new Cover.Prototype();
+Cover.prototype.constructor = Cover;
+
+// Generate getters
+// --------
+
+var getters = {};
+
+
+Object.defineProperties(Cover.prototype, {
+  title: {
+    get: function() {
+      return this.document.title;
+    }
+  },
+  authors: {
+    // Expand author id's to corresponding person nodes
+    get: function() {
+      return this.document.authors;
+    }
+  },
+  breadcrumbs: {
+    // Expand author id's to corresponding person nodes
+    get: function() {
+      return this.properties.breadcrumbs;
+    }
+  }
+});
+
+module.exports = Cover;
+
+},{"substance-document":81,"underscore":159}],18:[function(require,module,exports){
+"use strict";
+
+var _ = require("underscore");
+var util = require("substance-util");
+var html = util.html;
+var NodeView = require("../node").View;
+var $$ = require("substance-application").$$;
+
+// Lens.Cover.View
+// ==========================================================================
+
+var CoverView = function(node, viewFactory) {
+  NodeView.call(this, node, viewFactory);
+
+  this.$el.attr({id: node.id});
+  this.$el.addClass("content-node cover");
+};
+
+
+CoverView.Prototype = function() {
+
+  // Render it
+  // --------
+  //
+  // .content
+  //   video
+  //     source
+  //   .title
+  //   .caption
+  //   .doi
+
+  this.render = function() {
+    NodeView.prototype.render.call(this);
+    var node = this.node;
+
+    if (node.breadcrumbs && node.breadcrumbs.length > 0) {
+      var breadcrumbs = $$('.breadcrumbs', {
+        children: _.map(node.breadcrumbs, function(bc) {
+          return $$('a', {href: bc.url, text: bc.name})
+        })
+      });
+    }
+  
+    this.content.appendChild(breadcrumbs);
+    this.content.appendChild($$('.title', {text: node.title }));
+
+    var authors = $$('.authors', {
+      children: _.map(node.getAuthors(), function(authorPara) {
+        var paraView = this.viewFactory.createView(authorPara);
+        var paraEl = paraView.render().el;
+        this.content.appendChild(paraEl);
+        return paraEl;
+      }, this)
+    });
+
+    // var orgLink = $$('a.original', {
+    //   href: node.document.get('publication_info').doi,
+    //   text: "Classic View"
+    // });
+
+    // this.content.appendChild(orgLink);
+
+    this.content.appendChild(authors);
+
+    return this;
+  }
+};
+
+CoverView.Prototype.prototype = NodeView.prototype;
+CoverView.prototype = new CoverView.Prototype();
+
+module.exports = CoverView;
+
+},{"../node":28,"substance-application":56,"substance-util":154,"underscore":159}],19:[function(require,module,exports){
+"use strict";
+
+module.exports = {
+  Model: require('./cover'),
+  View: require('./cover_view')
+};
+
+},{"./cover":17,"./cover_view":18}],20:[function(require,module,exports){
+"use strict";
+
+var Document = require("substance-document");
+
+var Figure = function(node, document) {
+  Document.Composite.call(this, node, document);
+};
+
+
+Figure.type = {
+  "parent": "content",
+  "properties": {
+    "source_id": "string",
+    "label": "string",
+    "url": "string",
+    "caption": "caption",
+    "attrib": "string"
+  }
+};
+
+Figure.config = {
+  "zoomable": true
+};
+
+// This is used for the auto-generated docs
+// -----------------
+//
+
+Figure.description = {
+  "name": "Figure",
+  "remarks": [
+    "A figure is a figure is figure.",
+  ],
+  "properties": {
+    "label": "Label used as header for the figure cards",
+    "url": "Image url",
+    "caption": "A reference to a caption node that describes the figure",
+    "attrib": "Figure attribution"
+  }
+};
+
+// Example File
+// -----------------
+//
+
+Figure.example = {
+  "id": "figure_1",
+  "label": "Figure 1",
+  "url": "http://example.com/fig1.png",
+  "caption": "caption_1"
+};
+
+Figure.Prototype = function() {
+
+  this.hasCaption = function() {
+    return (!!this.properties.caption);
+  };
+
+  this.getNodes = function() {
+    var nodes = [];
+    if (this.properties.caption) {
+      nodes.push(this.properties.caption);
+    }
+    return nodes;
+  };
+
+  this.getCaption = function() {
+    if (this.properties.caption) return this.document.get(this.properties.caption);
+  };
+};
+
+Figure.Prototype.prototype = Document.Composite.prototype;
+Figure.prototype = new Figure.Prototype();
+Figure.prototype.constructor = Figure;
+
+Document.Node.defineProperties(Figure.prototype, ["source_id", "label", "url", "caption", "attrib"]);
+
+Object.defineProperties(Figure.prototype, {
+  // Used as a resource header
+  header: {
+    get: function() { return this.properties.label; }
+  }
+});
+
+module.exports = Figure;
+
+},{"substance-document":81}],21:[function(require,module,exports){
+"use strict";
+
+var CompositeView = require("../composite").View;
+var $$ = require ("substance-application").$$;
+
+// Substance.Figure.View
+// ==========================================================================
+
+var FigureView = function(node, viewFactory) {
+  CompositeView.call(this, node, viewFactory);
+};
+
+FigureView.Prototype = function() {
+
+  // Rendering
+  // =============================
+  //
+
+  this.render = function() {
+
+    this.el.innerHTML = "";
+    this.content = $$('div.content');
+
+    // Add graphic (img element)
+    var imgEl = $$('.image-wrapper', {
+      children: [
+        $$("a", {
+          href: this.node.url,
+          target: "_blank",
+          children: [$$("img", {src: this.node.url})]
+        })
+      ]
+    });
+
+    this.content.appendChild(imgEl);
+
+
+    var caption = this.node.getCaption();
+    if (caption) {
+      var captionView = this.viewFactory.createView(caption);
+      var captionEl = captionView.render().el;
+      this.content.appendChild(captionEl);
+      this.childrenViews.push(captionView);
+    }
+
+    // Attrib
+    if (this.node.attrib) {
+      console.log('ATTRIB!!');
+      this.content.appendChild($$('.figure-attribution', {text: this.node.attrib}));
+    }
+
+    this.el.appendChild(this.content);
+    return this;
+  };
+};
+
+FigureView.Prototype.prototype = CompositeView.prototype;
+FigureView.prototype = new FigureView.Prototype();
+
+module.exports = FigureView;
+
+},{"../composite":16,"substance-application":56}],22:[function(require,module,exports){
+"use strict";
+
+module.exports = {
+  Model: require('./figure'),
+  View: require('./figure_view')
+};
+
+},{"./figure":20,"./figure_view":21}],23:[function(require,module,exports){
+"use strict";
+
+var SubstanceNodes = require("substance-nodes");
+
+module.exports = SubstanceNodes["formula"];
+
+},{"substance-nodes":92}],24:[function(require,module,exports){
+"use strict";
+var SubstanceNodes = require("substance-nodes");
+
+module.exports = SubstanceNodes["heading"];
+
+},{"substance-nodes":92}],25:[function(require,module,exports){
+"use strict";
+
+var SubstanceNodes = require("substance-nodes");
+module.exports = SubstanceNodes["image"];
+},{"substance-nodes":92}],26:[function(require,module,exports){
+"use strict";
+module.exports = {
+  "publication_info": require("./publication_info"),
+  "box": require("./box"),
+  "cover": require("./cover"),
+  "text": require("./text"),
+  "paragraph": require("./paragraph"),
+  "heading": require("./heading"),
+  "figure": require("./figure"),
+  "caption": require("./caption"),
+  "image": require("./image"),
+  "webresource": require("./web_resource"),
+  "table": require("./table"),
+  "supplement": require("./supplement"),
+  "video": require("./video"),
+  "person": require("./person"),
+  "citation": require("./citation"),
+  "formula": require('./formula'),
+  "list": require("./list"),
+  "codeblock": require("./codeblock"),
+  "affiliation": require("./_affiliation")
+};
+
+},{"./_affiliation":5,"./box":8,"./caption":11,"./citation":14,"./codeblock":15,"./cover":19,"./figure":22,"./formula":23,"./heading":24,"./image":25,"./list":27,"./paragraph":29,"./person":30,"./publication_info":33,"./supplement":36,"./table":39,"./text":42,"./video":43,"./web_resource":46}],27:[function(require,module,exports){
+"use strict";
+
+var SubstanceNodes = require("substance-nodes");
+
+module.exports = SubstanceNodes["list"];
+
+},{"substance-nodes":92}],28:[function(require,module,exports){
+"use strict";
+
+var SubstanceNodes = require("substance-nodes");
+
+module.exports = SubstanceNodes["node"];
+
+},{"substance-nodes":92}],29:[function(require,module,exports){
+"use strict";
+
+var SubstanceNodes = require("substance-nodes");
+
+module.exports = SubstanceNodes["paragraph"];
+
+},{"substance-nodes":92}],30:[function(require,module,exports){
+"use strict";
+
+module.exports = {
+  Model: require('./person'),
+  View: require('./person_view')
+};
+
+},{"./person":31,"./person_view":32}],31:[function(require,module,exports){
+var _ = require('underscore');
+var Node = require('substance-document').Node;
+
+// Lens.Person
+// -----------------
+//
+
+var Person = function(node, doc) {
+  Node.call(this, node, doc);
+};
+
+
+// Type definition
+// -----------------
+//
+
+Person.type = {
+  "id": "person",
+  "parent": "content",
+  "properties": {
+    "source_id": "string",
+    "name": "string", // full author name
+    "role": "string",
+    "affiliations": ["array", "affiliation"],
+    "fundings": ["array", "string"],
+    "image": "string", // optional
+    "emails": ["array", "string"],
+    "contribution": "string",
+    "equal_contrib": ["array", "string"]
+  }
+};
+
+// This is used for the auto-generated docs
+// -----------------
+//
+
+Person.description = {
+  "name": "Person",
+  "remarks": [
+    "A person entity.",
+  ],
+  "properties": {
+    "name": "Full name.",
+  }
+};
+
+
+// Example Video
+// -----------------
+//
+
+Person.example = {
+  "id": "person_1",
+  "type": "person",
+  "name": "John Doe",
+  "affiliations": ["affiliation_1", "affiliation_2"],
+  "role": "Author",
+  "fundings": ["Funding Organisation 1"],
+  "emails": ["a@b.com"],
+  "contribution": "Revising the article, data cleanup",
+  "equal_contrib": ["John Doe", "Jane Doe"]
+};
+
+
+Person.Prototype = function() {
+  this.getAffiliations = function() {
+    return _.map(this.properties.affiliations, function(affId) {
+      return this.document.get(affId);
+    }, this);
+  }
+};
+
+Person.Prototype.prototype = Node.prototype;
+Person.prototype = new Person.Prototype();
+Person.prototype.constructor = Person;
+
+
+// Generate getters
+// --------
+
+var getters = {};
+
+var getters = {
+  header: {
+    get: function() {
+      return this.properties.name;
+    }
+  }
+};
+
+_.each(Person.type.properties, function(prop, key) {
+  getters[key] = {
+    get: function() {
+      return this.properties[key];
+    }
+  };
+});
+
+
+
+
+Object.defineProperties(Person.prototype, getters);
+
+
+module.exports = Person;
+
+},{"substance-document":81,"underscore":159}],32:[function(require,module,exports){
+"use strict";
+
+var _ = require("underscore");
+var util = require("substance-util");
+var html = util.html;
+var NodeView = require("../node").View;
+var $$ = require("substance-application").$$;
+
+// Lens.Person.View
+// ==========================================================================
+
+var PersonView = function(node) {
+  NodeView.call(this, node);
+
+  this.$el.attr({id: node.id});
+  this.$el.addClass("content-node person");
+};
+
+PersonView.Prototype = function() {
+
+  // Render it
+  // --------
+  //
+
+  this.render = function() {
+    NodeView.prototype.render.call(this);
+
+    // Add Affiliations
+    // -------
+
+    this.content.appendChild($$('.affiliations', {
+      children: _.map(this.node.getAffiliations(), function(aff) {
+        
+        var affText = _.compact([
+          aff.department, 
+          aff.institution,
+          aff.city,
+          aff.country
+        ]).join(', ');
+
+        return $$('.affiliation', {text: affText});
+      })
+    }));
+
+    // Contribution
+    // -------
+
+    this.content.appendChild($$('.label', {text: 'Contribution'}));
+    this.content.appendChild($$('.contribution', {text: this.node.contribution}));
+
+    // Equal contribution
+    // -------
+
+    if (this.node.equal_contrib && this.node.equal_contrib.length > 0) {
+      this.content.appendChild($$('.label', {text: 'Contributed equally with'}));
+      this.content.appendChild($$('.equal-contribution', {text: this.node.equal_contrib}));
+    }
+
+    // Funding
+    // -------
+
+    if (this.node.fundings.length > 0) {
+      this.content.appendChild($$('.label', {text: 'Funding'}));
+      this.content.appendChild($$('.fundings', {
+        children: _.map(this.node.fundings, function(funding) {
+          return $$('.funding', {text: funding});
+        })
+      }));
+    }
+
+    if (this.node.emails.length > 0) {
+      this.content.appendChild($$('.label', {text: 'For correspondence'}));
+      this.content.appendChild($$('.label', {
+        children: _.map(this.node.emails, function(email) {
+          return $$('a', {href: "mailto:"+email, text: email});
+        })
+      }));
+    }
+
+    return this;
+  };
+
+};
+
+PersonView.Prototype.prototype = NodeView.prototype;
+PersonView.prototype = new PersonView.Prototype();
+
+module.exports = PersonView;
+
+},{"../node":28,"substance-application":56,"substance-util":154,"underscore":159}],33:[function(require,module,exports){
+"use strict";
+
+module.exports = {
+  Model: require("./publication_info"),
+  View: require("./publication_info_view")
+};
+
+},{"./publication_info":34,"./publication_info_view":35}],34:[function(require,module,exports){
+"use strict";
+
+var Node = require("substance-document").Node;
+var _ = require("underscore");
+
+var PublicationInfo = function(node, doc) {
+  Node.call(this, node, doc);
+};
+
+PublicationInfo.type = {
+  "id": "publication_info",
+  "parent": "content",
+  "properties": {
+    "received_on": "string",
+    "accepted_on": "string",
+    "published_on": "string",
+    "journal": "string",
+    "article_type": "string",
+    "keywords": ["array", "string"],
+    "research_organisms": ["array", "string"],
+    "subjects": ["array", "string"],
+    "pdf_link": "string",
+    "xml_link": "string",
+    "json_link": "string",
+    "doi": "string"
+  }
+};
+
+
+PublicationInfo.description = {
+  "name": "PublicationInfo",
+  "description": "PublicationInfo Node",
+  "remarks": [
+    "Summarizes the article's meta information. Meant to be customized by publishers"
+  ],
+  "properties": {
+    "received_on": "Submission received",
+    "accepted_on": "Paper accepted on",
+    "published_on": "Paper published on",
+    "journal": "The Journal",
+    "article_type": "Research Article vs. Insight, vs. Correction etc.",
+    "keywords": "Article's keywords",
+    "research_organisms": "Research Organisms",
+    "subjects": "Article Subjects",
+    "pdf_link": "A link referencing the PDF version for print",
+    "xml_link": "A link referencing the original NLM XML file",
+    "json_link": "A link pointing to the JSON version of the article",
+    "doi": "Article DOI"
+  }
+};
+
+
+PublicationInfo.example = {
+  "id": "publication_info",
+  "received_on": "2012-06-20",
+  "accepted_on": "2012-09-05",
+  "published_on": "2012-11-13",
+  "journal": "eLife",
+  "article_type": "Research Article",
+  "keywords": [
+    "innate immunity",
+    "histones",
+    "lipid droplet",
+    "anti-bacterial"
+  ],
+  "research_organisms": [
+    "B. subtilis",
+    "D. melanogaster",
+    "E. coli",
+    "Mouse"
+  ],
+  "subjects": [
+    "Immunology",
+    "Microbiology and infectious disease"
+  ],
+  "pdf_link": "http://elife.elifesciences.org/content/1/e00003.full-text.pdf",
+  "xml_link": "https://s3.amazonaws.com/elife-cdn/elife-articles/00003/elife00003.xml",
+  "json_link": "http://cdn.elifesciences.org/documents/elife/00003.json",
+  "doi": "http://dx.doi.org/10.7554/eLife.00003"
+};
+
+
+PublicationInfo.Prototype = function() {
+};
+
+
+PublicationInfo.Prototype.prototype = Node.prototype;
+PublicationInfo.prototype = new PublicationInfo.Prototype();
+PublicationInfo.prototype.constructor = PublicationInfo;
+
+
+// Generate getters
+// --------
+
+var getters = {};
+
+_.each(PublicationInfo.type.properties, function(prop, key) {
+  getters[key] = {
+    get: function() {
+      return this.properties[key];
+    }
+  };
+});
+
+Object.defineProperties(PublicationInfo.prototype, getters);
+
+module.exports = PublicationInfo;
+},{"substance-document":81,"underscore":159}],35:[function(require,module,exports){
+"use strict";
+
+var NodeView = require("../node").View;
+var $$ = require("substance-application").$$;
+
+
+// Substance.Image.View
+// ==========================================================================
+
+var PublicationInfoView = function(node, viewFactory) {
+  NodeView.call(this, node, viewFactory);
+
+  this.$el.addClass('publication-info');
+  this.$el.attr('id', this.node.id);
+};
+
+PublicationInfoView.Prototype = function() {
+
+  // Rendering
+  // =============================
+  //
+
+
+  // Render Markup
+  // --------
+  //
+
+  this.render = function() {
+    NodeView.prototype.render.call(this);
+
+    var tableRows = [
+      $$('tr', {
+        children: [
+          $$('td', {
+            children: [
+              $$('div.label', {text: "Subject"}),
+              $$('div.value', {text: this.node.subjects.join(', ')})
+            ]
+          }),
+          $$('td', {
+            children: [
+              $$('div.label', {text: "Organism"}),
+              $$('div.value', {text: this.node.research_organisms.join(', ')})
+            ]
+          })
+        ]
+      }),
+      $$('tr', {
+        children: [
+          $$('td', {
+            colspan: 2,
+            children: [
+              $$('div.label', {text: "Keywords"}),
+              $$('div.value', {text: this.node.keywords.join(', ')})
+            ]
+          })
+        ]
+      })
+    ];
+    
+    var catTbl = $$('table.categorization', {
+      children: [ $$('tbody', { children: tableRows }) ]
+    });
+
+    this.content.appendChild(catTbl);
+    this.content.appendChild($$('.label.links', {text: "Links"}));
+      
+    // Prepare for download the JSON
+    var json = JSON.stringify(this.node.document.toJSON(), null, '  ');
+    var bb = new Blob([json], {type: "application/json"});
+
+
+
+    var links = $$('.links', {
+      children: [
+        $$('a.link pdf-link', {
+          href: this.node.pdf_link,
+          html: '<i class="icon-download-alt"></i> PDF'
+        }),
+        $$('a.link.json-link', {
+          href: window.URL ? window.URL.createObjectURL(bb) : "#",
+          html: '<i class="icon-download-alt"></i> JSON'
+        }),
+        $$('a.link.xml-link', {
+          href: this.node.xml_link,
+          html: '<i class="icon-download-alt"></i> XML'
+        }),
+        $$('a.link.doi-link', {
+          href: this.node.doi,
+          html: '<i class="icon-external-link-sign"></i> DOI'
+        })
+      ]
+    });
+
+    this.content.appendChild(links);
+
+    var dateRows = [
+      $$('tr', {
+        children: [
+          $$('td', {
+            children: [
+              $$('div.label', {text: "Received"}),
+              $$('div.value', {text: this.node.received_on || "-" })
+            ]
+          }),
+          $$('td', {
+            children: [
+              $$('div.label', {text: "Accepted"}),
+              $$('div.value', {text: this.node.accepted_on || "-" })
+            ]
+          }),
+          $$('td', {
+            children: [
+              $$('div.label', {text: "Published"}),
+              $$('div.value', {text: this.node.published_on || "-" })
+            ]
+          })
+        ]
+      })
+    ];
+    
+    var datesTbl = $$('table.dates', {
+      children: [ $$('tbody', { children: dateRows }) ]
+    });
+
+    this.content.appendChild(datesTbl);
+    return this;
+  };
+
+  this.dispose = function() {
+    NodeView.prototype.dispose.call(this);
+  };
+};
+
+PublicationInfoView.Prototype.prototype = NodeView.prototype;
+PublicationInfoView.prototype = new PublicationInfoView.Prototype();
+
+module.exports = PublicationInfoView;
+
+},{"../node":28,"substance-application":56}],36:[function(require,module,exports){
+"use strict";
+
+module.exports = {
+  Model: require('./supplement'),
+  View: require('./supplement_view')
+};
+
+},{"./supplement":37,"./supplement_view":38}],37:[function(require,module,exports){
+var _ = require('underscore');
+
+var Document = require("substance-document");
+
+// Lens.Supplement
+// -----------------
+//
+
+var Supplement = function(node, doc) {
+  Document.Composite.call(this, node, doc);
+};
+
+// Type definition
+// -----------------
+//
+
+Supplement.type = {
+  "id": "supplement",
+  "parent": "content",
+  "properties": {
+    "source_id": "string",
+    "label": "string",
+    "url": "string",
+    "caption": "caption", // contains the doi
+  }
+};
+
+
+// This is used for the auto-generated docs
+// -----------------
+//
+
+Supplement.description = {
+  "name": "Supplement",
+  "remarks": [
+    "A Supplement entity.",
+  ],
+  "properties": {
+    "source_id": "Supplement id as it occurs in the source NLM file",
+    "label": "Supplement label",
+    "caption": "References a caption node, that has all the content",
+    "url": "URL of downloadable file"
+  }
+};
+
+// Example Supplement
+// -----------------
+//
+
+Supplement.example = {
+  "id": "supplement_1",
+  "source_id": "SD1-data",
+  "type": "supplement",
+  "label": "Supplementary file 1.",
+  "url": "http://myserver.com/myfile.pdf",
+  "caption": "caption_supplement_1"
+};
+
+
+Supplement.Prototype = function() {
+
+  this.getNodes = function() {
+    var nodes = [];
+    if (this.properties.caption) {
+      nodes.push(this.properties.caption);
+    }
+    return nodes;
+  };
+
+  this.getCaption = function() {
+    if (this.properties.caption) {
+      return this.document.get(this.properties.caption);
+    } else {
+      return null;
+    }
+  };
+};
+
+Supplement.Prototype.prototype = Document.Composite.prototype;
+Supplement.prototype = new Supplement.Prototype();
+Supplement.prototype.constructor = Supplement;
+
+// Generate getters
+// --------
+
+var getters = {};
+
+_.each(Supplement.type.properties, function(prop, key) {
+  getters[key] = {
+    get: function() {
+      return this.properties[key];
+    }
+  };
+});
+
+// Get the header for resource header display
+// --------
+
+getters["header"] = {
+  get: function() {
+    return this.properties.label;
+  }
+};
+
+
+Object.defineProperties(Supplement.prototype, getters);
+
+module.exports = Supplement;
+
+},{"substance-document":81,"underscore":159}],38:[function(require,module,exports){
+"use strict";
+
+var _ = require("underscore");
+var util = require("substance-util");
+var html = util.html;
+var CompositeView = require("../composite").View;
+var $$ = require("substance-application").$$;
+
+// Lens.Supplement.View
+// ==========================================================================
+
+var SupplementView = function(node, viewFactory) {
+  CompositeView.call(this, node, viewFactory);
+
+  this.$el.attr({id: node.id});
+  this.$el.addClass("content-node supplement");
+};
+
+SupplementView.Prototype = function() {
+
+  // Render it
+  // --------
+
+  this.render = function() {
+    var node = this.node;
+
+    this.content = $$('div.content');
+
+    var caption = node.getCaption();
+    if (caption) {
+      var captionView = this.viewFactory.createView(caption);
+      var captionEl = captionView.render().el;
+      this.content.appendChild(captionEl);
+      this.childrenViews.push(captionView);
+    }
+
+    var file = $$('div.file', {
+      children: [
+        $$('a', {href: node.url, html: '<i class="icon-download-alt"/> Download' })
+      ]
+    });
+
+    this.content.appendChild(file);
+    this.el.appendChild(this.content);
+
+    return this;
+  }
+};
+
+SupplementView.Prototype.prototype = CompositeView.prototype;
+SupplementView.prototype = new SupplementView.Prototype();
+SupplementView.prototype.constructor = SupplementView;
+
+module.exports = SupplementView;
+
+},{"../composite":16,"substance-application":56,"substance-util":154,"underscore":159}],39:[function(require,module,exports){
+"use strict";
+
+module.exports = {
+  Model: require('./table'),
+  View: require('./table_view')
+};
+
+},{"./table":40,"./table_view":41}],40:[function(require,module,exports){
+var _ = require('underscore');
+var Node = require('substance-document').Node;
+
+// Lens.Table
+// -----------------
+//
+
+var Table = function(node, doc) {
+  Node.call(this, node, doc);
+};
+
+// Type definition
+// -----------------
+//
+
+Table.type = {
+  "id": "table",
+  "parent": "content",
+  "properties": {
+    "source_id": "string",
+    "label": "string",
+    "content": "string",
+    "footers": ["array", "string"],
+    "caption": "caption"
+  }
+};
+
+Table.config = {
+  "zoomable": true
+};
+
+
+// This is used for the auto-generated docs
+// -----------------
+//
+
+Table.description = {
+  "name": "Table",
+  "remarks": [
+    "A table figure which is expressed in HTML notation"
+  ],
+  "properties": {
+    "source_id": "string",
+    "label": "Label shown in the resource header.",
+    "title": "Full table title",
+    "content": "HTML data",
+    "footers": "Table footers expressed as an array strings",
+    "caption": "References a caption node, that has all the content"
+  }
+};
+
+
+// Example Table
+// -----------------
+//
+
+Table.example = {
+  "id": "table_1",
+  "type": "table",
+  "label": "Table 1.",
+  "title": "Lorem ipsum table",
+  "content": "<table>...</table>",
+  "footers": [],
+  "caption": "caption_1"
+};
+
+Table.Prototype = function() {
+  this.getCaption = function() {
+    if (this.properties.caption) return this.document.get(this.properties.caption);
+  };
+};
+
+Table.Prototype.prototype = Node.prototype;
+Table.prototype = new Table.Prototype();
+Table.prototype.constructor = Table;
+
+
+// Generate getters
+// --------
+
+var getters = {
+  header: {
+    get: function() {
+      return this.properties.label;
+    }
+  }
+};
+
+_.each(Table.type.properties, function(prop, key) {
+  getters[key] = {
+    get: function() {
+      return this.properties[key];
+    }
+  };
+});
+
+Object.defineProperties(Table.prototype, getters);
+
+module.exports = Table;
+
+},{"substance-document":81,"underscore":159}],41:[function(require,module,exports){
+"use strict";
+
+var _ = require("underscore");
+var util = require("substance-util");
+var html = util.html;
+var NodeView = require("../node").View;
+var $$ = require("substance-application").$$;
+
+// Substance.Paragraph.View
+// ==========================================================================
+
+var TableView = function(node, viewFactory) {
+  NodeView.call(this, node);
+  this.viewFactory = viewFactory;
+
+  this.$el.attr({id: node.id});
+  this.$el.addClass("content-node table");
+};
+
+TableView.Prototype = function() {
+
+  //   <% if (node.url) { %>
+  //     <div class="table-image">
+  //       <a href="<%= node.large_url %>" target="_new"><img class="thumbnail" src="<%= node.url %>"/></a>
+  //     </div>
+  //   <% } %>
+  //   <div class="table-wrapper">
+  //     <%= node.content %>
+  //   </div>
+  //   <div class="footers">
+  //     <% _.each(node.footers, function(f) { %>
+  //       <div class="footer"><b><%= annotate(f, 'label') %></b> <%= annotate(f, 'content') %></div>
+  //     <% }); %>
+  //   </div>
+  //   <div class="title"><%= annotate(node.caption, 'title') %></div>
+  //   <div class="descr"><%= annotate(node.caption, 'content') %></div>
+  //   <% if (node.doi) { %>
+  //     <div class="doi"><b>DOI:</b> <a href="<%= node.doi %>" target="_new"><%= node.doi %></a></div>
+  //   <% } %>
+  // </div>
+
+  // .content
+  //   .table-wrapper
+  //     <table>...
+  //   .footers
+  //   .title
+  //   .caption
+  //   .doi
+
+  this.render = function() {
+    var node = this.node;
+    NodeView.prototype.render.call(this);
+
+    // The actual content
+    // --------
+    //
+
+    var tableWrapper = $$('.table-wrapper', {
+      html: node.content // HTML table content
+    });
+
+    this.content.appendChild(tableWrapper);
+
+    // Display footers (optional)
+    // --------
+    //
+
+    var footers = $$('.footers', {
+      children: _.map(node.footers, function(footer) {
+        return $$('.footer', { html: "<b>"+footer.label+"</b> " + footer.content });
+      })
+    });
+
+    // Display caption
+
+
+    var caption = this.node.getCaption();
+    if (caption) {
+      var captionView = this.viewFactory.createView(caption);
+      var captionEl = captionView.render().el;
+      this.content.appendChild(captionEl);
+      // this.childrenViews.push(captionView);
+    }
+
+    this.content.appendChild(footers);
+
+
+    // this.content.appendChild($$('.not-yet-implemented', {text: "This node type has not yet been implemented. "}));
+    return this;
+  }
+};
+
+TableView.Prototype.prototype = NodeView.prototype;
+TableView.prototype = new TableView.Prototype();
+
+module.exports = TableView;
+
+},{"../node":28,"substance-application":56,"substance-util":154,"underscore":159}],42:[function(require,module,exports){
+"use strict";
+
+var SubstanceNodes = require("substance-nodes");
+
+module.exports = SubstanceNodes["text"];
+
+},{"substance-nodes":92}],43:[function(require,module,exports){
+"use strict";
+
+module.exports = {
+  Model: require('./video'),
+  View: require('./video_view')
+};
+
+},{"./video":44,"./video_view":45}],44:[function(require,module,exports){
+var _ = require('underscore');
+var Node = require('substance-document').Node;
+
+// Lens.Video
+// -----------------
+//
+
+var Video = function(node, doc) {
+  Node.call(this, node, doc);
+};
+
+// Type definition
+// -----------------
+//
+
+Video.type = {
+  "id": "video",
+
+  "parent": "content",
+  "properties": {
+    "source_id": "string",
+    "label": "string",
+    "url": "string",
+    "url_webm": "string",
+    "url_ogv": "string",
+    "caption": "caption",
+    "poster": "string"
+  }
+};
+
+
+Video.config = {
+  "zoomable": true
+};
+
+// This is used for the auto-generated docs
+// -----------------
+//
+
+Video.description = {
+  "name": "Video",
+  "remarks": [
+    "A video type intended to refer to video resources.",
+    "MP4, WebM and OGV formats are supported."
+  ],
+  "properties": {
+    "label": "Label shown in the resource header.",
+    "url": "URL to mp4 version of the video.",
+    "url_webm": "URL to WebM version of the video.",
+    "url_ogv": "URL to OGV version of the video.",
+    "poster": "Video poster image.",
+    "caption": "References a caption node, that has all the content"
+  }
+};
+
+// Example Video
+// -----------------
+//
+
+Video.example = {
+  "id": "video_1",
+  "type": "video",
+  "label": "Video 1.",
+  "url": "http://cdn.elifesciences.org/video/eLifeLensIntro2.mp4",
+  "url_webm": "http://cdn.elifesciences.org/video/eLifeLensIntro2.webm",
+  "url_ogv": "http://cdn.elifesciences.org/video/eLifeLensIntro2.ogv",
+  "poster": "http://cdn.elifesciences.org/video/eLifeLensIntro2.png",
+  // "doi": "http://dx.doi.org/10.7554/Fake.doi.003",
+  "caption": "caption_25"
+};
+
+Video.Prototype = function() {
+
+};
+
+Video.Prototype.prototype = Node.prototype;
+Video.prototype = new Video.Prototype();
+Video.prototype.constructor = Video;
+
+
+// Generate getters
+// --------
+
+var getters = {};
+
+_.each(Video.type.properties, function(prop, key) {
+  getters[key] = {
+    get: function() {
+      return this.properties[key];
+    }
+  };
+});
+
+
+Object.defineProperties(Video.prototype, _.extend(getters, {
+  header: {
+    get: function() {
+      return this.properties.label;
+    }
+  },
+  caption: {
+    get: function() {
+      // HACK: this is not yet a real solution
+      if (this.properties.caption) {
+        return this.document.get(this.properties.caption);
+      } else {
+        return "";
+      }
+    }
+  }
+}));
+
+module.exports = Video;
+
+},{"substance-document":81,"underscore":159}],45:[function(require,module,exports){
+"use strict";
+
+var _ = require("underscore");
+var util = require("substance-util");
+var html = util.html;
+var NodeView = require("../node").View;
+var $$ = require("substance-application").$$;
+
+// Lens.Video.View
+// ==========================================================================
+
+var VideoView = function(node, viewFactory) {
+  NodeView.call(this, node, viewFactory);
+
+  this.$el.attr({id: node.id});
+  this.$el.addClass("content-node video");
+};
+
+
+
+VideoView.Prototype = function() {
+
+  // Render it
+  // --------
+  //
+  // .content
+  //   video
+  //     source
+  //   .title
+  //   .caption
+  //   .doi
+
+  this.render = function() {
+    NodeView.prototype.render.call(this);
+
+    // Enrich with video content
+    // --------
+    //
+
+    var node = this.node;
+
+    // The actual video
+    // --------
+    //
+
+    var sources = [
+      $$('source', {
+        src: node.url,
+        type: "video/mp4; codecs=&quot;avc1.42E01E, mp4a.40.2&quot;",
+      })
+    ];
+
+    if (node.url_ogv) {
+      sources.push($$('source', {
+        src: node.url_ogv,
+        type: "video/ogg; codecs=&quot;theora, vorbis&quot;",
+      }));
+    }
+
+    if (node.url_webm) {
+      sources.push($$('source', {
+        src: node.url_webm,
+        type: "video/webm; codecs=&quot;vp8, vorbis%quot;",
+      }));
+    }
+
+    var video = $$('.video-wrapper', {
+      children: [
+        $$('video', {
+          controls: "controls",
+          poster: node.poster,
+          preload: "none",
+          // style: "background-color: black",
+          children: sources
+        })
+      ]
+    });
+
+    this.content.appendChild(video);
+
+    // The video title
+    // --------
+    //
+
+    if (node.title) {
+      this.content.appendChild($$('.title', {
+        text: node.title
+      }));
+    }
+
+    // Add caption if there is any
+    if (this.node.caption) {
+      var caption = this.viewFactory.createView(this.node.caption);
+      this.content.appendChild(caption.render().el);
+      this.captionView = caption;
+    }
+
+    // Add DOI link if available
+    // --------
+    //
+
+    if (node.doi) {
+      this.content.appendChild($$('.doi', {
+        children: [
+          $$('b', {text: "DOI: "}),
+          $$('a', {href: node.doi, target: "_new", text: node.doi})
+        ]
+      }));
+    }
+
+    return this;
+  }
+};
+
+VideoView.Prototype.prototype = NodeView.prototype;
+VideoView.prototype = new VideoView.Prototype();
+
+module.exports = VideoView;
+
+},{"../node":28,"substance-application":56,"substance-util":154,"underscore":159}],46:[function(require,module,exports){
+"use strict";
+var SubstanceNodes = require("substance-nodes");
+
+module.exports = SubstanceNodes["webresource"];
+
+},{"substance-nodes":92}],47:[function(require,module,exports){
+"use strict";
+
+var LensConverter = require("./src/lens_converter");
+
+module.exports = LensConverter;
+
+},{"./src/lens_converter":53}],48:[function(require,module,exports){
+var _ = require('underscore');
+
+
+var DefaultConfiguration = function() {
+
+};
+
+DefaultConfiguration.Prototype = function() {
+
+  this.enhanceSupplement = function(state, node, element) {
+    // Noop - override in your configuration
+  };
+
+  this.enhanceTable = function(state, node, element) {
+    // Noop - override in your configuration
+  };
+
+  this.enhanceCover = function(state, node, element) {
+    // Noop - override in your configuration
+  };
+
+  // Default video resolver
+  // --------
+  // 
+
+  this.enhanceVideo = function(state, node, element) {
+    var el = element.querySelector("media") || element;
+
+    // xlink:href example: elife00778v001.mov
+    var url = element.getAttribute("xlink:href");
+    // Just return absolute urls
+    if (url.match(/http:/)) {
+      var lastdotIdx = url.lastIndexOf(".");
+      var name = url.substring(0, lastdotIdx);
+      node.url = name+".mp4";
+      node.url_ogv = name+".ogv";
+      node.url_webm = name+".webm";
+      node.poster = name+".png";
+      return;
+    } else {
+      var name = url.split(".")[0];
+      node.url = state.options.baseURL+name+".mp4";
+      node.url_ogv = state.options.baseURL+name+".ogv";
+      node.url_webm = state.options.baseURL+name+".webm";
+      node.poster = state.options.baseURL+name+".png";
+    }
+  };
+
+  // Implements resloving of relative urls
+  this.enhanceFigure = function(state, node, element) {
+    var graphic = element.querySelector("graphic");
+    var url = graphic.getAttribute("xlink:href");
+    node.url = this.resolveURL(state, url);
+  };
+
+  this.enhanceArticle = function(converter, state, article) {
+    // Noop - override in your configuration
+  };
+
+  this.extractPublicationInfo = function() {
+    // Noop - override in your configuration
+  };
+
+  this.resolveURL = function(url) {
+    return url;
+  };
+
+  // Default figure url resolver
+  // --------
+  // 
+  // For relative urls it uses the same basebath as the source XML
+
+  this.resolveURL = function(state, url) {
+    // Just return absolute urls
+    if (url.match(/http:/)) return url;
+    return [
+      state.options.baseURL,
+      url
+    ].join('');
+  };
+};
+
+DefaultConfiguration.prototype = new DefaultConfiguration.Prototype();
+module.exports = DefaultConfiguration;
+
+},{"underscore":159}],49:[function(require,module,exports){
+"use strict";
+
+var util = require("substance-util");
+var _ = require("underscore");
+var DefaultConfiguration = require('./default');
+
+var ElifeConfiguration = function() {
+
+};
+
+ElifeConfiguration.Prototype = function() {
+
+
+  this.enhanceCover = function(state, node, element) {
+    var dispChannel = element.querySelector("subj-group[subj-group-type=display-channel] subject").textContent;
+    var category = element.querySelector("subj-group[subj-group-type=heading] subject").textContent;
+
+    node.breadcrumbs = [
+      {name: "eLife", url: "http://elife.elifesciences.org/"},
+      {name: dispChannel, url: "http://elife.elifesciences.org/category/"+dispChannel.replace(/ /g, '-').toLowerCase()},
+      {name: category, url: "http://elife.elifesciences.org/category/"+category.replace(/ /g, '-').toLowerCase()},
+    ];
+  };
+
+  // Resolves figure url
+  // --------
+  //
+
+  this.enhanceFigure = function(state, node, element) {
+    var graphic = element.querySelector("graphic");
+    var url = graphic.getAttribute("xlink:href");
+
+    node.url = this.resolveURL(state, url);
+  };
+
+  this.enhanceVideo = function(state, node, element) {
+    var el = element.querySelector("media") || element;
+    var href = element.getAttribute("xlink:href").split(".");
+    var name = href[0];
+
+    node.url = "http://static.movie-usa.glencoesoftware.com/mp4/10.7554/"+name+".mp4";
+    node.url_ogv = "http://static.movie-usa.glencoesoftware.com/ogv/10.7554/"+name+".ogv";
+    node.url_webm = "http://static.movie-usa.glencoesoftware.com/webm/10.7554/"+name+".webm";
+    node.poster = "http://static.movie-usa.glencoesoftware.com/jpg/10.7554/"+name+".jpg";
+  };
+
+  // Example url to SVG: http://cdn.elifesciences.org/elife-articles/00768/svg/elife00768f001.svg
+  this.resolveURL = function(state, url) {
+    if (url.match(/http:\/\//)) return url;
+
+    return [
+      "http://cdn.elifesciences.org/elife-articles/",
+      state.doc.id,
+      "/svg/",
+      url,
+      ".svg"
+    ].join('');
+  };
+
+  this.enhanceSupplement = function(state, node, element) {
+    node.url = [
+      "http://cdn.elifesciences.org/elife-articles/",
+      state.doc.id,
+      "/suppl/",
+      node.url
+    ].join('');
+  };
+
+  this.extractPublicationInfo = function(converter, state, article) {
+    var doc = state.doc;
+
+    var articleMeta = article.querySelector("article-meta");
+
+    function _extractDate(dateEl) {
+      if (!dateEl) return null;
+      var day = dateEl.querySelector("day").textContent;
+      var month = dateEl.querySelector("month").textContent;
+      var year = dateEl.querySelector("year").textContent;
+      return [year, month, day].join("-");
+    }
+
+    var pubDate = articleMeta.querySelector("pub-date");
+    var receivedDate = articleMeta.querySelector("date[date-type=received]");
+    var acceptedDate = articleMeta.querySelector("date[date-type=accepted]");
+
+    // Extract keywords
+    // ------------
+    //
+    // <kwd-group kwd-group-type="author-keywords">
+    // <title>Author keywords</title>
+    // <kwd>innate immunity</kwd>
+    // <kwd>histones</kwd>
+    // <kwd>lipid droplet</kwd>
+    // <kwd>anti-bacterial</kwd>
+    // </kwd-group>
+    var keyWords = articleMeta.querySelectorAll("kwd-group[kwd-group-type=author-keywords] kwd");
+
+    // Extract research organism
+    // ------------
+    //
+
+    // <kwd-group kwd-group-type="research-organism">
+    // <title>Research organism</title>
+    // <kwd>B. subtilis</kwd>
+    // <kwd>D. melanogaster</kwd>
+    // <kwd>E. coli</kwd>
+    // <kwd>Mouse</kwd>
+    // </kwd-group>
+    var organisms = articleMeta.querySelectorAll("kwd-group[kwd-group-type=research-organism] kwd");
+
+    // Extract subjects
+    // ------------
+    //
+    // <subj-group subj-group-type="heading">
+    // <subject>Immunology</subject>
+    // </subj-group>
+    // <subj-group subj-group-type="heading">
+    // <subject>Microbiology and infectious disease</subject>
+    // </subj-group>
+
+    var subjects = articleMeta.querySelectorAll("subj-group[subj-group-type=heading] subject");
+
+    // Extract article_type
+    // ---------------
+    //
+    // <subj-group subj-group-type="display-channel">
+    // <subject>Research article</subject>
+    // </subj-group>
+
+    var articleType = articleMeta.querySelector("subj-group[subj-group-type=display-channel] subject");
+
+    // Extract journal title
+    // ---------------
+    //
+
+    var journalTitle = article.querySelector("journal-title");
+
+    // <article-id pub-id-type="doi">10.7554/eLife.00003</article-id>
+    var articleDOI = article.querySelector("article-id[pub-id-type=doi]");
+
+
+    // Extract PDF link
+    // ---------------
+    //
+    // <self-uri content-type="pdf" xlink:href="elife00007.pdf"/>
+    
+    var pdfURI = article.querySelector("self-uri[content-type=pdf]");    
+
+    var pdfLink = [
+      "http://cdn.elifesciences.org/elife-articles/",
+      state.doc.id,
+      "/pdf/",
+      pdfURI ? pdfURI.getAttribute("xlink:href") : "#"
+    ].join('');
+
+    // Create PublicationInfo node
+    // ---------------
+    
+    var pubInfoNode = {
+      "id": "publication_info",
+      "type": "publication_info",
+      "published_on": _extractDate(pubDate),
+      "received_on": _extractDate(receivedDate),
+      "accepted_on": _extractDate(acceptedDate),
+      "keywords": _.pluck(keyWords, "textContent"),
+      "research_organisms": _.pluck(organisms, "textContent"),
+      "subjects": _.pluck(subjects, "textContent"),
+      "article_type": articleType ? articleType.textContent : "",
+      "journal": journalTitle ? journalTitle.textContent : "",
+      "pdf_link": pdfLink,
+      "xml_link": "https://s3.amazonaws.com/elife-cdn/elife-articles/"+state.doc.id+"/elife"+state.doc.id+".xml", // "http://mickey.com/mouse.xml",
+      "json_link": "http://mickey.com/mouse.json",
+      "doi": articleDOI ? ["http://dx.doi.org/", articleDOI.textContent].join("") : "",
+    };
+
+
+    doc.create(pubInfoNode);
+    doc.show("info", pubInfoNode.id, 0);
+  };
+
+
+  // Add additional information to the info view
+  // ---------
+  //
+  // Impact
+  // Major datasets
+  // Acknowledgements
+  // Copyright
+
+  this.enhanceInfo = function(converter, state, article) {
+    var doc = state.doc;
+
+    // Initialize the Article Info object
+    var articleInfo = {
+      "id": "articleinfo",
+      "type": "paragraph",
+      "children": []
+    };
+    var nodes = articleInfo.children;
+
+    // Get the author's impact statement
+    var meta = article.querySelectorAll("meta-value");
+    var impact = meta[1];
+    
+    var h1 = {
+      "type": "heading",
+      "id": state.nextId("heading"),
+      "level": 1,
+      "content": "Impact",
+    };
+    doc.create(h1);
+    nodes.push(h1.id);
+
+    if (impact) {
+      var par = converter.paragraphGroup(state, impact);
+      nodes.push(par[0].id);      
+    }
+
+
+    // Get conflict of interest
+
+    var conflict = article.querySelectorAll("fn");
+    for (var i = 0; i < conflict.length;i++) {
+      var indiv = conflict[i];
+      var type = indiv.getAttribute("fn-type");
+        if (type === 'conflict') {
+          var h1 = {
+          "type" : "heading",
+          "id" : state.nextId("heading"),
+          "level" : 1,
+          "content" : "Competing Interests"
+        };
+        doc.create(h1);
+        nodes.push(h1.id);
+        var par = converter.bodyNodes(state, util.dom.getChildren(indiv));
+        nodes.push(par[0].id);
+      }
+    }
+
+    // Get major datasets
+
+    var datasets = article.querySelectorAll('sec');
+
+    for (var i = 0;i <datasets.length;i++){
+      var data = datasets[i];
+      var type = data.getAttribute('sec-type');
+      if (type === 'datasets') {
+        var h1 = {
+          "type" : "heading",
+          "id" : state.nextId("heading"),
+          "level" : 1,
+          "content" : "Major Datasets"
+        };
+        doc.create(h1);
+        nodes.push(h1.id);
+        var ids = converter.datasets(state, util.dom.getChildren(data));
+        for (var j=0;j < ids.length;j++) {
+          if (ids[j]) {
+            nodes.push(ids[j]);
+          }
+        }
+      }
+    }
+
+    // Get acknowledgements
+
+    var ack = article.querySelector("ack");
+    if (ack) {
+      var h1 = {
+        "type" : "heading",
+        "id" : state.nextId("heading"),
+        "level" : 1,
+        "content" : "Acknowledgements"
+      };
+      doc.create(h1);
+      nodes.push(h1.id);
+      var par = converter.bodyNodes(state, util.dom.getChildren(ack));
+      nodes.push(par[0].id);
+    }
+    
+    // Get copyright and license information
+    var license = article.querySelector("permissions");
+    if (license) {
+      var h1 = {
+        "type" : "heading",
+        "id" : state.nextId("heading"),
+        "level" : 1,
+        "content" : "Copyright and License"
+      };
+      doc.create(h1);
+      nodes.push(h1.id);
+
+      var copyright = license.querySelector("copyright-statement");
+      if (copyright) {
+        var par = converter.paragraphGroup(state, copyright);
+        var textid = par[0].children[0];
+        doc.nodes[textid].content += ". ";
+        nodes.push(par[0].id);
+      }
+      var lic = license.querySelector("license");
+      var children = util.dom.getChildren(lic);
+      for (var i = 0;i < children.length;i++) {
+        var child = children[i];
+        var type = util.dom.getNodeType(child);
+        if (type === 'p' || type === 'license-p') {
+          var par = converter.paragraphGroup(state, child);
+          nodes.push(par[0].id)
+        }
+      }
+      
+    }
+    
+    doc.create(articleInfo);
+    doc.show("info", articleInfo.id);
+  };
+
+  // Add Decision letter and author response
+  // ---------
+
+  this.enhanceArticle = function(converter, state, article) {
+
+    var nodes = [];
+
+    // Decision letter (if available)
+    // -----------
+
+    var articleCommentary = article.querySelector("#SA1");
+    if (articleCommentary) {
+
+      var heading = {
+        id: state.nextId("heading"),
+        type: "heading",
+        level: 1,
+        content: "Article Commentary"
+      };
+      doc.create(heading);
+      nodes.push(heading);
+
+      var heading = {
+        id: state.nextId("heading"),
+        type: "heading",
+        level: 2,
+        content: "Decision letter"
+      };
+      doc.create(heading);
+      nodes.push(heading);
+
+      var body = articleCommentary.querySelector("body");
+      nodes = nodes.concat(converter.bodyNodes(state, util.dom.getChildren(body)));
+    }
+
+    // Author response
+    // -----------
+
+    var authorResponse = article.querySelector("#SA2");
+    if (authorResponse) {
+
+      var heading = {
+        id: state.nextId("heading"),
+        type: "heading",
+        level: 2,
+        content: "Author response"
+      };
+      doc.create(heading);
+      nodes.push(heading);
+
+      var body = authorResponse.querySelector("body");
+      nodes = nodes.concat(converter.bodyNodes(state, util.dom.getChildren(body)));
+    }
+
+    // Show them off
+    // ----------
+
+    if (nodes.length > 0) {
+      converter.show(state, nodes);
+    }
+
+    this.enhanceInfo(converter, state, article);
+  };
+};
+
+ElifeConfiguration.Prototype.prototype = DefaultConfiguration.prototype;
+ElifeConfiguration.prototype = new ElifeConfiguration.Prototype();
+ElifeConfiguration.prototype.constructor = ElifeConfiguration;
+
+module.exports = ElifeConfiguration;
+
+},{"./default":48,"substance-util":154,"underscore":159}],50:[function(require,module,exports){
+var DefaultConfiguration = require('./default');
+
+var LandesConfiguration = function() {
+
+};
+
+LandesConfiguration.Prototype = function() {
+
+  var mappings = {
+    "CC": "cc",
+    "INTV": "intravital",
+    "CIB": "cib"
+  };        
+
+  var __super__ = DefaultConfiguration.prototype;
+
+  // Provide proper url for supplement
+  // --------
+  // 
+
+  this.enhanceSupplement = function(state, node, element) {
+    var el = element.querySelector("graphic, media") || element;
+    var url = el.getAttribute("xlink:href");
+
+    var publisherId = state.xmlDoc.querySelector('journal-id').textContent;
+
+    var url = [
+      "https://www.landesbioscience.com/journals/",
+      mappings[publisherId],
+      "/",
+      url,
+    ].join('');
+
+    node.url = url;
+  };
+
+  // Yield proper video urls
+  // --------
+  // 
+
+  this.enhanceVideo = function(state, node, element) {
+    node.url = "provide_url_here";
+  };
+
+  // Customized labels
+  // -------
+
+  this.enhanceFigure = function(state, node, element) {
+    var graphic = element.querySelector("graphic");
+    var url = graphic.getAttribute("xlink:href");
+    var publisherId = state.xmlDoc.querySelector('journal-id').textContent;
+
+    var url = [
+      "https://www.landesbioscience.com/article_figure/journals/",
+      mappings[publisherId],
+      "/",
+      url,
+    ].join('');
+
+    node.url = url;
+
+    if(!node.label) {
+      var type = node.type;
+      node.label = type.charAt(0).toUpperCase() + type.slice(1);
+    }
+  };
+};
+
+
+LandesConfiguration.Prototype.prototype = DefaultConfiguration.prototype;
+LandesConfiguration.prototype = new LandesConfiguration.Prototype();
+LandesConfiguration.prototype.constructor = LandesConfiguration;
+
+module.exports = LandesConfiguration;
+
+},{"./default":48}],51:[function(require,module,exports){
+var DefaultConfiguration = require('./default');
+
+var PeerJConfiguration = function() {
+
+};
+
+PeerJConfiguration.Prototype = function() {
+
+  // Resolve figure urls
+  // --------
+  // 
+
+  this.enhanceFigure = function(state, node, element) {
+    var graphic = element.querySelector("graphic");
+    var url = graphic.getAttribute("xlink:href");
+
+    node.url = url;
+  };
+
+  // Assign video url
+  // --------
+  // 
+
+  this.enhanceVideo = function(state, node, element) {
+    node.url = "http://mickey.com/mouse.mp4";
+  };
+};
+
+
+PeerJConfiguration.Prototype.prototype = DefaultConfiguration.prototype;
+PeerJConfiguration.prototype = new PeerJConfiguration.Prototype();
+PeerJConfiguration.prototype.constructor = PeerJConfiguration;
+
+module.exports = PeerJConfiguration;
+
+},{"./default":48}],52:[function(require,module,exports){
+var DefaultConfiguration = require('./default');
+
+var PLOSConfiguration = function() {
+
+};
+
+PLOSConfiguration.Prototype = function() {
+
+  // Resolve figure urls
+  // --------
+  // 
+
+  this.enhanceFigure = function(state, node, element) {
+    var graphic = element.querySelector("graphic");
+    var url = graphic.getAttribute("xlink:href");
+
+    url = [
+      "http://www.plosone.org/article/fetchObject.action?uri=",
+      url,
+      "&representation=PNG_L"
+    ].join('');
+
+    node.url = url;
+  };
+
+  // Assign video url
+  // --------
+  // 
+
+  this.enhanceVideo = function(state, node, element) {
+    node.url = "http://mickey.com/mouse.mp4";
+  };
+};
+
+
+PLOSConfiguration.Prototype.prototype = DefaultConfiguration.prototype;
+PLOSConfiguration.prototype = new PLOSConfiguration.Prototype();
+PLOSConfiguration.prototype.constructor = PLOSConfiguration;
+
+module.exports = PLOSConfiguration;
+
+},{"./default":48}],53:[function(require,module,exports){
+"use strict";
+
+var _ = require("underscore");
+var util = require("substance-util");
+var errors = util.errors;
+var ImporterError = errors.define("ImporterError");
+
+// Available configurations
+// --------
+
+var ElifeConfiguration = require("./configurations/elife");
+var LandesConfiguration = require("./configurations/landes");
+var DefaultConfiguration = require("./configurations/default");
+var PLOSConfiguration = require("./configurations/plos");
+var PeerJConfiguration = require("./configurations/peerj");
+
+var LensImporter = function(options) {
+  this.options = options;
+};
+
+LensImporter.Prototype = function() {
+
+  // Helpers
+  // --------
+
+  var _getName = function(nameEl) {
+    var names = [];
+
+    var surnameEl = nameEl.querySelector("surname");
+    var givenNamesEl = nameEl.querySelector("given-names");
+
+    if (givenNamesEl) names.push(givenNamesEl.textContent);
+    if (surnameEl) names.push(surnameEl.textContent);
+
+    return names.join(" ");
+  };
+
+  var _toHtml = function(el) {
+    var tmp = document.createElement("DIV");
+    tmp.appendChild(el.cloneNode(true));
+    return tmp.innerHTML;
+  };
+
+  // ### The main entry point for starting an import
+
+  this.import = function(input, options) {
+    var xmlDoc;
+
+    // Note: when we are using jqueries get("<file>.xml") we
+    // magically get a parsed XML document already
+    if (_.isString(input)) {
+      var parser = new DOMParser();
+      xmlDoc = parser.parseFromString(input,"text/xml");
+    } else {
+      xmlDoc = input;
+    }
+
+    // Creating the output Document via factore, so that it is possible to
+    // create specialized NLMImporter later which would want to instantiate
+    // a specialized Document type
+    var doc = this.createDocument();
+
+    // For debug purposes
+    window.doc = doc;
+
+    // A deliverable state which makes this importer stateless
+    var state = new LensImporter.State(xmlDoc, doc, options);
+
+    // Note: all other methods are called corresponding
+    return this.document(state, xmlDoc);
+  };
+
+  // Overridden to create a Lens Article instance
+  this.createDocument = function() {
+    var Article = require("lens-article");
+    var doc = new Article();
+    return doc;
+  };
+
+  var _viewMapping = {
+    // "image": "figures",
+    "box": "content",
+    "supplement": "figures",
+    "figure": "figures",
+    "table": "figures",
+    "video": "figures"
+  };
+
+  this.show = function(state, nodes) {
+    var doc = state.doc;
+
+    _.each(nodes, function(n) {
+      var view = _viewMapping[n.type] || "content";
+      doc.show(view, n.id);
+    });
+  };
+
+
+  this.extractCover = function(state, article) {
+    var doc = state.doc;
+    var docNode = doc.get("document");
+    var cover = {
+      id: "cover",
+      type: "cover",
+      title: docNode.title,
+      authors: [], // docNode.authors,
+      abstract: docNode.abstract
+    };
+
+    // Create authors paragraph that has person_reference annotations
+    // to activate the author cards
+
+    _.each(docNode.authors, function(personId) {
+      var person = doc.get(personId);
+
+      var authorsPara = {
+        "id": "text_"+personId+"_reference",
+        "type": "text",
+        "content": person.name
+      };
+
+      doc.create(authorsPara);
+      cover.authors.push(authorsPara.id);
+
+      var anno = {
+        id: state.nextId("person_reference"),
+        type: "person_reference",
+        path: ["text_" + personId + "_reference", "content"],
+        range: [0, person.name.length],
+        target: personId
+      };
+
+      doc.create(anno);
+    }, this);
+
+    // Move to elife configuration
+    // -------------------
+    // <article-categories>
+    // <subj-group subj-group-type="display-channel">...</subj-group>
+    // <subj-group subj-group-type="heading">...</subj-group>
+    // </article-categories>
+
+    // <article-categories>
+    //   <subj-group subj-group-type="display-channel">
+    //     <subject>Research article</subject>
+    //   </subj-group>
+    //   <subj-group subj-group-type="heading">
+    //     <subject>Biophysics and structural biology</subject>
+    //   </subj-group>
+    // </article-categories>
+
+    state.config.enhanceCover(state, cover, article);
+
+    doc.create(cover);
+    doc.show("content", cover.id, 0);
+  };
+
+  // Note: Substance.Article supports only one author.
+  // We use the first author found in the contribGroup for the 'creator' property.
+  this.contribGroup = function(state, contribGroup) {
+    var i;
+    var affiliations = contribGroup.querySelectorAll("aff");
+    for (i = 0; i < affiliations.length; i++) {
+      this.affiliation(state, affiliations[i]);
+    }
+
+    // Extract equal contributors
+    var equalContribs = contribGroup.querySelectorAll("contrib[equal-contrib=yes]");
+
+    state.equalContribs = _.map(equalContribs, function(c) {
+      return _getName(c);
+    });
+
+
+    var contribs = contribGroup.querySelectorAll("contrib");
+    for (i = 0; i < contribs.length; i++) {
+      this.contributor(state, contribs[i]);
+    }
+  };
+
+  this.affiliation = function(state, aff) {
+    var doc = state.doc;
+
+    var institution = aff.querySelector("institution");
+    var country = aff.querySelector("country");
+    var label = aff.querySelector("label");
+    var department = aff.querySelector("addr-line named-content[content-type=department]");
+    var city = aff.querySelector("addr-line named-content[content-type=city]");
+
+    var affiliationNode = {
+      id: state.nextId("affiliation"),
+      type: "affiliation",
+      source_id: aff.getAttribute("id"),
+      label: label ? label.textContent : null,
+      department: department ? department.textContent : null,
+      city: city ? city.textContent : null,
+      institution: institution ? institution.textContent : null,
+      country: country ? country.textContent: null
+    };
+
+    doc.create(affiliationNode);
+  };
+
+
+
+  this.contributor = function(state, contrib) {
+    var doc = state.doc;
+
+    var id = state.nextId("person");
+    var personNode = {
+      id: id,
+      source_id: contrib.getAttribute("id"),
+      type: "person",
+      name: "",
+      affiliations: [],
+      fundings: [],
+      // Not yet supported... need examples
+      image: "",
+      emails: [],
+      contribution: ""
+    };
+
+
+    // Extracting equal contributions
+    var nameEl = contrib.querySelector("name");
+    personNode.name = _getName(nameEl);
+    if (_.include(state.equalContribs, personNode.name)) {
+      personNode.equal_contrib = _.without(state.equalContribs, personNode.name);
+    }
+
+    // extract affiliations stored as xrefs
+    var xrefs = contrib.querySelectorAll("xref");
+
+    _.each(xrefs, function(xref) {
+      if (xref.getAttribute("ref-type") === "aff") {
+        var affId = xref.getAttribute("rid");
+        var affNode = doc.getNodeBySourceId(affId);
+        if (affNode) {
+          personNode.affiliations.push(affNode.id);
+        }
+      } else if (xref.getAttribute("ref-type") === "other") {
+        var awardGroup = state.xmlDoc.getElementById(xref.getAttribute("rid"));
+        if (!awardGroup) return;
+        var fundingSource = awardGroup.querySelector("funding-source");
+        if (!fundingSource) return;
+        personNode.fundings.push(fundingSource.textContent);
+      } else if (xref.getAttribute("ref-type") === "corresp") {
+        var corresp = state.xmlDoc.getElementById(xref.getAttribute("rid"));
+        if (!corresp) return;
+        var email = corresp.querySelector("email");
+        if (!email) return;
+        personNode.emails.push(email.textContent);
+      } else if (xref.getAttribute("ref-type") === "fn") {
+        var elem = state.xmlDoc.getElementById(xref.getAttribute("rid"));
+
+        if (elem && elem.getAttribute("fn-type") === "con") {
+          personNode.contribution = elem.textContent;
+        } else {
+          // skipping...
+        }
+      }
+    });
+
+    if (contrib.getAttribute("contrib-type") === "author") {
+      doc.nodes.document.authors.push(id);
+    }
+
+
+    doc.create(personNode);
+    doc.show("info", personNode.id);
+  };
+
+  // Annotations
+  // --------
+
+  var _annotationTypes = {
+    "bold": "strong",
+    "italic": "emphasis",
+    "monospace": "code",
+    "sub": "subscript",
+    "sup": "superscript",
+    "underline": "underline",
+    "ext-link": "link",
+    "xref": ""
+  };
+
+  this.isAnnotation = function(type) {
+    return _annotationTypes[type] !== undefined;
+  };
+
+  this.createAnnotation = function(state, el, start, end) {
+    var type = el.tagName.toLowerCase();
+    var anno = {
+      path: _.last(state.stack).path,
+      range: [start, end],
+    };
+    if (type === "xref") {
+      var refType = el.getAttribute("ref-type");
+
+      var sourceId = el.getAttribute("rid");
+      if (refType === "bibr") {
+        anno.type = "citation_reference";
+      } else if (refType === "fig" || refType === "table" || refType === "supplementary-material" || refType === "other") {
+        anno.type = "figure_reference";
+      } else {
+        // Treat everything else as cross reference
+        anno.type = "cross_reference";
+        // console.log("Ignoring xref: ", refType, el);
+        // return;
+      }
+
+      if (sourceId) anno.target = sourceId.split(" ")[0];
+    }
+    // Common annotations (e.g., emphasis)
+    else if (_annotationTypes[type] !== undefined) {
+      anno.type = _annotationTypes[type];
+      if (type === "ext-link") {
+        anno.url = el.getAttribute("xlink:href");
+        if (el.getAttribute("ext-link-type") === "doi") {
+          anno.url = ["http://dx.doi.org/", anno.url].join("");
+        }
+      }
+    }
+    else {
+      console.log("Ignoring annotation: ", type, el);
+      return;
+    }
+
+    anno.id = state.nextId(anno.type);
+    state.annotations.push(anno);
+  };
+
+  this.annotatedText = function(state, iterator, charPos, nested) {
+    var plainText = "";
+
+    if (charPos === undefined) {
+      charPos = 0;
+    }
+
+    while(iterator.hasNext()) {
+      var el = iterator.next();
+      // Plain text nodes...
+      if (el.nodeType === Node.TEXT_NODE) {
+        plainText += el.textContent;
+        charPos += el.textContent.length;
+      }
+      // Annotations...
+      else {
+
+        var type = util.dom.getNodeType(el);
+        if (this.isAnnotation(type)) {
+          var start = charPos;
+          // recurse into the annotation element to collect nested annotations
+          // and the contained plain text
+          var childIterator = new util.dom.ChildNodeIterator(el);
+          var annotatedText = this.annotatedText(state, childIterator, charPos, "nested");
+          plainText += annotatedText;
+          charPos += annotatedText.length;
+          this.createAnnotation(state, el, start, charPos);
+        }
+
+        // Unsupported...
+        else {
+          if (nested) {
+            throw new ImporterError("Node not yet supported in annoted text: " + type);
+          }
+          else {
+            // on paragraph level other elements can break a text block
+            // we shift back the position and finish this call
+            iterator.back();
+            break;
+          }
+        }
+      }
+    }
+    return plainText;
+  };
+
+
+  // Parser
+  // --------
+  // These methods are used to process XML elements in
+  // using a recursive-descent approach.
+
+
+  // ### Top-Level function that takes a full NLM tree
+  // Note: a specialized converter can derive this method and
+  // add additional pre- or post-processing.
+
+  this.document = function(state, xmlDoc) {
+    // Setup configuration objects
+    var publisherName = xmlDoc.querySelector("publisher-name").textContent;
+    if (publisherName === "Landes Bioscience") {
+      state.config = new LandesConfiguration();
+    } else if (publisherName === "eLife Sciences Publications, Ltd") {
+      state.config = new ElifeConfiguration();
+    } else if (publisherName === "Public Library of Science") {
+      state.config = new PLOSConfiguration();
+    } else if (publisherName === 'PeerJ Inc.') {
+      state.config = new PeerJConfiguration();
+    } else {
+      state.config = new DefaultConfiguration();
+    }
+
+    var doc = state.doc;
+    var article = xmlDoc.querySelector("article");
+
+    if (!article) {
+      throw new ImporterError("Expected to find an 'article' element.");
+    }
+
+    // recursive-descent for the main body of the article
+    this.article(state, article);
+
+    // post-processing:
+
+    // Creating the annotations afterwards, to make sure
+    // that all referenced nodes are available
+    for (var i = 0; i < state.annotations.length; i++) {
+      var anno = state.annotations[i];
+      if (anno.target) {
+        var targetNode = state.doc.getNodeBySourceId(anno.target);
+        if (targetNode) anno.target = targetNode.id;
+      }
+
+      doc.create(state.annotations[i]);
+    }
+
+    // Rebuild views to ensure consistency
+    _.each(doc.views, function(view) {
+      doc.get(view).rebuild();
+    });
+
+    return doc;
+  };
+
+
+
+  this.extractContributors = function(state, article) {
+    // TODO: the spec says, that there may be any combination of
+    // 'contrib-group', 'aff', 'aff-alternatives', and 'x'
+    // However, in the articles seen so far, these were sub-elements of 'contrib-group', which itself was single
+    var contribGroup = article.querySelector("article-meta contrib-group");
+    if (contribGroup) {
+      this.contribGroup(state, contribGroup);
+    }
+  };
+
+
+  this.extractFigures = function(state, xmlDoc) {
+    // Globally query all figure-ish content, <fig>, <supplementary-material>, <table-wrap>, <media video>
+    // mimetype="video"
+    var figureElements = xmlDoc.querySelectorAll("fig, table-wrap, supplementary-material, media[mimetype=video]");
+    var figureNodes = [];
+    var node;
+
+    for (var i = 0; i < figureElements.length; i++) {
+      var figEl = figureElements[i];
+      var type = util.dom.getNodeType(figEl);
+
+      if (type === "fig") {
+        node = this.figure(state, figEl);
+        if (node) figureNodes.push(node);
+      }
+      else if (type === "table-wrap") {
+        node = this.tableWrap(state, figEl);
+        if (node) figureNodes.push(node);
+        // nodes = nodes.concat(this.section(state, child));
+      } else if (type === "media") {
+        node = this.video(state, figEl);
+        if (node) figureNodes.push(node);
+      } else if (type === "supplementary-material") {
+
+        node = this.supplement(state, figEl);
+        if (node) figureNodes.push(node);
+      }
+    }
+
+    // Show the figures
+    if (figureNodes.length > 0) {
+      this.show(state, figureNodes);
+    }
+  };
+
+
+
+  this.extractCitations = function(state, xmlDoc) {
+    var refList = xmlDoc.querySelector("ref-list");
+    if (refList) {
+      this.refList(state, refList);
+    }
+  };
+
+  // Handle <fig> element
+  // --------
+  //
+
+  this.figure = function(state, figure) {
+    var doc = state.doc;
+
+    var label = figure.querySelector("label");
+
+    // Top level figure node
+    var figureNode = {
+      "type": "figure",
+      "id": state.nextId("figure"),
+      "source_id": figure.getAttribute("id"),
+      "label": label ? label.textContent : "Figure",
+      "url": "http://images.wisegeek.com/young-calico-cat.jpg",
+      "caption": null
+    };
+
+    // Add a caption if available
+    var caption = figure.querySelector("caption");
+    if (caption) {
+      var captionNode = this.caption(state, caption);
+      if (captionNode) figureNode.caption = captionNode.id;
+    }
+
+    var attrib = figure.querySelector("attrib");
+    if (attrib) {
+      figureNode.attrib = attrib.textContent;
+    }
+
+    // Lets the configuration patch the figure node properties
+    state.config.enhanceFigure(state, figureNode, figure);
+    doc.create(figureNode);
+
+    return figureNode;
+  };
+
+  // Handle <supplementary-material> element
+  // --------
+  //
+  // eLife Example:
+  //
+  // <supplementary-material id="SD1-data">
+  //   <object-id pub-id-type="doi">10.7554/eLife.00299.013</object-id>
+  //   <label>Supplementary file 1.</label>
+  //   <caption>
+  //     <title>Compilation of the tables and figures (XLS).</title>
+  //     <p>This is a static version of the
+  //       <ext-link ext-link-type="uri" xlink:href="http://www.vaxgenomics.org/vaxgenomics/" xmlns:xlink="http://www.w3.org/1999/xlink">
+  //         Interactive Results Tool</ext-link>, which is also available to download from Zenodo (see major datasets).</p>
+  //     <p>
+  //       <bold>DOI:</bold>
+  //       <ext-link ext-link-type="doi" xlink:href="10.7554/eLife.00299.013">http://dx.doi.org/10.7554/eLife.00299.013</ext-link>
+  //     </p>
+  //   </caption>
+  //   <media mime-subtype="xlsx" mimetype="application" xlink:href="elife00299s001.xlsx"/>
+  // </supplementary-material>
+  //
+  // LB Example:
+  //
+  // <supplementary-material id="SUP1" xlink:href="2012INTRAVITAL024R-Sup.pdf">
+  //   <label>Additional material</label>
+  //   <media xlink:href="2012INTRAVITAL024R-Sup.pdf"/>
+  // </supplementary-material>
+
+  this.supplement = function(state, supplement) {
+    var doc = state.doc;
+
+    //get supplement info
+    var label = supplement.querySelector("label");
+
+    var url = "http://meh.com";
+    var mediaEl = supplement.querySelector("media");
+    var url = mediaEl ? mediaEl.getAttribute("xlink:href") : null;
+    var doi = supplement.querySelector("object-id[pub-id-type='doi']");
+    doi = doi ? "http://dx.doi.org/" + doi.textContent : "";
+
+    //create supplement node using file ids
+    var supplementNode = {
+      "id": state.nextId("supplement"),
+      "source_id": supplement.getAttribute("id"),
+      "type": "supplement",
+      "label": label ? label.textContent : "",
+      "url": url,
+      "caption": null
+    };
+
+    // Add a caption if available
+    var caption = supplement.querySelector("caption");
+
+    if (caption) {
+      var captionNode = this.caption(state, caption);
+      if (captionNode) supplementNode.caption = captionNode.id;
+    }
+
+    // Let config enhance the node
+    state.config.enhanceSupplement(state, supplementNode, supplement);
+    doc.create(supplementNode);
+    return supplementNode;
+    // doc.show("figures", id);
+  };
+
+
+  // Used by Figure, Table, Video, Supplement types.
+  // --------
+
+  this.caption = function(state, caption) {
+    var doc = state.doc;
+    var title = caption.querySelector("title");
+
+    // Only consider direct children
+    var paragraphs = _.select(caption.querySelectorAll("p"), function(p) {
+      return p.parentNode === caption;
+    });
+
+    if (paragraphs.length === 0) return null;
+
+    var captionNode = {
+      "id": state.nextId("caption"),
+      "source_id": caption.getAttribute("id"),
+      "type": "caption",
+      "title": "",
+      "children": []
+    };
+
+    // Titles can be annotated, thus delegate to paragraph
+    if (title) {
+      // Resolve title by delegating to the paragraph
+      var node = this.paragraph(state, title);
+      if (node) {
+        captionNode.title = node.id;
+      }
+    }
+
+
+    var children = [];
+    _.each(paragraphs, function(p) {
+      var node = this.paragraph(state, p);
+      if (node) {
+        children.push(node.id);
+      }
+    }, this);
+
+    captionNode.children = children;
+    doc.create(captionNode);
+
+    return captionNode;
+  };
+
+
+  // Example video element
+  //
+  // <media content-type="glencoe play-in-place height-250 width-310" id="movie1" mime-subtype="mov" mimetype="video" xlink:href="elife00005m001.mov">
+  //   <object-id pub-id-type="doi">
+  //     10.7554/eLife.00005.013</object-id>
+  //   <label>Movie 1.</label>
+  //   <caption>
+  //     <title>Movement of GFP tag.</title>
+  //     <p>
+  //       <bold>DOI:</bold>
+  //       <ext-link ext-link-type="doi" xlink:href="10.7554/eLife.00005.013">http://dx.doi.org/10.7554/eLife.00005.013</ext-link>
+  //     </p>
+  //   </caption>
+  // </media>
+
+  this.video = function(state, video) {
+    var doc = state.doc;
+
+    var label = video.querySelector("label").textContent;
+
+    var id = state.nextId("video");
+    var videoNode = {
+      "id": id,
+      "source_id": video.getAttribute("id"),
+      "type": "video",
+      "label": label,
+      "title": "",
+      "caption": null,
+      "poster": ""
+    };
+
+    // Add a caption if available
+    var caption = video.querySelector("caption");
+    if (caption) {
+      var captionNode = this.caption(state, caption);
+      if (captionNode) videoNode.caption = captionNode.id;
+    }
+
+    state.config.enhanceVideo(state, videoNode, video);
+    doc.create(videoNode);
+
+    return videoNode;
+  };
+
+  this.tableWrap = function(state, tableWrap) {
+    var doc = state.doc;
+    var label = tableWrap.querySelector("label");
+
+    var tableNode = {
+      "id": state.nextId("table"),
+      "source_id": tableWrap.getAttribute("id"),
+      "type": "table",
+      "title": "",
+      "label": label ? label.textContent : "Table",
+      "content": "",
+      "caption": null,
+      // Not supported yet ... need examples
+      footers: [],
+      // doi: "" needed?
+    };
+
+    // Note: using a DOM div element to create HTML
+    var table = tableWrap.querySelector("table");
+    tableNode.content = _toHtml(table);
+
+    // Add a caption if available
+    var caption = tableWrap.querySelector("caption");
+    if (caption) {
+      var captionNode = this.caption(state, caption);
+      if (captionNode) tableNode.caption = captionNode.id;
+    }
+
+    state.config.enhanceTable(state, tableNode, tableWrap);
+    doc.create(tableNode);
+    return tableNode;
+  };
+
+
+  // Article
+  // --------
+  // Does the actual conversion.
+  //
+  // Note: this is implemented as lazy as possible (ALAP) and will be extended as demands arise.
+  //
+  // If you need such an element supported:
+  //  - add a stub to this class (empty body),
+  //  - add code to call the method to the appropriate function,
+  //  - and implement the handler here if it can be done in general way
+  //    or in your specialized importer.
+
+  this.article = function(state, article) {
+    var doc = state.doc;
+
+    // Assign id
+    var articleId = article.querySelector("article-id");
+    // Note: Substance.Article does only support one id
+    if (articleId) {
+      doc.id = articleId.textContent;
+    } else {
+      // if no id was set we create a random one
+      doc.id = util.uuid();
+    }
+
+    // Extract authors etc.
+    this.extractContributors(state, article);
+
+    // Same for the citations, also globally
+    this.extractCitations(state, article);
+
+    // First extract all figure-ish content, using a global approach
+    this.extractFigures(state, article);
+
+    // Make up a cover node
+    this.extractCover(state, article);
+
+    // Extract ArticleMeta
+    this.extractArticleMeta(state, article);
+
+    var body = article.querySelector("body");
+    if (body) {
+      this.body(state, body);
+    }
+
+    // Give the config the chance to add stuff
+    state.config.enhanceArticle(this, state, article);
+
+  };
+
+
+  // #### Front.ArticleMeta
+  //
+
+  this.extractArticleMeta = function(state, article) {
+    // var doc = state.doc;
+
+    var articleMeta = article.querySelector("article-meta");
+    if (!articleMeta) {
+      throw new ImporterError("Expected element: 'article-meta'");
+    }
+
+    // <article-id> Article Identifier, zero or more
+    var articleIds = articleMeta.querySelectorAll("article-id");
+    this.articleIds(state, articleIds);
+
+    // <title-group> Title Group, zero or one
+    var titleGroup = articleMeta.querySelector("title-group");
+    if (titleGroup) {
+      this.titleGroup(state, titleGroup);
+    }
+
+    // <pub-date> Publication Date, zero or more
+    var pubDates = articleMeta.querySelectorAll("pub-date");
+    this.pubDates(state, pubDates);
+
+    // <abstract> Abstract, zero or more
+    var abstracts = articleMeta.querySelectorAll("abstract");
+
+    _.each(abstracts, function(abs) {
+      this.abstract(state, abs);
+    }, this);
+
+    // Populate Publication Info node
+    // ------------
+
+    state.config.extractPublicationInfo(this, state, article);
+
+    // Not supported yet:
+    // <trans-abstract> Translated Abstract, zero or more
+    // <kwd-group> Keyword Group, zero or more
+    // <conference> Conference Information, zero or more
+    // <counts> Counts, zero or one
+    // <custom-meta-group> Custom Metadata Group, zero or one
+  };
+
+
+
+  // articleIds: array of <article-id> elements
+  this.articleIds = function(state, articleIds) {
+    var doc = state.doc;
+
+    // Note: Substance.Article does only support one id
+    if (articleIds.length > 0) {
+      doc.id = articleIds[0].textContent;
+    } else {
+      // if no id was set we create a random one
+      doc.id = util.uuid();
+    }
+  };
+
+  this.titleGroup = function(state, titleGroup) {
+    var doc = state.doc;
+
+    var articleTitle = titleGroup.querySelector("article-title");
+    if (articleTitle) {
+      doc.title = articleTitle.textContent;
+    }
+
+    // Not yet supported:
+    // <subtitle> Document Subtitle, zero or one
+  };
+
+  // Note: Substance.Article supports no publications directly.
+  // We use the first pub-date for created_at
+  this.pubDates = function(state, pubDates) {
+    var doc = state.doc;
+    if (pubDates.length > 0) {
+      var converted = this.pubDate(state, pubDates[0]);
+      doc.created_at = converted.date;
+    }
+  };
+
+  // Note: this does not follow the spec but only takes the parts as it was necessary until now
+  // TODO: implement it thoroughly
+  this.pubDate = function(state, pubDate) {
+    var day = -1;
+    var month = -1;
+    var year = -1;
+    _.each(util.dom.getChildren(pubDate), function(el) {
+      var type = util.dom.getNodeType(el);
+
+      var value = el.textContent;
+      if (type === "day") {
+        day = parseInt(value, 10);
+      } else if (type === "month") {
+        month = parseInt(value, 10);
+      } else if (type === "year") {
+        year = parseInt(value, 10);
+      }
+    }, this);
+    var date = new Date(year, month, day);
+    return {
+      date: date
+    };
+  };
+
+  this.abstract = function(state, abs) {
+    var doc = state.doc;
+    var nodes = [];
+
+    var title = abs.querySelector("title");
+
+    var heading = {
+      id: state.nextId("heading"),
+      type: "heading",
+      level: 1,
+      content: title ? title.textContent : "Abstract"
+    };
+
+    doc.create(heading);
+    nodes.push(heading);
+
+    nodes = nodes.concat(this.bodyNodes(state, util.dom.getChildren(abs)));
+    if (nodes.length > 0) {
+      this.show(state, nodes);
+    }
+  };
+
+  // ### Article.Body
+  //
+
+  this.body = function(state, body) {
+
+    var heading = {
+      id: state.nextId("heading"),
+      type: "heading",
+      level: 1,
+      content: "Main Text"
+    };
+    doc.create(heading);
+
+
+    var nodes = [heading].concat(this.bodyNodes(state, util.dom.getChildren(body)));
+
+    if (nodes.length > 0) {
+      this.show(state, nodes);
+    }
+  };
+
+  // Top-level elements as they can be found in the body or
+  // in a section
+  // NEW: Also used for boxed-text elements
+  this.bodyNodes = function(state, children, startIndex) {
+    var nodes = [];
+    var node;
+    startIndex = startIndex || 0;
+
+    for (var i = startIndex; i < children.length; i++) {
+      var child = children[i];
+      var type = util.dom.getNodeType(child);
+
+      if (type === "p") {
+        nodes = nodes.concat(this.paragraphGroup(state, child));
+      }
+      else if (type === "sec") {
+        nodes = nodes.concat(this.section(state, child));
+      }
+      else if (type === "list") {
+        node = this.list(state, child);
+        if (node) nodes.push(node);
+      }
+      else if (type === "disp-formula") {
+        node = this.formula(state, child);
+        if (node) nodes.push(node);
+      }
+      else if (type === "caption") {
+        node = this.caption(state, child);
+        if (node) nodes.push(node);
+      }
+      else if (type === "boxed-text") {
+        // Just treat as another container
+        var node = this.boxedText(state, child);
+        if (node) nodes.push(node);
+        // nodes = nodes.concat(this.bodyNodes(state, util.dom.getChildren(child)));
+      }
+      else if (type === "disp-quote") {
+        // Just treat as another container
+        var node = this.boxedText(state, child);
+        if (node) nodes.push(node);
+      }
+      // Note: here are some node types ignored which are
+      // processed in an extra pass (figures, tables, etc.)
+      else if (type === "comment") {
+        // Note: Maybe we could create a Substance.Comment?
+        // Keep it silent for now
+        // console.error("Ignoring comment");
+      } else {
+        // console.error("Node not yet supported as top-level node: " + type);
+      }
+    }
+    return nodes;
+  };
+
+
+  this.boxedText = function(state, box) {
+    var doc = state.doc;
+
+    // Assuming that there are no nested <boxed-text> elements
+    var childNodes = this.bodyNodes(state, util.dom.getChildren(box));
+
+    var label = box.querySelector("label");
+    var boxId = state.nextId("box");
+
+    var boxNode = {
+      "type": "box",
+      "id": boxId,
+      "source_id": box.getAttribute("id"),
+      "label": label ? label.textContent : boxId.replace("_", " "),
+      "children": _.pluck(childNodes, 'id')
+    };
+    doc.create(boxNode);
+
+    // Boxes go into the figures view if these conditions are met
+    // 1. box has a label (e.g. elife 00288) 
+    if (label) {
+      doc.show("figures", boxId, -1);
+      return null;
+    }
+    return boxNode;
+
+  };
+
+  this.datasets = function(state, datasets) {
+    var nodes = [];
+
+    for (var i=0;i<datasets.length;i++) {
+      var data = datasets[i];
+      var type = util.dom.getNodeType(data);
+      if (type === 'p') {
+        var obj = data.querySelector('related-object');
+        if (obj) {
+          nodes = nodes.concat(this.indivdata(state,obj));
+        }
+        else {
+          var par = this.paragraphGroup(state, data);
+          nodes.push(par[0].id);
+        }
+      }
+    }
+    return nodes;
+  };
+
+  this.indivdata = function(state,indivdata) {
+    var p1 = {
+      "type" : "paragraph",
+      "id" : state.nextId("paragraph"),
+      "children" : []
+    };
+    var text1 = {
+      "type" : "text",
+      "id" : state.nextId("text"),
+      "content" : ""
+    };
+    p1.children.push(text1.id);
+    var input = util.dom.getChildren(indivdata);
+    for (var i = 0;i<input.length;i++) {
+      var info = input[i];
+      var type = util.dom.getNodeType(info);
+      if (type === "name") {
+        var children = util.dom.getChildren(info);
+        for (var j = 0;j<children.length;j++) {
+          var name = children[j];
+          if (j === 0) {
+            var par = this.paragraphGroup(state,name);
+            p1.children.push(par[0].children[0]);
+          }
+          else {
+            var text2 = {
+              "type" : "text",
+              "id" : state.nextId("text"),
+              "content" : ", "
+            };
+            doc.create(text2)
+            p1.children.push(text2.id)
+            var par = this.paragraphGroup(state,name);
+            p1.children.push(par[0].children[0]);
+          }
+        }
+      }
+      else {
+        var par = this.paragraphGroup(state,info);
+        // Smarter null reference check?
+        if (par && par[0] && par[0].children) {
+          p1.children.push(par[0].children[0]);  
+        }
+      }
+    }    
+    doc.create(p1);
+    doc.create(text1);
+    return p1.id;
+  };
+
+  this.section = function(state, section) {
+
+    // pushing the section level to track the level for nested sections
+    state.sectionLevel++;
+
+    var doc = state.doc;
+    var children = util.dom.getChildren(section);
+
+    // create a heading
+    // TODO: headings can contain annotations too
+    var title = children[0];
+    var heading = {
+      id: state.nextId("heading"),
+      source_id: section.getAttribute("id"),
+      type: "heading",
+      level: state.sectionLevel,
+      content: title.textContent
+    };
+    doc.create(heading);
+
+    // Recursive Descent: get all section body nodes
+    var nodes = this.bodyNodes(state, children, 1);
+    // add the heading at the front
+    nodes.unshift(heading);
+
+    // popping the section level
+    state.sectionLevel--;
+
+    return nodes;
+  };
+
+
+  this.ignoredParagraphElements = {
+    "comment": true,
+    "supplementary-material": true,
+    "fig": true,
+    "fig-group": true,
+    "table-wrap": true,
+    "media": true
+  };
+
+  this.acceptedParagraphElements = {
+    "boxed-text": {handler: "boxedText"},
+    "list": { handler: "list" },
+    "disp-formula": { handler: "formula" },
+  };
+
+  this.inlineParagraphElements = {
+    "inline-graphic": true,
+    "inline-formula": true
+  };
+
+  // Segments children elements of a NLM <p> element
+  // into blocks grouping according to following rules:
+  // - "text", "inline-graphic", "inline-formula", and annotations
+  // - ignore comments, supplementary-materials
+  // - others are treated as singles
+  this.segmentParagraphElements = function(paragraph) {
+    var blocks = [];
+    var lastType = "";
+    var iterator = new util.dom.ChildNodeIterator(paragraph);
+
+    // first fragment the childNodes into blocks
+    while (iterator.hasNext()) {
+      var child = iterator.next();
+      var type = util.dom.getNodeType(child);
+
+      // ignore some elements
+      if (this.ignoredParagraphElements[type]) continue;
+
+      // paragraph elements
+      if (type === "text" || this.isAnnotation(type) || this.inlineParagraphElements[type]) {
+        if (lastType !== "paragraph") {
+          blocks.push({ handler: "paragraph", nodes: [] });
+          lastType = "paragraph";
+        }
+        _.last(blocks).nodes.push(child);
+        continue;
+      }
+      // other elements are treated as single blocks
+      else if (this.acceptedParagraphElements[type]) {
+        blocks.push(_.extend({node: child}, this.acceptedParagraphElements[type]));
+      }
+      lastType = type;
+    }
+    return blocks;
+  };
+
+
+  // A 'paragraph' is given a '<p>' tag
+  // An NLM <p> can contain nested elements that are represented flattened in a Substance.Article
+  // Hence, this function returns an array of nodes
+  this.paragraphGroup = function(state, paragraph) {
+    var nodes = [];
+
+    // Note: there are some elements in the NLM paragraph allowed
+    // which are flattened here. To simplify further processing we
+    // segment the children of the paragraph elements in blocks
+    var blocks = this.segmentParagraphElements(paragraph);
+
+    for (var i = 0; i < blocks.length; i++) {
+      var block = blocks[i];
+      var node;
+      if (block.handler === "paragraph") {
+        node = this.paragraph(state, block.nodes);
+        if (node) node.source_id = paragraph.getAttribute("id");
+      } else {
+        node = this[block.handler](state, block.node);
+      }
+      if (node) nodes.push(node);
+    }
+
+    return nodes;
+  };
+
+  this.paragraph = function(state, children) {
+    var doc = state.doc;
+
+    var node = {
+      id: state.nextId("paragraph"),
+      type: "paragraph",
+      children: null
+    };
+    var nodes = [];
+
+
+    var iterator = new util.dom.ChildNodeIterator(children);
+    while (iterator.hasNext()) {
+      var child = iterator.next();
+      var type = util.dom.getNodeType(child);
+
+      // annotated text node
+      if (type === "text" || this.isAnnotation(type)) {
+        var textNode = {
+          id: state.nextId("text"),
+          type: "text",
+          content: null
+        };
+        // pushing information to the stack so that annotations can be created appropriately
+        state.stack.push({
+          node: textNode,
+          path: [textNode.id, "content"]
+        });
+        // Note: this will consume as many textish elements (text and annotations)
+        // but will return when hitting the first un-textish element.
+        // In that case, the iterator will still have more elements
+        // and the loop is continued
+        // Before descending, we reset the iterator to provide the current element again.
+        var annotatedText = this.annotatedText(state, iterator.back(), 0);
+
+        // Ignore empty paragraphs
+        if (annotatedText.length > 0) {
+          textNode.content = annotatedText;
+          doc.create(textNode);
+          nodes.push(textNode);
+        }
+
+        // popping the stack
+        state.stack.pop();
+      }
+
+      // inline image node
+      else if (type === "inline-graphic") {
+        var url = child.getAttribute("xlink:href");
+        var img = {
+          id: state.nextId("image"),
+          type: "image",
+          url: state.config.resolveURL(state, url)
+        };
+        doc.create(img);
+        nodes.push(img);
+      }
+      else if (type === "inline-formula") {
+        var formula = this.formula(state, child, "inline");
+        if (formula) {
+          nodes.push(formula);
+        }
+      }
+    }
+
+    // if there is only a single node, return do not create a paragraph around it
+    // if (nodes.length < 2) {
+    //   return nodes[0];
+    // } else {
+    if (nodes.length === 0) return null;
+
+    node.children = _.map(nodes, function(n) { return n.id; } );
+    doc.create(node);
+    return node;
+    // }
+  };
+
+  // List type
+  // --------
+
+  this.list = function(state, list) {
+    var doc = state.doc;
+
+    var listNode = {
+      "id": state.nextId("list"),
+      "source_id": list.getAttribute("id"),
+      "type": "list",
+      "items": [],
+      "ordered": false
+    };
+
+    // TODO: better detect ordererd list types (need examples)
+    if (list.getAttribute("list-type") === "ordered") {
+      listNode.ordered = true;
+    }
+
+    var listItems = list.querySelectorAll("list-item");
+    for (var i = 0; i < listItems.length; i++) {
+      var listItem = listItems[i];
+      // Note: we do not care much about what is served as items
+      // However, we do not have complex nodes on paragraph level
+      // They will be extract as sibling items
+      var nodes = this.bodyNodes(state, util.dom.getChildren(listItem), 0);
+      for (var j = 0; j < nodes.length; j++) {
+        listNode.items.push(nodes[j].id);
+      }
+    }
+
+    doc.create(listNode);
+    return listNode;
+  };
+
+  // Formula Node Type
+  // --------
+
+  var _getFormula = function(formulaElement, inline) {
+    var children = util.dom.getChildren(formulaElement);
+    for (var i = 0; i < children.length; i++) {
+      var child = children[i];
+      var type = util.dom.getNodeType(child);
+
+      if (type === "mml:math") {
+        // make sure that 'display' is set to 'block', otherwise
+        // there will be rendering issues.
+        // Although it is a rendering related issue it is easier
+        // to make this conform here
+        if (!inline) {
+          child.setAttribute("display", "block");
+        }
+        return {
+          format: "mathml",
+          data: _toHtml(child)
+        };
+      }
+      else if (type === "tex-math") {
+        return {
+          format: "latex",
+          data: child.textContent
+        };
+      }
+    }
+    return null;
+  };
+
+  this.formula = function(state, dispFormula, inline) {
+    var doc = state.doc;
+
+    var id = inline ? state.nextId("inline_formula") : state.nextId("formula");
+
+    var formulaNode = {
+      id: id,
+      source_id: dispFormula.getAttribute("id"),
+      type: "formula",
+      label: "",
+      data: "",
+      format: "",
+    };
+    if (inline) formulaNode.inline = true;
+
+    var label = dispFormula.querySelector("label");
+    if (label) formulaNode.label = label.textContent;
+
+    var formula = _getFormula(dispFormula, inline);
+    if (!formula) {
+      return null;
+    } else {
+      formulaNode.format = formula.format;
+      formulaNode.data = formula.data;
+    }
+    doc.create(formulaNode);
+    return formulaNode;
+  };
+
+  // Citations
+  // ---------
+
+  this.refList = function(state, refList) {
+    var refs = refList.querySelectorAll("ref");
+    for (var i = 0; i < refs.length; i++) {
+      this.ref(state, refs[i]);
+    }
+  };
+
+  this.ref = function(state, ref) {
+    var children = util.dom.getChildren(ref);
+    for (var i = 0; i < children.length; i++) {
+      var child = children[i];
+      var type = util.dom.getNodeType(child);
+
+      if (type === "mixed-citation" || type === "element-citation") {
+        this.citation(state, ref, child);
+      } else if (type === "label") {
+        // ignoring it here...
+      } else {
+        console.error("Not supported in 'ref': ", type);
+      }
+    }
+  };
+
+
+  // Citation
+  // ------------------
+  // NLM input example
+  //
+  // <element-citation publication-type="journal" publication-format="print">
+  // <name><surname>Llanos De La Torre Quiralte</surname>
+  // <given-names>M</given-names></name>
+  // <name><surname>Garijo Ayestaran</surname>
+  // <given-names>M</given-names></name>
+  // <name><surname>Poch Olive</surname>
+  // <given-names>ML</given-names></name>
+  // <article-title xml:lang="es">Evolucion de la mortalidad
+  // infantil de La Rioja (1980-1998)</article-title>
+  // <trans-title xml:lang="en">Evolution of the infant
+  // mortality rate in la Rioja in Spain
+  // (1980-1998)</trans-title>
+  // <source>An Esp Pediatr</source>
+  // <year>2001</year>
+  // <month>Nov</month>
+  // <volume>55</volume>
+  // <issue>5</issue>
+  // <fpage>413</fpage>
+  // <lpage>420</lpage>
+  // <comment>Figura 3, Tendencia de mortalidad infantil
+  // [Figure 3, Trends in infant mortality]; p. 418.
+  // Spanish</comment>
+  // </element-citation>
+
+  // TODO: is implemented naively, should be implemented considering the NLM spec
+  this.citation = function(state, ref, citation) {
+    var doc = state.doc;
+    var citationNode;
+    var i;
+
+    var id = state.nextId("article_citation");
+
+    // TODO: we should consider to have a more structured citation type
+    // and let the view decide how to render it instead of blobbing everything here.
+    var personGroup = citation.querySelector("person-group");
+
+    // HACK: we try to create a 'articleCitation' when there is structured
+    // content (ATM, when personGroup is present)
+    // Otherwise we create a mixed-citation taking the plain text content of the element
+    if (personGroup) {
+
+      citationNode = {
+        "id": id,
+        "source_id": ref.getAttribute("id"),
+        "type": "citation",
+        "title": "N/A",
+        "label": "",
+        "authors": [],
+        "doi": "",
+        "source": "",
+        "volume": "",
+        "fpage": "",
+        "lpage": "",
+        "citation_urls": []
+      };
+
+      var nameElements = personGroup.querySelectorAll("name");
+      for (i = 0; i < nameElements.length; i++) {
+        citationNode.authors.push(_getName(nameElements[i]));
+      }
+
+      var articleTitle = citation.querySelector("article-title");
+      if (articleTitle) {
+        citationNode.title = articleTitle.textContent;
+      } else {
+        var comment = citation.querySelector("comment");
+        if (comment) {
+          citationNode.title = comment.textContent;
+        } else {
+          console.error("FIXME: this citation has no title", citation);  
+        }
+      }
+
+      var source = citation.querySelector("source");
+      if (source) citationNode.source = source.textContent;
+
+      var volume = citation.querySelector("volume");
+      if (volume) citationNode.volume = volume.textContent;
+
+      var publisherLoc = citation.querySelector("publisher-loc");
+      if (publisherLoc) citationNode.publisher_location = publisherLoc.textContent;
+
+      var publisherName = citation.querySelector("publisher-name");
+      if (publisherName) citationNode.publisher_name = publisherName.textContent;
+
+      var fpage = citation.querySelector("fpage");
+      if (fpage) citationNode.fpage = fpage.textContent;
+
+      var lpage = citation.querySelector("lpage");
+      if (lpage) citationNode.lpage = lpage.textContent;
+
+      var year = citation.querySelector("year");
+      if (year) citationNode.year = year.textContent;
+
+      // Note: the label is child of 'ref'
+      var label = ref.querySelector("label");
+      if(label) citationNode.label = label.textContent;
+
+      var doi = citation.querySelector("pub-id[pub-id-type='doi'], ext-link[ext-link-type='doi']");
+      if(doi) citationNode.doi = "http://dx.doi.org/" + doi.textContent;
+    } else {
+      console.error("FIXME: there is one of those 'mixed-citation' without any structure. Skipping ...", citation);
+      return;
+      // citationNode = {
+      //   id: id,
+      //   type: "mixed_citation",
+      //   citation: citation.textContent,
+      //   doi: ""
+      // };
+    }
+
+    doc.create(citationNode);
+    doc.show("citations", id);
+  };
+
+  // Article.Back
+  // --------
+  // Contains things like references, notes, etc.
+
+  // this.back = function(state, back) {
+  //   // No processing at the moment
+  //   // citations are taken care of in a global handler.
+  // };
+};
+
+
+LensImporter.State = function(xmlDoc, doc, options) {
+  // the input xml document
+  this.xmlDoc = xmlDoc;
+
+  // the output substance document
+  this.doc = doc;
+
+  // keep track of the options
+  this.options = options || {};
+
+  // store annotations to be created here
+  // they will be added to the document when everything else is in place
+  this.annotations = [];
+
+  // when recursing into sub-nodes it is necessary to keep the stack
+  // of processed nodes to be able to associate other things (e.g., annotations) correctly.
+  this.stack = [];
+
+  this.sectionLevel = 1;
+
+  // an id generator for different types
+  var ids = {};
+  this.nextId = function(type) {
+    ids[type] = ids[type] || 0;
+    ids[type]++;
+    return type +"_"+ids[type];
+  };
+};
+
+// LensImporter.Prototype.prototype = NLMImporter.prototype;
+LensImporter.prototype = new LensImporter.Prototype();
+
+module.exports = {
+  Importer: LensImporter
+};
+
+},{"./configurations/default":48,"./configurations/elife":49,"./configurations/landes":50,"./configurations/peerj":51,"./configurations/plos":52,"lens-article":3,"substance-util":154,"underscore":159}],54:[function(require,module,exports){
+"use strict";
+
+var Outline = require('./outline');
+
+module.exports = Outline;
+
+},{"./outline":55}],55:[function(require,module,exports){
+"use strict";
+
+var View = require("substance-application").View;
+var $$ = require("substance-application").$$;
+var _ = require("underscore");
+
+// Lens.Outline
+// ==========================================================================
+// 
+// Takes a surface, which is projected to a minimap
+
+var Outline = function(surface) {
+  View.call(this);
+
+  this.surface = surface;
+
+  // Initial view state, telling which node is selected and which are highlighted
+  this.state = {
+    selectedNode: null,
+    highlightedNodes: []
+  };
+
+  this.$el.addClass('lens-outline');
+
+  _.bindAll(this, 'mouseDown', 'mouseUp', 'mouseMove', 'updateVisibleArea');
+
+  // Mouse event handlers
+  // --------
+
+  this.$el.mousedown(this.mouseDown);
+  
+  $(window).mousemove(this.mouseMove);
+  $(window).mouseup(this.mouseUp);
+};
+
+Outline.Prototype = function() {
+  
+  // Render Document Outline
+  // -------------
+  // 
+  // Renders outline and calculates bounds
+
+  this.render = function() {
+    var that = this;
+    var totalHeight = 0;
+
+    var fragment = document.createDocumentFragment();
+    this.visibleArea = $$('.visible-area');
+    fragment.appendChild(this.visibleArea);
+    
+
+    // Initial Calculations
+    // --------
+
+    var contentHeight = this.surface.$('.nodes').height();
+    var panelHeight = this.surface.$el.height();
+
+    var factor = (contentHeight / panelHeight);
+    this.factor = factor;
+
+    // Render nodes
+    // --------
+
+    var container = this.surface.doc.container;
+    var nodes = container.getTopLevelNodes();
+
+    _.each(nodes, function(node) {
+      var dn = this.surface.$('#'+node.id);
+      var height = dn.outerHeight(true) / factor;
+
+      // Outline node construction
+      var $node = $('<div class="node">')
+        .attr({
+          id: 'outline_'+node.id,
+        })
+        .css({
+          "position": "absolute",
+          "height": height-1,
+          "top": totalHeight
+        })
+        .addClass(node.type)
+        .append('<div class="arrow">');
+      fragment.appendChild($node[0]);
+      totalHeight += height;
+    }, this);
+
+    // Init scroll pos
+    var scrollTop = that.surface.$el.scrollTop();
+
+
+    that.el.innerHTML = "";
+    that.el.appendChild(fragment);
+    that.updateVisibleArea(scrollTop);
+
+    return this;
+  };
+
+
+  // Update visible area
+  // -------------
+  // 
+  // Should get called from the user when the content area is scrolled
+
+  this.updateVisibleArea = function(scrollTop) {
+    $(this.visibleArea).css({
+      "top": scrollTop / this.factor,
+      "height": this.surface.$el.height() / this.factor
+    });
+  };
+
+
+  // Update Outline
+  // -------------
+  // 
+  // Usage:
+  // 
+  // outline.update({
+  //   selectedNode: "node_14",
+  //   highlightNodes: []
+  // })
+
+  this.update = function(state) {
+    this.render();
+    this.state = state;
+
+    // Reset
+    this.$('.node').removeClass('selected').removeClass('highlighted');
+    this.$el.removeClass('figures').removeClass('citations');
+
+    // Set context
+    this.$el.addClass(state.context);
+
+    // Mark selected node
+    this.$('#outline_' + state.selectedNode).addClass('selected');
+
+    // 2. Mark highlighted nodes
+    _.each(state.highlightedNodes, function(n) {
+      this.$('#outline_'+n).addClass('highlighted');
+    }, this);
+  };
+
+
+  // Handle Mouse down event
+  // -----------------
+  // 
+
+  this.mouseDown = function(e) {
+    this._mouseDown = true;
+    var y = e.pageY;
+
+    if (e.target !== this.visibleArea) {
+      // Jump to mousedown position
+      this.offset = $(this.visibleArea).height()/2;
+      this.mouseMove(e);
+    } else {
+      this.offset = y - $(this.visibleArea).position().top;  
+    }
+
+    return false;
+  };
+
+  // Handle Mouse Up
+  // -----------------
+  // 
+  // Mouse lifted, no scroll anymore
+
+  this.mouseUp = function() {
+    this._mouseDown = false;
+  };
+
+  // Handle Scroll
+  // -----------------
+  // 
+  // Handle scroll event
+  // .visible-area handle
+
+  this.mouseMove = function(e) {
+    if (this._mouseDown) {
+      var y = e.pageY;
+      // find offset to visible-area.top
+      var scroll = (y - this.offset)*this.factor;
+      this.surface.$el.scrollTop(scroll);
+    }
+  };
+};
+
+Outline.Prototype.prototype = View.prototype;
+Outline.prototype = new Outline.Prototype();
+
+module.exports = Outline;
+
+},{"substance-application":56,"underscore":159}],56:[function(require,module,exports){
+"use strict";
+
+var Application = require("./src/application");
+Application.View = require("./src/view");
+Application.Router = require("./src/router");
+Application.Controller = require("./src/controller");
+Application.ElementRenderer = require("./src/renderers/element_renderer");
+Application.$$ = Application.ElementRenderer.$$;
+
+module.exports = Application;
+
+},{"./src/application":57,"./src/controller":58,"./src/renderers/element_renderer":59,"./src/router":60,"./src/view":61}],57:[function(require,module,exports){
+"use strict";
+
+var View = require("./view");
+var Router = require("./router");
+var util = require("substance-util");
+var _ = require("underscore");
+
+// Substance.Application
+// ==========================================================================
+//
+// Application abstraction suggesting strict MVC
+
+var Application = function(config) {
+  View.call(this);
+  this.config = config;
+};
+
+Application.Prototype = function() {
+  
+  // Init router
+  // ----------
+
+  this.initRouter = function() {
+    this.router = new Router();
+
+    _.each(this.config.routes, function(route) {
+      this.router.route(route.route, route.name, _.bind(this.controller[route.command], this.controller));
+    }, this);
+
+    Router.history.start();
+  };
+
+  // Start Application
+  // ----------
+  //
+
+  this.start = function() {
+    // First setup the top level view
+    this.$el = $('body');
+    this.el = this.$el[0];
+    this.render();
+
+    // Now the normal app lifecycle can begin
+    // Because app state changes require the main view to be present
+    // Triggers an initial app state change according to url hash fragment
+    this.initRouter();
+  };
+};
+
+// Setup prototype chain
+
+Application.Prototype.prototype = View.prototype;
+Application.prototype = new Application.Prototype();
+
+module.exports = Application;
+
+},{"./router":60,"./view":61,"substance-util":154,"underscore":159}],58:[function(require,module,exports){
+"use strict";
+
+var util = require("substance-util");
+var _ = require("underscore");
+
+// Substance.Application.Controller
+// ==========================================================================
+//
+// Application Controller abstraction suggesting strict MVC
+
+var Controller = function(options) {
+  this.state = {};
+  this.context = null;
+};
+
+Controller.Prototype = function() {
+
+  // Finalize state transition
+  // -----------------
+  //
+  // Editor View listens on state-changed events:
+  //
+  // Maybe this should updateContext, so it can't be confused with the app state
+  // which might be more than just the current context
+  // 
+
+  this.updateState = function(context, state) {
+    console.error('updateState is deprecated, use modifyState. State is now a rich object where context replaces the old state variable');
+    var oldContext = this.context;
+    this.context = context;
+    this.state = state;
+    this.trigger('state-changed', this.context, oldContext, state);
+  };
+
+  // Inrementally updates the controller state
+  // -----------------
+  //
+
+  this.modifyState = function(state) {
+    var prevContext = this.state.context;
+    _.extend(this.state, state);
+
+    if (state.context && state.context !== prevContext) {
+      this.trigger('context-changed', state.context);
+    }
+    
+    this.trigger('state-changed', this.state.context);
+  };
+};
+
+
+// Setup prototype chain
+Controller.Prototype.prototype = util.Events;
+Controller.prototype = new Controller.Prototype();
+
+module.exports = Controller;
+},{"substance-util":154,"underscore":159}],59:[function(require,module,exports){
+"use strict";
+
+var util = require("substance-util");
+var SRegExp = require("substance-regexp");
+
+// Substance.Application.ElementRenderer
+// ==========================================================================
+//
+// This is just a simple helper that allows us to create DOM elements
+// in a data-driven way
+
+var ElementRenderer = function(attributes) {
+  this.attributes = attributes;
+
+  // Pull off preserved properties from attributes
+  // --------
+
+  this.tagName = attributes.tag;  
+  this.children = attributes.children || [];
+  this.text = attributes.text || "";
+  this.html = attributes.html;
+  
+  delete attributes.children;
+  delete attributes.text;
+  delete attributes.html;
+  delete attributes.tag;
+
+  return this.render();
+};
+
+
+ElementRenderer.Prototype = function() {
+
+  // Do the actual rendering
+  // --------
+
+  this.render = function() {
+    var el = document.createElement(this.tagName);
+    if (this.html) {
+      el.innerHTML = this.html;
+    } else {
+      el.textContent = this.text;  
+    }
+
+    // Set attributes based on element spec
+    for(var attrName in this.attributes) {
+      var val = this.attributes[attrName];
+      el.setAttribute(attrName, val);
+    }
+
+    // Append childs
+    for (var i=0; i<this.children.length; i++) {
+      var child = this.children[i];
+      el.appendChild(child);
+    }
+
+    // Remember element
+    // Probably we should ditch this
+    this.el = el;
+    return el;
+  };
+};
+
+
+// Provides a shortcut syntax interface to ElementRenderer
+// --------
+
+var $$ = function(descriptor, options) {
+  var options = options  || {};
+
+  // Extract tagName, defaults to 'div'
+  var tagName = /^([a-zA-Z0-9]*)/.exec(descriptor);
+  options.tag = tagName && tagName[1] ? tagName[1] : 'div';
+
+  // Any occurence of #some_chars
+  var id = /#([a-zA-Z0-9_]*)/.exec(descriptor);
+  if (id && id[1]) options.id = id[1];
+
+  // Any occurence of .some-chars
+  // if (!options.class) {
+  //   var re = new RegExp(/\.([a-zA-Z0-9_-]*)/g);
+  //   var classes = [];
+  //   var classMatch;
+  //   while (classMatch = re.exec(descriptor)) {
+  //     classes.push(classMatch[1]);
+  //   }
+  //   options.class = classes.join(' ');
+  // }
+
+  // Any occurence of .some-chars
+  var matchClasses = new SRegExp(/\.([a-zA-Z0-9_-]*)/g);
+  // options.class = options.class ? options.class+' ' : '';
+  if (!options.class) {
+    options.class = matchClasses.match(descriptor).map(function(m) {
+      return m.match[1];
+    }).join(' ');
+  }
+  
+  return new ElementRenderer(options);
+};
+
+
+
+ElementRenderer.$$ = $$;
+
+// Setup prototype chain
+ElementRenderer.Prototype.prototype = util.Events;
+ElementRenderer.prototype = new ElementRenderer.Prototype();
+
+module.exports = ElementRenderer;
+},{"substance-regexp":148,"substance-util":154}],60:[function(require,module,exports){
+"use strict";
+
+var util = require("substance-util");
+var _ = require("underscore");
+
+// Application.Router
+// ---------------
+//
+// Implementation borrowed from Backbone.js
+
+// Routers map faux-URLs to actions, and fire events when routes are
+// matched. Creating a new one sets its `routes` hash, if not set statically.
+var Router = function(options) {
+  options || (options = {});
+  if (options.routes) this.routes = options.routes;
+  this._bindRoutes();
+  this.initialize.apply(this, arguments);
+};
+
+// Cached regular expressions for matching named param parts and splatted
+// parts of route strings.
+var optionalParam = /\((.*?)\)/g;
+var namedParam    = /(\(\?)?:\w+/g;
+var splatParam    = /\*\w+/g;
+var escapeRegExp  = /[\-{}\[\]+?.,\\\^$|#\s]/g;
+
+// Set up all inheritable **Application.Router** properties and methods.
+_.extend(Router.prototype, util.Events, {
+
+  // Initialize is an empty function by default. Override it with your own
+  // initialization logic.
+  initialize: function(){},
+
+  // Manually bind a single named route to a callback. For example:
+  //
+  //     this.route('search/:query/p:num', 'search', function(query, num) {
+  //       ...
+  //     });
+  //
+  route: function(route, name, callback) {
+    if (!_.isRegExp(route)) route = this._routeToRegExp(route);
+    if (_.isFunction(name)) {
+      callback = name;
+      name = '';
+    }
+    if (!callback) callback = this[name];
+    var router = this;
+    Router.history.route(route, function(fragment) {
+      var args = router._extractParameters(route, fragment);
+      callback && callback.apply(router, args);
+      router.trigger.apply(router, ['route:' + name].concat(args));
+      router.trigger('route', name, args);
+      Router.history.trigger('route', router, name, args);
+    });
+    return this;
+  },
+
+  // Simple proxy to `Router.history` to save a fragment into the history.
+  navigate: function(fragment, options) {
+    Router.history.navigate(fragment, options);
+    return this;
+  },
+
+  // Bind all defined routes to `Router.history`. We have to reverse the
+  // order of the routes here to support behavior where the most general
+  // routes can be defined at the bottom of the route map.
+  _bindRoutes: function() {
+    if (!this.routes) return;
+    this.routes = _.result(this, 'routes');
+    var route, routes = _.keys(this.routes);
+    while ((route = routes.pop()) != null) {
+      this.route(route, this.routes[route]);
+    }
+  },
+
+  // Convert a route string into a regular expression, suitable for matching
+  // against the current location hash.
+  _routeToRegExp: function(route) {
+    route = route.replace(escapeRegExp, '\\$&')
+                 .replace(optionalParam, '(?:$1)?')
+                 .replace(namedParam, function(match, optional){
+                   return optional ? match : '([^\/]+)';
+                 })
+                 .replace(splatParam, '(.*?)');
+    return new RegExp('^' + route + '$');
+  },
+
+  // Given a route, and a URL fragment that it matches, return the array of
+  // extracted decoded parameters. Empty or unmatched parameters will be
+  // treated as `null` to normalize cross-browser behavior.
+  _extractParameters: function(route, fragment) {
+    var params = route.exec(fragment).slice(1);
+    return _.map(params, function(param) {
+      return param ? decodeURIComponent(param) : null;
+    });
+  }
+});
+
+
+
+
+// Router.History
+// ----------------
+
+// Handles cross-browser history management, based on either
+// [pushState](http://diveintohtml5.info/history.html) and real URLs, or
+// [onhashchange](https://developer.mozilla.org/en-US/docs/DOM/window.onhashchange)
+// and URL fragments. If the browser supports neither (old IE, natch),
+// falls back to polling.
+var History = Router.History = function() {
+  this.handlers = [];
+  _.bindAll(this, 'checkUrl');
+
+  // Ensure that `History` can be used outside of the browser.
+  if (typeof window !== 'undefined') {
+    this.location = window.location;
+    this.history = window.history;
+  }
+};
+
+// Cached regex for stripping a leading hash/slash and trailing space.
+var routeStripper = /^[#\/]|\s+$/g;
+
+// Cached regex for stripping leading and trailing slashes.
+var rootStripper = /^\/+|\/+$/g;
+
+// Cached regex for detecting MSIE.
+var isExplorer = /msie [\w.]+/;
+
+// Cached regex for removing a trailing slash.
+var trailingSlash = /\/$/;
+
+// Has the history handling already been started?
+History.started = false;
+
+// Set up all inheritable **Router.History** properties and methods.
+_.extend(History.prototype, util.Events, {
+
+  // The default interval to poll for hash changes, if necessary, is
+  // twenty times a second.
+  interval: 50,
+
+  // Gets the true hash value. Cannot use location.hash directly due to bug
+  // in Firefox where location.hash will always be decoded.
+  getHash: function(window) {
+    var match = (window || this).location.href.match(/#(.*)$/);
+    return match ? match[1] : '';
+  },
+
+  // Get the cross-browser normalized URL fragment, either from the URL,
+  // the hash, or the override.
+  getFragment: function(fragment, forcePushState) {
+    if (fragment == null) {
+      if (this._hasPushState || !this._wantsHashChange || forcePushState) {
+        fragment = this.location.pathname;
+        var root = this.root.replace(trailingSlash, '');
+        if (!fragment.indexOf(root)) fragment = fragment.substr(root.length);
+      } else {
+        fragment = this.getHash();
+      }
+    }
+    return fragment.replace(routeStripper, '');
+  },
+
+  // Start the hash change handling, returning `true` if the current URL matches
+  // an existing route, and `false` otherwise.
+  start: function(options) {
+    if (History.started) throw new Error("Router.history has already been started");
+    History.started = true;
+
+    // Figure out the initial configuration. Do we need an iframe?
+    // Is pushState desired ... is it available?
+    this.options          = _.extend({}, {root: '/'}, this.options, options);
+    this.root             = this.options.root;
+    this._wantsHashChange = this.options.hashChange !== false;
+    this._wantsPushState  = !!this.options.pushState;
+    this._hasPushState    = !!(this.options.pushState && this.history && this.history.pushState);
+    var fragment          = this.getFragment();
+    var docMode           = document.documentMode;
+    var oldIE             = (isExplorer.exec(navigator.userAgent.toLowerCase()) && (!docMode || docMode <= 7));
+
+    // Normalize root to always include a leading and trailing slash.
+    this.root = ('/' + this.root + '/').replace(rootStripper, '/');
+
+    if (oldIE && this._wantsHashChange) {
+      this.iframe = $('<iframe src="javascript:0" tabindex="-1" />').hide().appendTo('body')[0].contentWindow;
+      this.navigate(fragment);
+    }
+
+    // Depending on whether we're using pushState or hashes, and whether
+    // 'onhashchange' is supported, determine how we check the URL state.
+    if (this._hasPushState) {
+      $(window).on('popstate', this.checkUrl);
+    } else if (this._wantsHashChange && ('onhashchange' in window) && !oldIE) {
+      $(window).on('hashchange', this.checkUrl);
+    } else if (this._wantsHashChange) {
+      this._checkUrlInterval = setInterval(this.checkUrl, this.interval);
+    }
+
+    // Determine if we need to change the base url, for a pushState link
+    // opened by a non-pushState browser.
+    this.fragment = fragment;
+    var loc = this.location;
+    var atRoot = loc.pathname.replace(/[^\/]$/, '$&/') === this.root;
+
+    // If we've started off with a route from a `pushState`-enabled browser,
+    // but we're currently in a browser that doesn't support it...
+    if (this._wantsHashChange && this._wantsPushState && !this._hasPushState && !atRoot) {
+      this.fragment = this.getFragment(null, true);
+      this.location.replace(this.root + this.location.search + '#' + this.fragment);
+      // Return immediately as browser will do redirect to new url
+      return true;
+
+    // Or if we've started out with a hash-based route, but we're currently
+    // in a browser where it could be `pushState`-based instead...
+    } else if (this._wantsPushState && this._hasPushState && atRoot && loc.hash) {
+      this.fragment = this.getHash().replace(routeStripper, '');
+      this.history.replaceState({}, document.title, this.root + this.fragment + loc.search);
+    }
+
+    if (!this.options.silent) return this.loadUrl();
+  },
+
+  // Disable Router.history, perhaps temporarily. Not useful in a real app,
+  // but possibly useful for unit testing Routers.
+  stop: function() {
+    $(window).off('popstate', this.checkUrl).off('hashchange', this.checkUrl);
+    clearInterval(this._checkUrlInterval);
+    History.started = false;
+  },
+
+  // Add a route to be tested when the fragment changes. Routes added later
+  // may override previous routes.
+  route: function(route, callback) {
+    this.handlers.unshift({route: route, callback: callback});
+  },
+
+  // Checks the current URL to see if it has changed, and if it has,
+  // calls `loadUrl`, normalizing across the hidden iframe.
+  checkUrl: function(e) {
+    var current = this.getFragment();
+    if (current === this.fragment && this.iframe) {
+      current = this.getFragment(this.getHash(this.iframe));
+    }
+    if (current === this.fragment) return false;
+    if (this.iframe) this.navigate(current);
+    this.loadUrl() || this.loadUrl(this.getHash());
+  },
+
+  // Attempt to load the current URL fragment. If a route succeeds with a
+  // match, returns `true`. If no defined routes matches the fragment,
+  // returns `false`.
+  loadUrl: function(fragmentOverride) {
+    var fragment = this.fragment = this.getFragment(fragmentOverride);
+    var matched = _.any(this.handlers, function(handler) {
+      if (handler.route.test(fragment)) {
+        handler.callback(fragment);
+        return true;
+      }
+    });
+    return matched;
+  },
+
+  // Save a fragment into the hash history, or replace the URL state if the
+  // 'replace' option is passed. You are responsible for properly URL-encoding
+  // the fragment in advance.
+  //
+  // The options object can contain `trigger: true` if you wish to have the
+  // route callback be fired (not usually desirable), or `replace: true`, if
+  // you wish to modify the current URL without adding an entry to the history.
+  navigate: function(fragment, options) {
+    if (!History.started) return false;
+    if (!options || options === true) options = {trigger: options};
+    fragment = this.getFragment(fragment || '');
+    if (this.fragment === fragment) return;
+    this.fragment = fragment;
+    var url = this.root + fragment;
+
+    // If pushState is available, we use it to set the fragment as a real URL.
+    if (this._hasPushState) {
+      this.history[options.replace ? 'replaceState' : 'pushState']({}, document.title, url);
+
+    // If hash changes haven't been explicitly disabled, update the hash
+    // fragment to store history.
+    } else if (this._wantsHashChange) {
+      this._updateHash(this.location, fragment, options.replace);
+      if (this.iframe && (fragment !== this.getFragment(this.getHash(this.iframe)))) {
+        // Opening and closing the iframe tricks IE7 and earlier to push a
+        // history entry on hash-tag change.  When replace is true, we don't
+        // want this.
+        if(!options.replace) this.iframe.document.open().close();
+        this._updateHash(this.iframe.location, fragment, options.replace);
+      }
+
+    // If you've told us that you explicitly don't want fallback hashchange-
+    // based history, then `navigate` becomes a page refresh.
+    } else {
+      return this.location.assign(url);
+    }
+    if (options.trigger) this.loadUrl(fragment);
+  },
+
+  // Update the hash location, either replacing the current entry, or adding
+  // a new one to the browser history.
+  _updateHash: function(location, fragment, replace) {
+    if (replace) {
+      var href = location.href.replace(/(javascript:|#).*$/, '');
+      location.replace(href + '#' + fragment);
+    } else {
+      // Some browsers require that `hash` contains a leading #.
+      location.hash = '#' + fragment;
+    }
+  }
+});
+
+Router.history = new History;
+
+
+module.exports = Router;
+},{"substance-util":154,"underscore":159}],61:[function(require,module,exports){
+"use strict";
+
+var util = require("substance-util");
+
+// Substance.View
+// ==========================================================================
+//
+// Application View abstraction, inspired by Backbone.js
+
+var View = function(options) {
+  var that = this;
+
+  // Either use the provided element or make up a new element
+  this.$el = $('<div/>');
+  this.el = this.$el[0];
+
+  this.dispatchDOMEvents();
+};
+
+
+View.Prototype = function() {
+
+
+  // Shorthand for selecting elements within the view
+  // ----------
+  //
+
+  this.$ = function(selector) {
+    return this.$el.find(selector);
+  };
+
+  // Dispatching DOM events (like clicks)
+  // ----------
+  //
+
+  this.dispatchDOMEvents = function() {
+
+    var that = this;
+
+    // showReport(foo) => ["showReport(foo)", "showReport", "foo"]
+    // showReport(12) => ["showReport(12)", "showReport", "12"]
+    function extractFunctionCall(str) {
+      var match = /(\w+)\((.*)\)/.exec(str);
+      if (!match) throw new Error("Invalid click handler '"+str+"'");
+
+      return {
+        "method": match[1],
+        "args": match[2].split(',')
+      };
+    }
+
+    this.$el.delegate('[sbs-click]', 'click', function(e) {
+      
+      // Matches things like this
+      // showReport(foo) => ["showReport(foo)", "showReport", "foo"]
+      // showReport(12) => ["showReport(12)", "showReport", "12"]
+      var fnCall = extractFunctionCall($(e.currentTarget).attr('sbs-click'));
+      
+      // Event bubbles up if there is no handler
+      var method = that[fnCall.method];
+      if (method) { 
+        method.apply(that, fnCall.args);
+        return false;
+      }
+    });
+  };
+};
+
+
+View.Prototype.prototype = util.Events;
+View.prototype = new View.Prototype();
+
+module.exports = View;
+
+},{"substance-util":154}],62:[function(require,module,exports){
+"use strict";
+
+var Chronicle = require('./src/chronicle');
+
+Chronicle.IndexImpl = require('./src/index_impl');
+Chronicle.ChronicleImpl = require('./src/chronicle_impl');
+Chronicle.DiffImpl = require('./src/diff_impl');
+Chronicle.TmpIndex = require('./src/tmp_index');
+
+Chronicle.create = Chronicle.ChronicleImpl.create;
+Chronicle.Index.create = Chronicle.IndexImpl.create;
+Chronicle.Diff.create = Chronicle.DiffImpl.create;
+
+Chronicle.ArrayOperationAdapter = require('./src/array_adapter');
+Chronicle.TextOperationAdapter = require('./src/text_adapter');
+
+module.exports = Chronicle;
+
+},{"./src/array_adapter":63,"./src/chronicle":64,"./src/chronicle_impl":65,"./src/diff_impl":66,"./src/index_impl":67,"./src/text_adapter":68,"./src/tmp_index":69}],63:[function(require,module,exports){
+"use strict";
+
+var util = require('substance-util');
+var Chronicle = require('./chronicle');
+var ArrayOperation = require('substance-operator').ArrayOperation;
+
+var ArrayOperationAdapter = function(chronicle, array) {
+  Chronicle.Versioned.call(this, chronicle);
+  this.array = array;
+};
+
+ArrayOperationAdapter.Prototype = function() {
+
+  var __super__ = util.prototype(this);
+
+  this.apply = function(change) {
+    ArrayOperation.fromJSON(change).apply(this.array);
+  };
+
+  this.invert = function(change) {
+    return ArrayOperation.fromJSON(change).invert();
+  };
+
+  this.transform = function(a, b, options) {
+    return ArrayOperation.transform(a, b, options);
+  };
+
+  this.reset = function() {
+    __super__.reset.call(this);
+    while(this.array.length > 0) {
+      this.array.shift();
+    }
+  };
+
+};
+
+ArrayOperationAdapter.Prototype.prototype = Chronicle.Versioned.prototype;
+ArrayOperationAdapter.prototype = new ArrayOperationAdapter.Prototype();
+
+module.exports = ArrayOperationAdapter;
+
+},{"./chronicle":64,"substance-operator":138,"substance-util":154}],64:[function(require,module,exports){
+"use strict";
+
+/*jshint unused: false*/ // deactivating this, as we define abstract interfaces here
+
+var _ = require('underscore');
+var util = require('substance-util');
+var errors = util.errors;
+
+errors.define("ChronicleError", -1);
+errors.define("ChangeError", -1);
+
+// A change recorded in the chronicle
+// ========
+//
+// Each change has an unique id (equivalent to git SHA).
+// A change can have multiple parents (merge).
+//
+// options:
+//   - id: a custom id for the change
+
+var Change = function(id, parent, data) {
+
+  this.type = 'change';
+
+  if (!id) {
+    throw new errors.ChangeError("Every change needs a unique id.");
+  }
+  this.id = id;
+
+  if (!parent) {
+    throw new errors.ChangeError("Every change needs a parent.");
+  }
+
+  this.parent = parent;
+
+  // Application specific data
+  // --------
+  //
+  // This needs to contain all information to be able to apply and revert
+  // a change.
+
+  this.data = data;
+
+  this.uuid = util.uuid;
+
+};
+
+Change.prototype = {
+
+  toJSON: function() {
+    return {
+      type: this.type,
+      id: this.id,
+      parent: this.parent,
+      data: this.data
+    };
+  }
+
+};
+
+Change.fromJSON = function(json) {
+  if (json.type === Merge.TYPE) return new Merge(json);
+  if (json.type === Transformed.TYPE) return new Transformed(json);
+
+  return new Change(json.parent, json.data, json);
+};
+
+// a dedicated global root node
+var ROOT = "ROOT";
+var ROOT_NODE = new Change(ROOT, true, null);
+ROOT_NODE.parent = ROOT;
+
+// A dedicated Change for merging multiple Chronicle histories.
+// ========
+//
+// A merge is described by a command containing a diff for each of the parents (see Index.diff()).
+//
+// Example: Consider two sequences of changes [c0, c11, c12] and [c0, c21, c22, c23].
+//
+//  A merge taking all commits of the second ('theirs') branch and
+//  rejecting those of the first ('mine') would be:
+//
+//    merge = {
+//      "c12": ["-", "c11", "c0" "+", "c21", "c22", "c23"],
+//      "c23": []
+//    }
+//
+// A manually selected merge with [c11, c21, c23] would look like:
+//
+//    merge = {
+//      "c12": ["-", "c11", "+", "c21", "c23"],
+//      "c23": ["-", "c22", "c21", "c0", "+", "c11", "c21", "c23"]
+//    }
+//
+
+var Merge = function(id, main, branches) {
+  Change.call(this, id, main);
+  this.type = Merge.TYPE;
+
+  if (!branches) {
+    throw new errors.ChangeError("Missing branches.");
+  }
+  this.branches = branches;
+};
+
+Merge.Prototype = function() {
+
+  var __super__ = util.prototype(this);
+
+  this.toJSON = function() {
+    var result = __super__.toJSON.call(this);
+    result.type = Merge.TYPE;
+    result.branches = this.branches;
+    return result;
+  };
+
+};
+Merge.Prototype.prototype = Change.prototype;
+Merge.prototype = new Merge.Prototype();
+
+Merge.TYPE =  "merge";
+
+Merge.fromJSON = function(data) {
+  if (data.type !== Merge.TYPE) throw new errors.ChangeError("Illegal data for deserializing a Merge node.");
+  return new Merge(data.parent, data.branches, data);
+};
+
+// Transformed changes are those which have been
+// created by transforming (rebasing) another existing change.
+// For the time being, the data is persisted redundantly.
+// To be able to track the original source of the change,
+// this type is introduced.
+var Transformed = function(id, parent, data, original) {
+  Change.call(this, id, parent, data);
+  this.type = Transformed.TYPE;
+  this.original = original;
+};
+
+Transformed.Prototype = function() {
+
+  var __super__ = util.prototype(this);
+
+  this.toJSON = function() {
+    var result = __super__.toJSON.call(this);
+    result.type = Transformed.TYPE;
+    result.original = this.original;
+    return result;
+  };
+
+};
+
+Transformed.TYPE = "transformed";
+
+Transformed.fromJSON = function(json) {
+  if (json.type !== Transformed.TYPE) throw new errors.ChangeError("Illegal data for deserializing a Transformed node.");
+  return new Transformed(json.parent, json.data, json.original, json);
+};
+
+
+Transformed.Prototype.prototype = Change.prototype;
+Transformed.prototype = new Transformed.Prototype();
+
+// A class that describes the difference of two states by
+// a sequence of changes (reverts and applies).
+// =======
+//
+// The difference is a sequence of commands that forms a transition from
+// one state to another.
+//
+// A diff is specified using the following syntax:
+//    [- sha [shas ...]] [+ sha [shas ...]]
+// where '-' preceeds a sequence reverts and '+' a sequence of applies.
+// Any diff can be described in that order (reverts followed by applies)
+//
+// Example: Consider an index containing the following changes
+//
+//        , - c11 - c12
+//      c0
+//        ` - c21 - c22 - c23
+//
+// Diffs for possible transitions look like:
+// "c21" -> "c23" : ["+", "c22", "c23"]
+// "c12" -> "c0" :  ["-", "c11", "c0" ]
+// "c21" -> "c11" : ["-", "c0", "+", "c11"]
+
+var Diff = function() {};
+
+Diff.prototype = {
+
+  hasReverts: function() {
+    throw new errors.SubstanceError("Not implemented.");
+  },
+
+  // Provides the changes that will be reverted
+  // --------
+
+  reverts: function() {
+    throw new errors.SubstanceError("Not implemented.");
+  },
+
+  hasApplies: function() {
+    throw new errors.SubstanceError("Not implemented.");
+  },
+
+  // Provides the changes that will applied
+  // --------
+
+  applies: function() {
+    throw new errors.SubstanceError("Not implemented.");
+  },
+
+  // Provides the sequence of states visited by this diff.
+  // --------
+
+  sequence: function() {
+    throw new errors.SubstanceError("Not implemented.");
+  },
+
+  // Provides the path from the root to the first change
+  // --------
+  //
+  // The naming refers to a typical diff situation where
+  // two branches are compared. The first branch containing the own
+  // changes, the second one the others.
+
+  mine: function() {
+    throw new errors.SubstanceError("Not implemented.");
+  },
+
+  // Provides the path from the root to the second change
+  // --------
+  //
+
+  theirs: function() {
+    throw new errors.SubstanceError("Not implemented.");
+  },
+
+  // Provides the common root of the compared branches.
+  // --------
+  //
+
+  root: function() {
+    throw new errors.SubstanceError("Not implemented.");
+  },
+
+  // Provides the version this diff has to be applied on.
+  // --------
+
+  start: function() {
+    throw new errors.SubstanceError("Not implemented.");
+  },
+
+  // Provides the version which is generated by applying this diff.
+  // --------
+
+  end: function() {
+    throw new errors.SubstanceError("Not implemented.");
+  },
+
+  // Provides a copy that represents the inversion of this diff.
+  // --------
+
+  inverted: function() {
+    throw new errors.SubstanceError("Not implemented.");
+  },
+
+};
+
+// Creates a new diff for the given reverts and applies
+// --------
+// Note this factory is provided when loading index_impl.js
+
+Diff.create = function(reverts, applies) {
+  /*jshint unused: false*/
+  throw new errors.SubstanceError("Not implemented.");
+};
+
+
+// A Chronicle contains the history of a versioned object.
+// ========
+//
+
+var Chronicle = function(index, options) {
+  options = options || {};
+
+  // an instance implementing the 'Index' interface
+  this.index = index;
+
+  // the versioned object which must implement the 'Versioned' interface.
+  this.versioned = null;
+
+  // flags to control the chronicle's behaviour
+  this.__mode__ = options.mode || Chronicle.DEFAULT_MODE;
+};
+
+Chronicle.Prototype = function() {
+
+  // Records a change
+  // --------
+  //
+  // Creates a commit and inserts it into the index at the current position.
+  //
+  // An application should call this after having applied the change to the model successfully.
+  // The provided 'change' should contain every information that is necessary to
+  // apply the change in both directions (apply and revert).
+  //
+  // Note: this corresponds to a 'git commit' in git.
+
+  this.record = function(change) {
+    throw new errors.SubstanceError("Not implemented.");
+  };
+
+  // Opens a specific version.
+  // --------
+  //
+  // Brings the versioned object as well as the index to the state
+  // of the given state.
+  //
+
+  this.open = function(version) {
+    throw new errors.SubstanceError("Not implemented.");
+  };
+
+  // Performs an incremental transformation.
+  // --------
+  //
+  // The given state must be a direct neighbor of the current state.
+  // For convenience a sequence of consecutive states can be given.
+  //
+  // Call this if you already know path between two states
+  // or if you want to apply or revert a single change.
+  //
+  // Returns the change applied by the step.
+  //
+
+  this.step = function(next) {
+    throw new errors.SubstanceError("Not implemented.");
+  };
+
+  this.forward = function(toward) {
+    var state = this.versioned.getState();
+    if (state === toward) return;
+
+    var children = this.index.children[state];
+
+    if (children.length === 0) return;
+
+    var next;
+
+    if (children.length === 1) {
+      next = children[0];
+    }
+    else if (toward) {
+      var path = this.index.shortestPath(state, toward);
+      path.shift();
+      next = path.shift();
+    }
+    else {
+      next = children[children.length-1];
+    }
+
+    if (next) {
+      return this.step(next);
+    } else {
+      return;
+    }
+  };
+
+  this.rewind = function() {
+    var current = this.index.get(this.versioned.getState());
+    var previous;
+    if (current.id === ROOT) return null;
+
+    previous = current.parent;
+    return this.step(previous);
+  };
+
+  // Create a commit that merges a history specified by its last commit.
+  // --------
+  //
+  // The strategy specifies how the merge should be generated.
+  //
+  //  'mine':   reject the changes of the other branch
+  //  'theirs': reject the changes of this branch
+  //  'manual': compute a merge that leads to the given sequence.
+  //
+  // Returns the id of the new state.
+  //
+
+  this.merge = function(state, strategy, sequence) {
+    throw new errors.SubstanceError("Not implemented.");
+  };
+
+  // Making this instance the chronicler of the given Versioned instance.
+  // --------
+  //
+
+  this.manage = function(versioned) {
+    this.versioned = versioned;
+  };
+
+  // Marks the current version.
+  // --------
+  //
+
+  this.mark = function(name) {
+    this.index.setRef(name, this.versioned.getState());
+  };
+
+  // Provides the id of a previously marked version.
+  // --------
+  //
+
+  this.find = function(name) {
+    this.index.getRef(name);
+  };
+
+  // Get the current version.
+  // --------
+  //
+
+  this.getState = function() {
+    return this.versioned.getState();
+  };
+
+  // Retrieve changes.
+  // --------
+  //
+  // If no range is given a full path is returned.
+
+  this.getChanges = function(start, end) {
+    var changes = [];
+    var path = this.path(start, end);
+
+    _.each(path, function(id) {
+      changes.push(this.index.get(id));
+    }, this);
+
+    return changes;
+  };
+
+};
+
+Chronicle.prototype = new Chronicle.Prototype();
+
+// only allow changes that have been checked via instant apply+revert
+Chronicle.PEDANTIC_RECORD = 1 << 1;
+
+// performs a reset for all imported changes
+Chronicle.PEDANTIC_IMPORT = 1 << 2;
+
+Chronicle.HYSTERICAL = Chronicle.PEDANTIC_RECORD | Chronicle.PEDANTIC_IMPORT;
+Chronicle.DEFAULT_MODE = Chronicle.PEDANTIC_IMPORT;
+
+// The factory method to create a Chronicle instance
+// --------
+// options:
+//  store: a Substance Store used to persist the index
+Chronicle.create = function(options) {
+  throw new errors.SubstanceError("Not implemented.");
+};
+
+// A directed acyclic graph of Commit instances.
+// ========
+//
+var Index = function() {
+  this.__id__ = util.uuid();
+
+  this.changes = {};
+  this.refs = {};
+  this.children = {};
+  this.changes[ROOT] = ROOT_NODE;
+  this.children[ROOT] = [];
+};
+
+Index.Prototype = function() {
+
+  // Adds a change to the index.
+  // --------
+  // All parents must be registered first, otherwise throws an error.
+  //
+
+  this.add = function(change) {
+    throw new errors.SubstanceError("Not implemented.");
+  };
+
+  // Removes a change from the index
+  // --------
+  // All children must be removed first, otherwise throws an error.
+  //
+
+  this.remove = function(id) {
+    throw new errors.SubstanceError("Not implemented.");
+  };
+
+  // Checks if a given changeId has been added to the index.
+  // --------
+  //
+
+  this.contains = function(changeId) {
+    throw new errors.SubstanceError("Not implemented.");
+  };
+
+  // Retrieves a (shortest) path between two versions
+  // --------
+  //
+  // If no end change is given it returns the path starting
+  // from ROOT to the start change.
+  // path() returns the path from ROOT to the current state.
+  //
+
+  this.path = function(start, end) {
+    throw new errors.SubstanceError("Not implemented.");
+  };
+
+  // Retrieves a change by id
+  // --------
+  //
+
+  this.get = function(id) {
+    throw new errors.SubstanceError("Not implemented.");
+  };
+
+  // Provides all changes that are direct successors of this change.
+  // --------
+  //
+
+  this.getChildren = function(id) {
+    throw new errors.SubstanceError("Not implemented.");
+  };
+
+  // Lists the ids of all contained changes
+  // --------
+  //
+
+  this.list = function() {
+    throw new errors.SubstanceError("Not implemented.");
+  };
+
+  // Computes the difference betweend two changes
+  // --------
+  //
+  // In contrast to `path` is a diff a special path that consists
+  // of a sequence of reverts followed by a sequence of applies.
+  //
+
+  this.diff = function(start, end) {
+    throw new errors.SubstanceError("Not implemented.");
+  };
+
+  // Sets a reference to look up a change via name.
+  // ---------
+  //
+
+  this.setRef = function(name, id) {
+    if (this.changes[id] === undefined) {
+      throw new errors.ChronicleError("Unknown change: " + id);
+    }
+    this.refs[name] = id;
+  };
+
+  // Looks-up a change via name.
+  // ---------
+  //
+
+  this.getRef = function(name) {
+    return this.refs[name];
+  };
+
+  this.listRefs = function() {
+    return Object.keys(this.refs);
+  };
+
+  // Imports all commits from another index
+  // --------
+  //
+  // Note: this corresponds to a 'git fetch', which only adds commits without
+  // applying any changes.
+  //
+
+  this.import = function(otherIndex) {
+    throw new errors.SubstanceError("Not implemented.");
+  };
+
+};
+
+Index.prototype = new Index.Prototype();
+
+Index.INVALID = "INVALID";
+Index.ROOT = ROOT_NODE;
+
+
+Index.create = function() {
+  throw new errors.SubstanceError("Not implemented.");
+};
+
+// A interface that must be implemented by objects that should be versioned.
+var Versioned = function(chronicle) {
+  this.chronicle = chronicle;
+  this.state = ROOT;
+  chronicle.manage(this);
+};
+
+Versioned.Prototype = function() {
+
+  // Applies the given change.
+  // --------
+  //
+
+  this.apply = function(change) {
+    throw new errors.SubstanceError("Not implemented.");
+  };
+
+  // Reverts the given change.
+  // --------
+  //
+
+  this.revert = function(change) {
+    change = this.invert(change);
+    this.apply(change);
+  };
+
+  // Inverts a given change
+  // --------
+  //
+
+  this.invert = function(change) {
+    throw new errors.SubstanceError("Not implemented.");
+  };
+
+  // Transforms two sibling changes.
+  // --------
+  //
+  // This is the `transform` operator provided by Operational Transformation.
+  //
+  //       / - a            / - a - b' \
+  //      o          ~ >   o             p
+  //       \ - b            \ - b - a' /
+  //
+  // I.e., the result of applying `a - b'` must lead to the same result as
+  // applying `b - a'`.
+  //
+  // options:
+  //
+  //  - check:    enables conflict checking. A MergeConflict is thrown as an error
+  //              when a conflict is found during transformation.
+  //  - inplace:  transforms the given instances a and b directly, without copying.
+  //
+  // returns: [a', b']
+
+  this.transform = function(a, b, options) {
+    throw new errors.SubstanceError("Not implemented.");
+  };
+
+  // Provides the current state.
+  // --------
+  //
+
+  this.getState = function() {
+    return this.state;
+  };
+
+  // Sets the state.
+  // --------
+  //
+  // Note: this is necessary for implementing merges.
+  //
+
+  this.setState = function(state) {
+    this.state = state;
+  };
+
+  // Resets the versioned object to a clean state.
+  // --------
+  //
+
+  this.reset = function() {
+    this.state = ROOT;
+  };
+};
+
+Versioned.prototype = new Versioned.Prototype();
+
+Chronicle.Change = Change;
+Chronicle.Merge = Merge;
+Chronicle.Transformed = Transformed;
+Chronicle.Diff = Diff;
+Chronicle.Index = Index;
+Chronicle.Versioned = Versioned;
+Chronicle.ROOT = ROOT;
+
+Chronicle.mergeConflict = function(a, b) {
+  var conflict = new errors.MergeConflict("Merge conflict: " + JSON.stringify(a) +" vs " + JSON.stringify(b));
+  conflict.a = a;
+  conflict.b = b;
+  return conflict;
+};
+
+module.exports = Chronicle;
+
+},{"substance-util":154,"underscore":159}],65:[function(require,module,exports){
+"use strict";
+
+// Imports
+// ====
+
+var _ = require('underscore');
+var util = require('substance-util');
+var errors = util.errors;
+var Chronicle = require('./chronicle');
+
+// Module
+// ====
+
+var ChronicleImpl = function(index, options) {
+  Chronicle.call(this, index, options);
+};
+
+ChronicleImpl.Prototype = function() {
+
+  var __private__ = new ChronicleImpl.__private__();
+  var ROOT = Chronicle.Index.ROOT.id;
+
+  this.uuid = util.uuid;
+  this.internal_uuid = util.uuid;
+
+  this.record = function(changeData) {
+    // Sanity check: the change should have been applied already.
+    // Reverting and applying should not fail.
+    if ((this.__mode__ & Chronicle.PEDANTIC_RECORD) > 0) {
+      this.versioned.revert(changeData);
+      this.versioned.apply(changeData);
+    }
+
+    // 1. create a new change instance
+    var head = this.versioned.getState();
+    var id = this.uuid();
+    var change = new Chronicle.Change(id, head, changeData);
+
+    // 2. add change to index
+    this.index.add(change);
+
+    // 3. shift head
+    this.versioned.setState(id);
+
+    return id;
+  };
+
+  this.reset = function(id, index) {
+    index = index || this.index;
+
+    // the given id must be available
+    if (!index.contains(id)) {
+      throw new errors.ChronicleError("Invalid argument: unknown change "+id);
+    }
+
+    // 1. compute diff between current state and the given id
+    var head = this.versioned.getState();
+    var path = index.shortestPath(head, id);
+
+    // 2. apply path
+    __private__.applySequence.call(this, path, index);
+  };
+
+  this.open = this.reset;
+
+  this.path = function(id1, id2) {
+    if (!id2) {
+      var path = this.index.shortestPath(ROOT, id1 || this.versioned.getState());
+      path.shift();
+      return path;
+    } else {
+      if (!id1) throw new errors.ChronicleError("Illegal argument: "+id1);
+      return this.index.shortestPath(id1, id2);
+    }
+  };
+
+  this.apply = function(sha) {
+    if (_.isArray(sha)) {
+      return __private__.applySequence.call(this, sha);
+    } else {
+      return __private__.applySequence.call(this, arguments);
+    }
+  };
+
+  this.step = function(nextId) {
+    var index = this.index;
+    var originalState = this.versioned.getState();
+
+    try {
+      var current = index.get(originalState);
+
+      // tolerate nop-transitions
+      if (current.id === nextId) return null;
+
+      var next = index.get(nextId);
+
+      var op;
+      if (current.parent === nextId) {
+        op = this.versioned.invert(current.data);
+      } else if (next.parent === current.id) {
+        op = next.data;
+      }
+      else {
+        throw new errors.ChronicleError("Invalid apply sequence: "+nextId+" is not parent or child of "+current.id);
+      }
+
+      this.versioned.apply(op);
+      this.versioned.setState(nextId);
+      return op;
+
+    } catch(err) {
+      this.reset(originalState, index);
+      throw err;
+    }
+  };
+
+  this.merge = function(id, strategy, options) {
+    // the given id must exist
+    if (!this.index.contains(id))
+      throw new errors.ChronicleError("Invalid argument: unknown change "+id);
+
+    if(arguments.length == 1) {
+      strategy = "auto";
+      options = {};
+    }
+
+    options = options || {};
+
+    var head = this.versioned.getState();
+    var diff = this.index.diff(head, id);
+
+    // 1. check for simple cases
+
+    // 1.1. don't do anything if the other merge is already merged
+    if (!diff.hasApplies()) {
+      return head;
+    }
+
+    // 1.2. check if the merge can be solved by simple applies (so called fast-forward)
+    if (!diff.hasReverts() && !options.no_ff) {
+      __private__.applyDiff.call(this, diff);
+      return this.versioned.getState();
+    }
+
+    // 2. create a Merge node
+    var change;
+
+    // Strategies:
+
+    // Mine
+    if (strategy === "mine") {
+      change = new Chronicle.Merge(this.uuid(), head, [head, id]);
+    }
+
+    // Theirs
+    else if (strategy === "theirs") {
+      change = new Chronicle.Merge(this.uuid(), id, [head, id]);
+    }
+
+    // Manual
+    else if (strategy === "manual") {
+      if (!options.sequence) throw new errors.ChronicleError("Invalid argument: sequence is missing for manual merge");
+      var sequence = options.sequence;
+
+      change = __private__.manualMerge.call(this, head, id, diff, sequence, options);
+    }
+
+    // Unsupported
+    else {
+      throw new errors.ChronicleError("Unsupported merge strategy: "+strategy);
+    }
+
+    // 2. add the change to the index
+    this.index.add(change);
+
+    // 3. reset state
+    this.reset(change.id);
+
+    return change.id;
+  };
+
+
+  this.import = function(otherIndex) {
+    var newIds = this.index.import(otherIndex);
+    // sanity check: see if all imported changes can be applied
+    if ((this.__mode__ & Chronicle.PEDANTIC_IMPORT) > 0) __private__.importSanityCheck.call(this, newIds);
+  };
+
+};
+
+ChronicleImpl.__private__ = function() {
+
+  var __private__ = this;
+
+  // Traversal operations
+  // =======
+
+  // a diff is a special kind of path which consists of
+  // a sequence of reverts and a sequence of applies.
+  this.applyDiff = function(diff, index) {
+
+    index = index || this.index;
+
+    if(!diff) return;
+
+    var originalState = this.versioned.getState();
+
+    // sanity check: don't allow to apply the diff on another change
+    if (originalState !== diff.start())
+      throw new errors.ChronicleError("Diff can not applied on to this state. Expected: "+diff.start()+", Actual: "+originalState);
+
+    var err = null;
+    var successfulReverts = [];
+    var successfulApplies = [];
+    try {
+      var reverts = diff.reverts();
+      var applies = diff.applies();
+
+      var idx, id;
+      // start at idx 1 as the first is the starting id
+      for (idx = 0; idx < reverts.length; idx++) {
+        id = reverts[idx];
+        __private__.revertTo.call(this, id, index);
+        successfulReverts.push(id);
+      }
+      for (idx = 0; idx < applies.length; idx++) {
+        id = applies[idx];
+        __private__.apply.call(this, id, index);
+        successfulApplies.push(id);
+      }
+    } catch(_err) {
+      err = _err;
+    }
+
+    // if the diff could not be applied, revert all changes that have been applied so far
+    if (err && (successfulReverts.length > 0 || successfulApplies.length > 0)) {
+      // idx shows to the change that has failed;
+      var applied = Chronicle.Diff.create(diff.start(), successfulReverts, successfulApplies);
+      var inverted = applied.inverted();
+      try {
+        __private__.applyDiff.call(this, inverted, index);
+      } catch(_err) {
+        // TODO: maybe we should do that always, instead of minimal rollback?
+        console.log("Ohohhhh.... could not rollback partially applied diff.",
+          "Without bugs and in HYSTERICAL mode this should not happen.",
+          "Resetting to original state");
+        this.versioned.reset();
+        this.reset(originalState, index);
+      }
+    }
+
+    if (err) throw err;
+  };
+
+  this.applySequence = function(seq, index) {
+    index = index || this.index;
+
+    var originalState = this.versioned.getState();
+
+    try {
+      var current = index.get(originalState);
+      _.each(seq, function(id) {
+
+        // tolerate nop-transitions
+        if (current.id === id) return;
+
+        var next = index.get(id);
+
+        // revert
+        if (current.parent === id) {
+          __private__.revertTo.call(this, id, index);
+        }
+        // apply
+        else if (next.parent === current.id) {
+          __private__.apply.call(this, id, index);
+        }
+        else {
+          throw new errors.ChronicleError("Invalid apply sequence: "+id+" is not parent or child of "+current.id);
+        }
+        current = next;
+
+      }, this);
+    } catch(err) {
+      this.reset(originalState, index);
+      throw err;
+    }
+  };
+
+  // Performs a single revert step
+  // --------
+
+  this.revertTo = function(id, index) {
+    index = index || this.index;
+
+    var head = this.versioned.getState();
+    var current = index.get(head);
+
+    // sanity checks
+    if (!current) throw new errors.ChangeError("Illegal state. 'head' is unknown: "+ head);
+    if (current.parent !== id) throw new errors.ChangeError("Can not revert: change is not parent of current");
+
+    // Note: Merge nodes do not have data
+    if (current.data) this.versioned.revert(current.data);
+    this.versioned.setState(id);
+  };
+
+  // Performs a single forward step
+  // --------
+
+  this.apply = function(id, index) {
+    index = index || this.index;
+
+    var change = index.get(id);
+
+    // sanity check
+    if (!change) throw new errors.ChangeError("Illegal argument. change is unknown: "+ id);
+
+    if (change.data) this.versioned.apply(change.data);
+    this.versioned.setState(id);
+  };
+
+  // Restructuring operations
+  // =======
+
+  // Eliminates a sequence of changes before a given change.
+  // --------
+  //
+  // A new branch with transformed changes is created.
+  //
+  //      0 - a  - b  - c  - d
+  //
+  //    > c' = eliminate(c, [b,a])
+  //
+  //      0 - a  - b  - c  - d
+  //      |
+  //       \- c' - d'
+  //
+  // The sequence should be in descending order.
+  //
+  // Returns the id of the rebased change.
+  //
+
+  this.eliminate = function(start, del, mapping, index, selection) {
+    if (!(index instanceof Chronicle.TmpIndex)) {
+      throw new errors.ChronicleError("'eliminate' must be called on a TmpIndex instance");
+    }
+
+    var left = index.get(del);
+    var right = index.get(start);
+    var inverted, rebased;
+
+    // attach the inversion of the first to the first node
+    inverted = new Chronicle.Change(this.internal_uuid(), del, this.versioned.invert(left.data));
+    index.add(inverted);
+
+    // rebase onto the inverted change
+    // Note: basicially this can fail due to broken dependencies of changes
+    // However, we do not want to have any conflict management in this case
+    // and fail with error instead
+    rebased = __private__.rebase0.call(this, inverted.id, right.id, mapping, index, selection, true);
+
+    // as we know that we have eliminated the effect by directly applying
+    // a change and its inverse, it is ok to directly skip those two changes at all
+    index.reconnect(rebased, left.parent);
+
+    // continue with the transformed version
+    right = index.get(rebased);
+
+    return right.id;
+  };
+
+  // Performs a basic rebase operation.
+  // --------
+  //
+  // The target and source must be siblings
+  //
+  //        0 - a
+  //        |
+  //         \- b - c
+  //
+  //    > b' = rebase0(a, b)
+  //
+  //        0 - a  - b' - c'
+  //        |
+  //         \- b - c
+  //
+  // The original changes remain.
+  // A mapping is created to allow looking up rebased changes via their original ids.
+
+  this.rebase0 = function(targetId, sourceId, mapping, index, selection, check) {
+    index = index || this.index;
+
+    var target = index.get(targetId);
+    var source = index.get(sourceId);
+
+    if (target.parent !== source.parent) {
+      throw new errors.ChronicleError("Illegal arguments: principal rebase can only be applied on siblings.");
+    }
+
+    // recursively transform the sub-graph
+    var queue = [[target.data, target.id, source]];
+
+    var item;
+    var a, b, b_i;
+    var result = null;
+
+
+    // keep merge nodes to update the mapped branches afterwards
+    var merges = [];
+    var idx;
+
+    while(queue.length > 0) {
+      item = queue.pop();
+
+      a = item[0];
+      targetId = item[1];
+      source = item[2];
+      b = source.data;
+
+      var transformed;
+
+      if (source instanceof Chronicle.Merge) {
+        // no transformation necessary here
+        // propagating the current transformation
+        transformed = [a];
+        // inserting the original branch ids here, which will be resolved to the transformed ids
+        // afterwards, when we can be sure, that all other node have been transformed.
+        b_i = new Chronicle.Merge(this.uuid(), targetId, source.branches);
+        merges.push(b_i);
+      } else {
+        // perform the operational transformation
+        // TODO: make checking configurable?
+        transformed = this.versioned.transform(a, b, {check: check});
+
+        // add a change the with the rebased/transformed operation
+        var orig = (source instanceof Chronicle.Transformed) ? source.original : source.id;
+        b_i = new Chronicle.Transformed(this.internal_uuid(), targetId, transformed[1], orig);
+
+        // overwrite the mapping for the original
+        mapping[orig] = b_i.id;
+      }
+
+      // record a mapping between old and new nodes
+      mapping[source.id] = b_i.id;
+
+      if (!result) result = b_i;
+      index.add(b_i);
+
+      // add children to iteration
+      var children = index.getChildren(source.id);
+      for (idx = 0; idx < children.length; idx++) {
+        var child = index.get(children[idx]);
+
+        // only rebase selected children if a selection is given
+        if (selection) {
+          var c = (child instanceof Chronicle.Transformed) ? child.original : child.id;
+          if (!selection[c]) continue;
+        }
+
+        queue.unshift([transformed[0], b_i.id, child]);
+      }
+    }
+
+    // resolve the transformed branch ids in all occurred merge nodes.
+    for (idx = 0; idx < merges.length; idx++) {
+      var m = merges[idx];
+      var mapped_branches = [];
+      for (var idx2 = 0; idx2 < m.branches.length; idx2++) {
+        mapped_branches.push(mapping[m.branches[idx2]]);
+      }
+      m.branches = mapped_branches;
+    }
+
+    return result.id;
+  };
+
+  // Merge implementations
+  // =======
+
+  // Creates a branch containing only the selected changes
+  // --------
+  // this is part of the merge
+  this.eliminateToSelection = function(branch, sequence, mapping, index) {
+    var tmp_index = new Chronicle.TmpIndex(index);
+
+    var selection = _.intersection(branch, sequence);
+    if (selection.length === 0) return null;
+
+    var eliminations = _.difference(branch, sequence).reverse();
+    if (eliminations.length === 0) return mapping[selection[0]];
+
+    var idx1 = 0, idx2 = 0;
+    var idx, id, del;
+    var last = null;
+
+    while (idx1 < branch.length && idx2 < eliminations.length) {
+      id = branch[branch.length-1-idx1];
+      del = eliminations[idx2];
+
+      if (id === del) {
+        // update the selected change
+        if (last) {
+          // TODO: filter propagations to nodes that are within the selection (or resolve to)
+          last = __private__.eliminate.call(this, last, id, mapping, tmp_index, mapping);
+        }
+        idx1++; idx2++;
+      } else {
+        last = id;
+        idx1++;
+      }
+    }
+
+    // store the transformed selected changes to the parent index
+    for (idx = 0; idx < selection.length; idx++) {
+      id = selection[idx];
+      tmp_index.save(mapping[id]);
+    }
+
+    return mapping[selection[0]];
+  };
+
+  this.manualMerge = function(head, id, diff, sequence, options) {
+
+      if (sequence.length === 0) {
+        throw new errors.ChronicleError("Nothing selected for merge.");
+      }
+
+      // accept only those selected which are actually part of the two branches
+      var tmp = _.intersection(sequence, diff.sequence());
+      if (tmp.length !== sequence.length) {
+        throw new errors.ChronicleError("Illegal merge selection: contains changes that are not contained in the merged branches.");
+      }
+
+      // The given sequence is constructed introducing new (hidden) changes.
+      // This is done in the following way:
+      // 1. Creating clean versions of the two branches by eliminating all changes that are not selected
+      // 2. TODO Re-order the eliminated versions
+      // 3. Zip-merge the temporary branches into the selected one
+
+      var tmp_index = new Chronicle.TmpIndex(this.index);
+
+      // Preparation / Elimination
+      // ........
+
+      var mine = diff.mine();
+      var theirs = diff.theirs();
+
+      var mapping = _.object(sequence, sequence);
+      __private__.eliminateToSelection.call(this, mine, sequence, mapping, tmp_index);
+      __private__.eliminateToSelection.call(this, theirs, sequence, mapping, tmp_index);
+
+      // 2. Re-order?
+      // TODO: implement this if desired
+
+      // Merge
+      // ........
+
+      mine = _.intersection(mine, sequence);
+      theirs = _.intersection(theirs, sequence);
+
+      for (var idx = 0; idx < sequence.length; idx++) {
+        var nextId = sequence[idx];
+        var a, b;
+
+        if(mine.length === 0 || theirs.length === 0) {
+          break;
+        }
+
+        if (mine[0] === nextId) {
+          mine.shift();
+          a = mapping[nextId];
+          b = mapping[theirs[0]];
+        } else if (theirs[0] === nextId) {
+          theirs.shift();
+          a = mapping[nextId];
+          b = mapping[mine[0]];
+        } else {
+          throw new errors.ChronicleError("Reordering of commmits is not supported.");
+        }
+        __private__.rebase0.call(this, a, b, mapping, tmp_index, null, !options.force);
+      }
+      var lastId = mapping[_.last(sequence)];
+
+      // Sanity check
+      // ........
+
+      // let's do a sanity check before we save the index changes
+      try {
+        this.reset(lastId, tmp_index);
+      } catch (err) {
+        this.reset(head, tmp_index);
+        throw err;
+      }
+
+      // finally we can write the newly created changes into the parent index
+      for (idx=0; idx<sequence.length; idx++) {
+        tmp_index.save(mapping[sequence[idx]]);
+      }
+
+      return new Chronicle.Merge(this.uuid(), lastId, [head, id]);
+  };
+
+  this.importSanityCheck = function(newIds) {
+    var head = this.versioned.getState();
+
+    // This is definitely very hysterical: we try to reach
+    // every provided change by resetting to it.
+    // If this is possible we are sure that every change has been applied
+    // and reverted at least once.
+    // This is for sure not a minimalistic approach.
+    var err = null;
+    var idx;
+    try {
+      for (idx = 0; idx < newIds.length; idx++) {
+        this.reset(newIds[idx]);
+      }
+    } catch (_err) {
+      err = _err;
+      console.log(err.stack);
+    }
+    // rollback to original state
+    this.reset(head);
+
+    if (err) {
+      // remove the changes in reverse order to meet restrictions
+      newIds.reverse();
+      for (idx = 0; idx < newIds.length; idx++) {
+        this.index.remove(newIds[idx]);
+      }
+      if (err) throw new errors.ChronicleError("Import did not pass sanity check: "+err.toString());
+    }
+  };
+
+};
+ChronicleImpl.Prototype.prototype = Chronicle.prototype;
+ChronicleImpl.prototype = new ChronicleImpl.Prototype();
+
+ChronicleImpl.create = function(options) {
+  options = options || {};
+  var index = Chronicle.Index.create(options);
+  return new ChronicleImpl(index, options);
+};
+
+module.exports = ChronicleImpl;
+
+},{"./chronicle":64,"substance-util":154,"underscore":159}],66:[function(require,module,exports){
+var _ = require("underscore");
+var Chronicle = require("./chronicle");
+
+var DiffImpl = function(data) {
+  this.data = data;
+};
+
+DiffImpl.Prototype = function() {
+
+  this.reverts = function() {
+    return this.data[1].slice(1, this.data[0]+1);
+  };
+
+  this.applies = function() {
+    return this.data[1].slice(this.data[0]+1);
+  };
+
+  this.hasReverts = function() {
+    return this.data[0]>0;
+  };
+
+  this.hasApplies = function() {
+    return this.data[1].length-1-this.data[0] > 0;
+  };
+
+  this.start = function() {
+    return this.data[1][0];
+  };
+
+  this.end = function() {
+    return _.last(this.data[1]);
+  };
+
+  this.root = function() {
+    return this.data[1][this.data[0]];
+  };
+
+  this.sequence = function() {
+    return this.data[1].slice(0);
+  };
+
+  this.mine = function() {
+    return this.data[1].slice(0, this.data[0]).reverse();
+  };
+
+  this.theirs = function() {
+    return this.applies();
+  };
+
+  this.inverted = function() {
+    return new DiffImpl([this.data[1].length-1-this.data[0], this.data[1].slice(0).reverse()]);
+  };
+
+  this.toJSON = function() {
+    return {
+      data: this.data
+    };
+  };
+};
+
+DiffImpl.Prototype.prototype = Chronicle.Diff.prototype;
+DiffImpl.prototype = new DiffImpl.Prototype();
+
+DiffImpl.create = function(id, reverts, applies) {
+  return new DiffImpl([reverts.length, [id].concat(reverts).concat(applies)]);
+};
+
+module.exports = DiffImpl;
+
+},{"./chronicle":64,"underscore":159}],67:[function(require,module,exports){
+"use strict";
+
+// Imports
+// ====
+
+var _ = require('underscore');
+var util = require('substance-util');
+var errors = util.errors;
+var Chronicle = require('./chronicle');
+
+// Module
+// ====
+
+var IndexImpl = function() {
+  Chronicle.Index.call(this);
+};
+
+IndexImpl.Prototype = function() {
+
+  var __private__ = new IndexImpl.__private__();
+  var ROOT = Chronicle.ROOT;
+
+  this.add = function(change) {
+    // making the change data read-only
+    change.data = util.freeze(change.data);
+
+    var id = change.id;
+
+    // sanity check: parents must
+    if (!change.parent) throw new errors.ChronicleError("Change does not have a parent.");
+
+    if (!this.contains(change.parent))
+      throw new errors.ChronicleError("Illegal change: parent is unknown - change=" + id + ", parent=" + change.parent);
+
+    this.changes[id] = change;
+    this.children[id] = [];
+
+    if (!this.children[change.parent]) this.children[change.parent] = [];
+    this.children[change.parent].push(id);
+  };
+
+  this.remove = function(id) {
+    if (this.children[id].length > 0)
+      throw new errors.ChronicleError("Can not remove: other changes depend on it.");
+
+    var change = this.changes[id];
+
+    delete this.changes[id];
+    delete this.children[id];
+    this.children[change.parent] = _.without(this.children[change.parent], id);
+  };
+
+  this.contains = function(id) {
+    return !!this.changes[id];
+  };
+
+  this.get = function(id) {
+    return this.changes[id];
+  };
+
+  this.list = function() {
+    return _.keys(this.changes);
+  };
+
+  this.getChildren = function(id) {
+    return this.children[id];
+  };
+
+  this.diff = function(start, end) {
+
+    // takes the path from both ends to the root
+    // and finds the first common change
+
+    var path1 = __private__.getPathToRoot.call(this, start);
+    var path2 = __private__.getPathToRoot.call(this, end);
+
+    var reverts = [];
+    var applies = [];
+
+    // create a lookup table for changes contained in the second path
+    var tmp = {},
+        id, idx;
+    for (idx=0; idx < path2.length; idx++) {
+      tmp[path2[idx]] = true;
+    }
+
+    // Traverses all changes from the first path until a common change is found
+    // These changes constitute the reverting part
+    for (idx=0; idx < path1.length; idx++) {
+      id = path1[idx];
+      // The first change is not included in the revert list
+      // The common root
+      if(idx > 0) reverts.push(id);
+      if(tmp[id]) break;
+    }
+
+    var root = id;
+
+    // Traverses the second path to the common change
+    // These changes constitute the apply part
+    for (idx=0; idx < path2.length; idx++) {
+      id = path2[idx];
+      if (id === root || id === ROOT) break;
+      // Note: we are traversing from head to root
+      // the applies need to be in reverse order
+      applies.unshift(id);
+    }
+
+    return Chronicle.Diff.create(start, reverts, applies);
+  };
+
+  // Computes the shortest path from start to end (without start)
+  // --------
+  //
+
+  this.shortestPath = function(start, end) {
+
+    // trivial cases
+    if (start === end) return [];
+    if (end === ROOT) return __private__.getPathToRoot.call(this, start).slice(1);
+    if (start === ROOT) return __private__.getPathToRoot.call(this, end).reverse().slice(1);
+
+    // performs a BFS for end.
+    var visited = {};
+    var queue = [[start, start]];
+    var item, origin, pos, current,
+        idx, id, children;
+
+    // Note: it is important to
+
+    while(queue.length > 0) {
+      item = queue.shift();
+      origin = item[0];
+      pos = item[1];
+      current = this.get(pos);
+
+      if (!visited[pos]) {
+        // store the origin to be able to reconstruct the path later
+        visited[pos] = origin;
+
+        if (pos === end) {
+          // reconstruct the path
+          var path = [];
+          var tmp;
+          while (pos !== start) {
+            path.unshift(pos);
+            tmp = visited[pos];
+            visited[pos] = null;
+            pos = tmp;
+            if (!pos) throw new errors.SubstanceError("Illegal state: bug in implementation of Index.shortestPath.");
+          }
+          return path;
+        }
+
+        // TODO: we could optimize this a bit if we would check
+        // if a parent or a child are the searched node and stop
+        // instead of iterating .
+
+        // adding unvisited parent
+        if (!visited[current.parent]) queue.push([pos, current.parent]);
+
+        // and all unvisited children
+        children = this.getChildren(pos);
+
+        for (idx = 0; idx < children.length; idx++) {
+          id = children[idx];
+          if(!visited[id]) queue.push([pos, id]);
+        }
+      }
+    }
+
+    throw new errors.SubstanceError("Illegal state: no path found.");
+  };
+
+  this.import = function(otherIndex) {
+    // 1. index difference (only ids)
+    var newIds = _.difference(otherIndex.list(), this.list());
+    if (newIds.length === 0) return;
+
+    // 2. compute correct order
+    // Note: changes have to added according to their dependencies.
+    // I.e., a change can only be added after all parents have been added.
+    // OTOH, changes have to be removed in reverse order.
+    var order = __private__.computeDependencyOrder.call(this, otherIndex, newIds);
+
+    // now they are topologically sorted
+    newIds.sort(function(a,b){ return (order[a] - order[b]); });
+
+    // 2. add changes to the index
+    for (var idx = 0; idx < newIds.length; idx++) {
+      this.add(otherIndex.get(newIds[idx]));
+    }
+
+    return newIds;
+  };
+
+};
+
+IndexImpl.__private__ = function() {
+
+  var ROOT = Chronicle.ROOT;
+
+  this.getPathToRoot = function(id) {
+    var result = [];
+
+    if (id === ROOT) return result;
+
+    var current = this.get(id);
+    if(!current) throw new errors.ChronicleError("Unknown change: "+id);
+
+    var parent;
+    while(true) {
+      result.push(current.id);
+      if(current.id === ROOT) break;
+
+      parent = current.parent;
+      current = this.get(parent);
+    }
+
+    return result;
+  };
+
+  // Import helpers
+  // =======
+
+  // computes an order on a set of changes
+  // so that they can be added to the index,
+  // without violating the integrity of the index at any time.
+  this.computeDependencyOrder = function(other, newIds) {
+    var order = {};
+
+    function _order(id) {
+      if (order[id]) return order[id];
+      if (id === ROOT) return 0;
+
+      var change = other.get(id);
+      var o = _order(change.parent) + 1;
+      order[id] = o;
+
+      return o;
+    }
+
+    for (var idx = 0; idx < newIds.length; idx++) {
+      _order(newIds[idx]);
+    }
+
+    return order;
+  };
+
+};
+
+IndexImpl.Prototype.prototype = Chronicle.Index.prototype;
+IndexImpl.prototype = new IndexImpl.Prototype();
+
+
+
+// Extensions
+// --------
+
+var makePersistent = function(index, store) {
+
+  index.store = store;
+  index.__changes__ = store.hash("changes");
+  index.__refs__ = store.hash("refs");
+
+  // Initialize the index with the content loaded from the store
+
+  // Trick: let the changes hash mimic an Index (duck-type)
+  // and use Index.import
+  index.__changes__.list = index.__changes__.keys;
+
+  // Overrides
+  // --------
+
+  var __add__ = index.add;
+  index.add = function(change) {
+    __add__.call(this, change);
+    this.__changes__.set(change.id, change);
+  };
+
+  var __remove__ = index.remove;
+  index.remove = function(id) {
+    __remove__.call(this, id);
+    this.__changes__.delete(id);
+  };
+
+  var __setRef__ = index.setRef;
+  index.setRef = function(name, id) {
+    __setRef__.call(this, name, id);
+    this.__refs__.set(name, id);
+  };
+
+  // Extensions
+  // --------
+
+  index.load = function() {
+    this.import(this.__changes__);
+
+    _.each(this.__refs__.keys(), function(ref) {
+      this.setRef(ref, this.__refs__.get(ref));
+    }, this);
+  };
+
+  // load automatically?
+  index.load();
+};
+
+// Export
+// ========
+
+IndexImpl.create = function(options) {
+  options = options || {};
+  var index = new IndexImpl();
+
+  if (options.store) {
+    makePersistent(index, options.store);
+  }
+
+  return index;
+};
+
+module.exports = IndexImpl;
+
+},{"./chronicle":64,"substance-util":154,"underscore":159}],68:[function(require,module,exports){
+"use strict";
+
+var util = require('substance-util');
+var Chronicle = require('./chronicle');
+var TextOperation = require('substance-operator').TextOperation;
+
+var TextOperationAdapter = function(chronicle, doc) {
+  Chronicle.Versioned.call(this, chronicle);
+  this.doc = doc;
+};
+
+TextOperationAdapter.Prototype = function() {
+
+  var __super__ = util.prototype(this);
+
+  this.apply = function(change) {
+    this.doc.setText(change.apply(this.doc.getText()));
+  };
+
+  this.invert = function(change) {
+    return change.invert();
+  };
+
+  this.transform = function(a, b, options) {
+    return TextOperation.transform(a, b, options);
+  };
+
+  this.reset = function() {
+    __super__.reset.call(this);
+    this.doc.setText("");
+  };
+
+};
+
+TextOperationAdapter.Prototype.prototype = Chronicle.Versioned.prototype;
+TextOperationAdapter.prototype = new TextOperationAdapter.Prototype();
+
+module.exports = TextOperationAdapter;
+
+},{"./chronicle":64,"substance-operator":138,"substance-util":154}],69:[function(require,module,exports){
+var _ = require("underscore");
+var util = require("substance-util");
+var errors = util.errors;
+var IndexImpl = require("./index_impl");
+
+
+var TmpIndex = function(index) {
+  IndexImpl.call(this);
+  this.index = index;
+};
+
+TmpIndex.Prototype = function() {
+
+  var __super__ = util.prototype(this);
+
+  this.get = function(id) {
+    if (__super__.contains.call(this, id)) {
+      return __super__.get.call(this, id);
+    }
+    return this.index.get(id);
+  };
+
+  this.contains = function(id) {
+    return __super__.contains.call(this, id) || this.index.contains(id);
+  };
+
+  this.getChildren = function(id) {
+    var result = __super__.getChildren.call(this, id) || [];
+    if (this.index.contains(id)) {
+      result = result.concat(this.index.getChildren(id));
+    }
+    return result;
+  };
+
+  this.list = function() {
+    return __super__.list.call(this).concat(this.index.list());
+  };
+
+  this.save = function(id, recurse) {
+    if (recurse) {
+      var queue = [id];
+      var nextId, next;
+      while(queue.length > 0) {
+        nextId = queue.pop();
+        next = this.changes[nextId];
+
+        if (this.changes[nextId]) this.index.add(next);
+
+        for (var idx=0; idx < next.children; idx++) {
+          queue.unshift(next.children[idx]);
+        }
+      }
+    } else {
+      if (this.changes[id]) this.index.add(this.changes[id]);
+    }
+  };
+
+  this.reconnect = function(id, newParentId) {
+    if (!this.changes[id])
+      throw new errors.ChronicleError("Change does not exist to this index.");
+
+    var change = this.get(id);
+
+    if (!this.contains(newParentId)) {
+      throw new errors.ChronicleError("Illegal change: parent is unknown parent=" + newParentId);
+    }
+
+    if (!this.children[change.parent]) this.children[change.parent] = [];
+    this.children[change.parent] = _.without(this.children[change.parent], change.id);
+
+    change.parent = newParentId;
+
+    if (!this.children[change.parent]) this.children[change.parent] = [];
+    this.children[change.parent].push(id);
+  };
+};
+TmpIndex.Prototype.prototype = IndexImpl.prototype;
+TmpIndex.prototype = new TmpIndex.Prototype();
+
+module.exports = TmpIndex;
+
+},{"./index_impl":67,"substance-util":154,"underscore":159}],70:[function(require,module,exports){
+"use strict";
+
+module.exports = {
+  Keyboard: require("./src/keyboard"),
+  Mousetrap: require("./src/mousetrap")
+};
+
+},{"./src/keyboard":72,"./src/mousetrap":73}],71:[function(require,module,exports){
+/*global define:false */
+/**
+ * Copyright 2013 Craig Campbell
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Mousetrap is a simple keyboard shortcut library for Javascript with
+ * no external dependencies
+ *
+ * @version 1.4.4
+ * @url craig.is/killing/mice
+ */
+(function() {
+
+    /**
+     * mapping of special keycodes to their corresponding keys
+     *
+     * everything in this dictionary cannot use keypress events
+     * so it has to be here to map to the correct keycodes for
+     * keyup/keydown events
+     *
+     * @type {Object}
+     */
+    var _MAP = {
+            8: 'backspace',
+            9: 'tab',
+            13: 'enter',
+            16: 'shift',
+            17: 'ctrl',
+            18: 'alt',
+            20: 'capslock',
+            27: 'esc',
+            32: 'space',
+            33: 'pageup',
+            34: 'pagedown',
+            35: 'end',
+            36: 'home',
+            37: 'left',
+            38: 'up',
+            39: 'right',
+            40: 'down',
+            45: 'ins',
+            46: 'del',
+            91: 'meta',
+            93: 'meta',
+            224: 'meta'
+        },
+
+        /**
+         * mapping for special characters so they can support
+         *
+         * this dictionary is only used incase you want to bind a
+         * keyup or keydown event to one of these keys
+         *
+         * @type {Object}
+         */
+        _KEYCODE_MAP = {
+            106: '*',
+            107: '+',
+            109: '-',
+            110: '.',
+            111 : '/',
+            186: ';',
+            187: '=',
+            188: ',',
+            189: '-',
+            190: '.',
+            191: '/',
+            192: '`',
+            219: '[',
+            220: '\\',
+            221: ']',
+            222: '\''
+        },
+
+        /**
+         * this is a mapping of keys that require shift on a US keypad
+         * back to the non shift equivelents
+         *
+         * this is so you can use keyup events with these keys
+         *
+         * note that this will only work reliably on US keyboards
+         *
+         * @type {Object}
+         */
+        _SHIFT_MAP = {
+            '~': '`',
+            '!': '1',
+            '@': '2',
+            '#': '3',
+            '$': '4',
+            '%': '5',
+            '^': '6',
+            '&': '7',
+            '*': '8',
+            '(': '9',
+            ')': '0',
+            '_': '-',
+            '+': '=',
+            ':': ';',
+            '\"': '\'',
+            '<': ',',
+            '>': '.',
+            '?': '/',
+            '|': '\\'
+        },
+
+        /**
+         * this is a list of special strings you can use to map
+         * to modifier keys when you specify your keyboard shortcuts
+         *
+         * @type {Object}
+         */
+        _SPECIAL_ALIASES = {
+            'option': 'alt',
+            'command': 'meta',
+            'return': 'enter',
+            'escape': 'esc',
+            'mod': /Mac|iPod|iPhone|iPad/.test(navigator.platform) ? 'meta' : 'ctrl'
+        },
+
+        /**
+         * variable to store the flipped version of _MAP from above
+         * needed to check if we should use keypress or not when no action
+         * is specified
+         *
+         * @type {Object|undefined}
+         */
+        _REVERSE_MAP,
+
+        /**
+         * a list of all the callbacks setup via Mousetrap.bind()
+         *
+         * @type {Object}
+         */
+        _callbacks = {},
+
+        /**
+         * direct map of string combinations to callbacks used for trigger()
+         *
+         * @type {Object}
+         */
+        _directMap = {},
+
+        /**
+         * keeps track of what level each sequence is at since multiple
+         * sequences can start out with the same sequence
+         *
+         * @type {Object}
+         */
+        _sequenceLevels = {},
+
+        /**
+         * variable to store the setTimeout call
+         *
+         * @type {null|number}
+         */
+        _resetTimer,
+
+        /**
+         * temporary state where we will ignore the next keyup
+         *
+         * @type {boolean|string}
+         */
+        _ignoreNextKeyup = false,
+
+        /**
+         * temporary state where we will ignore the next keypress
+         *
+         * @type {boolean}
+         */
+        _ignoreNextKeypress = false,
+
+        /**
+         * are we currently inside of a sequence?
+         * type of action ("keyup" or "keydown" or "keypress") or false
+         *
+         * @type {boolean|string}
+         */
+        _nextExpectedAction = false;
+
+    /**
+     * loop through the f keys, f1 to f19 and add them to the map
+     * programatically
+     */
+    for (var i = 1; i < 20; ++i) {
+        _MAP[111 + i] = 'f' + i;
+    }
+
+    /**
+     * loop through to map numbers on the numeric keypad
+     */
+    for (i = 0; i <= 9; ++i) {
+        _MAP[i + 96] = i;
+    }
+
+    /**
+     * cross browser add event method
+     *
+     * @param {Element|HTMLDocument} object
+     * @param {string} type
+     * @param {Function} callback
+     * @returns void
+     */
+    function _addEvent(object, type, callback) {
+        if (object.addEventListener) {
+            object.addEventListener(type, callback, false);
+            return;
+        }
+
+        object.attachEvent('on' + type, callback);
+    }
+
+    /**
+     * takes the event and returns the key character
+     *
+     * @param {Event} e
+     * @return {string}
+     */
+    function _characterFromEvent(e) {
+
+        // for keypress events we should return the character as is
+        if (e.type == 'keypress') {
+            var character = String.fromCharCode(e.which);
+
+            // if the shift key is not pressed then it is safe to assume
+            // that we want the character to be lowercase.  this means if
+            // you accidentally have caps lock on then your key bindings
+            // will continue to work
+            //
+            // the only side effect that might not be desired is if you
+            // bind something like 'A' cause you want to trigger an
+            // event when capital A is pressed caps lock will no longer
+            // trigger the event.  shift+a will though.
+            if (!e.shiftKey) {
+                character = character.toLowerCase();
+            }
+
+            return character;
+        }
+
+        // for non keypress events the special maps are needed
+        if (_MAP[e.which]) {
+            return _MAP[e.which];
+        }
+
+        if (_KEYCODE_MAP[e.which]) {
+            return _KEYCODE_MAP[e.which];
+        }
+
+        // if it is not in the special map
+
+        // with keydown and keyup events the character seems to always
+        // come in as an uppercase character whether you are pressing shift
+        // or not.  we should make sure it is always lowercase for comparisons
+        return String.fromCharCode(e.which).toLowerCase();
+    }
+
+    /**
+     * checks if two arrays are equal
+     *
+     * @param {Array} modifiers1
+     * @param {Array} modifiers2
+     * @returns {boolean}
+     */
+    function _modifiersMatch(modifiers1, modifiers2) {
+        return modifiers1.sort().join(',') === modifiers2.sort().join(',');
+    }
+
+    /**
+     * resets all sequence counters except for the ones passed in
+     *
+     * @param {Object} doNotReset
+     * @returns void
+     */
+    function _resetSequences(doNotReset) {
+        doNotReset = doNotReset || {};
+
+        var activeSequences = false,
+            key;
+
+        for (key in _sequenceLevels) {
+            if (doNotReset[key]) {
+                activeSequences = true;
+                continue;
+            }
+            _sequenceLevels[key] = 0;
+        }
+
+        if (!activeSequences) {
+            _nextExpectedAction = false;
+        }
+    }
+
+    /**
+     * finds all callbacks that match based on the keycode, modifiers,
+     * and action
+     *
+     * @param {string} character
+     * @param {Array} modifiers
+     * @param {Event|Object} e
+     * @param {string=} sequenceName - name of the sequence we are looking for
+     * @param {string=} combination
+     * @param {number=} level
+     * @returns {Array}
+     */
+    function _getMatches(character, modifiers, e, sequenceName, combination, level) {
+        var i,
+            callback,
+            matches = [],
+            action = e.type;
+
+        // if there are no events related to this keycode
+        if (!_callbacks[character]) {
+            return [];
+        }
+
+        // if a modifier key is coming up on its own we should allow it
+        if (action == 'keyup' && _isModifier(character)) {
+            modifiers = [character];
+        }
+
+        // loop through all callbacks for the key that was pressed
+        // and see if any of them match
+        for (i = 0; i < _callbacks[character].length; ++i) {
+            callback = _callbacks[character][i];
+
+            // if a sequence name is not specified, but this is a sequence at
+            // the wrong level then move onto the next match
+            if (!sequenceName && callback.seq && _sequenceLevels[callback.seq] != callback.level) {
+                continue;
+            }
+
+            // if the action we are looking for doesn't match the action we got
+            // then we should keep going
+            if (action != callback.action) {
+                continue;
+            }
+
+            // if this is a keypress event and the meta key and control key
+            // are not pressed that means that we need to only look at the
+            // character, otherwise check the modifiers as well
+            //
+            // chrome will not fire a keypress if meta or control is down
+            // safari will fire a keypress if meta or meta+shift is down
+            // firefox will fire a keypress if meta or control is down
+            if ((action == 'keypress' && !e.metaKey && !e.ctrlKey) || _modifiersMatch(modifiers, callback.modifiers)) {
+
+                // when you bind a combination or sequence a second time it
+                // should overwrite the first one.  if a sequenceName or
+                // combination is specified in this call it does just that
+                //
+                // @todo make deleting its own method?
+                var deleteCombo = !sequenceName && callback.combo == combination;
+                var deleteSequence = sequenceName && callback.seq == sequenceName && callback.level == level;
+                if (deleteCombo || deleteSequence) {
+                    _callbacks[character].splice(i, 1);
+                }
+
+                matches.push(callback);
+            }
+        }
+
+        return matches;
+    }
+
+    /**
+     * takes a key event and figures out what the modifiers are
+     *
+     * @param {Event} e
+     * @returns {Array}
+     */
+    function _eventModifiers(e) {
+        var modifiers = [];
+
+        if (e.shiftKey) {
+            modifiers.push('shift');
+        }
+
+        if (e.altKey) {
+            modifiers.push('alt');
+        }
+
+        if (e.ctrlKey) {
+            modifiers.push('ctrl');
+        }
+
+        if (e.metaKey) {
+            modifiers.push('meta');
+        }
+
+        return modifiers;
+    }
+
+    /**
+     * actually calls the callback function
+     *
+     * if your callback function returns false this will use the jquery
+     * convention - prevent default and stop propogation on the event
+     *
+     * @param {Function} callback
+     * @param {Event} e
+     * @returns void
+     */
+    function _fireCallback(callback, e, combo) {
+
+        // if this event should not happen stop here
+        if (Mousetrap.stopCallback(e, e.target || e.srcElement, combo)) {
+            return;
+        }
+
+        if (callback(e, combo) === false) {
+            if (e.preventDefault) {
+                e.preventDefault();
+            }
+
+            if (e.stopPropagation) {
+                e.stopPropagation();
+            }
+
+            e.returnValue = false;
+            e.cancelBubble = true;
+        }
+    }
+
+    /**
+     * handles a character key event
+     *
+     * @param {string} character
+     * @param {Array} modifiers
+     * @param {Event} e
+     * @returns void
+     */
+    function _handleKey(character, modifiers, e) {
+        var callbacks = _getMatches(character, modifiers, e),
+            i,
+            doNotReset = {},
+            maxLevel = 0,
+            processedSequenceCallback = false;
+
+        // Calculate the maxLevel for sequences so we can only execute the longest callback sequence
+        for (i = 0; i < callbacks.length; ++i) {
+            if (callbacks[i].seq) {
+                maxLevel = Math.max(maxLevel, callbacks[i].level);
+            }
+        }
+
+        // loop through matching callbacks for this key event
+        for (i = 0; i < callbacks.length; ++i) {
+
+            // fire for all sequence callbacks
+            // this is because if for example you have multiple sequences
+            // bound such as "g i" and "g t" they both need to fire the
+            // callback for matching g cause otherwise you can only ever
+            // match the first one
+            if (callbacks[i].seq) {
+
+                // only fire callbacks for the maxLevel to prevent
+                // subsequences from also firing
+                //
+                // for example 'a option b' should not cause 'option b' to fire
+                // even though 'option b' is part of the other sequence
+                //
+                // any sequences that do not match here will be discarded
+                // below by the _resetSequences call
+                if (callbacks[i].level != maxLevel) {
+                    continue;
+                }
+
+                processedSequenceCallback = true;
+
+                // keep a list of which sequences were matches for later
+                doNotReset[callbacks[i].seq] = 1;
+                _fireCallback(callbacks[i].callback, e, callbacks[i].combo);
+                continue;
+
+            } else if (Mousetrap.TRIGGER_PREFIX_COMBOS) {
+                // HACK: Mousetrap does not trigger 'prefixes'
+                _fireCallback(callbacks[i].callback, e, callbacks[i].combo);
+            } else {
+                // if there were no sequence matches but we are still here
+                // that means this is a regular match so we should fire that
+                if (!processedSequenceCallback) {
+                    _fireCallback(callbacks[i].callback, e, callbacks[i].combo);
+                }
+            }
+        }
+
+        // if the key you pressed matches the type of sequence without
+        // being a modifier (ie "keyup" or "keypress") then we should
+        // reset all sequences that were not matched by this event
+        //
+        // this is so, for example, if you have the sequence "h a t" and you
+        // type "h e a r t" it does not match.  in this case the "e" will
+        // cause the sequence to reset
+        //
+        // modifier keys are ignored because you can have a sequence
+        // that contains modifiers such as "enter ctrl+space" and in most
+        // cases the modifier key will be pressed before the next key
+        //
+        // also if you have a sequence such as "ctrl+b a" then pressing the
+        // "b" key will trigger a "keypress" and a "keydown"
+        //
+        // the "keydown" is expected when there is a modifier, but the
+        // "keypress" ends up matching the _nextExpectedAction since it occurs
+        // after and that causes the sequence to reset
+        //
+        // we ignore keypresses in a sequence that directly follow a keydown
+        // for the same character
+        var ignoreThisKeypress = e.type == 'keypress' && _ignoreNextKeypress;
+        if (e.type == _nextExpectedAction && !_isModifier(character) && !ignoreThisKeypress) {
+            _resetSequences(doNotReset);
+        }
+
+        _ignoreNextKeypress = processedSequenceCallback && e.type == 'keydown';
+
+        // provide information about if there have callbacks detected
+        // E.g., this is used to trigger a default key handler in case of no others did match
+        return callbacks.length > 0;
+    }
+
+    /**
+     * handles a keydown event
+     *
+     * @param {Event} e
+     * @returns void
+     */
+    function _handleKeyEvent(e) {
+
+        // normalize e.which for key events
+        // @see http://stackoverflow.com/questions/4285627/javascript-keycode-vs-charcode-utter-confusion
+        if (typeof e.which !== 'number') {
+            e.which = e.keyCode;
+        }
+
+        var character = _characterFromEvent(e);
+
+        // no character found then stop
+        if (!character) {
+            return;
+        }
+
+        // need to use === for the character check because the character can be 0
+        if (e.type == 'keyup' && _ignoreNextKeyup === character) {
+            _ignoreNextKeyup = false;
+            return;
+        }
+
+        Mousetrap.handleKey(character, _eventModifiers(e), e);
+    }
+
+    /**
+     * determines if the keycode specified is a modifier key or not
+     *
+     * @param {string} key
+     * @returns {boolean}
+     */
+    function _isModifier(key) {
+        return key == 'shift' || key == 'ctrl' || key == 'alt' || key == 'meta';
+    }
+
+    /**
+     * called to set a 1 second timeout on the specified sequence
+     *
+     * this is so after each key press in the sequence you have 1 second
+     * to press the next key before you have to start over
+     *
+     * @returns void
+     */
+    function _resetSequenceTimer() {
+        clearTimeout(_resetTimer);
+        _resetTimer = setTimeout(_resetSequences, 1000);
+    }
+
+    /**
+     * reverses the map lookup so that we can look for specific keys
+     * to see what can and can't use keypress
+     *
+     * @return {Object}
+     */
+    function _getReverseMap() {
+        if (!_REVERSE_MAP) {
+            _REVERSE_MAP = {};
+            for (var key in _MAP) {
+
+                // pull out the numeric keypad from here cause keypress should
+                // be able to detect the keys from the character
+                if (key > 95 && key < 112) {
+                    continue;
+                }
+
+                if (_MAP.hasOwnProperty(key)) {
+                    _REVERSE_MAP[_MAP[key]] = key;
+                }
+            }
+        }
+        return _REVERSE_MAP;
+    }
+
+    /**
+     * picks the best action based on the key combination
+     *
+     * @param {string} key - character for key
+     * @param {Array} modifiers
+     * @param {string=} action passed in
+     */
+    function _pickBestAction(key, modifiers, action) {
+
+        // if no action was picked in we should try to pick the one
+        // that we think would work best for this key
+        if (!action) {
+            action = _getReverseMap()[key] ? 'keydown' : 'keypress';
+        }
+
+        // modifier keys don't work as expected with keypress,
+        // switch to keydown
+        if (action == 'keypress' && modifiers.length) {
+            action = 'keydown';
+        }
+
+        return action;
+    }
+
+    /**
+     * binds a key sequence to an event
+     *
+     * @param {string} combo - combo specified in bind call
+     * @param {Array} keys
+     * @param {Function} callback
+     * @param {string=} action
+     * @returns void
+     */
+    function _bindSequence(combo, keys, callback, action) {
+
+        // start off by adding a sequence level record for this combination
+        // and setting the level to 0
+        _sequenceLevels[combo] = 0;
+
+        /**
+         * callback to increase the sequence level for this sequence and reset
+         * all other sequences that were active
+         *
+         * @param {string} nextAction
+         * @returns {Function}
+         */
+        function _increaseSequence(nextAction) {
+            return function() {
+                _nextExpectedAction = nextAction;
+                ++_sequenceLevels[combo];
+                _resetSequenceTimer();
+            };
+        }
+
+        /**
+         * wraps the specified callback inside of another function in order
+         * to reset all sequence counters as soon as this sequence is done
+         *
+         * @param {Event} e
+         * @returns void
+         */
+        function _callbackAndReset(e) {
+            _fireCallback(callback, e, combo);
+
+            // we should ignore the next key up if the action is key down
+            // or keypress.  this is so if you finish a sequence and
+            // release the key the final key will not trigger a keyup
+            if (action !== 'keyup') {
+                _ignoreNextKeyup = _characterFromEvent(e);
+            }
+
+            // weird race condition if a sequence ends with the key
+            // another sequence begins with
+            setTimeout(_resetSequences, 10);
+        }
+
+        // loop through keys one at a time and bind the appropriate callback
+        // function.  for any key leading up to the final one it should
+        // increase the sequence. after the final, it should reset all sequences
+        //
+        // if an action is specified in the original bind call then that will
+        // be used throughout.  otherwise we will pass the action that the
+        // next key in the sequence should match.  this allows a sequence
+        // to mix and match keypress and keydown events depending on which
+        // ones are better suited to the key provided
+        for (var i = 0; i < keys.length; ++i) {
+            var isFinal = i + 1 === keys.length;
+            var wrappedCallback = isFinal ? _callbackAndReset : _increaseSequence(action || _getKeyInfo(keys[i + 1]).action);
+            _bindSingle(keys[i], wrappedCallback, action, combo, i);
+        }
+    }
+
+    /**
+     * Converts from a string key combination to an array
+     *
+     * @param  {string} combination like "command+shift+l"
+     * @return {Array}
+     */
+    function _keysFromString(combination) {
+        if (combination === '+') {
+            return ['+'];
+        }
+
+        return combination.split('+');
+    }
+
+    /**
+     * Gets info for a specific key combination
+     *
+     * @param  {string} combination key combination ("command+s" or "a" or "*")
+     * @param  {string=} action
+     * @returns {Object}
+     */
+    function _getKeyInfo(combination, action) {
+        var keys,
+            key,
+            i,
+            modifiers = [];
+
+        // take the keys from this pattern and figure out what the actual
+        // pattern is all about
+        keys = _keysFromString(combination);
+
+        for (i = 0; i < keys.length; ++i) {
+            key = keys[i];
+
+            // normalize key names
+            if (_SPECIAL_ALIASES[key]) {
+                key = _SPECIAL_ALIASES[key];
+            }
+
+            // if this is not a keypress event then we should
+            // be smart about using shift keys
+            // this will only work for US keyboards however
+            if (action && action != 'keypress' && _SHIFT_MAP[key]) {
+                key = _SHIFT_MAP[key];
+                modifiers.push('shift');
+            }
+
+            // if this key is a modifier then add it to the list of modifiers
+            if (_isModifier(key)) {
+                modifiers.push(key);
+            }
+        }
+
+        // depending on what the key combination is
+        // we will try to pick the best event for it
+        action = _pickBestAction(key, modifiers, action);
+
+        return {
+            key: key,
+            modifiers: modifiers,
+            action: action
+        };
+    }
+
+    /**
+     * binds a single keyboard combination
+     *
+     * @param {string} combination
+     * @param {Function} callback
+     * @param {string=} action
+     * @param {string=} sequenceName - name of sequence if part of sequence
+     * @param {number=} level - what part of the sequence the command is
+     * @returns void
+     */
+    function _bindSingle(combination, callback, action, sequenceName, level) {
+
+        // store a direct mapped reference for use with Mousetrap.trigger
+        _directMap[combination + ':' + action] = callback;
+
+        // make sure multiple spaces in a row become a single space
+        combination = combination.replace(/\s+/g, ' ');
+
+        var sequence = combination.split(' '),
+            info;
+
+        // if this pattern is a sequence of keys then run through this method
+        // to reprocess each pattern one key at a time
+        if (sequence.length > 1) {
+            _bindSequence(combination, sequence, callback, action);
+            return;
+        }
+
+        info = _getKeyInfo(combination, action);
+
+        // make sure to initialize array if this is the first time
+        // a callback is added for this key
+        _callbacks[info.key] = _callbacks[info.key] || [];
+
+        // remove an existing match if there is one
+        _getMatches(info.key, info.modifiers, {type: info.action}, sequenceName, combination, level);
+
+        // add this call back to the array
+        // if it is a sequence put it at the beginning
+        // if not put it at the end
+        //
+        // this is important because the way these are processed expects
+        // the sequence ones to come first
+        _callbacks[info.key][sequenceName ? 'unshift' : 'push']({
+            callback: callback,
+            modifiers: info.modifiers,
+            action: info.action,
+            seq: sequenceName,
+            level: level,
+            combo: combination
+        });
+    }
+
+    /**
+     * binds multiple combinations to the same callback
+     *
+     * @param {Array} combinations
+     * @param {Function} callback
+     * @param {string|undefined} action
+     * @returns void
+     */
+    function _bindMultiple(combinations, callback, action) {
+        for (var i = 0; i < combinations.length; ++i) {
+            _bindSingle(combinations[i], callback, action);
+        }
+    }
+
+    // start!
+    _addEvent(document, 'keypress', _handleKeyEvent);
+    _addEvent(document, 'keydown', _handleKeyEvent);
+    _addEvent(document, 'keyup', _handleKeyEvent);
+
+    var Mousetrap = {
+
+        /**
+         * binds an event to mousetrap
+         *
+         * can be a single key, a combination of keys separated with +,
+         * an array of keys, or a sequence of keys separated by spaces
+         *
+         * be sure to list the modifier keys first to make sure that the
+         * correct key ends up getting bound (the last key in the pattern)
+         *
+         * @param {string|Array} keys
+         * @param {Function} callback
+         * @param {string=} action - 'keypress', 'keydown', or 'keyup'
+         * @returns void
+         */
+        bind: function(keys, callback, action) {
+            keys = keys instanceof Array ? keys : [keys];
+            _bindMultiple(keys, callback, action);
+            return this;
+        },
+
+        /**
+         * unbinds an event to mousetrap
+         *
+         * the unbinding sets the callback function of the specified key combo
+         * to an empty function and deletes the corresponding key in the
+         * _directMap dict.
+         *
+         * TODO: actually remove this from the _callbacks dictionary instead
+         * of binding an empty function
+         *
+         * the keycombo+action has to be exactly the same as
+         * it was defined in the bind method
+         *
+         * @param {string|Array} keys
+         * @param {string} action
+         * @returns void
+         */
+        unbind: function(keys, action) {
+            return Mousetrap.bind(keys, function() {}, action);
+        },
+
+        /**
+         * triggers an event that has already been bound
+         *
+         * @param {string} keys
+         * @param {string=} action
+         * @returns void
+         */
+        trigger: function(keys, action) {
+            if (_directMap[keys + ':' + action]) {
+                _directMap[keys + ':' + action]({}, keys);
+            }
+            return this;
+        },
+
+        /**
+         * resets the library back to its initial state.  this is useful
+         * if you want to clear out the current keyboard shortcuts and bind
+         * new ones - for example if you switch to another page
+         *
+         * @returns void
+         */
+        reset: function() {
+            _callbacks = {};
+            _directMap = {};
+            return this;
+        },
+
+       /**
+        * should we stop this event before firing off callbacks
+        *
+        * @param {Event} e
+        * @param {Element} element
+        * @return {boolean}
+        */
+        stopCallback: function(e, element) {
+
+            // if the element has the class "mousetrap" then no need to stop
+            if ((' ' + element.className + ' ').indexOf(' mousetrap ') > -1) {
+                return false;
+            }
+
+            // stop for input, select, and textarea
+            return element.tagName == 'INPUT' || element.tagName == 'SELECT' || element.tagName == 'TEXTAREA' || (element.contentEditable && element.contentEditable == 'true');
+        },
+
+        /**
+         * exposes _handleKey publicly so it can be overwritten by extensions
+         */
+        handleKey: _handleKey,
+
+        /**
+         * Trigger callbacks for combos even when they are part of sequnence.
+         */
+         TRIGGER_PREFIX_COMBOS: false
+    };
+
+    // expose mousetrap to the global object
+    window.Mousetrap = Mousetrap;
+
+    // expose mousetrap as an AMD module
+    if (typeof define === 'function' && define.amd) {
+        define(Mousetrap);
+    }
+}) ();
+
+},{}],72:[function(require,module,exports){
+"use strict";
+
+require("../lib/mousetrap");
+var Mousetrap = window.Mousetrap;
+
+var Keyboard = function(mainControl) {
+  this.__bindings = {};
+  this.__mainControl = mainControl;
+  this.__controls = [];
+  this.__defaultHandler = null;
+};
+
+Keyboard.Prototype = function() {
+
+  // keep the original key handler for delegation
+  var __handleKey = Mousetrap.handleKey;
+
+  function __getContext(self, pathStr) {
+    var path = pathStr.split(".");
+    var context = self.__bindings;
+
+    // prepare the hierarchical data structure
+    for (var i = 0; i < path.length; i++) {
+      var c = path[i];
+      context.contexts = context.contexts || {};
+      context.contexts[c] = context.contexts[c] || {};
+      context = context.contexts[c];
+    }
+
+    return context;
+  }
+
+  function __registerBindings(self, definition) {
+    var context = __getContext(self, definition.context);
+    // add the commands into the given context
+    context.commands = context.commands || [];
+    context.commands = context.commands.concat(definition.commands);
+  }
+
+  function __createCallback(control, commandSpec) {
+    var obj = control;
+    if (commandSpec.scope) {
+      obj = control[commandSpec.scope];
+    }
+    // default is preventing the default
+    var preventDefault = (commandSpec.preventDefault !== "false");
+
+    return function(e) {
+      obj[commandSpec.command].apply(obj, commandSpec.args);
+      if (preventDefault) e.preventDefault();
+    };
+  }
+
+  function __bind(control, commands) {
+    if (commands === undefined) return;
+
+    for (var i = 0; i < commands.length; i++) {
+      var command = commands[i];
+      Mousetrap.bind(command.keys, __createCallback(control, command));
+    }
+  }
+
+  function __injectDefaultHandler(defaultHandlers) {
+    if (!defaultHandlers || defaultHandlers.length === 0) return;
+
+    var handleKey = function(character, modifiers, e) {
+      if (__handleKey(character, modifiers, e)) return;
+
+      for (var i = defaultHandlers.length - 1; i >= 0; i--) {
+        var item = defaultHandlers[i];
+
+        // the handler function must return a command specification that
+        // will be interpreted by the associated controller
+        var cmd = item.handler(character, modifiers, e);
+
+        // if the handler does not take care of the event
+        // cmd should be falsy
+        if (cmd) {
+          var control = item.control;
+          var command = cmd.command;
+          var args = cmd.args;
+          control[command].apply(control, args);
+
+          // we prevent the default behaviour and also bubbling through
+          // eventual parent default handlers.
+          //e.preventDefault();
+          return;
+        }
+      }
+    };
+
+    Mousetrap.handleKey = handleKey;
+  }
+
+  function __createBindings(self) {
+    // TODO: would be great to have Mousetrap more modular and create several immutable
+    // versions which would be switched here
+    Mousetrap.reset();
+    Mousetrap.handleKey = __handleKey;
+    var defaultHandlers = [];
+
+    function processBinding(context, control, bindings) {
+      __bind(control, bindings.commands);
+      if (bindings.default !== undefined) {
+        defaultHandlers.push({
+          context: context,
+          control: control,
+          handler: bindings.default
+        });
+      }
+    }
+
+    // TODO build active key mappings from registered bindings
+    var controls = self.__controls;
+    var bindings = self.__bindings;
+    var context = "";
+    var control = self.__mainControl;
+
+    processBinding(context, control, bindings);
+
+    for (var i = 0; i < controls.length; i++) {
+      context = controls[i][0];
+      control = controls[i][1];
+
+      if (bindings.contexts === undefined || bindings.contexts[context] === undefined) {
+        break;
+      }
+
+      bindings = bindings.contexts[context];
+      processBinding(context, control, bindings);
+    }
+
+    __injectDefaultHandler(defaultHandlers);
+  }
+
+  // Registers bindings declared in the definition.
+  // --------
+  //
+
+  this.registerBindings = function(definition) {
+    console.log("Keyboard.registerBindings: definition=", definition);
+    for (var i = 0; i < definition.length; i++) {
+      var def = definition[i];
+      __registerBindings(this, def);
+    }
+    this.stateChanged();
+  };
+
+  this.setDefaultHandler = function(contextStr, handler) {
+    var context = __getContext(this, contextStr);
+    context.default = handler;
+  };
+
+  // Updates the keyboard bindings after application state changes.
+  // --------
+  //
+
+  this.stateChanged = function() {
+    // controllers are structured in hierarchical contexts
+    // having one controller taking responsibility for each context.
+    this.__controls = this.__mainControl.getActiveControllers();
+    __createBindings(this);
+  };
+
+  // Enters a subcontext using a given controller.
+  // --------
+  //
+  // Use this to add finer grained sub-states. The sub-context will be kept
+  // until `exit(context)` is called or the application state is changed.
+
+  this.enter = function(context, control) {
+    this.__controls.push([context, control]);
+    __createBindings(this);
+  };
+
+  // Exits a previously entered subcontext.
+  // --------
+  //
+
+  this.exit = function(context) {
+    var pos = -1;
+    for (var i = this.__controls.length - 1; i >= 0; i--) {
+      if (this.__controls[i][0] === context) {
+        pos = i;
+        break;
+      }
+    }
+    if (pos < 0) {
+      throw new Error("Unknown context: " + context, ", expected one of: " + JSON.stringify(this.__contexts));
+    }
+    this.__controls = this.__controls.slice(0, pos);
+    __createBindings(this);
+  };
+
+  // Supported flags:
+  // TRIGGER_PREFIX_COMBOS: trigger combos that are already part of other sequences (default: false)
+  this.set = function(prop, value) {
+    Mousetrap[prop] = value;
+  };
+
+};
+Keyboard.prototype = new Keyboard.Prototype();
+
+module.exports = Keyboard;
+
+},{"../lib/mousetrap":71}],73:[function(require,module,exports){
+"use strict";
+
+/**
+ * mapping of special keycodes to their corresponding keys
+ *
+ * everything in this dictionary cannot use keypress events
+ * so it has to be here to map to the correct keycodes for
+ * keyup/keydown events
+ *
+ * @type {Object}
+ */
+var _MAP = {
+    8: 'backspace',
+    9: 'tab',
+    13: 'enter',
+    16: 'shift',
+    17: 'ctrl',
+    18: 'alt',
+    20: 'capslock',
+    27: 'esc',
+    32: 'space',
+    33: 'pageup',
+    34: 'pagedown',
+    35: 'end',
+    36: 'home',
+    37: 'left',
+    38: 'up',
+    39: 'right',
+    40: 'down',
+    45: 'ins',
+    46: 'del',
+    91: 'meta',
+    93: 'meta',
+    224: 'meta'
+};
+
+/**
+ * mapping for special characters so they can support
+ *
+ * this dictionary is only used incase you want to bind a
+ * keyup or keydown event to one of these keys
+ *
+ * @type {Object}
+ */
+var _KEYCODE_MAP = {
+    106: '*',
+    107: '+',
+    109: '-',
+    110: '.',
+    111 : '/',
+    186: ';',
+    187: '=',
+    188: ',',
+    189: '-',
+    190: '.',
+    191: '/',
+    192: '`',
+    219: '[',
+    220: '\\',
+    221: ']',
+    222: '\''
+};
+
+/**
+ * this is a mapping of keys that require shift on a US keypad
+ * back to the non shift equivelents
+ *
+ * this is so you can use keyup events with these keys
+ *
+ * note that this will only work reliably on US keyboards
+ *
+ * @type {Object}
+ */
+var _SHIFT_MAP = {
+    '~': '`',
+    '!': '1',
+    '@': '2',
+    '#': '3',
+    '$': '4',
+    '%': '5',
+    '^': '6',
+    '&': '7',
+    '*': '8',
+    '(': '9',
+    ')': '0',
+    '_': '-',
+    '+': '=',
+    ':': ';',
+    '\"': '\'',
+    '<': ',',
+    '>': '.',
+    '?': '/',
+    '|': '\\'
+};
+
+/**
+ * this is a list of special strings you can use to map
+ * to modifier keys when you specify your keyboard shortcuts
+ *
+ * @type {Object}
+ */
+var _SPECIAL_ALIASES = {
+    'option': 'alt',
+    'command': 'meta',
+    'return': 'enter',
+    'escape': 'esc',
+    'mod': /Mac|iPod|iPhone|iPad/.test(navigator.platform) ? 'meta' : 'ctrl'
+};
+
+/**
+ * loop through the f keys, f1 to f19 and add them to the map
+ * programatically
+ */
+for (var i = 1; i < 20; ++i) {
+    _MAP[111 + i] = 'f' + i;
+}
+
+/**
+ * loop through to map numbers on the numeric keypad
+ */
+for (i = 0; i <= 9; ++i) {
+    _MAP[i + 96] = i;
+}
+
+/**
+ * cross browser add event method
+ *
+ * @param {Element|HTMLDocument} object
+ * @param {string} type
+ * @param {Function} callback
+ * @returns void
+ */
+function _attachListener(object, type, callback) {
+    if (object.addEventListener) {
+        object.addEventListener(type, callback, false);
+    } else {
+        object.attachEvent('on' + type, callback);
+    }
+}
+
+function _detachListener(object, type, callback) {
+    if (object.removeEventListener) {
+        object.removeEventListener(type, callback, false);
+    } else {
+        object.detachEvent('on' + type, callback);
+    }
+}
+
+/**
+ * takes the event and returns the key character
+ *
+ * @param {Event} e
+ * @return {string}
+ */
+function _characterFromEvent(e) {
+
+    // for keypress events we should return the character as is
+    if (e.type == 'keypress') {
+        var character = String.fromCharCode(e.which);
+
+        // if the shift key is not pressed then it is safe to assume
+        // that we want the character to be lowercase.  this means if
+        // you accidentally have caps lock on then your key bindings
+        // will continue to work
+        //
+        // the only side effect that might not be desired is if you
+        // bind something like 'A' cause you want to trigger an
+        // event when capital A is pressed caps lock will no longer
+        // trigger the event.  shift+a will though.
+        if (!e.shiftKey) {
+            character = character.toLowerCase();
+        }
+
+        return character;
+    }
+
+    // for non keypress events the special maps are needed
+    if (_MAP[e.which]) {
+        return _MAP[e.which];
+    }
+
+    if (_KEYCODE_MAP[e.which]) {
+        return _KEYCODE_MAP[e.which];
+    }
+
+    // if it is not in the special map
+
+    // with keydown and keyup events the character seems to always
+    // come in as an uppercase character whether you are pressing shift
+    // or not.  we should make sure it is always lowercase for comparisons
+    return String.fromCharCode(e.which).toLowerCase();
+}
+
+/**
+ * checks if two arrays are equal
+ *
+ * @param {Array} modifiers1
+ * @param {Array} modifiers2
+ * @returns {boolean}
+ */
+function _modifiersMatch(modifiers1, modifiers2) {
+    return modifiers1.sort().join(',') === modifiers2.sort().join(',');
+}
+
+/**
+ * takes a key event and figures out what the modifiers are
+ *
+ * @param {Event} e
+ * @returns {Array}
+ */
+function _eventModifiers(e) {
+    var modifiers = [];
+
+    if (e.shiftKey) {
+        modifiers.push('shift');
+    }
+
+    if (e.altKey) {
+        modifiers.push('alt');
+    }
+
+    if (e.ctrlKey) {
+        modifiers.push('ctrl');
+    }
+
+    if (e.metaKey) {
+        modifiers.push('meta');
+    }
+
+    return modifiers;
+}
+
+/**
+ * determines if the keycode specified is a modifier key or not
+ *
+ * @param {string} key
+ * @returns {boolean}
+ */
+function _isModifier(key) {
+    return key == 'shift' || key == 'ctrl' || key == 'alt' || key == 'meta';
+}
+
+/**
+ * Converts from a string key combination to an array
+ *
+ * @param  {string} combination like "command+shift+l"
+ * @return {Array}
+ */
+function _keysFromString(combination) {
+    if (combination === '+') {
+        return ['+'];
+    }
+
+    return combination.split('+');
+}
+
+var Mousetrap = function() {
+    /**
+     * variable to store the flipped version of _MAP from above
+     * needed to check if we should use keypress or not when no action
+     * is specified
+     *
+     * @type {Object|undefined}
+     */
+    this._REVERSE_MAP = {};
+
+    /**
+     * a list of all the callbacks setup via Mousetrap.bind()
+     *
+     * @type {Object}
+     */
+    this._callbacks = {};
+
+    /**
+     * direct map of string combinations to callbacks used for trigger()
+     *
+     * @type {Object}
+     */
+    this._directMap = {};
+
+    /**
+     * keeps track of what level each sequence is at since multiple
+     * sequences can start out with the same sequence
+     *
+     * @type {Object}
+     */
+    this._sequenceLevels = {};
+
+    /**
+     * variable to store the setTimeout call
+     *
+     * @type {null|number}
+     */
+    this._resetTimer = null;
+
+    /**
+     * temporary state where we will ignore the next keyup
+     *
+     * @type {boolean|string}
+     */
+    this._ignoreNextKeyup = false;
+
+    /**
+     * temporary state where we will ignore the next keypress
+     *
+     * @type {boolean}
+     */
+    this._ignoreNextKeypress = false;
+
+    /**
+     * are we currently inside of a sequence?
+     * type of action ("keyup" or "keydown" or "keypress") or false
+     *
+     * @type {boolean|string}
+     */
+    this._nextExpectedAction = false;
+
+    this._handler = this._handleKeyEvent.bind(this);
+};
+
+Mousetrap.Prototype = function() {
+
+    /**
+     * resets all sequence counters except for the ones passed in
+     *
+     * @param {Object} doNotReset
+     * @returns void
+     */
+    function _resetSequences(doNotReset) {
+        doNotReset = doNotReset || {};
+
+        var activeSequences = false,
+            key;
+
+        for (key in this._sequenceLevels) {
+            if (doNotReset[key]) {
+                activeSequences = true;
+                continue;
+            }
+            this._sequenceLevels[key] = 0;
+        }
+
+        if (!activeSequences) {
+            this._nextExpectedAction = false;
+        }
+    }
+
+    /**
+     * finds all callbacks that match based on the keycode, modifiers,
+     * and action
+     *
+     * @param {string} character
+     * @param {Array} modifiers
+     * @param {Event|Object} e
+     * @param {string=} sequenceName - name of the sequence we are looking for
+     * @param {string=} combination
+     * @param {number=} level
+     * @returns {Array}
+     */
+    function _getMatches(character, modifiers, e, sequenceName, combination, level) {
+        var i,
+            callback,
+            matches = [],
+            action = e.type;
+
+        // if there are no events related to this keycode
+        if (!this._callbacks[character]) {
+            return [];
+        }
+
+        // if a modifier key is coming up on its own we should allow it
+        if (action == 'keyup' && _isModifier(character)) {
+            modifiers = [character];
+        }
+
+        // loop through all callbacks for the key that was pressed
+        // and see if any of them match
+        for (i = 0; i < this._callbacks[character].length; ++i) {
+            callback = this._callbacks[character][i];
+
+            // if a sequence name is not specified, but this is a sequence at
+            // the wrong level then move onto the next match
+            if (!sequenceName && callback.seq && this._sequenceLevels[callback.seq] != callback.level) {
+                continue;
+            }
+
+            // if the action we are looking for doesn't match the action we got
+            // then we should keep going
+            if (action != callback.action) {
+                continue;
+            }
+
+            // if this is a keypress event and the meta key and control key
+            // are not pressed that means that we need to only look at the
+            // character, otherwise check the modifiers as well
+            //
+            // chrome will not fire a keypress if meta or control is down
+            // safari will fire a keypress if meta or meta+shift is down
+            // firefox will fire a keypress if meta or control is down
+            if ((action == 'keypress' && !e.metaKey && !e.ctrlKey) || _modifiersMatch(modifiers, callback.modifiers)) {
+
+                // when you bind a combination or sequence a second time it
+                // should overwrite the first one.  if a sequenceName or
+                // combination is specified in this call it does just that
+                //
+                // @todo make deleting its own method?
+                var deleteCombo = !sequenceName && callback.combo == combination;
+                var deleteSequence = sequenceName && callback.seq == sequenceName && callback.level == level;
+                if (deleteCombo || deleteSequence) {
+                    this._callbacks[character].splice(i, 1);
+                }
+
+                matches.push(callback);
+            }
+        }
+
+        return matches;
+    }
+
+    /**
+     * actually calls the callback function
+     *
+     * if your callback function returns false this will use the jquery
+     * convention - prevent default and stop propogation on the event
+     *
+     * @param {Function} callback
+     * @param {Event} e
+     * @returns void
+     */
+    function _fireCallback(callback, e, combo) {
+
+        // if this event should not happen stop here
+        if (this.NOT_IN_EDITABLES && this.stopCallback(e, e.target || e.srcElement, combo)) {
+             return;
+        }
+
+        if (callback.call(this, e, combo) === false) {
+            if (e.preventDefault) {
+                e.preventDefault();
+            }
+
+            if (e.stopPropagation) {
+                e.stopPropagation();
+            }
+
+            e.returnValue = false;
+            e.cancelBubble = true;
+        }
+    }
+
+    /**
+     * handles a character key event
+     *
+     * @param {string} character
+     * @param {Array} modifiers
+     * @param {Event} e
+     * @returns void
+     */
+    this.handleKey = function (character, modifiers, e) {
+        var callbacks = _getMatches.call(this, character, modifiers, e),
+            i,
+            doNotReset = {},
+            maxLevel = 0,
+            processedSequenceCallback = false;
+
+        // Calculate the maxLevel for sequences so we can only execute the longest callback sequence
+        for (i = 0; i < callbacks.length; ++i) {
+            if (callbacks[i].seq) {
+                maxLevel = Math.max(maxLevel, callbacks[i].level);
+            }
+        }
+
+        // loop through matching callbacks for this key event
+        for (i = 0; i < callbacks.length; ++i) {
+
+            // fire for all sequence callbacks
+            // this is because if for example you have multiple sequences
+            // bound such as "g i" and "g t" they both need to fire the
+            // callback for matching g cause otherwise you can only ever
+            // match the first one
+            if (callbacks[i].seq) {
+
+                // only fire callbacks for the maxLevel to prevent
+                // subsequences from also firing
+                //
+                // for example 'a option b' should not cause 'option b' to fire
+                // even though 'option b' is part of the other sequence
+                //
+                // any sequences that do not match here will be discarded
+                // below by the _resetSequences call
+                if (callbacks[i].level != maxLevel) {
+                    continue;
+                }
+
+                processedSequenceCallback = true;
+
+                // keep a list of which sequences were matches for later
+                doNotReset[callbacks[i].seq] = 1;
+                _fireCallback.call(this, callbacks[i].callback, e, callbacks[i].combo);
+                continue;
+
+            } else if (Mousetrap.TRIGGER_PREFIX_COMBOS) {
+                // HACK: Mousetrap does not trigger 'prefixes'
+                _fireCallback.call(this, callbacks[i].callback, e, callbacks[i].combo);
+            } else {
+                // if there were no sequence matches but we are still here
+                // that means this is a regular match so we should fire that
+                if (!processedSequenceCallback) {
+                    _fireCallback.call(this, callbacks[i].callback, e, callbacks[i].combo);
+                }
+            }
+        }
+
+        // if the key you pressed matches the type of sequence without
+        // being a modifier (ie "keyup" or "keypress") then we should
+        // reset all sequences that were not matched by this event
+        //
+        // this is so, for example, if you have the sequence "h a t" and you
+        // type "h e a r t" it does not match.  in this case the "e" will
+        // cause the sequence to reset
+        //
+        // modifier keys are ignored because you can have a sequence
+        // that contains modifiers such as "enter ctrl+space" and in most
+        // cases the modifier key will be pressed before the next key
+        //
+        // also if you have a sequence such as "ctrl+b a" then pressing the
+        // "b" key will trigger a "keypress" and a "keydown"
+        //
+        // the "keydown" is expected when there is a modifier, but the
+        // "keypress" ends up matching the _nextExpectedAction since it occurs
+        // after and that causes the sequence to reset
+        //
+        // we ignore keypresses in a sequence that directly follow a keydown
+        // for the same character
+        var ignoreThisKeypress = e.type == 'keypress' && this._ignoreNextKeypress;
+        if (e.type == this._nextExpectedAction && !_isModifier(character) && !ignoreThisKeypress) {
+            _resetSequences.call(this, doNotReset);
+        }
+
+        this._ignoreNextKeypress = processedSequenceCallback && e.type == 'keydown';
+
+        // provide information about if there have callbacks detected
+        // E.g., this is used to trigger a default key handler in case of no others did match
+        return callbacks.length > 0;
+    };
+
+    /**
+     * handles a keydown event
+     *
+     * @param {Event} e
+     * @returns void
+     */
+    this._handleKeyEvent = function(e) {
+
+        // normalize e.which for key events
+        // @see http://stackoverflow.com/questions/4285627/javascript-keycode-vs-charcode-utter-confusion
+        if (typeof e.which !== 'number') {
+            e.which = e.keyCode;
+        }
+
+        var character = _characterFromEvent(e);
+
+        // no character found then stop
+        if (!character) {
+            return;
+        }
+
+        // need to use === for the character check because the character can be 0
+        if (e.type == 'keyup' && this._ignoreNextKeyup === character) {
+            this._ignoreNextKeyup = false;
+            return;
+        }
+
+        this.handleKey(character, _eventModifiers(e), e);
+    };
+
+    /**
+     * Gets info for a specific key combination
+     *
+     * @param  {string} combination key combination ("command+s" or "a" or "*")
+     * @param  {string=} action
+     * @returns {Object}
+     */
+    function _getKeyInfo(combination, action) {
+        var keys,
+            key,
+            i,
+            modifiers = [];
+
+        // take the keys from this pattern and figure out what the actual
+        // pattern is all about
+        keys = _keysFromString(combination);
+
+        for (i = 0; i < keys.length; ++i) {
+            key = keys[i];
+
+            // normalize key names
+            if (_SPECIAL_ALIASES[key]) {
+                key = _SPECIAL_ALIASES[key];
+            }
+
+            // if this is not a keypress event then we should
+            // be smart about using shift keys
+            // this will only work for US keyboards however
+            if (action && action != 'keypress' && _SHIFT_MAP[key]) {
+                key = _SHIFT_MAP[key];
+                modifiers.push('shift');
+            }
+
+            // if this key is a modifier then add it to the list of modifiers
+            if (_isModifier(key)) {
+                modifiers.push(key);
+            }
+        }
+
+        // depending on what the key combination is
+        // we will try to pick the best event for it
+        action = _pickBestAction.call(this, key, modifiers, action);
+
+        return {
+            key: key,
+            modifiers: modifiers,
+            action: action
+        };
+    }
+
+    /**
+     * binds a single keyboard combination
+     *
+     * @param {string} combination
+     * @param {Function} callback
+     * @param {string=} action
+     * @param {string=} sequenceName - name of sequence if part of sequence
+     * @param {number=} level - what part of the sequence the command is
+     * @returns void
+     */
+    function _bindSingle(combination, callback, action, sequenceName, level) {
+
+        // store a direct mapped reference for use with Mousetrap.trigger
+        this._directMap[combination + ':' + action] = callback;
+
+        // make sure multiple spaces in a row become a single space
+        combination = combination.replace(/\s+/g, ' ');
+
+        var sequence = combination.split(' '),
+            info;
+
+        // if this pattern is a sequence of keys then run through this method
+        // to reprocess each pattern one key at a time
+        if (sequence.length > 1) {
+            _bindSequence.call(this, combination, sequence, callback, action);
+            return;
+        }
+
+        info = _getKeyInfo.call(this, combination, action);
+
+        // make sure to initialize array if this is the first time
+        // a callback is added for this key
+        this._callbacks[info.key] = this._callbacks[info.key] || [];
+
+        // remove an existing match if there is one
+        _getMatches.call(this, info.key, info.modifiers, {type: info.action}, sequenceName, combination, level);
+
+        // add this call back to the array
+        // if it is a sequence put it at the beginning
+        // if not put it at the end
+        //
+        // this is important because the way these are processed expects
+        // the sequence ones to come first
+        this._callbacks[info.key][sequenceName ? 'unshift' : 'push']({
+            callback: callback,
+            modifiers: info.modifiers,
+            action: info.action,
+            seq: sequenceName,
+            level: level,
+            combo: combination
+        });
+    }
+
+    /**
+     * binds multiple combinations to the same callback
+     *
+     * @param {Array} combinations
+     * @param {Function} callback
+     * @param {string|undefined} action
+     * @returns void
+     */
+    function _bindMultiple(combinations, callback, action) {
+        for (var i = 0; i < combinations.length; ++i) {
+            _bindSingle.call(this, combinations[i], callback, action);
+        }
+    }
+
+
+    /**
+     * called to set a 1 second timeout on the specified sequence
+     *
+     * this is so after each key press in the sequence you have 1 second
+     * to press the next key before you have to start over
+     *
+     * @returns void
+     */
+    function _resetSequenceTimer() {
+        clearTimeout(this._resetTimer);
+        this._resetTimer = setTimeout(_resetSequences.bind(this), 1000);
+    }
+
+    /**
+     * reverses the map lookup so that we can look for specific keys
+     * to see what can and can't use keypress
+     *
+     * @return {Object}
+     */
+    function _getReverseMap() {
+        if (!this._REVERSE_MAP) {
+            this._REVERSE_MAP = {};
+            for (var key in _MAP) {
+
+                // pull out the numeric keypad from here cause keypress should
+                // be able to detect the keys from the character
+                if (key > 95 && key < 112) {
+                    continue;
+                }
+
+                if (_MAP.hasOwnProperty(key)) {
+                    this._REVERSE_MAP[_MAP[key]] = key;
+                }
+            }
+        }
+        return this._REVERSE_MAP;
+    }
+
+    /**
+     * picks the best action based on the key combination
+     *
+     * @param {string} key - character for key
+     * @param {Array} modifiers
+     * @param {string=} action passed in
+     */
+    function _pickBestAction(key, modifiers, action) {
+
+        // if no action was picked in we should try to pick the one
+        // that we think would work best for this key
+        if (!action) {
+            action = _getReverseMap.call(this)[key] ? 'keydown' : 'keypress';
+        }
+
+        // modifier keys don't work as expected with keypress,
+        // switch to keydown
+        if (action == 'keypress' && modifiers.length) {
+            action = 'keydown';
+        }
+
+        return action;
+    }
+
+    /**
+     * binds a key sequence to an event
+     *
+     * @param {string} combo - combo specified in bind call
+     * @param {Array} keys
+     * @param {Function} callback
+     * @param {string=} action
+     * @returns void
+     */
+    function _bindSequence(combo, keys, callback, action) {
+
+        var that = this;
+
+        // start off by adding a sequence level record for this combination
+        // and setting the level to 0
+        this._sequenceLevels[combo] = 0;
+
+        /**
+         * callback to increase the sequence level for this sequence and reset
+         * all other sequences that were active
+         *
+         * @param {string} nextAction
+         * @returns {Function}
+         */
+        function _increaseSequence(nextAction) {
+            return function() {
+                that._nextExpectedAction = nextAction;
+                ++that._sequenceLevels[combo];
+                _resetSequenceTimer.call(that);
+            };
+        }
+
+        /**
+         * wraps the specified callback inside of another function in order
+         * to reset all sequence counters as soon as this sequence is done
+         *
+         * @param {Event} e
+         * @returns void
+         */
+        function _callbackAndReset(e) {
+            _fireCallback.call(this, callback, e, combo);
+
+            // we should ignore the next key up if the action is key down
+            // or keypress.  this is so if you finish a sequence and
+            // release the key the final key will not trigger a keyup
+            if (action !== 'keyup') {
+                this._ignoreNextKeyup = _characterFromEvent(e);
+            }
+
+            // weird race condition if a sequence ends with the key
+            // another sequence begins with
+            setTimeout(_resetSequences.bind(this), 10);
+        }
+
+        // loop through keys one at a time and bind the appropriate callback
+        // function.  for any key leading up to the final one it should
+        // increase the sequence. after the final, it should reset all sequences
+        //
+        // if an action is specified in the original bind call then that will
+        // be used throughout.  otherwise we will pass the action that the
+        // next key in the sequence should match.  this allows a sequence
+        // to mix and match keypress and keydown events depending on which
+        // ones are better suited to the key provided
+        for (var i = 0; i < keys.length; ++i) {
+            var isFinal = i + 1 === keys.length;
+            var wrappedCallback = isFinal ? _callbackAndReset : _increaseSequence.call(this, action || _getKeyInfo(keys[i + 1]).action);
+            _bindSingle.call(this, keys[i], wrappedCallback, action, combo, i);
+        }
+    }
+
+    /**
+     * binds an event to mousetrap
+     *
+     * can be a single key, a combination of keys separated with +,
+     * an array of keys, or a sequence of keys separated by spaces
+     *
+     * be sure to list the modifier keys first to make sure that the
+     * correct key ends up getting bound (the last key in the pattern)
+     *
+     * @param {string|Array} keys
+     * @param {Function} callback
+     * @param {string=} action - 'keypress', 'keydown', or 'keyup'
+     * @returns void
+     */
+    this.bind = function(keys, callback, action) {
+        keys = keys instanceof Array ? keys : [keys];
+        _bindMultiple.call(this, keys, callback, action);
+        return this;
+    };
+
+    /**
+     * unbinds an event to mousetrap
+     *
+     * the unbinding sets the callback function of the specified key combo
+     * to an empty function and deletes the corresponding key in the
+     * _directMap dict.
+     *
+     * TODO: actually remove this from the _callbacks dictionary instead
+     * of binding an empty function
+     *
+     * the keycombo+action has to be exactly the same as
+     * it was defined in the bind method
+     *
+     * @param {string|Array} keys
+     * @param {string} action
+     * @returns void
+     */
+    this.unbind = function(keys, action) {
+        return this.bind(keys, function() {}, action);
+    };
+
+    /**
+     * triggers an event that has already been bound
+     *
+     * @param {string} keys
+     * @param {string=} action
+     * @returns void
+     */
+    this.trigger = function(keys, action) {
+        if (this._directMap[keys + ':' + action]) {
+            this._directMap[keys + ':' + action].call(this, {}, keys);
+        }
+        return this;
+    };
+
+    /**
+     * resets the library back to its initial state.  this is useful
+     * if you want to clear out the current keyboard shortcuts and bind
+     * new ones - for example if you switch to another page
+     *
+     * @returns void
+     */
+    this.reset = function() {
+        this._callbacks = {};
+        this._directMap = {};
+        return this;
+    };
+
+   /**
+    * should we stop this event before firing off callbacks
+    *
+    * @param {Event} e
+    * @param {Element} element
+    * @return {boolean}
+    */
+    this.stopCallback = function(e, element) {
+
+        // if the element has the class "mousetrap" then no need to stop
+        if ((' ' + element.className + ' ').indexOf(' mousetrap ') > -1) {
+            return false;
+        }
+
+        // stop for input, select, and textarea
+        return element.tagName == 'INPUT' || element.tagName == 'SELECT' || element.tagName == 'TEXTAREA' || (element.contentEditable && element.contentEditable == 'true');
+    };
+
+    this.connect = function(el) {
+        this._el = el;
+
+        _attachListener(this._el, 'keypress', this._handler);
+        _attachListener(this._el, 'keydown', this._handler);
+        _attachListener(this._el, 'keyup', this._handler);
+    };
+
+    this.disconnect = function() {
+
+        _detachListener(this._el, 'keypress', this._handler);
+        _detachListener(this._el, 'keydown', this._handler);
+        _detachListener(this._el, 'keyup', this._handler);
+    };
+
+    /**
+     * Trigger callbacks for combos even when they are part of sequnence.
+     */
+     this.TRIGGER_PREFIX_COMBOS = false;
+     this.NOT_IN_EDITABLES = false;
+};
+
+Mousetrap.prototype = new Mousetrap.Prototype();
+
+module.exports = Mousetrap;
+
+},{}],74:[function(require,module,exports){
+"use strict";
+
+var Data = {};
+
+// Current version of the library. Keep in sync with `package.json`.
+Data.VERSION = '0.8.0';
+
+Data.Graph = require('./src/graph');
+
+module.exports = Data;
+
+},{"./src/graph":76}],75:[function(require,module,exports){
+"use strict";
+
+var Chronicle = require('substance-chronicle');
+var Operator = require('substance-operator');
+
+var ChronicleAdapter = function(graph) {
+  this.graph = graph;
+  this.graph.state = "ROOT";
+};
+
+ChronicleAdapter.Prototype = function() {
+
+  this.apply = function(op) {
+    // Note: we call the Graph.apply intentionally, as the chronicled change
+    // should be an ObjectOperation
+    //console.log("ChronicleAdapter.apply, op=", op);
+    this.graph.__apply__(op);
+    this.graph.updated_at = new Date(op.timestamp);
+  };
+
+  this.invert = function(change) {
+    return Operator.ObjectOperation.fromJSON(change).invert();
+  };
+
+  this.transform = function(a, b, options) {
+    return Operator.ObjectOperation.transform(a, b, options);
+  };
+
+  this.reset = function() {
+    this.graph.reset();
+  };
+
+  this.getState = function() {
+    return this.graph.state;
+  };
+
+  this.setState = function(state) {
+    this.graph.state = state;
+  };
+};
+
+ChronicleAdapter.Prototype.prototype = Chronicle.Versioned.prototype;
+ChronicleAdapter.prototype = new ChronicleAdapter.Prototype();
+
+module.exports = ChronicleAdapter;
+
+},{"substance-chronicle":62,"substance-operator":138}],76:[function(require,module,exports){
+"use strict";
+
+var _ = require('underscore');
+var util = require('substance-util');
+var errors = util.errors;
+
+var Schema = require('./schema');
+var Property = require('./property');
+
+var Chronicle = require('substance-chronicle');
+var Operator = require('substance-operator');
+
+var PersistenceAdapter = require('./persistence_adapter');
+var ChronicleAdapter = require('./chronicle_adapter');
+var Index = require('./graph_index');
+
+var GraphError = errors.define("GraphError");
+
+// Data types registry
+// -------------------
+// Available data types for graph properties.
+
+var VALUE_TYPES = [
+  'object',
+  'array',
+  'string',
+  'number',
+  'boolean',
+  'date'
+];
+
+
+// Check if composite type is in types registry.
+// The actual type of a composite type is the first entry
+// I.e., ["array", "string"] is an array in first place.
+var isValueType = function (type) {
+  if (_.isArray(type)) {
+    type = type[0];
+  }
+  return VALUE_TYPES.indexOf(type) >= 0;
+};
+
+// Graph
+// =====
+
+// A `Graph` can be used for representing arbitrary complex object
+// graphs. Relations between objects are expressed through links that
+// point to referred objects. Graphs can be traversed in various ways.
+// See the testsuite for usage.
+//
+// Need to be documented:
+// @options (mode,seed,chronicle,store,load,graph)
+var Graph = function(schema, options) {
+  options = options || {};
+
+  // Initialization
+  this.schema = new Schema(schema);
+
+  // Check if provided seed conforms to the given schema
+  // Only when schema has an id and seed is provided
+
+  if (this.schema.id && options.seed && options.seed.schema) {
+    if (!_.isEqual(options.seed.schema, [this.schema.id, this.schema.version])) {
+      throw new GraphError([
+        "Graph does not conform to schema. Expected: ",
+        this.schema.id+"@"+this.schema.version,
+        " Actual: ",
+        options.seed.schema[0]+"@"+options.seed.schema[1]
+      ].join(''));
+    }
+  }
+
+  this.objectAdapter = new Graph.ObjectAdapter(this);
+
+  this.nodes = {};
+  this.indexes = {};
+
+  this.__mode__ = options.mode || Graph.DEFAULT_MODE;
+  this.__seed__ = options.seed;
+
+  // Note: don't init automatically after making persistent
+  // as this would delete the persistet graph.
+  // Instead, the application has to call `graph.load()` if the store is supposed to
+  // contain a persisted graph
+  this.isVersioned = !!options.chronicle;
+  this.isPersistent = !!options.store;
+
+  // Make chronicle graph
+  if (this.isVersioned) {
+    this.chronicle = options.chronicle;
+    this.chronicle.manage(new Graph.ChronicleAdapter(this));
+  }
+
+  // Make persistent graph
+  if (this.isPersistent) {
+    var nodes = options.store.hash("nodes");
+    this.__store__ = options.store;
+    this.__nodes__ = nodes;
+
+    if (this.isVersioned) {
+      this.__version__ = options.store.hash("__version__");
+    }
+
+    this.objectAdapter = new PersistenceAdapter(this.objectAdapter, nodes);
+  }
+
+  if (options.load) {
+    this.load();
+  } else {
+    this.init();
+  }
+
+  // Populate graph
+  if (options.graph) this.merge(options.graph);
+};
+
+Graph.Prototype = function() {
+
+  var _private = new Graph.Private();
+
+  // Graph manipulation API
+  // ======================
+
+  // Add a new node
+  // --------------
+  // Adds a new node to the graph
+  // Only properties that are specified in the schema are taken:
+  //     var node = {
+  //       id: "apple",
+  //       type: "fruit",
+  //       name: "My Apple",
+  //       color: "red",
+  //       val: { size: "big" }
+  //     };
+  // Create new node:
+  //     Data.Graph.create(node);
+  // Note: graph create operation should reject creation of duplicate nodes.
+
+
+  _.extend(this, util.Events);
+
+  this.create = function(node) {
+    var op = Operator.ObjectOperation.Create([node.id], node);
+    return this.apply(op);
+  };
+
+  // Remove a node
+  // -------------
+  // Removes a node with given id and key (optional):
+  //     Data.Graph.delete(this.graph.get('apple'));
+  this.delete = function(id) {
+    var node = this.get(id);
+    if (node === undefined) {
+      throw new GraphError("Could not resolve a node with id "+ id);
+    }
+
+    // in case that the returned node is a rich object
+    // there should be a serialization method
+    if (node.toJSON) {
+      node = node.toJSON();
+    }
+
+    var op = Operator.ObjectOperation.Delete([id], node);
+    return this.apply(op);
+  };
+
+  // Update the property
+  // -------------------
+  //
+  // Updates the property with a given operation.
+  // Note: the diff has to be given as an appropriate operation.
+  // E.g., for string properties diff would be Operator.TextOperation,
+  // for arrays it would be Operator.ArrayOperation, etc.
+  // For example Substance.Operator:
+  //   Data.Graph.create({
+  //     id: "fruit_2",
+  //     type: "fruit",
+  //     name: "Blueberry",
+  //     val: { form: { kind: "bar", color: "blue" }, size: "small" },
+  //   })
+  //   var valueUpdate = Operator.TextOperation.fromOT("bar", [1, -1, "e", 1, "ry"]);
+  //   var propertyUpdate = Operator.ObjectOperation.Update(["form", "kind"], valueUpdate);
+  //   var nodeUpdate = Data.Graph.update(["fruit_2", "val"], propertyUpdate);
+  // Let's get it now:
+  //   var blueberry = this.graph.get("fruit_2");
+  //   console.log(blueberry.val.form.kind);
+  //   = > 'berry'
+
+  this.update = function(path, diff) {
+    var prop = this.resolve(path);
+    if (!prop) {
+      throw new GraphError("Could not resolve property with path "+JSON.stringify(path));
+    }
+
+    if (_.isArray(diff)) {
+      if (prop.baseType === "string") {
+        diff = Operator.TextOperation.fromSequence(prop.get(), diff);
+      } else if (prop.baseType === "array") {
+        diff = Operator.ArrayOperation.create(prop.get(), diff);
+      } else {
+        throw new GraphError("There is no convenient notation supported for this type: " + prop.baseType);
+      }
+    }
+
+    if (!diff) {
+      // if the diff turns out to be empty there will be no operation.
+      return;
+    }
+
+    var op = Operator.ObjectOperation.Update(path, diff, prop.baseType);
+    return this.apply(op);
+  };
+
+  // Set the property
+  // ----------------
+  //
+  // Sets the property to a given value:
+  // Data.Graph.set(["fruit_2", "val", "size"], "too small");
+  // Let's see what happened with node:
+  //     var blueberry = this.graph.get("fruit_2");
+  //     console.log(blueberry.val.size);
+  //     = > 'too small'
+
+  this.set = function(path, newValue) {
+    var prop = this.resolve(path);
+    if (!prop) {
+      throw new GraphError("Could not resolve property with path "+JSON.stringify(path));
+    }
+    var oldValue = prop.get();
+    var op = Operator.ObjectOperation.Set(path, oldValue, newValue);
+    return this.apply(op);
+  };
+
+  // Pure graph manipulation
+  // -----------------------
+  //
+  // Only applies the graph operation without triggering e.g., the chronicle.
+
+  this.__apply__ = function(_op) {
+    //console.log("Graph.__apply__", op);
+
+    // Note: we apply compounds eagerly... i.e., all listeners will be updated after
+    // each atomic change.
+
+    Operator.Helpers.each(_op, function(op) {
+      op.apply(this.objectAdapter);
+      this.updated_at = new Date();
+
+      this._internalUpdates(op);
+
+      _.each(this.indexes, function(index) {
+        // Treating indexes as first class listeners for graph changes
+        index.onGraphChange(op);
+      }, this);
+
+      // And all regular listeners in second line
+      this.trigger('operation:applied', op, this);
+    }, this);
+
+  };
+
+  this._internalUpdates = function(op) {
+    // Treating indexes as first class listeners for graph changes
+    Operator.Helpers.each(op, function(_op) {
+      _.each(this.indexes, function(index) {
+        index.onGraphChange(_op);
+      }, this);
+    }, this);
+  };
+
+  // Apply a command
+  // ---------------
+  //
+  // Applies a graph command
+  // All commands call this function internally to apply an operation to the graph
+
+  this.apply = function(op) {
+
+    this.__apply__(op);
+
+    // do not record changes during initialization
+    if (!this.__is_initializing__ && this.isVersioned) {
+      op.timestamp = new Date();
+      this.chronicle.record(util.clone(op));
+    }
+
+    return op;
+  };
+
+  // Get the node [property]
+  // -----------------------
+  //
+  // Gets specified graph node using id:
+  //  var apple = this.graph.get("apple");
+  //  console.log(apple);
+  //  =>
+  //  {
+  //    id: "apple",
+  //    type: "fruit",
+  //    name: "My Apple",
+  //    color: "red",
+  //    val: { size: "big" }
+  //  }
+  // or get node's property:
+  //  var apple = this.graph.get(["apple","color"]);
+  //  console.log(apple);
+  //  => 'red'
+
+  this.get = function(path) {
+    if (!_.isArray(path) && !_.isString(path)) {
+      throw new GraphError("Invalid argument path. Must be String or Array");
+    }
+
+    if (arguments.length > 1) path = _.toArray(arguments);
+    if (_.isString(path)) return this.nodes[path];
+
+    var prop = this.resolve(path);
+    return prop.get();
+  };
+
+  // Query graph data
+  // ----------------
+  //
+  // Perform smart querying on graph
+  //     graph.create({
+  //       id: "apple-tree",
+  //       type: "tree",
+  //       name: "Apple tree"
+  //     });
+  //     var apple = this.graph.get("apple");
+  //     apple.set({["apple","tree"], "apple-tree"});
+  // let's perform query:
+  //     var result = graph.query(["apple", "tree"]);
+  //     console.log(result);
+  //     => [{id: "apple-tree", type: "tree", name: "Apple tree"}]
+
+  this.query = function(path) {
+    var prop = this.resolve(path);
+
+    var type = prop.type;
+    var baseType = prop.baseType;
+    var val = prop.get();
+
+    // resolve referenced nodes in array types
+    if (baseType === "array") {
+      return _private.queryArray.call(this, val, type);
+    } else if (!isValueType(baseType)) {
+      return this.get(val);
+    } else {
+      return val;
+    }
+  };
+
+  // Serialize current state
+  // -----------------------
+  //
+  // Convert current graph state to JSON object
+
+  this.toJSON = function() {
+    return {
+      id: this.id,
+      schema: [this.schema.id, this.schema.version],
+      nodes: util.deepclone(this.nodes)
+    };
+  };
+
+  // Check node existing
+  // -------------------
+  //
+  // Checks if a node with given id exists
+  //     this.graph.contains("apple");
+  //     => true
+  //     this.graph.contains("orange");
+  //     => false
+
+  this.contains = function(id) {
+    return (!!this.nodes[id]);
+  };
+
+  // Resolve a property
+  // ------------------
+  // Resolves a property with a given path
+
+  this.resolve = function(path) {
+    return new Property(this, path);
+  };
+
+  // Reset to initial state
+  // ----------------------
+  // Resets the graph to its initial state.
+  // Note: This clears all nodes and calls `init()` which may seed the graph.
+
+  this.reset = function() {
+    if (this.isPersistent) {
+      if (this.__nodes__) this.__nodes__.clear();
+    }
+
+    this.init();
+
+    if (this.isVersioned) {
+      this.state = Chronicle.ROOT;
+    }
+
+    this.trigger("graph:reset");
+  };
+
+  // Graph initialization.
+  this.init = function() {
+    this.__is_initializing__ = true;
+
+    if (this.__seed__) {
+      this.nodes = util.clone(this.__seed__.nodes);
+    } else {
+      this.nodes = {};
+    }
+
+    _.each(this.indexes, function(index) {
+      index.reset();
+    });
+
+    if (this.isPersistent) {
+      _.each(this.nodes, function(node, id) {
+        this.__nodes__.set(id, node);
+      }, this);
+    }
+
+    delete this.__is_initializing__;
+  };
+
+  // Merge graphs
+  // ------------
+  //
+  // Merges this graph with another graph:
+  //     var folks = new Data.Graph(folks_schema);
+  //     var persons = new Data.Graph(persons_schema);
+  //     folks.create({
+  //       name: 'Bart',
+  //       surname: 'Simpson',
+  //       type: 'cartoon-actor',
+  //       century: 'XXI',
+  //       citizen: 'U.S.'
+  //     });
+  //     persons.create({
+  //       name: 'Alexander',
+  //       surname: 'Pushkin',
+  //       type: 'poet',
+  //       century: '19',
+  //       citizen: 'Russia'
+  //     });
+  //     persons.create({
+  //       name: 'Pelem Grenwill',
+  //       surname: 'Woodhouse',
+  //       type: 'poet',
+  //       century: '19',
+  //       citizen: 'Russia'
+  //     });
+  //     var merged = persons.merge(folks);
+  //     merged.toJSON();
+  //     => {
+  //       nodes: [
+  //         {
+  //           name: 'Alexander',
+  //           surname: 'Pushkin',
+  //           type: 'poet',
+  //           century: '19',
+  //           citizen: 'Russia'
+  //         },
+  //         {
+  //           name: 'Pelem Grenwill',
+  //           surname: 'Woodhouse',
+  //           type: 'poet',
+  //           century: '19',
+  //           citizen: 'Russia'
+  //         },
+  //         {
+  //           name: 'Bart',
+  //           surname: 'Simpson',
+  //           type: 'cartoon-actor',
+  //           century: 'XXI',
+  //           citizen: 'U.S.'
+  //         }
+  //       ]
+  //     }
+
+  this.merge = function(graph) {
+    _.each(graph.nodes, function(n) {
+      this.create(n);
+    }, this);
+
+    return this;
+  };
+
+  // View Traversal
+  // --------------
+
+  this.traverse = function(view) {
+    return _.map(this.getView(view), function(node) {
+      return this.get(node);
+    }, this);
+  };
+
+  // Graph loading.
+  // ----------
+  //
+  // Note: currently this must be called explicitely by the app
+
+  this.load = function() {
+
+    if (!this.isPersistent) {
+      console.log("Graph is not persistent.");
+      return;
+    }
+
+    this.__is_initializing__ = true;
+
+    this.nodes = {};
+    this.indexes = {};
+
+    // import persistet nodes
+    var keys = this.__nodes__.keys();
+    for (var idx = 0; idx < keys.length; idx++) {
+      _private.create.call(this, this.__nodes__.get(keys[idx]));
+    }
+
+    if (this.isVersioned) {
+      this.state = this.__version__.get("state") || "ROOT";
+    }
+
+    delete this.__is_initializing__;
+
+    return this;
+  };
+
+  // A helper to apply co-transformations
+  // --------
+  //
+  // The provided adapter must conform to the interface:
+  //
+  //    {
+  //      create: function(node) {},
+  //      delete: function(node) {},
+  //      update: function(node, property, newValue, oldValue) {},
+  //    }
+  //
+
+  this.cotransform = function(adapter, op) {
+    if (op.type === "create") {
+      adapter.create(op.val);
+    }
+    else if (op.type === "delete") {
+      adapter.delete(op.val);
+    }
+    // type = 'update' or 'set'
+    else {
+
+      var prop = this.resolve(op.path);
+      var value = prop.get();
+
+      var oldValue;
+
+      // Attention: this happens when updates and deletions are within one compound
+      // The operation gets applied, finally the node is deleted.
+      // Listeners are triggered afterwards, so they can not rely on the node being there
+      // anymore.
+      // However, this is not a problem. We can ignore this update as there will come
+      // a deletion anyways.
+      if (value === undefined) {
+        return;
+      }
+
+      if (op.type === "set") {
+        oldValue = op.original;
+      } else {
+        oldValue = op.diff.invert().apply(_.clone(value));
+      }
+
+      adapter.update(prop.node, prop.key, value, oldValue);
+    }
+  };
+
+  this.addIndex = function(name, options) {
+    if (this.indexes[name]) {
+      throw new GraphError("Index with name " + name + "already exists.");
+    }
+    var index = new Index(this, options);
+    this.indexes[name] = index;
+
+    return index;
+  };
+
+  this.removeIndex = function(name) {
+    delete this.indexes[name];
+  };
+};
+
+// Index Modes
+// ----------
+
+Graph.STRICT_INDEXING = 1 << 1;
+Graph.DEFAULT_MODE = Graph.STRICT_INDEXING;
+
+
+// Private Graph implementation
+// ============================
+
+Graph.Private = function() {
+
+  var _private = this;
+
+  // Node construction
+  // -----------------
+  //
+  // Safely constructs a new node based on type information
+  // Node needs to have a valid type
+  // All properties that are not registered, are dropped
+  // All properties that don't have a value are replaced using default values for type
+
+  this.createNode = function (schema, node) {
+    if (!node.id || !node.type) {
+      throw new GraphError("Can not create Node: 'id' and 'type' are mandatory.");
+    }
+
+    var type = schema.type(node.type);
+    if (!type) {
+      throw new GraphError("Type '"+node.type+"' not found in the schema");
+    }
+
+    var properties = schema.properties(node.type);
+    var freshNode = { type: node.type, id: node.id };
+
+    // Start constructing the fresh node
+    _.each(properties, function(p, key) {
+      // Find property base type
+      var baseType = schema.propertyBaseType(node.type, key);
+
+      // Assign user defined property value or use default value for baseType
+      var val = (node[key] !== undefined) ? node[key] : schema.defaultValue(baseType);
+      freshNode[key] = util.deepclone(val);
+    });
+
+    return freshNode;
+  };
+
+  // Create a new node
+  // -----------------
+  // Safely constructs a new node
+  // Checks for node duplication
+  // Adds new node to indexes
+  this.create = function(node) {
+    var newNode = _private.createNode(this.schema, node);
+    if (this.contains(newNode.id)) {
+      throw new GraphError("Node already exists: " + newNode.id);
+    }
+    this.nodes[newNode.id] = newNode;
+    this.trigger("node:created", newNode);
+    return this;
+  };
+
+  // Remove a node
+  // -----------
+  // Deletes node by id, referenced nodes remain untouched
+  // Removes node from indexes
+  this.delete = function(node) {
+    delete this.nodes[node.id];
+    this.trigger("node:deleted", node.id);
+  };
+
+  this.set = function(path, value) {
+    var property = this.resolve(path);
+    var oldValue = util.deepclone(property.get());
+    property.set(value);
+    this.trigger("property:set", path, oldValue, value);
+  };
+
+  var _triggerPropertyUpdate = function(path, diff) {
+    Operator.Helpers.each(diff, function(op) {
+      this.trigger('property:updated', path, op, this);
+    }, this);
+  };
+
+  this.update = function(path, value, diff) {
+    var property = this.resolve(path);
+    property.set(value);
+    _triggerPropertyUpdate.call(this, path, diff);
+  };
+
+  this.queryArray = function(arr, type) {
+    if (!_.isArray(type)) {
+      throw new GraphError("Illegal argument: array types must be specified as ['array'(, 'array')*, <type>]");
+    }
+    var result, idx;
+    if (type[1] === "array") {
+      result = [];
+      for (idx = 0; idx < arr.length; idx++) {
+        result.push(_private.queryArray.call(this, arr[idx], type.slice(1)));
+      }
+    } else if (!isValueType(type[1])) {
+      result = [];
+      for (idx = 0; idx < arr.length; idx++) {
+        result.push(this.get(arr[idx]));
+      }
+    } else {
+      result = arr;
+    }
+    return result;
+  };
+
+};
+
+Graph.prototype = new Graph.Prototype();
+
+// ObjectOperation Adapter
+// ========
+//
+// This adapter delegates object changes as supported by Operator.ObjectOperation
+// to graph methods
+
+Graph.ObjectAdapter = function(graph) {
+  this.graph = graph;
+};
+
+Graph.ObjectAdapter.Prototype = function() {
+  var impl = new Graph.Private();
+
+  this.get = function(path) {
+    var prop = this.graph.resolve(path);
+    return prop.get();
+  };
+
+  this.create = function(__, value) {
+    // Note: only nodes (top-level) can be created
+    impl.create.call(this.graph, value);
+  };
+
+  this.set = function(path, value) {
+    impl.set.call(this.graph, path, value);
+  };
+
+  this.update = function(path, value, diff) {
+    impl.update.call(this.graph, path, value, diff);
+  };
+
+  this.delete = function(__, value) {
+    // Note: only nodes (top-level) can be deleted
+    impl.delete.call(this.graph, value);
+  };
+
+  this.inplace = function() { return false; };
+};
+
+Graph.ObjectAdapter.Prototype.prototype = Operator.ObjectOperation.Object.prototype;
+Graph.ObjectAdapter.prototype = new Graph.ObjectAdapter.Prototype();
+
+Graph.Schema = Schema;
+Graph.Property = Property;
+
+Graph.PersistenceAdapter = PersistenceAdapter;
+Graph.ChronicleAdapter = ChronicleAdapter;
+Graph.Index = Index;
+
+// Exports
+// ========
+
+module.exports = Graph;
+
+},{"./chronicle_adapter":75,"./graph_index":77,"./persistence_adapter":78,"./property":79,"./schema":80,"substance-chronicle":62,"substance-operator":138,"substance-util":154,"underscore":159}],77:[function(require,module,exports){
+var _ = require("underscore");
+var util = require("substance-util");
+
+// Creates an index for the document applying a given node filter function
+// and grouping using a given key function
+// --------
+//
+// - document: a document instance
+// - filter: a function that takes a node and returns true if the node should be indexed
+// - key: a function that provides a path for scoped indexing (default: returns empty path)
+//
+
+var Index = function(graph, options) {
+  options = options || {};
+
+  this.graph = graph;
+
+  this.nodes = {};
+  this.scopes = {};
+
+  if (options.filter) {
+    this.filter = options.filter;
+  } else if (options.types) {
+    this.filter = Index.typeFilter(graph.schema, options.types);
+  }
+
+  if (options.property) {
+    this.property = options.property;
+  }
+
+  this.createIndex();
+};
+
+Index.Prototype = function() {
+
+  // Resolves a sub-hierarchy of the index via a given path
+  // --------
+  //
+
+  var _resolve = function(path) {
+    var index = this;
+    if (path !== null) {
+      for (var i = 0; i < path.length; i++) {
+        var id = path[i];
+        index.scopes[id] = index.scopes[id] || { nodes: {}, scopes: {} };
+        index = index.scopes[id];
+      }
+    }
+    return index;
+  };
+
+  var _getKey = function(node) {
+    if (!this.property) return null;
+    var key = node[this.property] ? node[this.property] : null;
+    if (_.isString(key)) key = [key];
+    return key;
+  };
+
+  // Accumulates all indexed children of the given (sub-)index
+  var _collect = function(index) {
+    var result = _.extend({}, index.nodes);
+    _.each(index.scopes, function(child, name) {
+      if (name !== "nodes") {
+        _.extend(result, _collect(child));
+      }
+    });
+    return result;
+  };
+
+  var _add = function(key, node) {
+    var index = _resolve.call(this, key);
+    index.nodes[node.id] = node.id;
+  };
+
+  var _remove = function(key, node) {
+    var index = _resolve.call(this, key);
+    delete index.nodes[node.id];
+  };
+
+  // Keeps the index up-to-date when the graph changes.
+  // --------
+  //
+
+  this.onGraphChange = function(op) {
+
+    var self = this;
+
+    var adapter = {
+      create: function(node) {
+        if (!self.filter || self.filter(node)) {
+          var key = _getKey.call(self, node);
+          _add.call(self, key, node);
+        }
+      },
+      delete: function(node) {
+        if (!self.filter || self.filter(node)) {
+          var key = _getKey.call(self, node);
+          _remove.call(self, key, node);
+        }
+      },
+      update: function(node, property, newValue, oldValue) {
+        if ((self.property === property) && (!self.filter || self.filter(node))) {
+          var key = oldValue;
+          if (_.isString(key)) key = [key];
+          _remove.call(self, key, node);
+          key = newValue;
+          if (_.isString(key)) key = [key];
+          _add.call(self, key, node);
+        }
+      }
+    };
+
+    this.graph.cotransform(adapter, op);
+  };
+
+  // Initializes the index
+  // --------
+  //
+
+  this.createIndex = function() {
+    this.reset();
+
+    var nodes = this.graph.nodes;
+    _.each(nodes, function(node) {
+      if (!this.filter || this.filter(node)) {
+        var key = _getKey.call(this, node);
+        _add.call(this, key, node);
+      }
+    }, this);
+  };
+
+  // Collects all indexed nodes using a given path for scoping
+  // --------
+  //
+
+  this.get = function(path) {
+    if (arguments.length === 0) {
+      path = null;
+    } else if (_.isString(path)) {
+      path = [path];
+    }
+
+    var index = _resolve.call(this, path);
+    var result;
+
+    // EXPERIMENTAL: do we need the ability to retrieve indexed elements non-recursively
+    // for now...
+    // if so... we would need an paramater to prevent recursion
+    // E.g.:
+    //     if (shallow) {
+    //       result = index.nodes;
+    //     }
+    result = _collect(index);
+
+    _.each(result, function(id) {
+      result[id] = this.graph.get(id);
+    }, this);
+
+    return result;
+  };
+
+  this.reset = function() {
+    this.nodes = {};
+    this.scopes = {};
+  };
+
+  this.dispose = function() {
+    this.stopListening();
+  };
+};
+
+Index.prototype = _.extend(new Index.Prototype(), util.Events.Listener);
+
+Index.typeFilter = function(schema, types) {
+  return function(node) {
+    var typeChain = schema.typeChain(node.type);
+    for (var i = 0; i < types.length; i++) {
+      if (typeChain.indexOf(types[i]) >= 0) {
+        return true;
+      }
+    }
+    return false;
+  };
+};
+
+module.exports = Index;
+
+},{"substance-util":154,"underscore":159}],78:[function(require,module,exports){
+"use strict";
+
+var Operator = require('substance-operator');
+
+var PersistenceAdapter = function(delegate, nodes) {
+  this.delegate = delegate;
+  this.nodes = nodes;
+};
+
+PersistenceAdapter.Prototype = function() {
+
+  this.get = function(path) {
+    return this.delegate.get(path);
+  };
+
+  this.create = function(__, value) {
+    this.delegate.create(__, value);
+    this.nodes.set(value.id, value);
+  };
+
+  this.set = function(path, value) {
+    this.delegate.set(path, value);
+    // TODO: is it ok to store the value as node???
+    var nodeId = path[0];
+    var updated = this.delegate.get([nodeId]);
+    this.nodes.set(nodeId, updated);
+  };
+
+  this.delete = function(__, value) {
+    this.delegate.delete(__, value);
+    this.nodes.delete(value.id);
+  };
+
+  this.inplace = function() {
+    return false;
+  };
+};
+PersistenceAdapter.Prototype.prototype = Operator.ObjectOperation.Object.prototype;
+PersistenceAdapter.prototype = new PersistenceAdapter.Prototype();
+
+module.exports = PersistenceAdapter;
+
+},{"substance-operator":138}],79:[function(require,module,exports){
+"use strict";
+
+var _ = require("underscore");
+
+var Property = function(graph, path) {
+  if (!path) {
+    throw new Error("Illegal argument: path is null/undefined.");
+  }
+
+  this.graph = graph;
+  this.schema = graph.schema;
+
+  _.extend(this, this.resolve(path));
+};
+
+Property.Prototype = function() {
+
+  this.resolve = function(path) {
+    var node = this.graph;
+    var parent = node;
+    var type = "graph";
+
+    var key;
+    var value;
+
+    var idx = 0;
+    for (; idx < path.length; idx++) {
+
+      // TODO: check if the property references a node type
+      if (type === "graph" || this.schema.types[type] !== undefined) {
+        // remember the last node type
+        parent = this.graph.get(path[idx]);
+
+        if (parent === undefined) {
+          //throw new Error("Key error: could not find element for path " + JSON.stringify(path));
+          return undefined;
+        }
+
+        node = parent;
+        type = this.schema.properties(parent.type);
+        value = node;
+        key = undefined;
+      } else {
+        if (parent === undefined) {
+          //throw new Error("Key error: could not find element for path " + JSON.stringify(path));
+          return undefined;
+        }
+        key = path[idx];
+        var propName = path[idx];
+        type = type[propName];
+        value = parent[key];
+
+        if (idx < path.length-1) {
+          parent = parent[propName];
+        }
+      }
+    }
+
+    return {
+      node: node,
+      parent: parent,
+      type: type,
+      key: key,
+      value: value
+    };
+
+  };
+
+  this.get = function() {
+    if (this.key !== undefined) {
+      return this.parent[this.key];
+    } else {
+      return this.node;
+    }
+  };
+
+  this.set = function(value) {
+    if (this.key !== undefined) {
+      this.parent[this.key] = this.schema.parseValue(this.baseType, value);
+    } else {
+      throw new Error("'set' is only supported for node properties.");
+    }
+  };
+
+};
+Property.prototype = new Property.Prototype();
+Object.defineProperties(Property.prototype, {
+  baseType: {
+    get: function() {
+      if (_.isArray(this.type)) return this.type[0];
+      else return this.type;
+    }
+  },
+  path: {
+    get: function() {
+      return [this.node.id, this.key];
+    }
+  }
+});
+
+module.exports = Property;
+
+},{"underscore":159}],80:[function(require,module,exports){
+"use strict";
+
+var _ = require("underscore");
+var util = require("substance-util");
+
+
+// Data.Schema
+// ========
+//
+// Provides a schema inspection API
+
+var Schema = function(schema) {
+  _.extend(this, schema);
+};
+
+Schema.Prototype = function() {
+
+  // Return Default value for a given type
+  // --------
+  //
+
+  this.defaultValue = function(valueType) {
+    if (valueType === "object") return {};
+    if (valueType === "array") return [];
+    if (valueType === "string") return "";
+    if (valueType === "number") return 0;
+    if (valueType === "boolean") return false;
+    if (valueType === "date") return new Date();
+
+    return null;
+    // throw new Error("Unknown value type: " + valueType);
+  };
+
+  // Return type object for a given type id
+  // --------
+  //
+
+  this.parseValue = function(valueType, value) {
+    if (value === null) {
+      return value;
+    }
+
+    if (_.isString(value)) {
+      if (valueType === "object") return JSON.parse(value);
+      if (valueType === "array") return JSON.parse(value);
+      if (valueType === "string") return value;
+      if (valueType === "number") return parseInt(value, 10);
+      if (valueType === "boolean") {
+        if (value === "true") return true;
+        else if (value === "false") return false;
+        else throw new Error("Can not parse boolean value from: " + value);
+      }
+      if (valueType === "date") return new Date(value);
+
+      // all other types must be string compatible ??
+      return value;
+
+    } else {
+      if (valueType === 'array') {
+        if (!_.isArray(value)) {
+          throw new Error("Illegal value type: expected array.");
+        }
+        value = util.deepclone(value);
+      }
+      else if (valueType === 'string') {
+        if (!_.isString(value)) {
+          throw new Error("Illegal value type: expected string.");
+        }
+      }
+      else if (valueType === 'object') {
+        if (!_.isObject(value)) {
+          throw new Error("Illegal value type: expected object.");
+        }
+        value = util.deepclone(value);
+      }
+      else if (valueType === 'number') {
+        if (!_.isNumber(value)) {
+          throw new Error("Illegal value type: expected number.");
+        }
+      }
+      else if (valueType === 'boolean') {
+        if (!_.isBoolean(value)) {
+          throw new Error("Illegal value type: expected boolean.");
+        }
+      }
+      else if (valueType === 'date') {
+        value = new Date(value);
+      }
+      else {
+        throw new Error("Unsupported value type: " + valueType);
+      }
+      return value;
+    }
+  };
+
+  // Return type object for a given type id
+  // --------
+  //
+
+  this.type = function(typeId) {
+    return this.types[typeId];
+  };
+
+  // For a given type id return the type hierarchy
+  // --------
+  //
+  // => ["base_type", "specific_type"]
+
+  this.typeChain = function(typeId) {
+    var type = this.types[typeId];
+    if (!type) {
+      throw new Error('Type ' + typeId + ' not found in schema');
+    }
+
+    var chain = (type.parent) ? this.typeChain(type.parent) : [];
+    chain.push(typeId);
+    return chain;
+  };
+
+  this.isInstanceOf = function(type, parentType) {
+    var typeChain = this.typeChain(type);
+    if (typeChain && typeChain.indexOf(parentType) >= 0) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  // Provides the top-most parent type of a given type.
+  // --------
+  //
+
+  this.baseType = function(typeId) {
+    return this.typeChain(typeId)[0];
+  };
+
+  // Return all properties for a given type
+  // --------
+  //
+
+  this.properties = function(type) {
+    type = _.isObject(type) ? type : this.type(type);
+    var result = (type.parent) ? this.properties(type.parent) : {};
+    _.extend(result, type.properties);
+    return result;
+  };
+
+  // Returns the full type for a given property
+  // --------
+  //
+  // => ["array", "string"]
+
+  this.propertyType = function(type, property) {
+    var properties = this.properties(type);
+    var propertyType = properties[property];
+    if (!propertyType) throw new Error("Property not found for" + type +'.'+property);
+    return _.isArray(propertyType) ? propertyType : [propertyType];
+  };
+
+  // Returns the base type for a given property
+  // --------
+  //
+  //  ["string"] => "string"
+  //  ["array", "string"] => "array"
+
+  this.propertyBaseType = function(type, property) {
+    return this.propertyType(type, property)[0];
+  };
+};
+
+Schema.prototype = new Schema.Prototype();
+
+module.exports = Schema;
+
+},{"substance-util":154,"underscore":159}],81:[function(require,module,exports){
+"use strict";
+
+var _ = require("underscore");
+
+var Document = require('./src/document');
+Document.Annotator = require('./src/annotator');
+Document.Container = require('./src/container');
+Document.Cursor = require('./src/cursor');
+Document.Selection = require('./src/selection');
+Document.Controller = require('./src/controller');
+
+Document.Node = require('./src/node');
+Document.Composite = require('./src/composite');
+// TODO: this should also be moved to 'substance-nodes'
+// However, currently there is too much useful in it that is also necessary for the test-suite
+// Maybe, we should extract such things into helper functions so that it is easier to
+// create custom text based, annotatable nodes.
+Document.TextNode = require('./src/text_node');
+
+// Compatibility
+Document.Writer = require('./src/controller');
+
+module.exports = Document;
+
+},{"./src/annotator":82,"./src/composite":84,"./src/container":85,"./src/controller":86,"./src/cursor":87,"./src/document":88,"./src/node":89,"./src/selection":90,"./src/text_node":91,"underscore":159}],82:[function(require,module,exports){
+"use strict";
+
+// Import
+// ========
+
+var _ = require("underscore");
+var util = require("substance-util");
+var Data = require("substance-data");
+var Document = require("./document");
+var Selection = require("./selection");
+var DocumentError = Document.DocumentError;
+var Operator = require("substance-operator");
+
+// Module
+// ========
+
+// A class that manages a document's annotations.
+// --------
+//
+
+var Annotator = function(doc, options) {
+  options = options || {};
+
+  this.document = doc;
+
+  // register for co-transformations to keep annotations up2date.
+  this.document.on("operation:applied", this.handleOperation, this);
+
+  // defines groups of annotations that will be mutually exclusive
+  this.group = {
+    "emphasis": "style",
+    "strong": "style",
+    "link": "style",
+    "question": "marker",
+    "idea": "marker",
+    "error": "marker"
+  };
+
+
+  this.expansion = {
+    "emphasis": {
+      left: Annotator.isOnNodeStart,
+    },
+    "strong": {
+      left: Annotator.isOnNodeStart,
+    }
+  };
+
+  this.splittable = ["emphasis", "strong"];
+
+  this._index = Annotator.createIndex(doc);
+
+  this.withTransformation = options.withTransformation;
+};
+
+Annotator.Prototype = function() {
+
+  var _getRanges = function(self, sel) {
+    var nodes = sel.getNodes();
+    var ranges = {};
+
+    for (var i = 0; i < nodes.length; i++) {
+      var node = nodes[i];
+      var range = [0,null];
+
+      // in the first node search only in the trailing part
+      if (i === 0) {
+        range[0] = sel.startChar();
+      }
+
+      // in the last node search only in the leading part
+      if (i === nodes.length-1) {
+        range[1] = sel.endChar();
+      }
+
+      ranges[node.id] = range;
+    }
+
+    return ranges;
+  };
+
+  // Creates a new annotation
+  // --------
+  //
+
+  var _create = function(self, path, type, range, data) {
+    var annotation = {
+      "id": util.uuid(),
+      "type": type,
+      "path": path,
+      "range": range
+    };
+
+    if (data) _.extend(annotation, data);
+    return self.create(annotation);
+  };
+
+  // Deletes an annotation
+  // --------
+  //
+  var _delete = function(self, annotation) {
+    self.document.delete(annotation.id);
+  };
+
+  var _update = function(self, annotation, newRange) {
+    self.document.apply(Operator.ObjectOperation.Set([annotation.id, "range"], annotation.range, newRange));
+  };
+
+  // TODO: extract range overlap checking logic into a dedicated Range class
+  var _filterByNodeAndRange = function(view, nodeId, range) {
+    var annotations = this._index.get(nodeId);
+
+    if (range) {
+      var sStart = range[0];
+      var sEnd = range[1];
+
+      var filtered = {};
+
+      // Note: this treats all annotations as if they were inclusive (left+right)
+      // TODO: maybe we should apply the same rules as for Transformations?
+      _.each(annotations, function(a) {
+        var aStart = a.range[0];
+        var aEnd = a.range[1];
+
+        var overlap = (aEnd >= sStart);
+
+        // Note: it is allowed to give only omit the end part
+        if (sEnd) {
+          overlap &= aStart <= sEnd;
+        }
+
+        if (overlap) {
+          filtered[a.id] = a;
+        }
+      });
+      annotations = filtered;
+    }
+
+    return annotations;
+  };
+
+
+  // Truncates an existing annotation
+  // --------
+  // Deletes an annotation that has a collapsed range after truncation.
+  // If the annotation is splittable and the given range is an inner segment,
+  // the first will be truncated and a second one will be created to annotate the tail.
+  // If the annotation is not splittable it will be deleted.
+
+  var _truncate = function(self, annotation, range) {
+    var s1 = annotation.range[0];
+    var s2 = range[0];
+    var e1 = annotation.range[1];
+    var e2 = range[1];
+
+    var newRange;
+
+    // truncate all = delete
+    if (s1 >= s2 && e1 <= e2) {
+      _delete(self, annotation);
+
+    // truncate the head
+    } else if (s1 >= s2  && e1 > e2) {
+      newRange = [e2, e1];
+      _update(self, annotation, newRange);
+    }
+
+    // truncate the tail
+    else if (s1 < s2 && e1 <= e2) {
+      newRange = [s1, s2];
+      _update(self, annotation, newRange);
+    }
+    // from the middle: split or delete
+    else {
+      if (self.isSplittable(annotation.type)) {
+        newRange = [s1, s2];
+        _update(self, annotation, newRange);
+
+        var tailRange = [e2, e1];
+        _create(self, annotation.path, annotation.type, tailRange);
+
+      } else {
+        _delete(self, annotation);
+      }
+    }
+  };
+
+  // Takes care of updating annotations whenever an graph operation is applied.
+  // --------
+  // Triggers new events dedicated to annotation changes.
+  this.handleOperation = function(op) {
+
+    // TODO: it would be great to have some API to retrieve reflection information for an object operation.
+
+    var typeChain, annotations, annotation;
+
+    if (op.type === "delete" || op.type === "create") {
+
+      typeChain = this.document.schema.typeChain(op.val.type);
+
+      // handle creation or deletion of annotations
+      if (typeChain.indexOf("annotation") >= 0) {
+        annotation = op.val;
+        this.triggerLater("annotation:changed", op.type, annotation);
+      }
+      // handle deletion of other nodes, i.e., remove associated annotations
+      else if (op.type === "delete") {
+        annotations = this._index.get(op.path);
+        _.each(annotations, function(a) {
+          _delete(this, a);
+        }, this);
+      }
+    }
+
+    else if (op.type === "update" || op.type === "set") {
+
+      var node = this.document.get(op.path[0]);
+
+      // FIXME: due to the use of Compunds and the rather late fired property change events
+      // it happens, that there arrive atomic operations with the original node being deleted already
+      // or should we tolerate this?
+      if (node === undefined) {
+        return;
+      }
+
+      typeChain = this.document.schema.typeChain(node.type);
+
+      if (typeChain.indexOf("annotation") >= 0) {
+        // for now we only are interested range updates
+        if (op.path[1] !== "range") return;
+
+        this.triggerLater("annotation:changed", "update", node);
+
+      }
+
+      // It turns out that it is not enough to co-transform annotations.
+      // E.g., when text gets deleted and the operation is undone
+      // the annotation could not be reconstructed.
+      // So we have to trigger annotation updates explicitely
+      else if (this.withTransformation) {
+        this.transform(op);
+      }
+    }
+  };
+
+  this.create = function(annotation) {
+    this.document.create(annotation);
+    return annotation;
+  };
+
+  // Updates all annotations according to a given operation.
+  // --------
+  //
+  // The provided operation is an ObjectOperation which has been applied
+  // to the document already.
+
+  // TODO: this needs to be rethought.
+  // On the one hand, we need explicit changes to be able to undo e.g. deletions.
+  // OTOH, such co-transforms would then be applied twice... i.e., during simulation
+  // co-transformation but when applying the simulation we would not want to have them anymore.
+  // Also not when redoing changes (as they would be contained in the change).
+
+  var _transform = function(op, annotation) {
+        // only apply the transformation on annotations with the same property
+    // Note: currently we only have annotations on the `content` property of nodes
+    if (!_.isEqual(annotation.path, op.path)) return;
+
+    if (op.type === "update") {
+      // Note: these are implicit transformations, i.e., not triggered via annotation controls
+      var expandLeft = false;
+      var expandRight = false;
+
+      var expandSpec = this.expansion[annotation.type];
+      if (expandSpec) {
+        if (expandSpec.left) expandLeft =  expandSpec.left(annotation);
+        if (expandSpec.right) expandRight = expandSpec.right(annotation);
+      }
+
+      var newRange = util.clone(annotation.range);
+      var changed = Operator.TextOperation.Range.transform(newRange, op.diff, expandLeft, expandRight);
+      if (changed) {
+        if (newRange[0] === newRange[1]) {
+          _delete(this, annotation);
+        } else {
+          this.document.set([annotation.id, "range"], newRange);
+        }
+      }
+    }
+    // if somebody has reset the property we must delete the annotation
+    else if (op.type === "delete" || op.type === "set") {
+      _delete(this, annotation);
+    }
+  };
+
+  this.transform = function(op) {
+    var annotations = this._index.get(op.path);
+    _.each(annotations, function(a) {
+      _transform.call(this, op, a);
+    }, this);
+  };
+
+  this.paste = function(annotations, newNodeId, offset) {
+
+    for (var i = 0; i < annotations.length; i++) {
+      var annotation = annotations[i];
+      if (newNodeId !== undefined) {
+        annotation.path = _.clone(annotation.path);
+        annotation.path[0] = newNodeId;
+      }
+      if (offset !== undefined) {
+        annotation.range[0] += offset;
+        annotation.range[1] += offset;
+      }
+      this.create(annotation);
+    }
+  };
+
+  // Copy annotations in the given selection.
+  // --------
+  // This is the pendant to the writer's copy method.
+  // Partially selected annotations may not get copied depending on the
+  // annotation type, for others, new annotation fragments would be created.
+
+  this.copy = function(selection) {
+
+    var ranges = _getRanges(this, selection);
+
+    // get all affected annotations
+    var annotations = this.getAnnotations({selection: selection});
+    var result = [];
+
+    _.each(annotations, function(annotation) {
+
+      // TODO: determine if an annotation would be split by the given selection.
+      var range = ranges[annotation.path[0]];
+      var isPartial = (range[0] > annotation.range[0] || range[1] < annotation.range[1]);
+
+      var newAnnotation;
+      if (isPartial) {
+        // for the others create a new fragment (depending on type) and truncate the original
+        if (this.isSplittable(annotation.type)) {
+          newAnnotation = util.clone(annotation);
+          // make the range relative to the selection
+          newAnnotation.id = util.uuid();
+          newAnnotation.range = [Math.max(0, annotation.range[0] - range[0]), annotation.range[1] - range[0]];
+          result.push(newAnnotation);
+        }
+      } else {
+        // add totally included ones
+        // TODO: need more control over uuid generation
+        newAnnotation = util.clone(annotation);
+        newAnnotation.id = util.uuid();
+        newAnnotation.range = [newAnnotation.range[0] - range[0], newAnnotation.range[1] - range[0]];
+        result.push(newAnnotation);
+      }
+
+    }, this);
+
+    return result;
+  };
+
+  // Retrieve annotations
+  // --------
+  // The selection can be filtered via
+  //
+  // - node + range : a node id and (optionally) a given range (only if node is given)
+  // - selection: a selection of type `{start: [nodePos, charPos], end: [nodePos, charPos]}`
+  // - filter: a custom filter of type `function(annotation) -> boolean`
+  //
+
+  this.getAnnotations = function(options) {
+    options = options || {};
+    if (!options.view) options.view = "content";
+
+    var doc = this.document;
+
+    var annotations = {};
+
+    if (options.node) {
+      annotations = _filterByNodeAndRange.call(this, options.view, options.node, options.range);
+    }
+
+    else if (options.selection) {
+      var sel = options.selection;
+      var ranges = sel.getRanges();
+
+      for (var i = 0; i < ranges.length; i++) {
+        // Note: pushing an array and do flattening afterwards
+        var range = ranges[i];
+        _.extend(annotations, _filterByNodeAndRange.call(this, options.view, range.node.id, [range.start, range.end]));
+      }
+
+    } else {
+      _.each(doc.nodes, function(node) {
+        var baseType = doc.schema.baseType(node.type);
+        if(baseType === 'annotation') {
+          annotations[node.id] = node;
+        }
+      });
+    }
+
+    if (options.filter) {
+      var filtered = {};
+      _.each(annotations, function(a) {
+        if(options.filter(a)) {
+          filtered[a.id] = a;
+        }
+      });
+      annotations = filtered;
+    }
+
+    return annotations;
+  };
+
+  // Returns true if two annotation types are mutually exclusive
+  // ---------
+  // Currently there is a built-in mechanism which considers two annotations
+  // exclusive if they belong to the same group.
+  //
+
+  this.isExclusive = function(type1, type2) {
+    return this.group[type1] === this.group[type2];
+  };
+
+  // Tell if an annotation can be split or should be truncated only.
+  // --------
+  //
+  // E.g. when cutting a selection or inserting a new node existing annotations
+  // may be affected. In some cases (e.g., `emphasis` or `strong`) it is wanted
+  // that a new annotation of the same type is created for the cut fragment.
+
+  this.isSplittable = function(type) {
+    return this.splittable.indexOf(type) >= 0;
+  };
+
+  // Creates an annotation for the current selection of given type
+  // --------
+  //
+  // This action may involve more complex co-actions:
+  //
+  // - toggle delete one or more annotations
+  // - truncate one or more annotations
+  //
+  // TODO: make aware of views (currently "content" is hard-coded)
+
+  this.annotate = function(selection, type, data) {
+    var sel = selection.range();
+    var node = selection.cursor.node;
+
+    if (sel.start[0] !== sel.end[0]) throw new DocumentError('Multi-node annotations are not supported.');
+
+    var range = [sel.start[1], sel.end[1]];
+    var annotations = this.getAnnotations({node: node.id, range: range});
+
+    if (selection.isCollapsed()) {
+      // Note: creating annotations without selection is not supported yet
+      // TODO: discuss
+
+      // toggle annotations of same type
+      _.each(annotations, function(a) {
+        if (a.type === type) {
+          _delete(this, a);
+        }
+      }, this);
+
+    } else {
+
+      // truncate all existing annotations of the same type (or group)
+      var toggled = false;
+      _.each(annotations, function(a) {
+        if (this.isExclusive(type, a.type)) {
+          _truncate(this, a, range);
+          if (type === a.type) toggled = true;
+        }
+      }, this);
+
+      // create a new annotation
+      if (!toggled) {
+        return _create(this, [node.id, "content"], type, range, data);
+      }
+    }
+  };
+};
+
+Annotator.Prototype.prototype = util.Events;
+Annotator.prototype = new Annotator.Prototype();
+
+Annotator.isOnNodeStart = function(a) {
+  return a.range[0] === 0;
+};
+
+Annotator.isTrue = function() {
+  return true;
+};
+
+// Creates a shared index for annotations on a given document.
+// --------
+//
+
+Annotator.createIndex = function(doc) {
+  if (doc.indexes["annotations"] === undefined) {
+    var options = {
+      types: ["annotation"],
+      property: "path"
+    };
+    var index = doc.addIndex("annotations", options);
+    index.ENABLE_LOGGING = true;
+    doc.indexes["annotations"] = index;
+  }
+  return doc.indexes["annotations"];
+};
+
+// This is a sweep algorithm wich uses a set of ENTER/EXIT entries
+// to manage a stack of active elements.
+// Whenever a new element is entered it will be appended to its parent element.
+// The stack is ordered by the annotation types.
+//
+// Examples:
+//
+// - simple case:
+//
+//       [top] -> ENTER(idea1) -> [top, idea1]
+//
+//   Creates a new 'idea' element and appends it to 'top'
+//
+// - stacked ENTER:
+//
+//       [top, idea1] -> ENTER(bold1) -> [top, idea1, bold1]
+//
+//   Creates a new 'bold' element and appends it to 'idea1'
+//
+// - simple EXIT:
+//
+//       [top, idea1] -> EXIT(idea1) -> [top]
+//
+//   Removes 'idea1' from stack.
+//
+// - reordering ENTER:
+//
+//       [top, bold1] -> ENTER(idea1) -> [top, idea1, bold1]
+//
+//   Inserts 'idea1' at 2nd position, creates a new 'bold1', and appends itself to 'top'
+//
+// - reordering EXIT
+//
+//       [top, idea1, bold1] -> EXIT(idea1)) -> [top, bold1]
+//
+//   Removes 'idea1' from stack and creates a new 'bold1'
+//
+var _levels = {
+  idea: 1,
+  question: 1,
+  error: 1,
+  link: 1,
+  strong: 2,
+  emphasis: 2,
+  code: 2,
+  subscript: 2,
+  superscript: 2,
+  underline: 2,
+  cross_reference: 1,
+  figure_reference: 1,
+  person_reference: 1,
+  citation_reference: 1
+};
+
+var ENTER = 1;
+var EXIT = -1;
+
+var Fragmenter = function(options) {
+  this.levels = options.levels || _levels;
+};
+
+Fragmenter.Prototype = function() {
+
+  // Orders sweep events according to following precedences:
+  //
+  // 1. pos
+  // 2. EXIT < ENTER
+  // 3. if both ENTER: ascending level
+  // 4. if both EXIT: descending level
+
+  var _compare = function(a, b) {
+    if (a.pos < b.pos) return -1;
+    if (a.pos > b.pos) return 1;
+
+    if (a.mode < b.mode) return -1;
+    if (a.mode > b.mode) return 1;
+
+    if (a.mode === ENTER) {
+      if (a.level < b.level) return -1;
+      if (a.level > b.level) return 1;
+    }
+
+    if (a.mode === EXIT) {
+      if (a.level > b.level) return -1;
+      if (a.level < b.level) return 1;
+    }
+
+    return 0;
+  };
+
+  var extractEntries = function(annotations) {
+    var entries = [];
+    _.each(annotations, function(a) {
+      var l = this.levels[a.type];
+
+      // ignore annotations that are not registered
+      if (l === undefined) {
+        return;
+      }
+
+      entries.push({ pos : a.range[0], mode: ENTER, level: l, id: a.id, type: a.type });
+      entries.push({ pos : a.range[1], mode: EXIT, level: l, id: a.id, type: a.type });
+    }, this);
+    return entries;
+  };
+
+  this.onText = function(/*context, text*/) {};
+
+  // should return the created user context
+  this.onEnter = function(/*entry, parentContext*/) {
+    return null;
+  };
+
+  this.enter = function(entry, parentContext) {
+    return this.onEnter(entry, parentContext);
+  };
+
+  this.createText = function(context, text) {
+    this.onText(context, text);
+  };
+
+  this.start = function(rootContext, text, annotations) {
+    var entries = extractEntries.call(this, annotations);
+    entries.sort(_compare.bind(this));
+
+    var stack = [{context: rootContext, entry: null}];
+
+    var pos = 0;
+
+    for (var i = 0; i < entries.length; i++) {
+      var entry = entries[i];
+
+      // in any case we add the last text to the current element
+      this.createText(stack[stack.length-1].context, text.substring(pos, entry.pos));
+
+      pos = entry.pos;
+      var level = 1;
+
+      var idx;
+
+      if (entry.mode === ENTER) {
+        // find the correct position and insert an entry
+        for (; level < stack.length; level++) {
+          if (entry.level < stack[level].entry.level) {
+            break;
+          }
+        }
+        stack.splice(level, 0, {entry: entry});
+      }
+      else if (entry.mode === EXIT) {
+        // find the according entry and remove it from the stack
+        for (; level < stack.length; level++) {
+          if (stack[level].entry.id === entry.id) {
+            break;
+          }
+        }
+        stack.splice(level, 1);
+      }
+
+      // create new elements for all lower entries
+      for (idx = level; idx < stack.length; idx++) {
+        stack[idx].context = this.enter(stack[idx].entry, stack[idx-1].context);
+      }
+    }
+
+    // Finally append a trailing text node
+    this.createText(rootContext, text.substring(pos));
+  };
+
+};
+Fragmenter.prototype = new Fragmenter.Prototype();
+
+Annotator.Fragmenter = Fragmenter;
+
+// Export
+// ========
+
+module.exports = Annotator;
+
+},{"./document":88,"./selection":90,"substance-data":74,"substance-operator":138,"substance-util":154,"underscore":159}],83:[function(require,module,exports){
+"use strict";
+
+var _ = require("underscore");
+var util = require("substance-util");
+
+// Document.Clipboard
+// ================
+//
+
+var Clipboard = function() {
+  // Start with an empty document
+  // this.content = new Document({id: "clipboard"});
+};
+
+
+Clipboard.Prototype = function() {
+
+  // Get contents from clipboard
+  // --------
+  // 
+
+  this.setContent = function(content) {
+    this.content = content;
+  };
+
+  // Get contents from clipboard
+  // --------
+  // 
+  // Depending on the timestamp 
+
+  this.getContent = function() {
+    return this.content;
+  };
+};
+
+
+Clipboard.Prototype.prototype = util.Events;
+Clipboard.prototype = new Clipboard.Prototype();
+
+// Export
+// ========
+
+module.exports = Clipboard;
+
+},{"substance-util":154,"underscore":159}],84:[function(require,module,exports){
+var DocumentNode = require("./node");
+
+var Composite = function(node, doc) {
+  DocumentNode.call(this, node, doc);
+};
+
+
+// Type definition
+// -----------------
+//
+
+Composite.type = {
+  "id": "composite",
+  "parent": "content",
+  "properties": {
+  }
+};
+
+
+// This is used for the auto-generated docs
+// -----------------
+//
+
+Composite.description = {
+  "name": "Composite",
+  "remarks": [
+    "A file reference to an external resource.",
+  ],
+  "properties": {
+  }
+};
+
+// Example File
+// -----------------
+//
+
+Composite.example = {
+  "no_example": "yet"
+};
+
+
+
+Composite.Prototype = function() {
+
+  this.getLength = function() {
+    throw new Error("Composite.getLength() is abstract.");
+  };
+
+  // Provides the ids of all referenced sub-nodes.
+  // -------
+  //
+
+  this.getNodes = function() {
+    throw new Error("Composite.getNodes() is abstract.");
+  };
+
+  // Tells if this composite is can be changed with respect to its children
+  // --------
+  //
+
+  this.isMutable = function() {
+    return false;
+  };
+
+  this.insertOperation = function(/*charPos, text*/) {
+    return null;
+  };
+
+  this.deleteOperation = function(/*startChar, endChar*/) {
+    return null;
+  };
+
+  // Inserts reference(s) at the given position
+  // --------
+  //
+
+  this.insertChild = function(/*doc, pos, nodeId*/) {
+    throw new Error("This composite is immutable.");
+  };
+
+  // Removes a reference from this composite.
+  // --------
+
+  this.deleteChild = function(/*doc, nodeId*/) {
+    throw new Error("This composite is immutable.");
+  };
+
+  // Provides the index of the affected node.
+  // --------
+  //
+
+  this.getChangePosition = function(op) {
+    return 0;
+  };
+
+};
+
+Composite.Prototype.prototype = DocumentNode.prototype;
+Composite.prototype = new Composite.Prototype();
+
+module.exports = Composite;
+
+},{"./node":89}],85:[function(require,module,exports){
+"use strict";
+
+var _ = require("underscore");
+var util = require("substance-util");
+var Composite = require("./composite");
+
+var Container = function(document, view) {
+  this.document = document;
+  this.view = view;
+
+  this.treeView = [];
+  this.listView = [];
+
+  this.__parents = {};
+  this.__composites = {};
+
+  this.rebuild();
+};
+
+Container.Prototype = function() {
+
+  var _each = function(iterator, context) {
+    var queue = [];
+    var i;
+
+    for (i = this.treeView.length - 1; i >= 0; i--) {
+      queue.unshift({
+        id: this.treeView[i],
+        parent: null
+      });
+    }
+
+    var item, node;
+    while(queue.length > 0) {
+      item = queue.shift();
+      node = this.document.get(item.id);
+      if (node instanceof Composite) {
+        var children = node.getNodes();
+        for (i = children.length - 1; i >= 0; i--) {
+          queue.unshift({
+            id: children[i],
+            parent: node.id,
+          });
+        }
+      }
+      iterator.call(context, node, item.parent);
+    }
+  };
+
+  this.rebuild = function() {
+
+    // clear the list view
+    this.treeView.splice(0, this.treeView.length);
+    this.listView.splice(0, this.listView.length);
+
+    this.treeView = _.clone(this.view.nodes);
+    for (var i = 0; i < this.view.length; i++) {
+      this.treeView.push(this.view[i]);
+    }
+
+    this.__parents = {};
+    this.__composites = {};
+    _each.call(this, function(node, parent) {
+      if (node instanceof Composite) {
+        this.__parents[node.id] = parent;
+        this.__composites[parent] = parent;
+      } else {
+        this.listView.push(node.id);
+        if (this.__parents[node.id]) {
+          throw new Error("Nodes must be unique in one view.");
+        }
+        this.__parents[node.id] = parent;
+        this.__composites[parent] = parent;
+      }
+    }, this);
+  };
+
+  this.getTopLevelNodes = function() {
+    return _.map(this.treeView, function(id) {
+      return this.document.get(id);
+    }, this);
+  };
+
+  this.getNodes = function(idsOnly) {
+    var nodeIds = this.listView;
+    if (idsOnly) {
+      return _.clone(nodeIds);
+    }
+    else {
+      var result = [];
+      for (var i = 0; i < nodeIds.length; i++) {
+        result.push(this.document.get(nodeIds[i]));
+      }
+      return result;
+    }
+  };
+
+  this.getPosition = function(nodeId) {
+    var nodeIds = this.listView;
+    return nodeIds.indexOf(nodeId);
+  };
+
+  this.getNodeFromPosition = function(pos) {
+    var nodeIds = this.listView;
+    var id = nodeIds[pos];
+    if (id !== undefined) {
+      return this.document.get(id);
+    } else {
+      return null;
+    }
+  };
+
+  this.getParent = function(nodeId) {
+    return this.__parents[nodeId];
+  };
+
+  // Get top level parent of given nodeId
+  this.getRoot = function(nodeId) {
+    var parent = nodeId;
+
+    // Always use top level element for referenceing the node
+    while (parent) {
+      nodeId = parent;
+      parent = this.getParent(nodeId);
+    }
+    return nodeId;
+  };
+
+  this.update = function(op) {
+    var path = op.path;
+    var needRebuild = (path[0] === this.view.id ||  this.__composites[path[0]] !== undefined);
+    if (needRebuild) this.rebuild();
+  };
+
+  this.getLength = function() {
+    return this.listView.length;
+  };
+
+  // Returns true if there is another node after a given position.
+  // --------
+  //
+
+  this.hasSuccessor = function(nodePos) {
+    var l = this.getLength();
+    return nodePos < l - 1;
+  };
+
+  // Returns true if given view and node pos has a predecessor
+  // --------
+  //
+
+  this.hasPredecessor = function(nodePos) {
+    return nodePos > 0;
+  };
+
+  // Get predecessor node for a given view and node id
+  // --------
+  //
+
+  this.getPredecessor = function(id) {
+    var pos = this.getPosition(id);
+    if (pos <= 0) return null;
+    return this.getNodeFromPosition(pos-1);
+  };
+
+  // Get successor node for a given view and node id
+  // --------
+  //
+
+  this.getSuccessor = function(id) {
+    var pos = this.getPosition(id);
+    if (pos >= this.getLength() - 1) return null;
+    return this.getNodeFromPosition(pos+1);
+  };
+
+  this.firstChild = function(node) {
+    if (node instanceof Composite) {
+      var first = this.document.get(node.getNodes()[0]);
+      return this.firstChild(first);
+    } else {
+      return node;
+    }
+  };
+
+  this.lastChild = function(node) {
+    if (node instanceof Composite) {
+      var last = this.document.get(_.last(node.getNodes()));
+      return this.lastChild(last);
+    } else {
+      return node;
+    }
+  };
+
+  // Provides a document position which addresses begin of a given node
+  // --------
+  //
+
+  this.before = function(node) {
+    var child = this.firstChild(node);
+    var nodePos = this.getPosition(child.id);
+    return [nodePos, 0];
+  };
+
+  // Provides a document position which addresses the end of a given node
+  // --------
+  //
+
+  this.after = function(node) {
+    var child = this.lastChild(node);
+    var nodePos = this.getPosition(child.id);
+    var charPos = child.getLength();
+    return [nodePos, charPos];
+  };
+
+};
+
+Container.prototype = _.extend(new Container.Prototype(), util.Events.Listener);
+
+Object.defineProperties(Container.prototype, {
+  "id": {
+    get: function() { return this.view.id; }
+  },
+  "type": {
+    get: function() { return this.view.type; }
+  },
+  "nodes": {
+    get: function() { return this.view.nodes; },
+    set: function(val) { this.view.nodes = val; }
+  }
+});
+
+module.exports = Container;
+
+},{"./composite":84,"substance-util":154,"underscore":159}],86:[function(require,module,exports){
+"use strict";
+
+var _ = require("underscore");
+var util = require("substance-util");
+var Operator = require('substance-operator');
+var Selection = require("./selection");
+var Annotator = require("./annotator");
+var Clipboard = require("./clipboard");
+var Composite = require('./composite');
+
+// Document.Controller
+// -----------------
+//
+// Provides means for editing and viewing a Substance.Document. It introduces
+// a Selection API in order to move a cursor through the document, support
+// copy and paste, etc.
+//
+// Note: it is quite intentional not to expose the full Substance.Document interface
+//       to force us to explicitely take care of model adaptations.
+//
+// Example usage:
+//
+//     var doc = new Substance.Document();
+//     var editor = new Substance.Document.Controller(doc);
+//     var editor.insert("Hello World");
+
+var Controller = function(document, options) {
+  options = options || {};
+  this.view = options.view || 'content';
+
+  this.__document = document;
+
+  this.chronicle = document.chronicle;
+  this.annotator = new Annotator(document);
+
+  this.container = document.get(this.view);
+  this.selection = new Selection(this.container);
+  this.clipboard = new Clipboard();
+
+  // TODO: this needs serious re-thinking...
+  // On the one hand, we wan be able to set the cursor after undo or redo.
+  // OTOH, we do not want to update the selection on each micro operation.
+  // Probably, the best would be to do that explicitely in all cases (also undo/redo)...
+  // this.listenTo(document, 'operation:applied', this.updateSelection);
+};
+
+Controller.Prototype = function() {
+
+  // Document Facette
+  // --------
+
+  this.getNodes = function(idsOnly) {
+    return this.container.getNodes(idsOnly);
+  };
+
+  this.getContainer = function() {
+    return this.container;
+  };
+
+  // Given a node id, get position in the document
+  // --------
+  //
+
+  this.getPosition = function(id, flat) {
+    return this.container.getPosition(id, flat);
+  };
+
+  this.getNodeFromPosition = function(nodePos) {
+    return this.container.getNodeFromPosition(nodePos);
+  };
+
+  // See Annotator
+  // --------
+  //
+
+  this.getAnnotations = function(options) {
+    options = options || {};
+    options.view = this.view;
+    return this.annotator.getAnnotations(options);
+  };
+
+  // Delete current selection
+  // --------
+  //
+
+  this.delete = function(direction) {
+
+    var session = this.startManipulation();
+    // var doc = session.doc;
+    var sel = session.sel;
+    var container = sel.container;
+
+    if (sel.isNull()) return;
+
+    if (sel.isCollapsed()) {
+      sel.expand(direction, "char");
+    }
+
+    session.deleteSelection();
+    session.save();
+
+    if (container.getLength() === 0) {
+      this.selection.clear();
+    } else {
+      // HACK: if the selection is in an invalid state
+      // select the previous char (happens when last node is deleted)
+      var N = container.listView.length;
+      if (sel.cursor.nodePos >= N) {
+        var l = container.getNodeFromPosition(N-1).getLength();
+        this.selection.set([N-1, l]);
+      } else {
+        sel.collapse("left");
+        this.selection.set(sel);
+      }
+    }
+
+  };
+
+  // Copy current selection
+  // --------
+  //
+
+  this.copy = function() {
+    console.log("I am sorry. Currently disabled.");
+  };
+
+
+  // Cut current selection from document
+  // --------
+  //
+  // Returns cutted content as a new Substance.Document
+
+  this.cut = function() {
+    this.copy();
+    this.delete();
+  };
+
+  // Paste content from clipboard at current position
+  // --------
+  //
+
+  this.paste = function() {
+    console.log("I am sorry. Currently disabled.");
+  };
+
+  // Split
+  // --------
+  //
+
+  // TODO: pick a better name
+  this.modifyNode = function(type, data) {
+    this.breakNode();
+  };
+
+  this.breakNode = function() {
+    if (this.selection.isNull()) {
+      console.log("Can not write, as no position has been selected.");
+      return;
+    }
+
+    var session = this.startManipulation();
+    var doc = session.doc;
+    var sel = session.sel;
+    var container = sel.container;
+
+    if (!sel.isCollapsed()) {
+      session.deleteSelection();
+    }
+
+    var node = sel.getNodes()[0];
+    var nodePos = sel.start[0];
+    var charPos = sel.start[1];
+
+    if (node.isBreakable()) {
+      var parentId = container.getParent(node.id);
+
+      var newNode;
+
+      if (parentId) {
+        var parent = doc.get(parentId);
+        if (parent.isBreakable()) {
+          var children = parent.getNodes();
+          newNode = parent.break(doc, node.id, charPos);
+        } else {
+          console.log("Node type '"+parent.type+"' is not splittable.");
+        }
+      } else {
+        newNode = node.break(doc, charPos);
+        var insertPos = container.treeView.indexOf(node.id)+1;
+        doc.show(this.view, newNode.id, insertPos);
+      }
+    }
+
+    if (newNode) {
+      var pos = container.before(newNode);
+      sel.set(pos);
+    }
+
+    session.save();
+    this.selection.set(sel);
+  };
+
+  // Based on current selection, insert new node
+  // --------
+  //
+
+  this.insertNode = function(type, data) {
+    console.log("I am sorry. Currently disabled.", type, data);
+  };
+
+  // Creates an annotation based on the current position
+  // --------
+  //
+
+  this.annotate = function(type, data) {
+    return this.annotator.annotate(this.selection, type, data);
+  };
+
+
+  this.startManipulation = function() {
+    var doc = this.__document.startSimulation();
+    new Annotator(doc, {withTransformation: true});
+    var sel = new Selection(doc.get(this.view), this.selection);
+    return new Controller.ManipulationSession(doc, sel);
+  };
+
+  // Inserts text at the current position
+  // --------
+  //
+
+  this.write = function(text) {
+    if (this.selection.isNull()) {
+      console.log("Can not write, as no position has been selected.");
+      return;
+    }
+
+    var session = this.startManipulation();
+    var doc = session.doc;
+    var sel = session.sel;
+
+    if (!sel.isCollapsed()) {
+      session.deleteSelection();
+    }
+
+    var node = sel.getNodes()[0];
+    var nodePos = sel.start[0];
+    var charPos = sel.start[1];
+
+    // TODO: future. This only works for text nodes....
+
+    var update = node.insertOperation(charPos, text);
+    if (update) doc.apply(update);
+
+    session.save();
+    this.selection.set([nodePos, charPos+text.length]);
+  };
+
+  // Delegate getter
+  this.get = function() {
+    return this.__document.get.apply(this.__document, arguments);
+  };
+
+  this.on = function() {
+    return this.__document.on.apply(this.__document, arguments);
+  };
+
+  this.off = function() {
+    return this.__document.off.apply(this.__document, arguments);
+  };
+
+  var _updateSelection = function(op) {
+
+    // TODO: this needs a different approach.
+    // With compounds, the atomic operation do not directly represent a natural behaviour
+    // I.e., the last operation applied does not represent the position which is
+    // desired for updating the cursor
+    // Probably, we need to handle that behavior rather manually knowing
+    // about possible compound types...
+    // Maybe we could use the `alias` field of compound operations to leave helpful information...
+    // However, we post-pone this task as it is rather cosmetic
+
+    if (!op) return;
+
+    var view = this.view;
+    var doc = this.__document;
+    var container = this.container;
+
+    function getUpdatedPostion(op) {
+
+      // We need the last update which is relevant to positioning...
+      // 1. Update of the content of leaf nodes: ask node for an updated position
+      // 2. Update of a reference in a composite node:
+      // TODO: fixme. This does not work with deletions.
+
+      // changes to views or containers are always updates or sets
+      // as they are properties
+      if (op.type !== "update" && op.type !== "set") return;
+
+      // handle changes to the view of nodes
+      var node = doc.get(op.path[0]);
+
+      if (!node) {
+        console.log("Hmmm... this.should not happen, though.");
+        return;
+      }
+
+      var nodePos = -1;
+      var charPos = -1;
+
+      if (node instanceof Composite) {
+        // TODO: there is no good concept yet
+      } else if (node.getChangePosition) {
+        nodePos = container.getPosition(node.id);
+        charPos = node.getChangePosition(op);
+      }
+
+      if (nodePos >= 0 && charPos >= 0) {
+        return [nodePos, charPos];
+      }
+    }
+
+
+    // TODO: actually, this is not yet an appropriate approach to update the cursor position
+    // for compounds.
+    Operator.Helpers.each(op, function(_op) {
+      var pos = getUpdatedPostion(_op);
+      if (pos) {
+        this.selection.set(pos);
+        // breaking the iteration
+        return false;
+      }
+    }, this, "reverse");
+
+  };
+
+  this.undo = function() {
+    var op = this.chronicle.rewind();
+    _updateSelection.call(this, op);
+  };
+
+  this.redo = function() {
+    var op = this.chronicle.forward();
+    _updateSelection.call(this, op);
+  };
+
+};
+
+// Inherit the prototype of Substance.Document which extends util.Events
+Controller.prototype = _.extend(new Controller.Prototype(), util.Events.Listener);
+
+// Property accessors for convenient access of primary properties
+Object.defineProperties(Controller.prototype, {
+  id: {
+    get: function() {
+      return this.__document.id;
+    },
+    set: function() { throw "immutable property"; }
+  },
+  nodeTypes: {
+    get: function() {
+      return this.__document.nodeTypes;
+    },
+    set: function() { throw "immutable property"; }
+  },
+  title: {
+    get: function() {
+      return this.__document.get('document').title;
+    },
+    set: function() { throw "immutable property"; }
+  },
+  updated_at: {
+    get: function() {
+      return this.__document.get('document').updated_at;
+    },
+    set: function() { throw "immutable property"; }
+  },
+  creator: {
+    get: function() {
+      return this.__document.get('document').creator;
+    },
+    set: function() { throw "immutable property"; }
+  }
+});
+
+var ManipulationSession = function(doc, sel) {
+  this.doc = doc;
+  this.sel = sel;
+  this.container = sel.container;
+  this.viewId = this.container.view.id;
+};
+
+ManipulationSession.Prototype = function() {
+
+  this.save = function() {
+    this.doc.save();
+  };
+
+  // Joins two succeeding nodes
+  // --------
+  //
+
+  this.join = function(id1, id2) {
+    // TODO: check if node2 is successor of node1
+
+    var doc = this.doc;
+    var container = this.container;
+
+    var node1 = doc.get(id1);
+    var node2 = doc.get(id2);
+
+    var parentId1 = container.getParent(id1);
+    var parentId2 = container.getParent(id2);
+    var parent1 = (parentId1) ? doc.get(parentId1) : null;
+
+    // Note: assuming that mutable composites allow joins (e.g., lists), others do not (e.g., figures)
+    if (!node1.canJoin(node2) || (parent1 && !parent1.isMutable())) {
+      return false;
+    }
+
+    node1.join(doc, node2);
+    this.deleteNode(node2.id);
+
+    // Note: the previous call might have eliminated the second composite node
+    var parent2 = (parentId2) ? doc.get(parentId2) : null;
+
+    // Join composites if this is allowed
+    // Note: this is experimental...
+    //  currently, this is only used with two succeeding lists
+    // .. and not if we join an element of the parent into the child...
+    // ... wooo hacky...
+    if (parent1 && parent2 &&
+      parent1.id !== parent2.id && parent1.canJoin(parent2) &&
+      container.getParent(parentId1) !== parentId2) {
+
+      var children1 = parent1.getNodes();
+      var children2 = parent2.getNodes();
+      var pos = children1.indexOf(id1) + 1;
+
+      // only join if we are at the end of the first composite
+      if (pos === children1.length) {
+        this.deleteNode(parent2.id);
+        for (var i = 0; i < children2.length; i++) {
+          parent1.insertChild(doc, pos+i, children2[i]);
+        }
+      }
+    }
+
+    return true;
+  };
+
+  // Deletes a node with given id and also takes care of removing it from its parent.
+  // --------
+  //
+
+  this.deleteNode = function(nodeId) {
+    var doc = this.doc;
+    var parentId = this.container.getParent(nodeId);
+    var parent = (parentId) ? doc.get(parentId) : null;
+
+    if (!parentId) {
+      doc.hide(this.viewId, nodeId);
+      doc.delete(nodeId);
+    }
+    else {
+      parent.deleteChild(doc, nodeId);
+      if (parent.getLength() === 0) {
+        this.deleteNode(parent.id);
+      }
+    }
+  };
+
+  this.deleteSelection = function() {
+
+    var self = this;
+    var doc = this.doc;
+    var sel = this.sel;
+    var container = sel.container;
+    var ranges = sel.getRanges();
+    var tryJoin = (ranges.length > 1 && !ranges[0].isFull() && !_.last(ranges).isFull());
+
+    // Note: this implementation is unfortunately not so easy...
+    // Have chosen a recursion approach to achieve an efficient
+    // opportunistic top-down deletion algorithm.
+    // It is top-down by that it starts deletion from the top-most
+    // node that is fully selected.
+    // For efficiency, using a 'visited' map to keep track which nodes have been processed already.
+
+    var i = 0;
+    var rangeMap = {};
+    for (i = 0; i < ranges.length; i++) {
+      rangeMap[ranges[i].node.id] = ranges[i];
+    }
+
+    var visited = {};
+
+    // Deletes all children nodes and then removes the given composite itself.
+    //
+    // Note: this gets only called for the top-most composite which are fully selected.
+    //
+    function deleteComposite(composite) {
+      var queue = _.clone(composite.getNodes());
+      self.deleteNode(composite.id);
+      while(queue.length > 0) {
+        var id = queue.shift();
+        doc.delete(id);
+        visited[id] = true;
+      }
+      visited[composite.id] = true;
+    }
+
+    // Recursive call that finds the top-most fully selected composite
+    //
+
+    function processComposite(node) {
+      if (visited[node.id] === undefined) {
+
+        var first = container.firstChild(node);
+        var firstRange = rangeMap[first.id];
+        var last = container.lastChild(node);
+        var lastRange = rangeMap[last.id];
+
+        // If the first and the last range is full then this node is selected fully
+        // In that case we check the parent recursively
+        // and eventually delete nodes
+
+        if (firstRange && lastRange && firstRange.isFull() && lastRange.isFull()) {
+          var parentId = container.getParent(node.id);
+          if (parentId) {
+            processComposite(doc.get(parentId));
+          }
+          if (!visited[parentId]) {
+            deleteComposite(node);
+          }
+        } else {
+          visited[node.id] = false;
+        }
+      }
+      return visited[node.id];
+    }
+
+
+    for (i = 0; i < ranges.length; i++) {
+      var r = ranges[i];
+      var node = r.node;
+      if (visited[node.id]) continue;
+
+      if (r.isFull()) {
+        // If there is a parent composite node,
+        // do the top-down deletion
+        var parentId = container.getParent(node.id);
+        if (parentId) {
+          processComposite(doc.get(parentId));
+        }
+        // otherwise, or if the parent was not fully selected
+        // delete the node regularly
+        if (!visited[parentId]) {
+          // TODO: need to check if the node is allowed to be empty
+          if (r.node.getLength() === 0) {
+            this.deleteNode(node.id);
+          } else {
+            // FIXME: annotations have to be removed first otherwise
+            // the operations are in wrong order and the inverted operation
+            // creates annotations before the content is available.
+            // This should be done in the text node...
+            // We should extract that from the Annotator into helper functions
+            // ... and probably get rid of the Annotator soon...
+            var op = r.node.deleteOperation(r.start, r.end);
+            if (op && !op.isNOP()) {
+              doc.apply(op);
+            }
+            // HACK: delete fully selected nodes after the first range
+            if (i > 0) {
+              this.deleteNode(node.id);
+            }
+          }
+        }
+      }
+      // for partial deletions ask the node for an (incremental) operation
+      else {
+        var op = r.node.deleteOperation(r.start, r.end);
+        if (op && !op.isNOP()) {
+          doc.apply(op);
+        }
+      }
+    }
+
+    // TODO: Maybe we want to return whether the join has been rejected or not
+    if (tryJoin) {
+      this.join(ranges[0].node.id, ranges[ranges.length-1].node.id);
+    }
+  };
+};
+
+ManipulationSession.prototype = new ManipulationSession.Prototype();
+
+Controller.ManipulationSession = ManipulationSession;
+
+module.exports = Controller;
+
+},{"./annotator":82,"./clipboard":83,"./composite":84,"./selection":90,"substance-operator":138,"substance-util":154,"underscore":159}],87:[function(require,module,exports){
+var _ = require("underscore");
+var SRegExp = require("substance-regexp");
+var util = require("substance-util");
+var errors = util.errors;
+
+var CursorError = errors.define("CursorError");
+
+// Document.Selection.Cursor
+// ================
+//
+// Hi, I'm an iterator, just so you know.
+
+var Cursor = function(container, nodePos, charPos, view) {
+  this.container = container;
+  this.view = view || 'content';
+
+  this.nodePos = nodePos;
+  this.charPos = charPos;
+
+  if (nodePos !== null && !_.isNumber(nodePos)) {
+    throw new CursorError("Illegal argument: expected nodePos as number");
+  }
+
+  if (charPos !== null && !_.isNumber(charPos)) {
+    throw new CursorError("Illegal argument: expected charPos as number");
+  }
+};
+
+
+Cursor.Prototype = function() {
+
+  this.copy = function() {
+    return new Cursor(this.container, this.nodePos, this.charPos, this.view);
+  };
+
+  this.isValid = function() {
+    if (this.nodePos === null || this.charPos === null) return false;
+    if (this.nodePos < 0 || this.charPos < 0) return false;
+
+    var node = this.container.getNodeFromPosition(this.nodePos);
+
+    if (!node) return false;
+    if (this.charPos >= node.getLength()) return false;
+
+    return true;
+  };
+
+  this.isRightBound = function() {
+    return this.charPos === this.node.getLength();
+  };
+
+  this.isLeftBound = function() {
+    return this.charPos === 0;
+  };
+
+  this.isEndOfDocument = function() {
+    return this.isRightBound() && this.nodePos === this.container.getLength()-1;
+  };
+
+  this.isBeginOfDocument = function() {
+    return this.isLeftBound() && this.nodePos === 0;
+  };
+
+  // Return previous node boundary for a given node/character position
+  // --------
+  //
+
+  this.prevNode = function() {
+    if (!this.isLeftBound()) {
+      this.charPos = 0;
+    } else if (this.nodePos > 0) {
+      this.nodePos -= 1;
+      this.charPos = this.node.length;
+    }
+  };
+
+  // Return next node boundary for a given node/character position
+  // --------
+  //
+
+  this.nextNode = function() {
+    if (!this.isRightBound()) {
+      this.charPos = this.node.length;
+    } else if (this.nodePos < this.container.getLength()-1) {
+      this.nodePos += 1;
+      this.charPos = 0;
+    }
+  };
+
+  // Return previous occuring word for a given node/character position
+  // --------
+  //
+
+  this.prevWord = function() {
+    if (!this.node) throw new CursorError('Invalid node position');
+
+    // Cursor is at first position -> move to prev paragraph if there is any
+    if (this.isLeftBound()) {
+      this.prevChar();
+    } else if (this.node.prevWord) {
+      this.charPos = this.node.prevWord(this.charPos);
+    } else {
+      return this.prevChar();
+    }
+  };
+
+  // Return next occuring word for a given node/character position
+  // --------
+  //
+
+  this.nextWord = function() {
+    if (!this.node) throw new CursorError('Invalid node position');
+
+    // Cursor is a last position -> move to next paragraph if there is any
+    if (this.isRightBound()) {
+      this.nextChar();
+    } else if (this.node.nextWord) {
+      this.charPos = this.node.nextWord(this.charPos);
+    } else {
+      this.nextChar();
+    }
+  };
+
+  // Return next char, for a given node/character position
+  // --------
+  //
+  // Useful when navigating over paragraph boundaries
+
+  this.nextChar = function() {
+    if (!this.node) throw new CursorError('Invalid node position');
+
+    // Last char in paragraph
+    if (this.isRightBound()) {
+      if (this.nodePos < this.container.getLength()-1) {
+        this.nodePos += 1;
+        this.charPos = 0;
+      }
+    } else {
+      this.charPos += 1;
+    }
+  };
+
+
+  // Return next char, for a given node/character position
+  // --------
+  //
+  // Useful when navigating over paragraph boundaries
+
+  this.prevChar = function() {
+    if (!this.node) throw new CursorError('Invalid node position');
+    if (this.charPos<0) throw new CursorError('Invalid char position');
+
+    if (this.isLeftBound()) {
+      if (this.nodePos > 0) {
+        this.nodePos -= 1;
+        this.charPos = this.node.getLength();
+      }
+    } else {
+      this.charPos -= 1;
+    }
+  };
+
+  // Move
+  // --------
+  //
+  // Useful helper to find char,word and node boundaries
+  //
+  //     find('right', 'char');
+  //     find('left', 'word');
+  //     find('left', 'node');
+
+  this.move = function(direction, granularity) {
+    if (direction === "left") {
+      if (granularity === "word") {
+        this.prevWord();
+      } else if (granularity === "char") {
+        this.prevChar();
+      } else if (granularity === "node") {
+        this.prevNode();
+      }
+    } else {
+      if (granularity === "word") {
+        this.nextWord();
+      } else if (granularity === "char") {
+        this.nextChar();
+      } else if (granularity === "node") {
+        this.nextNode();
+      }
+    }
+  };
+
+  this.set = function(nodePos, charPos) {
+    this.nodePos = nodePos;
+    this.charPos = charPos;
+
+    if (nodePos !== null && !_.isNumber(nodePos)) {
+      throw new CursorError("Illegal argument: expected nodePos as number");
+    }
+
+    if (charPos !== null && !_.isNumber(charPos)) {
+      throw new CursorError("Illegal argument: expected charPos as number");
+    }
+
+    if (nodePos !== null) {
+      if(!_.isNumber(nodePos)) {
+        throw new CursorError("Illegal argument: expected nodePos as number");
+      }
+      var n = this.container.getLength();
+      if (nodePos < 0 || nodePos >= n) {
+        throw new CursorError("Invalid node position: " + nodePos);
+      }
+      var node = this.container.getNodeFromPosition(nodePos);
+      var l = node.getLength();
+      if (charPos < 0 || charPos > l) {
+        throw new CursorError("Invalid char position: " + charPos);
+      }
+    }
+  };
+
+  this.position = function() {
+    return [this.nodePos, this.charPos];
+  };
+};
+
+Cursor.prototype = new Cursor.Prototype();
+
+Object.defineProperties(Cursor.prototype, {
+  node: {
+    get: function() {
+      return this.container.getNodeFromPosition(this.nodePos);
+    }
+  }
+});
+
+module.exports = Cursor;
+
+},{"substance-regexp":148,"substance-util":154,"underscore":159}],88:[function(require,module,exports){
+"use strict";
+
+// Substance.Document 0.5.0
+// (c) 2010-2013 Michael Aufreiter
+// Substance.Document may be freely distributed under the MIT license.
+// For all details and documentation:
+// http://interior.substance.io/modules/document.html
+
+
+// Import
+// ========
+
+var _ = require("underscore");
+var util = require("substance-util");
+var errors = util.errors;
+var Data = require("substance-data");
+var Operator = require("substance-operator");
+var Chronicle = require("substance-chronicle");
+var Container = require("./container");
+
+// Module
+// ========
+
+var DocumentError = errors.define("DocumentError");
+
+
+// Document
+// --------
+//
+// A generic model for representing and transforming digital documents
+
+var Document = function(options) {
+  Data.Graph.call(this, options.schema, options);
+
+  this.containers = {};
+};
+
+// Default Document Schema
+// --------
+
+Document.schema = {
+  // Static indexes
+  "indexes": {
+  },
+
+  "types": {
+    // Specific type for substance documents, holding all content elements
+    "content": {
+      "properties": {
+      }
+    },
+
+    "view": {
+      "properties": {
+        "nodes": ["array", "content"]
+      }
+    }
+  }
+};
+
+
+Document.Prototype = function() {
+  var __super__ = util.prototype(this);
+
+  this.__apply__ = function(op) {
+    var result = __super__.__apply__.call(this, op, "silent");
+
+    // book-keeping of Container instances
+    Operator.Helpers.each(op, function(_op) {
+      // TODO: this can probably be optimized...
+      if (_op.type === "set" || _op.type === "update") {
+        _.each(this.containers, function(container) {
+          container.update(_op);
+        }, this);
+      }
+    }, this);
+
+    return result;
+  };
+
+
+  this.getIndex = function(name) {
+    return this.indexes[name];
+  };
+
+  this.getSchema = function() {
+    return this.schema;
+  };
+
+
+  this.create = function(node) {
+    __super__.create.call(this, node);
+    return this.get(node.id);
+  };
+
+  // Delegates to Graph.get but wraps the result in the particular node constructor
+  // --------
+  //
+
+  this.get = function(path) {
+    var node = __super__.get.call(this, path);
+
+    if (!node) return node;
+
+    // Wrap all views in Container instances
+    if (node.type === "view") {
+      if (!this.containers[node.id]) {
+        this.containers[node.id] = new Container(this, node);
+      }
+      return this.containers[node.id];
+    }
+
+    // Wrap all nodes in an appropriate Node instance
+    else {
+      var nodeSpec = this.nodeTypes[node.type];
+      var NodeType = (nodeSpec !== undefined) ? nodeSpec.Model : null;
+      if (NodeType && !(node instanceof NodeType)) {
+        node = new NodeType(node, this);
+        this.nodes[node.id] = node;
+      }
+
+      return node;
+    }
+  };
+
+  // Serialize to JSON
+  // --------
+  //
+  // The command is converted into a sequence of graph commands
+
+  this.toJSON = function() {
+    var res = __super__.toJSON.call(this);
+    res.id = this.id;
+    return res;
+  };
+
+  // Hide elements from provided view
+  // --------
+  //
+
+  this.hide = function(viewId, nodes) {
+    var view = this.get(viewId);
+
+    if (!view) {
+      throw new DocumentError("Invalid view id: "+ viewId);
+    }
+
+    if (_.isString(nodes)) {
+      nodes = [nodes];
+    }
+
+    var indexes = [];
+    _.each(nodes, function(n) {
+      var i = view.nodes.indexOf(n);
+      if (i>=0) indexes.push(i);
+    }, this);
+
+    if (indexes.length === 0) return;
+
+    indexes = indexes.sort().reverse();
+    indexes = _.uniq(indexes);
+
+    var ops = _.map(indexes, function(index) {
+      return Operator.ArrayOperation.Delete(index, view.nodes[index]);
+    });
+
+    var op = Operator.ObjectOperation.Update([viewId, "nodes"], Operator.ArrayOperation.Compound(ops));
+
+    return this.apply(op);
+  };
+
+  // Adds nodes to a view
+  // --------
+  //
+
+  this.show = function(viewId, nodes, target) {
+    if (target === undefined) target = -1;
+
+    var view = this.get(viewId);
+    if (!view) {
+      throw new DocumentError("Invalid view id: " + viewId);
+    }
+
+    if (_.isString(nodes)) {
+      nodes = [nodes];
+    }
+
+    var l = view.nodes.length;
+
+    // target index can be given as negative number (as known from python/ruby)
+    target = Math.min(target, l);
+    if (target<0) target = Math.max(0, l+target+1);
+
+    var ops = [];
+    for (var idx = 0; idx < nodes.length; idx++) {
+      var nodeId = nodes[idx];
+      if (this.nodes[nodeId] === undefined) {
+        throw new DocumentError("Invalid node id: " + nodeId);
+      }
+      ops.push(Operator.ArrayOperation.Insert(target + idx, nodeId));
+    }
+
+    if (ops.length > 0) {
+      var update = Operator.ObjectOperation.Update([viewId, "nodes"], Operator.ArrayOperation.Compound(ops));
+      return this.apply(update);
+    }
+  };
+
+  // Start simulation, which conforms to a transaction (think databases)
+  // --------
+  //
+
+  this.startSimulation = function() {
+    // TODO: this should be implemented in a more cleaner and efficient way.
+    // Though, for now and sake of simplicity done by creating a copy
+    var self = this;
+    var simulation = this.fromSnapshot(this.toJSON());
+    var ops = [];
+    simulation.ops = ops;
+
+    var __apply__ = simulation.apply;
+
+    simulation.apply = function(op) {
+      ops.push(op);
+      op = __apply__.call(simulation, op);
+      return op;
+    };
+
+    simulation.save = function() {
+      var _ops = [];
+      for (var i = 0; i < ops.length; i++) {
+        if (ops[i].type !== "compound") {
+          _ops.push(ops[i]);
+        } else {
+          _ops = _ops.concat(ops[i].ops);
+        }
+      }
+
+      if (_ops.length === 0) {
+        // nothing has been recorded
+        return;
+      }
+
+      var compound = Operator.ObjectOperation.Compound(_ops);
+      self.apply(compound);
+    };
+
+    return simulation;
+  };
+
+  this.fromSnapshot = function(data, options) {
+    return Document.fromSnapshot(data, options);
+  };
+
+  this.uuid = function(type) {
+    return type + "_" + util.uuid();
+  };
+};
+
+Document.Prototype.prototype = Data.Graph.prototype;
+Document.prototype = new Document.Prototype();
+
+Document.fromSnapshot = function(data, options) {
+  options = options || {};
+  options.seed = data;
+  return new Document(options);
+};
+
+
+Document.DocumentError = DocumentError;
+
+// Export
+// ========
+
+module.exports = Document;
+
+},{"./container":85,"substance-chronicle":62,"substance-data":74,"substance-operator":138,"substance-util":154,"underscore":159}],89:[function(require,module,exports){
+"use strict";
+
+var _ = require("underscore");
+
+// Substance.Node
+// -----------------
+
+var Node = function(node, document) {
+  this.document = document;
+  this.properties = node;
+};
+
+// Type definition
+// --------
+//
+
+Node.type = {
+  "parent": "content",
+  "properties": {
+  }
+};
+
+// Define node behavior
+// --------
+// These properties define the default behavior of a node, e.g., used when manipulating the document.
+// Sub-types override these settings
+// Note: it is quite experimental, and we will consolidate them soon.
+
+Node.properties = {
+  abstract: true,
+  immutable: true,
+  mergeableWith: [],
+  preventEmpty: true,
+  allowedAnnotations: []
+};
+
+Node.Prototype = function() {
+
+  this.toJSON = function() {
+    return _.clone(this.properties);
+  };
+
+  // Provides the number of characters contained by this node.
+  // --------
+  // We use characters as a general concept, i.e., they do not
+  // necessarily map to real characters.
+  // Basically it is used for navigation and positioning.
+
+  this.getLength = function() {
+    throw new Error("Node.getLength() is abstract.");
+  };
+
+  // Provides how a cursor would change by an operation
+  // --------
+  //
+
+  this.getChangePosition = function(op) {
+    throw new Error("Node.getCharPosition() is abstract.");
+  };
+
+  // Provides an operation that can be used to insert
+  // text at the given position.
+  // --------
+  //
+
+  this.insertOperation = function(charPos, text) {
+    throw new Error("Node.insertOperation() is abstract.");
+  };
+
+  // Provides an operation that can be used to delete a given range.
+  // --------
+  //
+
+  this.deleteOperation = function(startChar, endChar) {
+    throw new Error("Node.deleteOperation() is abstract.");
+  };
+
+  // Note: this API is rather experimental
+  // It is used to dynamically control the behavior for modifications
+  // e.g., via an editor
+
+  // Can this node be joined with another one?
+  // --------
+
+  this.canJoin = function(other) {
+    return false;
+  };
+
+  // Appends the content of another node
+  // --------
+
+  this.join = function(other) {
+    throw new Error("Node.join() is abstract.");
+  };
+
+  // Can a 'hard-break' be applied to this node?
+  // --------
+
+  this.isBreakable = function() {
+    return false;
+  };
+
+  // Breaks this node at a given position
+  // --------
+
+  this.break = function(doc, pos) {
+    throw new Error("Node.split() is abstract.");
+  };
+
+  this.getAnnotations = function() {
+    return this.document.getIndex("annotations").get(this.properties.id);
+  };
+};
+
+Node.prototype = new Node.Prototype();
+Node.prototype.constructor = Node;
+
+Node.defineProperties = function(NodePrototype, properties, readonly) {
+  _.each(properties, function(name) {
+    var spec = {
+      get: function() {
+        return this.properties[name];
+      }
+    }
+    if (!readonly) {
+      spec["set"] = function(val) {
+        this.properties[name] = val;
+        return this;
+      }
+    }
+    Object.defineProperty(NodePrototype, name, spec);
+  });
+};
+
+Node.defineProperties(Node.prototype, ["id", "type"]);
+
+module.exports = Node;
+
+},{"underscore":159}],90:[function(require,module,exports){
+"use strict";
+
+var _ = require("underscore");
+var util = require("substance-util");
+var errors = util.errors;
+var Cursor = require("./cursor");
+
+var SelectionError = errors.define("SelectionError");
+
+// Document.Selection
+// ================
+//
+// A selection refers to a sub-fragment of a Substance.Document. It holds
+// start/end positions for node and character offsets as well as a direction.
+//
+//     {
+//       start: [NODE_POS, CHAR_POS]
+//       end: [NODE_POS, CHAR_POS]
+//       direction: "left"|"right"
+//     }
+//
+// NODE_POS: Node offset in the document (0 = first node)
+// CHAR_POS: Character offset within a textnode (0 = first char)
+//
+// Example
+// --------
+//
+// Consider a document `doc` consisting of 3 paragraphs.
+//
+//           0 1 2 3 4 5 6
+//     -------------------
+//     P0  | a b c d e f g
+//     -------------------
+//     P1: | h i j k l m n
+//     -------------------
+//     P2: | o p q r s t u
+//
+//
+// Create a selection operating on that document.
+//     var sel = new Substance.Document.Selection(container);
+//
+//     sel.set({
+//       start: [0, 4],
+//       end: [1, 2],
+//       direction: "right"
+//     });
+//
+// This call results in the following selection:
+//
+//           0 1 2 3 4 5 6
+//     -------------------
+//     P0  | a b c d > > >
+//     -------------------
+//     P1: | > > > k l m n
+//     -------------------
+//     P2: | o p q r s t u
+//
+
+var Selection = function(container, selection) {
+  this.container = container;
+
+  this.start = null;
+  this.__cursor = new Cursor(container, null, null);
+
+  if (selection) this.set(selection);
+};
+
+Selection.Prototype = function() {
+
+  // Get node from position in contnet view
+  // --------
+  //
+
+  this.__node = function(pos) {
+    return this.container.getNodeFromPosition(pos);
+  };
+
+
+  this.copy = function() {
+    var copy = new Selection(this.container);
+    if (!this.isNull()) copy.set(this);
+    return copy;
+  };
+
+
+  // Set selection
+  // --------
+  //
+  // sel: an instanceof Selection
+  //      or a document range `{start: [nodePos, charPos], end: [nodePos, charPos]}`
+  //      or a document position `[nodePos, charPos]`
+
+  this.set = function(sel) {
+    var cursor = this.__cursor;
+
+    if (sel instanceof Selection) {
+      this.start = _.clone(sel.start);
+      cursor.set(sel.__cursor.nodePos, sel.__cursor.charPos);
+    } else if (_.isArray(sel)) {
+      this.start = _.clone(sel);
+      cursor.set(sel[0], sel[1]);
+    } else {
+      this.start = _.clone(sel.start);
+      cursor.set(sel.end[0], sel.end[1]);
+    }
+    var start = this.start;
+
+    // being hysterical about the integrity of selections
+    var n = this.container.getLength();
+    if (start[0] < 0 || start[0] >= n) {
+      throw new SelectionError("Invalid node position: " + start[0]);
+    }
+    var l = this.__node(start[0]).getLength();
+    if (start[1] < 0 || start[1] > l) {
+      throw new SelectionError("Invalid char position: " + start[1]);
+    }
+
+    this.trigger('selection:changed', this.range());
+    return this;
+  };
+
+  this.clear = function() {
+    this.start = null;
+    this.__cursor.set(null, null);
+    this.trigger('selection:changed', null);
+  };
+
+  this.range = function() {
+    if (this.isNull()) return null;
+
+    var pos1 = this.start;
+    var pos2 = this.__cursor.position();
+
+    if (this.isReverse()) {
+      return {
+        start: pos2,
+        end: pos1
+      };
+    } else {
+      return {
+        start: pos1,
+        end: pos2
+      };
+    }
+  };
+
+  this.isReverse = function() {
+    var cursor = this.__cursor;
+    return (cursor.nodePos < this.start[0]) || (cursor.nodePos === this.start[0] && cursor.charPos < this.start[1]);
+  };
+
+  // Set cursor to position
+  // --------
+  //
+  // Convenience for placing the single cusor where start=end
+
+  this.setCursor = function(pos) {
+    this.__cursor.set(pos[0], pos[1]);
+    this.start = pos;
+    return this;
+  };
+
+  // Get the selection's  cursor
+  // --------
+  //
+
+  this.getCursor = function() {
+    return this.__cursor.copy();
+  };
+
+  this.getCursorPosition = function() {
+    return [this.__cursor.nodePos, this.__cursor.charPos];
+  };
+
+  // Fully selects a the node with the given id
+  // --------
+  //
+
+  this.selectNode = function(nodeId) {
+    var nodePos = this.container.getPosition(nodeId);
+    if (nodePos < 0) {
+      throw new SelectionError("Node is not visible: " + nodeId);
+    }
+    var node = this.container.getNodeFromPosition(nodePos);
+    this.set({
+      start: [nodePos, 0],
+      end: [nodePos, node.getLength()]
+    });
+  };
+
+  // Get predecessor node of a given node pos
+  // --------
+  //
+
+  this.getPredecessor = function() {
+    var nodePos = this.isReverse() ? this.__cursor.nodePos: this.start[0];
+    if (nodePos === 0) return null;
+    return this.__node(nodePos-1);
+  };
+
+  // Get successor node of a given node pos
+  // --------
+  //
+
+  this.getSuccessor = function() {
+    var nodePos = this.isReverse() ? this.start[0] : this.__cursor.nodePos;
+    return this.__node(nodePos+1);
+  };
+
+  // Check if the given position has a successor
+  // --------
+  //
+
+  // TODO: is this really necessary? ~> document.hasPredecessor
+  this.hasPredecessor = function(nodePos) {
+    return nodePos > 0;
+  };
+
+  // Check if the given node has a successor
+  // --------
+  //
+
+  // TODO: is this really necessary? ~> document.hasSuccessor
+  this.hasSuccessor = function(nodePos) {
+    var l = this.container.getLength();
+    return nodePos < l-1;
+  };
+
+
+  // Collapses the selection into a given direction
+  // --------
+  //
+
+  this.collapse = function(direction) {
+    if (direction !== "right" && direction !== "left" && direction !== "start" && direction !== "cursor") {
+      throw new SelectionError("Invalid direction: " + direction);
+    }
+
+    if (this.isCollapsed() || this.isNull()) return;
+
+    if (direction === "start") {
+      this.__cursor.set(this.start[0], this.start[1]);
+
+    } else if (direction === "cursor") {
+      this.start[0] = this.__cursor.nodePos;
+      this.start[1] = this.__cursor.charPos;
+
+    } else {
+      var range = this.range();
+
+      if (this.isReverse()) {
+        if (direction === 'left') {
+          this.start = range.start;
+        } else {
+          this.__cursor.set(range.end[0], range.end[1]);
+        }
+      } else {
+        if (direction === 'left') {
+          this.__cursor.set(range.start[0], range.start[1]);
+        } else {
+          this.start = range.end;
+        }
+      }
+    }
+
+    this.trigger('selection:changed', this.range());
+  };
+
+  // move selection to position
+  // --------
+  //
+  // Convenience for placing the single cusor where start=end
+
+  this.move = function(direction, granularity) {
+
+    // moving an expanded selection by char collapses the selection
+    // and sets the cursor to the boundary of the direction
+    if (!this.isCollapsed() && granularity === "char") {
+      this.collapse(direction);
+    }
+    // otherwise the cursor gets moved (together with start)
+    else {
+      this.__cursor.move(direction, granularity);
+      this.start = this.__cursor.position();
+    }
+
+    this.trigger('selection:changed', this.range());
+  };
+
+  // Expand current selection
+  // ---------
+  //
+  // Selections keep the direction as a state
+  // They can either be right-bound or left-bound
+  //
+
+  this.expand = function(direction, granularity) {
+    // expanding is done by moving the cursor
+    this.__cursor.move(direction, granularity);
+
+    this.trigger('selection:changed', this.range());
+  };
+
+  // JSON serialization
+  // --------
+  //
+
+  this.toJSON = function() {
+    return this.range();
+  };
+
+  // For a given document return the selected nodes
+  // --------
+  //
+
+  this.getNodes = function() {
+    var allNodes = this.container.getNodes();
+    if (this.isNull()) return [];
+    var range = this.range();
+
+    return allNodes.slice(range.start[0], range.end[0]+1);
+  };
+
+  // Derives Range objects for the selection
+  // --------
+  //
+
+  this.getRanges = function() {
+    var ranges = [];
+
+    var sel = this.range();
+
+    for (var i = sel.start[0]; i <= sel.end[0]; i++) {
+      var startChar = 0;
+      var endChar = null;
+
+      // in the first node search only in the trailing part
+      if (i === sel.start[0]) {
+        startChar = sel.start[1];
+      }
+
+      // in the last node search only in the leading part
+      if (i === sel.end[0]) {
+        endChar = sel.end[1];
+      }
+
+      if (!_.isNumber(endChar)) {
+        var node = this.__node(i);
+        endChar = node.getLength();
+      }
+      ranges.push(new Selection.Range(this, i, startChar, endChar));
+    }
+    return ranges;
+  };
+
+  // Returns start node offset
+  // --------
+  //
+
+  this.startNode = function() {
+    return this.isReverse() ? this.__cursor.nodePos : this.start[0];
+  };
+
+  // Returns end node offset
+  // --------
+  //
+
+  this.endNode = function() {
+    return this.isReverse() ? this.start[0] : this.__cursor.nodePos;
+  };
+
+
+  // Returns start node offset
+  // --------
+  //
+
+  this.startChar = function() {
+    return this.isReverse() ? this.__cursor.charPos : this.start[1];
+  };
+
+  // Returns end node offset
+  // --------
+  //
+
+  this.endChar = function() {
+    return this.isReverse() ? this.start[1] : this.__cursor.charPos;
+  };
+
+
+  // No selection
+  // --------
+  //
+  // Returns true if there's just a single cursor not a selection spanning
+  // over 1+ characters
+
+  this.isNull = function() {
+    return this.start === null;
+  };
+
+
+  // Collapsed
+  // --------
+  //
+  // Returns true if there's just a single cursor not a selection spanning
+  // over 1+ characters
+
+  this.isCollapsed = function() {
+    return this.start[0] === this.__cursor.nodePos && this.start[1] === this.__cursor.charPos;
+  };
+
+
+  // Multinode
+  // --------
+  //
+  // Returns true if the selection refers to multiple nodes
+
+  this.hasMultipleNodes = function() {
+    return !this.isNull() && (this.startNode() !== this.endNode());
+  };
+
+};
+
+Selection.Prototype.prototype = util.Events;
+Selection.prototype = new Selection.Prototype();
+
+Object.defineProperties(Selection.prototype, {
+  cursor: {
+    get: function() {
+      return this.__cursor.copy();
+    },
+    set: function() { throw "immutable property"; }
+  }
+});
+
+// Document.Selection.Range
+// ================
+//
+// A Document.Selection consists of 1..n Ranges
+// Each range belongs to a node in the document
+// This allows us to ask the range about the selected text
+// or ask if it's partially selected or not
+// For example if an image is fully selected we can just delete it
+
+var Range = function(selection, nodePos, start, end) {
+  this.selection = selection;
+  // The node pos within the document which can range
+  // between selection.startNode() and selection.endNode()
+  this.nodePos = nodePos;
+  this.node = selection.__node(nodePos);
+  this.start = start;
+  this.end = end;
+};
+
+Range.Prototype = function() {
+
+  // Returns true if the range denotes the first range in a selection
+  // --------
+  //
+
+  this.isFirst = function() {
+    return this.nodePos === this.selection.startNode();
+  };
+
+  // Returns true if the range denotes the last range in a selection
+  // --------
+  //
+
+  this.isLast = function() {
+    return this.nodePos === this.selection.endNode();
+  };
+
+  // Returns true if the range denotes the last range in a selection
+  // --------
+  //
+
+  this.hasPredecessor = function() {
+    return !this.isFirst();
+  };
+
+  // Returns true if the range denotes the last range in a selection
+  // --------
+  //
+
+  this.hasSuccessor = function() {
+    return !this.isLast();
+  };
+
+  // Returns true if the range is fully enclosed by both a preceding and successing range
+  // --------
+  //
+
+  this.isEnclosed = function() {
+    return this.hasPredecessor() && this.hasSuccessor();
+  };
+
+  // Returns true if the range includes the last character of a node
+  // --------
+  //
+
+  this.isRightBound = function() {
+    return this.end === this.node.getLength();
+  };
+
+  // Returns true if the range includes the first character of a node
+  // --------
+  //
+
+  this.isLeftBound = function() {
+    return this.start === 0;
+  };
+
+  // Returns the length of the range which corresponds to the number of chars contained
+  // --------
+  //
+
+  this.length = function() {
+    return this.end - this.start;
+  };
+
+  // Returns the range's content
+  // --------
+  //
+
+  this.content = function() {
+    // TODO: rethink. such ranges will only work for for text nodes
+    return this.node.content.slice(this.start, this.end);
+  };
+
+  // Returns true if all chars are selected
+  // --------
+  //
+
+  this.isFull = function() {
+    return this.isLeftBound() && this.isRightBound();
+  };
+
+  // Returns true if the range includes the first character of a node
+  // --------
+  //
+
+  this.isPartial = function() {
+    return !this.isFull();
+  };
+
+};
+
+Range.prototype = new Range.Prototype();
+
+Selection.Range = Range;
+Selection.SelectionError = SelectionError;
+
+// Export
+// ========
+
+module.exports = Selection;
+
+},{"./cursor":87,"substance-util":154,"underscore":159}],91:[function(require,module,exports){
+"use strict";
+
+var _ = require("underscore");
+var Operator = require('substance-operator');
+var SRegExp = require("substance-regexp");
+var ObjectOperation = Operator.ObjectOperation;
+var TextOperation = Operator.TextOperation;
+var DocumentNode = require("./node");
+
+// Substance.Text
+// -----------------
+//
+
+var Text = function(node, document) {
+  DocumentNode.call(this, node, document);
+};
+
+
+Text.type = {
+  "id": "text",
+  "parent": "content",
+  "properties": {
+    "source_id": "Text element source id",
+    "content": "string"
+  }
+};
+
+
+// This is used for the auto-generated docs
+// -----------------
+//
+
+Text.description = {
+  "name": "Text",
+  "remarks": [
+    "A simple text fragement that can be annotated. Usually text nodes are combined in a paragraph.",
+  ],
+  "properties": {
+    "content": "Content",
+  }
+};
+
+
+// Example Paragraph
+// -----------------
+//
+
+Text.example = {
+  "type": "paragraph",
+  "id": "paragraph_1",
+  "content": "Lorem ipsum dolor sit amet, adipiscing elit.",
+};
+
+
+Text.Prototype = function() {
+
+  this.getChangePosition = function(op) {
+    if (op.path[1] === "content") {
+      var lastChange = Operator.Helpers.last(op.diff);
+      if (lastChange.isInsert()) {
+        return lastChange.pos+lastChange.length();
+      } else if (lastChange.isDelete()) {
+        return lastChange.pos;
+      }
+    }
+    return -1;
+  };
+
+  this.getLength = function() {
+    return this.properties.content.length;
+  };
+
+  this.insertOperation = function(charPos, text) {
+    return ObjectOperation.Update([this.properties.id, "content"],
+      TextOperation.Insert(charPos, text));
+  };
+
+  this.deleteOperation = function(startChar, endChar) {
+    var content = this.properties.content;
+    return ObjectOperation.Update([this.properties.id, "content"],
+      TextOperation.Delete(startChar, content.substring(startChar, endChar)),
+      "string");
+  };
+
+  this.prevWord = function(charPos) {
+
+    var content = this.properties.content;
+
+    // Matches all word boundaries in a string
+    var wordBounds = new SRegExp(/\b\w/g).match(content);
+    var prevBounds = _.select(wordBounds, function(m) {
+      return m.index < charPos;
+    }, this);
+
+    // happens if there is some leading non word stuff
+    if (prevBounds.length === 0) {
+      return 0;
+    } else {
+      return _.last(prevBounds).index;
+    }
+  };
+
+  this.nextWord = function(charPos) {
+    var content = this.properties.content;
+
+    // Matches all word boundaries in a string
+    var wordBounds = new SRegExp(/\w\b/g).match(content.substring(charPos));
+
+    // at the end there might be trailing stuff which is not detected as word boundary
+    if (wordBounds.length === 0) {
+      return content.length;
+    }
+    // before, there should be some boundaries
+    else {
+      var nextBound = wordBounds[0];
+      return charPos + nextBound.index + 1;
+    }
+  };
+
+  this.canJoin = function(other) {
+    return (other instanceof Text);
+  };
+
+  this.join = function(doc, other) {
+    var pos = this.properties.content.length;
+    var text = other.content;
+
+    doc.update([this.id, "content"], [pos, text]);
+    var annotations = doc.indexes["annotations"].get(other.id);
+
+    _.each(annotations, function(anno) {
+      doc.set([anno.id, "path"], [this.properties.id, "content"]);
+      doc.set([anno.id, "range"], [anno.range[0]+pos, anno.range[1]+pos]);
+    }, this);
+  };
+
+  this.isBreakable = function() {
+    return true;
+  };
+
+  this.break = function(doc, pos) {
+    var tail = this.properties.content.substring(pos);
+
+    // 1. Create a new node containing the tail content
+    var newNode = this.toJSON();
+    // letting the textish node override the type of the new node
+    // e.g., a 'heading' breaks into a 'paragraph'
+    newNode.type = this.splitInto ? this.splitInto : this.properties.type;
+    newNode.id = doc.uuid(this.properties.type);
+    newNode.content = tail;
+    doc.create(newNode);
+
+    // 2. Move all annotations
+    var annotations = doc.indexes["annotations"].get(this.properties.id);
+    _.each(annotations, function(annotation) {
+      if (annotation.range[0] >= pos) {
+        doc.set([annotation.id, "path"], [newNode.id, "content"]);
+        doc.set([annotation.id, "range"], [annotation.range[0]-pos, annotation.range[1]-pos]);
+      }
+    });
+
+    // 3. Trim this node's content;
+    doc.update([this.properties.id, "content"], TextOperation.Delete(pos, tail))
+
+    // return the new node
+    return newNode;
+  };
+
+};
+
+Text.Prototype.prototype = DocumentNode.prototype;
+Text.prototype = new Text.Prototype();
+Text.prototype.constructor = Text;
+
+DocumentNode.defineProperties(Text.prototype, ["content"]);
+
+module.exports = Text;
+
+},{"./node":89,"substance-operator":138,"substance-regexp":148,"underscore":159}],92:[function(require,module,exports){
+"use strict";
+
+module.exports = {
+  "node": require("./src/node"),
+  "composite": require("./src/composite"),
+  "text": require("./src/text"),
+  "paragraph": require("./src/paragraph"),
+  "heading": require("./src/heading"),
+  "list": require("./src/list"),
+  "codeblock": require("./src/codeblock"),
+  "webresource": require("./src/web_resource"),
+  "image": require("./src/image"),
+  "formula": require("./src/formula"),
+  "table": require("./src/table"),
+  "figure": require("./src/figure"),
+  "collaborator": require("./src/collaborator"),
+  "cover": require("./src/cover"),
+  "description": require("./src/description")
+};
+
+},{"./src/codeblock":95,"./src/collaborator":98,"./src/composite":101,"./src/cover":104,"./src/description":107,"./src/figure":110,"./src/formula":113,"./src/heading":116,"./src/image":119,"./src/list":120,"./src/node":123,"./src/paragraph":126,"./src/table":129,"./src/text":132,"./src/web_resource":135}],93:[function(require,module,exports){
+"use strict";
+
+var Text = require("../text/text_node");
+
+var Codeblock = function(node, document) {
+  Text.call(this, node, document);
+};
+
+// Type definition
+// --------
+
+Codeblock.type = {
+  "id": "codeblock",
+  "parent": "content",
+  "properties": {
+    "source_id": "string",
+    "content": "string"
+  }
+};
+
+Codeblock.config = {
+  "zoomable": true
+};
+
+// This is used for the auto-generated docs
+// -----------------
+//
+
+Codeblock.description = {
+  "name": "Codeblock",
+  "remarks": [
+    "Text in a codeblock is displayed in a fixed-width font, and it preserves both spaces and line breaks"
+  ],
+  "properties": {
+    "content": "Content",
+  }
+};
+
+
+// Example Formula
+// -----------------
+//
+
+Codeblock.example = {
+  "type": "codeblock",
+  "id": "codeblock_1",
+  "content": "var text = \"Sun\";\nvar op1 = Operator.TextOperation.Delete(2, \"n\");\ntext = op2.apply(op1.apply(text));\nconsole.log(text);",
+};
+
+Codeblock.Prototype = function() {};
+
+Codeblock.Prototype.prototype = Text.prototype;
+Codeblock.prototype = new Codeblock.Prototype();
+Codeblock.prototype.constructor = Codeblock;
+
+module.exports = Codeblock;
+
+
+},{"../text/text_node":133}],94:[function(require,module,exports){
+"use strict";
+
+var TextView = require('../text/text_view');
+
+// Substance.Codeblock.View
+// ==========================================================================
+
+var CodeblockView = function(node) {
+  TextView.call(this, node);
+
+  this.$el.addClass('content-node codeblock');
+};
+
+CodeblockView.Prototype = function() {};
+
+CodeblockView.Prototype.prototype = TextView.prototype;
+CodeblockView.prototype = new CodeblockView.Prototype();
+
+module.exports = CodeblockView;
+
+},{"../text/text_view":134}],95:[function(require,module,exports){
+"use strict";
+
+module.exports = {
+  Model: require("./codeblock"),
+  View: require("./codeblock_view")
+};
+
+},{"./codeblock":93,"./codeblock_view":94}],96:[function(require,module,exports){
+var _ = require('underscore');
+var Node = require('substance-document').Node;
+
+// Substance.Collaborator
+// -----------------
+//
+
+var Collaborator = function(node, doc) {
+  Node.call(this, node, doc);
+};
+
+
+// Type definition
+// -----------------
+//
+
+Collaborator.type = {
+  "id": "collaborator",
+  "parent": "content",
+  "properties": {
+    "source_id": "string",
+    "name": "string", // full author name
+    "role": "string",
+    "organization": "string",
+    "image": "string", // optional
+    "email": "string",
+    "contribution": "string"
+  }
+};
+
+// This is used for the auto-generated docs
+// -----------------
+//
+
+Collaborator.description = {
+  "name": "Collaborator",
+  "remarks": [
+    "Describes an article collaborator such as an author or editor.",
+  ],
+  "properties": {
+    "name": "Full name.",
+  }
+};
+
+// Example Video
+// -----------------
+//
+
+Collaborator.example = {
+  "id": "collaborator_1",
+  "type": "collaborator",
+  "role": "author",
+  "name": "John Doe",
+  "image": "http://john.com/doe.png",
+  "email": "a@b.com",
+  "contribution": "Revising the article, data cleanup"
+};
+
+
+Collaborator.Prototype = function() {
+  this.getAffiliations = function() {
+    return _.map(this.properties.affiliations, function(affId) {
+      return this.document.get(affId);
+    }, this);
+  }
+};
+
+Collaborator.Prototype.prototype = Node.prototype;
+Collaborator.prototype = new Collaborator.Prototype();
+Collaborator.prototype.constructor = Collaborator;
+
+
+// Generate getters
+// --------
+
+var getters = {};
+
+var getters = {
+  header: {
+    get: function() {
+      return this.properties.name;
+    }
+  }
+};
+
+_.each(Collaborator.type.properties, function(prop, key) {
+  getters[key] = {
+    get: function() {
+      return this.properties[key];
+    }
+  };
+});
+
+
+Object.defineProperties(Collaborator.prototype, getters);
+module.exports = Collaborator;
+
+},{"substance-document":81,"underscore":159}],97:[function(require,module,exports){
+"use strict";
+
+var _ = require("underscore");
+var util = require("substance-util");
+var html = util.html;
+var NodeView = require("../node").View;
+var $$ = require("substance-application").$$;
+
+// Substance.Collaborator.View
+// ==========================================================================
+
+var CollaboratorView = function(node) {
+  NodeView.call(this, node);
+
+  this.$el.attr({id: node.id});
+  this.$el.addClass("content-node collaborator");
+};
+
+CollaboratorView.Prototype = function() {
+
+  // Render it
+  // --------
+  //
+
+  this.render = function() {
+    NodeView.prototype.render.call(this);
+
+    // Image
+    // -------
+
+    if (this.node.image) {
+      this.content.appendChild($$('.image', {
+        children: [$$('img', {src: this.node.image})]
+      }));
+    }
+
+    // Organization
+    // -------
+
+    // this.content.appendChild($$('.label', {text: 'Organization'}));
+    if (this.node.organization) {
+      this.content.appendChild($$('.organization', {text: this.node.organization}));  
+    }
+    
+
+    // Contribution
+    // -------
+
+    if (this.node.contribution) {
+      this.content.appendChild($$('.label', {text: 'Contribution'}));
+      this.content.appendChild($$('.contribution', {text: this.node.contribution}));
+    }
+
+
+    // Email
+    // -------
+
+    if (this.node.email) {
+      this.content.appendChild($$('.label', {text: 'Email'}));
+      this.content.appendChild($$('.email', {
+        children: [$$('a', {href: "mailto:"+ this.node.email, text: this.node.email})]
+      }));
+    }
+
+
+
+    return this;
+  };
+
+};
+
+CollaboratorView.Prototype.prototype = NodeView.prototype;
+CollaboratorView.prototype = new CollaboratorView.Prototype();
+
+module.exports = CollaboratorView;
+
+},{"../node":123,"substance-application":56,"substance-util":154,"underscore":159}],98:[function(require,module,exports){
+"use strict";
+
+module.exports = {
+  Model: require("./collaborator"),
+  View: require("./collaborator_view")
+};
+
+},{"./collaborator":96,"./collaborator_view":97}],99:[function(require,module,exports){
+"use strict";
+
+// Note: we leave the Composite in `substance-document` as it is an essential part of the API.
+var Document = require("substance-document");
+module.exports = Document.Composite;
+
+},{"substance-document":81}],100:[function(require,module,exports){
+"use strict";
+
+var NodeView = require("../node").View;
+
+// Substance.Image.View
+// ==========================================================================
+
+var CompositeView = function(node, viewFactory) {
+  NodeView.call(this, node, viewFactory);
+
+  this.$el.addClass(node.type);
+  this.$el.attr('id', this.node.id);
+
+  this.childrenViews = [];
+};
+
+CompositeView.Prototype = function() {
+
+  // Rendering
+  // =============================
+  //
+
+  // Render Markup
+  // --------
+  //
+
+  this.render = function() {
+    this.content = document.createElement("DIV");
+    this.content.classList.add("content");
+
+    var i;
+
+    // dispose existing children views if called multiple times
+    for (i = 0; i < this.childrenViews.length; i++) {
+      this.childrenViews[i].dispose();
+    }
+
+    // create children views
+    var children = this.node.getNodes();
+    for (i = 0; i < children.length; i++) {
+      var child = this.node.document.get(children[i]);
+      var childView = this.viewFactory.createView(child);
+      this.content.appendChild(childView.render().el);
+      this.childrenViews.push(childView);
+    }
+
+    this.el.appendChild(this.content);
+    return this;
+  };
+
+  this.dispose = function() {
+    NodeView.prototype.dispose.call(this);
+
+    for (var i = 0; i < this.childrenViews.length; i++) {
+      this.childrenViews[i].dispose();
+    }
+  };
+
+  this.delete = function() {
+  };
+
+  this.getCharPosition = function(/*el, offset*/) {
+    return 0;
+  };
+
+  this.getDOMPosition = function() {
+    var content = this.$('.content')[0];
+    var range = document.createRange();
+    range.setStartBefore(content.childNodes[0]);
+    return range;
+  };
+};
+
+CompositeView.Prototype.prototype = NodeView.prototype;
+CompositeView.prototype = new CompositeView.Prototype();
+
+module.exports = CompositeView;
+
+},{"../node":123}],101:[function(require,module,exports){
+"use strict";
+
+module.exports = {
+  Model: require("./composite"),
+  View: require("./composite_view")
+};
+
+},{"./composite":99,"./composite_view":100}],102:[function(require,module,exports){
+var _ = require('underscore');
+var DocumentNode = require('../node/node');
+
+// Lens.Cover
+// -----------------
+//
+
+var Cover = function(node, doc) {
+  DocumentNode.call(this, node, doc);
+};
+
+// Type definition
+// -----------------
+//
+
+Cover.type = {
+  "id": "cover",
+  "parent": "content",
+  "properties": {
+    "source_id": "string",
+    "authors": ["array", "person_reference"],
+    "image": "string"
+  }
+};
+
+
+// This is used for the auto-generated docs
+// -----------------
+//
+
+Cover.description = {
+  "name": "Cover",
+  "remarks": [
+    "Virtual view on the title and authors of the paper."
+  ],
+  "properties": {
+    "authors": "An array of references to collaborators"
+  }
+};
+
+// Example Cover
+// -----------------
+//
+
+Cover.example = {
+  "id": "cover",
+  "type": "cover",
+  "authors": ["collaborator_reference_1", "collaborator_reference_2"]
+};
+
+Cover.Prototype = function() {
+  this.getAuthorRefs = function() {
+    return _.map(this.properties.authors, function(id) {
+      return this.document.get(id);
+    }, this);
+  };
+};
+
+Cover.Prototype.prototype = DocumentNode.prototype;
+Cover.prototype = new Cover.Prototype();
+Cover.prototype.constructor = Cover;
+
+// Generate getters
+// --------
+
+Object.defineProperties(Cover.prototype, {
+  title: {
+    get: function() {
+      return this.document.title;
+    }
+  },
+  authors: {
+    // Expand author id's to corresponding person nodes
+    get: function() {
+      return this.properties.authors;
+    }
+  },
+  image: {
+    get: function() {
+      return this.properties.image;
+    }
+  }
+});
+
+module.exports = Cover;
+
+},{"../node/node":124,"underscore":159}],103:[function(require,module,exports){
+"use strict";
+
+var _ = require("underscore");
+var NodeView = require("../node/node_view");
+var $$ = require("substance-application").$$;
+
+
+// Lens.Cover.View
+// ==========================================================================
+
+var CoverView = function(node, viewFactory) {
+  NodeView.call(this, node, viewFactory);
+
+  this.$el.attr({id: node.id});
+  this.$el.addClass("content-node cover");
+};
+
+CoverView.Prototype = function() {
+
+  this.render = function() {
+    NodeView.prototype.render.call(this);
+    var node = this.node;
+
+    if (this.node.document.published_on) {
+      this.content.appendChild($$('.published-on', {
+        html: new Date(this.node.document.published_on).toDateString()
+      }));      
+    }
+
+
+    this.content.appendChild($$('.title', {text: node.title }));
+
+
+    var authorRefs = this.node.getAuthorRefs();
+    if (authorRefs) {
+      var authorsEl = document.createElement("DIV");
+      authorsEl.classList.add("authors");
+      var authorRefEl;
+      for (var i = 0; i < authorRefs.length; i++) {
+        var ref = authorRefs[i];
+        var author = this.node.document.get(ref.target);
+        authorRefEl = document.createElement("SPAN");
+        // TODO: use data-* attribute to store the referenced collaborator node
+        authorRefEl.setAttribute("id", ref.id);
+        authorRefEl.classList.add("annotation");
+        authorRefEl.classList.add("person_reference");
+        authorRefEl.innerHTML = author.name;
+        authorsEl.appendChild(authorRefEl);
+      }
+      this.content.appendChild(authorsEl);
+    }
+
+    if (this.node.image) {
+      this.el.style.backgroundImage = "url('"+this.node.image+"')"
+    }
+
+    return this;
+  };
+};
+
+CoverView.Prototype.prototype = NodeView.prototype;
+CoverView.prototype = new CoverView.Prototype();
+
+module.exports = CoverView;
+
+},{"../node/node_view":125,"substance-application":56,"underscore":159}],104:[function(require,module,exports){
+arguments[4][19][0].apply(exports,arguments)
+},{"./cover":102,"./cover_view":103}],105:[function(require,module,exports){
+"use strict";
+
+var _ = require("underscore");
+var Document = require("substance-document");
+var DocumentNode = Document.Node;
+var Composite = Document.Composite;
+
+var Description = function(node, document) {
+  Composite.call(this, node, document);
+};
+
+Description.type = {
+  "id": "description",
+  "parent": "content",
+  "properties": {
+    "source_id": "string",
+    "topic": "text",
+    "body": "paragraph"
+  }
+};
+
+Description.description = {
+  "name": "Description",
+  "remarks": [
+    "A Description consists of two components: a topic and its textual description."
+  ],
+  "properties": {
+    "topic": "The entity to be described",
+    "body": "A paragraph containing content which describe the topic",
+  }
+};
+
+Description.example = {
+  "type": "description",
+  "id": "description_1",
+  "topic": "text_1",
+  "body": "paragraph_2"
+};
+
+Description.Prototype = function() {
+
+  this.getLength = function() {
+    return 2;
+  };
+
+  this.getNodes = function() {
+    return [this.properties.topic, this.properties.body];
+  };
+
+  this.getTopic = function() {
+    return this.document.get(this.properties.topic);
+  };
+
+  this.getBody = function() {
+    return this.document.get(this.properties.body);
+  };
+
+};
+
+Description.Prototype.prototype = Composite.prototype;
+Description.prototype = new Description.Prototype();
+Description.prototype.constructor = Description;
+
+DocumentNode.defineProperties(Description.prototype, ["topic", "body"]);
+
+module.exports = Description;
+
+},{"substance-document":81,"underscore":159}],106:[function(require,module,exports){
+"use strict";
+
+var NodeView = require("../node").View;
+
+var DescriptionView = function(node, viewFactory) {
+  NodeView.call(this, node, viewFactory);
+
+  this.$el.addClass('description');
+  this.$el.attr('id', this.node.id);
+};
+
+DescriptionView.Prototype = function() {
+
+  this.render = function() {
+
+    var content = document.createElement('div');
+    content.className = 'content';
+
+    var topicEl = document.createElement('div');
+    topicEl.className = 'topic';
+    var topicView = this.viewFactory.createView(this.node.getTopic());
+    topicEl.appendChild(topicView.render().el);
+    this._topicEl = topicEl;
+
+    var bodyEl = document.createElement('div');
+    bodyEl.className = 'body';
+    var bodyView = this.viewFactory.createView(this.node.getBody());
+    bodyEl.appendChild(bodyView.render().el);
+    this._bodyEl = bodyEl;
+
+    content.appendChild(topicEl);
+    content.appendChild(bodyEl);
+
+    this.el.appendChild(content);
+
+    return this;
+  };
+
+};
+
+DescriptionView.Prototype.prototype = NodeView.prototype;
+DescriptionView.prototype = new DescriptionView.Prototype();
+
+module.exports = DescriptionView;
+
+},{"../node":123}],107:[function(require,module,exports){
+"use strict";
+
+module.exports = {
+  Model: require("./description"),
+  View: require("./description_view")
+};
+
+},{"./description":105,"./description_view":106}],108:[function(require,module,exports){
+"use strict";
+
+var Document = require("substance-document");
+
+var Figure = function(node, document) {
+  Document.Composite.call(this, node, document);
+};
+
+Figure.type = {
+  "id": "figure",
+  "parent": "content",
+  "properties": {
+    "url": "string",
+    "label": "string",
+    "caption": "paragraph"
+  }
+};
+
+Figure.description = {
+  "name": "Figure",
+  "remarks": [
+    "A figure is a figure is figure."
+  ],
+  "properties": {
+    "label": "Figure label (e.g. Figure 1)",
+    "url": "Image url",
+    "caption": "A reference to a paragraph that describes the figure",
+  }
+};
+
+// Example Figure
+// -----------------
+//
+
+Figure.example = {
+  "id": "figure_1",
+  "label": "Figure 1",
+  "url": "http://example.com/fig1.png",
+  "caption": "paragraph_1"
+};
+
+Figure.config = {
+  "zoomable": true
+};
+
+Figure.Prototype = function() {
+
+  this.insertOperation = function(startChar, text) {
+    return null;
+  };
+
+  this.deleteOperation = function(startChar, endChar) {
+    return null;
+  };
+
+  this.hasCaption = function() {
+    return (!!this.properties.caption);
+  };
+
+  this.getNodes = function() {
+    var nodes = [];
+    if (this.properties.caption) nodes.push(this.properties.caption);
+    return nodes;
+  };
+
+  this.getCaption = function() {
+    if (this.properties.caption) return this.document.get(this.properties.caption);
+  };
+};
+
+Figure.Prototype.prototype = Document.Composite.prototype;
+Figure.prototype = new Figure.Prototype();
+Figure.prototype.constructor = Figure;
+
+// a factory method to create nodes more conveniently
+// Supported
+//  - id: unique id
+//  - url: a relative path or a web URL
+//  - caption: a string used as caption
+Figure.create = function(data) {
+
+  var result = {};
+
+  var figId = data.id;
+  var figure = {
+    id: figId,
+    type: "figure",
+    label: data.label,
+    url: data.url
+  };
+
+  if (data.caption) {
+    var captionId = "caption_" + data.id;
+    var caption = {
+      id: captionId,
+      type: "text",
+      content: data.caption
+    };
+    result[captionId] = caption;
+    figure.caption = captionId;
+  }
+
+  result[figId] = figure;
+  return result;
+};
+
+Document.Node.defineProperties(Figure.prototype, ["url", "caption"]);
+
+Object.defineProperties(Figure.prototype, {
+  // Used as a resource header
+  header: {
+    get: function() { return this.properties.label; }
+  }
+});
+
+module.exports = Figure;
+
+},{"substance-document":81}],109:[function(require,module,exports){
+"use strict";
+
+var CompositeView = require("../composite").View;
+var $$ = require ("substance-application").$$;
+
+// Substance.Figure.View
+// ==========================================================================
+
+var FigureView = function(node, viewFactory) {
+  CompositeView.call(this, node, viewFactory);
+};
+
+FigureView.Prototype = function() {
+
+  // Rendering
+  // =============================
+  //
+
+  this.render = function() {
+    this.el.innerHTML = "";
+    this.content = $$('div.content');
+
+    // Add graphic (img element)
+    var imgEl = $$('.image-wrapper', {
+      children: [ $$("img", {src: this.node.url}) ]
+    });
+
+    this.content.appendChild(imgEl);
+
+    var i;
+    // dispose existing children views if called multiple times
+    for (i = 0; i < this.childrenViews.length; i++) {
+      this.childrenViews[i].dispose();
+    }
+
+    var caption = this.node.getCaption();
+    if (caption) {
+      var captionView = this.viewFactory.createView(caption);
+      var captionEl = captionView.render().el;
+      this.content.appendChild(captionEl);
+      this.childrenViews.push(captionView);
+    }
+
+    this.el.appendChild(this.content);
+    return this;
+  };
+};
+
+FigureView.Prototype.prototype = CompositeView.prototype;
+FigureView.prototype = new FigureView.Prototype();
+
+module.exports = FigureView;
+
+},{"../composite":101,"substance-application":56}],110:[function(require,module,exports){
+arguments[4][22][0].apply(exports,arguments)
+},{"./figure":108,"./figure_view":109}],111:[function(require,module,exports){
+var _ = require('underscore');
+var Node = require('substance-document').Node;
+
+// Formula
+// -----------------
+//
+
+var Formula = function(node) {
+  Node.call(this, node);
+};
+
+// Type definition
+// -----------------
+//
+
+Formula.type = {
+  "id": "formula",
+  "parent": "content",
+  "properties": {
+    "source_id": "string",
+    "label": "string",
+    "data": "string",
+    "format": "string", // MathML, LaTeX, image
+    "inline": "boolean"
+  }
+};
+
+
+// This is used for the auto-generated docs
+// -----------------
+//
+
+Formula.description = {
+  "name": "Formula",
+  "remarks": [
+    "Can either be expressed in MathML format or using an image url"
+  ],
+  "properties": {
+    "label": "Formula label (4)",
+    "data": "Formula data, either MathML or image url",
+    "format": "Can either be `mathml` or `image`"
+  }
+};
+
+
+// Example Formula
+// -----------------
+//
+
+Formula.example = {
+  "type": "formula",
+  "id": "formula_eqn1",
+  "label": "(1)",
+  "content": "<mml:mrow>...</mml:mrow>",
+  "format": "mathml"
+};
+
+Formula.Prototype = function() {
+  this.inline = false;
+};
+
+Formula.Prototype.prototype = Node.prototype;
+Formula.prototype = new Formula.Prototype();
+Formula.prototype.constuctor = new Formula;
+
+
+// Generate getters
+// --------
+
+var getters = {};
+
+_.each(Formula.type.properties, function(prop, key) {
+  getters[key] = {
+    get: function() {
+      return this.properties[key];
+    }
+  };
+});
+
+Object.defineProperties(Formula.prototype, getters);
+
+module.exports = Formula;
+
+},{"substance-document":81,"underscore":159}],112:[function(require,module,exports){
+"use strict";
+
+var NodeView = require('../node').View;
+
+// FormulaView
+// ===========
+
+var FormulaView = function(node) {
+  NodeView.call(this, node);
+
+  this.$el.attr({id: node.id});
+  this.$el.addClass('content-node formula');
+  if (this.node.inline) {
+    this.$el.addClass('inline');
+  }
+};
+
+FormulaView.Prototype = function() {
+
+  // Render the formula
+  // --------
+    
+  this.render = function() {
+
+    var format = this.node.format;
+    switch (format) {
+    case "mathml":
+      this.$el.html(this.node.data);
+
+      // This makes the UI freeze when many formulas are in the document.
+      // MathJax.Hub.Queue(["Typeset", MathJax.Hub, this.el]);
+      break;
+    case "image":
+      this.$el.append('<img src="'+this.node.url+'"/>');
+      break;
+    case "latex":
+      if (this.node.inline) {
+        this.$el.html("\\("+this.node.data+"\\)");
+      } else {
+        this.$el.html("\\["+this.node.data+"\\]");
+      }
+
+      // This makes the UI freeze when many formulas are in the document.
+      // MathJax.Hub.Queue(["Typeset", MathJax.Hub, this.el]);
+      break;
+    default:
+      console.error("Unknown formula format:", format);
+    }
+
+    // Add label to block formula
+    // --------
+    if (this.node.label) {
+      this.$el.append($('<div class="label">').html(this.node.label));
+    }
+
+
+    return this;
+  };
+};
+
+FormulaView.Prototype.prototype = NodeView.prototype;
+FormulaView.prototype = new FormulaView.Prototype();
+
+module.exports = FormulaView;
+
+},{"../node":123}],113:[function(require,module,exports){
+"use strict";
+
+module.exports = {
+  Model: require('./formula'),
+  View: require('./formula_view')
+};
+
+},{"./formula":111,"./formula_view":112}],114:[function(require,module,exports){
+"use strict";
+
+var DocumentNode = require("substance-document").Node;
+var Text = require("../text/text_node");
+
+var Heading = function(node, document) {
+  Text.call(this, node, document);
+};
+
+// Type definition
+// -----------------
+//
+
+Heading.type = {
+  "id": "heading",
+  "parent": "content",
+  "properties": {
+    "source_id": "string",
+    "content": "string",
+    "level": "number"
+  }
+};
+
+// Example Heading
+// -----------------
+//
+
+Heading.example = {
+  "type": "heading",
+  "id": "heading_1",
+  "content": "Introduction",
+  "level": 1
+};
+
+// This is used for the auto-generated docs
+// -----------------
+//
+
+
+Heading.description = {
+  "name": "Heading",
+  "remarks": [
+    "Denotes a section or sub section in your article."
+  ],
+  "properties": {
+    "content": "Heading content",
+    "level": "Heading level. Ranges from 1..4"
+  }
+};
+
+Heading.Prototype = function() {
+  this.splitInto = 'paragraph';
+};
+
+Heading.Prototype.prototype = Text.prototype;
+Heading.prototype = new Heading.Prototype();
+Heading.prototype.constructor = Heading;
+
+DocumentNode.defineProperties(Heading.prototype, ["level"]);
+
+module.exports = Heading;
+
+},{"../text/text_node":133,"substance-document":81}],115:[function(require,module,exports){
+"use strict";
+
+var TextView = require('../text/text_view');
+
+// Substance.Heading.View
+// ==========================================================================
+
+var HeadingView = function(node) {
+  TextView.call(this, node);
+
+  this.$el.addClass('heading');
+  this.$el.addClass('level-'+this.node.level);
+  this.$el.attr('title', "Click to set anchor. Great for sharing!");
+};
+
+HeadingView.Prototype = function() {};
+
+HeadingView.Prototype.prototype = TextView.prototype;
+HeadingView.prototype = new HeadingView.Prototype();
+
+module.exports = HeadingView;
+
+},{"../text/text_view":134}],116:[function(require,module,exports){
+"use strict";
+
+module.exports = {
+  Model: require("./heading"),
+  View: require("./heading_view")
+};
+
+},{"./heading":114,"./heading_view":115}],117:[function(require,module,exports){
+"use strict";
+
+var DocumentNode = require("substance-document").Node;
+var WebResource = require("../web_resource/web_resource");
+
+var ImageNode = function(node, document) {
+  WebResource.call(this, node, document);
+};
+
+// Type definition
+// -----------------
+//
+
+ImageNode.type = {
+  "id": "image",
+  "parent": "webresource",
+  "properties": {
+    "source_id": "string"
+  }
+};
+
+// Example Image
+// -----------------
+//
+
+ImageNode.example = {
+  "type": "image",
+  "id": "image_1",
+  "url": "http://substance.io/image_1.png"
+};
+
+// This is used for the auto-generated docs
+// -----------------
+//
+
+
+ImageNode.description = {
+  "name": "Image",
+  "remarks": [
+    "Represents a web-resource for an image."
+  ],
+  "properties": {}
+};
+
+ImageNode.Prototype = function() {};
+
+ImageNode.Prototype.prototype = WebResource.prototype;
+ImageNode.prototype = new ImageNode.Prototype();
+ImageNode.prototype.constructor = ImageNode;
+
+module.exports = ImageNode;
+
+},{"../web_resource/web_resource":136,"substance-document":81}],118:[function(require,module,exports){
+"use strict";
+
+var NodeView = require("../node").View;
+
+// Substance.Image.View
+// ==========================================================================
+
+var ImageView = function(node, viewFactory) {
+  NodeView.call(this, node, viewFactory);
+
+  this.$el.addClass('image');
+  this.$el.attr('id', this.node.id);
+};
+
+ImageView.Prototype = function() {
+
+  // Rendering
+  // =============================
+  //
+
+  var _indexOf = Array.prototype.indexOf;
+
+  // Render Markup
+  // --------
+  //
+  // div.content
+  //   div.img-char
+  //     .img
+
+  this.render = function() {
+
+    var content = document.createElement('div');
+    content.className = 'content';
+
+    var imgChar = document.createElement('div');
+    imgChar.className = 'image-char';
+    this._imgChar = imgChar;
+
+    var img = document.createElement('img');
+    img.src = this.node.url;
+    img.alt = "alt text";
+    img.title = "alt text";
+    imgChar.appendChild(img);
+
+    content.appendChild(imgChar);
+
+    // Add content
+    this.el.appendChild(content);
+
+    this._imgPos = _indexOf.call(imgChar.childNodes, img);
+
+    return this;
+  };
+
+  this.delete = function(pos, length) {
+    var content = this.$('.content')[0];
+    var spans = content.childNodes;
+    for (var i = length - 1; i >= 0; i--) {
+      content.removeChild(spans[pos+i]);
+    }
+  };
+
+  this.getCharPosition = function(el, offset) {
+    // TODO: is there a more general approach? this is kind of manually coded.
+
+    if (el === this._imgChar) {
+      return (offset > this._imgPos) ? 1 : 0;
+    }
+
+    console.log("Errhhh..");
+
+  };
+
+  this.getDOMPosition = function(charPos) {
+    var content = this.$('.content')[0];
+    var range = document.createRange();
+    if (charPos === 0) {
+      range.setStartBefore(content.childNodes[0]);
+    } else {
+      range.setStartAfter(content.childNodes[0]);
+    }
+    return range;
+  };
+};
+
+ImageView.Prototype.prototype = NodeView.prototype;
+ImageView.prototype = new ImageView.Prototype();
+
+module.exports = ImageView;
+
+},{"../node":123}],119:[function(require,module,exports){
+"use strict";
+
+module.exports = {
+  Model: require("./image"),
+  View: require("./image_view")
+};
+
+},{"./image":117,"./image_view":118}],120:[function(require,module,exports){
+"use strict";
+
+module.exports = {
+  Model: require("./list"),
+  View: require("./list_view")
+};
+
+},{"./list":121,"./list_view":122}],121:[function(require,module,exports){
+"use strict";
+
+var _ = require("underscore");
+var Document = require("substance-document");
+var DocumentNode = Document.Node;
+var Composite = Document.Composite;
+
+var List = function(node, document) {
+  Composite.call(this, node, document);
+};
+
+List.type = {
+  "id": "list",
+  "parent": "content",
+  "properties": {
+    "source_id": "string",
+    "items": ["array", "paragraph"],
+    "ordered": "boolean"
+  }
+};
+
+
+// This is used for the auto-generated docs
+// -----------------
+//
+
+List.description = {
+  "name": "List",
+  "remarks": [
+    "Lists can either be numbered or bullet lists"
+  ],
+  "properties": {
+    "ordered": "Specifies wheter the list is ordered or not",
+    "items": "An array of paragraph references",
+  }
+};
+
+
+// Example Formula
+// -----------------
+//
+
+List.example = {
+  "type": "list",
+  "id": "list_1",
+  "items ": [
+    "paragraph_listitem_1",
+    "paragraph_listitem_2",
+  ]
+};
+
+List.Prototype = function() {
+
+  this.getLength = function() {
+    return this.properties.items.length;
+  };
+
+  this.getNodes = function() {
+    return _.clone(this.items);
+  };
+
+  this.getItems = function() {
+    return _.map(this.properties.items, function(id) {
+      return this.document.get(id);
+    }, this);
+  };
+
+  this.getChangePosition = function(op) {
+    if (op.path[1] === "items") {
+
+      if (op.type === "update") {
+        var diff = op.diff;
+        if (diff.isInsert()) {
+          return op.diff.pos+1;
+        }
+        else if (diff.isDelete()) {
+          return op.diff.pos;
+        }
+        else if (diff.isMove()) {
+          return op.diff.target;
+        }
+      }
+      else if (op.type === "set") {
+        return this.properties.items.length-1;
+      }
+    }
+
+    return -1;
+  };
+
+  this.isMutable = function() {
+    return true;
+  };
+
+  this.insertChild = function(doc, pos, nodeId) {
+    doc.update([this.id, "items"], ["+", pos, nodeId]);
+  };
+
+  this.deleteChild = function(doc, nodeId) {
+    var pos = this.items.indexOf(nodeId);
+    doc.update([this.id, "items"], ["-", pos, nodeId]);
+    doc.delete(nodeId);
+  };
+
+  this.canJoin = function(other) {
+    return (other.type === "list");
+  };
+
+  this.isBreakable = function() {
+    return true;
+  };
+
+  this.break = function(doc, childId, charPos) {
+    var childPos = this.properties.items.indexOf(childId);
+    if (childPos < 0) {
+      throw new Error("Unknown child " + childId);
+    }
+    var child = doc.get(childId);
+    var newNode = child.break(doc, charPos);
+    doc.update([this.id, "items"], ["+", childPos+1, newNode.id]);
+    return newNode;
+  };
+
+};
+
+List.Prototype.prototype = Composite.prototype;
+List.prototype = new List.Prototype();
+List.prototype.constructor = List;
+
+DocumentNode.defineProperties(List.prototype, ["items", "ordered"]);
+
+module.exports = List;
+
+},{"substance-document":81,"underscore":159}],122:[function(require,module,exports){
+"use strict";
+
+var CompositeView = require("../composite/composite_view");
+var List = require("./list");
+
+// Substance.Image.View
+// ==========================================================================
+
+var ListView = function(node, viewFactory) {
+  CompositeView.call(this, node, viewFactory);
+};
+
+ListView.whoami = "SubstanceListView";
+
+
+ListView.Prototype = function() {
+
+  // Rendering
+  // =============================
+  //
+
+  this.render = function() {
+    this.el.innerHTML = "";
+
+    var ltype = (this.node.ordered) ? "OL" : "UL";
+    this.content = document.createElement(ltype);
+    this.content.classList.add("content");
+
+    var i;
+
+    // dispose existing children views if called multiple times
+    for (i = 0; i < this.childrenViews.length; i++) {
+      this.childrenViews[i].dispose();
+    }
+
+    // create children views
+    var children = this.node.getNodes();
+    for (i = 0; i < children.length; i++) {
+      var child = this.node.document.get(children[i]);
+      var childView = this.viewFactory.createView(child);
+
+      var listEl;
+      if (child instanceof List) {
+        listEl = childView.render().el;
+      } else {
+        listEl = document.createElement("LI");
+        listEl.appendChild(childView.render().el);
+      }
+      this.content.appendChild(listEl);
+      this.childrenViews.push(childView);
+    }
+
+    this.el.appendChild(this.content);
+    return this;
+  };
+
+  this.onNodeUpdate = function(op) {
+    if (op.path[0] === this.node.id && op.path[1] === "items") {
+      this.render();
+    }
+  };
+};
+
+ListView.Prototype.prototype = CompositeView.prototype;
+ListView.prototype = new ListView.Prototype();
+
+module.exports = ListView;
+
+},{"../composite/composite_view":100,"./list":121}],123:[function(require,module,exports){
+"use strict";
+
+module.exports = {
+  Model: require("./node"),
+  View: require("./node_view")
+};
+
+},{"./node":124,"./node_view":125}],124:[function(require,module,exports){
+"use strict";
+
+// Note: we leave the Node in `substance-document` as it is an essential part of the API.
+var Document = require("substance-document");
+
+
+var Node = Document.Node;
+
+// This is used for the auto-generated docs
+// -----------------
+//
+
+Node.description = {
+  "name": "Node",
+  "remarks": [
+    "Abstract node type."
+  ],
+  "properties": {
+    "source_id": "Useful for document conversion where the original id of an element should be remembered.",
+  }
+};
+
+// Example
+// -------
+//
+
+module.exports = Node;
+
+},{"substance-document":81}],125:[function(require,module,exports){
+var View = require("substance-application").View;
+
+// Substance.Node.View
+// -----------------
+
+var NodeView = function(node, viewFactory) {
+  View.call(this);
+
+  this.node = node;
+  this.viewFactory = viewFactory;
+
+  this.$el.addClass('content-node');
+  this.$el.attr('id', this.node.id);
+};
+
+NodeView.Prototype = function() {
+
+  // Rendering
+  // --------
+  //
+
+  this.render = function() {
+    this.content = document.createElement("DIV");
+    this.content.classList.add("content");
+    this.el.appendChild(this.content);
+    return this;
+  };
+
+  this.dispose = function() {
+    this.stopListening();
+  };
+
+  // Retrieves the corresponding character position for the given DOM position.
+  // --------
+  //
+
+  this.getCharPosition = function(/*el, offset*/) {
+    throw new Error("NodeView.getCharPosition() is abstract.");
+  };
+
+  // Retrieves the corresponding DOM position for a given character.
+  // --------
+  //
+
+  this.getDOMPosition = function(/*charPos*/) {
+    throw new Error("NodeView.getDOMPosition() is abstract.");
+  };
+
+  // A general graph update listener that dispatches
+  // to `this.onNodeUpdate(op)`
+  // --------
+  //
+
+  this.onGraphUpdate = function(op) {
+    if(op.path[0] === this.node.id && (op.type === "update" || op.type === "set") ) {
+      this.onNodeUpdate(op);
+    }
+  };
+
+  // Callback to get noticed about updates applied to the underlying node.
+  // --------
+  //
+
+  this.onNodeUpdate = function(/*op*/) {
+    // do nothing by default
+  };
+};
+
+NodeView.Prototype.prototype = View.prototype;
+NodeView.prototype = new NodeView.Prototype();
+
+module.exports = NodeView;
+
+},{"substance-application":56}],126:[function(require,module,exports){
+"use strict";
+
+module.exports = {
+  Model: require("./paragraph"),
+  View: require("./paragraph_view")
+};
+
+},{"./paragraph":127,"./paragraph_view":128}],127:[function(require,module,exports){
+"use strict";
+
+var _ = require("underscore");
+var Document = require("substance-document");
+var DocumentNode = Document.Node;
+var Composite = Document.Composite;
+
+
+var Paragraph = function(node, document) {
+  Composite.call(this, node, document);
+};
+
+Paragraph.type = {
+  "id": "paragraph",
+  "parent": "content",
+  "properties": {
+    "children": ["array", "content"]
+  }
+};
+
+// This is used for the auto-generated docs
+// -----------------
+//
+
+Paragraph.description = {
+  "name": "Paragraph",
+  "remarks": [
+    "A Paragraph can have inline elements such as images."
+  ],
+  "properties": {
+    "children": "An array of content node references",
+  }
+};
+
+// Example
+// -------
+//
+
+Paragraph.example = {
+  "type": "paragraph",
+  "id": "paragraph_1",
+  "children ": [
+    "text_1",
+    "image_1",
+    "text_2"
+  ]
+};
+
+Paragraph.Prototype = function() {
+
+  this.getLength = function() {
+    return this.properties.children.length;
+  };
+
+  this.getNodes = function() {
+    return _.clone(this.properties.children);
+  };
+
+  this.getChildren = function() {
+    return _.map(this.properties.children, function(id) {
+      return this.document.get(id);
+    }, this);
+  };
+
+  this.getChangePosition = function(op) {
+    if (op.path[1] === "children") {
+
+      if (op.type === "update") {
+        var diff = op.diff;
+        if (diff.isInsert()) {
+          return op.diff.pos+1;
+        }
+        else if (diff.isDelete()) {
+          return op.diff.pos;
+        }
+        else if (diff.isMove()) {
+          return op.diff.target;
+        }
+      }
+      else if (op.type === "set") {
+        return this.properties.children.length-1;
+      }
+    }
+
+    return -1;
+  };
+
+  this.isMutable = function() {
+    return true;
+  };
+
+  this.insertChild = function(doc, pos, nodeId) {
+    doc.update([this.id, "children"], ["+", pos, nodeId]);
+  };
+
+  this.deleteChild = function(doc, nodeId) {
+    var pos = this.children.indexOf(nodeId);
+    doc.update([this.id, "children"], ["-", pos, nodeId]);
+    doc.delete(nodeId);
+  };
+
+  this.canJoin = function(other) {
+    return (other.type === "paragraph");
+  };
+
+  this.isBreakable = function() {
+    return true;
+  };
+
+  this.break = function(doc, childId, charPos) {
+    var childPos = this.properties.children.indexOf(childId);
+    if (childPos < 0) {
+      throw new Error("Unknown child " + childId);
+    }
+    var child = doc.get(childId);
+    var newNode = child.break(doc, charPos);
+    doc.update([this.id, "children"], ["+", childPos+1, newNode.id]);
+    return newNode;
+  };
+
+};
+
+Paragraph.Prototype.prototype = Composite.prototype;
+Paragraph.prototype = new Paragraph.Prototype();
+Paragraph.prototype.constructor = Paragraph;
+
+DocumentNode.defineProperties(Paragraph.prototype, ["children"]);
+
+module.exports = Paragraph;
+
+},{"substance-document":81,"underscore":159}],128:[function(require,module,exports){
+"use strict";
+
+var CompositeView = require("../composite/composite_view");
+
+// Substance.Image.View
+// ==========================================================================
+
+var ParagraphView = function(node, viewFactory) {
+  CompositeView.call(this, node, viewFactory);
+};
+
+ParagraphView.Prototype = function() {
+
+  this.onNodeUpdate = function(op) {
+    if (op.path[0] === this.node.id && op.path[1] === "children") {
+      this.render();
+    }
+  };
+};
+
+ParagraphView.Prototype.prototype = CompositeView.prototype;
+ParagraphView.prototype = new ParagraphView.Prototype();
+
+module.exports = ParagraphView;
+
+},{"../composite/composite_view":100}],129:[function(require,module,exports){
+"use strict";
+
+module.exports = {
+  Model: require("./table"),
+  View: require("./table_view")
+};
+
+},{"./table":130,"./table_view":131}],130:[function(require,module,exports){
+"use strict";
+
+var Document = require("substance-document");
+var _ = require("underscore");
+var DocumentNode = Document.Node;
+var Composite = Document.Composite;
+
+var Table = function(node, document) {
+  Composite.call(this, node, document);
+};
+
+Table.type = {
+  "id": "table",
+  "parent": "content",
+  "properties": {
+    "label": "string",
+    "source_id": "string",
+    "headers": ["array", "content"],
+    "cells": ["array", "array", "content"],
+    "caption": "content"
+  }
+};
+
+
+// This is used for the auto-generated docs
+// -----------------
+//
+
+Table.description = {
+  "name": "Table",
+  "remarks": [],
+  "properties": {
+    "items": "An array of references which contain the content of each cell",
+  }
+};
+
+
+// Example Formula
+// -----------------
+//
+
+Table.example = {
+  "type": "table",
+  "id": "table_1",
+  "headers": ["text_1", "text_2"],
+  "cells": [
+    ["cell_1_1", "cell_1_2"],
+    ["cell_2_1", "cell_2_2"]
+  ]
+};
+
+Table.Prototype = function() {
+
+  this.getLength = function() {
+    var l = 0;
+    l += this.properties.headers.length;
+    for (var row = 0; row < this.properties.cells.length; row++) {
+      var tableRow = this.properties.cells[row];
+      l += tableRow.length;
+    }
+    if (this.properties.caption) {
+      l += 1;
+    }
+
+    return l;
+  };
+
+  this.getNodes = function() {
+    var ids = [];
+    for (var col = 0; col < this.properties.headers.length; col++) {
+      ids.push(this.properties.headers[col]);
+    }
+    for (var row = 0; row < this.properties.cells.length; row++) {
+      var tableRow = this.properties.cells[row];
+      ids = ids.concat(tableRow);
+    }
+    if (this.properties.caption) {
+      ids.push(this.properties.caption);
+    }
+    return ids;
+  };
+
+  this.getHeaders = function() {
+    return _.map(this.properties.headers, function(id) {
+      return this.document.get(id);
+    }, this);
+  };
+
+  this.getCells = function() {
+    var children = [];
+    for (var i = 0; i < this.properties.cells.length; i++) {
+      var rowIds = this.properties.cells[i];
+      var row = [];
+      for (var j = 0; j < rowIds.length; j++) {
+        row.push(this.document.get(rowIds[j]));
+      }
+      children.push(row);
+    }
+    return children;
+  };
+
+  this.getCaption = function() {
+    var caption;
+    if (this.properties.caption) {
+      caption = this.document.get(this.properties.caption);
+    }
+    return caption;
+  };
+
+  this.getChangePosition = function(/*op*/) {
+    // TODO: map to the corresponding cell
+    return -1;
+  };
+
+  this.isMutable = function() {
+    return false;
+  };
+
+  this.canJoin = function(/*other*/) {
+    return false;
+  };
+
+  this.isBreakable = function() {
+    return false;
+  };
+
+};
+
+Table.Prototype.prototype = Composite.prototype;
+Table.prototype = new Table.Prototype();
+Table.prototype.constructor = Table;
+
+Table.create = function(data) {
+ var result = {};
+
+  var tableId = data.id;
+  var table = {
+    id: tableId,
+    type: "table",
+    label: data.label,
+    headers: [],
+    cells: []
+  };
+
+  var id, node;
+  if (data.headers) {
+    for (var i = 0; i < data.headers.length; i++) {
+      var h = data.headers[i];
+      id = "th_" + i + "_" + tableId;
+      node = {
+        id: id,
+        type: "text",
+        content: h
+      };
+      result[id] = node;
+      table.headers.push(id);
+    }
+  }
+
+  for (var row = 0; row < data.cells.length; row++) {
+    var rowData = data.cells[row];
+    var tableRow = [];
+    for (var col = 0; col < rowData.length; col++) {
+      var cell = rowData[col];
+      id = "td_" + "_" + row + "_" + col + "_" + tableId;
+      node = {
+        id: id,
+        type: "text",
+        content: cell
+      };
+      result[id] = node;
+      tableRow.push(id);
+    }
+    table.cells.push(tableRow);
+  }
+
+  if (data.caption) {
+    id = "caption_"+ tableId;
+    node = {
+      id: id,
+      type: "text",
+      content: data.caption
+    };
+    result[id] = node;
+    table.caption = id;
+  }
+
+  result[table.id] = table;
+
+  return result;
+};
+
+DocumentNode.defineProperties(Table.prototype, ["headers", "cells", "caption"]);
+
+Object.defineProperties(Table.prototype, {
+  // Used as a resource header
+  header: {
+    get: function() { return this.properties.label; }
+  }
+});
+
+module.exports = Table;
+
+},{"substance-document":81,"underscore":159}],131:[function(require,module,exports){
+"use strict";
+
+var CompositeView = require("../composite/composite_view");
+var _ = require("underscore");
+
+// TableView
+// =========
+
+var TableView = function(node, viewFactory) {
+  CompositeView.call(this, node, viewFactory);
+};
+
+TableView.Prototype = function() {
+
+  this.render = function() {
+    this.el.innerHTML = "";
+    this.content = document.createElement("div");
+    this.content.classList.add("content");
+
+    // dispose existing children views if called multiple times
+    for (var i = 0; i < this.childrenViews.length; i++) {
+      this.childrenViews[i].dispose();
+    }
+
+    var tableEl = document.createElement("table");
+
+    // table header
+    var cellNode, cellView;
+    var tableHeaders = this.node.getHeaders();
+    var thead = document.createElement("thead");
+    if (tableHeaders.length > 0) {
+      var rowEl = document.createElement("tr");
+      for (var i = 0; i < tableHeaders.length; i++) {
+        cellNode = tableHeaders[i];
+        cellView = this.viewFactory.createView(cellNode);
+        var cellEl = document.createElement("th");
+        cellEl.appendChild(cellView.render().el);
+        rowEl.appendChild(cellEl);
+
+        this.childrenViews.push(cellView);
+      };
+      thead.appendChild(rowEl);
+    }
+    tableEl.appendChild(thead);
+
+    // table rows
+    var tableCells = this.node.getCells();
+    var tbody = document.createElement("tbody");
+    for (var row = 0; row < tableCells.length; row++) {
+      var tableRow = tableCells[row];
+
+      var rowEl = document.createElement("tr");
+      for (var col = 0; col < tableRow.length; col++) {
+        cellNode = tableRow[col];
+        cellView = this.viewFactory.createView(cellNode);
+        var cellEl = document.createElement("td");
+        cellEl.appendChild(cellView.render().el);
+        rowEl.appendChild(cellEl);
+
+        this.childrenViews.push(cellView);
+      }
+      tbody.appendChild(rowEl);
+    }
+    tableEl.appendChild(tbody);
+
+    this.content.appendChild(tableEl);
+
+    // table caption
+    if (this.node.caption) {
+      var caption = this.node.getCaption();
+      var captionView = this.viewFactory.createView(caption);
+      var captionEl = captionView.render().el;
+      captionEl.classList.add("caption");
+      this.content.appendChild(captionEl);
+      this.childrenViews.push(captionView);
+    }
+
+    this.el.appendChild(this.content);
+
+    return this;
+  };
+
+  this.onNodeUpdate = function(op) {
+    if (op.path[0] === this.node.id) {
+      if (op.path[1] === "headers" || op.path[1] === "cells") {
+        this.render();
+      }
+    }
+  };
+};
+
+TableView.Prototype.prototype = CompositeView.prototype;
+TableView.prototype = new TableView.Prototype();
+TableView.prototype.constructor = TableView;
+
+module.exports = TableView;
+
+},{"../composite/composite_view":100,"underscore":159}],132:[function(require,module,exports){
+"use strict";
+
+module.exports = {
+  Model: require("./text_node"),
+  View: require("./text_view")
+};
+
+},{"./text_node":133,"./text_view":134}],133:[function(require,module,exports){
+"use strict";
+
+// Note: for now, we have left the Text node implementation in substance-document
+// as it is by the test-suite there, too.
+// Later, we will try to extract helper methods, that makes it easier
+// to implement custom textish nodes with annotation support.
+var Document = require("substance-document");
+module.exports = Document.TextNode;
+
+},{"substance-document":81}],134:[function(require,module,exports){
+var NodeView = require('../node/node_view');
+var Document = require("substance-document");
+var Annotator = Document.Annotator;
+var $$ = require("substance-application").$$;
+
+// Substance.Text.View
+// -----------------
+//
+// Manipulation interface shared by all textish types (paragraphs, headings)
+// This behavior can overriden by the concrete node types
+
+var LAST_CHAR_HACK = false;
+
+var TextView = function(node) {
+  NodeView.call(this, node);
+
+  this.$el.addClass('content-node text');
+  this.$el.attr('id', this.node.id);
+
+  this._annotations = {};
+};
+
+TextView.Prototype = function() {
+
+  // Rendering
+  // =============================
+  //
+
+  this.render = function(enhancer) {
+    NodeView.prototype.render.call(this, enhancer);
+
+    this.renderContent();
+    return this;
+  };
+
+
+  this.dispose = function() {
+    NodeView.prototype.dispose.call(this);
+    console.log('disposing paragraph view');
+  };
+
+  this.renderContent = function() {
+    this.content.innerHTML = "";
+
+    this._annotations = this.node.getAnnotations();
+    this.renderWithAnnotations(this._annotations);
+  };
+
+  this.insert = function(pos, str) {
+    var range = this.getDOMPosition(pos);
+    var textNode = range.startContainer;
+    var offset = range.startOffset;
+    var text = textNode.textContent;
+    text = text.substring(0, offset) + str + text.substring(offset);
+    textNode.textContent = text;
+  };
+
+  this.delete = function(pos, length) {
+    var range = this.getDOMPosition(pos);
+    var textNode = range.startContainer;
+    var offset = range.startOffset;
+    var text = textNode.textContent;
+    text = text.substring(0, offset) + text.substring(offset+length);
+    textNode.textContent = text;
+  };
+
+  this.onNodeUpdate = function(op) {
+    if (op.path[1] === "content") {
+      console.log("Updating text view: ", op);
+      if (op.type === "update") {
+        var update = op.diff;
+        if (update.isInsert()) {
+          this.insert(update.pos, update.str);
+        } else if (update.isDelete()) {
+          this.delete(update.pos, update.str.length);
+        }
+      } else if (op.type === "set") {
+        this.renderContent();
+      }
+    }
+  };
+
+  this.onGraphUpdate = function(op) {
+    NodeView.prototype.onGraphUpdate.call(this, op);
+
+    var doc = this.node.document;
+    var schema = doc.getSchema();
+
+    var node;
+    if (op.type !== "delete") {
+      node = doc.get(op.path[0]);
+    } else {
+      node = op.val;
+    }
+    if (schema.isInstanceOf(node.type, "annotation")) {
+      var rerender = false;
+      if (node.path[0] === this.node.id) {
+        rerender = true;
+      } else if (op.type === "set" && op.path[1] === "path" && op.original[0] === this.node.id) {
+        rerender = true;
+      }
+
+      if (rerender) {
+        console.log("Rerendering TextView due to annotation update", op);
+        this.renderContent();
+      }
+    }
+  };
+
+  this.getCharPosition = function(el, offset) {
+    // TODO: this is maybe too naive
+    // lookup the given element and compute a
+    // the corresponding char position in the plain document
+    var range = document.createRange();
+    range.setStart(this.content.childNodes[0], 0);
+    range.setEnd(el, offset);
+    var str = range.toString();
+    var charPos = Math.min(this.node.content.length, str.length);
+
+    // console.log("Requested char pos: ", charPos, this.node.content[charPos]);
+
+    return charPos;
+  };
+
+  // Returns the corresponding DOM element position for the given character
+  // --------
+  //
+  // A DOM position is specified by a tuple of element and offset.
+  // In the case of text nodes it is a TEXT element.
+
+  this.getDOMPosition = function(charPos) {
+    if (this.content === undefined) {
+      throw new Error("Not rendered yet.");
+    }
+
+    var range = document.createRange();
+
+    if (this.node.content.length === 0) {
+      range.setStart(this.content.childNodes[0], 0);
+      return range;
+    }
+
+    // otherwise look for the containing node in DFS order
+    // TODO: this could be optimized using some indexing or caching?
+    var stack = [this.content];
+    while(stack.length > 0) {
+      var el = stack.pop();
+      if (el.nodeType === Node.TEXT_NODE) {
+        var text = el;
+        if (text.length >= charPos) {
+          range.setStart(el, charPos);
+          return range;
+        } else {
+          charPos -= text.length;
+        }
+      } else if (el.childNodes.length > 0) {
+        // push in reverse order to have a left bound DFS
+        for (var i = el.childNodes.length - 1; i >= 0; i--) {
+          stack.push(el.childNodes[i]);
+        }
+      }
+    }
+
+    console.log("Bug-Alarm: the model and the view are out of sync.");
+    console.log("The model as "+charPos+" more characters");
+    console.log("Returning the last available position... but please fix me. Anyone?");
+
+    var children = this.content.childNodes;
+    var last = children[children.length-1];
+    range.setStart(last, last.length);
+
+    return range;
+  };
+
+  this.createAnnotationElement = function(entry) {
+    var el;
+    if (entry.type === "link") {
+      el = $$('a.annotation.'+entry.type, {
+        id: entry.id,
+        href: this.node.document.get(entry.id).url // "http://zive.at"
+      });
+    } else {
+      el = $$('span.annotation.'+entry.type, {
+        id: entry.id
+      });
+    }
+
+    return el;
+  };
+
+  this.renderWithAnnotations = function(annotations) {
+    var that = this;
+    var text = this.node.content;
+    var fragment = document.createDocumentFragment();
+
+    // this splits the text and annotations into smaller pieces
+    // which is necessary to generate proper HTML.
+    var fragmenter = new Annotator.Fragmenter(fragment, text, annotations);
+
+    fragmenter.onText = function(context, text) {
+      context.appendChild(document.createTextNode(text));
+    };
+
+    fragmenter.onEnter = function(entry, parentContext) {
+      var el = that.createAnnotationElement(entry);
+      parentContext.appendChild(el);
+      return el;
+    };
+
+    // this calls onText and onEnter in turns...
+    fragmenter.start(fragment, text, annotations);
+
+    // EXPERIMENTAL HACK:
+    // append a trailing white-space to improve the browser's behaviour with softbreaks at the end
+    // of a node.
+    if (LAST_CHAR_HACK) {
+      fragment.appendChild(document.createTextNode(" "));
+    }
+
+    // set the content
+    this.content.innerHTML = "";
+    this.content.appendChild(fragment);
+  };
+
+  // Free the memory
+  // --------
+
+  this.dispose = function() {
+    this.stopListening();
+  };
+};
+
+TextView.Prototype.prototype = NodeView.prototype;
+TextView.prototype = new TextView.Prototype();
+
+module.exports = TextView;
+
+},{"../node/node_view":125,"substance-application":56,"substance-document":81}],135:[function(require,module,exports){
+"use strict";
+
+module.exports = {
+  Model: require("./web_resource"),
+  View: require("./web_resource_view")
+};
+
+},{"./web_resource":136,"./web_resource_view":137}],136:[function(require,module,exports){
+"use strict";
+
+var DocumentNode = require("substance-document").Node;
+
+var WebResource = function(node, doc) {
+  DocumentNode.call(this, node, doc);
+};
+
+WebResource.type = {
+  "id": "webresource",
+  "parent": "content",
+  "properties": {
+    "source_id": "string",
+    "url": "string"
+  }
+};
+
+WebResource.description = {
+  "name": "WebResource",
+  "description": "A resource which can be accessed via URL",
+  "remarks": [
+    "This element is a parent for several other nodes such as Image."
+  ],
+  "properties": {
+    "url": "URL to a resource",
+  }
+};
+
+
+WebResource.example = {
+  "type": "webresource",
+  "id": "webresource_3",
+  "url": "http://elife.elifesciences.org/content/elife/1/e00311/F3.medium.gif"
+};
+
+WebResource.Prototype = function() {};
+
+WebResource.Prototype.prototype = DocumentNode.prototype;
+WebResource.prototype = new WebResource.Prototype();
+WebResource.prototype.constructor = WebResource;
+
+DocumentNode.defineProperties(WebResource.prototype, ["url"]);
+
+module.exports = WebResource;
+
+},{"substance-document":81}],137:[function(require,module,exports){
+"use strict";
+
+module.exports = require("../node").View;
+
+},{"../node":123}],138:[function(require,module,exports){
+"use strict";
+
+module.exports = {
+  Operation: require('./src/operation'),
+  Compound: require('./src/compound'),
+  ArrayOperation: require('./src/array_operation'),
+  TextOperation: require('./src/text_operation'),
+  ObjectOperation: require('./src/object_operation'),
+  Helpers: require('./src/operation_helpers')
+};
+
+},{"./src/array_operation":139,"./src/compound":140,"./src/object_operation":141,"./src/operation":142,"./src/operation_helpers":143,"./src/text_operation":144}],139:[function(require,module,exports){
+"use strict";
+
+// Import
+// ========
+
+var _ = require('underscore');
+var util   = require('substance-util');
+var errors = util.errors;
+var Operation = require('./operation');
+var Compound = require('./compound');
+
+var NOP = "NOP";
+var DEL = "delete";
+var INS = "insert";
+var MOV = 'move';
+
+// ArrayOperations can be used to describe changes to arrays by operations.
+// ========
+//
+// Insertions
+// --------
+//
+// An insertion is specified by
+//    {
+//      type: '+',
+//      val:  <value>,
+//      pos:  <position>
+//    }
+// or shorter:
+//    ['+', <value>, <position>]
+//
+//
+// Deletions
+// --------
+//
+// A deletion is in the same way as Insertions but with '-' as type.
+//
+//    ['-', <value>, <position>]
+//
+// The value must be specified too as otherwise the operation would not be invertible.
+//
+var Move;
+
+var ArrayOperation = function(options) {
+
+  if (options.type === undefined) {
+    throw new errors.OperationError("Illegal argument: insufficient data.");
+  }
+
+  // Insert: '+', Delete: '-', Move: '>>'
+  this.type = options.type;
+
+  if (this.type === NOP) return;
+
+  // the position where to apply the operation
+  this.pos = options.pos;
+
+  // the string to delete or insert
+  this.val = options.val;
+
+  // Move operations have a target position
+  this.target = options.target;
+
+  // sanity checks
+  if(this.type !== NOP && this.type !== INS && this.type !== DEL && this.type !== MOV) {
+    throw new errors.OperationError("Illegal type.");
+  }
+
+  if (this.type === INS || this.type === DEL) {
+    if (this.pos === undefined || this.val === undefined) {
+      throw new errors.OperationError("Illegal argument: insufficient data.");
+    }
+    if (!_.isNumber(this.pos) && this.pos < 0) {
+      throw new errors.OperationError("Illegal argument: expecting positive number as pos.");
+    }
+  } else if (this.type === MOV) {
+    if (this.pos === undefined || this.target === undefined) {
+      throw new errors.OperationError("Illegal argument: insufficient data.");
+    }
+    if (!_.isNumber(this.pos) && this.pos < 0) {
+      throw new errors.OperationError("Illegal argument: expecting positive number as pos.");
+    }
+    if (!_.isNumber(this.target) && this.target < 0) {
+      throw new errors.OperationError("Illegal argument: expecting positive number as target.");
+    }
+  }
+};
+
+ArrayOperation.fromJSON = function(data) {
+  if (_.isArray(data)) {
+    if (data[0] === MOV) {
+      return new Move(data[1], data[2]);
+    } else {
+      return new ArrayOperation(data);
+    }
+  }
+  if (data.type === MOV) {
+    return Move.fromJSON(data);
+  } else if (data.type === Compound.TYPE) {
+    var ops = [];
+    for (var idx = 0; idx < data.ops.length; idx ++) {
+      ops.push(ArrayOperation.fromJSON(data.ops[idx]));
+    }
+    return ArrayOperation.Compound(ops);
+  }
+  else  {
+    return new ArrayOperation(data);
+  }
+};
+
+ArrayOperation.Prototype = function() {
+
+  this.clone = function() {
+    return new ArrayOperation(this);
+  };
+
+  this.apply = function(array) {
+
+    if (this.type === NOP) {
+      return array;
+    }
+
+    var adapter = (array instanceof ArrayOperation.ArrayAdapter) ? array : new ArrayOperation.ArrayAdapter(array);
+
+    // Insert
+    if (this.type === INS) {
+      adapter.insert(this.pos, this.val);
+    }
+    // Delete
+    else if (this.type === DEL) {
+      adapter.delete(this.pos, this.val);
+    }
+    else {
+      throw new errors.OperationError("Illegal state.");
+    }
+    return array;
+  };
+
+  this.invert = function() {
+    var data = this.toJSON();
+
+    if (this.type === INS) data.type = DEL;
+    else if (this.type === DEL) data.type = INS;
+    else if (this.type === NOP) data.type = NOP;
+    else {
+      throw new errors.OperationError("Illegal state.");
+    }
+
+    return new ArrayOperation(data);
+  };
+
+  this.hasConflict = function(other) {
+    return ArrayOperation.hasConflict(this, other);
+  };
+
+  this.toJSON = function() {
+    var result = {
+      type: this.type,
+    };
+
+    if (this.type === NOP) return result;
+
+    result.pos = this.pos;
+    result.val = this.val;
+
+    return result;
+  };
+
+  this.isInsert = function() {
+    return this.type === INS;
+  };
+
+  this.isDelete = function() {
+    return this.type === DEL;
+  };
+
+  this.isNOP = function() {
+    return this.type === NOP;
+  };
+
+  this.isMove = function() {
+    return this.type === MOV;
+  };
+
+};
+ArrayOperation.Prototype.prototype = Operation.prototype;
+ArrayOperation.prototype = new ArrayOperation.Prototype();
+
+var _NOP = 0;
+var _DEL = 1;
+var _INS = 2;
+var _MOV = 4;
+
+var CODE = {};
+CODE[NOP] = _NOP;
+CODE[DEL] = _DEL;
+CODE[INS] = _INS;
+CODE[MOV] = _MOV;
+
+var _hasConflict = [];
+
+_hasConflict[_DEL | _DEL] = function(a,b) {
+  return a.pos === b.pos;
+};
+
+_hasConflict[_DEL | _INS] = function() {
+  return false;
+};
+
+_hasConflict[_INS | _INS] = function(a,b) {
+  return a.pos === b.pos;
+};
+
+/*
+  As we provide Move as quasi atomic operation we have to look at it conflict potential.
+
+  A move is realized as composite of Delete and Insert.
+
+  M / I: ( -> I / I conflict)
+
+    m.s < i && m.t == i-1
+    else i && m.t == i
+
+  M / D: ( -> D / D conflict)
+
+    m.s === d
+
+  M / M:
+
+    1. M/D conflict
+    2. M/I conflict
+*/
+
+var hasConflict = function(a, b) {
+  if (a.type === NOP || b.type === NOP) return false;
+  var caseId = CODE[a.type] | CODE[b.type];
+
+  if (_hasConflict[caseId]) {
+    return _hasConflict[caseId](a,b);
+  } else {
+    return false;
+  }
+};
+
+var transform0;
+
+function transform_insert_insert(a, b, first) {
+
+  if (a.pos === b.pos) {
+    if (first) {
+      b.pos += 1;
+    } else {
+      a.pos += 1;
+    }
+  }
+  // a before b
+  else if (a.pos < b.pos) {
+    b.pos += 1;
+  }
+
+  // a after b
+  else  {
+    a.pos += 1;
+  }
+
+}
+
+function transform_delete_delete(a, b) {
+
+  // turn the second of two concurrent deletes into a NOP
+  if (a.pos === b.pos) {
+    b.type = NOP;
+    a.type = NOP;
+    return;
+  }
+
+  if (a.pos < b.pos) {
+    b.pos -= 1;
+  } else {
+    a.pos -= 1;
+  }
+
+}
+
+function transform_insert_delete(a, b) {
+
+  // reduce to a normalized case
+  if (a.type === DEL) {
+    var tmp = a;
+    a = b;
+    b = tmp;
+  }
+
+  if (a.pos <= b.pos) {
+    b.pos += 1;
+  } else {
+    a.pos -= 1;
+  }
+
+}
+
+function transform_move(a, b, check, first) {
+  if (a.type !== MOV) return transform_move(b, a, check, !first);
+
+  var del = {type: DEL, pos: a.pos};
+  var ins = {type: INS, pos: a.target};
+
+  var options = {inplace: true, check:check};
+
+  if (b.type === DEL && a.pos === b.pos) {
+    a.type = NOP;
+    b.pos = a.target;
+
+  } else if (b.type === MOV && a.pos === b.pos) {
+    if (first) {
+      b.pos = a.target;
+      a.type = NOP;
+    } else {
+      a.pos = b.target;
+      b.type = NOP;
+    }
+  } else {
+
+    if (first) {
+      transform0(del, b, options);
+      transform0(ins, b, options);
+    } else {
+      transform0(b, del, options);
+      transform0(b, ins, options);
+    }
+
+    a.pos = del.pos;
+    a.target = ins.pos;
+
+  }
+}
+
+transform0 = function(a, b, options) {
+
+  options = options || {};
+
+  if (options.check && hasConflict(a, b)) {
+    throw Operation.conflict(a, b);
+  }
+
+  if (!options.inplace) {
+    a = util.clone(a);
+    b = util.clone(b);
+  }
+
+  if (a.type === NOP || b.type === NOP)  {
+    // nothing to transform
+  }
+  else if (a.type === INS && b.type === INS)  {
+    transform_insert_insert(a, b, true);
+  }
+  else if (a.type === DEL && b.type === DEL) {
+    transform_delete_delete(a, b, true);
+  }
+  else if (a.type === MOV || b.type === MOV) {
+    transform_move(a, b, options.check, true);
+  }
+  else {
+    transform_insert_delete(a, b, true);
+  }
+
+  return [a, b];
+};
+
+var __apply__ = function(op, array) {
+  if (_.isArray(op)) {
+    if (op[0] === MOV) {
+      op = new Move(op[1], op[2]);
+    } else {
+      op = new ArrayOperation(op);
+    }
+  } else if (!(op instanceof ArrayOperation)) {
+    op = ArrayOperation.fromJSON(op);
+  }
+  return op.apply(array);
+};
+
+ArrayOperation.transform = Compound.createTransform(transform0);
+ArrayOperation.hasConflict = hasConflict;
+
+ArrayOperation.perform = __apply__;
+// DEPRECATED: use ArrayOperation.perform
+ArrayOperation.apply = __apply__;
+
+// Note: this is implemented manually, to avoid the value parameter
+// necessary for Insert and Delete
+var Move = function(source, target) {
+
+  this.type = MOV;
+  this.pos = source;
+  this.target = target;
+
+  if (!_.isNumber(this.pos) || !_.isNumber(this.target) || this.pos < 0 || this.target < 0) {
+    throw new errors.OperationError("Illegal argument");
+  }
+};
+
+Move.Prototype = function() {
+
+  this.clone = function() {
+    return new Move(this.pos, this.target);
+  };
+
+  this.apply = function(array) {
+    if (this.type === NOP) return array;
+
+    var adapter = (array instanceof ArrayOperation.ArrayAdapter) ? array : new ArrayOperation.ArrayAdapter(array);
+
+    var val = array[this.pos];
+    adapter.move(val, this.pos, this.target);
+
+    return array;
+  };
+
+  this.invert = function() {
+    return new Move(this.target, this.pos);
+  };
+
+  this.toJSON = function() {
+    return {
+      type: MOV,
+      pos: this.pos,
+      target: this.target
+    };
+  };
+
+};
+Move.Prototype.prototype = ArrayOperation.prototype;
+Move.prototype = new Move.Prototype();
+
+Move.fromJSON = function(data) {
+  return new Move(data.pos, data.target);
+};
+
+
+// classical LCSS, implemented inplace and using traceback trick
+var lcss = function(arr1, arr2) {
+  var i,j;
+  var L = [0];
+
+  for (i = 0; i < arr1.length; i++) {
+    for (j = 0; j < arr2.length; j++) {
+      L[j+1] = L[j+1] || 0;
+      if (_.isEqual(arr1[i], arr2[j])) {
+        L[j+1] = Math.max(L[j+1], L[j]+1);
+      } else {
+        L[j+1] = Math.max(L[j+1], L[j]);
+      }
+    }
+  }
+
+  var seq = [];
+  for (j = arr2.length; j >= 0; j--) {
+    if (L[j] > L[j-1]) {
+      seq.unshift(arr2[j-1]);
+    }
+  }
+
+  return seq;
+};
+
+
+// Factory methods
+// -------
+// Note: you should use these methods instead of manually define
+// an operation. This is allows us to change the underlying implementation
+// without breaking your code.
+
+
+ArrayOperation.Insert = function(pos, val) {
+  return new ArrayOperation({type:INS, pos: pos, val: val});
+};
+
+ArrayOperation.Delete = function(pos, val) {
+  if (_.isArray(pos)) {
+    pos = pos.indexOf(val);
+  }
+  if (pos < 0) return new ArrayOperation({type: NOP});
+  return new ArrayOperation({type:DEL, pos: pos, val: val});
+};
+
+ArrayOperation.Move = function(pos1, pos2) {
+  return new Move(pos1, pos2);
+};
+
+ArrayOperation.Push = function(arr, val) {
+  var index = arr.length;
+  return ArrayOperation.Insert(index, val);
+};
+
+ArrayOperation.Pop = function(arr) {
+  // First we need to find a way to return values
+  var index = arr.length-1;
+  return ArrayOperation.Delete(index, arr[index]);
+};
+
+
+// Creates a compound operation that transforms the given oldArray
+// into the new Array
+ArrayOperation.Update = function(oldArray, newArray) {
+
+  // 1. Compute longest common subsequence
+  var seq = lcss(oldArray, newArray);
+
+  // 2. Iterate through the three sequences and generate a sequence of
+  //    retains, deletes, and inserts
+
+  var a = seq;
+  var b = oldArray;
+  var c = newArray;
+  var pos1, pos2, pos3;
+  pos1 = 0;
+  pos2 = 0;
+  pos3 = 0;
+
+  seq = [];
+
+  while(pos2 < b.length || pos3 < c.length) {
+    if (a[pos1] === b[pos2] && b[pos2] === c[pos3]) {
+      pos1++; pos2++; pos3++;
+      seq.push(1);
+    } else if (a[pos1] === b[pos2]) {
+      seq.push(['+', c[pos3++]]);
+    } else {
+      seq.push(['-', b[pos2++]]);
+    }
+  }
+
+  // 3. Create a compound for the computed sequence
+
+  return ArrayOperation.Sequence(seq);
+};
+
+ArrayOperation.Compound = function(ops) {
+  // do not create a Compound if not necessary
+  if (ops.length === 1) return ops[0];
+  else return new Compound(ops);
+};
+
+// Convenience factory method to create an operation that clears the given array.
+// --------
+//
+
+ArrayOperation.Clear = function(arr) {
+  var ops = [];
+  for (var idx = 0; idx < arr.length; idx++) {
+    ops.push(ArrayOperation.Delete(0, arr[idx]));
+  }
+  return ArrayOperation.Compound(ops);
+};
+
+
+
+// Convenience factory method to create an incremental complex array update.
+// --------
+//
+// Example:
+//  Input:
+//    [1,2,3,4,5,6,7]
+//  Sequence:
+//    [2, ['-', 3], 2, ['+', 8]]
+//  Output:
+//    [1,2,4,5,8,6,7]
+//
+// Syntax:
+//
+//  - positive Number: skip / retain
+//  - tuple ['-', <val>]: delete element at current position
+//  - tuple ['+', <val>]: insert element at current position
+
+ArrayOperation.Sequence = function(seq) {
+  var pos = 0;
+  var ops = [];
+
+  for (var idx = 0; idx < seq.length; idx++) {
+    var s = seq[idx];
+
+    if (_.isNumber(s) && s > 0) {
+      pos += s;
+    } else {
+      if (s[0] === "+") {
+        ops.push(ArrayOperation.Insert(pos, s[1]));
+        pos+=1;
+      } else if (s[0] === "-") {
+        ops.push(ArrayOperation.Delete(pos, s[1]));
+      } else {
+        throw new errors.OperationError("Illegal operation.");
+      }
+    }
+  }
+
+  return new Compound(ops);
+};
+
+ArrayOperation.create = function(array, spec) {
+  var type = spec[0];
+  var val, pos;
+  if (type === INS || type === "+") {
+    pos = spec[1];
+    val = spec[2];
+    return ArrayOperation.Insert(pos, val);
+  } else if (type === DEL || type === "-") {
+    pos = spec[1];
+    val = array[pos];
+    return ArrayOperation.Delete(pos, val);
+  } else if (type === MOV || type === ">>") {
+    pos = spec[1];
+    var target = spec[2];
+    return ArrayOperation.Move(pos, target);
+  } else {
+    throw new errors.OperationError("Illegal specification.");
+  }
+};
+
+var ArrayAdapter = function(arr) {
+  this.array = arr;
+};
+
+ArrayAdapter.prototype = {
+  insert: function(pos, val) {
+    if (this.array.length < pos) {
+      throw new errors.OperationError("Provided array is too small.");
+    }
+    this.array.splice(pos, 0, val);
+  },
+
+  delete: function(pos, val) {
+    if (this.array.length < pos) {
+      throw new errors.OperationError("Provided array is too small.");
+    }
+    if (this.array[pos] !== val) {
+      throw new errors.OperationError("Unexpected value at position " + pos + ". Expected " + val + ", found " + this.array[pos]);
+    }
+    this.array.splice(pos, 1);
+  },
+
+  move: function(val, pos, to) {
+    if (this.array.length < pos) {
+      throw new errors.OperationError("Provided array is too small.");
+    }
+    this.array.splice(pos, 1);
+
+    if (this.array.length < to) {
+      throw new errors.OperationError("Provided array is too small.");
+    }
+    this.array.splice(to, 0, val);
+  }
+};
+ArrayOperation.ArrayAdapter = ArrayAdapter;
+
+ArrayOperation.NOP = NOP;
+ArrayOperation.DELETE = DEL;
+ArrayOperation.INSERT = INS;
+ArrayOperation.MOVE = MOV;
+
+// Export
+// ========
+
+module.exports = ArrayOperation;
+
+},{"./compound":140,"./operation":142,"substance-util":154,"underscore":159}],140:[function(require,module,exports){
+"use strict";
+
+// Import
+// ========
+
+var _    = require('underscore');
+var util   = require('substance-util');
+var Operation = require('./operation');
+
+// Module
+// ========
+
+var COMPOUND = "compound";
+
+var Compound = function(ops) {
+  this.type = COMPOUND;
+  this.ops = ops;
+  this.alias = undefined;
+
+  if (!ops || ops.length === 0) {
+    throw new Operation.OperationError("No operations given.");
+  }
+};
+
+Compound.Prototype = function() {
+
+  this.clone = function() {
+    var ops = [];
+    for (var idx = 0; idx < this.ops.length; idx++) {
+      ops.push(util.clone(this.ops[idx]));
+    }
+    return new Compound(ops);
+  };
+
+  this.apply = function(obj) {
+    for (var idx = 0; idx < this.ops.length; idx++) {
+      obj = this.ops[idx].apply(obj);
+    }
+    return obj;
+  };
+
+  this.invert = function() {
+    var ops = [];
+    for (var idx = 0; idx < this.ops.length; idx++) {
+      // reverse the order of the inverted atomic commands
+      ops.unshift(this.ops[idx].invert());
+    }
+
+    return new Compound(ops);
+  };
+
+  this.toJSON = function() {
+    var result = {
+      type: COMPOUND,
+      ops: this.ops,
+    };
+    if (this.alias) result.alias = this.alias;
+    return result;
+  };
+
+};
+Compound.Prototype.prototype = Operation.prototype;
+Compound.prototype = new Compound.Prototype();
+
+Compound.TYPE = COMPOUND;
+
+// Transforms a compound and another given change inplace.
+// --------
+//
+
+var compound_transform = function(a, b, first, check, transform0) {
+  var idx;
+
+  if (b.type === COMPOUND) {
+    for (idx = 0; idx < b.ops.length; idx++) {
+      compound_transform(a, b.ops[idx], first, check, transform0);
+    }
+  }
+
+  else {
+    for (idx = 0; idx < a.ops.length; idx++) {
+      var _a, _b;
+      if (first) {
+        _a = a.ops[idx];
+        _b = b;
+      } else {
+        _a = b;
+        _b = a.ops[idx];
+      }
+      transform0(_a, _b, {inplace: true, check: check});
+    }
+  }
+};
+
+// A helper to create a transform method that supports Compounds.
+// --------
+//
+
+Compound.createTransform = function(primitive_transform) {
+  return function(a, b, options) {
+    options = options || {};
+    if(a.type === COMPOUND || b.type === COMPOUND) {
+      if (!options.inplace) {
+        a = util.clone(a);
+        b = util.clone(b);
+      }
+      if (a.type === COMPOUND) {
+        compound_transform(a, b, true, options.check, primitive_transform);
+      } else if (b.type === COMPOUND) {
+        compound_transform(b, a, false, options.check, primitive_transform);
+      }
+      return [a, b];
+    } else {
+      return primitive_transform(a, b, options);
+    }
+
+  };
+};
+
+// Export
+// ========
+
+module.exports = Compound;
+
+},{"./operation":142,"substance-util":154,"underscore":159}],141:[function(require,module,exports){
+"use strict";
+
+// Import
+// ========
+
+var _ = require('underscore');
+var util = require('substance-util');
+var errors = util.errors;
+var Operation = require('./operation');
+var Compound = require('./compound');
+var TextOperation = require('./text_operation');
+var ArrayOperation = require('./array_operation');
+
+var NOP = "NOP";
+var CREATE = "create";
+var DELETE = 'delete';
+var UPDATE = 'update';
+var SET = 'set';
+
+var ObjectOperation = function(data) {
+
+  this.type = data.type;
+  this.path = data.path;
+
+  if (this.type === CREATE || this.type === DELETE) {
+    this.val = data.val;
+  }
+
+  // Updates can be given as value or as Operation (Text, Array)
+  else if (this.type === UPDATE) {
+    if (data.diff !== undefined) {
+      this.diff = data.diff;
+      this.propertyType = data.propertyType;
+    } else {
+      throw new errors.OperationError("Illegal argument: update by value or by diff must be provided");
+    }
+  }
+
+  else if (this.type === SET) {
+    this.val = data.val;
+    this.original = data.original;
+  }
+};
+
+ObjectOperation.fromJSON = function(data) {
+  if (data.type === Compound.TYPE) {
+    var ops = [];
+    for (var idx = 0; idx < data.ops.length; idx++) {
+      ops.push(ObjectOperation.fromJSON(data.ops[idx]));
+    }
+    return ObjectOperation.Compound(ops);
+
+  } else {
+    return new ObjectOperation(data);
+  }
+};
+
+ObjectOperation.Prototype = function() {
+
+  this.clone = function() {
+    return new ObjectOperation(this);
+  };
+
+  this.isNOP = function() {
+    if (this.type === NOP) return true;
+    else if (this.type === UPDATE) return this.diff.isNOP();
+  };
+
+  this.apply = function(obj) {
+    if (this.type === NOP) return obj;
+
+    // Note: this allows to use a custom adapter implementation
+    // to support other object like backends
+    var adapter = (obj instanceof ObjectOperation.Object) ? obj : new ObjectOperation.Object(obj);
+
+    if (this.type === CREATE) {
+      // clone here as the operations value must not be changed
+      adapter.create(this.path, util.clone(this.val));
+      return obj;
+    }
+
+    var val = adapter.get(this.path);
+
+    if (this.type === DELETE) {
+      // TODO: maybe we could tolerate such deletes
+      if (val === undefined) {
+        throw new errors.OperationError("Property " + JSON.stringify(this.path) + " not found.");
+      }
+      adapter.delete(this.path, val);
+    }
+
+    else if (this.type === UPDATE) {
+      if (this.propertyType === 'object') {
+        val = ObjectOperation.apply(this.diff, val);
+        if(!adapter.inplace()) adapter.update(this.path, val, this.diff);
+      }
+      else if (this.propertyType === 'array') {
+        val = ArrayOperation.apply(this.diff, val);
+        if(!adapter.inplace()) adapter.update(this.path, val, this.diff);
+      }
+      else if (this.propertyType === 'string') {
+        val = TextOperation.apply(this.diff, val);
+        adapter.update(this.path, val, this.diff);
+      }
+      else {
+        throw new errors.OperationError("Unsupported type for operational update.");
+      }
+    }
+
+    else if (this.type === SET) {
+      // clone here as the operations value must not be changed
+      adapter.set(this.path, util.clone(this.val));
+    }
+
+    else {
+      throw new errors.OperationError("Illegal state.");
+    }
+
+    return obj;
+  };
+
+  this.invert = function() {
+
+    if (this.type === NOP) {
+      return { type: NOP };
+    }
+
+    var result = new ObjectOperation(this);
+
+    if (this.type === CREATE) {
+      result.type = DELETE;
+    }
+
+    else if (this.type === DELETE) {
+      result.type = CREATE;
+    }
+
+    else if (this.type === UPDATE) {
+      var invertedDiff;
+      if (this.propertyType === 'string') {
+        invertedDiff = TextOperation.fromJSON(this.diff).invert();
+      } else if (this.propertyType === 'array') {
+        invertedDiff = ArrayOperation.fromJSON(this.diff).invert();
+      }
+      result.diff = invertedDiff;
+      result.propertyType = this.propertyType;
+    }
+
+    else if (this.type === SET) {
+      result.val = this.original;
+      result.original = this.val;
+    }
+
+    else {
+      throw new errors.OperationError("Illegal state.");
+    }
+
+    return result;
+  };
+
+  this.hasConflict = function(other) {
+    return ObjectOperation.hasConflict(this, other);
+  };
+
+  this.toJSON = function() {
+
+    if (this.type === NOP) {
+      return {
+        type: NOP
+      };
+    }
+
+    var data = {
+      type: this.type,
+      path: this.path,
+    };
+
+    if (this.type === CREATE || this.type === DELETE) {
+      data.val = this.val;
+    }
+
+    else if (this.type === UPDATE) {
+      data.diff = this.diff;
+      data.propertyType = this.propertyType;
+    }
+
+    else if (this.type === SET) {
+      data.val = this.val;
+      data.original = this.original;
+    }
+
+    return data;
+  };
+
+};
+ObjectOperation.Prototype.prototype = Operation.prototype;
+ObjectOperation.prototype = new ObjectOperation.Prototype();
+
+ObjectOperation.Object = function(obj) {
+  this.obj = obj;
+};
+
+ObjectOperation.Object.Prototype = function() {
+
+  function resolve(self, obj, path, create) {
+    var item = obj;
+    var idx = 0;
+    for (; idx < path.length-1; idx++) {
+      if (item === undefined) {
+        throw new Error("Key error: could not find element for path " + JSON.stringify(self.path));
+      }
+
+      if (item[path[idx]] === undefined && create) {
+        item[path[idx]] = {};
+      }
+
+      item = item[path[idx]];
+    }
+    return {parent: item, key: path[idx]};
+  }
+
+  this.get = function(path) {
+    var item = resolve(this, this.obj, path);
+    return item.parent[item.key];
+  };
+
+  this.create = function(path, value) {
+    var item = resolve(this, this.obj, path, true);
+    if (item.parent[item.key] !== undefined) {
+      throw new errors.OperationError("Value already exists. path =" + JSON.stringify(path));
+    }
+    item.parent[item.key] = value;
+  };
+
+  // Note: in the default implementation we do not need the diff
+  this.update = function(path, value, diff) {
+    this.set(path, value);
+  };
+
+  this.set = function(path, value) {
+    var item = resolve(this, this.obj, path);
+    item.parent[item.key] = value;
+  };
+
+  this.delete = function(path) {
+    var item = resolve(this, this.obj, path);
+    delete item.parent[item.key];
+  };
+
+  this.inplace = function() {
+    return true;
+  };
+
+};
+ObjectOperation.Object.prototype = new ObjectOperation.Object.Prototype();
+
+
+var hasConflict = function(a, b) {
+  if (a.type === NOP || b.type === NOP) return false;
+
+  return _.isEqual(a.path, b.path);
+};
+
+var transform_delete_delete = function(a, b) {
+  // both operations have the same effect.
+  // the transformed operations are turned into NOPs
+  a.type = NOP;
+  b.type = NOP;
+};
+
+var transform_create_create = function() {
+  // TODO: maybe it would be possible to create an differntial update that transforms the one into the other
+  // However, we fail for now.
+  throw new errors.OperationError("Can not transform two concurring creates of the same property");
+};
+
+var transform_delete_create = function(a, b, flipped) {
+  if (a.type !== DELETE) {
+    return transform_delete_create(b, a, true);
+  }
+
+  if (!flipped) {
+    a.type = NOP;
+  } else {
+    a.val = b.val;
+    b.type = NOP;
+  }
+};
+
+var transform_delete_update = function(a, b, flipped) {
+  if (a.type !== DELETE) {
+    return transform_delete_update(b, a, true);
+  }
+
+  var op;
+  if (b.propertyType === 'string') {
+    op = TextOperation.fromJSON(b.diff);
+  } else if (b.propertyType === 'array') {
+    op = ArrayOperation.fromJSON(b.diff);
+  }
+
+  // (DELETE, UPDATE) is transformed into (DELETE, CREATE)
+  if (!flipped) {
+    a.type = NOP;
+    b.type = CREATE;
+    b.val = op.apply(a.val);
+  }
+  // (UPDATE, DELETE): the delete is updated to delete the updated value
+  else {
+    a.val = op.apply(a.val);
+    b.type = NOP;
+  }
+
+};
+
+var transform_create_update = function() {
+  // it is not possible to reasonably transform this.
+  throw new errors.OperationError("Can not transform a concurring create and update of the same property");
+};
+
+var transform_update_update = function(a, b) {
+
+  // Note: this is a conflict the user should know about
+
+  var op_a, op_b, t;
+  if (b.propertyType === 'string') {
+    op_a = TextOperation.fromJSON(a.diff);
+    op_b = TextOperation.fromJSON(b.diff);
+    t = TextOperation.transform(op_a, op_b, {inplace: true});
+  } else if (b.propertyType === 'array') {
+    op_a = ArrayOperation.fromJSON(a.diff);
+    op_b = ArrayOperation.fromJSON(b.diff);
+    t = ArrayOperation.transform(op_a, op_b, {inplace: true});
+  } else if (b.propertyType === 'object') {
+    op_a = ObjectOperation.fromJSON(a.diff);
+    op_b = ObjectOperation.fromJSON(b.diff);
+    t = ObjectOperation.transform(op_a, op_b, {inplace: true});
+  }
+
+  a.diff = t[0];
+  b.diff = t[1];
+};
+
+var transform_create_set = function(a, b, flipped) {
+  if (a.type !== CREATE) return transform_create_set(b, a, true);
+
+  if (!flipped) {
+    a.type = NOP;
+    b.original = a.val;
+  } else {
+    a.type = SET;
+    a.original = b.val;
+    b.type = NOP;
+  }
+
+};
+
+var transform_delete_set = function(a, b, flipped) {
+  if (a.type !== DELETE) return transform_delete_set(b, a, true);
+
+  if (!flipped) {
+    a.type = NOP;
+    b.type = CREATE;
+    b.original = undefined;
+  } else {
+    a.val = b.val;
+    b.type = NOP;
+  }
+
+};
+
+var transform_update_set = function() {
+  throw new errors.OperationError("Can not transform update/set of the same property.");
+};
+
+var transform_set_set = function(a, b) {
+  a.type = NOP;
+  b.original = a.val;
+};
+
+var _NOP = 0;
+var _CREATE = 1;
+var _DELETE = 2;
+var _UPDATE = 4;
+var _SET = 8;
+
+var CODE = {};
+CODE[NOP] =_NOP;
+CODE[CREATE] = _CREATE;
+CODE[DELETE] = _DELETE;
+CODE[UPDATE] = _UPDATE;
+CODE[SET] = _SET;
+
+var __transform__ = [];
+__transform__[_DELETE | _DELETE] = transform_delete_delete;
+__transform__[_DELETE | _CREATE] = transform_delete_create;
+__transform__[_DELETE | _UPDATE] = transform_delete_update;
+__transform__[_CREATE | _CREATE] = transform_create_create;
+__transform__[_CREATE | _UPDATE] = transform_create_update;
+__transform__[_UPDATE | _UPDATE] = transform_update_update;
+__transform__[_CREATE | _SET   ] = transform_create_set;
+__transform__[_DELETE | _SET   ] = transform_delete_set;
+__transform__[_UPDATE | _SET   ] = transform_update_set;
+__transform__[_SET    | _SET   ] = transform_set_set;
+
+var transform = function(a, b, options) {
+
+  options = options || {};
+
+  var conflict = hasConflict(a, b);
+
+  if (options.check && conflict) {
+    throw Operation.conflict(a, b);
+  }
+
+  if (!options.inplace) {
+    a = util.clone(a);
+    b = util.clone(b);
+  }
+
+  // without conflict: a' = a, b' = b
+  if (!conflict) {
+    return [a, b];
+  }
+
+  __transform__[CODE[a.type] | CODE[b.type]](a,b);
+
+  return [a, b];
+};
+
+ObjectOperation.transform = Compound.createTransform(transform);
+ObjectOperation.hasConflict = hasConflict;
+
+var __apply__ = function(op, obj) {
+  if (!(op instanceof ObjectOperation)) {
+    op = ObjectOperation.fromJSON(op);
+  }
+  return op.apply(obj);
+};
+
+// TODO: rename to "exec" or perform
+ObjectOperation.apply = __apply__;
+
+ObjectOperation.Create = function(path, val) {
+  return new ObjectOperation({type: CREATE, path: path, val: val});
+};
+
+ObjectOperation.Delete = function(path, val) {
+  return new ObjectOperation({type: DELETE, path: path, val: val});
+};
+
+function guessPropertyType(op) {
+
+  if (op instanceof Compound) {
+    return guessPropertyType(op.ops[0]);
+  }
+  if (op instanceof TextOperation) {
+    return "string";
+  }
+  else if (op instanceof ArrayOperation) {
+    return  "array";
+  }
+  else {
+    return "other";
+  }
+}
+
+ObjectOperation.Update = function(path, diff, propertyType) {
+  propertyType = propertyType || guessPropertyType(diff);
+
+  return new ObjectOperation({
+    type: UPDATE,
+    path: path,
+    diff: diff,
+    propertyType: propertyType
+  });
+};
+
+ObjectOperation.Set = function(path, oldVal, newVal) {
+  return new ObjectOperation({
+    type: SET,
+    path: path,
+    val: newVal,
+    original: oldVal
+  });
+};
+
+ObjectOperation.Compound = function(ops) {
+  if (ops.length === 0) return null;
+  else return new Compound(ops);
+};
+
+// TODO: this can not deal with cyclic references
+var __extend__ = function(obj, newVals, path, deletes, creates, updates) {
+  var keys = Object.getOwnPropertyNames(newVals);
+
+  for (var idx = 0; idx < keys.length; idx++) {
+    var key = keys[idx];
+    var p = path.concat(key);
+
+    if (newVals[key] === undefined && obj[key] !== undefined) {
+      deletes.push(ObjectOperation.Delete(p, obj[key]));
+
+    } else if (_.isObject(newVals[key])) {
+
+      // TODO: for now, the structure must be the same
+      if (!_.isObject(obj[key])) {
+        throw new errors.OperationError("Incompatible arguments: newVals must have same structure as obj.");
+      }
+      __extend__(obj[key], newVals[key], p, deletes, creates, updates);
+
+    } else {
+      if (obj[key] === undefined) {
+        creates.push(ObjectOperation.Create(p, newVals[key]));
+      } else {
+        var oldVal = obj[key];
+        var newVal = newVals[key];
+        if (!_.isEqual(oldVal, newVal)) {
+          updates.push(ObjectOperation.Set(p, oldVal, newVal));
+        }
+      }
+    }
+  }
+};
+
+ObjectOperation.Extend = function(obj, newVals) {
+  var deletes = [];
+  var creates = [];
+  var updates = [];
+  __extend__(obj, newVals, [], deletes, creates, updates);
+  return ObjectOperation.Compound(deletes.concat(creates).concat(updates));
+};
+
+ObjectOperation.NOP = NOP;
+ObjectOperation.CREATE = CREATE;
+ObjectOperation.DELETE = DELETE;
+ObjectOperation.UPDATE = UPDATE;
+ObjectOperation.SET = SET;
+
+// Export
+// ========
+
+module.exports = ObjectOperation;
+
+},{"./array_operation":139,"./compound":140,"./operation":142,"./text_operation":144,"substance-util":154,"underscore":159}],142:[function(require,module,exports){
+"use strict";
+
+// Import
+// ========
+
+var util   = require('substance-util');
+var errors   = util.errors;
+
+var OperationError = errors.define("OperationError", -1);
+var Conflict = errors.define("Conflict", -1);
+
+var Operation = function() {};
+
+Operation.Prototype = function() {
+
+  this.clone = function() {
+    throw new Error("Not implemented.");
+  };
+
+  this.apply = function() {
+    throw new Error("Not implemented.");
+  };
+
+  this.invert = function() {
+    throw new Error("Not implemented.");
+  };
+
+  this.hasConflict = function() {
+    throw new Error("Not implemented.");
+  };
+
+};
+
+Operation.prototype = new Operation.Prototype();
+
+Operation.conflict = function(a, b) {
+  var conflict = new errors.Conflict("Conflict: " + JSON.stringify(a) +" vs " + JSON.stringify(b));
+  conflict.a = a;
+  conflict.b = b;
+  return conflict;
+};
+
+Operation.OperationError = OperationError;
+Operation.Conflict = Conflict;
+
+// Export
+// ========
+
+module.exports = Operation;
+
+},{"substance-util":154}],143:[function(require,module,exports){
+var Helpers = {};
+
+Helpers.last = function(op) {
+  if (op.type === "compound") {
+    return op.ops[op.ops.length-1];
+  }
+  return op;
+};
+
+// Iterates all atomic operations contained in a given operation
+// --------
+//
+// - op: an Operation instance
+// - iterator: a `function(op)`
+// - context: the `this` context for the iterator function
+// - reverse: if present, the operations are iterated reversely
+
+Helpers.each = function(op, iterator, context, reverse) {
+  if (op.type === "compound") {
+    var l = op.ops.length;
+    for (var i = 0; i < l; i++) {
+      var child = op.ops[i];
+      if (reverse) {
+        child = op.ops[l-i-1];
+      }
+      if (child.type === "compound") {
+        if (Helpers.each(child, iterator, context, reverse) === false) {
+          return false;
+        }
+      }
+      else {
+        if (iterator.call(context, child) === false) {
+          return false;
+        }
+      }
+    }
+    return true;
+  } else {
+    return iterator.call(context, op);
+  }
+};
+
+module.exports = Helpers;
+
+},{}],144:[function(require,module,exports){
+"use strict";
+
+// Import
+// ========
+
+var _ = require('underscore');
+var util = require('substance-util');
+var errors = util.errors;
+var Operation = require('./operation');
+var Compound = require('./compound');
+
+
+var INS = "+";
+var DEL = "-";
+
+var TextOperation = function(options) {
+
+  // if this operation should be created using an array
+  if (_.isArray(options)) {
+    options = {
+      type: options[0],
+      pos: options[1],
+      str: options[2]
+    };
+  }
+
+  if (options.type === undefined || options.pos === undefined || options.str === undefined) {
+    throw new errors.OperationError("Illegal argument: insufficient data.");
+  }
+
+  // '+' or '-'
+  this.type = options.type;
+
+  // the position where to apply the operation
+  this.pos = options.pos;
+
+  // the string to delete or insert
+  this.str = options.str;
+
+  // sanity checks
+  if(!this.isInsert() && !this.isDelete()) {
+    throw new errors.OperationError("Illegal type.");
+  }
+  if (!_.isString(this.str)) {
+    throw new errors.OperationError("Illegal argument: expecting string.");
+  }
+  if (!_.isNumber(this.pos) && this.pos < 0) {
+    throw new errors.OperationError("Illegal argument: expecting positive number as pos.");
+  }
+};
+
+TextOperation.fromJSON = function(data) {
+
+  if (data.type === Compound.TYPE) {
+    var ops = [];
+    for (var idx = 0; idx < data.ops.length; idx++) {
+      ops.push(TextOperation.fromJSON(data.ops[idx]));
+    }
+    return TextOperation.Compound(ops);
+
+  } else {
+    return new TextOperation(data);
+  }
+};
+
+TextOperation.Prototype = function() {
+
+  this.clone = function() {
+    return new TextOperation(this);
+  };
+
+  this.isNOP = function() {
+    return this.type === "NOP" || this.str.length === 0;
+  };
+
+  this.isInsert = function() {
+    return this.type === INS;
+  };
+
+  this.isDelete = function() {
+    return this.type === DEL;
+  };
+
+  this.length = function() {
+    return this.str.length;
+  };
+
+  this.apply = function(str) {
+    if (this.isEmpty()) return str;
+
+    var adapter = (str instanceof TextOperation.StringAdapter) ? str : new TextOperation.StringAdapter(str);
+
+    if (this.type === INS) {
+      adapter.insert(this.pos, this.str);
+    }
+    else if (this.type === DEL) {
+      adapter.delete(this.pos, this.str.length);
+    }
+    else {
+      throw new errors.OperationError("Illegal operation type: " + this.type);
+    }
+
+    return adapter.get();
+  };
+
+  this.invert = function() {
+    var data = {
+      type: this.isInsert() ? '-' : '+',
+      pos: this.pos,
+      str: this.str
+    };
+    return new TextOperation(data);
+  };
+
+  this.hasConflict = function(other) {
+    return TextOperation.hasConflict(this, other);
+  };
+
+  this.isEmpty = function() {
+    return this.str.length === 0;
+  };
+
+  this.toJSON = function() {
+    return {
+      type: this.type,
+      pos: this.pos,
+      str: this.str
+    };
+  };
+
+};
+TextOperation.Prototype.prototype = Operation.prototype;
+TextOperation.prototype = new TextOperation.Prototype();
+
+var hasConflict = function(a, b) {
+
+  // Insert vs Insert:
+  //
+  // Insertions are conflicting iff their insert position is the same.
+
+  if (a.type === INS && b.type === INS)  return (a.pos === b.pos);
+
+  // Delete vs Delete:
+  //
+  // Deletions are conflicting if their ranges overlap.
+
+  if (a.type === DEL && b.type === DEL) {
+    // to have no conflict, either `a` should be after `b` or `b` after `a`, otherwise.
+    return !(a.pos >= b.pos + b.str.length || b.pos >= a.pos + a.str.length);
+  }
+
+  // Delete vs Insert:
+  //
+  // A deletion and an insertion are conflicting if the insert position is within the deleted range.
+
+  var del, ins;
+  if (a.type === DEL) {
+    del = a; ins = b;
+  } else {
+    del = b; ins = a;
+  }
+
+  return (ins.pos >= del.pos && ins.pos < del.pos + del.str.length);
+};
+
+// Transforms two Insertions
+// --------
+
+function transform_insert_insert(a, b, first) {
+
+  if (a.pos === b.pos) {
+    if (first) {
+      b.pos += a.str.length;
+    } else {
+      a.pos += b.str.length;
+    }
+  }
+
+  else if (a.pos < b.pos) {
+    b.pos += a.str.length;
+  }
+
+  else {
+    a.pos += b.str.length;
+  }
+
+}
+
+// Transform two Deletions
+// --------
+//
+
+function transform_delete_delete(a, b, first) {
+
+  // reduce to a normalized case
+  if (a.pos > b.pos) {
+    return transform_delete_delete(b, a, !first);
+  }
+
+  if (a.pos === b.pos && a.str.length > b.str.length) {
+    return transform_delete_delete(b, a, !first);
+  }
+
+
+  // take out overlapping parts
+  if (b.pos < a.pos + a.str.length) {
+    var s = b.pos - a.pos;
+    var s1 = a.str.length - s;
+    var s2 = s + b.str.length;
+
+    a.str = a.str.slice(0, s) + a.str.slice(s2);
+    b.str = b.str.slice(s1);
+    b.pos -= s;
+  } else {
+    b.pos -= a.str.length;
+  }
+
+}
+
+// Transform Insert and Deletion
+// --------
+//
+
+function transform_insert_delete(a, b) {
+
+  if (a.type === DEL) {
+    return transform_insert_delete(b, a);
+  }
+
+  // we can assume, that a is an insertion and b is a deletion
+
+  // a is before b
+  if (a.pos <= b.pos) {
+    b.pos += a.str.length;
+  }
+
+  // a is after b
+  else if (a.pos >= b.pos + b.str.length) {
+    a.pos -= b.str.length;
+  }
+
+  // Note: this is a conflict case the user should be noticed about
+  // If applied still, the deletion takes precedence
+  // a.pos > b.pos && <= b.pos + b.length()
+  else {
+    var s = a.pos - b.pos;
+    b.str = b.str.slice(0, s) + a.str + b.str.slice(s);
+    a.str = "";
+  }
+
+}
+
+var transform0 = function(a, b, options) {
+
+  options = options || {};
+
+  if (options.check && hasConflict(a, b)) {
+    throw Operation.conflict(a, b);
+  }
+
+  if (!options.inplace) {
+    a = util.clone(a);
+    b = util.clone(b);
+  }
+
+  if (a.type === INS && b.type === INS)  {
+    transform_insert_insert(a, b, true);
+  }
+  else if (a.type === DEL && b.type === DEL) {
+    transform_delete_delete(a, b, true);
+  }
+  else {
+    transform_insert_delete(a,b);
+  }
+
+  return [a, b];
+};
+
+var __apply__ = function(op, array) {
+  if (_.isArray(op)) {
+    op = new TextOperation(op);
+  }
+  else if (!(op instanceof TextOperation)) {
+    op = TextOperation.fromJSON(op);
+  }
+  return op.apply(array);
+};
+
+TextOperation.transform = Compound.createTransform(transform0);
+TextOperation.apply = __apply__;
+
+var StringAdapter = function(str) {
+  this.str = str;
+};
+StringAdapter.prototype = {
+  insert: function(pos, str) {
+    if (this.str.length < pos) {
+      throw new errors.OperationError("Provided string is too short.");
+    }
+    this.str = this.str.slice(0, pos) + str + this.str.slice(pos);
+  },
+
+  delete: function(pos, length) {
+    if (this.str.length < pos + length) {
+      throw new errors.OperationError("Provided string is too short.");
+    }
+    this.str = this.str.slice(0, pos) + this.str.slice(pos + length);
+  },
+
+  get: function() {
+    return this.str;
+  }
+};
+
+TextOperation.Insert = function(pos, str) {
+  return new TextOperation(["+", pos, str]);
+};
+
+TextOperation.Delete = function(pos, str) {
+  return new TextOperation(["-", pos, str]);
+};
+
+TextOperation.Compound = function(ops) {
+  // do not create a Compound if not necessary
+  if (ops.length === 1) return ops[0];
+  else return new Compound(ops);
+};
+
+// Converts from a given a sequence in the format of Tim's lib
+// which is an array of numbers and strings.
+// 1. positive number: retain a number of characters
+// 2. negative number: delete a string with the given length at the current position
+// 3. string: insert the given string at the current position
+
+TextOperation.fromOT = function(str, ops) {
+
+  var atomicOps = []; // atomic ops
+
+  // iterating through the sequence and bookkeeping the position
+  // in the source and destination str
+  var srcPos = 0,
+      dstPos = 0;
+
+  if (!_.isArray(ops)) {
+    ops = _.toArray(arguments).slice(1);
+  }
+
+  _.each(ops, function(op) {
+    if (_.isString(op)) { // insert chars
+      atomicOps.push(TextOperation.Insert(dstPos, op));
+      dstPos += op.length;
+    } else if (op<0) { // delete n chars
+      var n = -op;
+      atomicOps.push(TextOperation.Delete(dstPos, str.slice(srcPos, srcPos+n)));
+      srcPos += n;
+    } else { // skip n chars
+      srcPos += op;
+      dstPos += op;
+    }
+  });
+
+  if (atomicOps.length === 0) {
+    return null;
+  }
+
+  return TextOperation.Compound(atomicOps);
+};
+
+TextOperation.fromSequence = TextOperation.fromOT;
+
+// A helper class to model Text selections and to provide an easy way
+// to bookkeep changes by other applied TextOperations
+var Range = function(range) {
+  if (_.isArray(range)) {
+    this.start = range[0];
+    this.length = range[1];
+  } else {
+    this.start = range.start;
+    this.length = range.length;
+  }
+};
+
+// Transforms a given range tuple (offset, length) in-place.
+// --------
+//
+
+var range_transform = function(range, textOp, expandLeft, expandRight) {
+
+  var changed = false;
+
+  // handle compound operations
+  if (textOp.type === Compound.TYPE) {
+    for (var idx = 0; idx < textOp.ops.length; idx++) {
+      var op = textOp.ops[idx];
+      range_transform(range, op);
+    }
+    return;
+  }
+
+
+  var start, end;
+
+  if (_.isArray(range)) {
+    start = range[0];
+    end = range[1];
+  } else {
+    start = range.start;
+    end = start + range.length;
+  }
+
+  // Delete
+  if (textOp.type === DEL) {
+    var pos1 = textOp.pos;
+    var pos2 = textOp.pos+textOp.str.length;
+
+    if (pos1 <= start) {
+      start -= Math.min(pos2-pos1, start-pos1);
+      changed = true;
+    }
+    if (pos1 <= end) {
+      end -= Math.min(pos2-pos1, end-pos1);
+      changed = true;
+    }
+
+  } else if (textOp.type === INS) {
+    var pos = textOp.pos;
+    var l = textOp.str.length;
+
+    if ( (pos < start) ||
+         (pos === start && !expandLeft) ) {
+      start += l;
+      changed = true;
+    }
+
+    if ( (pos < end) ||
+         (pos === end && expandRight) ) {
+      end += l;
+      changed = true;
+    }
+  }
+
+  if (changed) {
+    if (_.isArray(range)) {
+      range[0] = start;
+      range[1] = end;
+    } else {
+      range.start = start;
+      range.length = end - start;
+    }
+  }
+
+  return changed;
+};
+
+Range.Prototype = function() {
+
+  this.clone = function() {
+    return new Range(this);
+  };
+
+  this.toJSON = function() {
+    var result = {
+      start: this.start,
+      length: this.length
+    };
+    // if (this.expand) result.expand = true;
+    return result;
+  };
+
+  this.transform = function(textOp, expand) {
+    return range_transform(this.range, textOp, expand);
+  };
+
+};
+Range.prototype = new Range.Prototype();
+
+Range.transform = function(range, op, expandLeft, expandRight) {
+  return range_transform(range, op, expandLeft, expandRight);
+};
+
+Range.fromJSON = function(data) {
+  return new Range(data);
+};
+
+TextOperation.StringAdapter = StringAdapter;
+TextOperation.Range = Range;
+TextOperation.INSERT = INS;
+TextOperation.DELETE = DEL;
+
+// Export
+// ========
+
+module.exports = TextOperation;
+
+},{"./compound":140,"./operation":142,"substance-util":154,"underscore":159}],145:[function(require,module,exports){
+"use strict";
+
+var Reader = {
+  Controller: require("./src/reader_controller"),
+  View: require("./src/reader_view")
+};
+
+module.exports = Reader;
+},{"./src/reader_controller":146,"./src/reader_view":147}],146:[function(require,module,exports){
+"use strict";
+
+var Document = require("substance-document");
+var Controller = require("substance-application").Controller;
+var ReaderView = require("./reader_view");
+var util = require("substance-util");
+
+// Reader.Controller
+// -----------------
+//
+// Controls the Reader.View
+
+var ReaderController = function(doc, state, options) {
+
+  // Private reference to the document
+  this.__document = doc;
+
+  // E.g. context information
+  this.options = options || {};
+
+  // Reader state
+  // -------
+
+  this.content = new Document.Controller(doc, {view: "content"});
+
+  if (doc.get('figures')) {
+    this.figures = new Document.Controller(doc, {view: "figures"});
+  }
+
+  if (doc.get('citations')) {
+    this.citations = new Document.Controller(doc, {view: "citations"});
+  }
+
+  if (doc.get('info')) {
+    this.info = new Document.Controller(doc, {view: "info"});
+  }
+
+  this.state = state;
+
+  // Current explicitly set context
+  this.currentContext = "toc";
+
+};
+
+ReaderController.Prototype = function() {
+
+  this.createView = function() {
+    if (!this.view) this.view = new ReaderView(this);
+    return this.view;
+  };
+
+  // Explicit context switch
+  // --------
+  // 
+
+  this.switchContext = function(context) {
+    // Remember scrollpos of previous context
+    this.currentContext = context;
+
+    this.modifyState({
+      context: context,
+      node: null,
+      resource: null
+    });
+  };
+
+  this.modifyState = function(state) {
+    Controller.prototype.modifyState.call(this, state);
+  };
+
+  // TODO: Transition to ao new solid API
+  // --------
+  // 
+
+  this.getActiveControllers = function() {
+    var result = [];
+    result.push(["article", this]);
+    result.push(["reader", this.content]);
+    return result;
+  };
+};
+
+
+ReaderController.Prototype.prototype = Controller.prototype;
+ReaderController.prototype = new ReaderController.Prototype();
+
+module.exports = ReaderController;
+
+},{"./reader_view":147,"substance-application":56,"substance-document":81,"substance-util":154}],147:[function(require,module,exports){
+"use strict";
+
+var _ = require("underscore");
+var util = require("substance-util");
+var html = util.html;
+var Surface = require("substance-surface");
+var Outline = require("lens-outline");
+var View = require("substance-application").View;
+var TOC = require("substance-toc");
+var Data = require("substance-data");
+var Index = Data.Graph.Index;
+var $$ = require("substance-application").$$;
+
+var CORRECTION = -100; // Extra offset from the top
+
+
+
+var addFocusControls = function(doc, nodeView) {
+  // The content node object
+  var node = nodeView.node;
+
+  // Per mode
+  var focusToggles = [];
+
+  focusToggles.push($$('div', {
+    "sbs-click": 'toggleNode(toc,'+node.id+')',
+    class: "focus-mode node",
+    html: '<div class="arrow"></div><i class="icon-anchor"></i>',
+    title: 'Focus and share link'
+  }));
+
+  var focus = $$('div.focus', {
+    children: focusToggles
+  });
+
+  // Add stripe
+  // focus.appendChild($$('.stripe'));
+  // nodeView.el.appendChild(focus);
+};
+
+
+var addResourceHeader = function(docCtrl, nodeView) {
+  var node = nodeView.node;
+  var typeDescr = node.constructor.description;
+
+  // Don't render resource headers in info panel (except for person nodes)
+  if (docCtrl.view === "info" && node.type !== "person" && node.type !== "collaborator") {
+    return;
+  }
+
+  var children = [
+    $$('a.name', {
+      href: "#",
+      text: node.header ,
+      "sbs-click": "toggleResource("+node.id+")"
+    })
+  ];
+
+  var config = node.constructor.config;
+  if (config && config.zoomable) {
+    children.push($$('a.toggle-fullscreen', {
+      "href": "#",
+      "html": "<i class=\"icon-resize-full\"></i><i class=\"icon-resize-small\"></i>",
+      "sbs-click": "toggleFullscreen("+node.id+")"
+    }));
+  }
+
+  var resourceHeader = $$('.resource-header', {
+    children: children
+  });
+  nodeView.el.insertBefore(resourceHeader, nodeView.content);
+};
+
+
+// Renders the reader view
+// --------
+// 
+// .document
+// .context-toggles
+//   .toggle-toc
+//   .toggle-figures
+//   .toggle-citations
+//   .toggle-info
+// .resources
+//   .toc
+//   .surface.figures
+//   .surface.citations
+//   .info
+
+var Renderer = function(reader) {
+
+  var frag = document.createDocumentFragment();
+
+  // Prepare doc view
+  // --------
+
+  var docView = $$('.document');
+  docView.appendChild(reader.contentView.render().el);
+
+  // Prepare context toggles
+  // --------
+
+  var children = [];
+
+
+  //  && reader.tocView.headings.length > 2
+  if (reader.tocView) {
+    children.push($$('a.context-toggle.toc', {
+      'href': '#',
+      'sbs-click': 'switchContext(toc)',
+      'title': 'Text',
+      'html': '<i class="icon-align-left"></i><span> Text</span>'
+    }));
+  }
+
+  if (reader.figuresView) {
+    children.push($$('a.context-toggle.figures', {
+      'href': '#',
+      'sbs-click': 'switchContext(figures)',
+      'title': 'Figures',
+      'html': '<i class="icon-picture"></i><span> Figures</span>'
+    }));
+  }
+
+  if (reader.citationsView) {
+    children.push($$('a.context-toggle.citations', {
+      'href': '#',
+      'sbs-click': 'switchContext(citations)',
+      'title': 'Citations',
+      'html': '<i class="icon-link"></i><span> Citations</span>'
+    }));
+  }
+
+  if (reader.infoView) {
+    children.push($$('a.context-toggle.info', {
+      'href': '#',
+      'sbs-click': 'switchContext(info)',
+      'title': 'Article Info',
+      'html': '<i class="icon-info-sign"></i><span>Info</span>'
+    }));
+  }
+
+
+  var contextToggles = $$('.context-toggles', {
+    children: children
+  });
+
+
+  // Prepare resources view
+  // --------
+
+  var medialStrip = $$('.medial-strip');
+
+  var collection = reader.readerCtrl.options.collection
+  if (collection) {
+    medialStrip.appendChild($$('a.back-nav', {
+      'href': collection.url,
+      'title': 'Go back',
+      'html': '<i class=" icon-chevron-up"></i>'
+    }));
+  }
+
+  medialStrip.appendChild($$('.separator-line'));
+  medialStrip.appendChild(contextToggles);
+
+  frag.appendChild(medialStrip);
+  
+  // Wrap everything within resources view
+  var resourcesView = $$('.resources');
+
+
+  // resourcesView.appendChild(medialStrip);
+  
+
+  // Add TOC
+  // --------
+ 
+  resourcesView.appendChild(reader.tocView.render().el);
+
+  if (reader.figuresView) {
+    resourcesView.appendChild(reader.figuresView.render().el);
+  }
+  
+  if (reader.citationsView) {
+    resourcesView.appendChild(reader.citationsView.render().el);
+  }
+
+  if (reader.infoView) {
+    resourcesView.appendChild(reader.infoView.render().el);
+  }
+
+  frag.appendChild(docView);
+  frag.appendChild(resourcesView);
+  return frag;
+};
+
+
+// Lens.Reader.View
+// ==========================================================================
+//
+
+var ReaderView = function(readerCtrl) {
+  View.call(this);
+
+  // Controllers
+  // --------
+
+  this.readerCtrl = readerCtrl;
+
+  var doc = this.readerCtrl.content.__document;
+
+  this.$el.addClass('article');
+  this.$el.addClass(doc.schema.id); // Substance article or lens article?
+
+  // Stores latest body scroll positions per context
+  // Only relevant
+  this.bodyScroll = {};
+
+  var ArticleRenderer = this.readerCtrl.content.__document.constructor.Renderer;
+
+  // Surfaces
+  // --------
+
+  // A Substance.Document.Writer instance is provided by the controller
+  this.contentView = new Surface(this.readerCtrl.content, {
+    editable: false,
+    renderer: new ArticleRenderer(this.readerCtrl.content, {
+      // afterRender: addFocusControls
+    })
+  });
+
+  // Table of Contents 
+  // --------
+
+  this.tocView = new TOC(this.readerCtrl);
+
+  // Provisional Hack:
+  // -----------------
+  // 
+  // We sniff into the tocView to determine the default context based on how many 
+  // headings are in the document
+  // We show the TOC for headings.length > 2
+  // 
+  // Real solution: determine on the controller level wheter toc should be shown or not
+
+  // if (this.tocView.headings.length <= 2) {
+  //   var newCtx;
+  //   if (doc.get('figures').nodes.length > 0) {
+  //     newCtx = "figures";
+  //   } else {
+  //     newCtx = "info";
+  //   }
+
+  //   this.readerCtrl.modifyState({
+  //     context: newCtx
+  //   });
+  // }
+
+  this.tocView.$el.addClass('resource-view');
+
+  // A Surface for the figures view
+  if (this.readerCtrl.figures && this.readerCtrl.figures.get('figures').nodes.length) {
+    this.figuresView = new Surface(this.readerCtrl.figures, {
+      editable: false,
+      renderer: new ArticleRenderer(this.readerCtrl.figures, {
+        afterRender: addResourceHeader
+      })
+    });
+    this.figuresView.$el.addClass('resource-view');
+  }
+
+  // A Surface for the citations view
+  if (this.readerCtrl.citations && this.readerCtrl.citations.get('citations').nodes.length) {
+    this.citationsView = new Surface(this.readerCtrl.citations, {
+      editable: false,
+      renderer: new ArticleRenderer(this.readerCtrl.citations, {
+        afterRender: addResourceHeader
+      })
+    });
+    this.citationsView.$el.addClass('resource-view');
+  }
+
+  // A Surface for the info view
+  if (this.readerCtrl.info && this.readerCtrl.info.get('info').nodes.length) {
+    this.infoView = new Surface(this.readerCtrl.info, {
+      editable: false,
+      renderer: new ArticleRenderer(this.readerCtrl.info, {
+        afterRender: addResourceHeader
+      })
+    });
+    this.infoView.$el.addClass('resource-view');
+  }
+
+  // Whenever a state change happens (e.g. user navigates somewhere)
+  // the interface gets updated accordingly
+  this.listenTo(this.readerCtrl, "state-changed", this.updateState);
+
+
+  // Keep an index for resources
+  this.resources = new Index(this.readerCtrl.__document, {
+    types: ["figure_reference", "citation_reference", "person_reference"],
+    property: "target"
+  });
+
+
+  // Outline
+  // --------
+
+  this.outline = new Outline(this.contentView);
+
+  // DOM Events
+  // --------
+  // 
+
+  this.contentView.$el.on('scroll', _.bind(this.onContentScroll, this));
+
+  // Resource references
+  this.$el.on('click', '.annotation.figure_reference', _.bind(this.toggleFigureReference, this));
+  this.$el.on('click', '.annotation.citation_reference', _.bind(this.toggleCitationReference, this));
+  this.$el.on('click', '.annotation.person_reference', _.bind(this.togglePersonReference, this));
+  this.$el.on('click', '.annotation.cross_reference', _.bind(this.followCrossReference, this));
+
+  this.$el.on('click', '.document .content-node.heading', _.bind(this.setAnchor, this));
+  this.outline.$el.on('click', '.node', _.bind(this._jumpToNode, this));
+};
+
+
+ReaderView.Prototype = function() {
+  
+  this.setAnchor = function(e) {
+    this.toggleNode('toc', $(e.currentTarget).attr('id'));
+  };
+
+  // Toggles on and off the zoom
+  // --------
+  // 
+
+  this.toggleFullscreen = function(resourceId) {
+    var state = this.readerCtrl.state;
+
+    // Always activate the resource
+    this.readerCtrl.modifyState({
+      resource: resourceId,
+      fullscreen: !state.fullscreen
+    });
+  };
+
+  this._jumpToNode = function(e) {
+    var nodeId = $(e.currentTarget).attr('id').replace("outline_", "");
+    this.jumpToNode(nodeId);
+    return false;
+  };
+
+  // Toggle Resource Reference
+  // --------
+  //
+
+  this.toggleFigureReference = function(e) {
+    this.toggleResourceReference('figures', e);
+    e.preventDefault();
+  };
+
+  this.toggleCitationReference = function(e) {
+    this.toggleResourceReference('citations', e);
+    e.preventDefault();
+  };
+
+  this.togglePersonReference = function(e) {
+    this.toggleResourceReference('info', e);
+    e.preventDefault();
+  };
+
+  this.toggleResourceReference = function(context, e) {
+    var state = this.readerCtrl.state;
+    var aid = $(e.currentTarget).attr('id');
+    var a = this.readerCtrl.__document.get(aid);
+
+    var nodeId = this.readerCtrl.content.container.getRoot(a.path[0]);
+    var resourceId = a.target;
+
+    if (resourceId === state.resource) {
+      this.readerCtrl.modifyState({
+        context: this.readerCtrl.currentContext,
+        node: null,
+        resource:  null
+      });
+    } else {
+      this.saveScroll();
+      this.readerCtrl.modifyState({
+        context: context,
+        node: nodeId,
+        resource: resourceId
+      });
+
+      this.jumpToResource(resourceId);
+    }
+  };
+
+  // Follow cross reference
+  // --------
+  //
+
+  this.followCrossReference = function(e) {
+    var aid = $(e.currentTarget).attr('id');
+    var a = this.readerCtrl.__document.get(aid);
+    this.jumpToNode(a.target);
+  };
+
+
+  // Toggle on-off a resource
+  // --------
+  //
+
+  this.onContentScroll = function() {
+    var scrollTop = this.contentView.$el.scrollTop();
+    this.outline.updateVisibleArea(scrollTop);
+    this.markActiveHeading(scrollTop);
+  };
+
+
+  // Clear selection
+  // --------
+  //
+
+  this.markActiveHeading = function(scrollTop) {
+    var contentHeight = $('.nodes').height();
+
+    // No headings?
+    if (this.tocView.headings.length === 0) return;
+
+    // Use first heading as default
+    var activeNode = _.first(this.tocView.headings).id;
+
+    this.contentView.$('.content-node.heading').each(function() {
+      if (scrollTop >= $(this).position().top + CORRECTION) {
+        activeNode = this.id;
+      }
+    });
+
+    // Edge case: select last item (once we reach the end of the doc)
+    if (scrollTop + this.contentView.$el.height() >= contentHeight) {
+      activeNode = _.last(this.tocView.headings).id;
+    }
+    this.tocView.setActiveNode(activeNode);
+  };
+
+  // Toggle on-off a resource
+  // --------
+  //
+
+  this.toggleResource = function(id) {
+    var state = this.readerCtrl.state;
+    var node = state.node;
+    // Toggle off if already on
+    if (state.resource === id) {
+      id = null;
+      node = null;
+    }
+
+    this.readerCtrl.modifyState({
+      fullscreen: false,
+      resource: id,
+      node: node
+    });
+  };
+
+  // Jump to the given node id
+  // --------
+  //
+
+  this.jumpToNode = function(nodeId) {
+    var $n = $('#'+nodeId);
+    if ($n.length > 0) {
+      var topOffset = $n.position().top+CORRECTION;
+      this.contentView.$el.scrollTop(topOffset);
+    }
+  };
+
+  // Jump to the given resource id
+  // --------
+  //
+
+  this.jumpToResource = function(nodeId) {
+    var $n = $('#'+nodeId);
+    if ($n.length > 0) {
+      var topOffset = $n.position().top;
+
+      console.log('topoffset of: '+ nodeId, topOffset);
+
+      // TODO: Brute force for now
+      // Make sure to find out which resource view is currently active
+      if (this.figuresView) this.figuresView.$el.scrollTop(topOffset);
+      if (this.citationsView) this.citationsView.$el.scrollTop(topOffset);
+      if (this.infoView) this.infoView.$el.scrollTop(topOffset);
+
+      // Brute force for mobile
+      $('body').scrollTop(topOffset);
+    }
+  };
+
+
+  // Toggle on-off node focus
+  // --------
+  //
+
+  this.toggleNode = function(context, nodeId) {
+    var state = this.readerCtrl.state;
+
+    if (state.node === nodeId && state.context === context) {
+      // Toggle off -> reset, preserve the context
+      this.readerCtrl.modifyState({
+        context: this.readerCtrl.currentContext,
+        node: null,
+        resource: null
+      });
+    } else {
+      this.readerCtrl.modifyState({
+        context: context,
+        node: nodeId,
+        resource: null
+      });
+    }
+  };
+
+  // Get scroll position of active panel
+  // --------
+  // 
+  // Content, Figures, Citations, Info
+
+  this.getScroll = function() {
+    // Only covers the mobile mode!
+    return $('body').scrollTop();
+  };
+
+  // Recover scroll from previous state (if there is any)
+  // --------
+  // 
+  // TODO: retrieve from cookie to persist scroll pos over reload?
+
+  this.recoverScroll = function() {
+    var targetScroll = this.bodyScroll[this.readerCtrl.state.context];
+    if (targetScroll) {
+      $('body').scrollTop(targetScroll);
+      console.log('recovered scroll', targetScroll, this.readerCtrl.state.context);
+    } else {
+      // Scroll to top
+      $('body').scrollTop(0);
+    }
+  };
+
+  // Save current scroll position
+  // --------
+  // 
+
+  this.saveScroll = function() {
+    this.bodyScroll[this.readerCtrl.state.context] = this.getScroll();
+    console.log('scroll saved', this.bodyScroll[this.readerCtrl.state.context], this.readerCtrl.state.context);
+  };
+
+  // Explicit context switch
+  // --------
+  //
+  // Only triggered by the explicit switch
+  // Implicit context switches happen someone clicks a figure reference
+
+  this.switchContext = function(context) {
+    // var currentContext = this.readerCtrl.state.context;
+
+    this.saveScroll();
+
+    // Which view actions are triggered here?
+    this.readerCtrl.switchContext(context);
+
+    this.recoverScroll();
+  };
+
+  // Update Reader State
+  // --------
+  // 
+  // Called every time the controller state has been modified
+  // Search for readerCtrl.modifyState occurences
+
+  this.updateState = function(options) {
+    options = options || {};
+    var state = this.readerCtrl.state;
+    var that = this;
+
+    // Set context on the reader view
+    // -------
+
+    this.$el.removeClass('toc figures citations info');
+    this.contentView.$('.content-node.active').removeClass('active');
+    this.$el.addClass(state.context);
+  
+    if (state.node) {
+      this.contentView.$('#'+state.node).addClass('active');
+    }
+
+    // According to the current context show active resource panel
+    // -------
+
+    this.updateResource();
+  };
+
+
+  // Based on the current application state, highlight the current resource
+  // -------
+  // 
+  // Triggered by updateState
+
+  this.updateResource = function() {
+    var state = this.readerCtrl.state;
+    this.$('.resources .content-node.active').removeClass('active fullscreen');
+    this.contentView.$('.annotation.active').removeClass('active');
+    
+    if (state.resource) {
+      // Show selected resource
+      var $res = this.$('#'+state.resource);
+      $res.addClass('active');
+      if (state.fullscreen) $res.addClass('fullscreen');
+
+      // Mark all annotations that reference the resource
+      var annotations = this.resources.get(state.resource);
+      
+      _.each(annotations, function(a) {
+        this.contentView.$('#'+a.id).addClass('active');
+      }, this);
+
+      // Update outline
+    } else {
+      this.recoverScroll();
+      // Hide all resources (see above)
+    }
+
+    this.updateOutline();
+  };
+
+  // Returns true when on a mobile device
+  // --------
+
+  this.isMobile = function() {
+
+  };
+
+  // Whenever the app state changes
+  // --------
+  // 
+  // Triggered by updateResource.
+
+  this.updateOutline = function() {
+    var that = this;
+    var state = this.readerCtrl.state;
+    var container = this.readerCtrl.content.container;
+
+    var nodes = this.getResourceReferenceContainers();
+
+    that.outline.update({
+      context: state.context,
+      selectedNode: state.node,
+      highlightedNodes: nodes
+    });
+  };
+
+  this.getResourceReferenceContainers = function() {
+    var state = this.readerCtrl.state;
+
+    if (!state.resource) return [];
+
+    // A reference is an annotation node. We want to highlight
+    // all (top-level) nodes that contain a reference to the currently activated resource
+    // For that we take all references pointing to the resource
+    // and find the root of the node on which the annotation sticks on.
+    var references = this.resources.get(state.resource);
+    var container = this.readerCtrl.content.container;
+    var nodes = _.uniq(_.map(references, function(ref) {
+      var nodeId = container.getRoot(ref.path[0]);
+      return nodeId;
+    }));
+    return nodes;
+  };
+
+  // Annotate current selection
+  // --------
+  //
+
+  this.annotate = function(type) {
+    this.readerCtrl.content.annotate(type);
+    return false;
+  };
+
+  // Rendering
+  // --------
+  //
+
+  this.render = function() {
+    var that = this;
+
+    var state = this.readerCtrl.state;
+    this.el.appendChild(new Renderer(this));
+
+    // After rendering make reader reflect the app state
+    this.$('.document').append(that.outline.el);
+
+    // Await next UI tick to update layout and outline
+    _.delay(function() {
+      // Render outline that sticks on this.surface
+      // that.updateLayout();
+      that.updateState();
+      MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+    }, 1);
+
+    // Wait for stuff to be rendered (e.g. formulas)
+    // TODO: use a handler? MathJax.Hub.Queue(fn) does not work for some reason
+
+    _.delay(function() {
+      that.updateOutline();
+    }, 2000);
+
+    var lazyOutline = _.debounce(function() {
+      // that.updateLayout();
+      that.updateOutline();
+    }, 1);
+
+    // Jump marks for teh win
+    if (state.node) {
+      _.delay(function() {
+        that.jumpToNode(state.node);
+        if (state.resource) {
+          that.jumpToResource(state.resource);
+        }
+      }, 100);
+    }
+
+    // I this called only once?
+
+    // Ditch those scroll fixes
+    // new ScrollFix(this.contentView.el);
+    // if (this.figuresView) new ScrollFix(this.figuresView.el);
+    // if (this.citationsView) new ScrollFix(this.citationsView.el);
+    // if (this.infoView) new ScrollFix(this.infoView.el);
+
+    $(window).resize(lazyOutline);
+    
+    return this;
+  };
+
+  // Recompute Layout properties
+  // --------
+  // 
+  // This fixes some issues that can't be dealth with CSS
+
+  // this.updateLayout = function() {
+  //   // var docWidth = this.$('.document').width();
+  //   // 15 = margin for arrows, 42 ?? WTF
+  //   // this.contentView.$('.nodes > .content-node').css('width', docWidth - 15 - 42);
+  // },
+
+  // Free the memory.
+  // --------
+  //
+
+  this.dispose = function() {
+    this.contentView.dispose();
+    if (this.figuresView) this.figuresView.dispose();
+    if (this.citationsView) this.citationsView.dispose();
+    if (this.infoView) this.infoView.dispose();
+    this.resources.dispose();
+
+    this.stopListening();
+  };
+};
+
+ReaderView.Prototype.prototype = View.prototype;
+ReaderView.prototype = new ReaderView.Prototype();
+ReaderView.prototype.constructor = ReaderView;
+
+module.exports = ReaderView;
+
+},{"lens-outline":54,"substance-application":56,"substance-data":74,"substance-surface":150,"substance-toc":152,"substance-util":154,"underscore":159}],148:[function(require,module,exports){
+"use strict";
+
+module.exports = require("./src/regexp");
+
+},{"./src/regexp":149}],149:[function(require,module,exports){
+"use strict";
+
+// Substanc.RegExp.Match
+// ================
+//
+// Regular expressions in Javascript they way they should be.
+
+var Match = function(match) {
+  this.index = match.index;
+  this.match = [];
+
+  for (var i=0; i < match.length; i++) {
+    this.match.push(match[i]);
+  }
+};
+
+Match.Prototype = function() {
+
+  // Returns the capture groups
+  // --------
+  //
+
+  this.captures = function() {
+    return this.match.slice(1);
+  };
+
+  // Serialize to string
+  // --------
+  //
+
+  this.toString = function() {
+    return this.match[0];
+  };
+};
+
+Match.prototype = new Match.Prototype();
+
+// Substance.RegExp
+// ================
+//
+
+var RegExp = function(exp) {
+  this.exp = exp;
+};
+
+RegExp.Prototype = function() {
+
+  this.match = function(str) {
+    if (str === undefined) throw new Error('No string given');
+    
+    if (!this.exp.global) {
+      return this.exp.exec(str);
+    } else {
+      var matches = [];
+      var match;
+      // Reset the state of the expression
+      this.exp.compile(this.exp);
+
+      // Execute until last match has been found
+
+      while ((match = this.exp.exec(str)) !== null) {
+        matches.push(new Match(match));
+      }
+      return matches;
+    }
+  };
+};
+
+RegExp.prototype = new RegExp.Prototype();
+
+RegExp.Match = Match;
+
+
+// Export
+// ========
+
+module.exports = RegExp;
+
+},{}],150:[function(require,module,exports){
+"use strict";
+
+var Surface = require("./src/surface");
+
+module.exports = Surface;
+
+},{"./src/surface":151}],151:[function(require,module,exports){
+"use strict";
+
+var _ = require("underscore");
+var View = require("substance-application").View;
+var util = require("substance-util");
+var Commander = require("substance-commander");
+
+// Substance.Surface
+// ==========================================================================
+
+var Surface = function(doc, options) {
+
+  options = _.extend({
+    editable: true
+  }, options);
+
+  View.call(this);
+  var that = this;
+
+  this.options = options;
+
+  if (this.options.renderer) {
+    this.renderer = this.options.renderer;
+  } else {
+    this.renderer = new doc.__document.constructor.Renderer(doc);
+  }
+
+  // Incoming events
+  this.doc = doc;
+
+  // Pull out the registered nodetypes on the written article
+  this.nodeTypes = doc.__document.nodeTypes;
+
+  this.listenTo(this.doc.selection,  "selection:changed", this.renderSelection);
+  this.listenTo(this.doc.__document, "property:updated", this.onUpdateView);
+  this.listenTo(this.doc.__document, "graph:reset", this.reset);
+
+  // Start building the initial stuff
+  this.build();
+
+  this.$el.addClass('surface');
+
+  // Shouldn't this be done outside?
+  this.$el.addClass(this.doc.view);
+
+  // The editable surface responds to selection changes
+
+  if (options.editable) {
+
+    this.el.setAttribute("contenteditable", "true");
+    this.el.spellcheck = false;
+
+    this.$el.mouseup(function(e) {
+      this.ignoreNextSelection = true;
+      this.updateSelection(e);
+    }.bind(this));
+
+    this.$el.delegate('img', 'click', function(e) {
+      var $el = $(e.currentTarget).parent().parent().parent();
+      var nodeId = $el.attr('id');
+      that.doc.selection.selectNode(nodeId);
+      return false;
+    });
+
+    this._dirt = [];
+
+    this._onKeyDown = function() {
+      this._dirtPossible = true;
+    }.bind(this);
+
+    this._onTextInput = function(e) {
+      //console.log("textinput", e);
+      this._dirtPossible = false;
+      while (this._dirt.length > 0) {
+        var dirt = this._dirt.shift();
+        dirt[0].textContent = dirt[1];
+      }
+      this.doc.write(e.data);
+      e.preventDefault();
+    }.bind(this);
+
+    var _manipulate = function(f, dontPrevent) {
+      return function(e) {
+        that._dirtPossible = false;
+        setTimeout(f, 0);
+        if (dontPrevent !== true) {
+          e.preventDefault();
+        }
+      };
+    };
+
+    // TODO: many combinations which would probably be easy to handle
+    // using the native event...
+    this.keyboard = new Commander.Mousetrap();
+    this.keyboard.bind([
+        "up", "down", "left", "right",
+        "shift+up", "shift+down", "shift+left", "shift+right",
+        "ctrl+up", "ctrl+down", "ctrl+left", "ctrl+right",
+        "ctrl+shift+up", "ctrl+shift+down", "ctrl+shift+left", "ctrl+shift+right",
+        "alt+up", "alt+down", "alt+left", "alt+right"
+      ], function() {
+      // call this after the movement has been done by the contenteditable
+      setTimeout(function() {
+        that.ignoreNextSelection = true;
+        that.updateSelection();
+      }, 0);
+    }, "keydown");
+
+    this.keyboard.bind(["backspace"], _manipulate(function() {
+      that.doc.delete("left");
+    }), "keydown");
+
+    this.keyboard.bind(["del"], _manipulate(function() {
+      that.doc.delete("right");
+    }), "keydown");
+
+    this.keyboard.bind(["enter"], _manipulate(function() {
+      that.doc.modifyNode();
+    }), "keydown");
+
+    this.keyboard.bind(["shift+enter"], _manipulate(function() {
+      that.doc.write("\n");
+    }), "keydown");
+
+    this.keyboard.bind(["space"], _manipulate(function() {
+      that.doc.write(" ");
+    }), "keydown");
+
+    this.keyboard.bind(["tab"], _manipulate(function() {
+      that.doc.write("  ");
+    }), "keydown");
+
+    this.keyboard.bind(["ctrl+z"], _manipulate(function() {
+      that.doc.undo();
+    }), "keydown");
+
+    this.keyboard.bind(["ctrl+shift+z"], _manipulate(function() {
+      that.doc.redo();
+    }), "keydown");
+
+    this.makeEditable(this.el);
+  }
+};
+
+
+Surface.Prototype = function() {
+
+  // Private helpers
+  // ---------------
+  var _findNodeElement = function(node) {
+    var current = node;
+    while(current !== undefined) {
+      if ($(current).is(".content-node")) {
+        return current;
+      }
+      current = current.parentElement;
+    }
+    return null;
+  };
+
+  this.makeEditable = function(el) {
+    var that = this;
+
+    el.addEventListener("keydown", this._onKeyDown);
+
+    // TODO: cleanup... Firefix needs a different event...
+    el.addEventListener("textInput", this._onTextInput, true);
+    el.addEventListener("input", this._onTextInput, true);
+
+    this._dirt = [];
+    this._observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        if (that._dirtPossible) {
+          that._dirt.push([mutation.target, mutation.oldValue]);
+        }
+      });
+    });
+    // configuration of the observer:
+    var config = { subtree: true, characterData: true, characterDataOldValue: true };
+    this._observer.observe(el, config);
+
+    this.keyboard.connect(el);
+  };
+
+  // Read out current DOM selection and update selection in the model
+  // ---------------
+
+  this.updateSelection = function(/*e*/) {
+    // console.log("Surface.updateSelection()");
+    var wSel = window.getSelection();
+
+    // HACK: sometimes it happens that the selection anchor node is undefined.
+    // Try to understand and fix someday.
+    if (wSel.anchorNode === null) {
+      return;
+    }
+
+    // Set selection to the cursor if clicked on the cursor.
+    if ($(wSel.anchorNode.parentElement).is(".cursor")) {
+      this.doc.selection.collapse("cursor");
+      return;
+    }
+
+    var wRange = wSel.getRangeAt(0);
+    var wStartPos;
+    var wEndPos;
+
+    // Preparing information for EOL-HACK (see below).
+    // The hack only needs to be applied of the mouse event is in a different 'line'
+    // than the DOM Range provided by the browser
+    //Surface.Hacks.prepareEndOfLineHack.call(this, e, wRange);
+
+    // Note: there are three different cases:
+    // 1. selection started at startContainer (regular)
+    // 2. selection started at endContainer (reverse)
+    // 3. selection done via double click (anchor in different to range boundaries)
+    // In cases 1. + 3. the range is used as given, in case 2. reversed.
+
+    wStartPos = [wRange.startContainer, wRange.startOffset];
+    wEndPos = [wRange.endContainer, wRange.endOffset];
+
+    if (wRange.endContainer === wSel.anchorNode && wRange.endOffset === wSel.anchorOffset) {
+      var tmp = wStartPos;
+      wStartPos = wEndPos;
+      wEndPos = tmp;
+    }
+
+    var startNode = _findNodeElement.call(this, wStartPos[0]);
+    var endNode = _findNodeElement.call(this, wEndPos[0]);
+
+    var startNodeId = startNode.getAttribute("id");
+    var startNodePos = this.doc.getPosition(startNodeId) ;
+    var startCharPos = this.nodes[startNodeId].getCharPosition(wStartPos[0], wStartPos[1]);
+
+    var endNodeId = endNode.getAttribute("id");
+    var endNodePos = this.doc.getPosition(endNodeId);
+    var endCharPos = this.nodes[endNodeId].getCharPosition(wEndPos[0], wEndPos[1]);
+
+    // the selection range in Document.Selection coordinates
+    var startPos = [startNodePos, startCharPos];
+    var endPos = [endNodePos, endCharPos];
+
+    this.doc.selection.set({start: startPos, end: endPos});
+  };
+
+
+  // Renders the current selection
+  // --------
+  //
+
+  this.renderSelection = function() {
+
+    if (this.ignoreNextSelection === true) {
+      this.ignoreNextSelection = false;
+      return;
+    }
+
+    if (this.doc.selection.isNull()) {
+      this.$cursor.hide();
+      return;
+    }
+
+    // Hide native selection in favor of our custom one
+    var wSel = window.getSelection();
+
+    var range = this.doc.selection.range();
+    var startNode = this.doc.getNodeFromPosition(range.start[0]);
+    var startNodeView = this.renderer.nodes[startNode.id];
+    var wStartPos = startNodeView.getDOMPosition(range.start[1]);
+
+    var endNode = this.doc.getNodeFromPosition(range.end[0]);
+    var endNodeView = this.renderer.nodes[endNode.id];
+    var wEndPos = endNodeView.getDOMPosition(range.end[1]);
+
+    var wRange = document.createRange();
+    wRange.setStart(wStartPos.startContainer, wStartPos.startOffset);
+    wRange.setEnd(wEndPos.endContainer, wEndPos.endOffset);
+    wSel.removeAllRanges();
+    wSel.addRange(wRange);
+
+  };
+
+  // Setup
+  // --------
+  //
+
+  this.build = function() {
+    // var Renderer = this.options.renderer || this.doc.__document.constructor.Renderer;
+    // var renderer = this.options.renderer:
+    // Create a Renderer instance, which implicitly constructs all content node views.
+    // this.renderer = new Renderer(this.doc);
+
+    // Add some backward compatibility
+    this.nodes = this.renderer.nodes;
+  };
+
+  // Render it
+  // --------
+  //
+  // input.image-files
+  // .controls
+  // .nodes
+  //   .content-node.paragraph
+  //   .content-node.heading
+  //   ...
+  // .cursor
+
+  this.render = function() {
+
+    var fileInput = document.createElement('input');
+    fileInput.className = "image-files";
+    fileInput.setAttribute("type", "file");
+
+    fileInput.setAttribute("name", "files[]");
+
+    var controls = document.createElement('div');
+    controls.className = "controls";
+    var nodes = document.createElement('div');
+    nodes.className = "nodes";
+
+    var cursor = document.createElement('div');
+    cursor.className = "cursor";
+
+    this.el.appendChild(fileInput);
+    this.el.appendChild(controls);
+    this.el.appendChild(nodes);
+    this.el.appendChild(cursor);
+
+    // console.log("Surface.render()", "this.doc.getNodes()", nodes);
+
+    // Actual content goes here
+    // --------
+    //
+    // We get back a document fragment from the renderer
+
+    nodes.appendChild(this.renderer.render());
+
+    // TODO: fixme
+    this.$('input.image-files').hide();
+    this.$cursor = this.$('.cursor');
+    this.$cursor.hide();
+
+    // keep the nodes for later access
+    this._nodesEl = nodes;
+
+    return this;
+  };
+
+  this.reset = function() {
+    _.each(this.nodes, function(nodeView) {
+      nodeView.dispose();
+    });
+    this.build();
+    this.render();
+  };
+
+  // Cleanup view before removing it
+  // --------
+  //
+
+  this.dispose = function() {
+    this.stopListening();
+    _.each(this.nodes, function(n) {
+      n.dispose();
+    }, this);
+  };
+
+  // TODO: we could factor this out into something like a ContainerView?
+
+  function insertOrAppend(container, pos, el) {
+    var childs = container.childNodes;
+    if (pos < childs.length) {
+      var refNode = childs[pos];
+      container.insertBefore(el, refNode);
+    } else {
+      container.appendChild(el);
+    }
+  }
+
+  this.onUpdateView = function(path, diff) {
+    if (path.length !== 2 || path[0] !== "content" || path[1] !== "nodes") return;
+
+    var nodeId, node;
+    var container = this._nodesEl;
+
+    var children, el;
+
+    if (diff.isInsert()) {
+      // Create a view and insert render it into the nodes container element.
+      nodeId = diff.val;
+      node = this.doc.get(nodeId);
+      // TODO: this will hopefully be solved in a clean way
+      // when we have done the 'renderer' refactorings
+      if (this.nodeTypes[node.type]) {
+        var nodeView = this.renderer.createView(node);
+        this.nodes[nodeId] = nodeView;
+        el = nodeView.render().el;
+        insertOrAppend(container, diff.pos, el);
+      }
+    }
+    else if (diff.isDelete()) {
+      // Dispose the view and remove its element from the nodes container
+      nodeId = diff.val;
+      if (this.nodes[nodeId]) {
+        this.nodes[nodeId].dispose();
+      }
+      delete this.nodes[nodeId];
+      children = container.children;
+      container.removeChild(children[diff.pos]);
+    }
+    else if (diff.isMove()) {
+      children = container.children;
+      el = children[diff.pos];
+      container.removeChild(el);
+      insertOrAppend(container, diff.target, el);
+    } else if (diff.type === "NOP") {
+    } else {
+      throw new Error("Illegal state.");
+    }
+  };
+};
+
+_.extend(Surface.Prototype, util.Events.Listener);
+
+Surface.Prototype.prototype = View.prototype;
+Surface.prototype = new Surface.Prototype();
+
+module.exports = Surface;
+
+},{"substance-application":56,"substance-commander":70,"substance-util":154,"underscore":159}],152:[function(require,module,exports){
+"use strict";
+
+var TOC = require("./toc_view");
+
+module.exports = TOC;
+},{"./toc_view":153}],153:[function(require,module,exports){
+"use strict";
+
+var View = require("substance-application").View;
+var $$ = require("substance-application").$$;
+var Data = require("substance-data");
+var Index = Data.Graph.Index;
+var _ = require("underscore");
+
+// Substance.TOC.View
+// ==========================================================================
+
+var TOCView = function(doc) {
+  View.call(this);
+  this.doc = doc;
+
+  // Sniff into headings
+  // --------
+  // 
+
+  this.headings = _.filter(this.doc.content.getNodes(), function(node) {
+    return node.type === "heading";
+  });
+
+  this.$el.addClass("toc");
+};
+
+TOCView.Prototype = function() {
+
+  // Renderer
+  // --------
+
+  this.render = function() {
+    if (this.headings.length <= 2) return this;
+    _.each(this.headings, function(heading) {
+      this.el.appendChild($$('a.heading-ref.level-'+heading.level, {
+        id: "toc_"+heading.id,
+        text: heading.content,
+        "sbs-click": "jumpToNode("+heading.id+")"
+      }));
+    }, this);
+
+    return this;
+  };
+
+  // Renderer
+  // --------
+  // 
+
+  this.setActiveNode = function(nodeId) {
+    this.$('.heading-ref.active').removeClass('active');
+    this.$('#toc_'+nodeId).addClass('active');
+  };
+
+};
+
+TOCView.Prototype.prototype = View.prototype;
+TOCView.prototype = new TOCView.Prototype();
+
+module.exports = TOCView;
+
+},{"substance-application":56,"substance-data":74,"underscore":159}],154:[function(require,module,exports){
+"use strict";
+
+var util = require("./src/util");
+
+util.errors = require("./src/errors");
+util.html = require("./src/html");
+util.dom = require("./src/dom");
+
+module.exports = util;
+
+},{"./src/dom":155,"./src/errors":156,"./src/html":157,"./src/util":158}],155:[function(require,module,exports){
+"use strict";
+
+var _ = require("underscore");
+
+// Helpers for working with the DOM
+
+var dom = {};
+
+dom.ChildNodeIterator = function(arg) {
+  if(_.isArray(arg)) {
+    this.nodes = arg;
+  } else {
+    this.nodes = arg.childNodes;
+  }
+  this.length = this.nodes.length;
+  this.pos = -1;
+};
+
+dom.ChildNodeIterator.prototype = {
+  hasNext: function() {
+    return this.pos < this.length - 1;
+  },
+
+  next: function() {
+    this.pos += 1;
+    return this.nodes[this.pos];
+  },
+
+  back: function() {
+    if (this.pos >= 0) {
+      this.pos -= 1;
+    }
+    return this;
+  }
+};
+
+// Note: it is not safe regarding browser in-compatibilities
+// to access el.children directly.
+dom.getChildren = function(el) {
+  if (el.children !== undefined) return el.children;
+  var children = [];
+  var child = el.firstElementChild;
+  while (child) {
+    children.push(child);
+    child = child.nextElementSibling;
+  }
+  return children;
+};
+
+dom.getNodeType = function(el) {
+  if (el.nodeType === Node.TEXT_NODE) {
+    return "text";
+  } else if (el.nodeType === Node.COMMENT_NODE) {
+    return "comment";
+  } else if (el.tagName) {
+    return el.tagName.toLowerCase();
+  } else {
+    throw new Error("Unknown node type");
+  }
+};
+
+module.exports = dom;
+
+},{"underscore":159}],156:[function(require,module,exports){
+"use strict";
+
+// Imports
+// ====
+
+var _ = require('underscore');
+var util = require('./util');
+
+// Module
+// ====
+
+var errors = {};
+
+errors.SubstanceError = function(name, code, message) {
+  if (arguments.length == 1) {
+    message = name;
+    name = "SubstanceError";
+    code = -1;
+  }
+
+  this.message = message;
+  this.name = name;
+  this.code = code;
+
+  this.__stack = util.callstack(1);
+};
+
+errors.SubstanceError.Prototype = function() {
+
+  this.toString = function() {
+    return this.name+":"+this.message;
+  };
+
+  this.toJSON = function() {
+    return {
+      name: this.name,
+      message: this.message,
+      code: this.code,
+      stack: this.stack
+    };
+  };
+
+  this.printStackTrace = function() {
+    util.printStackTrace(this);
+  };
+
+};
+errors.SubstanceError.prototype = new errors.SubstanceError.Prototype();
+
+Object.defineProperty(errors.SubstanceError.prototype, "stack", {
+  get: function() {
+    var str = [];
+    for (var idx = 0; idx < this.__stack.length; idx++) {
+      var s = this.__stack[idx];
+      str.push(s.file+":"+s.line+":"+s.col+" ("+s.func+")");
+    }
+    return str.join("\n");
+  },
+  set: function() { throw new Error("immutable.")}
+});
+
+errors.define = function(className, code) {
+  if (code === undefined) code = -1;
+  errors[className] = errors.SubstanceError.bind(null, className, code);
+  errors[className].prototype = errors.SubstanceError.prototype;
+  return errors[className];
+};
+
+module.exports = errors;
+
+},{"./util":158,"underscore":159}],157:[function(require,module,exports){
+"use strict";
+
+var html = {};
+var _ = require("underscore");
+
+html.templates = {};
+
+// html.compileTemplate = function(tplName) {
+//   var rawTemplate = $('script[name='+tplName+']').html();
+//   html.templates[tplName] = Handlebars.compile(rawTemplate);
+// };
+
+html.renderTemplate = function(tplName, data) {
+  return html.templates[tplName](data);
+};
+
+// Handlebars.registerHelper('ifelse', function(cond, textIf, textElse) {
+//   textIf = Handlebars.Utils.escapeExpression(textIf);
+//   textElse  = Handlebars.Utils.escapeExpression(textElse);
+//   return new Handlebars.SafeString(cond ? textIf : textElse);
+// });
+
+if (typeof window !== "undefined") {
+  // A fake console to calm down some browsers.
+  if (!window.console) {
+    window.console = {
+      log: function(msg) {
+        // No-op
+      }
+    };
+  }
+}
+
+// Render Underscore templates
+html.tpl = function (tpl, ctx) {
+  ctx = ctx || {};
+  var source = $('script[name='+tpl+']').html();
+  return _.template(source, ctx);
+};
+
+// Exports
+// ====
+
+module.exports = html;
+
+},{"underscore":159}],158:[function(require,module,exports){
+"use strict";
+
+// Imports
+// ====
+
+var _ = require('underscore');
+
+// Module
+// ====
+
+var util = {};
+
+// UUID Generator
+// -----------------
+
+/*!
+Math.uuid.js (v1.4)
+http://www.broofa.com
+mailto:robert@broofa.com
+
+Copyright (c) 2010 Robert Kieffer
+Dual licensed under the MIT and GPL licenses.
+*/
+
+util.uuid = function (prefix, len) {
+  var chars = '0123456789abcdefghijklmnopqrstuvwxyz'.split(''),
+      uuid = [],
+      radix = 16,
+      idx;
+  len = len || 32;
+
+  if (len) {
+    // Compact form
+    for (idx = 0; idx < len; idx++) uuid[idx] = chars[0 | Math.random()*radix];
+  } else {
+    // rfc4122, version 4 form
+    var r;
+
+    // rfc4122 requires these characters
+    uuid[8] = uuid[13] = uuid[18] = uuid[23] = '-';
+    uuid[14] = '4';
+
+    // Fill in random data.  At i==19 set the high bits of clock sequence as
+    // per rfc4122, sec. 4.1.5
+    for (idx = 0; idx < 36; idx++) {
+      if (!uuid[idx]) {
+        r = 0 | Math.random()*16;
+        uuid[idx] = chars[(idx == 19) ? (r & 0x3) | 0x8 : r];
+      }
+    }
+  }
+  return (prefix ? prefix : "") + uuid.join('');
+};
+
+// creates a uuid function that generates counting uuids
+util.uuidGen = function(defaultPrefix) {
+  var id = 1;
+  defaultPrefix = (defaultPrefix !== undefined) ? defaultPrefix : "uuid_";
+  return function(prefix) {
+    prefix = prefix || defaultPrefix;
+    return prefix+(id++);
+  };
+};
+
+
+// Events
+// ---------------
+
+// Taken from Backbone.js
+//
+// A module that can be mixed in to *any object* in order to provide it with
+// custom events. You may bind with `on` or remove with `off` callback
+// functions to an event; `trigger`-ing an event fires all callbacks in
+// succession.
+//
+//     var object = {};
+//     _.extend(object, util.Events);
+//     object.on('expand', function(){ alert('expanded'); });
+//     object.trigger('expand');
+//
+
+// A difficult-to-believe, but optimized internal dispatch function for
+// triggering events. Tries to keep the usual cases speedy (most internal
+// Backbone events have 3 arguments).
+var triggerEvents = function(events, args) {
+  var ev, i = -1, l = events.length, a1 = args[0], a2 = args[1], a3 = args[2];
+  switch (args.length) {
+    case 0: while (++i < l) (ev = events[i]).callback.call(ev.ctx); return;
+    case 1: while (++i < l) (ev = events[i]).callback.call(ev.ctx, a1); return;
+    case 2: while (++i < l) (ev = events[i]).callback.call(ev.ctx, a1, a2); return;
+    case 3: while (++i < l) (ev = events[i]).callback.call(ev.ctx, a1, a2, a3); return;
+    default: while (++i < l) (ev = events[i]).callback.apply(ev.ctx, args);
+  }
+};
+
+// Regular expression used to split event strings.
+var eventSplitter = /\s+/;
+
+// Implement fancy features of the Events API such as multiple event
+// names `"change blur"` and jQuery-style event maps `{change: action}`
+// in terms of the existing API.
+var eventsApi = function(obj, action, name, rest) {
+  if (!name) return true;
+
+  // Handle event maps.
+  if (typeof name === 'object') {
+    for (var key in name) {
+      obj[action].apply(obj, [key, name[key]].concat(rest));
+    }
+    return false;
+  }
+
+  // Handle space separated event names.
+  if (eventSplitter.test(name)) {
+    var names = name.split(eventSplitter);
+    for (var i = 0, l = names.length; i < l; i++) {
+      obj[action].apply(obj, [names[i]].concat(rest));
+    }
+    return false;
+  }
+
+  return true;
+};
+
+util.Events = {
+
+  // Bind an event to a `callback` function. Passing `"all"` will bind
+  // the callback to all events fired.
+  on: function(name, callback, context) {
+    if (!eventsApi(this, 'on', name, [callback, context]) || !callback) return this;
+    this._events =  this._events || {};
+    var events = this._events[name] || (this._events[name] = []);
+    events.push({callback: callback, context: context, ctx: context || this});
+    return this;
+  },
+
+  // Bind an event to only be triggered a single time. After the first time
+  // the callback is invoked, it will be removed.
+  once: function(name, callback, context) {
+    if (!eventsApi(this, 'once', name, [callback, context]) || !callback) return this;
+    var self = this;
+    var once = _.once(function() {
+      self.off(name, once);
+      callback.apply(this, arguments);
+    });
+    once._callback = callback;
+    return this.on(name, once, context);
+  },
+
+  // Remove one or many callbacks. If `context` is null, removes all
+  // callbacks with that function. If `callback` is null, removes all
+  // callbacks for the event. If `name` is null, removes all bound
+  // callbacks for all events.
+  off: function(name, callback, context) {
+    var retain, ev, events, names, i, l, j, k;
+    if (!this._events || !eventsApi(this, 'off', name, [callback, context])) return this;
+    if (!name && !callback && !context) {
+      this._events = {};
+      return this;
+    }
+
+    names = name ? [name] : _.keys(this._events);
+    for (i = 0, l = names.length; i < l; i++) {
+      name = names[i];
+      events = this._events[name];
+      if (events) {
+        this._events[name] = retain = [];
+        if (callback || context) {
+          for (j = 0, k = events.length; j < k; j++) {
+            ev = events[j];
+            if ((callback && callback !== ev.callback && callback !== ev.callback._callback) ||
+                (context && context !== ev.context)) {
+              retain.push(ev);
+            }
+          }
+        }
+        if (!retain.length) delete this._events[name];
+      }
+    }
+
+    return this;
+  },
+
+  // Trigger one or many events, firing all bound callbacks. Callbacks are
+  // passed the same arguments as `trigger` is, apart from the event name
+  // (unless you're listening on `"all"`, which will cause your callback to
+  // receive the true name of the event as the first argument).
+  trigger: function(name) {
+    if (!this._events) return this;
+    var args = Array.prototype.slice.call(arguments, 1);
+    if (!eventsApi(this, 'trigger', name, args)) return this;
+    var events = this._events[name];
+    var allEvents = this._events.all;
+    if (events) triggerEvents(events, args);
+    if (allEvents) triggerEvents(allEvents, arguments);
+    return this;
+  },
+
+  triggerLater: function() {
+    var self = this;
+    var _arguments = arguments;
+    setTimeout(function() {
+      self.trigger.apply(self, _arguments);
+    }, 0);
+  },
+
+  // Tell this object to stop listening to either specific events ... or
+  // to every object it's currently listening to.
+  stopListening: function(obj, name, callback) {
+    var listeners = this._listeners;
+    if (!listeners) return this;
+    var deleteListener = !name && !callback;
+    if (typeof name === 'object') callback = this;
+    if (obj) (listeners = {})[obj._listenerId] = obj;
+    for (var id in listeners) {
+      listeners[id].off(name, callback, this);
+      if (deleteListener) delete this._listeners[id];
+    }
+    return this;
+  }
+
+};
+
+var listenMethods = {listenTo: 'on', listenToOnce: 'once'};
+
+// Inversion-of-control versions of `on` and `once`. Tell *this* object to
+// listen to an event in another object ... keeping track of what it's
+// listening to.
+_.each(listenMethods, function(implementation, method) {
+  util.Events[method] = function(obj, name, callback) {
+    var listeners = this._listeners || (this._listeners = {});
+    var id = obj._listenerId || (obj._listenerId = _.uniqueId('l'));
+    listeners[id] = obj;
+    if (typeof name === 'object') callback = this;
+    obj[implementation](name, callback, this);
+    return this;
+  };
+});
+
+// Aliases for backwards compatibility.
+util.Events.bind   = util.Events.on;
+util.Events.unbind = util.Events.off;
+
+util.Events.Listener = {
+
+  listenTo: function(obj, name, callback) {
+    if (!_.isFunction(callback)) {
+      throw new Error("Illegal argument: expecting function as callback, was: " + callback);
+    }
+
+    // initialize container for keeping handlers to unbind later
+    this._handlers = this._handlers || [];
+
+    obj.on(name, callback, this);
+
+    this._handlers.push({
+      unbind: function() {
+        obj.off(name, callback);
+      }
+    });
+
+    return this;
+  },
+
+  stopListening: function() {
+    for (var i = 0; i < this._handlers.length; i++) {
+      this._handlers[i].unbind();
+    }
+  }
+
+};
+
+
+var __once__ = _.once;
+
+function callAsynchronousChain(options, cb) {
+  var _finally = options.finally || function(err, data) { cb(err, data); };
+  _finally = __once__(_finally);
+  var data = options.data || {};
+  var functions = options.functions;
+
+  if (!_.isFunction(cb)) {
+    return cb("Illegal arguments: a callback function must be provided");
+  }
+
+  var index = 0;
+  var stopOnError = (options.stopOnError===undefined) ? true : options.stopOnError;
+  var errors = [];
+
+  function process(data) {
+    var func = functions[index];
+
+    // stop if no function is left
+    if (!func) {
+      if (errors.length > 0) {
+        return _finally(new Error("Multiple errors occurred.", data));
+      } else {
+        return _finally(null, data);
+      }
+    }
+
+    // A function that is used as call back for each function
+    // which does the progression in the chain via recursion.
+    // On errors the given callback will be called and recursion is stopped.
+    var recursiveCallback = __once__(function(err, data) {
+      // stop on error
+      if (err) {
+        if (stopOnError) {
+          return _finally(err, null);
+        } else {
+          errors.push(err);
+        }
+      }
+
+      index += 1;
+      process(data);
+    });
+
+    // catch exceptions and propagat
+    try {
+      if (func.length === 1) {
+        func(recursiveCallback);
+      } else {
+        func(data, recursiveCallback);
+      }
+    } catch (err) {
+      console.log("util.async caught error:", err);
+      util.printStackTrace(err);
+      _finally(err);
+    }
+  }
+
+  // start processing
+  process(data);
+}
+
+// Async Control Flow for the Substance
+// --------
+
+// TODO: use util.async.sequential instead
+util.async = {};
+
+// Calls a given list of asynchronous functions sequentially
+// -------------------
+// options:
+//    functions:  an array of functions of the form f(data,cb)
+//    data:       data provided to the first function; optional
+//    finally:    a function that will always be called at the end, also on errors; optional
+
+util.async.sequential = function(options, cb) {
+  // allow to call this with an array of functions instead of options
+  if(_.isArray(options)) {
+    options = { functions: options };
+  }
+  callAsynchronousChain(options, cb);
+};
+
+function asynchronousIterator(options) {
+  return function(data, cb) {
+    // retrieve items via selector if a selector function is given
+    var items = options.selector ? options.selector(data) : options.items;
+    var _finally = options.finally || function(err, data) { cb(err, data); };
+
+    // don't do nothing if no items are given
+    if (!items) return _finally(null, data);
+
+    var isArray = _.isArray(items);
+
+    if (options.before) {
+      options.before(data);
+    }
+
+    var funcs = [];
+    var iterator = options.iterator;
+
+    // TODO: discuss convention for iterator function signatures.
+    // trying to achieve a combination of underscore and node.js callback style
+    function arrayFunction(item, index) {
+      return function(data, cb) {
+        if (iterator.length === 2) {
+          iterator(item, cb);
+        } else if (iterator.length === 3) {
+          iterator(item, index, cb);
+        } else {
+          iterator(item, index, data, cb);
+        }
+      };
+    }
+
+    function objectFunction(value, key) {
+      return function(data, cb) {
+        if (iterator.length === 2) {
+          iterator(value, cb);
+        } else if (iterator.length === 3) {
+          iterator(value, key, cb);
+        } else {
+          iterator(value, key, data, cb);
+        }
+      };
+    }
+
+    if (isArray) {
+      for (var idx = 0; idx < items.length; idx++) {
+        funcs.push(arrayFunction(items[idx], idx));
+      }
+    } else {
+      for (var key in items) {
+        funcs.push(objectFunction(items[key], key));
+      }
+    }
+
+    //console.log("Iterator:", iterator, "Funcs:", funcs);
+    var chainOptions = {
+      functions: funcs,
+      data: data,
+      finally: _finally,
+      stopOnError: options.stopOnError
+    };
+    callAsynchronousChain(chainOptions, cb);
+  };
+}
+
+// Creates an each-iterator for util.async chains
+// -----------
+//
+//     var func = util.async.each(items, function(item, [idx, [data,]] cb) { ... });
+//     var func = util.async.each(options)
+//
+// options:
+//    items:    the items to be iterated
+//    selector: used to select items dynamically from the data provided by the previous function in the chain
+//    before:   an extra function called before iteration
+//    iterator: the iterator function (item, [idx, [data,]] cb)
+//       with item: the iterated item,
+//            data: the propagated data (optional)
+//            cb:   the callback
+
+// TODO: support only one version and add another function
+util.async.iterator = function(options_or_items, iterator) {
+  var options;
+  if (arguments.length == 1) {
+    options = options_or_items;
+  } else {
+    options = {
+      items: options_or_items,
+      iterator: iterator
+    };
+  }
+  return asynchronousIterator(options);
+};
+
+util.async.each = function(options, cb) {
+  // create the iterator and call instantly
+  var f = asynchronousIterator(options);
+  f(null, cb);
+};
+
+util.propagate = function(data, cb) {
+  if(!_.isFunction(cb)) {
+    throw "Illegal argument: provided callback is not a function";
+  }
+  return function(err) {
+    if (err) return cb(err);
+    cb(null, data);
+  };
+};
+
+// shamelessly stolen from backbone.js:
+// Helper function to correctly set up the prototype chain, for subclasses.
+// Similar to `goog.inherits`, but uses a hash of prototype properties and
+// class properties to be extended.
+var ctor = function(){};
+util.inherits = function(parent, protoProps, staticProps) {
+  var child;
+
+  // The constructor function for the new subclass is either defined by you
+  // (the "constructor" property in your `extend` definition), or defaulted
+  // by us to simply call the parent's constructor.
+  if (protoProps && protoProps.hasOwnProperty('constructor')) {
+    child = protoProps.constructor;
+  } else {
+    child = function(){ parent.apply(this, arguments); };
+  }
+
+  // Inherit class (static) properties from parent.
+  _.extend(child, parent);
+
+  // Set the prototype chain to inherit from `parent`, without calling
+  // `parent`'s constructor function.
+  ctor.prototype = parent.prototype;
+  child.prototype = new ctor();
+
+  // Add prototype properties (instance properties) to the subclass,
+  // if supplied.
+  if (protoProps) _.extend(child.prototype, protoProps);
+
+  // Add static properties to the constructor function, if supplied.
+  if (staticProps) _.extend(child, staticProps);
+
+  // Correctly set child's `prototype.constructor`.
+  child.prototype.constructor = child;
+
+  // Set a convenience property in case the parent's prototype is needed later.
+  child.__super__ = parent.prototype;
+
+  return child;
+};
+
+// Util to read seed data from file system
+// ----------
+
+util.getJSON = function(resource, cb) {
+  if (typeof exports !== 'undefined') {
+    var fs = require('fs');
+    var obj = JSON.parse(fs.readFileSync(resource, 'utf8'));
+    cb(null, obj);
+  } else {
+    //console.log("util.getJSON", resource);
+    $.getJSON(resource)
+      .done(function(obj) { cb(null, obj); })
+      .error(function(err) { cb(err, null); });
+  }
+};
+
+util.prototype = function(that) {
+  /*jshint proto: true*/ // supressing a warning about using deprecated __proto__.
+  return Object.getPrototypeOf ? Object.getPrototypeOf(that) : that.__proto__;
+};
+
+util.inherit = function(Super, Self) {
+  var super_proto = _.isFunction(Super) ? new Super() : Super;
+  var proto;
+  if (_.isFunction(Self)) {
+    Self.prototype = super_proto;
+    proto = new Self();
+  } else {
+    var TmpClass = function(){};
+    TmpClass.prototype = super_proto;
+    proto = _.extend(new TmpClass(), Self);
+  }
+  return proto;
+};
+
+util.pimpl = function(pimpl) {
+  var Pimpl = function(self) {
+    this.self = self;
+  };
+  Pimpl.prototype = pimpl;
+  return function(self) { self = self || this; return new Pimpl(self); };
+};
+
+util.parseStackTrace = function(err) {
+  var SAFARI_STACK_ELEM = /([^@]*)@(.*):(\d+)/;
+  var CHROME_STACK_ELEM = /\s*at ([^(]*)[(](.*):(\d+):(\d+)[)]/;
+
+  var idx;
+  var stackTrace = err.stack.split('\n');
+
+  // parse the stack trace: each line is a tuple (function, file, lineNumber)
+  // Note: unfortunately this is interpreter specific
+  // safari: "<function>@<file>:<lineNumber>"
+  // chrome: "at <function>(<file>:<line>:<col>"
+
+  var stack = [];
+  for (idx = 0; idx < stackTrace.length; idx++) {
+    var match = SAFARI_STACK_ELEM.exec(stackTrace[idx]);
+    if (!match) match = CHROME_STACK_ELEM.exec(stackTrace[idx]);
+    if (match) {
+      var entry = {
+        func: match[1],
+        file: match[2],
+        line: match[3],
+        col: match[4] || 0
+      };
+      if (entry.func === "") entry.func = "<anonymous>";
+      stack.push(entry);
+    }
+  }
+
+  return stack;
+};
+
+util.callstack = function(k) {
+  var err;
+  try { throw new Error(); } catch (_err) { err = _err; }
+  var stack = util.parseStackTrace(err);
+  k = k || 0;
+  return stack.splice(k+1);
+};
+
+util.stacktrace = function (err) {
+  var stack = (arguments.length === 0) ? util.callstack().splice(1) : util.parseStackTrace(err);
+  var str = [];
+  _.each(stack, function(s) {
+    str.push(s.file+":"+s.line+":"+s.col+" ("+s.func+")");
+  });
+  return str.join("\n");
+};
+
+util.printStackTrace = function(err, N) {
+  if (!err.stack) return;
+
+  var stack;
+
+  // Substance errors have a nice stack already
+  if (err.__stack !== undefined) {
+    stack = err.__stack;
+  }
+  // built-in errors have the stack trace as one string
+  else if (_.isString(err.stack)) {
+    stack = util.parseStackTrace(err);
+  }
+  else return;
+
+  N = N || stack.length;
+  N = Math.min(N, stack.length);
+
+  for (var idx = 0; idx < N; idx++) {
+    var s = stack[idx];
+    console.log(s.file+":"+s.line+":"+s.col, "("+s.func+")");
+  }
+};
+
+// computes the difference of obj1 to obj2
+util.diff = function(obj1, obj2) {
+  var diff;
+  if (_.isArray(obj1) && _.isArray(obj2)) {
+    diff = _.difference(obj2, obj1);
+    // return null in case of equality
+    if (diff.length === 0) return null;
+    else return diff;
+  }
+  if (_.isObject(obj1) && _.isObject(obj2)) {
+    diff = {};
+    _.each(Object.keys(obj2), function(key) {
+      var d = util.diff(obj1[key], obj2[key]);
+      if (d) diff[key] = d;
+    });
+    // return null in case of equality
+    if (_.isEmpty(diff)) return null;
+    else return diff;
+  }
+  if(obj1 !== obj2) return obj2;
+};
+
+// Deep-Clone a given object
+// --------
+// Note: this is currently done via JSON.parse(JSON.stringify(obj))
+//       which is in fact not optimal, as it depends on `toJSON` implementation.
+util.deepclone = function(obj) {
+  return JSON.parse(JSON.stringify(obj));
+};
+
+// Clones a given object
+// --------
+// Calls obj's `clone` function if available,
+// otherwise clones the obj using `util.deepclone()`.
+util.clone = function(obj) {
+  if (obj === null || obj === undefined) {
+    return obj;
+  }
+  if (_.isFunction(obj.clone)) {
+    return obj.clone();
+  }
+  return util.deepclone(obj);
+};
+
+util.freeze = function(obj) {
+  var idx;
+  if (_.isObject(obj)) {
+    if (Object.isFrozen(obj)) return obj;
+
+    var keys = Object.keys(obj);
+    for (idx = 0; idx < keys.length; idx++) {
+      var key = keys[idx];
+      obj[key] = util.freeze(obj[key]);
+    }
+    return Object.freeze(obj);
+  } else if (_.isArray(obj)) {
+    var arr = obj;
+    for (idx = 0; idx < arr.length; idx++) {
+      arr[idx] = util.freeze(arr[idx]);
+    }
+    return Object.freeze(arr);
+  } else {
+    return obj; // Object.freeze(obj);
+  }
+};
+
+util.later = function(f, context) {
+  return function() {
+    var _args = arguments;
+    setTimeout(function() {
+      f.apply(context, _args);
+    }, 0);
+  };
+};
+
+
+// Returns true if a string doesn't contain any real content
+
+util.isEmpty = function(str) {
+  return !str.match(/\w/);
+};
+
+// Export
+// ====
+
+module.exports = util;
+
+},{"fs":163,"underscore":159}],159:[function(require,module,exports){
+//     Underscore.js 1.5.2
+//     http://underscorejs.org
+//     (c) 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+//     Underscore may be freely distributed under the MIT license.
+
+(function() {
+
+  // Baseline setup
+  // --------------
+
+  // Establish the root object, `window` in the browser, or `exports` on the server.
+  var root = this;
+
+  // Save the previous value of the `_` variable.
+  var previousUnderscore = root._;
+
+  // Establish the object that gets returned to break out of a loop iteration.
+  var breaker = {};
+
+  // Save bytes in the minified (but not gzipped) version:
+  var ArrayProto = Array.prototype, ObjProto = Object.prototype, FuncProto = Function.prototype;
+
+  // Create quick reference variables for speed access to core prototypes.
+  var
+    push             = ArrayProto.push,
+    slice            = ArrayProto.slice,
+    concat           = ArrayProto.concat,
+    toString         = ObjProto.toString,
+    hasOwnProperty   = ObjProto.hasOwnProperty;
+
+  // All **ECMAScript 5** native function implementations that we hope to use
+  // are declared here.
+  var
+    nativeForEach      = ArrayProto.forEach,
+    nativeMap          = ArrayProto.map,
+    nativeReduce       = ArrayProto.reduce,
+    nativeReduceRight  = ArrayProto.reduceRight,
+    nativeFilter       = ArrayProto.filter,
+    nativeEvery        = ArrayProto.every,
+    nativeSome         = ArrayProto.some,
+    nativeIndexOf      = ArrayProto.indexOf,
+    nativeLastIndexOf  = ArrayProto.lastIndexOf,
+    nativeIsArray      = Array.isArray,
+    nativeKeys         = Object.keys,
+    nativeBind         = FuncProto.bind;
+
+  // Create a safe reference to the Underscore object for use below.
+  var _ = function(obj) {
+    if (obj instanceof _) return obj;
+    if (!(this instanceof _)) return new _(obj);
+    this._wrapped = obj;
+  };
+
+  // Export the Underscore object for **Node.js**, with
+  // backwards-compatibility for the old `require()` API. If we're in
+  // the browser, add `_` as a global object via a string identifier,
+  // for Closure Compiler "advanced" mode.
+  if (typeof exports !== 'undefined') {
+    if (typeof module !== 'undefined' && module.exports) {
+      exports = module.exports = _;
+    }
+    exports._ = _;
+  } else {
+    root._ = _;
+  }
+
+  // Current version.
+  _.VERSION = '1.5.2';
+
+  // Collection Functions
+  // --------------------
+
+  // The cornerstone, an `each` implementation, aka `forEach`.
+  // Handles objects with the built-in `forEach`, arrays, and raw objects.
+  // Delegates to **ECMAScript 5**'s native `forEach` if available.
+  var each = _.each = _.forEach = function(obj, iterator, context) {
+    if (obj == null) return;
+    if (nativeForEach && obj.forEach === nativeForEach) {
+      obj.forEach(iterator, context);
+    } else if (obj.length === +obj.length) {
+      for (var i = 0, length = obj.length; i < length; i++) {
+        if (iterator.call(context, obj[i], i, obj) === breaker) return;
+      }
+    } else {
+      var keys = _.keys(obj);
+      for (var i = 0, length = keys.length; i < length; i++) {
+        if (iterator.call(context, obj[keys[i]], keys[i], obj) === breaker) return;
+      }
+    }
+  };
+
+  // Return the results of applying the iterator to each element.
+  // Delegates to **ECMAScript 5**'s native `map` if available.
+  _.map = _.collect = function(obj, iterator, context) {
+    var results = [];
+    if (obj == null) return results;
+    if (nativeMap && obj.map === nativeMap) return obj.map(iterator, context);
+    each(obj, function(value, index, list) {
+      results.push(iterator.call(context, value, index, list));
+    });
+    return results;
+  };
+
+  var reduceError = 'Reduce of empty array with no initial value';
+
+  // **Reduce** builds up a single result from a list of values, aka `inject`,
+  // or `foldl`. Delegates to **ECMAScript 5**'s native `reduce` if available.
+  _.reduce = _.foldl = _.inject = function(obj, iterator, memo, context) {
+    var initial = arguments.length > 2;
+    if (obj == null) obj = [];
+    if (nativeReduce && obj.reduce === nativeReduce) {
+      if (context) iterator = _.bind(iterator, context);
+      return initial ? obj.reduce(iterator, memo) : obj.reduce(iterator);
+    }
+    each(obj, function(value, index, list) {
+      if (!initial) {
+        memo = value;
+        initial = true;
+      } else {
+        memo = iterator.call(context, memo, value, index, list);
+      }
+    });
+    if (!initial) throw new TypeError(reduceError);
+    return memo;
+  };
+
+  // The right-associative version of reduce, also known as `foldr`.
+  // Delegates to **ECMAScript 5**'s native `reduceRight` if available.
+  _.reduceRight = _.foldr = function(obj, iterator, memo, context) {
+    var initial = arguments.length > 2;
+    if (obj == null) obj = [];
+    if (nativeReduceRight && obj.reduceRight === nativeReduceRight) {
+      if (context) iterator = _.bind(iterator, context);
+      return initial ? obj.reduceRight(iterator, memo) : obj.reduceRight(iterator);
+    }
+    var length = obj.length;
+    if (length !== +length) {
+      var keys = _.keys(obj);
+      length = keys.length;
+    }
+    each(obj, function(value, index, list) {
+      index = keys ? keys[--length] : --length;
+      if (!initial) {
+        memo = obj[index];
+        initial = true;
+      } else {
+        memo = iterator.call(context, memo, obj[index], index, list);
+      }
+    });
+    if (!initial) throw new TypeError(reduceError);
+    return memo;
+  };
+
+  // Return the first value which passes a truth test. Aliased as `detect`.
+  _.find = _.detect = function(obj, iterator, context) {
+    var result;
+    any(obj, function(value, index, list) {
+      if (iterator.call(context, value, index, list)) {
+        result = value;
+        return true;
+      }
+    });
+    return result;
+  };
+
+  // Return all the elements that pass a truth test.
+  // Delegates to **ECMAScript 5**'s native `filter` if available.
+  // Aliased as `select`.
+  _.filter = _.select = function(obj, iterator, context) {
+    var results = [];
+    if (obj == null) return results;
+    if (nativeFilter && obj.filter === nativeFilter) return obj.filter(iterator, context);
+    each(obj, function(value, index, list) {
+      if (iterator.call(context, value, index, list)) results.push(value);
+    });
+    return results;
+  };
+
+  // Return all the elements for which a truth test fails.
+  _.reject = function(obj, iterator, context) {
+    return _.filter(obj, function(value, index, list) {
+      return !iterator.call(context, value, index, list);
+    }, context);
+  };
+
+  // Determine whether all of the elements match a truth test.
+  // Delegates to **ECMAScript 5**'s native `every` if available.
+  // Aliased as `all`.
+  _.every = _.all = function(obj, iterator, context) {
+    iterator || (iterator = _.identity);
+    var result = true;
+    if (obj == null) return result;
+    if (nativeEvery && obj.every === nativeEvery) return obj.every(iterator, context);
+    each(obj, function(value, index, list) {
+      if (!(result = result && iterator.call(context, value, index, list))) return breaker;
+    });
+    return !!result;
+  };
+
+  // Determine if at least one element in the object matches a truth test.
+  // Delegates to **ECMAScript 5**'s native `some` if available.
+  // Aliased as `any`.
+  var any = _.some = _.any = function(obj, iterator, context) {
+    iterator || (iterator = _.identity);
+    var result = false;
+    if (obj == null) return result;
+    if (nativeSome && obj.some === nativeSome) return obj.some(iterator, context);
+    each(obj, function(value, index, list) {
+      if (result || (result = iterator.call(context, value, index, list))) return breaker;
+    });
+    return !!result;
+  };
+
+  // Determine if the array or object contains a given value (using `===`).
+  // Aliased as `include`.
+  _.contains = _.include = function(obj, target) {
+    if (obj == null) return false;
+    if (nativeIndexOf && obj.indexOf === nativeIndexOf) return obj.indexOf(target) != -1;
+    return any(obj, function(value) {
+      return value === target;
+    });
+  };
+
+  // Invoke a method (with arguments) on every item in a collection.
+  _.invoke = function(obj, method) {
+    var args = slice.call(arguments, 2);
+    var isFunc = _.isFunction(method);
+    return _.map(obj, function(value) {
+      return (isFunc ? method : value[method]).apply(value, args);
+    });
+  };
+
+  // Convenience version of a common use case of `map`: fetching a property.
+  _.pluck = function(obj, key) {
+    return _.map(obj, function(value){ return value[key]; });
+  };
+
+  // Convenience version of a common use case of `filter`: selecting only objects
+  // containing specific `key:value` pairs.
+  _.where = function(obj, attrs, first) {
+    if (_.isEmpty(attrs)) return first ? void 0 : [];
+    return _[first ? 'find' : 'filter'](obj, function(value) {
+      for (var key in attrs) {
+        if (attrs[key] !== value[key]) return false;
+      }
+      return true;
+    });
+  };
+
+  // Convenience version of a common use case of `find`: getting the first object
+  // containing specific `key:value` pairs.
+  _.findWhere = function(obj, attrs) {
+    return _.where(obj, attrs, true);
+  };
+
+  // Return the maximum element or (element-based computation).
+  // Can't optimize arrays of integers longer than 65,535 elements.
+  // See [WebKit Bug 80797](https://bugs.webkit.org/show_bug.cgi?id=80797)
+  _.max = function(obj, iterator, context) {
+    if (!iterator && _.isArray(obj) && obj[0] === +obj[0] && obj.length < 65535) {
+      return Math.max.apply(Math, obj);
+    }
+    if (!iterator && _.isEmpty(obj)) return -Infinity;
+    var result = {computed : -Infinity, value: -Infinity};
+    each(obj, function(value, index, list) {
+      var computed = iterator ? iterator.call(context, value, index, list) : value;
+      computed > result.computed && (result = {value : value, computed : computed});
+    });
+    return result.value;
+  };
+
+  // Return the minimum element (or element-based computation).
+  _.min = function(obj, iterator, context) {
+    if (!iterator && _.isArray(obj) && obj[0] === +obj[0] && obj.length < 65535) {
+      return Math.min.apply(Math, obj);
+    }
+    if (!iterator && _.isEmpty(obj)) return Infinity;
+    var result = {computed : Infinity, value: Infinity};
+    each(obj, function(value, index, list) {
+      var computed = iterator ? iterator.call(context, value, index, list) : value;
+      computed < result.computed && (result = {value : value, computed : computed});
+    });
+    return result.value;
+  };
+
+  // Shuffle an array, using the modern version of the 
+  // [Fisher-Yates shuffle](http://en.wikipedia.org/wiki/Fisher–Yates_shuffle).
+  _.shuffle = function(obj) {
+    var rand;
+    var index = 0;
+    var shuffled = [];
+    each(obj, function(value) {
+      rand = _.random(index++);
+      shuffled[index - 1] = shuffled[rand];
+      shuffled[rand] = value;
+    });
+    return shuffled;
+  };
+
+  // Sample **n** random values from an array.
+  // If **n** is not specified, returns a single random element from the array.
+  // The internal `guard` argument allows it to work with `map`.
+  _.sample = function(obj, n, guard) {
+    if (arguments.length < 2 || guard) {
+      return obj[_.random(obj.length - 1)];
+    }
+    return _.shuffle(obj).slice(0, Math.max(0, n));
+  };
+
+  // An internal function to generate lookup iterators.
+  var lookupIterator = function(value) {
+    return _.isFunction(value) ? value : function(obj){ return obj[value]; };
+  };
+
+  // Sort the object's values by a criterion produced by an iterator.
+  _.sortBy = function(obj, value, context) {
+    var iterator = lookupIterator(value);
+    return _.pluck(_.map(obj, function(value, index, list) {
+      return {
+        value: value,
+        index: index,
+        criteria: iterator.call(context, value, index, list)
+      };
+    }).sort(function(left, right) {
+      var a = left.criteria;
+      var b = right.criteria;
+      if (a !== b) {
+        if (a > b || a === void 0) return 1;
+        if (a < b || b === void 0) return -1;
+      }
+      return left.index - right.index;
+    }), 'value');
+  };
+
+  // An internal function used for aggregate "group by" operations.
+  var group = function(behavior) {
+    return function(obj, value, context) {
+      var result = {};
+      var iterator = value == null ? _.identity : lookupIterator(value);
+      each(obj, function(value, index) {
+        var key = iterator.call(context, value, index, obj);
+        behavior(result, key, value);
+      });
+      return result;
+    };
+  };
+
+  // Groups the object's values by a criterion. Pass either a string attribute
+  // to group by, or a function that returns the criterion.
+  _.groupBy = group(function(result, key, value) {
+    (_.has(result, key) ? result[key] : (result[key] = [])).push(value);
+  });
+
+  // Indexes the object's values by a criterion, similar to `groupBy`, but for
+  // when you know that your index values will be unique.
+  _.indexBy = group(function(result, key, value) {
+    result[key] = value;
+  });
+
+  // Counts instances of an object that group by a certain criterion. Pass
+  // either a string attribute to count by, or a function that returns the
+  // criterion.
+  _.countBy = group(function(result, key) {
+    _.has(result, key) ? result[key]++ : result[key] = 1;
+  });
+
+  // Use a comparator function to figure out the smallest index at which
+  // an object should be inserted so as to maintain order. Uses binary search.
+  _.sortedIndex = function(array, obj, iterator, context) {
+    iterator = iterator == null ? _.identity : lookupIterator(iterator);
+    var value = iterator.call(context, obj);
+    var low = 0, high = array.length;
+    while (low < high) {
+      var mid = (low + high) >>> 1;
+      iterator.call(context, array[mid]) < value ? low = mid + 1 : high = mid;
+    }
+    return low;
+  };
+
+  // Safely create a real, live array from anything iterable.
+  _.toArray = function(obj) {
+    if (!obj) return [];
+    if (_.isArray(obj)) return slice.call(obj);
+    if (obj.length === +obj.length) return _.map(obj, _.identity);
+    return _.values(obj);
+  };
+
+  // Return the number of elements in an object.
+  _.size = function(obj) {
+    if (obj == null) return 0;
+    return (obj.length === +obj.length) ? obj.length : _.keys(obj).length;
+  };
+
+  // Array Functions
+  // ---------------
+
+  // Get the first element of an array. Passing **n** will return the first N
+  // values in the array. Aliased as `head` and `take`. The **guard** check
+  // allows it to work with `_.map`.
+  _.first = _.head = _.take = function(array, n, guard) {
+    if (array == null) return void 0;
+    return (n == null) || guard ? array[0] : slice.call(array, 0, n);
+  };
+
+  // Returns everything but the last entry of the array. Especially useful on
+  // the arguments object. Passing **n** will return all the values in
+  // the array, excluding the last N. The **guard** check allows it to work with
+  // `_.map`.
+  _.initial = function(array, n, guard) {
+    return slice.call(array, 0, array.length - ((n == null) || guard ? 1 : n));
+  };
+
+  // Get the last element of an array. Passing **n** will return the last N
+  // values in the array. The **guard** check allows it to work with `_.map`.
+  _.last = function(array, n, guard) {
+    if (array == null) return void 0;
+    if ((n == null) || guard) {
+      return array[array.length - 1];
+    } else {
+      return slice.call(array, Math.max(array.length - n, 0));
+    }
+  };
+
+  // Returns everything but the first entry of the array. Aliased as `tail` and `drop`.
+  // Especially useful on the arguments object. Passing an **n** will return
+  // the rest N values in the array. The **guard**
+  // check allows it to work with `_.map`.
+  _.rest = _.tail = _.drop = function(array, n, guard) {
+    return slice.call(array, (n == null) || guard ? 1 : n);
+  };
+
+  // Trim out all falsy values from an array.
+  _.compact = function(array) {
+    return _.filter(array, _.identity);
+  };
+
+  // Internal implementation of a recursive `flatten` function.
+  var flatten = function(input, shallow, output) {
+    if (shallow && _.every(input, _.isArray)) {
+      return concat.apply(output, input);
+    }
+    each(input, function(value) {
+      if (_.isArray(value) || _.isArguments(value)) {
+        shallow ? push.apply(output, value) : flatten(value, shallow, output);
+      } else {
+        output.push(value);
+      }
+    });
+    return output;
+  };
+
+  // Flatten out an array, either recursively (by default), or just one level.
+  _.flatten = function(array, shallow) {
+    return flatten(array, shallow, []);
+  };
+
+  // Return a version of the array that does not contain the specified value(s).
+  _.without = function(array) {
+    return _.difference(array, slice.call(arguments, 1));
+  };
+
+  // Produce a duplicate-free version of the array. If the array has already
+  // been sorted, you have the option of using a faster algorithm.
+  // Aliased as `unique`.
+  _.uniq = _.unique = function(array, isSorted, iterator, context) {
+    if (_.isFunction(isSorted)) {
+      context = iterator;
+      iterator = isSorted;
+      isSorted = false;
+    }
+    var initial = iterator ? _.map(array, iterator, context) : array;
+    var results = [];
+    var seen = [];
+    each(initial, function(value, index) {
+      if (isSorted ? (!index || seen[seen.length - 1] !== value) : !_.contains(seen, value)) {
+        seen.push(value);
+        results.push(array[index]);
+      }
+    });
+    return results;
+  };
+
+  // Produce an array that contains the union: each distinct element from all of
+  // the passed-in arrays.
+  _.union = function() {
+    return _.uniq(_.flatten(arguments, true));
+  };
+
+  // Produce an array that contains every item shared between all the
+  // passed-in arrays.
+  _.intersection = function(array) {
+    var rest = slice.call(arguments, 1);
+    return _.filter(_.uniq(array), function(item) {
+      return _.every(rest, function(other) {
+        return _.indexOf(other, item) >= 0;
+      });
+    });
+  };
+
+  // Take the difference between one array and a number of other arrays.
+  // Only the elements present in just the first array will remain.
+  _.difference = function(array) {
+    var rest = concat.apply(ArrayProto, slice.call(arguments, 1));
+    return _.filter(array, function(value){ return !_.contains(rest, value); });
+  };
+
+  // Zip together multiple lists into a single array -- elements that share
+  // an index go together.
+  _.zip = function() {
+    var length = _.max(_.pluck(arguments, "length").concat(0));
+    var results = new Array(length);
+    for (var i = 0; i < length; i++) {
+      results[i] = _.pluck(arguments, '' + i);
+    }
+    return results;
+  };
+
+  // Converts lists into objects. Pass either a single array of `[key, value]`
+  // pairs, or two parallel arrays of the same length -- one of keys, and one of
+  // the corresponding values.
+  _.object = function(list, values) {
+    if (list == null) return {};
+    var result = {};
+    for (var i = 0, length = list.length; i < length; i++) {
+      if (values) {
+        result[list[i]] = values[i];
+      } else {
+        result[list[i][0]] = list[i][1];
+      }
+    }
+    return result;
+  };
+
+  // If the browser doesn't supply us with indexOf (I'm looking at you, **MSIE**),
+  // we need this function. Return the position of the first occurrence of an
+  // item in an array, or -1 if the item is not included in the array.
+  // Delegates to **ECMAScript 5**'s native `indexOf` if available.
+  // If the array is large and already in sort order, pass `true`
+  // for **isSorted** to use binary search.
+  _.indexOf = function(array, item, isSorted) {
+    if (array == null) return -1;
+    var i = 0, length = array.length;
+    if (isSorted) {
+      if (typeof isSorted == 'number') {
+        i = (isSorted < 0 ? Math.max(0, length + isSorted) : isSorted);
+      } else {
+        i = _.sortedIndex(array, item);
+        return array[i] === item ? i : -1;
+      }
+    }
+    if (nativeIndexOf && array.indexOf === nativeIndexOf) return array.indexOf(item, isSorted);
+    for (; i < length; i++) if (array[i] === item) return i;
+    return -1;
+  };
+
+  // Delegates to **ECMAScript 5**'s native `lastIndexOf` if available.
+  _.lastIndexOf = function(array, item, from) {
+    if (array == null) return -1;
+    var hasIndex = from != null;
+    if (nativeLastIndexOf && array.lastIndexOf === nativeLastIndexOf) {
+      return hasIndex ? array.lastIndexOf(item, from) : array.lastIndexOf(item);
+    }
+    var i = (hasIndex ? from : array.length);
+    while (i--) if (array[i] === item) return i;
+    return -1;
+  };
+
+  // Generate an integer Array containing an arithmetic progression. A port of
+  // the native Python `range()` function. See
+  // [the Python documentation](http://docs.python.org/library/functions.html#range).
+  _.range = function(start, stop, step) {
+    if (arguments.length <= 1) {
+      stop = start || 0;
+      start = 0;
+    }
+    step = arguments[2] || 1;
+
+    var length = Math.max(Math.ceil((stop - start) / step), 0);
+    var idx = 0;
+    var range = new Array(length);
+
+    while(idx < length) {
+      range[idx++] = start;
+      start += step;
+    }
+
+    return range;
+  };
+
+  // Function (ahem) Functions
+  // ------------------
+
+  // Reusable constructor function for prototype setting.
+  var ctor = function(){};
+
+  // Create a function bound to a given object (assigning `this`, and arguments,
+  // optionally). Delegates to **ECMAScript 5**'s native `Function.bind` if
+  // available.
+  _.bind = function(func, context) {
+    var args, bound;
+    if (nativeBind && func.bind === nativeBind) return nativeBind.apply(func, slice.call(arguments, 1));
+    if (!_.isFunction(func)) throw new TypeError;
+    args = slice.call(arguments, 2);
+    return bound = function() {
+      if (!(this instanceof bound)) return func.apply(context, args.concat(slice.call(arguments)));
+      ctor.prototype = func.prototype;
+      var self = new ctor;
+      ctor.prototype = null;
+      var result = func.apply(self, args.concat(slice.call(arguments)));
+      if (Object(result) === result) return result;
+      return self;
+    };
+  };
+
+  // Partially apply a function by creating a version that has had some of its
+  // arguments pre-filled, without changing its dynamic `this` context.
+  _.partial = function(func) {
+    var args = slice.call(arguments, 1);
+    return function() {
+      return func.apply(this, args.concat(slice.call(arguments)));
+    };
+  };
+
+  // Bind all of an object's methods to that object. Useful for ensuring that
+  // all callbacks defined on an object belong to it.
+  _.bindAll = function(obj) {
+    var funcs = slice.call(arguments, 1);
+    if (funcs.length === 0) throw new Error("bindAll must be passed function names");
+    each(funcs, function(f) { obj[f] = _.bind(obj[f], obj); });
+    return obj;
+  };
+
+  // Memoize an expensive function by storing its results.
+  _.memoize = function(func, hasher) {
+    var memo = {};
+    hasher || (hasher = _.identity);
+    return function() {
+      var key = hasher.apply(this, arguments);
+      return _.has(memo, key) ? memo[key] : (memo[key] = func.apply(this, arguments));
+    };
+  };
+
+  // Delays a function for the given number of milliseconds, and then calls
+  // it with the arguments supplied.
+  _.delay = function(func, wait) {
+    var args = slice.call(arguments, 2);
+    return setTimeout(function(){ return func.apply(null, args); }, wait);
+  };
+
+  // Defers a function, scheduling it to run after the current call stack has
+  // cleared.
+  _.defer = function(func) {
+    return _.delay.apply(_, [func, 1].concat(slice.call(arguments, 1)));
+  };
+
+  // Returns a function, that, when invoked, will only be triggered at most once
+  // during a given window of time. Normally, the throttled function will run
+  // as much as it can, without ever going more than once per `wait` duration;
+  // but if you'd like to disable the execution on the leading edge, pass
+  // `{leading: false}`. To disable execution on the trailing edge, ditto.
+  _.throttle = function(func, wait, options) {
+    var context, args, result;
+    var timeout = null;
+    var previous = 0;
+    options || (options = {});
+    var later = function() {
+      previous = options.leading === false ? 0 : new Date;
+      timeout = null;
+      result = func.apply(context, args);
+    };
+    return function() {
+      var now = new Date;
+      if (!previous && options.leading === false) previous = now;
+      var remaining = wait - (now - previous);
+      context = this;
+      args = arguments;
+      if (remaining <= 0) {
+        clearTimeout(timeout);
+        timeout = null;
+        previous = now;
+        result = func.apply(context, args);
+      } else if (!timeout && options.trailing !== false) {
+        timeout = setTimeout(later, remaining);
+      }
+      return result;
+    };
+  };
+
+  // Returns a function, that, as long as it continues to be invoked, will not
+  // be triggered. The function will be called after it stops being called for
+  // N milliseconds. If `immediate` is passed, trigger the function on the
+  // leading edge, instead of the trailing.
+  _.debounce = function(func, wait, immediate) {
+    var timeout, args, context, timestamp, result;
+    return function() {
+      context = this;
+      args = arguments;
+      timestamp = new Date();
+      var later = function() {
+        var last = (new Date()) - timestamp;
+        if (last < wait) {
+          timeout = setTimeout(later, wait - last);
+        } else {
+          timeout = null;
+          if (!immediate) result = func.apply(context, args);
+        }
+      };
+      var callNow = immediate && !timeout;
+      if (!timeout) {
+        timeout = setTimeout(later, wait);
+      }
+      if (callNow) result = func.apply(context, args);
+      return result;
+    };
+  };
+
+  // Returns a function that will be executed at most one time, no matter how
+  // often you call it. Useful for lazy initialization.
+  _.once = function(func) {
+    var ran = false, memo;
+    return function() {
+      if (ran) return memo;
+      ran = true;
+      memo = func.apply(this, arguments);
+      func = null;
+      return memo;
+    };
+  };
+
+  // Returns the first function passed as an argument to the second,
+  // allowing you to adjust arguments, run code before and after, and
+  // conditionally execute the original function.
+  _.wrap = function(func, wrapper) {
+    return function() {
+      var args = [func];
+      push.apply(args, arguments);
+      return wrapper.apply(this, args);
+    };
+  };
+
+  // Returns a function that is the composition of a list of functions, each
+  // consuming the return value of the function that follows.
+  _.compose = function() {
+    var funcs = arguments;
+    return function() {
+      var args = arguments;
+      for (var i = funcs.length - 1; i >= 0; i--) {
+        args = [funcs[i].apply(this, args)];
+      }
+      return args[0];
+    };
+  };
+
+  // Returns a function that will only be executed after being called N times.
+  _.after = function(times, func) {
+    return function() {
+      if (--times < 1) {
+        return func.apply(this, arguments);
+      }
+    };
+  };
+
+  // Object Functions
+  // ----------------
+
+  // Retrieve the names of an object's properties.
+  // Delegates to **ECMAScript 5**'s native `Object.keys`
+  _.keys = nativeKeys || function(obj) {
+    if (obj !== Object(obj)) throw new TypeError('Invalid object');
+    var keys = [];
+    for (var key in obj) if (_.has(obj, key)) keys.push(key);
+    return keys;
+  };
+
+  // Retrieve the values of an object's properties.
+  _.values = function(obj) {
+    var keys = _.keys(obj);
+    var length = keys.length;
+    var values = new Array(length);
+    for (var i = 0; i < length; i++) {
+      values[i] = obj[keys[i]];
+    }
+    return values;
+  };
+
+  // Convert an object into a list of `[key, value]` pairs.
+  _.pairs = function(obj) {
+    var keys = _.keys(obj);
+    var length = keys.length;
+    var pairs = new Array(length);
+    for (var i = 0; i < length; i++) {
+      pairs[i] = [keys[i], obj[keys[i]]];
+    }
+    return pairs;
+  };
+
+  // Invert the keys and values of an object. The values must be serializable.
+  _.invert = function(obj) {
+    var result = {};
+    var keys = _.keys(obj);
+    for (var i = 0, length = keys.length; i < length; i++) {
+      result[obj[keys[i]]] = keys[i];
+    }
+    return result;
+  };
+
+  // Return a sorted list of the function names available on the object.
+  // Aliased as `methods`
+  _.functions = _.methods = function(obj) {
+    var names = [];
+    for (var key in obj) {
+      if (_.isFunction(obj[key])) names.push(key);
+    }
+    return names.sort();
+  };
+
+  // Extend a given object with all the properties in passed-in object(s).
+  _.extend = function(obj) {
+    each(slice.call(arguments, 1), function(source) {
+      if (source) {
+        for (var prop in source) {
+          obj[prop] = source[prop];
+        }
+      }
+    });
+    return obj;
+  };
+
+  // Return a copy of the object only containing the whitelisted properties.
+  _.pick = function(obj) {
+    var copy = {};
+    var keys = concat.apply(ArrayProto, slice.call(arguments, 1));
+    each(keys, function(key) {
+      if (key in obj) copy[key] = obj[key];
+    });
+    return copy;
+  };
+
+   // Return a copy of the object without the blacklisted properties.
+  _.omit = function(obj) {
+    var copy = {};
+    var keys = concat.apply(ArrayProto, slice.call(arguments, 1));
+    for (var key in obj) {
+      if (!_.contains(keys, key)) copy[key] = obj[key];
+    }
+    return copy;
+  };
+
+  // Fill in a given object with default properties.
+  _.defaults = function(obj) {
+    each(slice.call(arguments, 1), function(source) {
+      if (source) {
+        for (var prop in source) {
+          if (obj[prop] === void 0) obj[prop] = source[prop];
+        }
+      }
+    });
+    return obj;
+  };
+
+  // Create a (shallow-cloned) duplicate of an object.
+  _.clone = function(obj) {
+    if (!_.isObject(obj)) return obj;
+    return _.isArray(obj) ? obj.slice() : _.extend({}, obj);
+  };
+
+  // Invokes interceptor with the obj, and then returns obj.
+  // The primary purpose of this method is to "tap into" a method chain, in
+  // order to perform operations on intermediate results within the chain.
+  _.tap = function(obj, interceptor) {
+    interceptor(obj);
+    return obj;
+  };
+
+  // Internal recursive comparison function for `isEqual`.
+  var eq = function(a, b, aStack, bStack) {
+    // Identical objects are equal. `0 === -0`, but they aren't identical.
+    // See the [Harmony `egal` proposal](http://wiki.ecmascript.org/doku.php?id=harmony:egal).
+    if (a === b) return a !== 0 || 1 / a == 1 / b;
+    // A strict comparison is necessary because `null == undefined`.
+    if (a == null || b == null) return a === b;
+    // Unwrap any wrapped objects.
+    if (a instanceof _) a = a._wrapped;
+    if (b instanceof _) b = b._wrapped;
+    // Compare `[[Class]]` names.
+    var className = toString.call(a);
+    if (className != toString.call(b)) return false;
+    switch (className) {
+      // Strings, numbers, dates, and booleans are compared by value.
+      case '[object String]':
+        // Primitives and their corresponding object wrappers are equivalent; thus, `"5"` is
+        // equivalent to `new String("5")`.
+        return a == String(b);
+      case '[object Number]':
+        // `NaN`s are equivalent, but non-reflexive. An `egal` comparison is performed for
+        // other numeric values.
+        return a != +a ? b != +b : (a == 0 ? 1 / a == 1 / b : a == +b);
+      case '[object Date]':
+      case '[object Boolean]':
+        // Coerce dates and booleans to numeric primitive values. Dates are compared by their
+        // millisecond representations. Note that invalid dates with millisecond representations
+        // of `NaN` are not equivalent.
+        return +a == +b;
+      // RegExps are compared by their source patterns and flags.
+      case '[object RegExp]':
+        return a.source == b.source &&
+               a.global == b.global &&
+               a.multiline == b.multiline &&
+               a.ignoreCase == b.ignoreCase;
+    }
+    if (typeof a != 'object' || typeof b != 'object') return false;
+    // Assume equality for cyclic structures. The algorithm for detecting cyclic
+    // structures is adapted from ES 5.1 section 15.12.3, abstract operation `JO`.
+    var length = aStack.length;
+    while (length--) {
+      // Linear search. Performance is inversely proportional to the number of
+      // unique nested structures.
+      if (aStack[length] == a) return bStack[length] == b;
+    }
+    // Objects with different constructors are not equivalent, but `Object`s
+    // from different frames are.
+    var aCtor = a.constructor, bCtor = b.constructor;
+    if (aCtor !== bCtor && !(_.isFunction(aCtor) && (aCtor instanceof aCtor) &&
+                             _.isFunction(bCtor) && (bCtor instanceof bCtor))) {
+      return false;
+    }
+    // Add the first object to the stack of traversed objects.
+    aStack.push(a);
+    bStack.push(b);
+    var size = 0, result = true;
+    // Recursively compare objects and arrays.
+    if (className == '[object Array]') {
+      // Compare array lengths to determine if a deep comparison is necessary.
+      size = a.length;
+      result = size == b.length;
+      if (result) {
+        // Deep compare the contents, ignoring non-numeric properties.
+        while (size--) {
+          if (!(result = eq(a[size], b[size], aStack, bStack))) break;
+        }
+      }
+    } else {
+      // Deep compare objects.
+      for (var key in a) {
+        if (_.has(a, key)) {
+          // Count the expected number of properties.
+          size++;
+          // Deep compare each member.
+          if (!(result = _.has(b, key) && eq(a[key], b[key], aStack, bStack))) break;
+        }
+      }
+      // Ensure that both objects contain the same number of properties.
+      if (result) {
+        for (key in b) {
+          if (_.has(b, key) && !(size--)) break;
+        }
+        result = !size;
+      }
+    }
+    // Remove the first object from the stack of traversed objects.
+    aStack.pop();
+    bStack.pop();
+    return result;
+  };
+
+  // Perform a deep comparison to check if two objects are equal.
+  _.isEqual = function(a, b) {
+    return eq(a, b, [], []);
+  };
+
+  // Is a given array, string, or object empty?
+  // An "empty" object has no enumerable own-properties.
+  _.isEmpty = function(obj) {
+    if (obj == null) return true;
+    if (_.isArray(obj) || _.isString(obj)) return obj.length === 0;
+    for (var key in obj) if (_.has(obj, key)) return false;
+    return true;
+  };
+
+  // Is a given value a DOM element?
+  _.isElement = function(obj) {
+    return !!(obj && obj.nodeType === 1);
+  };
+
+  // Is a given value an array?
+  // Delegates to ECMA5's native Array.isArray
+  _.isArray = nativeIsArray || function(obj) {
+    return toString.call(obj) == '[object Array]';
+  };
+
+  // Is a given variable an object?
+  _.isObject = function(obj) {
+    return obj === Object(obj);
+  };
+
+  // Add some isType methods: isArguments, isFunction, isString, isNumber, isDate, isRegExp.
+  each(['Arguments', 'Function', 'String', 'Number', 'Date', 'RegExp'], function(name) {
+    _['is' + name] = function(obj) {
+      return toString.call(obj) == '[object ' + name + ']';
+    };
+  });
+
+  // Define a fallback version of the method in browsers (ahem, IE), where
+  // there isn't any inspectable "Arguments" type.
+  if (!_.isArguments(arguments)) {
+    _.isArguments = function(obj) {
+      return !!(obj && _.has(obj, 'callee'));
+    };
+  }
+
+  // Optimize `isFunction` if appropriate.
+  if (typeof (/./) !== 'function') {
+    _.isFunction = function(obj) {
+      return typeof obj === 'function';
+    };
+  }
+
+  // Is a given object a finite number?
+  _.isFinite = function(obj) {
+    return isFinite(obj) && !isNaN(parseFloat(obj));
+  };
+
+  // Is the given value `NaN`? (NaN is the only number which does not equal itself).
+  _.isNaN = function(obj) {
+    return _.isNumber(obj) && obj != +obj;
+  };
+
+  // Is a given value a boolean?
+  _.isBoolean = function(obj) {
+    return obj === true || obj === false || toString.call(obj) == '[object Boolean]';
+  };
+
+  // Is a given value equal to null?
+  _.isNull = function(obj) {
+    return obj === null;
+  };
+
+  // Is a given variable undefined?
+  _.isUndefined = function(obj) {
+    return obj === void 0;
+  };
+
+  // Shortcut function for checking if an object has a given property directly
+  // on itself (in other words, not on a prototype).
+  _.has = function(obj, key) {
+    return hasOwnProperty.call(obj, key);
+  };
+
+  // Utility Functions
+  // -----------------
+
+  // Run Underscore.js in *noConflict* mode, returning the `_` variable to its
+  // previous owner. Returns a reference to the Underscore object.
+  _.noConflict = function() {
+    root._ = previousUnderscore;
+    return this;
+  };
+
+  // Keep the identity function around for default iterators.
+  _.identity = function(value) {
+    return value;
+  };
+
+  // Run a function **n** times.
+  _.times = function(n, iterator, context) {
+    var accum = Array(Math.max(0, n));
+    for (var i = 0; i < n; i++) accum[i] = iterator.call(context, i);
+    return accum;
+  };
+
+  // Return a random integer between min and max (inclusive).
+  _.random = function(min, max) {
+    if (max == null) {
+      max = min;
+      min = 0;
+    }
+    return min + Math.floor(Math.random() * (max - min + 1));
+  };
+
+  // List of HTML entities for escaping.
+  var entityMap = {
+    escape: {
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#x27;'
+    }
+  };
+  entityMap.unescape = _.invert(entityMap.escape);
+
+  // Regexes containing the keys and values listed immediately above.
+  var entityRegexes = {
+    escape:   new RegExp('[' + _.keys(entityMap.escape).join('') + ']', 'g'),
+    unescape: new RegExp('(' + _.keys(entityMap.unescape).join('|') + ')', 'g')
+  };
+
+  // Functions for escaping and unescaping strings to/from HTML interpolation.
+  _.each(['escape', 'unescape'], function(method) {
+    _[method] = function(string) {
+      if (string == null) return '';
+      return ('' + string).replace(entityRegexes[method], function(match) {
+        return entityMap[method][match];
+      });
+    };
+  });
+
+  // If the value of the named `property` is a function then invoke it with the
+  // `object` as context; otherwise, return it.
+  _.result = function(object, property) {
+    if (object == null) return void 0;
+    var value = object[property];
+    return _.isFunction(value) ? value.call(object) : value;
+  };
+
+  // Add your own custom functions to the Underscore object.
+  _.mixin = function(obj) {
+    each(_.functions(obj), function(name) {
+      var func = _[name] = obj[name];
+      _.prototype[name] = function() {
+        var args = [this._wrapped];
+        push.apply(args, arguments);
+        return result.call(this, func.apply(_, args));
+      };
+    });
+  };
+
+  // Generate a unique integer id (unique within the entire client session).
+  // Useful for temporary DOM ids.
+  var idCounter = 0;
+  _.uniqueId = function(prefix) {
+    var id = ++idCounter + '';
+    return prefix ? prefix + id : id;
+  };
+
+  // By default, Underscore uses ERB-style template delimiters, change the
+  // following template settings to use alternative delimiters.
+  _.templateSettings = {
+    evaluate    : /<%([\s\S]+?)%>/g,
+    interpolate : /<%=([\s\S]+?)%>/g,
+    escape      : /<%-([\s\S]+?)%>/g
+  };
+
+  // When customizing `templateSettings`, if you don't want to define an
+  // interpolation, evaluation or escaping regex, we need one that is
+  // guaranteed not to match.
+  var noMatch = /(.)^/;
+
+  // Certain characters need to be escaped so that they can be put into a
+  // string literal.
+  var escapes = {
+    "'":      "'",
+    '\\':     '\\',
+    '\r':     'r',
+    '\n':     'n',
+    '\t':     't',
+    '\u2028': 'u2028',
+    '\u2029': 'u2029'
+  };
+
+  var escaper = /\\|'|\r|\n|\t|\u2028|\u2029/g;
+
+  // JavaScript micro-templating, similar to John Resig's implementation.
+  // Underscore templating handles arbitrary delimiters, preserves whitespace,
+  // and correctly escapes quotes within interpolated code.
+  _.template = function(text, data, settings) {
+    var render;
+    settings = _.defaults({}, settings, _.templateSettings);
+
+    // Combine delimiters into one regular expression via alternation.
+    var matcher = new RegExp([
+      (settings.escape || noMatch).source,
+      (settings.interpolate || noMatch).source,
+      (settings.evaluate || noMatch).source
+    ].join('|') + '|$', 'g');
+
+    // Compile the template source, escaping string literals appropriately.
+    var index = 0;
+    var source = "__p+='";
+    text.replace(matcher, function(match, escape, interpolate, evaluate, offset) {
+      source += text.slice(index, offset)
+        .replace(escaper, function(match) { return '\\' + escapes[match]; });
+
+      if (escape) {
+        source += "'+\n((__t=(" + escape + "))==null?'':_.escape(__t))+\n'";
+      }
+      if (interpolate) {
+        source += "'+\n((__t=(" + interpolate + "))==null?'':__t)+\n'";
+      }
+      if (evaluate) {
+        source += "';\n" + evaluate + "\n__p+='";
+      }
+      index = offset + match.length;
+      return match;
+    });
+    source += "';\n";
+
+    // If a variable is not specified, place data values in local scope.
+    if (!settings.variable) source = 'with(obj||{}){\n' + source + '}\n';
+
+    source = "var __t,__p='',__j=Array.prototype.join," +
+      "print=function(){__p+=__j.call(arguments,'');};\n" +
+      source + "return __p;\n";
+
+    try {
+      render = new Function(settings.variable || 'obj', '_', source);
+    } catch (e) {
+      e.source = source;
+      throw e;
+    }
+
+    if (data) return render(data, _);
+    var template = function(data) {
+      return render.call(this, data, _);
+    };
+
+    // Provide the compiled function source as a convenience for precompilation.
+    template.source = 'function(' + (settings.variable || 'obj') + '){\n' + source + '}';
+
+    return template;
+  };
+
+  // Add a "chain" function, which will delegate to the wrapper.
+  _.chain = function(obj) {
+    return _(obj).chain();
+  };
+
+  // OOP
+  // ---------------
+  // If Underscore is called as a function, it returns a wrapped object that
+  // can be used OO-style. This wrapper holds altered versions of all the
+  // underscore functions. Wrapped objects may be chained.
+
+  // Helper function to continue chaining intermediate results.
+  var result = function(obj) {
+    return this._chain ? _(obj).chain() : obj;
+  };
+
+  // Add all of the Underscore functions to the wrapper object.
+  _.mixin(_);
+
+  // Add all mutator Array functions to the wrapper.
+  each(['pop', 'push', 'reverse', 'shift', 'sort', 'splice', 'unshift'], function(name) {
+    var method = ArrayProto[name];
+    _.prototype[name] = function() {
+      var obj = this._wrapped;
+      method.apply(obj, arguments);
+      if ((name == 'shift' || name == 'splice') && obj.length === 0) delete obj[0];
+      return result.call(this, obj);
+    };
+  });
+
+  // Add all accessor Array functions to the wrapper.
+  each(['concat', 'join', 'slice'], function(name) {
+    var method = ArrayProto[name];
+    _.prototype[name] = function() {
+      return result.call(this, method.apply(this._wrapped, arguments));
+    };
+  });
+
+  _.extend(_.prototype, {
+
+    // Start chaining a wrapped Underscore object.
+    chain: function() {
+      this._chain = true;
+      return this;
+    },
+
+    // Extracts the result from a wrapped and chained object.
+    value: function() {
+      return this._wrapped;
+    }
+
+  });
+
+}).call(this);
+
+},{}],160:[function(require,module,exports){
+"use strict";
+
+var _ = require("underscore");
+var Application = require("substance-application");
+var LensController = require("./lens_controller");
+var LensView = require("./lens_view");
+var util = require("substance-util");
+var html = util.html;
+
+
+var ROUTES = [
+  {
+    "route": ":context/:node/:resource/:fullscreen",
+    "name": "document-resource",
+    "command": "openReader"
+  },
+  {
+    "route": ":context/:node/:resource",
+    "name": "document-resource",
+    "command": "openReader"
+  },
+  {
+    "route": ":context/:node/:resource",
+    "name": "document-resource",
+    "command": "openReader"
+  },
+  {
+    "route": ":context/:node",
+    "name": "document-node", 
+    "command": "openReader"
+  },
+  {
+    "route": ":context",
+    "name": "document-context",
+    "command": "openReader"
+  },
+  {
+    "route": "",
+    "name": "document",
+    "command": "openReader"
+  }
+];
+
+// The Lens Application
+// ========
+//
+
+var Lens = function(config) {
+  config = config || {};
+  config.routes = ROUTES;
+  Application.call(this, config);
+
+  this.controller = new LensController(config);
+};
+
+Lens.Article = require("lens-article");
+Lens.Reader = require("substance-reader");
+Lens.Outline = require("lens-outline");
+
+
+Lens.Prototype = function() {
+
+  // Start listening to routes
+  // --------
+
+  this.render = function() {
+    this.view = this.controller.createView();
+    this.$el.html(this.view.render().el);
+  }
+};
+
+
+Lens.Prototype.prototype = Application.prototype;
+Lens.prototype = new Lens.Prototype();
+Lens.prototype.constructor = Lens;
+
+var Substance = {
+  util: require("substance-util"),
+  Application: require("substance-application"),
+  Document: require("substance-document"),
+  Operator: require("substance-operator"),
+  Chronicle: require("substance-chronicle"),
+  Data: require("substance-data"),
+  Surface: require("substance-surface")
+};
+
+Lens.Substance = Substance;
+module.exports = Lens;
+
+},{"./lens_controller":161,"./lens_view":162,"lens-article":3,"lens-outline":54,"substance-application":56,"substance-chronicle":62,"substance-data":74,"substance-document":81,"substance-operator":138,"substance-reader":145,"substance-surface":150,"substance-util":154,"underscore":159}],161:[function(require,module,exports){
+"use strict";
+
+var _ = require("underscore");
+var util = require("substance-util");
+var Controller = require("substance-application").Controller;
+var LensView = require("./lens_view");
+var ReaderController = require("substance-reader").Controller;
+var Article = require("lens-article");
+var Converter = require("lens-converter");
+
+// Lens.Controller
+// -----------------
+//
+// Main Application Controller
+
+var LensController = function(config) {
+  Controller.call(this);
+
+  this.config = config;
+
+  // Main controls
+  this.on('open:reader', this.openReader);
+  this.on('open:library', this.openLibrary);
+  this.on('open:login', this.openLogin);
+  this.on('open:test_center', this.openTestCenter);
+};
+
+LensController.Prototype = function() {
+
+  // Initial view creation
+  // ===================================
+
+  this.createView = function() {
+    var view = new LensView(this);
+    this.view = view;
+    return view;
+  };
+
+  // After a file gets drag and dropped it will be remembered in Local Storage
+  // ---------
+
+  this.importXML = function(xml) {
+    var importer = new Converter.Importer();
+    var doc = importer.import(xml);
+    this.createReader(doc, {
+      context: 'toc'
+    });
+  };
+
+  // Update URL Fragment
+  // -------
+  // 
+  // This will be obsolete once we have a proper router vs app state 
+  // integration.
+
+  this.updatePath = function(state) {
+    var path = [];
+
+    path.push(state.context);
+
+    if (state.node) {
+      path.push(state.node);
+    } else {
+      path.push('all');
+    }
+
+    if (state.resource) {
+      path.push(state.resource);
+    }
+
+    if (state.fullscreen) {
+      path.push('fullscreen');
+    }
+
+    window.app.router.navigate(path.join('/'), {
+      trigger: false,
+      replace: false
+    });
+  };
+
+  this.createReader = function(doc, state) {
+    var that = this;
+
+    // Create new reader controller instance
+    this.reader = new ReaderController(doc, state);
+
+    this.reader.on('state-changed', function() {
+      that.updatePath(that.reader.state);
+    });
+
+    this.modifyState({
+      context: 'reader'
+    });
+  };
+
+  this.openReader = function(context, node, resource, fullscreen) {
+    var that = this;
+
+    // The article view state
+    var state = {
+      context: context || "toc",
+      node: node,
+      resource: resource,
+      fullscreen: !!fullscreen
+    };
+
+    // Already loaded?
+    if (this.reader) {
+      this.reader.modifyState(state);
+      // HACK: monkey patch alert
+      if (state.resource) this.reader.view.jumpToResource(state.resource);
+    } else {
+      this.trigger("loading:started", "Loading document ...");
+      $.get(this.config.document_url)
+      .done(function(data) {
+        var doc, err;
+
+        // Determine type of resource
+        var xml = $.isXMLDoc(data);
+
+        // Process XML file
+        if(xml) {
+          var importer = new Converter.Importer();
+          doc = importer.import(data);
+          // Process JSON file
+        } else {
+          if(typeof data == 'string') data = $.parseJSON(data);
+          doc = Article.fromSnapshot(data);
+        }
+        that.createReader(doc, state);
+      })
+      .fail(function(err) {
+        console.error(err);
+      });
+    }
+  };
+
+  // Provides an array of (context, controller) tuples that describe the
+  // current state of responsibilities
+  // --------
+  //
+
+  this.getActiveControllers = function() {
+    var result = [["lens", this]];
+    result.push(["reader", this.reader]);
+    return result;
+  };
+};
+
+
+// Exports
+// --------
+
+LensController.Prototype.prototype = Controller.prototype;
+LensController.prototype = new LensController.Prototype();
+_.extend(LensController.prototype, util.Events);
+
+module.exports = LensController;
+
+},{"./lens_view":162,"lens-article":3,"lens-converter":47,"substance-application":56,"substance-reader":145,"substance-util":154,"underscore":159}],162:[function(require,module,exports){
+"use strict";
+
+var _ = require("underscore");
+var util = require('substance-util');
+var html = util.html;
+var View = require("substance-application").View;
+var $$ = require("substance-application").$$;
+
+
+// Lens.View Constructor
+// ========
+// 
+
+var LensView = function(controller) {
+  View.call(this);
+
+  this.controller = controller;
+  this.$el.attr({id: "container"});
+
+  // Handle state transitions
+  // --------
+  
+  this.listenTo(this.controller, 'state-changed', this.onStateChanged);
+  this.listenTo(this.controller, 'loading:started', this.displayLoadingIndicator);
+
+  $(document).on('dragover', function () { return false; });
+  $(document).on('ondragend', function () { return false; });
+  $(document).on('drop', this.handleDroppedFile.bind(this));
+};
+
+LensView.Prototype = function() {
+
+  this.displayLoadingIndicator = function(msg) {
+    this.$('#main').empty();
+    this.$('.loading').html(msg).show();
+  };
+
+  this.handleDroppedFile = function(e) {
+    var ctrl = this.controller;
+    var files = event.dataTransfer.files;
+    var file = files[0];
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+      ctrl.importXML(e.target.result);
+    };
+
+    reader.readAsText(file);
+    return false;
+  };
+
+  // Session Event handlers
+  // --------
+  //
+
+  this.onStateChanged = function() {
+    var state = this.controller.state;
+    if (state.context === "reader") {
+      this.openReader();
+    } else {
+      console.log("Unknown application state: " + state);
+    }
+  };
+
+
+  // Open the reader view
+  // ----------
+  //
+
+  this.openReader = function() {
+    var view = this.controller.reader.createView();
+    this.replaceMainView('reader', view);
+
+    var doc = this.controller.reader.__document;
+    var publicationInfo = doc.get('publication_info');
+    
+    // Hide loading indicator
+    this.$('.loading').hide();
+
+    // if (publicationInfo) {
+    //   // Update URL
+    //   this.$('.go-back').attr({
+    //     href: publicationInfo.doi
+    //   });
+    // }
+  };
+
+  // Rendering
+  // ==========================================================================
+  //
+
+  this.replaceMainView = function(name, view) {
+    $('body').removeClass().addClass('current-view '+name);
+
+    if (this.mainView && this.mainView !== view) {
+      this.mainView.dispose();
+    }
+
+    this.mainView = view;
+    this.$('#main').html(view.render().el);
+  };
+
+  this.render = function() {
+    this.el.innerHTML = "";
+
+    // Browser not supported dialogue
+    // ------------
+
+    this.el.appendChild($$('.browser-not-supported', {
+      text: "Sorry, your browser is not supported.",
+      style: "display: none;"
+    }));
+
+    // this.el.appendChild($$('a.go-back', {
+    //   href: "#",
+    //   html: '<i class="icon-chevron-left"></i>',
+    //   title: "Back to original article"
+    // }));
+
+
+    // About Lens
+    // ------------
+
+    // this.el.appendChild($$('a.about-lens', {
+    //   href: "http://lens.substance.io",
+    //   html: 'Lens 0.2.0'
+    // }));
+
+    // Loading indicator
+    // ------------
+
+    this.el.appendChild($$('.loading', {
+      style: "display: none;"
+    }));
+
+    // Main panel
+    // ------------
+
+    this.el.appendChild($$('#main'));
+    return this;
+  };
+
+  this.dispose = function() {
+    this.stopListening();
+    if (this.mainView) this.mainView.dispose();
+  };
+};
+
+
+// Export
+// --------
+
+LensView.Prototype.prototype = View.prototype;
+LensView.prototype = new LensView.Prototype();
+
+module.exports = LensView;
+},{"substance-application":56,"substance-util":154,"underscore":159}],163:[function(require,module,exports){
+// nothing to see here... no file methods for the browser
+
+},{}]},{},[1])
+;
