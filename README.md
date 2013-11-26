@@ -7,7 +7,7 @@ For a demo and more information see: http://lens.substance.io
 Lens is composed of some independent modules. Those are:
 
 - The [Lens Article Format](http://github.com/elifesciences/lens-article) is a JSON based document model designed for representing scientific content. It features basic content types such as paragraphs, headings, and various figure types such as images, tables and videos complete with captions and cross-references.
-- The [Lens Reader](http://github.com/elifesciences/lens-reader) is the implementation of the article reader, it can be embedded into any page
+- The [Substance Reader](http://github.com/substance/reader) is the implementation of the reading interface, it can be embedded into any page
 - The [Lens Outline](http://github.com/elifesciences/lens-outline) is the visual document map we are using in Lens. It can be used independently.
 
 ### Installing and contributing
@@ -29,7 +29,6 @@ Keep in mind, with eLife Lens you can display any NLM-compatible XML file or JSO
 
 The Roadmap is covered on the [project wiki](https://github.com/elifesciences/lens/wiki/Product-Roadmap)
 
-
 ### Lens in the wild
 
 - [eLife Journal](http://lens.elifesciences.org/01120/index.html)
@@ -38,15 +37,20 @@ The Roadmap is covered on the [project wiki](https://github.com/elifesciences/le
 
 ### Changelog
 
-
 ### 0.3.0
 
 - Support for mobile devices
 - No reload on route navigation (makes navigating back/forward much faster)
 - Improved scrollbar mouse interaction (dragging outside the document outline is now possible)
-- Covered one gazillion rendering edgecases
+- Covered one million rendering edgecases
 - Scrolling on body for mobile, fixes numerous scrolling issues related to mobile (esp. iOS)
 - Space efficiency - use full available space
 - display breadcrumbs for navigating back to journal page
 - Smaller font for title / authors in mobile version
 - Fixed an issue related to scroll recovery on mobile
+- Display publisher logo with breadcrumbs
+
+Other work:
+
+- Updated Manual and About document
+- Moved documentation over to http://lens.elifesciences.org

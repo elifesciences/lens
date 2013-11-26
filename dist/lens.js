@@ -461,7 +461,7 @@ Article.describe = function() {
 
   _.each(Article.nodeTypes, function(nodeType) {
     nodeType = nodeType.Model;
-    console.log('NAME', nodeType.description.name, nodeType.type.id);
+    // console.log('NAME', nodeType.description.name, nodeType.type.id);
 
     // Create a heading for each node type
     var headingId = "heading_"+nodeType.type.id;
@@ -1402,12 +1402,19 @@ CoverView.Prototype = function() {
     if (node.breadcrumbs && node.breadcrumbs.length > 0) {
       var breadcrumbs = $$('.breadcrumbs', {
         children: _.map(node.breadcrumbs, function(bc) {
-          return $$('a', {href: bc.url, text: bc.name})
+          var html;
+
+          if (bc.image) {
+            html = '<img src="'+bc.image+'" title="'+bc.name+'"/>';
+          } else {
+            html = bc.name;  
+          }
+          return $$('a', {href: bc.url, html: html})
         })
       });
+      this.content.appendChild(breadcrumbs);
     }
-  
-    this.content.appendChild(breadcrumbs);
+    
     this.content.appendChild($$('.title', {text: node.title }));
 
     var authors = $$('.authors', {
@@ -2869,15 +2876,14 @@ var ElifeConfiguration = function() {
 
 ElifeConfiguration.Prototype = function() {
 
-
   this.enhanceCover = function(state, node, element) {
     var dispChannel = element.querySelector("subj-group[subj-group-type=display-channel] subject").textContent;
     var category = element.querySelector("subj-group[subj-group-type=heading] subject").textContent;
 
     node.breadcrumbs = [
-      {name: "eLife", url: "http://elife.elifesciences.org/"},
-      {name: dispChannel, url: "http://elife.elifesciences.org/category/"+dispChannel.replace(/ /g, '-').toLowerCase()},
-      {name: category, url: "http://elife.elifesciences.org/category/"+category.replace(/ /g, '-').toLowerCase()},
+      { name: "eLife", url: "http://elife.elifesciences.org/", image: "styles/elife.png" },
+      { name: dispChannel, url: "http://elife.elifesciences.org/category/"+dispChannel.replace(/ /g, '-').toLowerCase() },
+      { name: category, url: "http://elife.elifesciences.org/category/"+category.replace(/ /g, '-').toLowerCase() },
     ];
   };
 
@@ -2903,16 +2909,16 @@ ElifeConfiguration.Prototype = function() {
     node.poster = "http://static.movie-usa.glencoesoftware.com/jpg/10.7554/"+name+".jpg";
   };
 
-  // Example url to SVG: http://cdn.elifesciences.org/elife-articles/00768/svg/elife00768f001.svg
+  // Example url to JPG: http://cdn.elifesciences.org/elife-articles/00768/svg/elife00768f001.jpg
   this.resolveURL = function(state, url) {
     if (url.match(/http:\/\//)) return url;
 
     return [
       "http://cdn.elifesciences.org/elife-articles/",
       state.doc.id,
-      "/svg/",
+      "/jpg/",
       url,
-      ".svg"
+      ".jpg"
     ].join('');
   };
 
@@ -19118,7 +19124,7 @@ ReaderView.Prototype = function() {
       if (this.infoView) this.infoView.$el.scrollTop(topOffset);
 
       // Brute force for mobile
-      $('body').scrollTop(topOffset);
+      $(document).scrollTop(topOffset);
     }
   };
 
@@ -19153,7 +19159,7 @@ ReaderView.Prototype = function() {
 
   this.getScroll = function() {
     // Only covers the mobile mode!
-    return $('body').scrollTop();
+    return $(document).scrollTop();
   };
 
   // Recover scroll from previous state (if there is any)
@@ -19163,12 +19169,13 @@ ReaderView.Prototype = function() {
 
   this.recoverScroll = function() {
     var targetScroll = this.bodyScroll[this.readerCtrl.state.context];
+
     if (targetScroll) {
-      $('body').scrollTop(targetScroll);
+      $(document).scrollTop(targetScroll);
       console.log('recovered scroll', targetScroll, this.readerCtrl.state.context);
     } else {
       // Scroll to top
-      $('body').scrollTop(0);
+      // $(document).scrollTop(0);
     }
   };
 
@@ -20446,8 +20453,10 @@ util.Events.Listener = {
   },
 
   stopListening: function() {
-    for (var i = 0; i < this._handlers.length; i++) {
-      this._handlers[i].unbind();
+    if (this._handlers) {
+      for (var i = 0; i < this._handlers.length; i++) {
+        this._handlers[i].unbind();
+      }      
     }
   }
 
@@ -22282,9 +22291,6 @@ var LensController = function(config) {
 
   // Main controls
   this.on('open:reader', this.openReader);
-  this.on('open:library', this.openLibrary);
-  this.on('open:login', this.openLogin);
-  this.on('open:test_center', this.openTestCenter);
 };
 
 LensController.Prototype = function() {
@@ -22371,6 +22377,9 @@ LensController.Prototype = function() {
       this.reader.modifyState(state);
       // HACK: monkey patch alert
       if (state.resource) this.reader.view.jumpToResource(state.resource);
+    } else if (this.config.document_url === "lens_article.xml") {
+      var doc = Article.describe();
+      that.createReader(doc, state);
     } else {
       this.trigger("loading:started", "Loading document ...");
       $.get(this.config.document_url)
@@ -22381,7 +22390,7 @@ LensController.Prototype = function() {
         var xml = $.isXMLDoc(data);
 
         // Process XML file
-        if(xml) {
+        if (xml) {
           var importer = new Converter.Importer();
           doc = importer.import(data);
           // Process JSON file
@@ -22396,6 +22405,7 @@ LensController.Prototype = function() {
       });
     }
   };
+
 
   // Provides an array of (context, controller) tuples that describe the
   // current state of responsibilities
@@ -22577,7 +22587,10 @@ LensView.prototype = new LensView.Prototype();
 
 module.exports = LensView;
 },{"substance-application":56,"substance-util":154,"underscore":159}],163:[function(require,module,exports){
-// nothing to see here... no file methods for the browser
+
+// not implemented
+// The reason for having an empty file and not throwing is to allow
+// untraditional implementation of this module.
 
 },{}]},{},[1])
 ;
