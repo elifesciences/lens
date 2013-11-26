@@ -12,7 +12,7 @@ Lens is composed of some independent modules. Those are:
 
 ### Installing and contributing
 
-For install instructions and how to contribute see the official [Lens Manual](http://lens.substance.io/#lens/manual). 
+For install instructions and how to contribute see the official [Lens Manual](http://substance.io/#substance/lens_manual). 
 
 ### Journal integration
 
