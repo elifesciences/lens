@@ -28,7 +28,7 @@
     {
       "repository": "https://github.com/substance/reader.git",
       "folder": "node_modules/substance-reader",
-      "branch": "mobile_experimental"
+      "branch": "0.2.x"
     },
     {
       "repository": "https://github.com/elifesciences/lens-article.git",
@@ -83,7 +83,7 @@
     {
       "repository": "https://github.com/elifesciences/lens.git",
       "folder": ".",
-      "branch": "mobile_experimental"
+      "branch": "0.3.x"
     }
   ],
   "node_modules": {
