@@ -20,9 +20,6 @@ var LensController = function(config) {
 
   // Main controls
   this.on('open:reader', this.openReader);
-  this.on('open:library', this.openLibrary);
-  this.on('open:login', this.openLogin);
-  this.on('open:test_center', this.openTestCenter);
 };
 
 LensController.Prototype = function() {
@@ -109,6 +106,9 @@ LensController.Prototype = function() {
       this.reader.modifyState(state);
       // HACK: monkey patch alert
       if (state.resource) this.reader.view.jumpToResource(state.resource);
+    } else if (this.config.document_url === "lens_article.xml") {
+      var doc = Article.describe();
+      that.createReader(doc, state);
     } else {
       this.trigger("loading:started", "Loading document ...");
       $.get(this.config.document_url)
@@ -119,7 +119,7 @@ LensController.Prototype = function() {
         var xml = $.isXMLDoc(data);
 
         // Process XML file
-        if(xml) {
+        if (xml) {
           var importer = new Converter.Importer();
           doc = importer.import(data);
           // Process JSON file
@@ -134,6 +134,7 @@ LensController.Prototype = function() {
       });
     }
   };
+
 
   // Provides an array of (context, controller) tuples that describe the
   // current state of responsibilities

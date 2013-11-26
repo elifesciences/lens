@@ -48,3 +48,5 @@ The Roadmap is covered on the [project wiki](https://github.com/elifesciences/le
 - Scrolling on body for mobile, fixes numerous scrolling issues related to mobile (esp. iOS)
 - Space efficiency - use full available space
 - display breadcrumbs for navigating back to journal page
+- Smaller font for title / authors in mobile version
+- Fixed an issue related to scroll recovery on mobile
