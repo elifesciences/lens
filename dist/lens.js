@@ -2881,7 +2881,7 @@ ElifeConfiguration.Prototype = function() {
     var category = element.querySelector("subj-group[subj-group-type=heading] subject").textContent;
 
     node.breadcrumbs = [
-      { name: "eLife", url: "http://elife.elifesciences.org/", image: "styles/elife.png" },
+      { name: "eLife", url: "http://elife.elifesciences.org/", image: "http://lens.elifesciences.org/lens-elife/styles/elife.png" },
       { name: dispChannel, url: "http://elife.elifesciences.org/category/"+dispChannel.replace(/ /g, '-').toLowerCase() },
       { name: category, url: "http://elife.elifesciences.org/category/"+category.replace(/ /g, '-').toLowerCase() },
     ];
@@ -2894,7 +2894,6 @@ ElifeConfiguration.Prototype = function() {
   this.enhanceFigure = function(state, node, element) {
     var graphic = element.querySelector("graphic");
     var url = graphic.getAttribute("xlink:href");
-
     node.url = this.resolveURL(state, url);
   };
 
