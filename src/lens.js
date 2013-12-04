@@ -35,6 +35,11 @@ var ROUTES = [
     "command": "openReader"
   },
   {
+    "route": "url/:url",
+    "name": "document-context",
+    "command": "openReader"
+  },
+  {
     "route": "",
     "name": "document",
     "command": "openReader"
