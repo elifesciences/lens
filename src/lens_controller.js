@@ -38,7 +38,9 @@ LensController.Prototype = function() {
 
   this.importXML = function(xml) {
     var importer = new Converter.Importer();
-    var doc = importer.import(xml);
+    var doc = importer.import(xml, {
+      TRIM_WHITESPACES: true
+    });
     this.createReader(doc, {
       context: 'toc'
     });
@@ -121,7 +123,9 @@ LensController.Prototype = function() {
         // Process XML file
         if (xml) {
           var importer = new Converter.Importer();
-          doc = importer.import(data);
+          doc = importer.import(data, {
+            TRIM_WHITESPACES: true
+          });
           // Process JSON file
         } else {
           if(typeof data == 'string') data = $.parseJSON(data);
