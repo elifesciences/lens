@@ -110,7 +110,7 @@
       var documentURL = "data/00778/index.xml";
 
       var app = new Lens({
-        document_url: qs.url || documentURL
+        document_url: decodeURIComponent(qs.url) || documentURL
       });
 
       $(function() {

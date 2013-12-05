@@ -116,7 +116,7 @@
     "styles/nodes/table.css": "node_modules/lens-article/nodes/table/table.css",
     "styles/nodes/video.css": "node_modules/lens-article/nodes/video/video.css",
     "styles/nodes/caption.css": "node_modules/lens-article/nodes/caption/caption.css",
-    "styles/nodes/person.css": "node_modules/lens-article/nodes/person/person.css",
+    "styles/nodes/contributor.css": "node_modules/lens-article/nodes/contributor/contributor.css",
     "styles/nodes/publication_info.css": "node_modules/lens-article/nodes/publication_info/publication_info.css",
 
     "styles/reader.css": "node_modules/substance-reader/reader.css",

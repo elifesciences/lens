@@ -49,6 +49,9 @@ The Roadmap is covered on the [project wiki](https://github.com/elifesciences/le
 - Smaller font for title / authors in mobile version
 - Fixed an issue related to scroll recovery on mobile
 - Display publisher logo with breadcrumbs
+- Rename Person -> Contributor (consistent with JATS)
+- Added jumpmarks for the mobile version
+- Deal better with author groups
 
 Other work:
 
