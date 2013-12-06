@@ -35,25 +35,31 @@ The Roadmap is covered on the [project wiki](https://github.com/elifesciences/le
 - [Landes Bioscience](https://www.landesbioscience.com/article/25414/full_text/#load/info/all)
 - [PeerJ Lens Demo](http://peerj.github.io/lens-demo/)
 
+
+
 ### Changelog
+
+
+### 1.0.0 RC1
+
+- Added TRIM_WHITESPACE option to converter
+- Updated Manual and About document
+- Link all documentation from http://lens.elifesciences.org
+- Deal better with author groups
+- Rename Person -> Contributor (consistent with JATS)
+- Added jumpmarks for the mobile version
+
 
 ### 0.3.0
 
-- Support for mobile devices
+- Added support for mobile devices
 - No reload on route navigation (makes navigating back/forward much faster)
 - Improved scrollbar mouse interaction (dragging outside the document outline is now possible)
 - Covered one million rendering edgecases
 - Scrolling on body for mobile, fixes numerous scrolling issues related to mobile (esp. iOS)
 - Space efficiency - use full available space
-- display breadcrumbs for navigating back to journal page
+- display breadcrumbs for navigating back to the journal page
 - Smaller font for title / authors in mobile version
 - Fixed an issue related to scroll recovery on mobile
 - Display publisher logo with breadcrumbs
-- Rename Person -> Contributor (consistent with JATS)
-- Added jumpmarks for the mobile version
-- Deal better with author groups
 
-Other work:
-
-- Updated Manual and About document
-- Moved documentation over to http://lens.elifesciences.org
