@@ -10,24 +10,26 @@ Lens is composed of some independent modules. Those are:
 - The [Substance Reader](http://github.com/substance/reader) is the implementation of the reading interface, it can be embedded into any page
 - The [Lens Outline](http://github.com/elifesciences/lens-outline) is the visual document map we are using in Lens. It can be used independently.
 
-### Installing and contributing
 
-For install instructions and how to contribute see the official [Lens Manual](http://substance.io/#substance/lens_manual). 
+### Getting started
 
-### Journal integration
-
-The easiest way to integrate Lens into your journal is by creating one HTML file per document and adapt the url to the document you want to display. 
+The easiest way to integrate Lens into your website is by creating one HTML file per document and adapt the url to the document you want to display. First [download](https://github.com/elifesciences/lens-elife/archive/1.0.0-rc1.zip) the latest stable Lens distribution. Then adjust the `index.html` file accordingly.
 
     var app = new Lens({
       // Endpoint must have CORS enabled, or file is served from the same domain as the app
       document_url: "https://s3.amazonaws.com/elife-cdn/elife-articles/00778/elife00778.xml"
     });
 
+When running this Lens distribution locally, note that your browser may enforce strict permissions for reading files out of the local file system. You can solve this easily by running Python's built-in server:
+
+    python -m SimpleHTTPServer
+
 Keep in mind, with eLife Lens you can display any NLM-compatible XML file or JSON documents that correspond to the Lens Article Format. You can enrich your HTML file with `<meta>` tags etc. to ensure Google crawlablility. There is no server infrastructure needed to run Lens. It's 100% browser-based. If you have questions please consult the [Lens Mailinglist](https://groups.google.com/forum/#!forum/elife-lens).
 
-### Roadmap
+### Installing and contributing
 
-The Roadmap is covered on the [project wiki](https://github.com/elifesciences/lens/wiki/Product-Roadmap)
+For install instructions and how to contribute see the official [Lens Manual](http://substance.io/#substance/lens_manual). 
+
 
 ### Lens in the wild
 
