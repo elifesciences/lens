@@ -492,7 +492,7 @@
 						<title>Rosette colony development in <italic>S. rosetta</italic> is regulated by <italic>A. machipongonensis</italic>.</title>
 						<p><bold>A</bold>. The original culture of <italic>S. rosetta</italic>, ATCC 50818, contains diverse co-isolated environmental bacteria and forms rosette colonies (arrowheads) rarely. <bold>B</bold>. Treatment of ATCC50818 with a cocktail of antibiotics reduced the bacterial diversity and yielded an <italic>S. rosetta</italic> culture line, RCA, in which rosette colonies never formed. (Representative single cells indicated by arrows.) <bold>C</bold>. Addition of <italic>A. machipongonensis</italic> to RCA cultures was sufficient to induce rosette development. Scale bar, 20 &#x3BC;m.</p>
 
-						<p>Here is an example of making text display in different colours: <named-content content-type="author-callout-style1">red</named-content>, <named-content content-type="author-callout-style2">blue</named-content>, <named-content content-type="author-callout-style3">green</named-content>, and <named-content content-type="author-callout-style4">yellow</named-content>.</p><p> Here is an example of pulling in an inline graphic <inline-graphic xlink:href="elife00013ksinf001"/>.</p>
+						<p>Here is an example of making text display in different colours: <named-content content-type="author-callout-style1">red</named-content>, <named-content content-type="author-callout-style2">blue</named-content>, <named-content content-type="author-callout-style3">green</named-content>, and <named-content content-type="author-callout-style4">yellow</named-content>. Note: this is (currently) not supported, i.e., does not have an effect on the representation.</p><p> Here is an example of pulling in an inline graphic <inline-graphic xlink:href="elife00013ksinf001"/>.</p>
 
 						<p><bold>DOI:</bold><ext-link ext-link-type="doi" xlink:href="10.7554/eLife.00013ks.003">http://dx.doi.org/10.7554/eLife.00013ks.003</ext-link></p>
 						<p><supplementary-material id="SD1-data">
@@ -1425,14 +1425,14 @@
 						<mml:math id="inf5">
 							<mml:mrow>
 								<mml:munder>
-									<mml:mo/>				
+									<mml:mo/>
 									<mml:mi>m</mml:mi>
 								</mml:munder>
 								<mml:mrow>
 									<mml:msub>
 										<mml:mover accent="true">
 											<mml:mi>p</mml:mi>
-											<mml:mo/>				
+											<mml:mo/>
 										</mml:mover>
 										<mml:mi>m</mml:mi>
 									</mml:msub>
@@ -1668,7 +1668,7 @@
 						Chimaereicella boritolerans sp nov., a boron-tolerant and alkaliphilic bacterium of the family Flavobacteriaceae isolated from soil
 					</article-title>
 					.
-					<source>			
+					<source>
 						International journal of systematic and evolutionary microbiology
 					</source>
 					<volume>57</volume>
@@ -1707,7 +1707,7 @@
 							<surname>Summons</surname>
 							<given-names>RE</given-names>
 						</name>
-						<etal/>			
+						<etal/>
 					</person-group>
 					.
 					<year>2012</year>
@@ -1716,7 +1716,7 @@
 						Algoriphagus machipongonensis sp. nov. co-isolated with a colonial choanoflagellate
 					</article-title>
 					.
-					<source>			
+					<source>
 						International journal of systematic and evolutionary microbiology
 					</source>
 					<volume>24</volume>
@@ -1759,7 +1759,7 @@
 						Membrane sphingolipids as essential molecular signals for bacteroides survival in the intestine
 					</article-title>
 					.
-					<source>			
+					<source>
 						Proceedings of the National Academy of Sciences of the United States of America
 					</source>
 					<volume>108</volume>
@@ -1806,7 +1806,7 @@
 						Salinibacter ruber gen. nov., sp nov., a novel, extremely halophilic member of the bacteria from saltern crystallizer ponds
 					</article-title>
 					.
-					<source>			
+					<source>
 						International journal of systematic and evolutionary microbiology
 					</source>
 					<volume>52</volume>
@@ -1886,7 +1886,7 @@
 						Zobellia galactanovorans gen. nov., sp. nov., a marine species of Flavobacteriaceae isolated from a red alga, and classification of [Cytophaga] uliginosa (ZoBell and Upham 1944) Reichenbach 1989 as Zobellia uliginosa gen. nov., comb. nov
 					</article-title>
 					.
-					<source>			
+					<source>
 						International journal of systematic and evolutionary microbiology
 					</source>
 					<volume>51</volume>
@@ -2085,7 +2085,7 @@
 						Algoriphagus ratkowskyi gen. nov., sp. nov., Brumimicrobium glaciale gen. nov., sp. nov., Cryomorpha ignava gen. nov., sp. nov. and Crocinitomix catalasitica gen. nov., sp. nov., novel flavobacteria isolated from various polar habitats
 					</article-title>
 					.
-					<source>			
+					<source>
 						International journal of systematic and evolutionary microbiology
 					</source>
 					<volume>53</volume>
@@ -2138,7 +2138,7 @@
 					.
 					<article-title>Fast statistical alignment</article-title>
 					.
-					<source>			
+					<source>
 						Public Library of Science International Society for Computational Biology
 					</source>
 					<volume>5</volume>
@@ -2171,7 +2171,7 @@
 						Aquiflexum balticum gen. nov., sp nov., a novel marine bacterium of the Cytophaga-Flavobacterium-Bacteroides group isolated from surface water of the central Baltic Sea
 					</article-title>
 					.
-					<source>			
+					<source>
 						International journal of systematic and evolutionary microbiology
 					</source>
 					<volume>54</volume>
@@ -2206,7 +2206,7 @@
 						Belliella baltica gen. nov., sp. nov., a novel marine bacterium of the Cytophaga-Flavobacterium-Bacteroides group isolated from surface water of the central Baltic Sea
 					</article-title>
 					.
-					<source>			
+					<source>
 						International journal of systematic and evolutionary microbiology
 					</source>
 					<volume>54</volume>
@@ -2268,7 +2268,7 @@
 						Factors influencing the plate method for determining abundance of bacteria in sea water
 					</article-title>
 					.
-					<source>			
+					<source>
 						Proceedings of the Society for Experimental Biology and Medicine
 					</source>
 					<volume>96</volume>
@@ -2311,7 +2311,7 @@
 						Molecular phylogeny of choanoflagellates, the sister group to Metazoa
 					</article-title>
 					.
-					<source>			
+					<source>
 						Proceedings of the National Academy of Sciences of the United States of America
 					</source>
 					<volume>105</volume>
@@ -2495,7 +2495,7 @@
 						Dyadobacter fermentans gen. nov., sp nov., a novel Gram-negative bacterium isolated from surface-sterilized Zea mays stems
 					</article-title>
 					.
-					<source>			
+					<source>
 						International journal of systematic and evolutionary microbiology
 					</source>
 					<volume>50</volume>
@@ -2555,7 +2555,7 @@
 						Robiginitalea biformata gen. nov., sp. nov., a novel marine bacterium in the family Flavobacteriaceae with a higher G+C content
 					</article-title>
 					.
-					<source>			
+					<source>
 						International journal of systematic and evolutionary microbiology
 					</source>
 					<volume>54</volume>
@@ -2956,7 +2956,7 @@
 					.
 					<year>2010</year>
 					.
-					<source>			
+					<source>
 						Bergey's manual of systematic bacteriology: Bacteroidetes, spirochetes, tenericutes (mollicutes), acidobacteria, fibrobacteres, fusobacteria, dictyoglomi, gemmatimonadetes, lentisphaerae, verrucomicrobia, chlamydiae, and planctomycetes
 					</source>
 					.
@@ -3380,7 +3380,7 @@
 					.
 					<year>1868</year>
 					.
-					<source>			
+					<source>
 						On the spongiae ciliatae as infusoria flagellata; or observations on the structure, animality, and relationship of Leucosolenia botryoides
 					</source>
 					<volume>1</volume>
@@ -3557,7 +3557,7 @@
 						A receptor tyrosine kinase from choanoflagellates: molecular insights into early animal evolution
 					</article-title>
 					.
-					<source>			
+					<source>
 						Proceedings of the National Academy of Sciences of the United States of America
 					</source>
 					<volume>98</volume>
@@ -3850,7 +3850,7 @@
 							<surname>Izuta</surname>
 							<given-names>S</given-names>
 						</name>
-						<etal/>			
+						<etal/>
 					</person-group>
 					.
 					<year>1995</year>
@@ -4071,7 +4071,7 @@
 							<surname>Danchin</surname>
 							<given-names>A</given-names>
 						</name>
-						<etal/>			
+						<etal/>
 					</person-group>
 					.
 					<year>1997</year>
@@ -4105,7 +4105,7 @@
 						Life-history and ultratructure of a new marine species of Proterospongia (Choanoflagellida)
 					</article-title>
 					.
-					<source>			
+					<source>
 						Journal of the Marine Biological Association of the United Kingdom
 					</source>
 					<volume>63</volume>
@@ -4201,7 +4201,7 @@
 						Complete genome sequence of the facultative anaerobic magnetotactic bacterium Magnetospirillum sp. strain AMB-1
 					</article-title>
 					.
-					<source>			
+					<source>
 						DNA research: an international journal for rapid publication of reports on genes and genomes
 					</source>
 					<volume>12</volume>
@@ -4585,7 +4585,7 @@
 						Description of Algoriphagus aquimarinus sp. nov., Algoriphagus chordae sp. nov. and Algoriphagus winogradskyi sp. nov., from sea water and algae, transfer of Hongiella halophila Yi and Chun 2004 to the genus Algoriphagus as Algoriphagus halophilus comb. nov. and emended descriptions of the genera Algoriphagus Bowman, et al. 2003 and Hongiella Yi and Chun 2004
 					</article-title>
 					.
-					<source>			
+					<source>
 						International journal of systematic and evolutionary microbiology
 					</source>
 					<volume>54</volume>
@@ -4656,7 +4656,7 @@
 						Echinicola pacifica gen. nov., sp nov., a novel flexibacterium isolated from the sea urchin Strongylocentrotus intermedius
 					</article-title>
 					.
-					<source>			
+					<source>
 						International journal of systematic and evolutionary microbiology
 					</source>
 					<volume>56</volume>
@@ -4825,7 +4825,7 @@
 					.
 					<article-title>Complete genome sequence of Caulobacter crescentus</article-title>
 					.
-					<source>			
+					<source>
 						Proceedings of the National Academy of Sciences of the United States of America
 					</source>
 					<volume>98</volume>
@@ -5040,7 +5040,7 @@
 					.
 					<article-title>Chemistry of sex attraction</article-title>
 					.
-					<source>			
+					<source>
 						Proceedings of the National Academy of Sciences of the United States of America
 					</source>
 					<volume>92</volume>
@@ -5127,7 +5127,7 @@
 						Complete genome sequence of Vibrio fischeri: a symbiotic bacterium with pathogenic congeners
 					</article-title>
 					.
-					<source>			
+					<source>
 						Proceedings of the National Academy of Sciences of the United States of America
 					</source>
 					<volume>102</volume>
@@ -5560,7 +5560,7 @@
 						Hongiella mannitolivorans gen. nov., sp. nov., Hongiella halophila sp. nov. and Hongiella ornithinivorans sp. nov., isolated from tidal flat sediment
 					</article-title>
 					.
-					<source>			
+					<source>
 						International journal of systematic and evolutionary microbiology
 					</source>
 					<volume>54</volume>
@@ -5595,7 +5595,7 @@
 						Hongiella marincola sp. nov., isolated from sea water of the East Sea in Korea
 					</article-title>
 					.
-					<source>			
+					<source>
 						International journal of systematic and evolutionary microbiology
 					</source>
 					<volume>54</volume>
@@ -5638,7 +5638,7 @@
 						Algoriphagus yeomjeoni sp. nov., isolated from a marine solar saltern in the Yellow Sea, Korea
 					</article-title>
 					.
-					<source>			
+					<source>
 						International journal of systematic and evolutionary microbiology
 					</source>
 					<volume>55</volume>
@@ -5673,7 +5673,7 @@
 						Algoriphagus locisalis sp. nov., isolated from a marine solar saltern
 					</article-title>
 					.
-					<source>			
+					<source>
 						International journal of systematic and evolutionary microbiology
 					</source>
 					<volume>55</volume>
@@ -5710,7 +5710,7 @@
 					.
 					<article-title>Algoriphagus terrigena sp. nov., isolated from soil</article-title>
 					.
-					<source>			
+					<source>
 						International journal of systematic and evolutionary microbiology
 					</source>
 					<volume>56</volume>
@@ -5803,7 +5803,7 @@
 					<role>Reviewing editor</role>
 					<aff>
 						<institution>Pediatric Dengue Vaccine Initiative</institution>
-						, 
+						,
 						<country>United States</country>
 					</aff>
 				</contrib>
@@ -5817,7 +5817,7 @@
 					<role>Reviewer</role>
 					<aff>
 						<institution>Pediatric Dengue Vaccine Initiative</institution>
-						, 
+						,
 						<country>United States</country>
 					</aff>
 				</contrib>
@@ -5831,7 +5831,7 @@
 					<role>Reviewer</role>
 					<aff>
 						<institution>Pediatric Dengue Vaccine Initiative</institution>
-						, 
+						,
 						<country>United States</country>
 					</aff>
 				</contrib>
