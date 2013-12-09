@@ -563,6 +563,10 @@ Contributor
   width: 100%;
 }
 
+.lens-article .content-node.publication-info .label {
+  color: #666;
+}
+
 .lens-article .content-node.publication-info .label.links {
   padding-right: 30px;
 }
@@ -603,7 +607,8 @@ Contributor
 }
 
 .lens-article .content-node.publication-info .value {
-  font-weight: bold;
+  /*font-weight: bold;*/
+  font-style: italic;
   font-size: 15px;
 }
 
