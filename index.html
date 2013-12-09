@@ -46,7 +46,7 @@
           } else {
             query_string[pair[0]].push(pair[1]);
           }
-        } 
+        }
           return query_string;
       } ();
 
@@ -107,7 +107,8 @@
       // var documentURL = "https://s3.amazonaws.com/elife-cdn/elife-articles/00311/elife00311.xml";
 
       // Local Example
-      var documentURL = "data/00778/index.xml";
+      // var documentURL = "data/00778/index.xml";
+      var documentURL = "data/kitchen_sink/index.xml";
 
       var app = new Lens({
         document_url: qs.url ? decodeURIComponent(qs.url) : documentURL
