@@ -362,9 +362,8 @@
 			</kwd-group>
 			<funding-group>
 				<award-group id="par-1">
-					<funding-source>
+					<funding-source xlink:href="http://dx.doi.org/10.13039/100000001">
 						Howard Hughes Medical Institute
-						<named-content content-type="funder-id">http://dx.doi.org/10.13039/100000001</named-content>
 					</funding-source>
 					<principal-award-recipient>
 						<name>
@@ -382,9 +381,8 @@
 					</principal-award-recipient>
 				</award-group>
 				<award-group id="par-2">
-					<funding-source>
+					<funding-source xlink:href="http://dx.doi.org/10.13039/100000002">
 						National Institutes of Health
-						<named-content content-type="funder-id">http://dx.doi.org/10.13039/100000002</named-content>
 					</funding-source>
 					<award-id>F32 GM086054</award-id>
 					<principal-award-recipient>
@@ -399,9 +397,8 @@
 					</principal-award-recipient>
 				</award-group>
 				<award-group id="par-3">
-					<funding-source>
+					<funding-source xlink:href="http://dx.doi.org/10.13039/100000002">
 						National Institutes of Health
-						<named-content content-type="funder-id">http://dx.doi.org/10.13039/100000002</named-content>
 					</funding-source>
 					<award-id>F32 GM089018</award-id>
 					<principal-award-recipient>
@@ -416,9 +413,8 @@
 					</principal-award-recipient>
 				</award-group>
 				<award-group id="par-4">
-					<funding-source>
+					<funding-source xlink:href="http://dx.doi.org/10.13039/100000002">
 						National Institutes of Health
-						<named-content content-type="funder-id">http://dx.doi.org/10.13039/100000002</named-content>
 					</funding-source>
 					<award-id>R01 GM086258</award-id>
 					<principal-award-recipient>
@@ -433,9 +429,8 @@
 					</principal-award-recipient>
 				</award-group>
 				<award-group id="par-5">
-					<funding-source>
+					<funding-source xlink:href="http://dx.doi.org/10.13039/100000002">
 						National Institutes of Health
-						<named-content content-type="funder-id">http://dx.doi.org/10.13039/100000002</named-content>
 					</funding-source>
 					<award-id>R01 GM099533</award-id>
 					<principal-award-recipient>
@@ -450,9 +445,8 @@
 					</principal-award-recipient>
 				</award-group>
 				<award-group id="par-6">
-					<funding-source>
+					<funding-source xlink:href="http://dx.doi.org/10.13039/100000001">
 						National Institutes of Health
-						<named-content content-type="funder-id">http://dx.doi.org/10.13039/100000002</named-content>
 					</funding-source>
 					<award-id>T32 HG00047</award-id>
 					<principal-award-recipient>
@@ -1481,10 +1475,10 @@
 			<fn-group content-type="competing-interest">
 				<title>Competing interests</title>
 				<fn fn-type="conflict" id="conf1">
-					<p>JC, Reviewing editor,<italic>eLife</italic>.</p>
+					<p>Reviewing editor, <italic>eLife</italic>.</p>
 				</fn>
 				<fn fn-type="conflict" id="conf2">
-					<p>The remaining authors declare that no competing interests exist.</p>
+					<p>No competing interests declared.</p>
 				</fn>
 			</fn-group>
 			<fn-group content-type="author-contribution">
