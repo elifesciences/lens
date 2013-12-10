@@ -53,6 +53,8 @@ For install instructions and how to contribute see the official [Lens Manual](ht
 - Support for `<named-content>` elements
 - Introduced deterministic URL resolver based on `xml:base` attribute
 - Fixed display issues related to inline graphics
+- Extract and display `<on-behalf-of>` element
+
 
 ### 1.0.0 RC1
 
@@ -62,6 +64,7 @@ For install instructions and how to contribute see the official [Lens Manual](ht
 - Deal better with author groups
 - Rename Person -> Contributor (consistent with JATS)
 - Added jumpmarks for the mobile version
+
 
 ### 0.3.0
 
