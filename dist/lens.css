@@ -296,7 +296,7 @@ Outline
 }
 
 .content-node.image div img {
-  width: 100%;
+  /*width: 100%;*/
 }
 .document .content-node.formula {
   padding: 30px 60px;
@@ -1222,6 +1222,15 @@ span.annotation.formula_reference, span.publication_reference {
 
 /* For the resources panel
 ----------------------------------------------------------------------- */
+
+
+.resources .content-node.image div img {
+  width: auto;
+}
+
+.resources .content-node.paragraph .content-node.image div img {
+  width: auto;
+}
 
 /* padding for the content */
 .resources .nodes > .content-node > .content {

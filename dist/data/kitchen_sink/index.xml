@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE article  PUBLIC "-//NLM//DTD Journal Archiving and Interchange DTD v3.0 20080202//EN"  "archivearticle3.dtd">
-<article article-type="research-article" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
+<article xml:base="/data/kitchen_sink/" article-type="research-article" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">
 	<front>
 		<journal-meta>
 			<journal-id journal-id-type="nlm-ta">elife</journal-id>
@@ -486,7 +486,7 @@
 						<title>Rosette colony development in <italic>S. rosetta</italic> is regulated by <italic>A. machipongonensis</italic>.</title>
 						<p><bold>A</bold>. The original culture of <italic>S. rosetta</italic>, ATCC 50818, contains diverse co-isolated environmental bacteria and forms rosette colonies (arrowheads) rarely. <bold>B</bold>. Treatment of ATCC50818 with a cocktail of antibiotics reduced the bacterial diversity and yielded an <italic>S. rosetta</italic> culture line, RCA, in which rosette colonies never formed. (Representative single cells indicated by arrows.) <bold>C</bold>. Addition of <italic>A. machipongonensis</italic> to RCA cultures was sufficient to induce rosette development. Scale bar, 20 &#x3BC;m.</p>
 
-						<p>Here is an example of making text display in different colours: <named-content content-type="author-callout-style1">red</named-content>, <named-content content-type="author-callout-style2">blue</named-content>, <named-content content-type="author-callout-style3">green</named-content>, and <named-content content-type="author-callout-style4">yellow</named-content>. Note: this is (currently) not supported, i.e., does not have an effect on the representation.</p><p> Here is an example of pulling in an inline graphic <inline-graphic xlink:href="elife00013ksinf001"/>.</p>
+						<p>Here is an example of making text display in different colours: <named-content content-type="author-callout-style1">red</named-content>, <named-content content-type="author-callout-style2">blue</named-content>, <named-content content-type="author-callout-style3">green</named-content>, and <named-content content-type="author-callout-style4">yellow</named-content>. Note: this is (currently) not supported, i.e., does not have an effect on the representation.</p><p> Here is an example of pulling in an inline graphic <inline-graphic xlink:href="elife00013inf001.gif"/>.</p>
 
 						<p><bold>DOI:</bold><ext-link ext-link-type="doi" xlink:href="10.7554/eLife.00013ks.003">http://dx.doi.org/10.7554/eLife.00013ks.003</ext-link></p>
 						<p><supplementary-material id="SD1-data">
@@ -499,7 +499,7 @@
 							</caption>
 						</supplementary-material></p>
 					</caption>
-					<graphic xlink:href="elife00013ksf001" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+					<graphic xlink:href="elife00013ksf001.gif" xmlns:xlink="http://www.w3.org/1999/xlink"/>
 				</fig>
 				<fig id="sfig1" position="float" specific-use="child-fig">
 					<object-id pub-id-type="doi">10.7554/eLife.00013ks.005</object-id>
@@ -510,7 +510,7 @@
 
 						<p><bold>DOI:</bold><ext-link ext-link-type="doi" xlink:href="10.7554/eLife.00013ks.005">http://dx.doi.org/10.7554/eLife.00013ks.005</ext-link></p>
 					</caption>
-					<graphic xlink:href="elife00013ksfs001" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+					<graphic xlink:href="elife00013ksfs001.gif" xmlns:xlink="http://www.w3.org/1999/xlink"/>
 				</fig>
 			</fig-group>
 			<media content-type="glencoe play-in-place height-250 width-310" id="video1" mime-subtype="wmv" mimetype="video" xlink:href="elife00013ksv001.wmv">
@@ -829,7 +829,7 @@
 					<p>A maximum likelihood phylogeny inferred from 16S rDNA gene sequences reveals the evolutionary relationships among <italic>A. machipongonensis</italic>, other members of the Bacteroidetes phylum, and representative ?-proteobacteria (?)<italic>,</italic> a-proteobacteria (a)<italic>,</italic> and Gram-positive (+) bacteria. All 15 members of the <italic>Algoriphagus</italic> genus (<xref ref-type="table" rid="tbl1">Table 1</xref>), as well as six other species in the Bacteroidetes phylum, were competent to induce colony development (filled squares). In contrast, no species outside of Bacteroidetes and most of the non-<italic>Algoriphagus</italic> bacteria tested failed to induce rosette colony development (open squares). Scale bar, 0.1 substitutions per nucleotide position.</p>
 					<p><bold>DOI:</bold><ext-link ext-link-type="doi" xlink:href="10.7554/eLife.00013ks.010">http://dx.doi.org/10.7554/eLife.00013ks.010</ext-link></p>
 				</caption>
-				<graphic xlink:href="elife00013ksf002" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+				<graphic xlink:href="elife00013ksf002.gif" xmlns:xlink="http://www.w3.org/1999/xlink"/>
 			</fig></p>
 
 			<p>Although Bacteroidetes bacteria regulate morphogenetic processes in such diverse lineages as animals, red algae, and green algae (<xref ref-type="bibr" rid="bib67">Mazmanian et al., 2005</xref>; <xref ref-type="bibr" rid="bib80">Provasoli &amp; Pintner, 1980</xref>; <xref ref-type="bibr" rid="bib66">Matsuo et al., 2005</xref>), the bacterially produced chemical cues that regulate most of these partnerships remain obscure. The limited phylogenetic distribution of bacteria capable of inducing rosette colony development suggested that <italic>A. machipongonensis</italic> and its close relatives may produce a characteristic molecule that could be identified biochemically. The complete absence of rosette colonies in RCA cultures provided the basis for a robust bioassay that we developed to identify the rosette-inducing molecule(s), which we named RIFs (Rosette-Inducing Factors), from <italic>A. machipongonensis</italic> cultures. Preliminary studies demonstrated that RIF activity was present in conditioned medium from <italic>A. machipongonensis,</italic> even when grown in the absence of choanoflagellates. Furthermore, the activity was also found in the <italic>A. machipongonensis</italic> cell envelope and was heat, protease, and nuclease resistant, revealing that the compound is not a protein, RNA, or DNA (<xref ref-type="table" rid="tbl2">Table 2</xref>).
@@ -962,7 +962,7 @@
 
 							<p><bold>DOI:</bold><ext-link ext-link-type="doi" xlink:href="10.7554/eLife.00013ks.012">http://dx.doi.org/10.7554/eLife.00013ks.012</ext-link></p>
 						</caption>
-						<graphic xlink:href="elife00013ksf003" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+						<graphic xlink:href="elife00013ksf003.gif" xmlns:xlink="http://www.w3.org/1999/xlink"/>
 					</fig>
 					<fig id="sfig2" position="float" specific-use="child-fig">
 						<object-id pub-id-type="doi">10.7554/eLife.00013ks.013</object-id>
@@ -973,7 +973,7 @@
 
 							<p><bold>DOI:</bold><ext-link ext-link-type="doi" xlink:href="10.7554/eLife.00013ks.013">http://dx.doi.org/10.7554/eLife.00013ks.013</ext-link></p>
 						</caption>
-						<graphic xlink:href="elife00013ksfs002" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+						<graphic xlink:href="elife00013ksfs002.gif" xmlns:xlink="http://www.w3.org/1999/xlink"/>
 					</fig>
 					<fig id="sfig3" position="float" specific-use="child-fig">
 						<object-id pub-id-type="doi">10.7554/eLife.00013ks.014</object-id>
@@ -984,7 +984,7 @@
 
 							<p><bold>DOI:</bold><ext-link ext-link-type="doi" xlink:href="10.7554/eLife.00013ks.014">http://dx.doi.org/10.7554/eLife.00013ks.014</ext-link></p>
 						</caption>
-						<graphic xlink:href="elife00013ksfs003" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+						<graphic xlink:href="elife00013ksfs003.gif" xmlns:xlink="http://www.w3.org/1999/xlink"/>
 					</fig>
 					<fig id="sfig4" position="float" specific-use="child-fig">
 						<object-id pub-id-type="doi">10.7554/eLife.00013ks.015</object-id>
@@ -995,7 +995,7 @@
 
 							<p><bold>DOI:</bold><ext-link ext-link-type="doi" xlink:href="10.7554/eLife.00013ks.015">http://dx.doi.org/10.7554/eLife.00013ks.015</ext-link></p>
 						</caption>
-						<graphic xlink:href="elife00013ksfs004" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+						<graphic xlink:href="elife00013ksf004.gif" xmlns:xlink="http://www.w3.org/1999/xlink"/>
 					</fig>
 					<fig id="sfig5" position="float" specific-use="child-fig">
 						<object-id pub-id-type="doi">10.7554/eLife.00013ks.016</object-id>
@@ -1006,7 +1006,7 @@
 
 							<p><bold>DOI:</bold><ext-link ext-link-type="doi" xlink:href="10.7554/eLife.00013ks.016">http://dx.doi.org/10.7554/eLife.00013ks.016</ext-link></p>
 						</caption>
-						<graphic xlink:href="elife00013ksfs005" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+						<graphic xlink:href="elife00013ksfs005.gif" xmlns:xlink="http://www.w3.org/1999/xlink"/>
 					</fig>
 					<fig id="sfig6" position="float" specific-use="child-fig">
 						<object-id pub-id-type="doi">10.7554/eLife.00013ks.017</object-id>
@@ -1017,7 +1017,7 @@
 
 							<p><bold>DOI:</bold><ext-link ext-link-type="doi" xlink:href="10.7554/eLife.00013ks.017">http://dx.doi.org/10.7554/eLife.00013ks.017</ext-link></p>
 						</caption>
-						<graphic xlink:href="elife00013ksfs006" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+						<graphic xlink:href="elife00013ksfs006.gif" xmlns:xlink="http://www.w3.org/1999/xlink"/>
 					</fig>
 					<fig id="sfig7" position="float" specific-use="child-fig">
 						<object-id pub-id-type="doi">10.7554/eLife.00013ks.018</object-id>
@@ -1028,7 +1028,7 @@
 
 							<p><bold>DOI:</bold><ext-link ext-link-type="doi" xlink:href="10.7554/eLife.00013ks.018">http://dx.doi.org/10.7554/eLife.00013ks.018</ext-link></p>
 						</caption>
-						<graphic xlink:href="elife00013ksfs007" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+						<graphic xlink:href="elife00013ksfs007.gif" xmlns:xlink="http://www.w3.org/1999/xlink"/>
 					</fig>
 					<fig id="sfig8" position="float" specific-use="child-fig">
 						<object-id pub-id-type="doi">10.7554/eLife.00013ks.019</object-id>
@@ -1039,7 +1039,7 @@
 
 							<p><bold>DOI:</bold><ext-link ext-link-type="doi" xlink:href="10.7554/eLife.00013ks.019">http://dx.doi.org/10.7554/eLife.00013ks.019</ext-link></p>
 						</caption>
-						<graphic xlink:href="elife00013ksfs008" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+						<graphic xlink:href="elife00013ksfs008.gif" xmlns:xlink="http://www.w3.org/1999/xlink"/>
 					</fig>
 					<fig id="sfig9" position="float" specific-use="child-fig">
 						<object-id pub-id-type="doi">10.7554/eLife.00013ks.020</object-id>
@@ -1050,7 +1050,7 @@
 
 							<p><bold>DOI:</bold><ext-link ext-link-type="doi" xlink:href="10.7554/eLife.00013ks.020">http://dx.doi.org/10.7554/eLife.00013ks.020</ext-link></p>
 						</caption>
-						<graphic xlink:href="elife00013ksfs009" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+						<graphic xlink:href="elife00013ksfs009.gif" xmlns:xlink="http://www.w3.org/1999/xlink"/>
 					</fig>
 					<fig id="sfig10" position="float" specific-use="child-fig">
 						<object-id pub-id-type="doi">10.7554/eLife.00013ks.021</object-id>
@@ -1061,9 +1061,9 @@
 
 							<p><bold>DOI:</bold><ext-link ext-link-type="doi" xlink:href="10.7554/eLife.00013ks.021">http://dx.doi.org/10.7554/eLife.00013ks.021</ext-link></p>
 						</caption>
-						<graphic xlink:href="elife00013ksfs010" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+						<graphic xlink:href="elife00013ksfs010.gif" xmlns:xlink="http://www.w3.org/1999/xlink"/>
 					</fig>
-						<fig id="sfig11" position="float" specific-use="child-fig"><object-id pub-id-type="doi">10.7554/eLife.00013ks.022</object-id><label>Figure 3-figure supplement 10.</label><caption><title>The title of the child fig</title><p>Expanded dqfCOSY spectra of RIF-1: In panel A (d<sub>H</sub>1.15-1.65 ppm/d<sub>H</sub>3.52-3.82 ppm), H-3 (d<sub>H</sub>3.73) shows correlation to H-4a (d<sub>H</sub>1.30), H-5 (d<sub>H</sub>3.57) to H-4a/H-4b (d<sub>H</sub>1.30/1.47), and H-5 to H<sub>2</sub>-6 (d<sub>H</sub>1.20/1.29); H-2' (~d<sub>H</sub>3.8) correlates to H<sub>2</sub>-3' (d<sub>H</sub>1.45 and 1.54). Panel B (d<sub>H</sub>2.4-4.0 ppm/d<sub>H</sub>2.4-4.0 ppm) demonstrates the correlations between H<sub>2</sub>-1 (d<sub>H</sub>2.56/~3.0) and H-2 (d<sub>H</sub>3.88), and between H-2 and H-3. Panel C (d<sub>H</sub>0.75-1.60 ppm/d<sub>H</sub>0.75-1.60 ppm) exhibits correlations in the other methylenes and methyl groups.</p><p><bold>DOI:</bold><ext-link ext-link-type="doi" xlink:href="10.7554/eLife.00013ks.022">http://dx.doi.org/10.7554/eLife.00013ks.022</ext-link></p></caption><graphic xlink:href="elife00013ksfs011" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+						<fig id="sfig11" position="float" specific-use="child-fig"><object-id pub-id-type="doi">10.7554/eLife.00013ks.022</object-id><label>Figure 3-figure supplement 10.</label><caption><title>The title of the child fig</title><p>Expanded dqfCOSY spectra of RIF-1: In panel A (d<sub>H</sub>1.15-1.65 ppm/d<sub>H</sub>3.52-3.82 ppm), H-3 (d<sub>H</sub>3.73) shows correlation to H-4a (d<sub>H</sub>1.30), H-5 (d<sub>H</sub>3.57) to H-4a/H-4b (d<sub>H</sub>1.30/1.47), and H-5 to H<sub>2</sub>-6 (d<sub>H</sub>1.20/1.29); H-2' (~d<sub>H</sub>3.8) correlates to H<sub>2</sub>-3' (d<sub>H</sub>1.45 and 1.54). Panel B (d<sub>H</sub>2.4-4.0 ppm/d<sub>H</sub>2.4-4.0 ppm) demonstrates the correlations between H<sub>2</sub>-1 (d<sub>H</sub>2.56/~3.0) and H-2 (d<sub>H</sub>3.88), and between H-2 and H-3. Panel C (d<sub>H</sub>0.75-1.60 ppm/d<sub>H</sub>0.75-1.60 ppm) exhibits correlations in the other methylenes and methyl groups.</p><p><bold>DOI:</bold><ext-link ext-link-type="doi" xlink:href="10.7554/eLife.00013ks.022">http://dx.doi.org/10.7554/eLife.00013ks.022</ext-link></p></caption><graphic xlink:href="elife00013ksfs011.gif" xmlns:xlink="http://www.w3.org/1999/xlink"/>
 					</fig>
 					<fig id="sfig12" position="float" specific-use="child-fig">
 						<object-id pub-id-type="doi">10.7554/eLife.00013ks.023</object-id>
@@ -1074,7 +1074,7 @@
 
 							<p><bold>DOI:</bold><ext-link ext-link-type="doi" xlink:href="10.7554/eLife.00013ks.023">http://dx.doi.org/10.7554/eLife.00013ks.023</ext-link></p>
 						</caption>
-						<graphic xlink:href="elife00013ksfs012" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+						<graphic xlink:href="elife00013ksfs012.gif" xmlns:xlink="http://www.w3.org/1999/xlink"/>
 					</fig>
 					<fig id="sfig13" position="float" specific-use="child-fig">
 						<object-id pub-id-type="doi">10.7554/eLife.00013ks.024</object-id>
@@ -1085,7 +1085,7 @@
 
 							<p><bold>DOI:</bold><ext-link ext-link-type="doi" xlink:href="10.7554/eLife.00013ks.024">http://dx.doi.org/10.7554/eLife.00013ks.024</ext-link></p>
 						</caption>
-						<graphic xlink:href="elife00013ksfs013" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+						<graphic xlink:href="elife00013ksfs013.gif" xmlns:xlink="http://www.w3.org/1999/xlink"/>
 					</fig>
 					<fig id="sfig14" position="float" specific-use="child-fig">
 						<object-id pub-id-type="doi">10.7554/eLife.00013ks.025</object-id>
@@ -1095,7 +1095,7 @@
 
 							<p><bold>DOI:</bold><ext-link ext-link-type="doi" xlink:href="10.7554/eLife.00013ks.025">http://dx.doi.org/10.7554/eLife.00013ks.025</ext-link></p>
 						</caption>
-						<graphic xlink:href="elife00013ksfs014" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+						<graphic xlink:href="elife00013ksfs014.gif" xmlns:xlink="http://www.w3.org/1999/xlink"/>
 					</fig>
 					<fig id="sfig15" position="float" specific-use="child-fig">
 						<object-id pub-id-type="doi">10.7554/eLife.00013ks.026</object-id>
@@ -1106,7 +1106,7 @@
 
 							<p><bold>DOI:</bold><ext-link ext-link-type="doi" xlink:href="10.7554/eLife.00013ks.026">http://dx.doi.org/10.7554/eLife.00013ks.026</ext-link></p>
 						</caption>
-						<graphic xlink:href="elife00013ksfs015" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+						<graphic xlink:href="elife00013ksfs015.gif" xmlns:xlink="http://www.w3.org/1999/xlink"/>
 					</fig>
 					<fig id="sfig16" position="float" specific-use="child-fig">
 						<object-id pub-id-type="doi">10.7554/eLife.00013ks.027</object-id>
@@ -1117,7 +1117,7 @@
 
 							<p><bold>DOI:</bold><ext-link ext-link-type="doi" xlink:href="10.7554/eLife.00013ks.027">http://dx.doi.org/10.7554/eLife.00013ks.027</ext-link></p>
 						</caption>
-						<graphic xlink:href="elife00013ksfs016" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+						<graphic xlink:href="elife00013ksfs016.gif" xmlns:xlink="http://www.w3.org/1999/xlink"/>
 					</fig>
 			</fig-group></p>
 
@@ -1388,7 +1388,7 @@
 
 						<p><bold>DOI:</bold><ext-link ext-link-type="doi" xlink:href="10.7554/eLife.00013ks.029">http://dx.doi.org/10.7554/eLife.00013ks.029</ext-link></p>
 					</caption>
-					<graphic xlink:href="elife00013ksf004" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+					<graphic xlink:href="elife00013ksf004.gif" xmlns:xlink="http://www.w3.org/1999/xlink"/>
 				</fig>
 				<fig id="sfig17" position="float" specific-use="child-fig">
 					<object-id pub-id-type="doi">10.7554/eLife.00013ks.030</object-id>
@@ -1399,7 +1399,7 @@
 
 						<p><bold>DOI:</bold><ext-link ext-link-type="doi" xlink:href="10.7554/eLife.00013ks.030">http://dx.doi.org/10.7554/eLife.00013ks.030</ext-link></p>
 					</caption>
-					<graphic xlink:href="elife00013ksfs017" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+					<graphic xlink:href="elife00013ksfs017.gif" xmlns:xlink="http://www.w3.org/1999/xlink"/>
 				</fig>
 			</fig-group></p>
 
@@ -5854,7 +5854,7 @@
 
 			<p><italic>1) Discussion of other signaling systems with ultrasensitive receptors (p. 8). Namely, we draw the attention of readers to the well-described silkworm moth sex pheromone signaling system (see <xref ref-type="fig" rid="fig1">Figure 1</xref>), in which 4 fM bombykol (the silkworm moth sex pheromone; refs. 37- 39) is sufficient to induce a behavioral response in males. The potency of bombykol is comparable to that of RIF-1, which is active at concentrations ranging from 10-2 fM to 107 fM (<xref ref-type="table" rid="tbl1">Table 1</xref>)</italic>.</p>
 
-			<p><italic>2) An expanded discussion of the difference in activity between purified RIF-1 vs. the sphingolipid-enriched fraction (<xref ref-type="table" rid="tbl2">Table 2</xref>). On p. 8, paragraph 1, we clarify that the difference in activity could be due either to delivery issues (i.e. a requirement for RIF-1 to be delivered in the context of the bacterial membrane) or to the absence of other currently unidentified A. machipongonensis molecules that either amplify RIF-1 signaling or might independently induce colony development in S. rosetta (<xref ref-type="fig" rid="fig5">Author response image 1</xref>). In addition, on p. 9 we state that "We hypothesize that RIF-1 may be released into the environment in membrane vesicles, which have been described in Gram-negative bacteria and Bacteroidetes (50,51) and that additional membrane constituents might be required for the full potency of RIF-1.</italic> "<fig id="fig5" position="float"><label>Author response image 1</label><caption><title>Correlation between mean Voxel Number and resulting mean Decoding Accuracy (shown for each ROI (N&#x3d;13) and each of the three pair-wise comparisons for the Plan-Epoch).</title><p>Pearson correlation between Voxel Number and Hand Plan Epoch decoding accuracies (red diamond symbols): r<sup>2</sup>&#x3d;0.108, p&#x3d;0.272; Pearson Correlation between Voxel Number and Tool Plan Epoch decoding accuracies (blue square symbols): r<sup>2</sup>&#x3d;0.025, p&#x3d;0.602; Pearson Correlation between Voxel Number and Across-Effector Plan Epoch decoding accuracies (purple triangle symbols): r<sup>2</sup>&#x3d;0.026, p&#x3d;0.598.</p></caption><graphic xlink:href="elife00013ksf005" xmlns:xlink="http://www.w3.org/1999/xlink"/></fig></p>
+			<p><italic>2) An expanded discussion of the difference in activity between purified RIF-1 vs. the sphingolipid-enriched fraction (<xref ref-type="table" rid="tbl2">Table 2</xref>). On p. 8, paragraph 1, we clarify that the difference in activity could be due either to delivery issues (i.e. a requirement for RIF-1 to be delivered in the context of the bacterial membrane) or to the absence of other currently unidentified A. machipongonensis molecules that either amplify RIF-1 signaling or might independently induce colony development in S. rosetta (<xref ref-type="fig" rid="fig5">Author response image 1</xref>). In addition, on p. 9 we state that "We hypothesize that RIF-1 may be released into the environment in membrane vesicles, which have been described in Gram-negative bacteria and Bacteroidetes (50,51) and that additional membrane constituents might be required for the full potency of RIF-1.</italic> "<fig id="fig5" position="float"><label>Author response image 1</label><caption><title>Correlation between mean Voxel Number and resulting mean Decoding Accuracy (shown for each ROI (N&#x3d;13) and each of the three pair-wise comparisons for the Plan-Epoch).</title><p>Pearson correlation between Voxel Number and Hand Plan Epoch decoding accuracies (red diamond symbols): r<sup>2</sup>&#x3d;0.108, p&#x3d;0.272; Pearson Correlation between Voxel Number and Tool Plan Epoch decoding accuracies (blue square symbols): r<sup>2</sup>&#x3d;0.025, p&#x3d;0.602; Pearson Correlation between Voxel Number and Across-Effector Plan Epoch decoding accuracies (purple triangle symbols): r<sup>2</sup>&#x3d;0.026, p&#x3d;0.598.</p></caption><graphic xlink:href="elife00013ksfs005.gif" xmlns:xlink="http://www.w3.org/1999/xlink"/></fig></p>
 
 			<p><italic>3) A more detailed discussion of future directions for this research, including (as pointed out by the reviewers) the need to determine the three-dimensional structure of RIF-1 (p. 9, <xref ref-type="fig" rid="sfig1">Figure 1-figure supplement 1</xref>). Note that defining the stereochemistry will require synthesizing several different possible stereoisomers of RIF-1, and that there are no published total syntheses of any sulfonolipids in the literature (<xref ref-type="table" rid="tbl4">Author response table 1</xref>)</italic>.
 			<table-wrap id="tbl4" position="float">
