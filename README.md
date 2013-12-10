@@ -10,7 +10,6 @@ Lens is composed of some independent modules. Those are:
 - The [Substance Reader](http://github.com/substance/reader) is the implementation of the reading interface, it can be embedded into any page
 - The [Lens Outline](http://github.com/elifesciences/lens-outline) is the visual document map we are using in Lens. It can be used independently.
 
-
 ### Getting started
 
 The easiest way to integrate Lens into your website is by creating one HTML file per document and adapt the url to the document you want to display. First [download](https://github.com/elifesciences/lens-elife/archive/1.0.0-rc1.zip) the latest stable Lens distribution. Then adjust the `index.html` file accordingly.
@@ -24,7 +23,8 @@ When running this Lens distribution locally, note that your browser may enforce 
 
     python -m SimpleHTTPServer
 
-Keep in mind, with eLife Lens you can display any NLM-compatible XML file or JSON documents that correspond to the Lens Article Format. You can enrich your HTML file with `<meta>` tags etc. to ensure Google crawlablility. There is no server infrastructure needed to run Lens. It's 100% browser-based. If you have questions please consult the [Lens Mailinglist](https://groups.google.com/forum/#!forum/elife-lens).
+Keep in mind, with eLife Lens you can display any NLM-compatible XML file or JSON document that corresponds to the Lens Article Format. You can enrich your HTML file with `<meta>` tags etc. to ensure Google crawlablility. There is no server infrastructure needed to run Lens, as it's 100% browser-based. If you have questions please consult the [Lens Mailinglist](https://groups.google.com/forum/#!forum/elife-lens).
+
 
 ### Installing and contributing
 
@@ -38,9 +38,21 @@ For install instructions and how to contribute see the official [Lens Manual](ht
 - [PeerJ Lens Demo](http://peerj.github.io/lens-demo/)
 
 
-
 ### Changelog
 
+
+### 1.0.0 RC2
+
+- Include `suffix` element for contributor names
+- Updated Manual and About document
+- Mark `deceased` contributors
+- Include ORCID on author cards
+- Display group members of a person group on the group's card
+- Consider present address of a contributor
+- Display reviewing editor
+- Support for `<named-content>` elements
+- Introduced deterministic URL resolver based on `xml:base` attribute
+- Fixed display issues related to inline graphics
 
 ### 1.0.0 RC1
 
@@ -50,7 +62,6 @@ For install instructions and how to contribute see the official [Lens Manual](ht
 - Deal better with author groups
 - Rename Person -> Contributor (consistent with JATS)
 - Added jumpmarks for the mobile version
-
 
 ### 0.3.0
 
@@ -65,3 +76,13 @@ For install instructions and how to contribute see the official [Lens Manual](ht
 - Fixed an issue related to scroll recovery on mobile
 - Display publisher logo with breadcrumbs
 
+### 0.2.0
+
+- Modularization
+- Introuced Lens Article format definition
+- Style improvements
+- Native support for NLM using a new browser-based converter
+
+### 0.1.0
+
+- Initial Lens release
