@@ -97,8 +97,12 @@ Outline
   background-color: rgba(0,0,0, 0.2);
 }
 
-.lens-outline .visible-area:hover {
+.lens-outline:hover .visible-area {
   background-color: rgba(0,0,0, 0.25); 
+}
+
+.lens-outline .visible-area:hover {
+  background-color: rgba(0,0,0, 0.3); 
 }
 
 .lens-outline .node {
@@ -110,12 +114,12 @@ Outline
 }
 
 .lens-outline .node:hover {
-  opacity: 0.4;
+  /*opacity: 0.4;*/
 }
 
-.lens-outline .node.highlighted:hover {
+/*.lens-outline .node.highlighted:hover {
   opacity: 1.0;
-}
+}*/
 
 .lens-outline .text {
 }
@@ -185,6 +189,10 @@ Outline
   padding: 0px;
   display:inline;
   width: auto;
+}
+
+.content-node.paragraph .content-node.text.heading {
+  display:block;
 }
 
 .content-node.paragraph .content-node.text div {
@@ -296,7 +304,7 @@ Outline
 }
 
 .content-node.image div img {
-  /*width: 100%;*/
+  width: 100%;
 }
 .document .content-node.formula {
   padding: 30px 60px;
@@ -382,6 +390,11 @@ Outline
   margin-right: 10px;
   margin-bottom: 8px;
 }
+
+.lens-article .content-node.cover .authors .text.plain {
+  color: #777;
+  padding-left: 1px;
+}
 .content-node.supplement > .content {
   padding: 10px 20px;
 }
@@ -417,8 +430,12 @@ Box
   /*background: #ccc;*/
 }
 
+.surface.content .content-node.box > .content {
+  border: 1px dotted #ddd;
+}
+
 .surface.content .content-node.box .content {
-  background: #eee;
+  background: #fbfbfb;
 }
 /*
 Citations 
@@ -542,7 +559,8 @@ Contributor
 }
 
 .lens-article .content-node.contributor .label {
-  margin-top: 10px;
+  font-size: 14px;
+  margin-top: 20px;
   color: #777;
 }
 /* Publication Info */
@@ -550,6 +568,7 @@ Contributor
 .lens-article .content-node.publication-info {
   /*padding: 30px 0;*/
   /*background: rgba(0,0,0,0.1);*/
+  font-size: 17px;
   color: #333;
 }
 
@@ -564,6 +583,8 @@ Contributor
 }
 
 .lens-article .content-node.publication-info .label {
+  margin-top: 10px;
+  font-size: 13px;
   color: #666;
 }
 
@@ -590,18 +611,24 @@ Contributor
   margin-top: 30px;
 }
 
+.lens-article .content-node.publication-info table.dates .value {
+  font-style: normal;
+
+}
+
 .lens-article .content-node.publication-info table.dates td {  
   border: none;
   padding-right: 30px;
   padding-bottom: 10px;
-  text-align: center;
-  font-size: 13px;
+  /*text-align: center;*/
+  /*font-size: 13px;*/
   width: 33%;
 }
 
 .lens-article .content-node.publication-info table.categorization td {
+  vertical-align: top;
   border: none;
-  font-size: 13px;
+  /*font-size*/: 13px;
   padding-right: 30px;
   width: 50%;
 }
@@ -609,7 +636,15 @@ Contributor
 .lens-article .content-node.publication-info .value {
   /*font-weight: bold;*/
   font-style: italic;
-  font-size: 15px;
+  /*font-size: 15px;*/
+  /*margin-top: 10px;*/
+  
+}
+
+
+
+.lens-article .content-node.publication-info a.value {
+  font-style: normal;
 }
 
 .lens-article .content-node.publication-info .links {
@@ -636,9 +671,13 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 }
 
 /* Surface specific styles */
-
 .content-node {
 
+}
+
+
+.hidden {
+  display: none;
 }
 
 .content-node .content {
@@ -805,7 +844,7 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   float: right;
   line-height: 25px;
   width: 50%;
-  font-size: 14px;
+  
   height: 100%;
   padding-left: 50px;
   padding-right: 50px;
@@ -814,7 +853,7 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 }
 
 .article .resources .surface {
-  padding-top: 20px;
+  /*padding-top: 20px;*/
 }
 
 .article .nodes {
@@ -822,15 +861,21 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   padding-right: 50px;
 }
 
+.article .resources .nodes {
+  padding-left: 40px;
+  padding-right: 40px;
+}
 
 .article .resources .nodes > .content-node {
-  color: #333;
+  color: #505050;
   position: relative;
-  /* background: rgba(0,0,0,0.01); */
   background: #fff;
-  
-  margin-bottom: 30px;
+/*  margin-bottom: 30px;
+  margin-top: 30px;*/
+
   padding: 0px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .article .resources .nodes > .content-node > .content {
@@ -848,6 +893,7 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   position: relative;
   background: rgba(0,0,0,0.1);
 }
+
 
 /* Shared styles for selected and mouseover states
 ----------------------------------------------------------------------- */
@@ -899,8 +945,6 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 }
 
 
-
-
 /* Figures View
 ----------------------------------------------------------------------- */
 
@@ -913,6 +957,7 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   right: 0px;
   overflow-y: scroll;
   overflow-x: hidden;
+  font-size: 14px;
   -webkit-overflow-scrolling: touch;
 }
 
@@ -924,6 +969,8 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 ----------------------------------------------------------------------- */
 
 .article .resources .surface.citations {
+  font-size: 14px;
+
   display: none;
   position: absolute;
   top: 0px;
@@ -1051,6 +1098,7 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   z-index: 100000;
   margin-bottom: 0px;
   margin-right: 0px;
+  padding: 0px;
 }
 
 #container .article .content-node.fullscreen .icon-resize-small {
@@ -1252,10 +1300,26 @@ span.annotation.formula_reference, span.publication_reference {
   background-color: rgba(0, 0, 0, 0);
 }
 
-
-
 .article .document .content-node.heading {
   cursor: pointer;
+}
+
+
+
+/* Resources Outline */
+/* ---------------------------------------*/
+
+.resources .lens-outline {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  left: auto;
+  bottom: 0px;
+  width: 30px;
+}
+
+.resources .lens-outline .node {
+  width: 20px;
 }
 
 
@@ -1476,6 +1540,7 @@ span.annotation.formula_reference, span.publication_reference {
   .article .lens-outline {
     display: none;
   }
+
 }
 
 

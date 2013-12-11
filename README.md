@@ -47,7 +47,7 @@ For install instructions and how to contribute see the official [Lens Manual](ht
 - Updated Manual and About document
 - Mark `deceased` contributors
 - Include ORCID on author cards
-- Display group members of a person group on the group's card
+- Display members of a person group on the group's card
 - Consider present address of a contributor
 - Display reviewing editor
 - Support for `<named-content>` elements
