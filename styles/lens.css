@@ -150,6 +150,17 @@ p:last-child { padding-bottom: 0; }
   border-top: 1px solid #ddd;
 }
 
+.article span.annotation.author-callout-style1 {
+  color: red;
+}
+
+.article span.annotation.author-callout-style2 {
+  color: blue;
+}
+
+.article span.annotation.author-callout-style3 {
+  color: green;
+}
 
 /* main
    --------------------------------------- */
