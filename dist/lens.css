@@ -375,6 +375,12 @@ Outline
   font-size: 40px;
 }
 
+.lens-article .content-node.cover .published-on {
+  margin-top: 50px;
+  margin-bottom: 20px;
+  color: #666;
+}
+
 .lens-article .content-node.cover .content .authors {
   padding-top: 30px;
   color: #1B6685;
@@ -1299,6 +1305,23 @@ span.annotation.formula_reference, span.publication_reference {
 .article .document .surface.content::-webkit-scrollbar-thumb {
   background-color: rgba(0, 0, 0, 0);
 }
+
+
+/* Disable native scrollbar for resources except TOC */
+
+.article .resources .surface.figures::-webkit-scrollbar,
+.article .resources .surface.citations::-webkit-scrollbar,
+.article .resources .surface.info::-webkit-scrollbar {
+  width: 2px;
+  height: 2px; 
+}
+
+.article .resources .surface.figures::-webkit-scrollbar-thumb,
+.article .resources .surface.citations::-webkit-scrollbar-thumb,
+.article .resources .surface.info::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0);
+}
+
 
 .article .document .content-node.heading {
   cursor: pointer;
