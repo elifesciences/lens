@@ -139,10 +139,8 @@ p:last-child { padding-bottom: 0; }
   -moz-box-sizing: border-box;
 }
 
-
 /* Article Overrides */
 #container .article .resources .info .content-node.active .resource-header {
-  /*background: #4A4A4A;*/
   background: #5c6570;
 }
 
@@ -150,16 +148,25 @@ p:last-child { padding-bottom: 0; }
   border-top: 1px solid #ddd;
 }
 
+
 .article span.annotation.author-callout-style1 {
-  color: red;
+  font-weight: bold;
+  color: rgb(183, 14, 14);
 }
 
 .article span.annotation.author-callout-style2 {
-  color: blue;
+  font-weight: bold;
+  color: rgb(0, 179, 255);
 }
 
 .article span.annotation.author-callout-style3 {
-  color: green;
+  font-weight: bold;
+  color: rgb(4, 195, 4);
+}
+
+.article span.annotation.author-callout-style4 {
+  font-weight: bold;
+  color: gold;
 }
 
 /* main
