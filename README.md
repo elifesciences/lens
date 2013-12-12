@@ -54,6 +54,14 @@ For install instructions and how to contribute see the official [Lens Manual](ht
 - Introduced deterministic URL resolver based on `xml:base` attribute
 - Fixed display issues related to inline graphics
 - Extract and display `<on-behalf-of>` element
+- Support for author-callout-style (encoded as colors)
+- Reusing visual outline for resources (figures, citations, info panel)
+- Display publish date and DOI on cover node
+- Improved display of competing interests (on author cards)
+- Keywords in publication info are now italic.
+- Included `<award-id>` in funding sources display
+- Consider `<collab>` elements in citations
+- Added another fallback for citation title extraction (`<source>`)
 
 
 ### 1.0.0 RC1
