@@ -381,6 +381,13 @@ Outline
   color: #666;
 }
 
+.lens-article .content-node.cover .doi {
+  margin-top: 30px;
+  margin-bottom: 20px;
+  color: #666;
+  font-size: 14px;
+}
+
 .lens-article .content-node.cover .content .authors {
   padding-top: 30px;
   color: #1B6685;
@@ -1001,7 +1008,7 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   top: 0px;
   bottom: 0px;
   left: 50px;
-  right: 50px;
+  right: 0px;
 
   overflow: auto;
   -webkit-overflow-scrolling: touch;
@@ -1220,7 +1227,7 @@ span.annotation.formula_reference, span.publication_reference {
 }
 
 .content-node .contributor_reference {
-  padding: 2px 5px;
+  padding: 2px 1px;
   cursor: pointer;
 }
 
@@ -1339,6 +1346,10 @@ span.annotation.formula_reference, span.publication_reference {
   left: auto;
   bottom: 0px;
   width: 30px;
+}
+
+#container.touchable .resources .lens-outline {
+  right: 5px;
 }
 
 .resources .lens-outline .node {
@@ -1755,10 +1766,8 @@ p:last-child { padding-bottom: 0; }
   -moz-box-sizing: border-box;
 }
 
-
 /* Article Overrides */
 #container .article .resources .info .content-node.active .resource-header {
-  /*background: #4A4A4A;*/
   background: #5c6570;
 }
 
@@ -1766,6 +1775,26 @@ p:last-child { padding-bottom: 0; }
   border-top: 1px solid #ddd;
 }
 
+
+.article span.annotation.author-callout-style1 {
+  font-weight: bold;
+  color: rgb(183, 14, 14);
+}
+
+.article span.annotation.author-callout-style2 {
+  font-weight: bold;
+  color: rgb(0, 179, 255);
+}
+
+.article span.annotation.author-callout-style3 {
+  font-weight: bold;
+  color: rgb(4, 195, 4);
+}
+
+.article span.annotation.author-callout-style4 {
+  font-weight: bold;
+  color: gold;
+}
 
 /* main
    --------------------------------------- */
