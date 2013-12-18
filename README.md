@@ -41,6 +41,12 @@ For install instructions and how to contribute see the official [Lens Manual](ht
 ### Changelog
 
 
+### 1.0.0 RC3
+
+- Excluded `funder-id` from funding source name
+- Properly handle multiple equal contribution groups
+- Mark deceased contributor as "* Deceased"
+
 ### 1.0.0 RC2
 
 - Include `suffix` element for contributor names
