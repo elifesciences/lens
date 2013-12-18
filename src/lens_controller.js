@@ -126,6 +126,8 @@ LensController.Prototype = function() {
           doc = importer.import(data, {
             TRIM_WHITESPACES: true
           });
+
+          // console.log(JSON.stringify(doc.toJSON()), null, "  ");
           // Process JSON file
         } else {
           if(typeof data == 'string') data = $.parseJSON(data);
