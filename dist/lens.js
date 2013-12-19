@@ -1727,23 +1727,27 @@ CoverView.Prototype = function() {
 
     var pubInfo = this.node.document.get('publication_info');
 
-    var localDate = new Date(pubInfo.published_on);
-    var utcDate = new Date();
-    utcDate.setUTCDate(localDate.getDate());
-    utcDate.setUTCMonth(localDate.getMonth());
-    utcDate.setUTCFullYear(localDate.getFullYear());
-
     if (pubInfo) {
-      var pubDate = pubInfo.published_on;
-      if (pubDate) {
-        this.content.appendChild($$('.published-on', {
-          text: utcDate.toUTCString().slice(0, 16) // new Date(pubDate).toDateString()
-        }));
+      var localDate = new Date(pubInfo.published_on);
+      var utcDate = new Date();
+      utcDate.setUTCDate(localDate.getDate());
+      utcDate.setUTCMonth(localDate.getMonth());
+      utcDate.setUTCFullYear(localDate.getFullYear());
+      utcDate.setUTCHours(0);
+      utcDate.setUTCMinutes(0);
+      utcDate.setUTCSeconds(0);
+
+      if (pubInfo) {
+        var pubDate = pubInfo.published_on;
+        if (pubDate) {
+          this.content.appendChild($$('.published-on', {
+            text: utcDate.toUTCString().slice(0, 16)
+          }));
+        }
       }
     }
 
     this.content.appendChild($$('.title', {text: node.title }));
-
 
     var authors = $$('.authors', {
       children: _.map(node.getAuthors(), function(authorPara) {
@@ -19398,9 +19402,10 @@ var ReaderView = function(readerCtrl) {
   this.contentView.$el.on('scroll', _.bind(this.onContentScroll, this));
 
   // Resource content that is being scrolled
-  this.figuresView.$el.on('scroll', _.bind(this.onResourceContentScroll, this));
-  this.citationsView.$el.on('scroll', _.bind(this.onResourceContentScroll, this));
-  this.infoView.$el.on('scroll', _.bind(this.onResourceContentScroll, this));
+  
+  if (this.figuresView) this.figuresView.$el.on('scroll', _.bind(this.onResourceContentScroll, this));
+  if (this.citationsView) this.citationsView.$el.on('scroll', _.bind(this.onResourceContentScroll, this));
+  if (this.infoView) this.infoView.$el.on('scroll', _.bind(this.onResourceContentScroll, this));
 
   // Resource references
   this.$el.on('click', '.annotation.figure_reference', _.bind(this.toggleFigureReference, this));
