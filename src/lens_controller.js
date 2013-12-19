@@ -106,7 +106,7 @@ LensController.Prototype = function() {
     // Already loaded?
     if (this.reader) {
       this.reader.modifyState(state);
-      // HACK: monkey patch alert
+      // HACK: This shouldn't be monkeypatched
       if (state.resource) this.reader.view.jumpToResource(state.resource);
     } else if (this.config.document_url === "lens_article.xml") {
       var doc = Article.describe();
@@ -126,9 +126,6 @@ LensController.Prototype = function() {
           doc = importer.import(data, {
             TRIM_WHITESPACES: true
           });
-
-          // console.log(JSON.stringify(doc.toJSON()), null, "  ");
-          // Process JSON file
         } else {
           if(typeof data == 'string') data = $.parseJSON(data);
           doc = Article.fromSnapshot(data);
@@ -140,7 +137,6 @@ LensController.Prototype = function() {
       });
     }
   };
-
 
   // Provides an array of (context, controller) tuples that describe the
   // current state of responsibilities

@@ -41,7 +41,7 @@ For install instructions and how to contribute see the official [Lens Manual](ht
 ### Changelog
 
 
-### 1.0.0 RC3
+### 1.0.0
 
 - Excluded `funder-id` from funding source name
 - Properly handle multiple equal contribution groups

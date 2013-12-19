@@ -7,7 +7,6 @@ var LensView = require("./lens_view");
 var util = require("substance-util");
 var html = util.html;
 
-
 var ROUTES = [
   {
     "route": ":context/:node/:resource/:fullscreen",

@@ -76,13 +76,6 @@ LensView.Prototype = function() {
     
     // Hide loading indicator
     this.$('.loading').hide();
-
-    // if (publicationInfo) {
-    //   // Update URL
-    //   this.$('.go-back').attr({
-    //     href: publicationInfo.doi
-    //   });
-    // }
   };
 
   // Rendering
@@ -111,21 +104,6 @@ LensView.Prototype = function() {
       style: "display: none;"
     }));
 
-    // this.el.appendChild($$('a.go-back', {
-    //   href: "#",
-    //   html: '<i class="icon-chevron-left"></i>',
-    //   title: "Back to original article"
-    // }));
-
-
-    // About Lens
-    // ------------
-
-    // this.el.appendChild($$('a.about-lens', {
-    //   href: "http://lens.substance.io",
-    //   html: 'Lens 0.2.0'
-    // }));
-
     // Loading indicator
     // ------------
 
@@ -133,7 +111,7 @@ LensView.Prototype = function() {
       style: "display: none;"
     }));
 
-    // Main panel
+    // Main container
     // ------------
 
     this.el.appendChild($$('#main'));

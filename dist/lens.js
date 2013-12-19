@@ -22,7 +22,7 @@ var Article = function(options) {
   options.schema = util.deepclone(Document.schema);
 
   options.schema.id = "lens-article";
-  options.schema.version = "0.1.0";
+  options.schema.version = "0.3.0";
 
   // Merge in custom types
   _.each(Article.types, function(type, key) {
@@ -480,7 +480,6 @@ Article.describe = function() {
 
   _.each(Article.nodeTypes, function(nodeType) {
     nodeType = nodeType.Model;
-    // console.log('NAME', nodeType.description.name, nodeType.type.id);
 
     // Create a heading for each node type
     var headingId = "heading_"+nodeType.type.id;
@@ -569,7 +568,6 @@ Article.describe = function() {
     });
 
     doc.show("content", [headingId+"_example", headingId+"_example_codeblock"], -1);
-
   });
 
   return doc;
@@ -1729,19 +1727,12 @@ CoverView.Prototype = function() {
 
     if (pubInfo) {
       var localDate = new Date(pubInfo.published_on);
-      var utcDate = new Date();
-      utcDate.setUTCDate(localDate.getDate());
-      utcDate.setUTCMonth(localDate.getMonth());
-      utcDate.setUTCFullYear(localDate.getFullYear());
-      utcDate.setUTCHours(0);
-      utcDate.setUTCMinutes(0);
-      utcDate.setUTCSeconds(0);
 
       if (pubInfo) {
         var pubDate = pubInfo.published_on;
         if (pubDate) {
           this.content.appendChild($$('.published-on', {
-            text: utcDate.toUTCString().slice(0, 16)
+            text: localDate.toUTCString().slice(0, 16)
           }));
         }
       }
@@ -22667,7 +22658,6 @@ var LensView = require("./lens_view");
 var util = require("substance-util");
 var html = util.html;
 
-
 var ROUTES = [
   {
     "route": ":context/:node/:resource/:fullscreen",
@@ -22861,7 +22851,7 @@ LensController.Prototype = function() {
     // Already loaded?
     if (this.reader) {
       this.reader.modifyState(state);
-      // HACK: monkey patch alert
+      // HACK: This shouldn't be monkeypatched
       if (state.resource) this.reader.view.jumpToResource(state.resource);
     } else if (this.config.document_url === "lens_article.xml") {
       var doc = Article.describe();
@@ -22881,9 +22871,6 @@ LensController.Prototype = function() {
           doc = importer.import(data, {
             TRIM_WHITESPACES: true
           });
-
-          // console.log(JSON.stringify(doc.toJSON()), null, "  ");
-          // Process JSON file
         } else {
           if(typeof data == 'string') data = $.parseJSON(data);
           doc = Article.fromSnapshot(data);
@@ -22895,7 +22882,6 @@ LensController.Prototype = function() {
       });
     }
   };
-
 
   // Provides an array of (context, controller) tuples that describe the
   // current state of responsibilities
@@ -22998,13 +22984,6 @@ LensView.Prototype = function() {
     
     // Hide loading indicator
     this.$('.loading').hide();
-
-    // if (publicationInfo) {
-    //   // Update URL
-    //   this.$('.go-back').attr({
-    //     href: publicationInfo.doi
-    //   });
-    // }
   };
 
   // Rendering
@@ -23033,21 +23012,6 @@ LensView.Prototype = function() {
       style: "display: none;"
     }));
 
-    // this.el.appendChild($$('a.go-back', {
-    //   href: "#",
-    //   html: '<i class="icon-chevron-left"></i>',
-    //   title: "Back to original article"
-    // }));
-
-
-    // About Lens
-    // ------------
-
-    // this.el.appendChild($$('a.about-lens', {
-    //   href: "http://lens.substance.io",
-    //   html: 'Lens 0.2.0'
-    // }));
-
     // Loading indicator
     // ------------
 
@@ -23055,7 +23019,7 @@ LensView.Prototype = function() {
       style: "display: none;"
     }));
 
-    // Main panel
+    // Main container
     // ------------
 
     this.el.appendChild($$('#main'));
@@ -23077,7 +23041,10 @@ LensView.prototype = new LensView.Prototype();
 
 module.exports = LensView;
 },{"substance-application":57,"substance-util":155,"underscore":160}],164:[function(require,module,exports){
-// nothing to see here... no file methods for the browser
+
+// not implemented
+// The reason for having an empty file and not throwing is to allow
+// untraditional implementation of this module.
 
 },{}]},{},[1])
 ;
