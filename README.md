@@ -46,6 +46,7 @@ For install instructions and how to contribute see the official [Lens Manual](ht
 - Excluded `funder-id` from funding source name
 - Properly handle multiple equal contribution groups
 - Mark deceased contributor as "* Deceased"
+- Fixed a Safari-related regression in the converter
 
 ### 1.0.0 RC2
 
