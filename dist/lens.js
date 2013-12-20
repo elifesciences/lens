@@ -4053,12 +4053,12 @@ LensImporter.Prototype = function() {
           contribNode.present_address = elem.querySelector("p").textContent;
         } else if (elem && elem.getAttribute("fn-type") === "equal") {
           // Extract equal contributors
-          equalContribs = _getEqualContribs(elem.id);
-        } else if (elem && elem.getAttribute("fn-type") === "other" && elem.id.indexOf("equal-contrib")>=0) {
+          equalContribs = _getEqualContribs(elem.getAttribute("id"));
+        } else if (elem && elem.getAttribute("fn-type") === "other" && elem.getAttribute("id").indexOf("equal-contrib")>=0) {
           // skipping...
-          equalContribs = _getEqualContribs(elem.id);
+          equalContribs = _getEqualContribs(elem.getAttribute("id"));
         } else {
-          // skipping...          
+          // skipping...
         }
       }
     });
@@ -23041,10 +23041,7 @@ LensView.prototype = new LensView.Prototype();
 
 module.exports = LensView;
 },{"substance-application":57,"substance-util":155,"underscore":160}],164:[function(require,module,exports){
-
-// not implemented
-// The reason for having an empty file and not throwing is to allow
-// untraditional implementation of this module.
+// nothing to see here... no file methods for the browser
 
 },{}]},{},[1])
 ;
