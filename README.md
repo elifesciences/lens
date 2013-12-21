@@ -47,6 +47,7 @@ For install instructions and how to contribute see the official [Lens Manual](ht
 - Properly handle multiple equal contribution groups
 - Mark deceased contributor as "* Deceased"
 - Fixed a Safari-related regression in the converter
+- Added loading spinner using CSS3 animations.
 
 ### 1.0.0 RC2
 
