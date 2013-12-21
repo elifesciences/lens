@@ -1586,7 +1586,7 @@ TOC
 .resource-view.toc .heading-ref {
   cursor: pointer;
   display: block;
-  color: rgba(0,0,0,0.5);
+  color: rgba(0,0,0,0.7);
   font-size: 17px;
   padding: 4px 10px;
   line-height: 20px;
@@ -1636,6 +1636,14 @@ TOC
 body {
   padding: 0;
   margin: 0;
+  background-color: white;
+  -moz-transition: background-color 200ms linear;
+  -o-transition: background-color 200ms linear;
+  -webkit-transition: background-color 200ms linear;
+  transition: background-color 200ms linear;
+}
+
+body.loading {
 }
 
 html {
@@ -1667,38 +1675,6 @@ body.reader #container {
   max-width: 1400px; /* 988px / 16px = 61.75em */
   height: 100%;
 }
-
-
-/*#container .browser-not-supported {
-  text-align: center;
-  padding-top: 200px;
-  width: 500px;
-  margin: 0 auto;
-  font-size: 20px;
-  line-height: 30px;
-}
-
-#container .browser-not-supported h1 {
-  font-family: 'Avenir LT W01 85 Heavy', 'Montserrat', 'Source Sans Pro';
-  font-size: 30px;
-}
-
-#container .browser-not-supported p {
-  padding: 30px 0;
-}
-
-#container .browser-not-supported a {
-  background: #444;
-  padding: 2px 10px;
-  color: #fff;
-  font-family: 'Avenir LT W01 85 Heavy', 'Montserrat', 'Source Sans Pro';
-}
-
-#container .browser-not-supported a:hover {
-  background: #000;
-}
-*/
-
 
 
 body, textarea, p, input {
@@ -1816,4 +1792,62 @@ body.reader #main {
   height: 49px;
   line-height: 50px;
   font-size: 12px;
+}
+
+
+/* Loading bar */
+
+
+.spinner-wrapper {
+  position: fixed;
+  display: none;
+  left: 50%;
+  margin-left: -75px;
+  width: 150px;
+  top: 40%;
+  z-index: 5000;
+  font-family: 'Avenir LT W01 85 Heavy', 'Montserrat', 'Source Sans Pro';
+}
+
+body.loading .spinner-wrapper {
+  display: block;
+}
+
+.spinner-wrapper .spinner {
+  width: 40px;
+  height: 40px;
+  margin: 0 auto;  
+  background: #444;
+  -webkit-animation: rotateplane 1.2s infinite ease-in-out;
+  animation: rotateplane 1.2s infinite ease-in-out;
+}
+
+.spinner-wrapper .message {
+  color: #444;
+  text-align: center;
+  font-size: 12px;
+  padding-top: 20px;
+}
+
+@-webkit-keyframes rotateplane {
+  0% { -webkit-transform: perspective(120px) }
+  50% { -webkit-transform: perspective(120px) rotateY(180deg) }
+  100% { -webkit-transform: perspective(120px) rotateY(180deg)  rotateX(180deg) }
+}
+
+@keyframes rotateplane {
+  0% {
+    transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+  } 50% {
+    transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+  } 100% {
+    transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+    -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+  }
+}
+
+#MathJax_Message {
+  display: none;
 }
