@@ -112,7 +112,7 @@ LensController.Prototype = function() {
       var doc = Article.describe();
       that.createReader(doc, state);
     } else {
-      this.trigger("loading:started", "Loading document ...");
+      this.trigger("loading:started", "Loading article");
       $.get(this.config.document_url)
       .done(function(data) {
         var doc, err;
@@ -133,6 +133,7 @@ LensController.Prototype = function() {
         that.createReader(doc, state);
       })
       .fail(function(err) {
+        that.view.startLoading("Error during loading. Please try again.")
         console.error(err);
       });
     }

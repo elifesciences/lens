@@ -1,8 +1,6 @@
 "use strict";
 
 var _ = require("underscore");
-var util = require('substance-util');
-var html = util.html;
 var View = require("substance-application").View;
 var $$ = require("substance-application").$$;
 
@@ -21,7 +19,7 @@ var LensView = function(controller) {
   // --------
   
   this.listenTo(this.controller, 'state-changed', this.onStateChanged);
-  this.listenTo(this.controller, 'loading:started', this.displayLoadingIndicator);
+  this.listenTo(this.controller, 'loading:started', this.startLoading);
 
   $(document).on('dragover', function () { return false; });
   $(document).on('ondragend', function () { return false; });
@@ -30,10 +28,6 @@ var LensView = function(controller) {
 
 LensView.Prototype = function() {
 
-  this.displayLoadingIndicator = function(msg) {
-    this.$('#main').empty();
-    this.$('.loading').html(msg).show();
-  };
 
   this.handleDroppedFile = function(e) {
     var ctrl = this.controller;
@@ -62,6 +56,16 @@ LensView.Prototype = function() {
     }
   };
 
+  this.startLoading = function(msg) {
+    if (!msg) msg = "Loading article";
+    $('.spinner-wrapper .message').html(msg);
+    $('body').addClass('loading');
+  };
+
+  this.stopLoading = function() {
+    $('body').removeClass('loading');
+  };
+
 
   // Open the reader view
   // ----------
@@ -69,13 +73,17 @@ LensView.Prototype = function() {
 
   this.openReader = function() {
     var view = this.controller.reader.createView();
-    this.replaceMainView('reader', view);
-
-    var doc = this.controller.reader.__document;
-    var publicationInfo = doc.get('publication_info');
+    var that = this;
     
-    // Hide loading indicator
-    this.$('.loading').hide();
+    that.replaceMainView('reader', view);
+    that.startLoading("Typesetting");
+
+    this.$('#main').css({opacity: 0});
+    
+    _.delay(function() {
+      that.stopLoading();
+      that.$('#main').css({opacity: 1});
+    }, 1000);
   };
 
   // Rendering
@@ -104,11 +112,14 @@ LensView.Prototype = function() {
       style: "display: none;"
     }));
 
-    // Loading indicator
-    // ------------
+    // Spinner
+    // ------------  
 
-    this.el.appendChild($$('.loading', {
-      style: "display: none;"
+    this.el.appendChild($$('.spinner-wrapper', {
+      children: [
+        $$('.spinner'),
+        $$('.message', {html: 'Loading article'})
+      ]
     }));
 
     // Main container
