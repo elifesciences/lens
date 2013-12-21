@@ -12,7 +12,7 @@ Lens is composed of some independent modules. Those are:
 
 ### Getting started
 
-The easiest way to integrate Lens into your website is by creating one HTML file per document and adapt the url to the document you want to display. First [download](https://github.com/elifesciences/lens-elife/archive/1.0.0.zip) the latest stable Lens distribution. Then adjust the `index.html` file accordingly.
+The easiest way to integrate Lens into your website is by creating one HTML file per document and adapt the url to the document you want to display. First [download](https://lens.elifesciences.org/lens-1.0.0.zip) the latest stable Lens distribution. Then adjust the `index.html` file accordingly.
 
     var app = new Lens({
       // Endpoint must have CORS enabled, or file is served from the same domain as the app
