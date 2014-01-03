@@ -3342,70 +3342,50 @@ ElifeConfiguration.Prototype = function() {
     var meta = article.querySelectorAll("meta-value");
     var impact = meta[1];
     
-    var h1 = {
-      "type": "heading",
-      "id": state.nextId("heading"),
-      "level": 3,
-      "content": "Impact",
-    };
-    doc.create(h1);
-    nodes.push(h1.id);
-
     if (impact) {
+      var h1 = {
+        "type": "heading",
+        "id": state.nextId("heading"),
+        "level": 3,
+        "content": "Impact",
+      };
+      doc.create(h1);
+      nodes.push(h1.id);
+
       var par = converter.paragraphGroup(state, impact);
       nodes.push(par[0].id);
     }
-
-    // Get conflict of interest
-
-    // var conflict = article.querySelectorAll("fn");
-    // for (var i = 0; i < conflict.length;i++) {
-    //   var indiv = conflict[i];
-    //   var type = indiv.getAttribute("fn-type");
-    //     if (type === 'conflict') {
-    //       var h1 = {
-    //       "type" : "heading",
-    //       "id" : state.nextId("heading"),
-    //       "level" : 1,
-    //       "content" : "Competing Interests"
-    //     };
-    //     doc.create(h1);
-    //     nodes.push(h1.id);
-    //     var par = converter.bodyNodes(state, util.dom.getChildren(indiv));
-    //     nodes.push(par[0].id);
-    //   }
-    // }
 
     // Get reviewing editor
     // --------------
 
     var editor = article.querySelector("contrib[contrib-type=editor]");
 
-    var name = converter.getName(editor.querySelector('name'));
-    var inst = editor.querySelector("institution").textContent;
-    var role = editor.querySelector("role").textContent;
-    var country = editor.querySelector("country").textContent;
+    if (editor) {
+      var name = converter.getName(editor.querySelector('name'));
+      var inst = editor.querySelector("institution").textContent;
+      var role = editor.querySelector("role").textContent;
+      var country = editor.querySelector("country").textContent;
 
-    var h1 = {
-      "type": "heading",
-      "id": state.nextId("heading"),
-      "level": 3,
-      "content": "Reviewing Editor"
-    };
-    
-    doc.create(h1);
-    nodes.push(h1.id);
+      var h1 = {
+        "type": "heading",
+        "id": state.nextId("heading"),
+        "level": 3,
+        "content": "Reviewing Editor"
+      };
+      
+      doc.create(h1);
+      nodes.push(h1.id);
 
-    var t1 = {
-      "type": "text",
-      "id": state.nextId("text"),
-      "content": [name, role, inst, country].join(", ")
-    };
+      var t1 = {
+        "type": "text",
+        "id": state.nextId("text"),
+        "content": [name, role, inst, country].join(", ")
+      };
 
-    doc.create(t1);
-    nodes.push(t1.id);
-
-
+      doc.create(t1);
+      nodes.push(t1.id);      
+    }
 
     // Get major datasets
 
