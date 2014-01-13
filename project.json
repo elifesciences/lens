@@ -58,7 +58,7 @@
     {
       "repository": "https://github.com/elifesciences/lens-converter.git",
       "folder": "node_modules/lens-converter",
-      "branch": "0.3.x"
+      "branch": "0.4.x"
     },
     {
       "repository": "https://github.com/substance/operator.git",
