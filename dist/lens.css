@@ -1226,7 +1226,12 @@ span.annotation.formula_reference, span.publication_reference {
   cursor: pointer;
 }
 
-.content-node .contributor_reference {
+.content-node .contributor_reference, .content-node .collaborator_reference {
+  padding: 2px 1px;
+  cursor: pointer;
+}
+
+.content-node .contributor_reference, .content-node .collaborator_reference {
   padding: 2px 1px;
   cursor: pointer;
 }

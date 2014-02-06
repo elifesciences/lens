@@ -1161,7 +1161,12 @@ Citation.prototype.constructor = Citation;
 var getters = {
   header: {
     get: function() {
-      return this.properties.title;
+      if (this.properties.label !== '') {
+        return [this.properties.label,this.properties.title].join(". ")
+      }
+      else {
+        return this.properties.title;
+      }
     }
   }
 };
@@ -1205,7 +1210,12 @@ var Renderer = function(view) {
     // -------
 
     var source = [];
-
+    
+    // Hack for handling unstructured citation types and render prettier
+    if (node.source && node.volume === ''){
+      source.push(node.source);
+    }
+    
     if (node.source && node.volume) {
       source.push([node.source, node.volume].join(', ')+": ");
     }
@@ -3129,13 +3139,18 @@ ElifeConfiguration.Prototype = function() {
 
   this.enhanceCover = function(state, node, element) {
     var dispChannel = element.querySelector("subj-group[subj-group-type=display-channel] subject").textContent;
-    var category = element.querySelector("subj-group[subj-group-type=heading] subject").textContent;
-
+    try {
+      var category = element.querySelector("subj-group[subj-group-type=heading] subject").textContent;
+    } catch(err) {
+      var category = null;
+    }
+    
     node.breadcrumbs = [
       { name: "eLife", url: "http://elife.elifesciences.org/", image: "http://lens.elifesciences.org/lens-elife/styles/elife.png" },
       { name: dispChannel, url: "http://elife.elifesciences.org/category/"+dispChannel.replace(/ /g, '-').toLowerCase() },
-      { name: category, url: "http://elife.elifesciences.org/category/"+category.replace(/ /g, '-').toLowerCase() },
     ];
+    
+    if (category) node.breadcrumbs.push( { name: category, url: "http://elife.elifesciences.org/category/"+category.replace(/ /g, '-').toLowerCase() } );
   };
 
   // Resolves figure url
@@ -15224,7 +15239,7 @@ CoverView.Prototype = function() {
         // TODO: use data-* attribute to store the referenced collaborator node
         authorRefEl.setAttribute("id", ref.id);
         authorRefEl.classList.add("annotation");
-        authorRefEl.classList.add("person_reference");
+        authorRefEl.classList.add("collaborator_reference");
         authorRefEl.innerHTML = author.name;
         authorsEl.appendChild(authorRefEl);
       }
@@ -19348,9 +19363,14 @@ var ReaderView = function(readerCtrl) {
   this.listenTo(this.readerCtrl, "state-changed", this.updateState);
 
 
-  // Keep an index for resources
+  // Index for resources
+  // --------
+  // 
+  // Keep in mind that Substance.Article uses collaborator_reference while the Lens article has
+  // contributor_reference instances.
+
   this.resources = new Index(this.readerCtrl.__document, {
-    types: ["figure_reference", "citation_reference", "contributor_reference"],
+    types: ["figure_reference", "citation_reference", "contributor_reference", "collaborator_reference", "person_reference"],
     property: "target"
   });
 
@@ -19382,6 +19402,8 @@ var ReaderView = function(readerCtrl) {
   this.$el.on('click', '.annotation.figure_reference', _.bind(this.toggleFigureReference, this));
   this.$el.on('click', '.annotation.citation_reference', _.bind(this.toggleCitationReference, this));
   this.$el.on('click', '.annotation.contributor_reference', _.bind(this.toggleContributorReference, this));
+  this.$el.on('click', '.annotation.collaborator_reference', _.bind(this.toggleContributorReference, this));
+
   this.$el.on('click', '.annotation.cross_reference', _.bind(this.followCrossReference, this));
 
   this.$el.on('click', '.document .content-node.heading', _.bind(this.setAnchor, this));
@@ -19688,6 +19710,7 @@ ReaderView.Prototype = function() {
     this.$('.resources .content-node.active').removeClass('active fullscreen');
     this.contentView.$('.annotation.active').removeClass('active');
     
+
     if (state.resource) {
       // Show selected resource
       var $res = this.$('#'+state.resource);
@@ -23033,10 +23056,7 @@ LensView.prototype = new LensView.Prototype();
 
 module.exports = LensView;
 },{"substance-application":57,"underscore":160}],164:[function(require,module,exports){
-
-// not implemented
-// The reason for having an empty file and not throwing is to allow
-// untraditional implementation of this module.
+// nothing to see here... no file methods for the browser
 
 },{}]},{},[1])
 ;
