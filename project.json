@@ -3,32 +3,32 @@
     {
       "repository": "https://github.com/substance/application.git",
       "folder": "node_modules/substance-application",
-      "branch": "0.2.x"
+      "branch": "lens"
     },
     {
       "repository": "https://github.com/substance/chronicle.git",
       "folder": "node_modules/substance-chronicle",
-      "branch": "0.2.x"
+      "branch": "lens"
     },
     {
       "repository": "https://github.com/substance/commander.git",
       "folder": "node_modules/substance-commander",
-      "branch": "0.1.x"
+      "branch": "lens"
     },
     {
       "repository": "https://github.com/substance/data.git",
       "folder": "node_modules/substance-data",
-      "branch": "0.8.x"
+      "branch": "lens"
     },
     {
       "repository": "https://github.com/substance/document.git",
       "folder": "node_modules/substance-document",
-      "branch": "0.5.x"
+      "branch": "lens"
     },
     {
       "repository": "https://github.com/substance/reader.git",
       "folder": "node_modules/substance-reader",
-      "branch": "0.2.x"
+      "branch": "lens"
     },
     {
       "repository": "https://github.com/elifesciences/lens-article.git",
@@ -38,12 +38,12 @@
     {
       "repository": "https://github.com/substance/article.git",
       "folder": "node_modules/substance-article",
-      "branch": "0.3.x"
+      "branch": "lens"
     },
     {
       "repository": "https://github.com/substance/nodes.git",
       "folder": "node_modules/substance-nodes",
-      "branch": "0.3.x"
+      "branch": "lens"
     },
     {
       "repository": "https://github.com/elifesciences/lens-outline.git",
@@ -53,7 +53,7 @@
     {
       "repository": "https://github.com/substance/toc.git",
       "folder": "node_modules/substance-toc",
-      "branch": "0.2.x"
+      "branch": "lens"
     },
     {
       "repository": "https://github.com/elifesciences/lens-converter.git",
@@ -63,22 +63,22 @@
     {
       "repository": "https://github.com/substance/operator.git",
       "folder": "node_modules/substance-operator",
-      "branch": "0.2.x"
+      "branch": "lens"
     },
     {
       "repository": "https://github.com/substance/regexp.git",
       "folder": "node_modules/substance-regexp",
-      "branch": "0.2.x"
+      "branch": "lens"
     },
     {
       "repository": "https://github.com/substance/surface.git",
       "folder": "node_modules/substance-surface",
-      "branch": "0.3.x"
+      "branch": "lens"
     },
     {
       "repository": "https://github.com/substance/util.git",
       "folder": "node_modules/substance-util",
-      "branch": "0.2.x"
+      "branch": "lens"
     },
     {
       "repository": "https://github.com/elifesciences/lens.git",
