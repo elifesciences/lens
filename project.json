@@ -88,7 +88,10 @@
   ],
   "node_modules": {
     "underscore": "1.5.x",
-    "express": "3.3.x"
+    "express": "3.3.x",
+    "mocha": "*",
+    "substance-test": "0.2.x",
+    "substance-store": "0.1.0"
   },
   "npm": {
     "engines": {

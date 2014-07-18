@@ -1,0 +1,43 @@
+{
+  "name": "lens",
+  "description": "A novel way of seeing content.",
+  "url": "http://github.com/elifesciences/lens",
+  "keywords": [
+    "digital documents",
+    "linked-data",
+    "research",
+    "science"
+  ],
+  "author": "Michael Aufreiter",
+  "contributors": [
+    "Ivan Grubisic",
+    "Oliver Buchtala",
+    "Ian Mulvany",
+    "Ian Hamilton",
+    "Graham Nott",
+    "Samo Korosec"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/elifesciences/lens.git"
+  },
+  "dependencies": {
+    "underscore": "1.5.x",
+    "express": "3.3.x",
+    "substance-util": "git+https://github.com/substance/util.git#lens",
+    "substance-surface": "git+https://github.com/substance/surface.git#lens",
+    "substance-operator": "git+https://github.com/substance/operator.git#lens",
+    "substance-document": "git+https://github.com/substance/document.git#lens",
+    "substance-data": "git+https://github.com/substance/data.git#lens",
+    "substance-chronicle": "git+https://github.com/substance/chronicle.git#lens",
+    "substance-application": "git+https://github.com/substance/application.git#lens",
+    "lens-article": "git+https://github.com/elifesciences/lens-article.git#0.3.x",
+    "lens-outline": "git+https://github.com/elifesciences/lens-outline.git#0.2.x",
+    "lens-converter": "git+https://github.com/elifesciences/lens-converter.git#0.3.x"
+  },
+  "version": "1.0.0",
+  "engines": {
+    "node": ">=0.8.x",
+    "npm": ">=1.1.x"
+  }
+}
