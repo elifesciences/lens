@@ -102,10 +102,12 @@
     "styles/nodes/supplement.css": "node_modules/lens-article/nodes/supplement/supplement.css",
     "styles/nodes/box.css": "node_modules/lens-article/nodes/box/box.css",
     "styles/nodes/citation.css": "node_modules/lens-article/nodes/citation/citation.css",
+    "styles/nodes/definition.css": "node_modules/lens-article/nodes/definition/definition.css",
     "styles/nodes/figure.css": "node_modules/lens-article/nodes/figure/figure.css",
     "styles/nodes/table.css": "node_modules/lens-article/nodes/table/table.css",
     "styles/nodes/video.css": "node_modules/lens-article/nodes/video/video.css",
     "styles/nodes/caption.css": "node_modules/lens-article/nodes/caption/caption.css",
+
     "styles/nodes/contributor.css": "node_modules/lens-article/nodes/contributor/contributor.css",
     "styles/nodes/publication_info.css": "node_modules/lens-article/nodes/publication_info/publication_info.css",
 
