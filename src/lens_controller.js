@@ -22,6 +22,11 @@ var LensController = function(config) {
   this.on('open:reader', this.openReader);
 };
 
+var CONVERTER_OPTIONS = {
+  TRIM_WHITESPACES: true,
+  REMOVE_INNER_WS: true
+};
+
 LensController.Prototype = function() {
 
   // Initial view creation
@@ -38,9 +43,7 @@ LensController.Prototype = function() {
 
   this.importXML = function(xml) {
     var importer = new Converter.Importer();
-    var doc = importer.import(xml, {
-      TRIM_WHITESPACES: true
-    });
+    var doc = importer.import(xml, CONVERTER_OPTIONS);
     this.createReader(doc, {
       context: 'toc'
     });
@@ -48,8 +51,8 @@ LensController.Prototype = function() {
 
   // Update URL Fragment
   // -------
-  // 
-  // This will be obsolete once we have a proper router vs app state 
+  //
+  // This will be obsolete once we have a proper router vs app state
   // integration.
 
   this.updatePath = function(state) {
@@ -123,9 +126,7 @@ LensController.Prototype = function() {
         // Process XML file
         if (xml) {
           var importer = new Converter.Importer();
-          doc = importer.import(data, {
-            TRIM_WHITESPACES: true
-          });
+          doc = importer.import(data, CONVERTER_OPTIONS);
         } else {
           if(typeof data == 'string') data = $.parseJSON(data);
           doc = Article.fromSnapshot(data);
