@@ -124,6 +124,11 @@
     "name": "lens",
     "folder": "./dist",
     "source": "./boot.js",
-    "index": "./index.html"
+    "index": "./index.html",
+    "ignores": [
+      "substance-operator",
+      "substance-chronicle",
+      "substance-commander"
+    ]
   }
 }

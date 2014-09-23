@@ -579,8 +579,6 @@ Contributor
 /* Publication Info */
 
 .lens-article .content-node.publication-info {
-  /*padding: 30px 0;*/
-  /*background: rgba(0,0,0,0.1);*/
   font-size: 17px;
   color: #333;
 }
@@ -633,28 +631,19 @@ Contributor
   border: none;
   padding-right: 30px;
   padding-bottom: 10px;
-  /*text-align: center;*/
-  /*font-size: 13px;*/
   width: 33%;
 }
 
 .lens-article .content-node.publication-info table.categorization td {
   vertical-align: top;
   border: none;
-  /*font-size*/: 13px;
   padding-right: 30px;
   width: 50%;
 }
 
 .lens-article .content-node.publication-info .value {
-  /*font-weight: bold;*/
   font-style: italic;
-  /*font-size: 15px;*/
-  /*margin-top: 10px;*/
-  
 }
-
-
 
 .lens-article .content-node.publication-info a.value {
   font-style: normal;
@@ -663,6 +652,7 @@ Contributor
 .lens-article .content-node.publication-info .links {
   padding-right: 30px;
 }
+
 /* Fix weird behavior
 -------------------------------------------------------------------------------*/
 
@@ -744,7 +734,7 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 /* Switcher */
 
 .article .medial-strip {
-  overflow: hidden;
+  /*overflow: hidden;*/
   width: 40px;
   position: absolute;
   left: 50%;
@@ -815,6 +805,20 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   display: none;
 }
 
+.article .context-toggles .context-toggle div.label {
+  /*background: blue;*/
+  margin-left: -15px;
+  margin-right: -15px;
+  font-family: 'Source Sans Pro';
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 10px;
+  line-height: 12px;
+  padding-bottom: 10px;
+  text-align: center;
+
+}
+
 .article .context-toggles .context-toggle:hover {
   color: #555;
 }
@@ -838,6 +842,10 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 .article.citations .context-toggles .context-toggle.citations {
   /*color: rgba(11, 157, 217, 1);*/
   color: #111; 
+}
+
+.article.definitions .context-toggles .context-toggle.definitions {
+  color: #111;
 }
 
 .article.toc .context-toggles .context-toggle.toc {
@@ -875,7 +883,7 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 }
 
 .article .resources .nodes {
-  padding-left: 40px;
+  padding-left: 55px;
   padding-right: 40px;
 }
 
@@ -902,7 +910,7 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 
 /* Clickable header */
 .article .resources .content-node .resource-header {
-  min-height: 80px;
+  min-height: 40px;
   position: relative;
   background: rgba(0,0,0,0.1);
 }
@@ -945,6 +953,7 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 }
 
 /* active person */
+
 .article .resources .info .content-node.active {
   /*border-color: #5c6570;*/
 }
@@ -955,6 +964,11 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 
 .article .resources .info .content-node.active .resource-header a {
   /*color: #5c6570;*/
+}
+
+/* active definition */
+.article .resources .definitions .content-node.active .resource-header {
+  background: #5c6570;
 }
 
 
@@ -998,6 +1012,29 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 .article.citations .resources .resource-view.citations {
   display: block;
 }
+
+
+/* Definitions View
+----------------------------------------------------------------------- */
+
+.article .resources .surface.definitions {
+  font-size: 14px;
+
+  display: none;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+.article.definitions .resources .resource-view.definitions {
+  display: block;
+}
+
 
 /* TOC View
 ----------------------------------------------------------------------- */
@@ -1045,10 +1082,10 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 
 .article .resources .resource-header .name {
   display: block;
-  min-height: 80px;
+  min-height: 40px;
   
   color: #444;
-  font-family: 'Avenir LT W01 85 Medium', 'Montserrat', 'Source Sans Pro';
+  /*font-family: 'Avenir LT W01 85 Medium', 'Montserrat', 'Source Sans Pro';*/
   font-size: 16px;
   line-height: 21px;
   padding: 10px 20px;
@@ -1064,6 +1101,49 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 }
 
 
+/* Resource toggle */
+
+.article .resources .content-node .resource-header .toggle-res {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  font-size: 20px;
+  bottom: 0px;
+  text-align: center;
+  line-height: 40px;
+  color: rgba(0,0,0, 0.2);
+  width: 60px;
+}
+
+/*.article .resources .content-node .resource-header:hover .toggle-res {
+  color: rgba(0,0,0, 0.5);
+}
+*/
+
+/* Active state adjustments */
+
+.article .resources .content-node.active .resource-header .toggle-res {
+  color: rgba(255,255,255, 0.5);
+}
+
+/*.article .resources .content-node.active .resource-header .toggle-res:hover {
+  color: rgba(255,255,255, 1);
+}*/
+
+
+/* Hide resize small icon by default */
+#container .article .content-node .icon-eye-close {
+  display: none;
+}
+
+#container .article .content-node.active .icon-eye-close {
+  display: inline;
+}
+
+#container .article .content-node.active .icon-eye-open {
+  display: none;
+}
+
 /* Resource Fullscreen Mode 
 ======================================================================= */
 
@@ -1072,12 +1152,12 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 
 .article .resources .content-node .resource-header .toggle-fullscreen {
   position: absolute;
-  right: 0px;
+  right: 30px;
   top: 0px;
-  font-size: 30px;
+  font-size: 20px;
   bottom: 0px;
   text-align: center;
-  line-height: 81px;
+  line-height: 40px;
   color: rgba(0,0,0, 0.2);
   width: 81px;
 }
@@ -1171,6 +1251,10 @@ span.annotation.formula_reference, span.publication_reference {
   font-size: 12px;
 }
 
+.article .cover span.superscript, .article .cover span.subscript, .article .cover sup, .article .cover sub {
+  font-size: inherit;
+}
+
 .article span.subscript, .article sub {
   top: 0.4em;
 }
@@ -1226,12 +1310,7 @@ span.annotation.formula_reference, span.publication_reference {
   cursor: pointer;
 }
 
-.content-node .contributor_reference, .content-node .collaborator_reference {
-  padding: 2px 1px;
-  cursor: pointer;
-}
-
-.content-node .contributor_reference, .content-node .collaborator_reference {
+.content-node .contributor_reference {
   padding: 2px 1px;
   cursor: pointer;
 }
@@ -1249,14 +1328,25 @@ span.annotation.formula_reference, span.publication_reference {
   cursor: pointer;
 }
 
+
+.content-node .definition_reference {
+  font-style: italic;
+  background: rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+
 /* Hover states */
 .content-node .figure_reference:hover { background-color: rgba(145, 187, 4, 0.35); }
 .content-node .citation_reference:hover { background-color: rgba(11, 157, 217, 0.30); }
 .content-node .contributor_reference:hover { background-color: rgba(0,0,0, 0.05); }
+.content-node .definition_reference:hover { background-color: rgba(0,0,0, 0.1); }
 
 .content-node .figure_reference.active { background: rgba(145, 187, 4, 0.7); }
 .content-node .citation_reference.active { background: rgba(11, 157, 217, 0.6); }
 .content-node .contributor_reference.active { background-color: #5c6570; color: white; }
+
+.content-node .definition_reference.active { background-color: #5c6570; color: white; }
 
 /* Cross Reference */
 .content-node .cross_reference:hover {
@@ -1498,7 +1588,8 @@ span.annotation.formula_reference, span.publication_reference {
   /* Hide document when in resource mode */
   #container .article.figures .document,
   #container .article.citations .document,
-  #container .article.info .document
+  #container .article.info .document,
+  #container .article.definitions .document
   {
     display: none;
   }
@@ -1509,6 +1600,11 @@ span.annotation.formula_reference, span.publication_reference {
   }
 
   #container .article.citations .resources .resource-view.citations {
+    display: block;
+    z-index: 200;
+  }
+
+  #container .article.definitions .resources .resource-view.definitions {
     display: block;
     z-index: 200;
   }
@@ -1553,6 +1649,10 @@ span.annotation.formula_reference, span.publication_reference {
     font-size: 11px;
   }
 
+  .article .medial-strip .context-toggles .context-toggle div.label {
+    display: none;
+  }
+
   .article.figures .context-toggles .context-toggle.figures {
     color: rgba(0,0,0,1);
     background: white;
@@ -1568,6 +1668,11 @@ span.annotation.formula_reference, span.publication_reference {
   }
 
   .article.info .context-toggles .context-toggle.info {
+    color: rgba(0,0,0,1);
+    background: white;
+  }
+
+  .article.definitions .context-toggles .context-toggle.definitions {
     color: rgba(0,0,0,1);
     background: white;
   }

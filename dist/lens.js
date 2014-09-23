@@ -1,6 +1,8 @@
-;(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+
 window.Lens = require("./src/lens");
-},{"./src/lens":161}],2:[function(require,module,exports){
+
+},{"./src/lens":140}],2:[function(require,module,exports){
 "use strict";
 
 var _ = require("underscore");
@@ -69,9 +71,10 @@ var Article = function(options) {
       guid: options.id, // external global document id
       creator: options.creator,
       created_at: options.created_at,
-      views: ["content"], // is views really needed on the instance level
+      views: ["content", "figures", "citations", "info"], // is views really needed on the instance level
       title: "",
-      abstract: ""
+      abstract: "",
+      authors: []
     });
 
     // Create views on the doc
@@ -656,7 +659,7 @@ Object.defineProperties(Article.prototype, {
 
 module.exports = Article;
 
-},{"./nodes":29,"substance-application":57,"substance-document":82,"substance-util":155,"underscore":160}],3:[function(require,module,exports){
+},{"./nodes":29,"substance-application":57,"substance-document":68,"substance-util":134,"underscore":139}],3:[function(require,module,exports){
 "use strict";
 
 var Article = require("./article");
@@ -739,7 +742,7 @@ Object.defineProperties(Affiliation.prototype, getters);
 
 module.exports = Affiliation;
 
-},{"substance-document":82,"underscore":160}],5:[function(require,module,exports){
+},{"substance-document":68,"underscore":139}],5:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -835,7 +838,7 @@ Object.defineProperties(Box.prototype, getters);
 
 module.exports = Box;
 
-},{"substance-document":82,"underscore":160}],7:[function(require,module,exports){
+},{"substance-document":68,"underscore":139}],7:[function(require,module,exports){
 "use strict";
 
 var _ = require("underscore");
@@ -888,7 +891,7 @@ BoxView.prototype = new BoxView.Prototype();
 
 module.exports = BoxView;
 
-},{"../node":31,"substance-application":57,"substance-util":155,"underscore":160}],8:[function(require,module,exports){
+},{"../node":31,"substance-application":57,"substance-util":134,"underscore":139}],8:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -977,7 +980,7 @@ Document.Node.defineProperties(Caption.prototype, ["title", "children"]);
 
 module.exports = Caption;
 
-},{"substance-document":82}],10:[function(require,module,exports){
+},{"substance-document":68}],10:[function(require,module,exports){
 "use strict";
 
 var CompositeView = require("../composite").View;
@@ -1044,7 +1047,7 @@ CaptionView.prototype = new CaptionView.Prototype();
 
 module.exports = CaptionView;
 
-},{"../composite":16,"substance-application":57,"substance-document":82}],11:[function(require,module,exports){
+},{"../composite":16,"substance-application":57,"substance-document":68}],11:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -1161,7 +1164,7 @@ Citation.prototype.constructor = Citation;
 var getters = {
   header: {
     get: function() {
-      if (this.properties.label !== '') {
+      if (this.properties.label) {
         return [this.properties.label,this.properties.title].join(". ")
       }
       else {
@@ -1183,7 +1186,7 @@ Object.defineProperties(Citation.prototype, getters);
 
 module.exports = Citation;
 
-},{"substance-document":82,"underscore":160}],13:[function(require,module,exports){
+},{"substance-document":68,"underscore":139}],13:[function(require,module,exports){
 "use strict";
 
 var _ = require('underscore');
@@ -1287,7 +1290,7 @@ CitationView.prototype.constructor = CitationView;
 
 module.exports = CitationView;
 
-},{"../node":31,"substance-application":57,"substance-util":155,"underscore":160}],14:[function(require,module,exports){
+},{"../node":31,"substance-application":57,"substance-util":134,"underscore":139}],14:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -1302,14 +1305,14 @@ var SubstanceNodes = require("substance-nodes");
 
 module.exports = SubstanceNodes["codeblock"];
 
-},{"substance-nodes":93}],16:[function(require,module,exports){
+},{"substance-nodes":79}],16:[function(require,module,exports){
 "use strict";
 
 var SubstanceNodes = require("substance-nodes");
 
 module.exports = SubstanceNodes["composite"];
 
-},{"substance-nodes":93}],17:[function(require,module,exports){
+},{"substance-nodes":79}],17:[function(require,module,exports){
 var _ = require('underscore');
 var Node = require('substance-document').Node;
 
@@ -1431,7 +1434,7 @@ Object.defineProperties(Contributor.prototype, getters);
 
 module.exports = Contributor;
 
-},{"substance-document":82,"underscore":160}],18:[function(require,module,exports){
+},{"substance-document":68,"underscore":139}],18:[function(require,module,exports){
 "use strict";
 
 var _ = require("underscore");
@@ -1581,7 +1584,7 @@ ContributorView.prototype = new ContributorView.Prototype();
 
 module.exports = ContributorView;
 
-},{"../node":31,"substance-application":57,"substance-util":155,"underscore":160}],19:[function(require,module,exports){
+},{"../node":31,"substance-application":57,"substance-util":134,"underscore":139}],19:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -1682,7 +1685,7 @@ Object.defineProperties(Cover.prototype, {
 
 module.exports = Cover;
 
-},{"substance-document":82,"underscore":160}],21:[function(require,module,exports){
+},{"substance-document":68,"underscore":139}],21:[function(require,module,exports){
 "use strict";
 
 var _ = require("underscore");
@@ -1785,7 +1788,7 @@ CoverView.prototype = new CoverView.Prototype();
 
 module.exports = CoverView;
 
-},{"../node":31,"substance-application":57,"substance-util":155,"underscore":160}],22:[function(require,module,exports){
+},{"../node":31,"substance-application":57,"substance-util":134,"underscore":139}],22:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -1880,7 +1883,7 @@ Object.defineProperties(Figure.prototype, {
 
 module.exports = Figure;
 
-},{"substance-document":82}],24:[function(require,module,exports){
+},{"substance-document":68}],24:[function(require,module,exports){
 "use strict";
 
 var CompositeView = require("../composite").View;
@@ -1957,18 +1960,18 @@ var SubstanceNodes = require("substance-nodes");
 
 module.exports = SubstanceNodes["formula"];
 
-},{"substance-nodes":93}],27:[function(require,module,exports){
+},{"substance-nodes":79}],27:[function(require,module,exports){
 "use strict";
 var SubstanceNodes = require("substance-nodes");
 
 module.exports = SubstanceNodes["heading"];
 
-},{"substance-nodes":93}],28:[function(require,module,exports){
+},{"substance-nodes":79}],28:[function(require,module,exports){
 "use strict";
 
 var SubstanceNodes = require("substance-nodes");
 module.exports = SubstanceNodes["image"];
-},{"substance-nodes":93}],29:[function(require,module,exports){
+},{"substance-nodes":79}],29:[function(require,module,exports){
 "use strict";
 module.exports = {
   "publication_info": require("./publication_info"),
@@ -1999,21 +2002,21 @@ var SubstanceNodes = require("substance-nodes");
 
 module.exports = SubstanceNodes["list"];
 
-},{"substance-nodes":93}],31:[function(require,module,exports){
+},{"substance-nodes":79}],31:[function(require,module,exports){
 "use strict";
 
 var SubstanceNodes = require("substance-nodes");
 
 module.exports = SubstanceNodes["node"];
 
-},{"substance-nodes":93}],32:[function(require,module,exports){
+},{"substance-nodes":79}],32:[function(require,module,exports){
 "use strict";
 
 var SubstanceNodes = require("substance-nodes");
 
 module.exports = SubstanceNodes["paragraph"];
 
-},{"substance-nodes":93}],33:[function(require,module,exports){
+},{"substance-nodes":79}],33:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -2132,7 +2135,7 @@ _.each(PublicationInfo.type.properties, function(prop, key) {
 Object.defineProperties(PublicationInfo.prototype, getters);
 
 module.exports = PublicationInfo;
-},{"substance-document":82,"underscore":160}],35:[function(require,module,exports){
+},{"substance-document":68,"underscore":139}],35:[function(require,module,exports){
 "use strict";
 
 var NodeView = require("../node").View;
@@ -2417,7 +2420,7 @@ Object.defineProperties(Supplement.prototype, getters);
 
 module.exports = Supplement;
 
-},{"substance-document":82,"underscore":160}],38:[function(require,module,exports){
+},{"substance-document":68,"underscore":139}],38:[function(require,module,exports){
 "use strict";
 
 var _ = require("underscore");
@@ -2473,7 +2476,7 @@ SupplementView.prototype.constructor = SupplementView;
 
 module.exports = SupplementView;
 
-},{"../composite":16,"substance-application":57,"substance-util":155,"underscore":160}],39:[function(require,module,exports){
+},{"../composite":16,"substance-application":57,"substance-util":134,"underscore":139}],39:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -2582,7 +2585,7 @@ Object.defineProperties(Table.prototype, getters);
 
 module.exports = Table;
 
-},{"substance-document":82,"underscore":160}],41:[function(require,module,exports){
+},{"substance-document":68,"underscore":139}],41:[function(require,module,exports){
 "use strict";
 
 var _ = require("underscore");
@@ -2680,7 +2683,7 @@ TableView.prototype = new TableView.Prototype();
 
 module.exports = TableView;
 
-},{"../node":31,"substance-application":57,"substance-util":155,"underscore":160}],42:[function(require,module,exports){
+},{"../node":31,"substance-application":57,"substance-util":134,"underscore":139}],42:[function(require,module,exports){
 "use strict";
 
 // HACK: Substance TextView as of the version that is used here
@@ -2696,7 +2699,7 @@ monkeyPatch(LensText.View);
 
 module.exports = LensText;
 
-},{"./text_view_patch":43,"substance-nodes":93}],43:[function(require,module,exports){
+},{"./text_view_patch":43,"substance-nodes":79}],43:[function(require,module,exports){
 var Document = require("substance-document");
 var Annotator = Document.Annotator;
 var $$ = require("substance-application").$$;
@@ -2771,7 +2774,7 @@ function monkeyPatchSubstanceTextView(TextView) {
 
 module.exports = monkeyPatchSubstanceTextView;
 
-},{"substance-application":57,"substance-document":82}],44:[function(require,module,exports){
+},{"substance-application":57,"substance-document":68}],44:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -2894,7 +2897,7 @@ Object.defineProperties(Video.prototype, _.extend(getters, {
 
 module.exports = Video;
 
-},{"substance-document":82,"underscore":160}],46:[function(require,module,exports){
+},{"substance-document":68,"underscore":139}],46:[function(require,module,exports){
 "use strict";
 
 var _ = require("underscore");
@@ -3014,13 +3017,13 @@ VideoView.prototype = new VideoView.Prototype();
 
 module.exports = VideoView;
 
-},{"../node":31,"substance-application":57,"substance-util":155,"underscore":160}],47:[function(require,module,exports){
+},{"../node":31,"substance-application":57,"substance-util":134,"underscore":139}],47:[function(require,module,exports){
 "use strict";
 var SubstanceNodes = require("substance-nodes");
 
 module.exports = SubstanceNodes["webresource"];
 
-},{"substance-nodes":93}],48:[function(require,module,exports){
+},{"substance-nodes":79}],48:[function(require,module,exports){
 "use strict";
 
 var LensConverter = require("./src/lens_converter");
@@ -3124,7 +3127,7 @@ DefaultConfiguration.Prototype = function() {
 DefaultConfiguration.prototype = new DefaultConfiguration.Prototype();
 module.exports = DefaultConfiguration;
 
-},{"underscore":160}],50:[function(require,module,exports){
+},{"underscore":139}],50:[function(require,module,exports){
 "use strict";
 
 var util = require("substance-util");
@@ -3549,7 +3552,7 @@ ElifeConfiguration.prototype.constructor = ElifeConfiguration;
 
 module.exports = ElifeConfiguration;
 
-},{"./default":49,"substance-util":155,"underscore":160}],51:[function(require,module,exports){
+},{"./default":49,"substance-util":134,"underscore":139}],51:[function(require,module,exports){
 var DefaultConfiguration = require('./default');
 
 var LandesConfiguration = function() {
@@ -3932,9 +3935,9 @@ LensImporter.Prototype = function() {
       image: "",
       deceased: false,
       emails: [],
-      contribution: ""
+      contribution: "",
+      members: []
     };
-
 
     // Deceased?
 
@@ -5443,7 +5446,7 @@ module.exports = {
   Importer: LensImporter
 };
 
-},{"./configurations/default":49,"./configurations/elife":50,"./configurations/landes":51,"./configurations/peerj":52,"./configurations/plos":53,"lens-article":3,"substance-util":155,"underscore":160}],55:[function(require,module,exports){
+},{"./configurations/default":49,"./configurations/elife":50,"./configurations/landes":51,"./configurations/peerj":52,"./configurations/plos":53,"lens-article":3,"substance-util":134,"underscore":139}],55:[function(require,module,exports){
 "use strict";
 
 var Outline = require('./outline');
@@ -5642,7 +5645,7 @@ Outline.prototype = new Outline.Prototype();
 
 module.exports = Outline;
 
-},{"substance-application":57,"underscore":160}],57:[function(require,module,exports){
+},{"substance-application":57,"underscore":139}],57:[function(require,module,exports){
 "use strict";
 
 var Application = require("./src/application");
@@ -5711,7 +5714,7 @@ Application.prototype = new Application.Prototype();
 
 module.exports = Application;
 
-},{"./router":61,"./view":62,"substance-util":155,"underscore":160}],59:[function(require,module,exports){
+},{"./router":61,"./view":62,"substance-util":134,"underscore":139}],59:[function(require,module,exports){
 "use strict";
 
 var util = require("substance-util");
@@ -5768,7 +5771,7 @@ Controller.Prototype.prototype = util.Events;
 Controller.prototype = new Controller.Prototype();
 
 module.exports = Controller;
-},{"substance-util":155,"underscore":160}],60:[function(require,module,exports){
+},{"substance-util":134,"underscore":139}],60:[function(require,module,exports){
 "use strict";
 
 var util = require("substance-util");
@@ -5879,7 +5882,7 @@ ElementRenderer.Prototype.prototype = util.Events;
 ElementRenderer.prototype = new ElementRenderer.Prototype();
 
 module.exports = ElementRenderer;
-},{"substance-regexp":149,"substance-util":155}],61:[function(require,module,exports){
+},{"substance-regexp":128,"substance-util":134}],61:[function(require,module,exports){
 "use strict";
 
 var util = require("substance-util");
@@ -6199,7 +6202,7 @@ Router.history = new History;
 
 
 module.exports = Router;
-},{"substance-util":155,"underscore":160}],62:[function(require,module,exports){
+},{"substance-util":134,"underscore":139}],62:[function(require,module,exports){
 "use strict";
 
 var util = require("substance-util");
@@ -6274,4030 +6277,7 @@ View.prototype = new View.Prototype();
 
 module.exports = View;
 
-},{"substance-util":155}],63:[function(require,module,exports){
-"use strict";
-
-var Chronicle = require('./src/chronicle');
-
-Chronicle.IndexImpl = require('./src/index_impl');
-Chronicle.ChronicleImpl = require('./src/chronicle_impl');
-Chronicle.DiffImpl = require('./src/diff_impl');
-Chronicle.TmpIndex = require('./src/tmp_index');
-
-Chronicle.create = Chronicle.ChronicleImpl.create;
-Chronicle.Index.create = Chronicle.IndexImpl.create;
-Chronicle.Diff.create = Chronicle.DiffImpl.create;
-
-Chronicle.ArrayOperationAdapter = require('./src/array_adapter');
-Chronicle.TextOperationAdapter = require('./src/text_adapter');
-
-module.exports = Chronicle;
-
-},{"./src/array_adapter":64,"./src/chronicle":65,"./src/chronicle_impl":66,"./src/diff_impl":67,"./src/index_impl":68,"./src/text_adapter":69,"./src/tmp_index":70}],64:[function(require,module,exports){
-"use strict";
-
-var util = require('substance-util');
-var Chronicle = require('./chronicle');
-var ArrayOperation = require('substance-operator').ArrayOperation;
-
-var ArrayOperationAdapter = function(chronicle, array) {
-  Chronicle.Versioned.call(this, chronicle);
-  this.array = array;
-};
-
-ArrayOperationAdapter.Prototype = function() {
-
-  var __super__ = util.prototype(this);
-
-  this.apply = function(change) {
-    ArrayOperation.fromJSON(change).apply(this.array);
-  };
-
-  this.invert = function(change) {
-    return ArrayOperation.fromJSON(change).invert();
-  };
-
-  this.transform = function(a, b, options) {
-    return ArrayOperation.transform(a, b, options);
-  };
-
-  this.reset = function() {
-    __super__.reset.call(this);
-    while(this.array.length > 0) {
-      this.array.shift();
-    }
-  };
-
-};
-
-ArrayOperationAdapter.Prototype.prototype = Chronicle.Versioned.prototype;
-ArrayOperationAdapter.prototype = new ArrayOperationAdapter.Prototype();
-
-module.exports = ArrayOperationAdapter;
-
-},{"./chronicle":65,"substance-operator":139,"substance-util":155}],65:[function(require,module,exports){
-"use strict";
-
-/*jshint unused: false*/ // deactivating this, as we define abstract interfaces here
-
-var _ = require('underscore');
-var util = require('substance-util');
-var errors = util.errors;
-
-errors.define("ChronicleError", -1);
-errors.define("ChangeError", -1);
-
-// A change recorded in the chronicle
-// ========
-//
-// Each change has an unique id (equivalent to git SHA).
-// A change can have multiple parents (merge).
-//
-// options:
-//   - id: a custom id for the change
-
-var Change = function(id, parent, data) {
-
-  this.type = 'change';
-
-  if (!id) {
-    throw new errors.ChangeError("Every change needs a unique id.");
-  }
-  this.id = id;
-
-  if (!parent) {
-    throw new errors.ChangeError("Every change needs a parent.");
-  }
-
-  this.parent = parent;
-
-  // Application specific data
-  // --------
-  //
-  // This needs to contain all information to be able to apply and revert
-  // a change.
-
-  this.data = data;
-
-  this.uuid = util.uuid;
-
-};
-
-Change.prototype = {
-
-  toJSON: function() {
-    return {
-      type: this.type,
-      id: this.id,
-      parent: this.parent,
-      data: this.data
-    };
-  }
-
-};
-
-Change.fromJSON = function(json) {
-  if (json.type === Merge.TYPE) return new Merge(json);
-  if (json.type === Transformed.TYPE) return new Transformed(json);
-
-  return new Change(json.parent, json.data, json);
-};
-
-// a dedicated global root node
-var ROOT = "ROOT";
-var ROOT_NODE = new Change(ROOT, true, null);
-ROOT_NODE.parent = ROOT;
-
-// A dedicated Change for merging multiple Chronicle histories.
-// ========
-//
-// A merge is described by a command containing a diff for each of the parents (see Index.diff()).
-//
-// Example: Consider two sequences of changes [c0, c11, c12] and [c0, c21, c22, c23].
-//
-//  A merge taking all commits of the second ('theirs') branch and
-//  rejecting those of the first ('mine') would be:
-//
-//    merge = {
-//      "c12": ["-", "c11", "c0" "+", "c21", "c22", "c23"],
-//      "c23": []
-//    }
-//
-// A manually selected merge with [c11, c21, c23] would look like:
-//
-//    merge = {
-//      "c12": ["-", "c11", "+", "c21", "c23"],
-//      "c23": ["-", "c22", "c21", "c0", "+", "c11", "c21", "c23"]
-//    }
-//
-
-var Merge = function(id, main, branches) {
-  Change.call(this, id, main);
-  this.type = Merge.TYPE;
-
-  if (!branches) {
-    throw new errors.ChangeError("Missing branches.");
-  }
-  this.branches = branches;
-};
-
-Merge.Prototype = function() {
-
-  var __super__ = util.prototype(this);
-
-  this.toJSON = function() {
-    var result = __super__.toJSON.call(this);
-    result.type = Merge.TYPE;
-    result.branches = this.branches;
-    return result;
-  };
-
-};
-Merge.Prototype.prototype = Change.prototype;
-Merge.prototype = new Merge.Prototype();
-
-Merge.TYPE =  "merge";
-
-Merge.fromJSON = function(data) {
-  if (data.type !== Merge.TYPE) throw new errors.ChangeError("Illegal data for deserializing a Merge node.");
-  return new Merge(data.parent, data.branches, data);
-};
-
-// Transformed changes are those which have been
-// created by transforming (rebasing) another existing change.
-// For the time being, the data is persisted redundantly.
-// To be able to track the original source of the change,
-// this type is introduced.
-var Transformed = function(id, parent, data, original) {
-  Change.call(this, id, parent, data);
-  this.type = Transformed.TYPE;
-  this.original = original;
-};
-
-Transformed.Prototype = function() {
-
-  var __super__ = util.prototype(this);
-
-  this.toJSON = function() {
-    var result = __super__.toJSON.call(this);
-    result.type = Transformed.TYPE;
-    result.original = this.original;
-    return result;
-  };
-
-};
-
-Transformed.TYPE = "transformed";
-
-Transformed.fromJSON = function(json) {
-  if (json.type !== Transformed.TYPE) throw new errors.ChangeError("Illegal data for deserializing a Transformed node.");
-  return new Transformed(json.parent, json.data, json.original, json);
-};
-
-
-Transformed.Prototype.prototype = Change.prototype;
-Transformed.prototype = new Transformed.Prototype();
-
-// A class that describes the difference of two states by
-// a sequence of changes (reverts and applies).
-// =======
-//
-// The difference is a sequence of commands that forms a transition from
-// one state to another.
-//
-// A diff is specified using the following syntax:
-//    [- sha [shas ...]] [+ sha [shas ...]]
-// where '-' preceeds a sequence reverts and '+' a sequence of applies.
-// Any diff can be described in that order (reverts followed by applies)
-//
-// Example: Consider an index containing the following changes
-//
-//        , - c11 - c12
-//      c0
-//        ` - c21 - c22 - c23
-//
-// Diffs for possible transitions look like:
-// "c21" -> "c23" : ["+", "c22", "c23"]
-// "c12" -> "c0" :  ["-", "c11", "c0" ]
-// "c21" -> "c11" : ["-", "c0", "+", "c11"]
-
-var Diff = function() {};
-
-Diff.prototype = {
-
-  hasReverts: function() {
-    throw new errors.SubstanceError("Not implemented.");
-  },
-
-  // Provides the changes that will be reverted
-  // --------
-
-  reverts: function() {
-    throw new errors.SubstanceError("Not implemented.");
-  },
-
-  hasApplies: function() {
-    throw new errors.SubstanceError("Not implemented.");
-  },
-
-  // Provides the changes that will applied
-  // --------
-
-  applies: function() {
-    throw new errors.SubstanceError("Not implemented.");
-  },
-
-  // Provides the sequence of states visited by this diff.
-  // --------
-
-  sequence: function() {
-    throw new errors.SubstanceError("Not implemented.");
-  },
-
-  // Provides the path from the root to the first change
-  // --------
-  //
-  // The naming refers to a typical diff situation where
-  // two branches are compared. The first branch containing the own
-  // changes, the second one the others.
-
-  mine: function() {
-    throw new errors.SubstanceError("Not implemented.");
-  },
-
-  // Provides the path from the root to the second change
-  // --------
-  //
-
-  theirs: function() {
-    throw new errors.SubstanceError("Not implemented.");
-  },
-
-  // Provides the common root of the compared branches.
-  // --------
-  //
-
-  root: function() {
-    throw new errors.SubstanceError("Not implemented.");
-  },
-
-  // Provides the version this diff has to be applied on.
-  // --------
-
-  start: function() {
-    throw new errors.SubstanceError("Not implemented.");
-  },
-
-  // Provides the version which is generated by applying this diff.
-  // --------
-
-  end: function() {
-    throw new errors.SubstanceError("Not implemented.");
-  },
-
-  // Provides a copy that represents the inversion of this diff.
-  // --------
-
-  inverted: function() {
-    throw new errors.SubstanceError("Not implemented.");
-  },
-
-};
-
-// Creates a new diff for the given reverts and applies
-// --------
-// Note this factory is provided when loading index_impl.js
-
-Diff.create = function(reverts, applies) {
-  /*jshint unused: false*/
-  throw new errors.SubstanceError("Not implemented.");
-};
-
-
-// A Chronicle contains the history of a versioned object.
-// ========
-//
-
-var Chronicle = function(index, options) {
-  options = options || {};
-
-  // an instance implementing the 'Index' interface
-  this.index = index;
-
-  // the versioned object which must implement the 'Versioned' interface.
-  this.versioned = null;
-
-  // flags to control the chronicle's behaviour
-  this.__mode__ = options.mode || Chronicle.DEFAULT_MODE;
-};
-
-Chronicle.Prototype = function() {
-
-  // Records a change
-  // --------
-  //
-  // Creates a commit and inserts it into the index at the current position.
-  //
-  // An application should call this after having applied the change to the model successfully.
-  // The provided 'change' should contain every information that is necessary to
-  // apply the change in both directions (apply and revert).
-  //
-  // Note: this corresponds to a 'git commit' in git.
-
-  this.record = function(change) {
-    throw new errors.SubstanceError("Not implemented.");
-  };
-
-  // Opens a specific version.
-  // --------
-  //
-  // Brings the versioned object as well as the index to the state
-  // of the given state.
-  //
-
-  this.open = function(version) {
-    throw new errors.SubstanceError("Not implemented.");
-  };
-
-  // Performs an incremental transformation.
-  // --------
-  //
-  // The given state must be a direct neighbor of the current state.
-  // For convenience a sequence of consecutive states can be given.
-  //
-  // Call this if you already know path between two states
-  // or if you want to apply or revert a single change.
-  //
-  // Returns the change applied by the step.
-  //
-
-  this.step = function(next) {
-    throw new errors.SubstanceError("Not implemented.");
-  };
-
-  this.forward = function(toward) {
-    var state = this.versioned.getState();
-    if (state === toward) return;
-
-    var children = this.index.children[state];
-
-    if (children.length === 0) return;
-
-    var next;
-
-    if (children.length === 1) {
-      next = children[0];
-    }
-    else if (toward) {
-      var path = this.index.shortestPath(state, toward);
-      path.shift();
-      next = path.shift();
-    }
-    else {
-      next = children[children.length-1];
-    }
-
-    if (next) {
-      return this.step(next);
-    } else {
-      return;
-    }
-  };
-
-  this.rewind = function() {
-    var current = this.index.get(this.versioned.getState());
-    var previous;
-    if (current.id === ROOT) return null;
-
-    previous = current.parent;
-    return this.step(previous);
-  };
-
-  // Create a commit that merges a history specified by its last commit.
-  // --------
-  //
-  // The strategy specifies how the merge should be generated.
-  //
-  //  'mine':   reject the changes of the other branch
-  //  'theirs': reject the changes of this branch
-  //  'manual': compute a merge that leads to the given sequence.
-  //
-  // Returns the id of the new state.
-  //
-
-  this.merge = function(state, strategy, sequence) {
-    throw new errors.SubstanceError("Not implemented.");
-  };
-
-  // Making this instance the chronicler of the given Versioned instance.
-  // --------
-  //
-
-  this.manage = function(versioned) {
-    this.versioned = versioned;
-  };
-
-  // Marks the current version.
-  // --------
-  //
-
-  this.mark = function(name) {
-    this.index.setRef(name, this.versioned.getState());
-  };
-
-  // Provides the id of a previously marked version.
-  // --------
-  //
-
-  this.find = function(name) {
-    this.index.getRef(name);
-  };
-
-  // Get the current version.
-  // --------
-  //
-
-  this.getState = function() {
-    return this.versioned.getState();
-  };
-
-  // Retrieve changes.
-  // --------
-  //
-  // If no range is given a full path is returned.
-
-  this.getChanges = function(start, end) {
-    var changes = [];
-    var path = this.path(start, end);
-
-    _.each(path, function(id) {
-      changes.push(this.index.get(id));
-    }, this);
-
-    return changes;
-  };
-
-};
-
-Chronicle.prototype = new Chronicle.Prototype();
-
-// only allow changes that have been checked via instant apply+revert
-Chronicle.PEDANTIC_RECORD = 1 << 1;
-
-// performs a reset for all imported changes
-Chronicle.PEDANTIC_IMPORT = 1 << 2;
-
-Chronicle.HYSTERICAL = Chronicle.PEDANTIC_RECORD | Chronicle.PEDANTIC_IMPORT;
-Chronicle.DEFAULT_MODE = Chronicle.PEDANTIC_IMPORT;
-
-// The factory method to create a Chronicle instance
-// --------
-// options:
-//  store: a Substance Store used to persist the index
-Chronicle.create = function(options) {
-  throw new errors.SubstanceError("Not implemented.");
-};
-
-// A directed acyclic graph of Commit instances.
-// ========
-//
-var Index = function() {
-  this.__id__ = util.uuid();
-
-  this.changes = {};
-  this.refs = {};
-  this.children = {};
-  this.changes[ROOT] = ROOT_NODE;
-  this.children[ROOT] = [];
-};
-
-Index.Prototype = function() {
-
-  // Adds a change to the index.
-  // --------
-  // All parents must be registered first, otherwise throws an error.
-  //
-
-  this.add = function(change) {
-    throw new errors.SubstanceError("Not implemented.");
-  };
-
-  // Removes a change from the index
-  // --------
-  // All children must be removed first, otherwise throws an error.
-  //
-
-  this.remove = function(id) {
-    throw new errors.SubstanceError("Not implemented.");
-  };
-
-  // Checks if a given changeId has been added to the index.
-  // --------
-  //
-
-  this.contains = function(changeId) {
-    throw new errors.SubstanceError("Not implemented.");
-  };
-
-  // Retrieves a (shortest) path between two versions
-  // --------
-  //
-  // If no end change is given it returns the path starting
-  // from ROOT to the start change.
-  // path() returns the path from ROOT to the current state.
-  //
-
-  this.path = function(start, end) {
-    throw new errors.SubstanceError("Not implemented.");
-  };
-
-  // Retrieves a change by id
-  // --------
-  //
-
-  this.get = function(id) {
-    throw new errors.SubstanceError("Not implemented.");
-  };
-
-  // Provides all changes that are direct successors of this change.
-  // --------
-  //
-
-  this.getChildren = function(id) {
-    throw new errors.SubstanceError("Not implemented.");
-  };
-
-  // Lists the ids of all contained changes
-  // --------
-  //
-
-  this.list = function() {
-    throw new errors.SubstanceError("Not implemented.");
-  };
-
-  // Computes the difference betweend two changes
-  // --------
-  //
-  // In contrast to `path` is a diff a special path that consists
-  // of a sequence of reverts followed by a sequence of applies.
-  //
-
-  this.diff = function(start, end) {
-    throw new errors.SubstanceError("Not implemented.");
-  };
-
-  // Sets a reference to look up a change via name.
-  // ---------
-  //
-
-  this.setRef = function(name, id) {
-    if (this.changes[id] === undefined) {
-      throw new errors.ChronicleError("Unknown change: " + id);
-    }
-    this.refs[name] = id;
-  };
-
-  // Looks-up a change via name.
-  // ---------
-  //
-
-  this.getRef = function(name) {
-    return this.refs[name];
-  };
-
-  this.listRefs = function() {
-    return Object.keys(this.refs);
-  };
-
-  // Imports all commits from another index
-  // --------
-  //
-  // Note: this corresponds to a 'git fetch', which only adds commits without
-  // applying any changes.
-  //
-
-  this.import = function(otherIndex) {
-    throw new errors.SubstanceError("Not implemented.");
-  };
-
-};
-
-Index.prototype = new Index.Prototype();
-
-Index.INVALID = "INVALID";
-Index.ROOT = ROOT_NODE;
-
-
-Index.create = function() {
-  throw new errors.SubstanceError("Not implemented.");
-};
-
-// A interface that must be implemented by objects that should be versioned.
-var Versioned = function(chronicle) {
-  this.chronicle = chronicle;
-  this.state = ROOT;
-  chronicle.manage(this);
-};
-
-Versioned.Prototype = function() {
-
-  // Applies the given change.
-  // --------
-  //
-
-  this.apply = function(change) {
-    throw new errors.SubstanceError("Not implemented.");
-  };
-
-  // Reverts the given change.
-  // --------
-  //
-
-  this.revert = function(change) {
-    change = this.invert(change);
-    this.apply(change);
-  };
-
-  // Inverts a given change
-  // --------
-  //
-
-  this.invert = function(change) {
-    throw new errors.SubstanceError("Not implemented.");
-  };
-
-  // Transforms two sibling changes.
-  // --------
-  //
-  // This is the `transform` operator provided by Operational Transformation.
-  //
-  //       / - a            / - a - b' \
-  //      o          ~ >   o             p
-  //       \ - b            \ - b - a' /
-  //
-  // I.e., the result of applying `a - b'` must lead to the same result as
-  // applying `b - a'`.
-  //
-  // options:
-  //
-  //  - check:    enables conflict checking. A MergeConflict is thrown as an error
-  //              when a conflict is found during transformation.
-  //  - inplace:  transforms the given instances a and b directly, without copying.
-  //
-  // returns: [a', b']
-
-  this.transform = function(a, b, options) {
-    throw new errors.SubstanceError("Not implemented.");
-  };
-
-  // Provides the current state.
-  // --------
-  //
-
-  this.getState = function() {
-    return this.state;
-  };
-
-  // Sets the state.
-  // --------
-  //
-  // Note: this is necessary for implementing merges.
-  //
-
-  this.setState = function(state) {
-    this.state = state;
-  };
-
-  // Resets the versioned object to a clean state.
-  // --------
-  //
-
-  this.reset = function() {
-    this.state = ROOT;
-  };
-};
-
-Versioned.prototype = new Versioned.Prototype();
-
-Chronicle.Change = Change;
-Chronicle.Merge = Merge;
-Chronicle.Transformed = Transformed;
-Chronicle.Diff = Diff;
-Chronicle.Index = Index;
-Chronicle.Versioned = Versioned;
-Chronicle.ROOT = ROOT;
-
-Chronicle.mergeConflict = function(a, b) {
-  var conflict = new errors.MergeConflict("Merge conflict: " + JSON.stringify(a) +" vs " + JSON.stringify(b));
-  conflict.a = a;
-  conflict.b = b;
-  return conflict;
-};
-
-module.exports = Chronicle;
-
-},{"substance-util":155,"underscore":160}],66:[function(require,module,exports){
-"use strict";
-
-// Imports
-// ====
-
-var _ = require('underscore');
-var util = require('substance-util');
-var errors = util.errors;
-var Chronicle = require('./chronicle');
-
-// Module
-// ====
-
-var ChronicleImpl = function(index, options) {
-  Chronicle.call(this, index, options);
-};
-
-ChronicleImpl.Prototype = function() {
-
-  var __private__ = new ChronicleImpl.__private__();
-  var ROOT = Chronicle.Index.ROOT.id;
-
-  this.uuid = util.uuid;
-  this.internal_uuid = util.uuid;
-
-  this.record = function(changeData) {
-    // Sanity check: the change should have been applied already.
-    // Reverting and applying should not fail.
-    if ((this.__mode__ & Chronicle.PEDANTIC_RECORD) > 0) {
-      this.versioned.revert(changeData);
-      this.versioned.apply(changeData);
-    }
-
-    // 1. create a new change instance
-    var head = this.versioned.getState();
-    var id = this.uuid();
-    var change = new Chronicle.Change(id, head, changeData);
-
-    // 2. add change to index
-    this.index.add(change);
-
-    // 3. shift head
-    this.versioned.setState(id);
-
-    return id;
-  };
-
-  this.reset = function(id, index) {
-    index = index || this.index;
-
-    // the given id must be available
-    if (!index.contains(id)) {
-      throw new errors.ChronicleError("Invalid argument: unknown change "+id);
-    }
-
-    // 1. compute diff between current state and the given id
-    var head = this.versioned.getState();
-    var path = index.shortestPath(head, id);
-
-    // 2. apply path
-    __private__.applySequence.call(this, path, index);
-  };
-
-  this.open = this.reset;
-
-  this.path = function(id1, id2) {
-    if (!id2) {
-      var path = this.index.shortestPath(ROOT, id1 || this.versioned.getState());
-      path.shift();
-      return path;
-    } else {
-      if (!id1) throw new errors.ChronicleError("Illegal argument: "+id1);
-      return this.index.shortestPath(id1, id2);
-    }
-  };
-
-  this.apply = function(sha) {
-    if (_.isArray(sha)) {
-      return __private__.applySequence.call(this, sha);
-    } else {
-      return __private__.applySequence.call(this, arguments);
-    }
-  };
-
-  this.step = function(nextId) {
-    var index = this.index;
-    var originalState = this.versioned.getState();
-
-    try {
-      var current = index.get(originalState);
-
-      // tolerate nop-transitions
-      if (current.id === nextId) return null;
-
-      var next = index.get(nextId);
-
-      var op;
-      if (current.parent === nextId) {
-        op = this.versioned.invert(current.data);
-      } else if (next.parent === current.id) {
-        op = next.data;
-      }
-      else {
-        throw new errors.ChronicleError("Invalid apply sequence: "+nextId+" is not parent or child of "+current.id);
-      }
-
-      this.versioned.apply(op);
-      this.versioned.setState(nextId);
-      return op;
-
-    } catch(err) {
-      this.reset(originalState, index);
-      throw err;
-    }
-  };
-
-  this.merge = function(id, strategy, options) {
-    // the given id must exist
-    if (!this.index.contains(id))
-      throw new errors.ChronicleError("Invalid argument: unknown change "+id);
-
-    if(arguments.length == 1) {
-      strategy = "auto";
-      options = {};
-    }
-
-    options = options || {};
-
-    var head = this.versioned.getState();
-    var diff = this.index.diff(head, id);
-
-    // 1. check for simple cases
-
-    // 1.1. don't do anything if the other merge is already merged
-    if (!diff.hasApplies()) {
-      return head;
-    }
-
-    // 1.2. check if the merge can be solved by simple applies (so called fast-forward)
-    if (!diff.hasReverts() && !options.no_ff) {
-      __private__.applyDiff.call(this, diff);
-      return this.versioned.getState();
-    }
-
-    // 2. create a Merge node
-    var change;
-
-    // Strategies:
-
-    // Mine
-    if (strategy === "mine") {
-      change = new Chronicle.Merge(this.uuid(), head, [head, id]);
-    }
-
-    // Theirs
-    else if (strategy === "theirs") {
-      change = new Chronicle.Merge(this.uuid(), id, [head, id]);
-    }
-
-    // Manual
-    else if (strategy === "manual") {
-      if (!options.sequence) throw new errors.ChronicleError("Invalid argument: sequence is missing for manual merge");
-      var sequence = options.sequence;
-
-      change = __private__.manualMerge.call(this, head, id, diff, sequence, options);
-    }
-
-    // Unsupported
-    else {
-      throw new errors.ChronicleError("Unsupported merge strategy: "+strategy);
-    }
-
-    // 2. add the change to the index
-    this.index.add(change);
-
-    // 3. reset state
-    this.reset(change.id);
-
-    return change.id;
-  };
-
-
-  this.import = function(otherIndex) {
-    var newIds = this.index.import(otherIndex);
-    // sanity check: see if all imported changes can be applied
-    if ((this.__mode__ & Chronicle.PEDANTIC_IMPORT) > 0) __private__.importSanityCheck.call(this, newIds);
-  };
-
-};
-
-ChronicleImpl.__private__ = function() {
-
-  var __private__ = this;
-
-  // Traversal operations
-  // =======
-
-  // a diff is a special kind of path which consists of
-  // a sequence of reverts and a sequence of applies.
-  this.applyDiff = function(diff, index) {
-
-    index = index || this.index;
-
-    if(!diff) return;
-
-    var originalState = this.versioned.getState();
-
-    // sanity check: don't allow to apply the diff on another change
-    if (originalState !== diff.start())
-      throw new errors.ChronicleError("Diff can not applied on to this state. Expected: "+diff.start()+", Actual: "+originalState);
-
-    var err = null;
-    var successfulReverts = [];
-    var successfulApplies = [];
-    try {
-      var reverts = diff.reverts();
-      var applies = diff.applies();
-
-      var idx, id;
-      // start at idx 1 as the first is the starting id
-      for (idx = 0; idx < reverts.length; idx++) {
-        id = reverts[idx];
-        __private__.revertTo.call(this, id, index);
-        successfulReverts.push(id);
-      }
-      for (idx = 0; idx < applies.length; idx++) {
-        id = applies[idx];
-        __private__.apply.call(this, id, index);
-        successfulApplies.push(id);
-      }
-    } catch(_err) {
-      err = _err;
-    }
-
-    // if the diff could not be applied, revert all changes that have been applied so far
-    if (err && (successfulReverts.length > 0 || successfulApplies.length > 0)) {
-      // idx shows to the change that has failed;
-      var applied = Chronicle.Diff.create(diff.start(), successfulReverts, successfulApplies);
-      var inverted = applied.inverted();
-      try {
-        __private__.applyDiff.call(this, inverted, index);
-      } catch(_err) {
-        // TODO: maybe we should do that always, instead of minimal rollback?
-        console.log("Ohohhhh.... could not rollback partially applied diff.",
-          "Without bugs and in HYSTERICAL mode this should not happen.",
-          "Resetting to original state");
-        this.versioned.reset();
-        this.reset(originalState, index);
-      }
-    }
-
-    if (err) throw err;
-  };
-
-  this.applySequence = function(seq, index) {
-    index = index || this.index;
-
-    var originalState = this.versioned.getState();
-
-    try {
-      var current = index.get(originalState);
-      _.each(seq, function(id) {
-
-        // tolerate nop-transitions
-        if (current.id === id) return;
-
-        var next = index.get(id);
-
-        // revert
-        if (current.parent === id) {
-          __private__.revertTo.call(this, id, index);
-        }
-        // apply
-        else if (next.parent === current.id) {
-          __private__.apply.call(this, id, index);
-        }
-        else {
-          throw new errors.ChronicleError("Invalid apply sequence: "+id+" is not parent or child of "+current.id);
-        }
-        current = next;
-
-      }, this);
-    } catch(err) {
-      this.reset(originalState, index);
-      throw err;
-    }
-  };
-
-  // Performs a single revert step
-  // --------
-
-  this.revertTo = function(id, index) {
-    index = index || this.index;
-
-    var head = this.versioned.getState();
-    var current = index.get(head);
-
-    // sanity checks
-    if (!current) throw new errors.ChangeError("Illegal state. 'head' is unknown: "+ head);
-    if (current.parent !== id) throw new errors.ChangeError("Can not revert: change is not parent of current");
-
-    // Note: Merge nodes do not have data
-    if (current.data) this.versioned.revert(current.data);
-    this.versioned.setState(id);
-  };
-
-  // Performs a single forward step
-  // --------
-
-  this.apply = function(id, index) {
-    index = index || this.index;
-
-    var change = index.get(id);
-
-    // sanity check
-    if (!change) throw new errors.ChangeError("Illegal argument. change is unknown: "+ id);
-
-    if (change.data) this.versioned.apply(change.data);
-    this.versioned.setState(id);
-  };
-
-  // Restructuring operations
-  // =======
-
-  // Eliminates a sequence of changes before a given change.
-  // --------
-  //
-  // A new branch with transformed changes is created.
-  //
-  //      0 - a  - b  - c  - d
-  //
-  //    > c' = eliminate(c, [b,a])
-  //
-  //      0 - a  - b  - c  - d
-  //      |
-  //       \- c' - d'
-  //
-  // The sequence should be in descending order.
-  //
-  // Returns the id of the rebased change.
-  //
-
-  this.eliminate = function(start, del, mapping, index, selection) {
-    if (!(index instanceof Chronicle.TmpIndex)) {
-      throw new errors.ChronicleError("'eliminate' must be called on a TmpIndex instance");
-    }
-
-    var left = index.get(del);
-    var right = index.get(start);
-    var inverted, rebased;
-
-    // attach the inversion of the first to the first node
-    inverted = new Chronicle.Change(this.internal_uuid(), del, this.versioned.invert(left.data));
-    index.add(inverted);
-
-    // rebase onto the inverted change
-    // Note: basicially this can fail due to broken dependencies of changes
-    // However, we do not want to have any conflict management in this case
-    // and fail with error instead
-    rebased = __private__.rebase0.call(this, inverted.id, right.id, mapping, index, selection, true);
-
-    // as we know that we have eliminated the effect by directly applying
-    // a change and its inverse, it is ok to directly skip those two changes at all
-    index.reconnect(rebased, left.parent);
-
-    // continue with the transformed version
-    right = index.get(rebased);
-
-    return right.id;
-  };
-
-  // Performs a basic rebase operation.
-  // --------
-  //
-  // The target and source must be siblings
-  //
-  //        0 - a
-  //        |
-  //         \- b - c
-  //
-  //    > b' = rebase0(a, b)
-  //
-  //        0 - a  - b' - c'
-  //        |
-  //         \- b - c
-  //
-  // The original changes remain.
-  // A mapping is created to allow looking up rebased changes via their original ids.
-
-  this.rebase0 = function(targetId, sourceId, mapping, index, selection, check) {
-    index = index || this.index;
-
-    var target = index.get(targetId);
-    var source = index.get(sourceId);
-
-    if (target.parent !== source.parent) {
-      throw new errors.ChronicleError("Illegal arguments: principal rebase can only be applied on siblings.");
-    }
-
-    // recursively transform the sub-graph
-    var queue = [[target.data, target.id, source]];
-
-    var item;
-    var a, b, b_i;
-    var result = null;
-
-
-    // keep merge nodes to update the mapped branches afterwards
-    var merges = [];
-    var idx;
-
-    while(queue.length > 0) {
-      item = queue.pop();
-
-      a = item[0];
-      targetId = item[1];
-      source = item[2];
-      b = source.data;
-
-      var transformed;
-
-      if (source instanceof Chronicle.Merge) {
-        // no transformation necessary here
-        // propagating the current transformation
-        transformed = [a];
-        // inserting the original branch ids here, which will be resolved to the transformed ids
-        // afterwards, when we can be sure, that all other node have been transformed.
-        b_i = new Chronicle.Merge(this.uuid(), targetId, source.branches);
-        merges.push(b_i);
-      } else {
-        // perform the operational transformation
-        // TODO: make checking configurable?
-        transformed = this.versioned.transform(a, b, {check: check});
-
-        // add a change the with the rebased/transformed operation
-        var orig = (source instanceof Chronicle.Transformed) ? source.original : source.id;
-        b_i = new Chronicle.Transformed(this.internal_uuid(), targetId, transformed[1], orig);
-
-        // overwrite the mapping for the original
-        mapping[orig] = b_i.id;
-      }
-
-      // record a mapping between old and new nodes
-      mapping[source.id] = b_i.id;
-
-      if (!result) result = b_i;
-      index.add(b_i);
-
-      // add children to iteration
-      var children = index.getChildren(source.id);
-      for (idx = 0; idx < children.length; idx++) {
-        var child = index.get(children[idx]);
-
-        // only rebase selected children if a selection is given
-        if (selection) {
-          var c = (child instanceof Chronicle.Transformed) ? child.original : child.id;
-          if (!selection[c]) continue;
-        }
-
-        queue.unshift([transformed[0], b_i.id, child]);
-      }
-    }
-
-    // resolve the transformed branch ids in all occurred merge nodes.
-    for (idx = 0; idx < merges.length; idx++) {
-      var m = merges[idx];
-      var mapped_branches = [];
-      for (var idx2 = 0; idx2 < m.branches.length; idx2++) {
-        mapped_branches.push(mapping[m.branches[idx2]]);
-      }
-      m.branches = mapped_branches;
-    }
-
-    return result.id;
-  };
-
-  // Merge implementations
-  // =======
-
-  // Creates a branch containing only the selected changes
-  // --------
-  // this is part of the merge
-  this.eliminateToSelection = function(branch, sequence, mapping, index) {
-    var tmp_index = new Chronicle.TmpIndex(index);
-
-    var selection = _.intersection(branch, sequence);
-    if (selection.length === 0) return null;
-
-    var eliminations = _.difference(branch, sequence).reverse();
-    if (eliminations.length === 0) return mapping[selection[0]];
-
-    var idx1 = 0, idx2 = 0;
-    var idx, id, del;
-    var last = null;
-
-    while (idx1 < branch.length && idx2 < eliminations.length) {
-      id = branch[branch.length-1-idx1];
-      del = eliminations[idx2];
-
-      if (id === del) {
-        // update the selected change
-        if (last) {
-          // TODO: filter propagations to nodes that are within the selection (or resolve to)
-          last = __private__.eliminate.call(this, last, id, mapping, tmp_index, mapping);
-        }
-        idx1++; idx2++;
-      } else {
-        last = id;
-        idx1++;
-      }
-    }
-
-    // store the transformed selected changes to the parent index
-    for (idx = 0; idx < selection.length; idx++) {
-      id = selection[idx];
-      tmp_index.save(mapping[id]);
-    }
-
-    return mapping[selection[0]];
-  };
-
-  this.manualMerge = function(head, id, diff, sequence, options) {
-
-      if (sequence.length === 0) {
-        throw new errors.ChronicleError("Nothing selected for merge.");
-      }
-
-      // accept only those selected which are actually part of the two branches
-      var tmp = _.intersection(sequence, diff.sequence());
-      if (tmp.length !== sequence.length) {
-        throw new errors.ChronicleError("Illegal merge selection: contains changes that are not contained in the merged branches.");
-      }
-
-      // The given sequence is constructed introducing new (hidden) changes.
-      // This is done in the following way:
-      // 1. Creating clean versions of the two branches by eliminating all changes that are not selected
-      // 2. TODO Re-order the eliminated versions
-      // 3. Zip-merge the temporary branches into the selected one
-
-      var tmp_index = new Chronicle.TmpIndex(this.index);
-
-      // Preparation / Elimination
-      // ........
-
-      var mine = diff.mine();
-      var theirs = diff.theirs();
-
-      var mapping = _.object(sequence, sequence);
-      __private__.eliminateToSelection.call(this, mine, sequence, mapping, tmp_index);
-      __private__.eliminateToSelection.call(this, theirs, sequence, mapping, tmp_index);
-
-      // 2. Re-order?
-      // TODO: implement this if desired
-
-      // Merge
-      // ........
-
-      mine = _.intersection(mine, sequence);
-      theirs = _.intersection(theirs, sequence);
-
-      for (var idx = 0; idx < sequence.length; idx++) {
-        var nextId = sequence[idx];
-        var a, b;
-
-        if(mine.length === 0 || theirs.length === 0) {
-          break;
-        }
-
-        if (mine[0] === nextId) {
-          mine.shift();
-          a = mapping[nextId];
-          b = mapping[theirs[0]];
-        } else if (theirs[0] === nextId) {
-          theirs.shift();
-          a = mapping[nextId];
-          b = mapping[mine[0]];
-        } else {
-          throw new errors.ChronicleError("Reordering of commmits is not supported.");
-        }
-        __private__.rebase0.call(this, a, b, mapping, tmp_index, null, !options.force);
-      }
-      var lastId = mapping[_.last(sequence)];
-
-      // Sanity check
-      // ........
-
-      // let's do a sanity check before we save the index changes
-      try {
-        this.reset(lastId, tmp_index);
-      } catch (err) {
-        this.reset(head, tmp_index);
-        throw err;
-      }
-
-      // finally we can write the newly created changes into the parent index
-      for (idx=0; idx<sequence.length; idx++) {
-        tmp_index.save(mapping[sequence[idx]]);
-      }
-
-      return new Chronicle.Merge(this.uuid(), lastId, [head, id]);
-  };
-
-  this.importSanityCheck = function(newIds) {
-    var head = this.versioned.getState();
-
-    // This is definitely very hysterical: we try to reach
-    // every provided change by resetting to it.
-    // If this is possible we are sure that every change has been applied
-    // and reverted at least once.
-    // This is for sure not a minimalistic approach.
-    var err = null;
-    var idx;
-    try {
-      for (idx = 0; idx < newIds.length; idx++) {
-        this.reset(newIds[idx]);
-      }
-    } catch (_err) {
-      err = _err;
-      console.log(err.stack);
-    }
-    // rollback to original state
-    this.reset(head);
-
-    if (err) {
-      // remove the changes in reverse order to meet restrictions
-      newIds.reverse();
-      for (idx = 0; idx < newIds.length; idx++) {
-        this.index.remove(newIds[idx]);
-      }
-      if (err) throw new errors.ChronicleError("Import did not pass sanity check: "+err.toString());
-    }
-  };
-
-};
-ChronicleImpl.Prototype.prototype = Chronicle.prototype;
-ChronicleImpl.prototype = new ChronicleImpl.Prototype();
-
-ChronicleImpl.create = function(options) {
-  options = options || {};
-  var index = Chronicle.Index.create(options);
-  return new ChronicleImpl(index, options);
-};
-
-module.exports = ChronicleImpl;
-
-},{"./chronicle":65,"substance-util":155,"underscore":160}],67:[function(require,module,exports){
-var _ = require("underscore");
-var Chronicle = require("./chronicle");
-
-var DiffImpl = function(data) {
-  this.data = data;
-};
-
-DiffImpl.Prototype = function() {
-
-  this.reverts = function() {
-    return this.data[1].slice(1, this.data[0]+1);
-  };
-
-  this.applies = function() {
-    return this.data[1].slice(this.data[0]+1);
-  };
-
-  this.hasReverts = function() {
-    return this.data[0]>0;
-  };
-
-  this.hasApplies = function() {
-    return this.data[1].length-1-this.data[0] > 0;
-  };
-
-  this.start = function() {
-    return this.data[1][0];
-  };
-
-  this.end = function() {
-    return _.last(this.data[1]);
-  };
-
-  this.root = function() {
-    return this.data[1][this.data[0]];
-  };
-
-  this.sequence = function() {
-    return this.data[1].slice(0);
-  };
-
-  this.mine = function() {
-    return this.data[1].slice(0, this.data[0]).reverse();
-  };
-
-  this.theirs = function() {
-    return this.applies();
-  };
-
-  this.inverted = function() {
-    return new DiffImpl([this.data[1].length-1-this.data[0], this.data[1].slice(0).reverse()]);
-  };
-
-  this.toJSON = function() {
-    return {
-      data: this.data
-    };
-  };
-};
-
-DiffImpl.Prototype.prototype = Chronicle.Diff.prototype;
-DiffImpl.prototype = new DiffImpl.Prototype();
-
-DiffImpl.create = function(id, reverts, applies) {
-  return new DiffImpl([reverts.length, [id].concat(reverts).concat(applies)]);
-};
-
-module.exports = DiffImpl;
-
-},{"./chronicle":65,"underscore":160}],68:[function(require,module,exports){
-"use strict";
-
-// Imports
-// ====
-
-var _ = require('underscore');
-var util = require('substance-util');
-var errors = util.errors;
-var Chronicle = require('./chronicle');
-
-// Module
-// ====
-
-var IndexImpl = function() {
-  Chronicle.Index.call(this);
-};
-
-IndexImpl.Prototype = function() {
-
-  var __private__ = new IndexImpl.__private__();
-  var ROOT = Chronicle.ROOT;
-
-  this.add = function(change) {
-    // making the change data read-only
-    change.data = util.freeze(change.data);
-
-    var id = change.id;
-
-    // sanity check: parents must
-    if (!change.parent) throw new errors.ChronicleError("Change does not have a parent.");
-
-    if (!this.contains(change.parent))
-      throw new errors.ChronicleError("Illegal change: parent is unknown - change=" + id + ", parent=" + change.parent);
-
-    this.changes[id] = change;
-    this.children[id] = [];
-
-    if (!this.children[change.parent]) this.children[change.parent] = [];
-    this.children[change.parent].push(id);
-  };
-
-  this.remove = function(id) {
-    if (this.children[id].length > 0)
-      throw new errors.ChronicleError("Can not remove: other changes depend on it.");
-
-    var change = this.changes[id];
-
-    delete this.changes[id];
-    delete this.children[id];
-    this.children[change.parent] = _.without(this.children[change.parent], id);
-  };
-
-  this.contains = function(id) {
-    return !!this.changes[id];
-  };
-
-  this.get = function(id) {
-    return this.changes[id];
-  };
-
-  this.list = function() {
-    return _.keys(this.changes);
-  };
-
-  this.getChildren = function(id) {
-    return this.children[id];
-  };
-
-  this.diff = function(start, end) {
-
-    // takes the path from both ends to the root
-    // and finds the first common change
-
-    var path1 = __private__.getPathToRoot.call(this, start);
-    var path2 = __private__.getPathToRoot.call(this, end);
-
-    var reverts = [];
-    var applies = [];
-
-    // create a lookup table for changes contained in the second path
-    var tmp = {},
-        id, idx;
-    for (idx=0; idx < path2.length; idx++) {
-      tmp[path2[idx]] = true;
-    }
-
-    // Traverses all changes from the first path until a common change is found
-    // These changes constitute the reverting part
-    for (idx=0; idx < path1.length; idx++) {
-      id = path1[idx];
-      // The first change is not included in the revert list
-      // The common root
-      if(idx > 0) reverts.push(id);
-      if(tmp[id]) break;
-    }
-
-    var root = id;
-
-    // Traverses the second path to the common change
-    // These changes constitute the apply part
-    for (idx=0; idx < path2.length; idx++) {
-      id = path2[idx];
-      if (id === root || id === ROOT) break;
-      // Note: we are traversing from head to root
-      // the applies need to be in reverse order
-      applies.unshift(id);
-    }
-
-    return Chronicle.Diff.create(start, reverts, applies);
-  };
-
-  // Computes the shortest path from start to end (without start)
-  // --------
-  //
-
-  this.shortestPath = function(start, end) {
-
-    // trivial cases
-    if (start === end) return [];
-    if (end === ROOT) return __private__.getPathToRoot.call(this, start).slice(1);
-    if (start === ROOT) return __private__.getPathToRoot.call(this, end).reverse().slice(1);
-
-    // performs a BFS for end.
-    var visited = {};
-    var queue = [[start, start]];
-    var item, origin, pos, current,
-        idx, id, children;
-
-    // Note: it is important to
-
-    while(queue.length > 0) {
-      item = queue.shift();
-      origin = item[0];
-      pos = item[1];
-      current = this.get(pos);
-
-      if (!visited[pos]) {
-        // store the origin to be able to reconstruct the path later
-        visited[pos] = origin;
-
-        if (pos === end) {
-          // reconstruct the path
-          var path = [];
-          var tmp;
-          while (pos !== start) {
-            path.unshift(pos);
-            tmp = visited[pos];
-            visited[pos] = null;
-            pos = tmp;
-            if (!pos) throw new errors.SubstanceError("Illegal state: bug in implementation of Index.shortestPath.");
-          }
-          return path;
-        }
-
-        // TODO: we could optimize this a bit if we would check
-        // if a parent or a child are the searched node and stop
-        // instead of iterating .
-
-        // adding unvisited parent
-        if (!visited[current.parent]) queue.push([pos, current.parent]);
-
-        // and all unvisited children
-        children = this.getChildren(pos);
-
-        for (idx = 0; idx < children.length; idx++) {
-          id = children[idx];
-          if(!visited[id]) queue.push([pos, id]);
-        }
-      }
-    }
-
-    throw new errors.SubstanceError("Illegal state: no path found.");
-  };
-
-  this.import = function(otherIndex) {
-    // 1. index difference (only ids)
-    var newIds = _.difference(otherIndex.list(), this.list());
-    if (newIds.length === 0) return;
-
-    // 2. compute correct order
-    // Note: changes have to added according to their dependencies.
-    // I.e., a change can only be added after all parents have been added.
-    // OTOH, changes have to be removed in reverse order.
-    var order = __private__.computeDependencyOrder.call(this, otherIndex, newIds);
-
-    // now they are topologically sorted
-    newIds.sort(function(a,b){ return (order[a] - order[b]); });
-
-    // 2. add changes to the index
-    for (var idx = 0; idx < newIds.length; idx++) {
-      this.add(otherIndex.get(newIds[idx]));
-    }
-
-    return newIds;
-  };
-
-};
-
-IndexImpl.__private__ = function() {
-
-  var ROOT = Chronicle.ROOT;
-
-  this.getPathToRoot = function(id) {
-    var result = [];
-
-    if (id === ROOT) return result;
-
-    var current = this.get(id);
-    if(!current) throw new errors.ChronicleError("Unknown change: "+id);
-
-    var parent;
-    while(true) {
-      result.push(current.id);
-      if(current.id === ROOT) break;
-
-      parent = current.parent;
-      current = this.get(parent);
-    }
-
-    return result;
-  };
-
-  // Import helpers
-  // =======
-
-  // computes an order on a set of changes
-  // so that they can be added to the index,
-  // without violating the integrity of the index at any time.
-  this.computeDependencyOrder = function(other, newIds) {
-    var order = {};
-
-    function _order(id) {
-      if (order[id]) return order[id];
-      if (id === ROOT) return 0;
-
-      var change = other.get(id);
-      var o = _order(change.parent) + 1;
-      order[id] = o;
-
-      return o;
-    }
-
-    for (var idx = 0; idx < newIds.length; idx++) {
-      _order(newIds[idx]);
-    }
-
-    return order;
-  };
-
-};
-
-IndexImpl.Prototype.prototype = Chronicle.Index.prototype;
-IndexImpl.prototype = new IndexImpl.Prototype();
-
-
-
-// Extensions
-// --------
-
-var makePersistent = function(index, store) {
-
-  index.store = store;
-  index.__changes__ = store.hash("changes");
-  index.__refs__ = store.hash("refs");
-
-  // Initialize the index with the content loaded from the store
-
-  // Trick: let the changes hash mimic an Index (duck-type)
-  // and use Index.import
-  index.__changes__.list = index.__changes__.keys;
-
-  // Overrides
-  // --------
-
-  var __add__ = index.add;
-  index.add = function(change) {
-    __add__.call(this, change);
-    this.__changes__.set(change.id, change);
-  };
-
-  var __remove__ = index.remove;
-  index.remove = function(id) {
-    __remove__.call(this, id);
-    this.__changes__.delete(id);
-  };
-
-  var __setRef__ = index.setRef;
-  index.setRef = function(name, id) {
-    __setRef__.call(this, name, id);
-    this.__refs__.set(name, id);
-  };
-
-  // Extensions
-  // --------
-
-  index.load = function() {
-    this.import(this.__changes__);
-
-    _.each(this.__refs__.keys(), function(ref) {
-      this.setRef(ref, this.__refs__.get(ref));
-    }, this);
-  };
-
-  // load automatically?
-  index.load();
-};
-
-// Export
-// ========
-
-IndexImpl.create = function(options) {
-  options = options || {};
-  var index = new IndexImpl();
-
-  if (options.store) {
-    makePersistent(index, options.store);
-  }
-
-  return index;
-};
-
-module.exports = IndexImpl;
-
-},{"./chronicle":65,"substance-util":155,"underscore":160}],69:[function(require,module,exports){
-"use strict";
-
-var util = require('substance-util');
-var Chronicle = require('./chronicle');
-var TextOperation = require('substance-operator').TextOperation;
-
-var TextOperationAdapter = function(chronicle, doc) {
-  Chronicle.Versioned.call(this, chronicle);
-  this.doc = doc;
-};
-
-TextOperationAdapter.Prototype = function() {
-
-  var __super__ = util.prototype(this);
-
-  this.apply = function(change) {
-    this.doc.setText(change.apply(this.doc.getText()));
-  };
-
-  this.invert = function(change) {
-    return change.invert();
-  };
-
-  this.transform = function(a, b, options) {
-    return TextOperation.transform(a, b, options);
-  };
-
-  this.reset = function() {
-    __super__.reset.call(this);
-    this.doc.setText("");
-  };
-
-};
-
-TextOperationAdapter.Prototype.prototype = Chronicle.Versioned.prototype;
-TextOperationAdapter.prototype = new TextOperationAdapter.Prototype();
-
-module.exports = TextOperationAdapter;
-
-},{"./chronicle":65,"substance-operator":139,"substance-util":155}],70:[function(require,module,exports){
-var _ = require("underscore");
-var util = require("substance-util");
-var errors = util.errors;
-var IndexImpl = require("./index_impl");
-
-
-var TmpIndex = function(index) {
-  IndexImpl.call(this);
-  this.index = index;
-};
-
-TmpIndex.Prototype = function() {
-
-  var __super__ = util.prototype(this);
-
-  this.get = function(id) {
-    if (__super__.contains.call(this, id)) {
-      return __super__.get.call(this, id);
-    }
-    return this.index.get(id);
-  };
-
-  this.contains = function(id) {
-    return __super__.contains.call(this, id) || this.index.contains(id);
-  };
-
-  this.getChildren = function(id) {
-    var result = __super__.getChildren.call(this, id) || [];
-    if (this.index.contains(id)) {
-      result = result.concat(this.index.getChildren(id));
-    }
-    return result;
-  };
-
-  this.list = function() {
-    return __super__.list.call(this).concat(this.index.list());
-  };
-
-  this.save = function(id, recurse) {
-    if (recurse) {
-      var queue = [id];
-      var nextId, next;
-      while(queue.length > 0) {
-        nextId = queue.pop();
-        next = this.changes[nextId];
-
-        if (this.changes[nextId]) this.index.add(next);
-
-        for (var idx=0; idx < next.children; idx++) {
-          queue.unshift(next.children[idx]);
-        }
-      }
-    } else {
-      if (this.changes[id]) this.index.add(this.changes[id]);
-    }
-  };
-
-  this.reconnect = function(id, newParentId) {
-    if (!this.changes[id])
-      throw new errors.ChronicleError("Change does not exist to this index.");
-
-    var change = this.get(id);
-
-    if (!this.contains(newParentId)) {
-      throw new errors.ChronicleError("Illegal change: parent is unknown parent=" + newParentId);
-    }
-
-    if (!this.children[change.parent]) this.children[change.parent] = [];
-    this.children[change.parent] = _.without(this.children[change.parent], change.id);
-
-    change.parent = newParentId;
-
-    if (!this.children[change.parent]) this.children[change.parent] = [];
-    this.children[change.parent].push(id);
-  };
-};
-TmpIndex.Prototype.prototype = IndexImpl.prototype;
-TmpIndex.prototype = new TmpIndex.Prototype();
-
-module.exports = TmpIndex;
-
-},{"./index_impl":68,"substance-util":155,"underscore":160}],71:[function(require,module,exports){
-"use strict";
-
-module.exports = {
-  Keyboard: require("./src/keyboard"),
-  Mousetrap: require("./src/mousetrap")
-};
-
-},{"./src/keyboard":73,"./src/mousetrap":74}],72:[function(require,module,exports){
-/*global define:false */
-/**
- * Copyright 2013 Craig Campbell
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * Mousetrap is a simple keyboard shortcut library for Javascript with
- * no external dependencies
- *
- * @version 1.4.4
- * @url craig.is/killing/mice
- */
-(function() {
-
-    /**
-     * mapping of special keycodes to their corresponding keys
-     *
-     * everything in this dictionary cannot use keypress events
-     * so it has to be here to map to the correct keycodes for
-     * keyup/keydown events
-     *
-     * @type {Object}
-     */
-    var _MAP = {
-            8: 'backspace',
-            9: 'tab',
-            13: 'enter',
-            16: 'shift',
-            17: 'ctrl',
-            18: 'alt',
-            20: 'capslock',
-            27: 'esc',
-            32: 'space',
-            33: 'pageup',
-            34: 'pagedown',
-            35: 'end',
-            36: 'home',
-            37: 'left',
-            38: 'up',
-            39: 'right',
-            40: 'down',
-            45: 'ins',
-            46: 'del',
-            91: 'meta',
-            93: 'meta',
-            224: 'meta'
-        },
-
-        /**
-         * mapping for special characters so they can support
-         *
-         * this dictionary is only used incase you want to bind a
-         * keyup or keydown event to one of these keys
-         *
-         * @type {Object}
-         */
-        _KEYCODE_MAP = {
-            106: '*',
-            107: '+',
-            109: '-',
-            110: '.',
-            111 : '/',
-            186: ';',
-            187: '=',
-            188: ',',
-            189: '-',
-            190: '.',
-            191: '/',
-            192: '`',
-            219: '[',
-            220: '\\',
-            221: ']',
-            222: '\''
-        },
-
-        /**
-         * this is a mapping of keys that require shift on a US keypad
-         * back to the non shift equivelents
-         *
-         * this is so you can use keyup events with these keys
-         *
-         * note that this will only work reliably on US keyboards
-         *
-         * @type {Object}
-         */
-        _SHIFT_MAP = {
-            '~': '`',
-            '!': '1',
-            '@': '2',
-            '#': '3',
-            '$': '4',
-            '%': '5',
-            '^': '6',
-            '&': '7',
-            '*': '8',
-            '(': '9',
-            ')': '0',
-            '_': '-',
-            '+': '=',
-            ':': ';',
-            '\"': '\'',
-            '<': ',',
-            '>': '.',
-            '?': '/',
-            '|': '\\'
-        },
-
-        /**
-         * this is a list of special strings you can use to map
-         * to modifier keys when you specify your keyboard shortcuts
-         *
-         * @type {Object}
-         */
-        _SPECIAL_ALIASES = {
-            'option': 'alt',
-            'command': 'meta',
-            'return': 'enter',
-            'escape': 'esc',
-            'mod': /Mac|iPod|iPhone|iPad/.test(navigator.platform) ? 'meta' : 'ctrl'
-        },
-
-        /**
-         * variable to store the flipped version of _MAP from above
-         * needed to check if we should use keypress or not when no action
-         * is specified
-         *
-         * @type {Object|undefined}
-         */
-        _REVERSE_MAP,
-
-        /**
-         * a list of all the callbacks setup via Mousetrap.bind()
-         *
-         * @type {Object}
-         */
-        _callbacks = {},
-
-        /**
-         * direct map of string combinations to callbacks used for trigger()
-         *
-         * @type {Object}
-         */
-        _directMap = {},
-
-        /**
-         * keeps track of what level each sequence is at since multiple
-         * sequences can start out with the same sequence
-         *
-         * @type {Object}
-         */
-        _sequenceLevels = {},
-
-        /**
-         * variable to store the setTimeout call
-         *
-         * @type {null|number}
-         */
-        _resetTimer,
-
-        /**
-         * temporary state where we will ignore the next keyup
-         *
-         * @type {boolean|string}
-         */
-        _ignoreNextKeyup = false,
-
-        /**
-         * temporary state where we will ignore the next keypress
-         *
-         * @type {boolean}
-         */
-        _ignoreNextKeypress = false,
-
-        /**
-         * are we currently inside of a sequence?
-         * type of action ("keyup" or "keydown" or "keypress") or false
-         *
-         * @type {boolean|string}
-         */
-        _nextExpectedAction = false;
-
-    /**
-     * loop through the f keys, f1 to f19 and add them to the map
-     * programatically
-     */
-    for (var i = 1; i < 20; ++i) {
-        _MAP[111 + i] = 'f' + i;
-    }
-
-    /**
-     * loop through to map numbers on the numeric keypad
-     */
-    for (i = 0; i <= 9; ++i) {
-        _MAP[i + 96] = i;
-    }
-
-    /**
-     * cross browser add event method
-     *
-     * @param {Element|HTMLDocument} object
-     * @param {string} type
-     * @param {Function} callback
-     * @returns void
-     */
-    function _addEvent(object, type, callback) {
-        if (object.addEventListener) {
-            object.addEventListener(type, callback, false);
-            return;
-        }
-
-        object.attachEvent('on' + type, callback);
-    }
-
-    /**
-     * takes the event and returns the key character
-     *
-     * @param {Event} e
-     * @return {string}
-     */
-    function _characterFromEvent(e) {
-
-        // for keypress events we should return the character as is
-        if (e.type == 'keypress') {
-            var character = String.fromCharCode(e.which);
-
-            // if the shift key is not pressed then it is safe to assume
-            // that we want the character to be lowercase.  this means if
-            // you accidentally have caps lock on then your key bindings
-            // will continue to work
-            //
-            // the only side effect that might not be desired is if you
-            // bind something like 'A' cause you want to trigger an
-            // event when capital A is pressed caps lock will no longer
-            // trigger the event.  shift+a will though.
-            if (!e.shiftKey) {
-                character = character.toLowerCase();
-            }
-
-            return character;
-        }
-
-        // for non keypress events the special maps are needed
-        if (_MAP[e.which]) {
-            return _MAP[e.which];
-        }
-
-        if (_KEYCODE_MAP[e.which]) {
-            return _KEYCODE_MAP[e.which];
-        }
-
-        // if it is not in the special map
-
-        // with keydown and keyup events the character seems to always
-        // come in as an uppercase character whether you are pressing shift
-        // or not.  we should make sure it is always lowercase for comparisons
-        return String.fromCharCode(e.which).toLowerCase();
-    }
-
-    /**
-     * checks if two arrays are equal
-     *
-     * @param {Array} modifiers1
-     * @param {Array} modifiers2
-     * @returns {boolean}
-     */
-    function _modifiersMatch(modifiers1, modifiers2) {
-        return modifiers1.sort().join(',') === modifiers2.sort().join(',');
-    }
-
-    /**
-     * resets all sequence counters except for the ones passed in
-     *
-     * @param {Object} doNotReset
-     * @returns void
-     */
-    function _resetSequences(doNotReset) {
-        doNotReset = doNotReset || {};
-
-        var activeSequences = false,
-            key;
-
-        for (key in _sequenceLevels) {
-            if (doNotReset[key]) {
-                activeSequences = true;
-                continue;
-            }
-            _sequenceLevels[key] = 0;
-        }
-
-        if (!activeSequences) {
-            _nextExpectedAction = false;
-        }
-    }
-
-    /**
-     * finds all callbacks that match based on the keycode, modifiers,
-     * and action
-     *
-     * @param {string} character
-     * @param {Array} modifiers
-     * @param {Event|Object} e
-     * @param {string=} sequenceName - name of the sequence we are looking for
-     * @param {string=} combination
-     * @param {number=} level
-     * @returns {Array}
-     */
-    function _getMatches(character, modifiers, e, sequenceName, combination, level) {
-        var i,
-            callback,
-            matches = [],
-            action = e.type;
-
-        // if there are no events related to this keycode
-        if (!_callbacks[character]) {
-            return [];
-        }
-
-        // if a modifier key is coming up on its own we should allow it
-        if (action == 'keyup' && _isModifier(character)) {
-            modifiers = [character];
-        }
-
-        // loop through all callbacks for the key that was pressed
-        // and see if any of them match
-        for (i = 0; i < _callbacks[character].length; ++i) {
-            callback = _callbacks[character][i];
-
-            // if a sequence name is not specified, but this is a sequence at
-            // the wrong level then move onto the next match
-            if (!sequenceName && callback.seq && _sequenceLevels[callback.seq] != callback.level) {
-                continue;
-            }
-
-            // if the action we are looking for doesn't match the action we got
-            // then we should keep going
-            if (action != callback.action) {
-                continue;
-            }
-
-            // if this is a keypress event and the meta key and control key
-            // are not pressed that means that we need to only look at the
-            // character, otherwise check the modifiers as well
-            //
-            // chrome will not fire a keypress if meta or control is down
-            // safari will fire a keypress if meta or meta+shift is down
-            // firefox will fire a keypress if meta or control is down
-            if ((action == 'keypress' && !e.metaKey && !e.ctrlKey) || _modifiersMatch(modifiers, callback.modifiers)) {
-
-                // when you bind a combination or sequence a second time it
-                // should overwrite the first one.  if a sequenceName or
-                // combination is specified in this call it does just that
-                //
-                // @todo make deleting its own method?
-                var deleteCombo = !sequenceName && callback.combo == combination;
-                var deleteSequence = sequenceName && callback.seq == sequenceName && callback.level == level;
-                if (deleteCombo || deleteSequence) {
-                    _callbacks[character].splice(i, 1);
-                }
-
-                matches.push(callback);
-            }
-        }
-
-        return matches;
-    }
-
-    /**
-     * takes a key event and figures out what the modifiers are
-     *
-     * @param {Event} e
-     * @returns {Array}
-     */
-    function _eventModifiers(e) {
-        var modifiers = [];
-
-        if (e.shiftKey) {
-            modifiers.push('shift');
-        }
-
-        if (e.altKey) {
-            modifiers.push('alt');
-        }
-
-        if (e.ctrlKey) {
-            modifiers.push('ctrl');
-        }
-
-        if (e.metaKey) {
-            modifiers.push('meta');
-        }
-
-        return modifiers;
-    }
-
-    /**
-     * actually calls the callback function
-     *
-     * if your callback function returns false this will use the jquery
-     * convention - prevent default and stop propogation on the event
-     *
-     * @param {Function} callback
-     * @param {Event} e
-     * @returns void
-     */
-    function _fireCallback(callback, e, combo) {
-
-        // if this event should not happen stop here
-        if (Mousetrap.stopCallback(e, e.target || e.srcElement, combo)) {
-            return;
-        }
-
-        if (callback(e, combo) === false) {
-            if (e.preventDefault) {
-                e.preventDefault();
-            }
-
-            if (e.stopPropagation) {
-                e.stopPropagation();
-            }
-
-            e.returnValue = false;
-            e.cancelBubble = true;
-        }
-    }
-
-    /**
-     * handles a character key event
-     *
-     * @param {string} character
-     * @param {Array} modifiers
-     * @param {Event} e
-     * @returns void
-     */
-    function _handleKey(character, modifiers, e) {
-        var callbacks = _getMatches(character, modifiers, e),
-            i,
-            doNotReset = {},
-            maxLevel = 0,
-            processedSequenceCallback = false;
-
-        // Calculate the maxLevel for sequences so we can only execute the longest callback sequence
-        for (i = 0; i < callbacks.length; ++i) {
-            if (callbacks[i].seq) {
-                maxLevel = Math.max(maxLevel, callbacks[i].level);
-            }
-        }
-
-        // loop through matching callbacks for this key event
-        for (i = 0; i < callbacks.length; ++i) {
-
-            // fire for all sequence callbacks
-            // this is because if for example you have multiple sequences
-            // bound such as "g i" and "g t" they both need to fire the
-            // callback for matching g cause otherwise you can only ever
-            // match the first one
-            if (callbacks[i].seq) {
-
-                // only fire callbacks for the maxLevel to prevent
-                // subsequences from also firing
-                //
-                // for example 'a option b' should not cause 'option b' to fire
-                // even though 'option b' is part of the other sequence
-                //
-                // any sequences that do not match here will be discarded
-                // below by the _resetSequences call
-                if (callbacks[i].level != maxLevel) {
-                    continue;
-                }
-
-                processedSequenceCallback = true;
-
-                // keep a list of which sequences were matches for later
-                doNotReset[callbacks[i].seq] = 1;
-                _fireCallback(callbacks[i].callback, e, callbacks[i].combo);
-                continue;
-
-            } else if (Mousetrap.TRIGGER_PREFIX_COMBOS) {
-                // HACK: Mousetrap does not trigger 'prefixes'
-                _fireCallback(callbacks[i].callback, e, callbacks[i].combo);
-            } else {
-                // if there were no sequence matches but we are still here
-                // that means this is a regular match so we should fire that
-                if (!processedSequenceCallback) {
-                    _fireCallback(callbacks[i].callback, e, callbacks[i].combo);
-                }
-            }
-        }
-
-        // if the key you pressed matches the type of sequence without
-        // being a modifier (ie "keyup" or "keypress") then we should
-        // reset all sequences that were not matched by this event
-        //
-        // this is so, for example, if you have the sequence "h a t" and you
-        // type "h e a r t" it does not match.  in this case the "e" will
-        // cause the sequence to reset
-        //
-        // modifier keys are ignored because you can have a sequence
-        // that contains modifiers such as "enter ctrl+space" and in most
-        // cases the modifier key will be pressed before the next key
-        //
-        // also if you have a sequence such as "ctrl+b a" then pressing the
-        // "b" key will trigger a "keypress" and a "keydown"
-        //
-        // the "keydown" is expected when there is a modifier, but the
-        // "keypress" ends up matching the _nextExpectedAction since it occurs
-        // after and that causes the sequence to reset
-        //
-        // we ignore keypresses in a sequence that directly follow a keydown
-        // for the same character
-        var ignoreThisKeypress = e.type == 'keypress' && _ignoreNextKeypress;
-        if (e.type == _nextExpectedAction && !_isModifier(character) && !ignoreThisKeypress) {
-            _resetSequences(doNotReset);
-        }
-
-        _ignoreNextKeypress = processedSequenceCallback && e.type == 'keydown';
-
-        // provide information about if there have callbacks detected
-        // E.g., this is used to trigger a default key handler in case of no others did match
-        return callbacks.length > 0;
-    }
-
-    /**
-     * handles a keydown event
-     *
-     * @param {Event} e
-     * @returns void
-     */
-    function _handleKeyEvent(e) {
-
-        // normalize e.which for key events
-        // @see http://stackoverflow.com/questions/4285627/javascript-keycode-vs-charcode-utter-confusion
-        if (typeof e.which !== 'number') {
-            e.which = e.keyCode;
-        }
-
-        var character = _characterFromEvent(e);
-
-        // no character found then stop
-        if (!character) {
-            return;
-        }
-
-        // need to use === for the character check because the character can be 0
-        if (e.type == 'keyup' && _ignoreNextKeyup === character) {
-            _ignoreNextKeyup = false;
-            return;
-        }
-
-        Mousetrap.handleKey(character, _eventModifiers(e), e);
-    }
-
-    /**
-     * determines if the keycode specified is a modifier key or not
-     *
-     * @param {string} key
-     * @returns {boolean}
-     */
-    function _isModifier(key) {
-        return key == 'shift' || key == 'ctrl' || key == 'alt' || key == 'meta';
-    }
-
-    /**
-     * called to set a 1 second timeout on the specified sequence
-     *
-     * this is so after each key press in the sequence you have 1 second
-     * to press the next key before you have to start over
-     *
-     * @returns void
-     */
-    function _resetSequenceTimer() {
-        clearTimeout(_resetTimer);
-        _resetTimer = setTimeout(_resetSequences, 1000);
-    }
-
-    /**
-     * reverses the map lookup so that we can look for specific keys
-     * to see what can and can't use keypress
-     *
-     * @return {Object}
-     */
-    function _getReverseMap() {
-        if (!_REVERSE_MAP) {
-            _REVERSE_MAP = {};
-            for (var key in _MAP) {
-
-                // pull out the numeric keypad from here cause keypress should
-                // be able to detect the keys from the character
-                if (key > 95 && key < 112) {
-                    continue;
-                }
-
-                if (_MAP.hasOwnProperty(key)) {
-                    _REVERSE_MAP[_MAP[key]] = key;
-                }
-            }
-        }
-        return _REVERSE_MAP;
-    }
-
-    /**
-     * picks the best action based on the key combination
-     *
-     * @param {string} key - character for key
-     * @param {Array} modifiers
-     * @param {string=} action passed in
-     */
-    function _pickBestAction(key, modifiers, action) {
-
-        // if no action was picked in we should try to pick the one
-        // that we think would work best for this key
-        if (!action) {
-            action = _getReverseMap()[key] ? 'keydown' : 'keypress';
-        }
-
-        // modifier keys don't work as expected with keypress,
-        // switch to keydown
-        if (action == 'keypress' && modifiers.length) {
-            action = 'keydown';
-        }
-
-        return action;
-    }
-
-    /**
-     * binds a key sequence to an event
-     *
-     * @param {string} combo - combo specified in bind call
-     * @param {Array} keys
-     * @param {Function} callback
-     * @param {string=} action
-     * @returns void
-     */
-    function _bindSequence(combo, keys, callback, action) {
-
-        // start off by adding a sequence level record for this combination
-        // and setting the level to 0
-        _sequenceLevels[combo] = 0;
-
-        /**
-         * callback to increase the sequence level for this sequence and reset
-         * all other sequences that were active
-         *
-         * @param {string} nextAction
-         * @returns {Function}
-         */
-        function _increaseSequence(nextAction) {
-            return function() {
-                _nextExpectedAction = nextAction;
-                ++_sequenceLevels[combo];
-                _resetSequenceTimer();
-            };
-        }
-
-        /**
-         * wraps the specified callback inside of another function in order
-         * to reset all sequence counters as soon as this sequence is done
-         *
-         * @param {Event} e
-         * @returns void
-         */
-        function _callbackAndReset(e) {
-            _fireCallback(callback, e, combo);
-
-            // we should ignore the next key up if the action is key down
-            // or keypress.  this is so if you finish a sequence and
-            // release the key the final key will not trigger a keyup
-            if (action !== 'keyup') {
-                _ignoreNextKeyup = _characterFromEvent(e);
-            }
-
-            // weird race condition if a sequence ends with the key
-            // another sequence begins with
-            setTimeout(_resetSequences, 10);
-        }
-
-        // loop through keys one at a time and bind the appropriate callback
-        // function.  for any key leading up to the final one it should
-        // increase the sequence. after the final, it should reset all sequences
-        //
-        // if an action is specified in the original bind call then that will
-        // be used throughout.  otherwise we will pass the action that the
-        // next key in the sequence should match.  this allows a sequence
-        // to mix and match keypress and keydown events depending on which
-        // ones are better suited to the key provided
-        for (var i = 0; i < keys.length; ++i) {
-            var isFinal = i + 1 === keys.length;
-            var wrappedCallback = isFinal ? _callbackAndReset : _increaseSequence(action || _getKeyInfo(keys[i + 1]).action);
-            _bindSingle(keys[i], wrappedCallback, action, combo, i);
-        }
-    }
-
-    /**
-     * Converts from a string key combination to an array
-     *
-     * @param  {string} combination like "command+shift+l"
-     * @return {Array}
-     */
-    function _keysFromString(combination) {
-        if (combination === '+') {
-            return ['+'];
-        }
-
-        return combination.split('+');
-    }
-
-    /**
-     * Gets info for a specific key combination
-     *
-     * @param  {string} combination key combination ("command+s" or "a" or "*")
-     * @param  {string=} action
-     * @returns {Object}
-     */
-    function _getKeyInfo(combination, action) {
-        var keys,
-            key,
-            i,
-            modifiers = [];
-
-        // take the keys from this pattern and figure out what the actual
-        // pattern is all about
-        keys = _keysFromString(combination);
-
-        for (i = 0; i < keys.length; ++i) {
-            key = keys[i];
-
-            // normalize key names
-            if (_SPECIAL_ALIASES[key]) {
-                key = _SPECIAL_ALIASES[key];
-            }
-
-            // if this is not a keypress event then we should
-            // be smart about using shift keys
-            // this will only work for US keyboards however
-            if (action && action != 'keypress' && _SHIFT_MAP[key]) {
-                key = _SHIFT_MAP[key];
-                modifiers.push('shift');
-            }
-
-            // if this key is a modifier then add it to the list of modifiers
-            if (_isModifier(key)) {
-                modifiers.push(key);
-            }
-        }
-
-        // depending on what the key combination is
-        // we will try to pick the best event for it
-        action = _pickBestAction(key, modifiers, action);
-
-        return {
-            key: key,
-            modifiers: modifiers,
-            action: action
-        };
-    }
-
-    /**
-     * binds a single keyboard combination
-     *
-     * @param {string} combination
-     * @param {Function} callback
-     * @param {string=} action
-     * @param {string=} sequenceName - name of sequence if part of sequence
-     * @param {number=} level - what part of the sequence the command is
-     * @returns void
-     */
-    function _bindSingle(combination, callback, action, sequenceName, level) {
-
-        // store a direct mapped reference for use with Mousetrap.trigger
-        _directMap[combination + ':' + action] = callback;
-
-        // make sure multiple spaces in a row become a single space
-        combination = combination.replace(/\s+/g, ' ');
-
-        var sequence = combination.split(' '),
-            info;
-
-        // if this pattern is a sequence of keys then run through this method
-        // to reprocess each pattern one key at a time
-        if (sequence.length > 1) {
-            _bindSequence(combination, sequence, callback, action);
-            return;
-        }
-
-        info = _getKeyInfo(combination, action);
-
-        // make sure to initialize array if this is the first time
-        // a callback is added for this key
-        _callbacks[info.key] = _callbacks[info.key] || [];
-
-        // remove an existing match if there is one
-        _getMatches(info.key, info.modifiers, {type: info.action}, sequenceName, combination, level);
-
-        // add this call back to the array
-        // if it is a sequence put it at the beginning
-        // if not put it at the end
-        //
-        // this is important because the way these are processed expects
-        // the sequence ones to come first
-        _callbacks[info.key][sequenceName ? 'unshift' : 'push']({
-            callback: callback,
-            modifiers: info.modifiers,
-            action: info.action,
-            seq: sequenceName,
-            level: level,
-            combo: combination
-        });
-    }
-
-    /**
-     * binds multiple combinations to the same callback
-     *
-     * @param {Array} combinations
-     * @param {Function} callback
-     * @param {string|undefined} action
-     * @returns void
-     */
-    function _bindMultiple(combinations, callback, action) {
-        for (var i = 0; i < combinations.length; ++i) {
-            _bindSingle(combinations[i], callback, action);
-        }
-    }
-
-    // start!
-    _addEvent(document, 'keypress', _handleKeyEvent);
-    _addEvent(document, 'keydown', _handleKeyEvent);
-    _addEvent(document, 'keyup', _handleKeyEvent);
-
-    var Mousetrap = {
-
-        /**
-         * binds an event to mousetrap
-         *
-         * can be a single key, a combination of keys separated with +,
-         * an array of keys, or a sequence of keys separated by spaces
-         *
-         * be sure to list the modifier keys first to make sure that the
-         * correct key ends up getting bound (the last key in the pattern)
-         *
-         * @param {string|Array} keys
-         * @param {Function} callback
-         * @param {string=} action - 'keypress', 'keydown', or 'keyup'
-         * @returns void
-         */
-        bind: function(keys, callback, action) {
-            keys = keys instanceof Array ? keys : [keys];
-            _bindMultiple(keys, callback, action);
-            return this;
-        },
-
-        /**
-         * unbinds an event to mousetrap
-         *
-         * the unbinding sets the callback function of the specified key combo
-         * to an empty function and deletes the corresponding key in the
-         * _directMap dict.
-         *
-         * TODO: actually remove this from the _callbacks dictionary instead
-         * of binding an empty function
-         *
-         * the keycombo+action has to be exactly the same as
-         * it was defined in the bind method
-         *
-         * @param {string|Array} keys
-         * @param {string} action
-         * @returns void
-         */
-        unbind: function(keys, action) {
-            return Mousetrap.bind(keys, function() {}, action);
-        },
-
-        /**
-         * triggers an event that has already been bound
-         *
-         * @param {string} keys
-         * @param {string=} action
-         * @returns void
-         */
-        trigger: function(keys, action) {
-            if (_directMap[keys + ':' + action]) {
-                _directMap[keys + ':' + action]({}, keys);
-            }
-            return this;
-        },
-
-        /**
-         * resets the library back to its initial state.  this is useful
-         * if you want to clear out the current keyboard shortcuts and bind
-         * new ones - for example if you switch to another page
-         *
-         * @returns void
-         */
-        reset: function() {
-            _callbacks = {};
-            _directMap = {};
-            return this;
-        },
-
-       /**
-        * should we stop this event before firing off callbacks
-        *
-        * @param {Event} e
-        * @param {Element} element
-        * @return {boolean}
-        */
-        stopCallback: function(e, element) {
-
-            // if the element has the class "mousetrap" then no need to stop
-            if ((' ' + element.className + ' ').indexOf(' mousetrap ') > -1) {
-                return false;
-            }
-
-            // stop for input, select, and textarea
-            return element.tagName == 'INPUT' || element.tagName == 'SELECT' || element.tagName == 'TEXTAREA' || (element.contentEditable && element.contentEditable == 'true');
-        },
-
-        /**
-         * exposes _handleKey publicly so it can be overwritten by extensions
-         */
-        handleKey: _handleKey,
-
-        /**
-         * Trigger callbacks for combos even when they are part of sequnence.
-         */
-         TRIGGER_PREFIX_COMBOS: false
-    };
-
-    // expose mousetrap to the global object
-    window.Mousetrap = Mousetrap;
-
-    // expose mousetrap as an AMD module
-    if (typeof define === 'function' && define.amd) {
-        define(Mousetrap);
-    }
-}) ();
-
-},{}],73:[function(require,module,exports){
-"use strict";
-
-require("../lib/mousetrap");
-var Mousetrap = window.Mousetrap;
-
-var Keyboard = function(mainControl) {
-  this.__bindings = {};
-  this.__mainControl = mainControl;
-  this.__controls = [];
-  this.__defaultHandler = null;
-};
-
-Keyboard.Prototype = function() {
-
-  // keep the original key handler for delegation
-  var __handleKey = Mousetrap.handleKey;
-
-  function __getContext(self, pathStr) {
-    var path = pathStr.split(".");
-    var context = self.__bindings;
-
-    // prepare the hierarchical data structure
-    for (var i = 0; i < path.length; i++) {
-      var c = path[i];
-      context.contexts = context.contexts || {};
-      context.contexts[c] = context.contexts[c] || {};
-      context = context.contexts[c];
-    }
-
-    return context;
-  }
-
-  function __registerBindings(self, definition) {
-    var context = __getContext(self, definition.context);
-    // add the commands into the given context
-    context.commands = context.commands || [];
-    context.commands = context.commands.concat(definition.commands);
-  }
-
-  function __createCallback(control, commandSpec) {
-    var obj = control;
-    if (commandSpec.scope) {
-      obj = control[commandSpec.scope];
-    }
-    // default is preventing the default
-    var preventDefault = (commandSpec.preventDefault !== "false");
-
-    return function(e) {
-      obj[commandSpec.command].apply(obj, commandSpec.args);
-      if (preventDefault) e.preventDefault();
-    };
-  }
-
-  function __bind(control, commands) {
-    if (commands === undefined) return;
-
-    for (var i = 0; i < commands.length; i++) {
-      var command = commands[i];
-      Mousetrap.bind(command.keys, __createCallback(control, command));
-    }
-  }
-
-  function __injectDefaultHandler(defaultHandlers) {
-    if (!defaultHandlers || defaultHandlers.length === 0) return;
-
-    var handleKey = function(character, modifiers, e) {
-      if (__handleKey(character, modifiers, e)) return;
-
-      for (var i = defaultHandlers.length - 1; i >= 0; i--) {
-        var item = defaultHandlers[i];
-
-        // the handler function must return a command specification that
-        // will be interpreted by the associated controller
-        var cmd = item.handler(character, modifiers, e);
-
-        // if the handler does not take care of the event
-        // cmd should be falsy
-        if (cmd) {
-          var control = item.control;
-          var command = cmd.command;
-          var args = cmd.args;
-          control[command].apply(control, args);
-
-          // we prevent the default behaviour and also bubbling through
-          // eventual parent default handlers.
-          //e.preventDefault();
-          return;
-        }
-      }
-    };
-
-    Mousetrap.handleKey = handleKey;
-  }
-
-  function __createBindings(self) {
-    // TODO: would be great to have Mousetrap more modular and create several immutable
-    // versions which would be switched here
-    Mousetrap.reset();
-    Mousetrap.handleKey = __handleKey;
-    var defaultHandlers = [];
-
-    function processBinding(context, control, bindings) {
-      __bind(control, bindings.commands);
-      if (bindings.default !== undefined) {
-        defaultHandlers.push({
-          context: context,
-          control: control,
-          handler: bindings.default
-        });
-      }
-    }
-
-    // TODO build active key mappings from registered bindings
-    var controls = self.__controls;
-    var bindings = self.__bindings;
-    var context = "";
-    var control = self.__mainControl;
-
-    processBinding(context, control, bindings);
-
-    for (var i = 0; i < controls.length; i++) {
-      context = controls[i][0];
-      control = controls[i][1];
-
-      if (bindings.contexts === undefined || bindings.contexts[context] === undefined) {
-        break;
-      }
-
-      bindings = bindings.contexts[context];
-      processBinding(context, control, bindings);
-    }
-
-    __injectDefaultHandler(defaultHandlers);
-  }
-
-  // Registers bindings declared in the definition.
-  // --------
-  //
-
-  this.registerBindings = function(definition) {
-    console.log("Keyboard.registerBindings: definition=", definition);
-    for (var i = 0; i < definition.length; i++) {
-      var def = definition[i];
-      __registerBindings(this, def);
-    }
-    this.stateChanged();
-  };
-
-  this.setDefaultHandler = function(contextStr, handler) {
-    var context = __getContext(this, contextStr);
-    context.default = handler;
-  };
-
-  // Updates the keyboard bindings after application state changes.
-  // --------
-  //
-
-  this.stateChanged = function() {
-    // controllers are structured in hierarchical contexts
-    // having one controller taking responsibility for each context.
-    this.__controls = this.__mainControl.getActiveControllers();
-    __createBindings(this);
-  };
-
-  // Enters a subcontext using a given controller.
-  // --------
-  //
-  // Use this to add finer grained sub-states. The sub-context will be kept
-  // until `exit(context)` is called or the application state is changed.
-
-  this.enter = function(context, control) {
-    this.__controls.push([context, control]);
-    __createBindings(this);
-  };
-
-  // Exits a previously entered subcontext.
-  // --------
-  //
-
-  this.exit = function(context) {
-    var pos = -1;
-    for (var i = this.__controls.length - 1; i >= 0; i--) {
-      if (this.__controls[i][0] === context) {
-        pos = i;
-        break;
-      }
-    }
-    if (pos < 0) {
-      throw new Error("Unknown context: " + context, ", expected one of: " + JSON.stringify(this.__contexts));
-    }
-    this.__controls = this.__controls.slice(0, pos);
-    __createBindings(this);
-  };
-
-  // Supported flags:
-  // TRIGGER_PREFIX_COMBOS: trigger combos that are already part of other sequences (default: false)
-  this.set = function(prop, value) {
-    Mousetrap[prop] = value;
-  };
-
-};
-Keyboard.prototype = new Keyboard.Prototype();
-
-module.exports = Keyboard;
-
-},{"../lib/mousetrap":72}],74:[function(require,module,exports){
-"use strict";
-
-/**
- * mapping of special keycodes to their corresponding keys
- *
- * everything in this dictionary cannot use keypress events
- * so it has to be here to map to the correct keycodes for
- * keyup/keydown events
- *
- * @type {Object}
- */
-var _MAP = {
-    8: 'backspace',
-    9: 'tab',
-    13: 'enter',
-    16: 'shift',
-    17: 'ctrl',
-    18: 'alt',
-    20: 'capslock',
-    27: 'esc',
-    32: 'space',
-    33: 'pageup',
-    34: 'pagedown',
-    35: 'end',
-    36: 'home',
-    37: 'left',
-    38: 'up',
-    39: 'right',
-    40: 'down',
-    45: 'ins',
-    46: 'del',
-    91: 'meta',
-    93: 'meta',
-    224: 'meta'
-};
-
-/**
- * mapping for special characters so they can support
- *
- * this dictionary is only used incase you want to bind a
- * keyup or keydown event to one of these keys
- *
- * @type {Object}
- */
-var _KEYCODE_MAP = {
-    106: '*',
-    107: '+',
-    109: '-',
-    110: '.',
-    111 : '/',
-    186: ';',
-    187: '=',
-    188: ',',
-    189: '-',
-    190: '.',
-    191: '/',
-    192: '`',
-    219: '[',
-    220: '\\',
-    221: ']',
-    222: '\''
-};
-
-/**
- * this is a mapping of keys that require shift on a US keypad
- * back to the non shift equivelents
- *
- * this is so you can use keyup events with these keys
- *
- * note that this will only work reliably on US keyboards
- *
- * @type {Object}
- */
-var _SHIFT_MAP = {
-    '~': '`',
-    '!': '1',
-    '@': '2',
-    '#': '3',
-    '$': '4',
-    '%': '5',
-    '^': '6',
-    '&': '7',
-    '*': '8',
-    '(': '9',
-    ')': '0',
-    '_': '-',
-    '+': '=',
-    ':': ';',
-    '\"': '\'',
-    '<': ',',
-    '>': '.',
-    '?': '/',
-    '|': '\\'
-};
-
-/**
- * this is a list of special strings you can use to map
- * to modifier keys when you specify your keyboard shortcuts
- *
- * @type {Object}
- */
-var _SPECIAL_ALIASES = {
-    'option': 'alt',
-    'command': 'meta',
-    'return': 'enter',
-    'escape': 'esc',
-    'mod': /Mac|iPod|iPhone|iPad/.test(navigator.platform) ? 'meta' : 'ctrl'
-};
-
-/**
- * loop through the f keys, f1 to f19 and add them to the map
- * programatically
- */
-for (var i = 1; i < 20; ++i) {
-    _MAP[111 + i] = 'f' + i;
-}
-
-/**
- * loop through to map numbers on the numeric keypad
- */
-for (i = 0; i <= 9; ++i) {
-    _MAP[i + 96] = i;
-}
-
-/**
- * cross browser add event method
- *
- * @param {Element|HTMLDocument} object
- * @param {string} type
- * @param {Function} callback
- * @returns void
- */
-function _attachListener(object, type, callback) {
-    if (object.addEventListener) {
-        object.addEventListener(type, callback, false);
-    } else {
-        object.attachEvent('on' + type, callback);
-    }
-}
-
-function _detachListener(object, type, callback) {
-    if (object.removeEventListener) {
-        object.removeEventListener(type, callback, false);
-    } else {
-        object.detachEvent('on' + type, callback);
-    }
-}
-
-/**
- * takes the event and returns the key character
- *
- * @param {Event} e
- * @return {string}
- */
-function _characterFromEvent(e) {
-
-    // for keypress events we should return the character as is
-    if (e.type == 'keypress') {
-        var character = String.fromCharCode(e.which);
-
-        // if the shift key is not pressed then it is safe to assume
-        // that we want the character to be lowercase.  this means if
-        // you accidentally have caps lock on then your key bindings
-        // will continue to work
-        //
-        // the only side effect that might not be desired is if you
-        // bind something like 'A' cause you want to trigger an
-        // event when capital A is pressed caps lock will no longer
-        // trigger the event.  shift+a will though.
-        if (!e.shiftKey) {
-            character = character.toLowerCase();
-        }
-
-        return character;
-    }
-
-    // for non keypress events the special maps are needed
-    if (_MAP[e.which]) {
-        return _MAP[e.which];
-    }
-
-    if (_KEYCODE_MAP[e.which]) {
-        return _KEYCODE_MAP[e.which];
-    }
-
-    // if it is not in the special map
-
-    // with keydown and keyup events the character seems to always
-    // come in as an uppercase character whether you are pressing shift
-    // or not.  we should make sure it is always lowercase for comparisons
-    return String.fromCharCode(e.which).toLowerCase();
-}
-
-/**
- * checks if two arrays are equal
- *
- * @param {Array} modifiers1
- * @param {Array} modifiers2
- * @returns {boolean}
- */
-function _modifiersMatch(modifiers1, modifiers2) {
-    return modifiers1.sort().join(',') === modifiers2.sort().join(',');
-}
-
-/**
- * takes a key event and figures out what the modifiers are
- *
- * @param {Event} e
- * @returns {Array}
- */
-function _eventModifiers(e) {
-    var modifiers = [];
-
-    if (e.shiftKey) {
-        modifiers.push('shift');
-    }
-
-    if (e.altKey) {
-        modifiers.push('alt');
-    }
-
-    if (e.ctrlKey) {
-        modifiers.push('ctrl');
-    }
-
-    if (e.metaKey) {
-        modifiers.push('meta');
-    }
-
-    return modifiers;
-}
-
-/**
- * determines if the keycode specified is a modifier key or not
- *
- * @param {string} key
- * @returns {boolean}
- */
-function _isModifier(key) {
-    return key == 'shift' || key == 'ctrl' || key == 'alt' || key == 'meta';
-}
-
-/**
- * Converts from a string key combination to an array
- *
- * @param  {string} combination like "command+shift+l"
- * @return {Array}
- */
-function _keysFromString(combination) {
-    if (combination === '+') {
-        return ['+'];
-    }
-
-    return combination.split('+');
-}
-
-var Mousetrap = function() {
-    /**
-     * variable to store the flipped version of _MAP from above
-     * needed to check if we should use keypress or not when no action
-     * is specified
-     *
-     * @type {Object|undefined}
-     */
-    this._REVERSE_MAP = {};
-
-    /**
-     * a list of all the callbacks setup via Mousetrap.bind()
-     *
-     * @type {Object}
-     */
-    this._callbacks = {};
-
-    /**
-     * direct map of string combinations to callbacks used for trigger()
-     *
-     * @type {Object}
-     */
-    this._directMap = {};
-
-    /**
-     * keeps track of what level each sequence is at since multiple
-     * sequences can start out with the same sequence
-     *
-     * @type {Object}
-     */
-    this._sequenceLevels = {};
-
-    /**
-     * variable to store the setTimeout call
-     *
-     * @type {null|number}
-     */
-    this._resetTimer = null;
-
-    /**
-     * temporary state where we will ignore the next keyup
-     *
-     * @type {boolean|string}
-     */
-    this._ignoreNextKeyup = false;
-
-    /**
-     * temporary state where we will ignore the next keypress
-     *
-     * @type {boolean}
-     */
-    this._ignoreNextKeypress = false;
-
-    /**
-     * are we currently inside of a sequence?
-     * type of action ("keyup" or "keydown" or "keypress") or false
-     *
-     * @type {boolean|string}
-     */
-    this._nextExpectedAction = false;
-
-    this._handler = this._handleKeyEvent.bind(this);
-};
-
-Mousetrap.Prototype = function() {
-
-    /**
-     * resets all sequence counters except for the ones passed in
-     *
-     * @param {Object} doNotReset
-     * @returns void
-     */
-    function _resetSequences(doNotReset) {
-        doNotReset = doNotReset || {};
-
-        var activeSequences = false,
-            key;
-
-        for (key in this._sequenceLevels) {
-            if (doNotReset[key]) {
-                activeSequences = true;
-                continue;
-            }
-            this._sequenceLevels[key] = 0;
-        }
-
-        if (!activeSequences) {
-            this._nextExpectedAction = false;
-        }
-    }
-
-    /**
-     * finds all callbacks that match based on the keycode, modifiers,
-     * and action
-     *
-     * @param {string} character
-     * @param {Array} modifiers
-     * @param {Event|Object} e
-     * @param {string=} sequenceName - name of the sequence we are looking for
-     * @param {string=} combination
-     * @param {number=} level
-     * @returns {Array}
-     */
-    function _getMatches(character, modifiers, e, sequenceName, combination, level) {
-        var i,
-            callback,
-            matches = [],
-            action = e.type;
-
-        // if there are no events related to this keycode
-        if (!this._callbacks[character]) {
-            return [];
-        }
-
-        // if a modifier key is coming up on its own we should allow it
-        if (action == 'keyup' && _isModifier(character)) {
-            modifiers = [character];
-        }
-
-        // loop through all callbacks for the key that was pressed
-        // and see if any of them match
-        for (i = 0; i < this._callbacks[character].length; ++i) {
-            callback = this._callbacks[character][i];
-
-            // if a sequence name is not specified, but this is a sequence at
-            // the wrong level then move onto the next match
-            if (!sequenceName && callback.seq && this._sequenceLevels[callback.seq] != callback.level) {
-                continue;
-            }
-
-            // if the action we are looking for doesn't match the action we got
-            // then we should keep going
-            if (action != callback.action) {
-                continue;
-            }
-
-            // if this is a keypress event and the meta key and control key
-            // are not pressed that means that we need to only look at the
-            // character, otherwise check the modifiers as well
-            //
-            // chrome will not fire a keypress if meta or control is down
-            // safari will fire a keypress if meta or meta+shift is down
-            // firefox will fire a keypress if meta or control is down
-            if ((action == 'keypress' && !e.metaKey && !e.ctrlKey) || _modifiersMatch(modifiers, callback.modifiers)) {
-
-                // when you bind a combination or sequence a second time it
-                // should overwrite the first one.  if a sequenceName or
-                // combination is specified in this call it does just that
-                //
-                // @todo make deleting its own method?
-                var deleteCombo = !sequenceName && callback.combo == combination;
-                var deleteSequence = sequenceName && callback.seq == sequenceName && callback.level == level;
-                if (deleteCombo || deleteSequence) {
-                    this._callbacks[character].splice(i, 1);
-                }
-
-                matches.push(callback);
-            }
-        }
-
-        return matches;
-    }
-
-    /**
-     * actually calls the callback function
-     *
-     * if your callback function returns false this will use the jquery
-     * convention - prevent default and stop propogation on the event
-     *
-     * @param {Function} callback
-     * @param {Event} e
-     * @returns void
-     */
-    function _fireCallback(callback, e, combo) {
-
-        // if this event should not happen stop here
-        if (this.NOT_IN_EDITABLES && this.stopCallback(e, e.target || e.srcElement, combo)) {
-             return;
-        }
-
-        if (callback.call(this, e, combo) === false) {
-            if (e.preventDefault) {
-                e.preventDefault();
-            }
-
-            if (e.stopPropagation) {
-                e.stopPropagation();
-            }
-
-            e.returnValue = false;
-            e.cancelBubble = true;
-        }
-    }
-
-    /**
-     * handles a character key event
-     *
-     * @param {string} character
-     * @param {Array} modifiers
-     * @param {Event} e
-     * @returns void
-     */
-    this.handleKey = function (character, modifiers, e) {
-        var callbacks = _getMatches.call(this, character, modifiers, e),
-            i,
-            doNotReset = {},
-            maxLevel = 0,
-            processedSequenceCallback = false;
-
-        // Calculate the maxLevel for sequences so we can only execute the longest callback sequence
-        for (i = 0; i < callbacks.length; ++i) {
-            if (callbacks[i].seq) {
-                maxLevel = Math.max(maxLevel, callbacks[i].level);
-            }
-        }
-
-        // loop through matching callbacks for this key event
-        for (i = 0; i < callbacks.length; ++i) {
-
-            // fire for all sequence callbacks
-            // this is because if for example you have multiple sequences
-            // bound such as "g i" and "g t" they both need to fire the
-            // callback for matching g cause otherwise you can only ever
-            // match the first one
-            if (callbacks[i].seq) {
-
-                // only fire callbacks for the maxLevel to prevent
-                // subsequences from also firing
-                //
-                // for example 'a option b' should not cause 'option b' to fire
-                // even though 'option b' is part of the other sequence
-                //
-                // any sequences that do not match here will be discarded
-                // below by the _resetSequences call
-                if (callbacks[i].level != maxLevel) {
-                    continue;
-                }
-
-                processedSequenceCallback = true;
-
-                // keep a list of which sequences were matches for later
-                doNotReset[callbacks[i].seq] = 1;
-                _fireCallback.call(this, callbacks[i].callback, e, callbacks[i].combo);
-                continue;
-
-            } else if (Mousetrap.TRIGGER_PREFIX_COMBOS) {
-                // HACK: Mousetrap does not trigger 'prefixes'
-                _fireCallback.call(this, callbacks[i].callback, e, callbacks[i].combo);
-            } else {
-                // if there were no sequence matches but we are still here
-                // that means this is a regular match so we should fire that
-                if (!processedSequenceCallback) {
-                    _fireCallback.call(this, callbacks[i].callback, e, callbacks[i].combo);
-                }
-            }
-        }
-
-        // if the key you pressed matches the type of sequence without
-        // being a modifier (ie "keyup" or "keypress") then we should
-        // reset all sequences that were not matched by this event
-        //
-        // this is so, for example, if you have the sequence "h a t" and you
-        // type "h e a r t" it does not match.  in this case the "e" will
-        // cause the sequence to reset
-        //
-        // modifier keys are ignored because you can have a sequence
-        // that contains modifiers such as "enter ctrl+space" and in most
-        // cases the modifier key will be pressed before the next key
-        //
-        // also if you have a sequence such as "ctrl+b a" then pressing the
-        // "b" key will trigger a "keypress" and a "keydown"
-        //
-        // the "keydown" is expected when there is a modifier, but the
-        // "keypress" ends up matching the _nextExpectedAction since it occurs
-        // after and that causes the sequence to reset
-        //
-        // we ignore keypresses in a sequence that directly follow a keydown
-        // for the same character
-        var ignoreThisKeypress = e.type == 'keypress' && this._ignoreNextKeypress;
-        if (e.type == this._nextExpectedAction && !_isModifier(character) && !ignoreThisKeypress) {
-            _resetSequences.call(this, doNotReset);
-        }
-
-        this._ignoreNextKeypress = processedSequenceCallback && e.type == 'keydown';
-
-        // provide information about if there have callbacks detected
-        // E.g., this is used to trigger a default key handler in case of no others did match
-        return callbacks.length > 0;
-    };
-
-    /**
-     * handles a keydown event
-     *
-     * @param {Event} e
-     * @returns void
-     */
-    this._handleKeyEvent = function(e) {
-
-        // normalize e.which for key events
-        // @see http://stackoverflow.com/questions/4285627/javascript-keycode-vs-charcode-utter-confusion
-        if (typeof e.which !== 'number') {
-            e.which = e.keyCode;
-        }
-
-        var character = _characterFromEvent(e);
-
-        // no character found then stop
-        if (!character) {
-            return;
-        }
-
-        // need to use === for the character check because the character can be 0
-        if (e.type == 'keyup' && this._ignoreNextKeyup === character) {
-            this._ignoreNextKeyup = false;
-            return;
-        }
-
-        this.handleKey(character, _eventModifiers(e), e);
-    };
-
-    /**
-     * Gets info for a specific key combination
-     *
-     * @param  {string} combination key combination ("command+s" or "a" or "*")
-     * @param  {string=} action
-     * @returns {Object}
-     */
-    function _getKeyInfo(combination, action) {
-        var keys,
-            key,
-            i,
-            modifiers = [];
-
-        // take the keys from this pattern and figure out what the actual
-        // pattern is all about
-        keys = _keysFromString(combination);
-
-        for (i = 0; i < keys.length; ++i) {
-            key = keys[i];
-
-            // normalize key names
-            if (_SPECIAL_ALIASES[key]) {
-                key = _SPECIAL_ALIASES[key];
-            }
-
-            // if this is not a keypress event then we should
-            // be smart about using shift keys
-            // this will only work for US keyboards however
-            if (action && action != 'keypress' && _SHIFT_MAP[key]) {
-                key = _SHIFT_MAP[key];
-                modifiers.push('shift');
-            }
-
-            // if this key is a modifier then add it to the list of modifiers
-            if (_isModifier(key)) {
-                modifiers.push(key);
-            }
-        }
-
-        // depending on what the key combination is
-        // we will try to pick the best event for it
-        action = _pickBestAction.call(this, key, modifiers, action);
-
-        return {
-            key: key,
-            modifiers: modifiers,
-            action: action
-        };
-    }
-
-    /**
-     * binds a single keyboard combination
-     *
-     * @param {string} combination
-     * @param {Function} callback
-     * @param {string=} action
-     * @param {string=} sequenceName - name of sequence if part of sequence
-     * @param {number=} level - what part of the sequence the command is
-     * @returns void
-     */
-    function _bindSingle(combination, callback, action, sequenceName, level) {
-
-        // store a direct mapped reference for use with Mousetrap.trigger
-        this._directMap[combination + ':' + action] = callback;
-
-        // make sure multiple spaces in a row become a single space
-        combination = combination.replace(/\s+/g, ' ');
-
-        var sequence = combination.split(' '),
-            info;
-
-        // if this pattern is a sequence of keys then run through this method
-        // to reprocess each pattern one key at a time
-        if (sequence.length > 1) {
-            _bindSequence.call(this, combination, sequence, callback, action);
-            return;
-        }
-
-        info = _getKeyInfo.call(this, combination, action);
-
-        // make sure to initialize array if this is the first time
-        // a callback is added for this key
-        this._callbacks[info.key] = this._callbacks[info.key] || [];
-
-        // remove an existing match if there is one
-        _getMatches.call(this, info.key, info.modifiers, {type: info.action}, sequenceName, combination, level);
-
-        // add this call back to the array
-        // if it is a sequence put it at the beginning
-        // if not put it at the end
-        //
-        // this is important because the way these are processed expects
-        // the sequence ones to come first
-        this._callbacks[info.key][sequenceName ? 'unshift' : 'push']({
-            callback: callback,
-            modifiers: info.modifiers,
-            action: info.action,
-            seq: sequenceName,
-            level: level,
-            combo: combination
-        });
-    }
-
-    /**
-     * binds multiple combinations to the same callback
-     *
-     * @param {Array} combinations
-     * @param {Function} callback
-     * @param {string|undefined} action
-     * @returns void
-     */
-    function _bindMultiple(combinations, callback, action) {
-        for (var i = 0; i < combinations.length; ++i) {
-            _bindSingle.call(this, combinations[i], callback, action);
-        }
-    }
-
-
-    /**
-     * called to set a 1 second timeout on the specified sequence
-     *
-     * this is so after each key press in the sequence you have 1 second
-     * to press the next key before you have to start over
-     *
-     * @returns void
-     */
-    function _resetSequenceTimer() {
-        clearTimeout(this._resetTimer);
-        this._resetTimer = setTimeout(_resetSequences.bind(this), 1000);
-    }
-
-    /**
-     * reverses the map lookup so that we can look for specific keys
-     * to see what can and can't use keypress
-     *
-     * @return {Object}
-     */
-    function _getReverseMap() {
-        if (!this._REVERSE_MAP) {
-            this._REVERSE_MAP = {};
-            for (var key in _MAP) {
-
-                // pull out the numeric keypad from here cause keypress should
-                // be able to detect the keys from the character
-                if (key > 95 && key < 112) {
-                    continue;
-                }
-
-                if (_MAP.hasOwnProperty(key)) {
-                    this._REVERSE_MAP[_MAP[key]] = key;
-                }
-            }
-        }
-        return this._REVERSE_MAP;
-    }
-
-    /**
-     * picks the best action based on the key combination
-     *
-     * @param {string} key - character for key
-     * @param {Array} modifiers
-     * @param {string=} action passed in
-     */
-    function _pickBestAction(key, modifiers, action) {
-
-        // if no action was picked in we should try to pick the one
-        // that we think would work best for this key
-        if (!action) {
-            action = _getReverseMap.call(this)[key] ? 'keydown' : 'keypress';
-        }
-
-        // modifier keys don't work as expected with keypress,
-        // switch to keydown
-        if (action == 'keypress' && modifiers.length) {
-            action = 'keydown';
-        }
-
-        return action;
-    }
-
-    /**
-     * binds a key sequence to an event
-     *
-     * @param {string} combo - combo specified in bind call
-     * @param {Array} keys
-     * @param {Function} callback
-     * @param {string=} action
-     * @returns void
-     */
-    function _bindSequence(combo, keys, callback, action) {
-
-        var that = this;
-
-        // start off by adding a sequence level record for this combination
-        // and setting the level to 0
-        this._sequenceLevels[combo] = 0;
-
-        /**
-         * callback to increase the sequence level for this sequence and reset
-         * all other sequences that were active
-         *
-         * @param {string} nextAction
-         * @returns {Function}
-         */
-        function _increaseSequence(nextAction) {
-            return function() {
-                that._nextExpectedAction = nextAction;
-                ++that._sequenceLevels[combo];
-                _resetSequenceTimer.call(that);
-            };
-        }
-
-        /**
-         * wraps the specified callback inside of another function in order
-         * to reset all sequence counters as soon as this sequence is done
-         *
-         * @param {Event} e
-         * @returns void
-         */
-        function _callbackAndReset(e) {
-            _fireCallback.call(this, callback, e, combo);
-
-            // we should ignore the next key up if the action is key down
-            // or keypress.  this is so if you finish a sequence and
-            // release the key the final key will not trigger a keyup
-            if (action !== 'keyup') {
-                this._ignoreNextKeyup = _characterFromEvent(e);
-            }
-
-            // weird race condition if a sequence ends with the key
-            // another sequence begins with
-            setTimeout(_resetSequences.bind(this), 10);
-        }
-
-        // loop through keys one at a time and bind the appropriate callback
-        // function.  for any key leading up to the final one it should
-        // increase the sequence. after the final, it should reset all sequences
-        //
-        // if an action is specified in the original bind call then that will
-        // be used throughout.  otherwise we will pass the action that the
-        // next key in the sequence should match.  this allows a sequence
-        // to mix and match keypress and keydown events depending on which
-        // ones are better suited to the key provided
-        for (var i = 0; i < keys.length; ++i) {
-            var isFinal = i + 1 === keys.length;
-            var wrappedCallback = isFinal ? _callbackAndReset : _increaseSequence.call(this, action || _getKeyInfo(keys[i + 1]).action);
-            _bindSingle.call(this, keys[i], wrappedCallback, action, combo, i);
-        }
-    }
-
-    /**
-     * binds an event to mousetrap
-     *
-     * can be a single key, a combination of keys separated with +,
-     * an array of keys, or a sequence of keys separated by spaces
-     *
-     * be sure to list the modifier keys first to make sure that the
-     * correct key ends up getting bound (the last key in the pattern)
-     *
-     * @param {string|Array} keys
-     * @param {Function} callback
-     * @param {string=} action - 'keypress', 'keydown', or 'keyup'
-     * @returns void
-     */
-    this.bind = function(keys, callback, action) {
-        keys = keys instanceof Array ? keys : [keys];
-        _bindMultiple.call(this, keys, callback, action);
-        return this;
-    };
-
-    /**
-     * unbinds an event to mousetrap
-     *
-     * the unbinding sets the callback function of the specified key combo
-     * to an empty function and deletes the corresponding key in the
-     * _directMap dict.
-     *
-     * TODO: actually remove this from the _callbacks dictionary instead
-     * of binding an empty function
-     *
-     * the keycombo+action has to be exactly the same as
-     * it was defined in the bind method
-     *
-     * @param {string|Array} keys
-     * @param {string} action
-     * @returns void
-     */
-    this.unbind = function(keys, action) {
-        return this.bind(keys, function() {}, action);
-    };
-
-    /**
-     * triggers an event that has already been bound
-     *
-     * @param {string} keys
-     * @param {string=} action
-     * @returns void
-     */
-    this.trigger = function(keys, action) {
-        if (this._directMap[keys + ':' + action]) {
-            this._directMap[keys + ':' + action].call(this, {}, keys);
-        }
-        return this;
-    };
-
-    /**
-     * resets the library back to its initial state.  this is useful
-     * if you want to clear out the current keyboard shortcuts and bind
-     * new ones - for example if you switch to another page
-     *
-     * @returns void
-     */
-    this.reset = function() {
-        this._callbacks = {};
-        this._directMap = {};
-        return this;
-    };
-
-   /**
-    * should we stop this event before firing off callbacks
-    *
-    * @param {Event} e
-    * @param {Element} element
-    * @return {boolean}
-    */
-    this.stopCallback = function(e, element) {
-
-        // if the element has the class "mousetrap" then no need to stop
-        if ((' ' + element.className + ' ').indexOf(' mousetrap ') > -1) {
-            return false;
-        }
-
-        // stop for input, select, and textarea
-        return element.tagName == 'INPUT' || element.tagName == 'SELECT' || element.tagName == 'TEXTAREA' || (element.contentEditable && element.contentEditable == 'true');
-    };
-
-    this.connect = function(el) {
-        this._el = el;
-
-        _attachListener(this._el, 'keypress', this._handler);
-        _attachListener(this._el, 'keydown', this._handler);
-        _attachListener(this._el, 'keyup', this._handler);
-    };
-
-    this.disconnect = function() {
-
-        _detachListener(this._el, 'keypress', this._handler);
-        _detachListener(this._el, 'keydown', this._handler);
-        _detachListener(this._el, 'keyup', this._handler);
-    };
-
-    /**
-     * Trigger callbacks for combos even when they are part of sequnence.
-     */
-     this.TRIGGER_PREFIX_COMBOS = false;
-     this.NOT_IN_EDITABLES = false;
-};
-
-Mousetrap.prototype = new Mousetrap.Prototype();
-
-module.exports = Mousetrap;
-
-},{}],75:[function(require,module,exports){
+},{"substance-util":134}],63:[function(require,module,exports){
 "use strict";
 
 var Data = {};
@@ -10305,824 +6285,11 @@ var Data = {};
 // Current version of the library. Keep in sync with `package.json`.
 Data.VERSION = '0.8.0';
 
-Data.Graph = require('./src/graph');
+Data.Graph = require('./src/simple_graph');
 
 module.exports = Data;
 
-},{"./src/graph":77}],76:[function(require,module,exports){
-"use strict";
-
-var Chronicle = require('substance-chronicle');
-var Operator = require('substance-operator');
-
-var ChronicleAdapter = function(graph) {
-  this.graph = graph;
-  this.graph.state = "ROOT";
-};
-
-ChronicleAdapter.Prototype = function() {
-
-  this.apply = function(op) {
-    // Note: we call the Graph.apply intentionally, as the chronicled change
-    // should be an ObjectOperation
-    //console.log("ChronicleAdapter.apply, op=", op);
-    this.graph.__apply__(op);
-    this.graph.updated_at = new Date(op.timestamp);
-  };
-
-  this.invert = function(change) {
-    return Operator.ObjectOperation.fromJSON(change).invert();
-  };
-
-  this.transform = function(a, b, options) {
-    return Operator.ObjectOperation.transform(a, b, options);
-  };
-
-  this.reset = function() {
-    this.graph.reset();
-  };
-
-  this.getState = function() {
-    return this.graph.state;
-  };
-
-  this.setState = function(state) {
-    this.graph.state = state;
-  };
-};
-
-ChronicleAdapter.Prototype.prototype = Chronicle.Versioned.prototype;
-ChronicleAdapter.prototype = new ChronicleAdapter.Prototype();
-
-module.exports = ChronicleAdapter;
-
-},{"substance-chronicle":63,"substance-operator":139}],77:[function(require,module,exports){
-"use strict";
-
-var _ = require('underscore');
-var util = require('substance-util');
-var errors = util.errors;
-
-var Schema = require('./schema');
-var Property = require('./property');
-
-var Chronicle = require('substance-chronicle');
-var Operator = require('substance-operator');
-
-var PersistenceAdapter = require('./persistence_adapter');
-var ChronicleAdapter = require('./chronicle_adapter');
-var Index = require('./graph_index');
-
-var GraphError = errors.define("GraphError");
-
-// Data types registry
-// -------------------
-// Available data types for graph properties.
-
-var VALUE_TYPES = [
-  'object',
-  'array',
-  'string',
-  'number',
-  'boolean',
-  'date'
-];
-
-
-// Check if composite type is in types registry.
-// The actual type of a composite type is the first entry
-// I.e., ["array", "string"] is an array in first place.
-var isValueType = function (type) {
-  if (_.isArray(type)) {
-    type = type[0];
-  }
-  return VALUE_TYPES.indexOf(type) >= 0;
-};
-
-// Graph
-// =====
-
-// A `Graph` can be used for representing arbitrary complex object
-// graphs. Relations between objects are expressed through links that
-// point to referred objects. Graphs can be traversed in various ways.
-// See the testsuite for usage.
-//
-// Need to be documented:
-// @options (mode,seed,chronicle,store,load,graph)
-var Graph = function(schema, options) {
-  options = options || {};
-
-  // Initialization
-  this.schema = new Schema(schema);
-
-  // Check if provided seed conforms to the given schema
-  // Only when schema has an id and seed is provided
-
-  if (this.schema.id && options.seed && options.seed.schema) {
-    if (!_.isEqual(options.seed.schema, [this.schema.id, this.schema.version])) {
-      throw new GraphError([
-        "Graph does not conform to schema. Expected: ",
-        this.schema.id+"@"+this.schema.version,
-        " Actual: ",
-        options.seed.schema[0]+"@"+options.seed.schema[1]
-      ].join(''));
-    }
-  }
-
-  this.objectAdapter = new Graph.ObjectAdapter(this);
-
-  this.nodes = {};
-  this.indexes = {};
-
-  this.__mode__ = options.mode || Graph.DEFAULT_MODE;
-  this.__seed__ = options.seed;
-
-  // Note: don't init automatically after making persistent
-  // as this would delete the persistet graph.
-  // Instead, the application has to call `graph.load()` if the store is supposed to
-  // contain a persisted graph
-  this.isVersioned = !!options.chronicle;
-  this.isPersistent = !!options.store;
-
-  // Make chronicle graph
-  if (this.isVersioned) {
-    this.chronicle = options.chronicle;
-    this.chronicle.manage(new Graph.ChronicleAdapter(this));
-  }
-
-  // Make persistent graph
-  if (this.isPersistent) {
-    var nodes = options.store.hash("nodes");
-    this.__store__ = options.store;
-    this.__nodes__ = nodes;
-
-    if (this.isVersioned) {
-      this.__version__ = options.store.hash("__version__");
-    }
-
-    this.objectAdapter = new PersistenceAdapter(this.objectAdapter, nodes);
-  }
-
-  if (options.load) {
-    this.load();
-  } else {
-    this.init();
-  }
-
-  // Populate graph
-  if (options.graph) this.merge(options.graph);
-};
-
-Graph.Prototype = function() {
-
-  var _private = new Graph.Private();
-
-  // Graph manipulation API
-  // ======================
-
-  // Add a new node
-  // --------------
-  // Adds a new node to the graph
-  // Only properties that are specified in the schema are taken:
-  //     var node = {
-  //       id: "apple",
-  //       type: "fruit",
-  //       name: "My Apple",
-  //       color: "red",
-  //       val: { size: "big" }
-  //     };
-  // Create new node:
-  //     Data.Graph.create(node);
-  // Note: graph create operation should reject creation of duplicate nodes.
-
-
-  _.extend(this, util.Events);
-
-  this.create = function(node) {
-    var op = Operator.ObjectOperation.Create([node.id], node);
-    return this.apply(op);
-  };
-
-  // Remove a node
-  // -------------
-  // Removes a node with given id and key (optional):
-  //     Data.Graph.delete(this.graph.get('apple'));
-  this.delete = function(id) {
-    var node = this.get(id);
-    if (node === undefined) {
-      throw new GraphError("Could not resolve a node with id "+ id);
-    }
-
-    // in case that the returned node is a rich object
-    // there should be a serialization method
-    if (node.toJSON) {
-      node = node.toJSON();
-    }
-
-    var op = Operator.ObjectOperation.Delete([id], node);
-    return this.apply(op);
-  };
-
-  // Update the property
-  // -------------------
-  //
-  // Updates the property with a given operation.
-  // Note: the diff has to be given as an appropriate operation.
-  // E.g., for string properties diff would be Operator.TextOperation,
-  // for arrays it would be Operator.ArrayOperation, etc.
-  // For example Substance.Operator:
-  //   Data.Graph.create({
-  //     id: "fruit_2",
-  //     type: "fruit",
-  //     name: "Blueberry",
-  //     val: { form: { kind: "bar", color: "blue" }, size: "small" },
-  //   })
-  //   var valueUpdate = Operator.TextOperation.fromOT("bar", [1, -1, "e", 1, "ry"]);
-  //   var propertyUpdate = Operator.ObjectOperation.Update(["form", "kind"], valueUpdate);
-  //   var nodeUpdate = Data.Graph.update(["fruit_2", "val"], propertyUpdate);
-  // Let's get it now:
-  //   var blueberry = this.graph.get("fruit_2");
-  //   console.log(blueberry.val.form.kind);
-  //   = > 'berry'
-
-  this.update = function(path, diff) {
-    var prop = this.resolve(path);
-    if (!prop) {
-      throw new GraphError("Could not resolve property with path "+JSON.stringify(path));
-    }
-
-    if (_.isArray(diff)) {
-      if (prop.baseType === "string") {
-        diff = Operator.TextOperation.fromSequence(prop.get(), diff);
-      } else if (prop.baseType === "array") {
-        diff = Operator.ArrayOperation.create(prop.get(), diff);
-      } else {
-        throw new GraphError("There is no convenient notation supported for this type: " + prop.baseType);
-      }
-    }
-
-    if (!diff) {
-      // if the diff turns out to be empty there will be no operation.
-      return;
-    }
-
-    var op = Operator.ObjectOperation.Update(path, diff, prop.baseType);
-    return this.apply(op);
-  };
-
-  // Set the property
-  // ----------------
-  //
-  // Sets the property to a given value:
-  // Data.Graph.set(["fruit_2", "val", "size"], "too small");
-  // Let's see what happened with node:
-  //     var blueberry = this.graph.get("fruit_2");
-  //     console.log(blueberry.val.size);
-  //     = > 'too small'
-
-  this.set = function(path, newValue) {
-    var prop = this.resolve(path);
-    if (!prop) {
-      throw new GraphError("Could not resolve property with path "+JSON.stringify(path));
-    }
-    var oldValue = prop.get();
-    var op = Operator.ObjectOperation.Set(path, oldValue, newValue);
-    return this.apply(op);
-  };
-
-  // Pure graph manipulation
-  // -----------------------
-  //
-  // Only applies the graph operation without triggering e.g., the chronicle.
-
-  this.__apply__ = function(_op) {
-    //console.log("Graph.__apply__", op);
-
-    // Note: we apply compounds eagerly... i.e., all listeners will be updated after
-    // each atomic change.
-
-    Operator.Helpers.each(_op, function(op) {
-      op.apply(this.objectAdapter);
-      this.updated_at = new Date();
-
-      this._internalUpdates(op);
-
-      _.each(this.indexes, function(index) {
-        // Treating indexes as first class listeners for graph changes
-        index.onGraphChange(op);
-      }, this);
-
-      // And all regular listeners in second line
-      this.trigger('operation:applied', op, this);
-    }, this);
-
-  };
-
-  this._internalUpdates = function(op) {
-    // Treating indexes as first class listeners for graph changes
-    Operator.Helpers.each(op, function(_op) {
-      _.each(this.indexes, function(index) {
-        index.onGraphChange(_op);
-      }, this);
-    }, this);
-  };
-
-  // Apply a command
-  // ---------------
-  //
-  // Applies a graph command
-  // All commands call this function internally to apply an operation to the graph
-
-  this.apply = function(op) {
-
-    this.__apply__(op);
-
-    // do not record changes during initialization
-    if (!this.__is_initializing__ && this.isVersioned) {
-      op.timestamp = new Date();
-      this.chronicle.record(util.clone(op));
-    }
-
-    return op;
-  };
-
-  // Get the node [property]
-  // -----------------------
-  //
-  // Gets specified graph node using id:
-  //  var apple = this.graph.get("apple");
-  //  console.log(apple);
-  //  =>
-  //  {
-  //    id: "apple",
-  //    type: "fruit",
-  //    name: "My Apple",
-  //    color: "red",
-  //    val: { size: "big" }
-  //  }
-  // or get node's property:
-  //  var apple = this.graph.get(["apple","color"]);
-  //  console.log(apple);
-  //  => 'red'
-
-  this.get = function(path) {
-    if (!_.isArray(path) && !_.isString(path)) {
-      throw new GraphError("Invalid argument path. Must be String or Array");
-    }
-
-    if (arguments.length > 1) path = _.toArray(arguments);
-    if (_.isString(path)) return this.nodes[path];
-
-    var prop = this.resolve(path);
-    return prop.get();
-  };
-
-  // Query graph data
-  // ----------------
-  //
-  // Perform smart querying on graph
-  //     graph.create({
-  //       id: "apple-tree",
-  //       type: "tree",
-  //       name: "Apple tree"
-  //     });
-  //     var apple = this.graph.get("apple");
-  //     apple.set({["apple","tree"], "apple-tree"});
-  // let's perform query:
-  //     var result = graph.query(["apple", "tree"]);
-  //     console.log(result);
-  //     => [{id: "apple-tree", type: "tree", name: "Apple tree"}]
-
-  this.query = function(path) {
-    var prop = this.resolve(path);
-
-    var type = prop.type;
-    var baseType = prop.baseType;
-    var val = prop.get();
-
-    // resolve referenced nodes in array types
-    if (baseType === "array") {
-      return _private.queryArray.call(this, val, type);
-    } else if (!isValueType(baseType)) {
-      return this.get(val);
-    } else {
-      return val;
-    }
-  };
-
-  // Serialize current state
-  // -----------------------
-  //
-  // Convert current graph state to JSON object
-
-  this.toJSON = function() {
-    return {
-      id: this.id,
-      schema: [this.schema.id, this.schema.version],
-      nodes: util.deepclone(this.nodes)
-    };
-  };
-
-  // Check node existing
-  // -------------------
-  //
-  // Checks if a node with given id exists
-  //     this.graph.contains("apple");
-  //     => true
-  //     this.graph.contains("orange");
-  //     => false
-
-  this.contains = function(id) {
-    return (!!this.nodes[id]);
-  };
-
-  // Resolve a property
-  // ------------------
-  // Resolves a property with a given path
-
-  this.resolve = function(path) {
-    return new Property(this, path);
-  };
-
-  // Reset to initial state
-  // ----------------------
-  // Resets the graph to its initial state.
-  // Note: This clears all nodes and calls `init()` which may seed the graph.
-
-  this.reset = function() {
-    if (this.isPersistent) {
-      if (this.__nodes__) this.__nodes__.clear();
-    }
-
-    this.init();
-
-    if (this.isVersioned) {
-      this.state = Chronicle.ROOT;
-    }
-
-    this.trigger("graph:reset");
-  };
-
-  // Graph initialization.
-  this.init = function() {
-    this.__is_initializing__ = true;
-
-    if (this.__seed__) {
-      this.nodes = util.clone(this.__seed__.nodes);
-    } else {
-      this.nodes = {};
-    }
-
-    _.each(this.indexes, function(index) {
-      index.reset();
-    });
-
-    if (this.isPersistent) {
-      _.each(this.nodes, function(node, id) {
-        this.__nodes__.set(id, node);
-      }, this);
-    }
-
-    delete this.__is_initializing__;
-  };
-
-  // Merge graphs
-  // ------------
-  //
-  // Merges this graph with another graph:
-  //     var folks = new Data.Graph(folks_schema);
-  //     var persons = new Data.Graph(persons_schema);
-  //     folks.create({
-  //       name: 'Bart',
-  //       surname: 'Simpson',
-  //       type: 'cartoon-actor',
-  //       century: 'XXI',
-  //       citizen: 'U.S.'
-  //     });
-  //     persons.create({
-  //       name: 'Alexander',
-  //       surname: 'Pushkin',
-  //       type: 'poet',
-  //       century: '19',
-  //       citizen: 'Russia'
-  //     });
-  //     persons.create({
-  //       name: 'Pelem Grenwill',
-  //       surname: 'Woodhouse',
-  //       type: 'poet',
-  //       century: '19',
-  //       citizen: 'Russia'
-  //     });
-  //     var merged = persons.merge(folks);
-  //     merged.toJSON();
-  //     => {
-  //       nodes: [
-  //         {
-  //           name: 'Alexander',
-  //           surname: 'Pushkin',
-  //           type: 'poet',
-  //           century: '19',
-  //           citizen: 'Russia'
-  //         },
-  //         {
-  //           name: 'Pelem Grenwill',
-  //           surname: 'Woodhouse',
-  //           type: 'poet',
-  //           century: '19',
-  //           citizen: 'Russia'
-  //         },
-  //         {
-  //           name: 'Bart',
-  //           surname: 'Simpson',
-  //           type: 'cartoon-actor',
-  //           century: 'XXI',
-  //           citizen: 'U.S.'
-  //         }
-  //       ]
-  //     }
-
-  this.merge = function(graph) {
-    _.each(graph.nodes, function(n) {
-      this.create(n);
-    }, this);
-
-    return this;
-  };
-
-  // View Traversal
-  // --------------
-
-  this.traverse = function(view) {
-    return _.map(this.getView(view), function(node) {
-      return this.get(node);
-    }, this);
-  };
-
-  // Graph loading.
-  // ----------
-  //
-  // Note: currently this must be called explicitely by the app
-
-  this.load = function() {
-
-    if (!this.isPersistent) {
-      console.log("Graph is not persistent.");
-      return;
-    }
-
-    this.__is_initializing__ = true;
-
-    this.nodes = {};
-    this.indexes = {};
-
-    // import persistet nodes
-    var keys = this.__nodes__.keys();
-    for (var idx = 0; idx < keys.length; idx++) {
-      _private.create.call(this, this.__nodes__.get(keys[idx]));
-    }
-
-    if (this.isVersioned) {
-      this.state = this.__version__.get("state") || "ROOT";
-    }
-
-    delete this.__is_initializing__;
-
-    return this;
-  };
-
-  // A helper to apply co-transformations
-  // --------
-  //
-  // The provided adapter must conform to the interface:
-  //
-  //    {
-  //      create: function(node) {},
-  //      delete: function(node) {},
-  //      update: function(node, property, newValue, oldValue) {},
-  //    }
-  //
-
-  this.cotransform = function(adapter, op) {
-    if (op.type === "create") {
-      adapter.create(op.val);
-    }
-    else if (op.type === "delete") {
-      adapter.delete(op.val);
-    }
-    // type = 'update' or 'set'
-    else {
-
-      var prop = this.resolve(op.path);
-      var value = prop.get();
-
-      var oldValue;
-
-      // Attention: this happens when updates and deletions are within one compound
-      // The operation gets applied, finally the node is deleted.
-      // Listeners are triggered afterwards, so they can not rely on the node being there
-      // anymore.
-      // However, this is not a problem. We can ignore this update as there will come
-      // a deletion anyways.
-      if (value === undefined) {
-        return;
-      }
-
-      if (op.type === "set") {
-        oldValue = op.original;
-      } else {
-        oldValue = op.diff.invert().apply(_.clone(value));
-      }
-
-      adapter.update(prop.node, prop.key, value, oldValue);
-    }
-  };
-
-  this.addIndex = function(name, options) {
-    if (this.indexes[name]) {
-      throw new GraphError("Index with name " + name + "already exists.");
-    }
-    var index = new Index(this, options);
-    this.indexes[name] = index;
-
-    return index;
-  };
-
-  this.removeIndex = function(name) {
-    delete this.indexes[name];
-  };
-};
-
-// Index Modes
-// ----------
-
-Graph.STRICT_INDEXING = 1 << 1;
-Graph.DEFAULT_MODE = Graph.STRICT_INDEXING;
-
-
-// Private Graph implementation
-// ============================
-
-Graph.Private = function() {
-
-  var _private = this;
-
-  // Node construction
-  // -----------------
-  //
-  // Safely constructs a new node based on type information
-  // Node needs to have a valid type
-  // All properties that are not registered, are dropped
-  // All properties that don't have a value are replaced using default values for type
-
-  this.createNode = function (schema, node) {
-    if (!node.id || !node.type) {
-      throw new GraphError("Can not create Node: 'id' and 'type' are mandatory.");
-    }
-
-    var type = schema.type(node.type);
-    if (!type) {
-      throw new GraphError("Type '"+node.type+"' not found in the schema");
-    }
-
-    var properties = schema.properties(node.type);
-    var freshNode = { type: node.type, id: node.id };
-
-    // Start constructing the fresh node
-    _.each(properties, function(p, key) {
-      // Find property base type
-      var baseType = schema.propertyBaseType(node.type, key);
-
-      // Assign user defined property value or use default value for baseType
-      var val = (node[key] !== undefined) ? node[key] : schema.defaultValue(baseType);
-      freshNode[key] = util.deepclone(val);
-    });
-
-    return freshNode;
-  };
-
-  // Create a new node
-  // -----------------
-  // Safely constructs a new node
-  // Checks for node duplication
-  // Adds new node to indexes
-  this.create = function(node) {
-    var newNode = _private.createNode(this.schema, node);
-    if (this.contains(newNode.id)) {
-      throw new GraphError("Node already exists: " + newNode.id);
-    }
-    this.nodes[newNode.id] = newNode;
-    this.trigger("node:created", newNode);
-    return this;
-  };
-
-  // Remove a node
-  // -----------
-  // Deletes node by id, referenced nodes remain untouched
-  // Removes node from indexes
-  this.delete = function(node) {
-    delete this.nodes[node.id];
-    this.trigger("node:deleted", node.id);
-  };
-
-  this.set = function(path, value) {
-    var property = this.resolve(path);
-    var oldValue = util.deepclone(property.get());
-    property.set(value);
-    this.trigger("property:set", path, oldValue, value);
-  };
-
-  var _triggerPropertyUpdate = function(path, diff) {
-    Operator.Helpers.each(diff, function(op) {
-      this.trigger('property:updated', path, op, this);
-    }, this);
-  };
-
-  this.update = function(path, value, diff) {
-    var property = this.resolve(path);
-    property.set(value);
-    _triggerPropertyUpdate.call(this, path, diff);
-  };
-
-  this.queryArray = function(arr, type) {
-    if (!_.isArray(type)) {
-      throw new GraphError("Illegal argument: array types must be specified as ['array'(, 'array')*, <type>]");
-    }
-    var result, idx;
-    if (type[1] === "array") {
-      result = [];
-      for (idx = 0; idx < arr.length; idx++) {
-        result.push(_private.queryArray.call(this, arr[idx], type.slice(1)));
-      }
-    } else if (!isValueType(type[1])) {
-      result = [];
-      for (idx = 0; idx < arr.length; idx++) {
-        result.push(this.get(arr[idx]));
-      }
-    } else {
-      result = arr;
-    }
-    return result;
-  };
-
-};
-
-Graph.prototype = new Graph.Prototype();
-
-// ObjectOperation Adapter
-// ========
-//
-// This adapter delegates object changes as supported by Operator.ObjectOperation
-// to graph methods
-
-Graph.ObjectAdapter = function(graph) {
-  this.graph = graph;
-};
-
-Graph.ObjectAdapter.Prototype = function() {
-  var impl = new Graph.Private();
-
-  this.get = function(path) {
-    var prop = this.graph.resolve(path);
-    return prop.get();
-  };
-
-  this.create = function(__, value) {
-    // Note: only nodes (top-level) can be created
-    impl.create.call(this.graph, value);
-  };
-
-  this.set = function(path, value) {
-    impl.set.call(this.graph, path, value);
-  };
-
-  this.update = function(path, value, diff) {
-    impl.update.call(this.graph, path, value, diff);
-  };
-
-  this.delete = function(__, value) {
-    // Note: only nodes (top-level) can be deleted
-    impl.delete.call(this.graph, value);
-  };
-
-  this.inplace = function() { return false; };
-};
-
-Graph.ObjectAdapter.Prototype.prototype = Operator.ObjectOperation.Object.prototype;
-Graph.ObjectAdapter.prototype = new Graph.ObjectAdapter.Prototype();
-
-Graph.Schema = Schema;
-Graph.Property = Property;
-
-Graph.PersistenceAdapter = PersistenceAdapter;
-Graph.ChronicleAdapter = ChronicleAdapter;
-Graph.Index = Index;
-
-// Exports
-// ========
-
-module.exports = Graph;
-
-},{"./chronicle_adapter":76,"./graph_index":78,"./persistence_adapter":79,"./property":80,"./schema":81,"substance-chronicle":63,"substance-operator":139,"substance-util":155,"underscore":160}],78:[function(require,module,exports){
+},{"./src/simple_graph":67}],64:[function(require,module,exports){
 var _ = require("underscore");
 var util = require("substance-util");
 
@@ -11310,50 +6477,7 @@ Index.typeFilter = function(schema, types) {
 
 module.exports = Index;
 
-},{"substance-util":155,"underscore":160}],79:[function(require,module,exports){
-"use strict";
-
-var Operator = require('substance-operator');
-
-var PersistenceAdapter = function(delegate, nodes) {
-  this.delegate = delegate;
-  this.nodes = nodes;
-};
-
-PersistenceAdapter.Prototype = function() {
-
-  this.get = function(path) {
-    return this.delegate.get(path);
-  };
-
-  this.create = function(__, value) {
-    this.delegate.create(__, value);
-    this.nodes.set(value.id, value);
-  };
-
-  this.set = function(path, value) {
-    this.delegate.set(path, value);
-    // TODO: is it ok to store the value as node???
-    var nodeId = path[0];
-    var updated = this.delegate.get([nodeId]);
-    this.nodes.set(nodeId, updated);
-  };
-
-  this.delete = function(__, value) {
-    this.delegate.delete(__, value);
-    this.nodes.delete(value.id);
-  };
-
-  this.inplace = function() {
-    return false;
-  };
-};
-PersistenceAdapter.Prototype.prototype = Operator.ObjectOperation.Object.prototype;
-PersistenceAdapter.prototype = new PersistenceAdapter.Prototype();
-
-module.exports = PersistenceAdapter;
-
-},{"substance-operator":139}],80:[function(require,module,exports){
+},{"substance-util":134,"underscore":139}],65:[function(require,module,exports){
 "use strict";
 
 var _ = require("underscore");
@@ -11456,7 +6580,7 @@ Object.defineProperties(Property.prototype, {
 
 module.exports = Property;
 
-},{"underscore":160}],81:[function(require,module,exports){
+},{"underscore":139}],66:[function(require,module,exports){
 "use strict";
 
 var _ = require("underscore");
@@ -11631,7 +6755,314 @@ Schema.prototype = new Schema.Prototype();
 
 module.exports = Schema;
 
-},{"substance-util":155,"underscore":160}],82:[function(require,module,exports){
+},{"substance-util":134,"underscore":139}],67:[function(require,module,exports){
+"use strict";
+
+var _ = require('underscore');
+var util = require('substance-util');
+var errors = util.errors;
+
+var Schema = require('./schema');
+var Property = require('./property');
+var Index = require('./graph_index');
+
+var GraphError = errors.define("GraphError");
+
+// Data types registry
+// -------------------
+// Available data types for graph properties.
+
+var VALUE_TYPES = [
+  'object',
+  'array',
+  'string',
+  'number',
+  'boolean',
+  'date'
+];
+
+
+// Check if composite type is in types registry.
+// The actual type of a composite type is the first entry
+// I.e., ["array", "string"] is an array in first place.
+var isValueType = function (type) {
+  if (_.isArray(type)) {
+    type = type[0];
+  }
+  return VALUE_TYPES.indexOf(type) >= 0;
+};
+
+// Graph
+// =====
+
+// A `Graph` can be used for representing arbitrary complex object
+// graphs. Relations between objects are expressed through links that
+// point to referred objects. Graphs can be traversed in various ways.
+// See the testsuite for usage.
+//
+// Need to be documented:
+// @options (mode,seed,chronicle,store,load,graph)
+var Graph = function(schema, options) {
+  options = options || {};
+
+  // Initialization
+  this.schema = new Schema(schema);
+
+  // Check if provided seed conforms to the given schema
+  // Only when schema has an id and seed is provided
+
+  if (this.schema.id && options.seed && options.seed.schema) {
+    if (!_.isEqual(options.seed.schema, [this.schema.id, this.schema.version])) {
+      throw new GraphError([
+        "Graph does not conform to schema. Expected: ",
+        this.schema.id+"@"+this.schema.version,
+        " Actual: ",
+        options.seed.schema[0]+"@"+options.seed.schema[1]
+      ].join(''));
+    }
+  }
+
+  this.nodes = {};
+  this.indexes = {};
+
+  this.__seed__ = options.seed;
+
+  this.init();
+};
+
+Graph.Prototype = function() {
+
+  // Graph manipulation API
+  // ======================
+
+  // Add a new node
+  // --------------
+  // Adds a new node to the graph
+  // Only properties that are specified in the schema are taken:
+  //     var node = {
+  //       id: "apple",
+  //       type: "fruit",
+  //       name: "My Apple",
+  //       color: "red",
+  //       val: { size: "big" }
+  //     };
+  // Create new node:
+  //     Data.Graph.create(node);
+  // Note: graph create operation should reject creation of duplicate nodes.
+
+  _.extend(this, util.Events);
+
+  this.create = function(node) {
+    this.nodes[node.id] = node;
+  };
+
+  // Remove a node
+  // -------------
+  // Removes a node with given id and key (optional):
+  //     Data.Graph.delete(this.graph.get('apple'));
+  this.delete = function(id) {
+    delete this.nodes[id];
+  };
+
+  // Set the property
+  // ----------------
+  //
+  // Sets the property to a given value:
+  // Data.Graph.set(["fruit_2", "val", "size"], "too small");
+  // Let's see what happened with node:
+  //     var blueberry = this.graph.get("fruit_2");
+  //     console.log(blueberry.val.size);
+  //     = > 'too small'
+
+  this.set = function(path, newValue) {
+    var prop = this.resolve(path);
+    if (!prop) {
+      throw new GraphError("Could not resolve property with path "+JSON.stringify(path));
+    }
+    prop.set(newValue);
+  };
+
+  // Get the node [property]
+  // -----------------------
+  //
+  // Gets specified graph node using id:
+  //  var apple = this.graph.get("apple");
+  //  console.log(apple);
+  //  =>
+  //  {
+  //    id: "apple",
+  //    type: "fruit",
+  //    name: "My Apple",
+  //    color: "red",
+  //    val: { size: "big" }
+  //  }
+  // or get node's property:
+  //  var apple = this.graph.get(["apple","color"]);
+  //  console.log(apple);
+  //  => 'red'
+
+  this.get = function(path) {
+    if (!_.isArray(path) && !_.isString(path)) {
+      throw new GraphError("Invalid argument path. Must be String or Array");
+    }
+
+    if (arguments.length > 1) path = _.toArray(arguments);
+    if (_.isString(path)) return this.nodes[path];
+
+    var prop = this.resolve(path);
+    return prop.get();
+  };
+
+  // Query graph data
+  // ----------------
+  //
+  // Perform smart querying on graph
+  //     graph.create({
+  //       id: "apple-tree",
+  //       type: "tree",
+  //       name: "Apple tree"
+  //     });
+  //     var apple = this.graph.get("apple");
+  //     apple.set({["apple","tree"], "apple-tree"});
+  // let's perform query:
+  //     var result = graph.query(["apple", "tree"]);
+  //     console.log(result);
+  //     => [{id: "apple-tree", type: "tree", name: "Apple tree"}]
+
+  this.query = function(path) {
+    var prop = this.resolve(path);
+
+    var type = prop.type;
+    var baseType = prop.baseType;
+    var val = prop.get();
+
+    // resolve referenced nodes in array types
+    if (baseType === "array") {
+      return this._queryArray.call(this, val, type);
+    } else if (!isValueType(baseType)) {
+      return this.get(val);
+    } else {
+      return val;
+    }
+  };
+
+  // Serialize current state
+  // -----------------------
+  //
+  // Convert current graph state to JSON object
+
+  this.toJSON = function() {
+    return {
+      id: this.id,
+      schema: [this.schema.id, this.schema.version],
+      nodes: util.deepclone(this.nodes)
+    };
+  };
+
+  // Check node existing
+  // -------------------
+  //
+  // Checks if a node with given id exists
+  //     this.graph.contains("apple");
+  //     => true
+  //     this.graph.contains("orange");
+  //     => false
+
+  this.contains = function(id) {
+    return (!!this.nodes[id]);
+  };
+
+  // Resolve a property
+  // ------------------
+  // Resolves a property with a given path
+
+  this.resolve = function(path) {
+    return new Property(this, path);
+  };
+
+  // Reset to initial state
+  // ----------------------
+  // Resets the graph to its initial state.
+  // Note: This clears all nodes and calls `init()` which may seed the graph.
+
+  this.reset = function() {
+    this.init();
+    this.trigger("graph:reset");
+  };
+
+  // Graph initialization.
+  this.init = function() {
+    this.__is_initializing__ = true;
+
+    if (this.__seed__) {
+      this.nodes = util.clone(this.__seed__.nodes);
+    } else {
+      this.nodes = {};
+    }
+
+    _.each(this.indexes, function(index) {
+      index.reset();
+    });
+
+    delete this.__is_initializing__;
+  };
+
+  this.addIndex = function(name, options) {
+    if (this.indexes[name]) {
+      throw new GraphError("Index with name " + name + "already exists.");
+    }
+    var index = new Index(this, options);
+    this.indexes[name] = index;
+
+    return index;
+  };
+
+  this.removeIndex = function(name) {
+    delete this.indexes[name];
+  };
+
+  this._queryArray = function(arr, type) {
+    if (!_.isArray(type)) {
+      throw new GraphError("Illegal argument: array types must be specified as ['array'(, 'array')*, <type>]");
+    }
+    var result, idx;
+    if (type[1] === "array") {
+      result = [];
+      for (idx = 0; idx < arr.length; idx++) {
+        result.push(this._queryArray(arr[idx], type.slice(1)));
+      }
+    } else if (!isValueType(type[1])) {
+      result = [];
+      for (idx = 0; idx < arr.length; idx++) {
+        result.push(this.get(arr[idx]));
+      }
+    } else {
+      result = arr;
+    }
+    return result;
+  };
+
+};
+
+// Index Modes
+// ----------
+
+Graph.STRICT_INDEXING = 1 << 1;
+Graph.DEFAULT_MODE = Graph.STRICT_INDEXING;
+
+
+Graph.prototype = new Graph.Prototype();
+
+Graph.Schema = Schema;
+Graph.Property = Property;
+Graph.Index = Index;
+
+// Exports
+// ========
+
+module.exports = Graph;
+
+},{"./graph_index":64,"./property":65,"./schema":66,"substance-util":134,"underscore":139}],68:[function(require,module,exports){
 "use strict";
 
 var _ = require("underscore");
@@ -11656,7 +7087,7 @@ Document.Writer = require('./src/controller');
 
 module.exports = Document;
 
-},{"./src/annotator":83,"./src/composite":85,"./src/container":86,"./src/controller":87,"./src/cursor":88,"./src/document":89,"./src/node":90,"./src/selection":91,"./src/text_node":92,"underscore":160}],83:[function(require,module,exports){
+},{"./src/annotator":69,"./src/composite":71,"./src/container":72,"./src/controller":73,"./src/cursor":74,"./src/document":75,"./src/node":76,"./src/selection":77,"./src/text_node":78,"underscore":139}],69:[function(require,module,exports){
 "use strict";
 
 // Import
@@ -12349,7 +7780,7 @@ Annotator.Fragmenter = Fragmenter;
 
 module.exports = Annotator;
 
-},{"./document":89,"./selection":91,"substance-data":75,"substance-operator":139,"substance-util":155,"underscore":160}],84:[function(require,module,exports){
+},{"./document":75,"./selection":77,"substance-data":63,"substance-operator":143,"substance-util":134,"underscore":139}],70:[function(require,module,exports){
 "use strict";
 
 var _ = require("underscore");
@@ -12394,7 +7825,7 @@ Clipboard.prototype = new Clipboard.Prototype();
 
 module.exports = Clipboard;
 
-},{"substance-util":155,"underscore":160}],85:[function(require,module,exports){
+},{"substance-util":134,"underscore":139}],71:[function(require,module,exports){
 var DocumentNode = require("./node");
 
 var Composite = function(node, doc) {
@@ -12497,7 +7928,7 @@ Composite.prototype = new Composite.Prototype();
 
 module.exports = Composite;
 
-},{"./node":90}],86:[function(require,module,exports){
+},{"./node":76}],72:[function(require,module,exports){
 "use strict";
 
 var _ = require("underscore");
@@ -12731,7 +8162,7 @@ Object.defineProperties(Container.prototype, {
 
 module.exports = Container;
 
-},{"./composite":85,"substance-util":155,"underscore":160}],87:[function(require,module,exports){
+},{"./composite":71,"substance-util":134,"underscore":139}],73:[function(require,module,exports){
 "use strict";
 
 var _ = require("underscore");
@@ -13331,7 +8762,7 @@ Controller.ManipulationSession = ManipulationSession;
 
 module.exports = Controller;
 
-},{"./annotator":83,"./clipboard":84,"./composite":85,"./selection":91,"substance-operator":139,"substance-util":155,"underscore":160}],88:[function(require,module,exports){
+},{"./annotator":69,"./clipboard":70,"./composite":71,"./selection":77,"substance-operator":143,"substance-util":134,"underscore":139}],74:[function(require,module,exports){
 var _ = require("underscore");
 var SRegExp = require("substance-regexp");
 var util = require("substance-util");
@@ -13568,7 +8999,7 @@ Object.defineProperties(Cursor.prototype, {
 
 module.exports = Cursor;
 
-},{"substance-regexp":149,"substance-util":155,"underscore":160}],89:[function(require,module,exports){
+},{"substance-regexp":128,"substance-util":134,"underscore":139}],75:[function(require,module,exports){
 "use strict";
 
 // Substance.Document 0.5.0
@@ -13585,8 +9016,8 @@ var _ = require("underscore");
 var util = require("substance-util");
 var errors = util.errors;
 var Data = require("substance-data");
-var Operator = require("substance-operator");
-var Chronicle = require("substance-chronicle");
+//var Operator = require("substance-operator");
+//var Chronicle = require("substance-chronicle");
 var Container = require("./container");
 
 // Module
@@ -13633,23 +9064,6 @@ Document.schema = {
 Document.Prototype = function() {
   var __super__ = util.prototype(this);
 
-  this.__apply__ = function(op) {
-    var result = __super__.__apply__.call(this, op, "silent");
-
-    // book-keeping of Container instances
-    Operator.Helpers.each(op, function(_op) {
-      // TODO: this can probably be optimized...
-      if (_op.type === "set" || _op.type === "update") {
-        _.each(this.containers, function(container) {
-          container.update(_op);
-        }, this);
-      }
-    }, this);
-
-    return result;
-  };
-
-
   this.getIndex = function(name) {
     return this.indexes[name];
   };
@@ -13657,7 +9071,6 @@ Document.Prototype = function() {
   this.getSchema = function() {
     return this.schema;
   };
-
 
   this.create = function(node) {
     __super__.create.call(this, node);
@@ -13731,29 +9144,22 @@ Document.Prototype = function() {
     indexes = indexes.sort().reverse();
     indexes = _.uniq(indexes);
 
-    var ops = _.map(indexes, function(index) {
-      return Operator.ArrayOperation.Delete(index, view.nodes[index]);
-    });
-
-    var op = Operator.ObjectOperation.Update([viewId, "nodes"], Operator.ArrayOperation.Compound(ops));
-
-    return this.apply(op);
+    var container = this.nodes[viewId];
+    for (var i = 0; i < indexes.length; i++) {
+      container.nodes.slice(indexes[i], 1);
+    }
   };
 
   // Adds nodes to a view
   // --------
   //
 
-  this.show = function(viewId, nodes, target) {
+  this.show = function(viewId, nodeId, target) {
     if (target === undefined) target = -1;
 
     var view = this.get(viewId);
     if (!view) {
       throw new DocumentError("Invalid view id: " + viewId);
-    }
-
-    if (_.isString(nodes)) {
-      nodes = [nodes];
     }
 
     var l = view.nodes.length;
@@ -13762,61 +9168,7 @@ Document.Prototype = function() {
     target = Math.min(target, l);
     if (target<0) target = Math.max(0, l+target+1);
 
-    var ops = [];
-    for (var idx = 0; idx < nodes.length; idx++) {
-      var nodeId = nodes[idx];
-      if (this.nodes[nodeId] === undefined) {
-        throw new DocumentError("Invalid node id: " + nodeId);
-      }
-      ops.push(Operator.ArrayOperation.Insert(target + idx, nodeId));
-    }
-
-    if (ops.length > 0) {
-      var update = Operator.ObjectOperation.Update([viewId, "nodes"], Operator.ArrayOperation.Compound(ops));
-      return this.apply(update);
-    }
-  };
-
-  // Start simulation, which conforms to a transaction (think databases)
-  // --------
-  //
-
-  this.startSimulation = function() {
-    // TODO: this should be implemented in a more cleaner and efficient way.
-    // Though, for now and sake of simplicity done by creating a copy
-    var self = this;
-    var simulation = this.fromSnapshot(this.toJSON());
-    var ops = [];
-    simulation.ops = ops;
-
-    var __apply__ = simulation.apply;
-
-    simulation.apply = function(op) {
-      ops.push(op);
-      op = __apply__.call(simulation, op);
-      return op;
-    };
-
-    simulation.save = function() {
-      var _ops = [];
-      for (var i = 0; i < ops.length; i++) {
-        if (ops[i].type !== "compound") {
-          _ops.push(ops[i]);
-        } else {
-          _ops = _ops.concat(ops[i].ops);
-        }
-      }
-
-      if (_ops.length === 0) {
-        // nothing has been recorded
-        return;
-      }
-
-      var compound = Operator.ObjectOperation.Compound(_ops);
-      self.apply(compound);
-    };
-
-    return simulation;
+    view.nodes[target] = nodeId;
   };
 
   this.fromSnapshot = function(data, options) {
@@ -13845,7 +9197,7 @@ Document.DocumentError = DocumentError;
 
 module.exports = Document;
 
-},{"./container":86,"substance-chronicle":63,"substance-data":75,"substance-operator":139,"substance-util":155,"underscore":160}],90:[function(require,module,exports){
+},{"./container":72,"substance-data":63,"substance-util":134,"underscore":139}],76:[function(require,module,exports){
 "use strict";
 
 var _ = require("underscore");
@@ -13984,7 +9336,7 @@ Node.defineProperties(Node.prototype, ["id", "type"]);
 
 module.exports = Node;
 
-},{"underscore":160}],91:[function(require,module,exports){
+},{"underscore":139}],77:[function(require,module,exports){
 "use strict";
 
 var _ = require("underscore");
@@ -14541,7 +9893,7 @@ Selection.SelectionError = SelectionError;
 
 module.exports = Selection;
 
-},{"./cursor":88,"substance-util":155,"underscore":160}],92:[function(require,module,exports){
+},{"./cursor":74,"substance-util":134,"underscore":139}],78:[function(require,module,exports){
 "use strict";
 
 var _ = require("underscore");
@@ -14720,7 +10072,7 @@ DocumentNode.defineProperties(Text.prototype, ["content"]);
 
 module.exports = Text;
 
-},{"./node":90,"substance-operator":139,"substance-regexp":149,"underscore":160}],93:[function(require,module,exports){
+},{"./node":76,"substance-operator":143,"substance-regexp":128,"underscore":139}],79:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -14741,7 +10093,7 @@ module.exports = {
   "description": require("./src/description")
 };
 
-},{"./src/codeblock":96,"./src/collaborator":99,"./src/composite":102,"./src/cover":105,"./src/description":108,"./src/figure":111,"./src/formula":114,"./src/heading":117,"./src/image":120,"./src/list":121,"./src/node":124,"./src/paragraph":127,"./src/table":130,"./src/text":133,"./src/web_resource":136}],94:[function(require,module,exports){
+},{"./src/codeblock":82,"./src/collaborator":85,"./src/composite":88,"./src/cover":91,"./src/description":94,"./src/figure":97,"./src/formula":100,"./src/heading":103,"./src/image":106,"./src/list":107,"./src/node":110,"./src/paragraph":113,"./src/table":116,"./src/text":119,"./src/web_resource":122}],80:[function(require,module,exports){
 "use strict";
 
 var Text = require("../text/text_node");
@@ -14800,7 +10152,7 @@ Codeblock.prototype.constructor = Codeblock;
 module.exports = Codeblock;
 
 
-},{"../text/text_node":134}],95:[function(require,module,exports){
+},{"../text/text_node":120}],81:[function(require,module,exports){
 "use strict";
 
 var TextView = require('../text/text_view');
@@ -14821,7 +10173,7 @@ CodeblockView.prototype = new CodeblockView.Prototype();
 
 module.exports = CodeblockView;
 
-},{"../text/text_view":135}],96:[function(require,module,exports){
+},{"../text/text_view":121}],82:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -14829,7 +10181,7 @@ module.exports = {
   View: require("./codeblock_view")
 };
 
-},{"./codeblock":94,"./codeblock_view":95}],97:[function(require,module,exports){
+},{"./codeblock":80,"./codeblock_view":81}],83:[function(require,module,exports){
 var _ = require('underscore');
 var Node = require('substance-document').Node;
 
@@ -14927,7 +10279,7 @@ _.each(Collaborator.type.properties, function(prop, key) {
 Object.defineProperties(Collaborator.prototype, getters);
 module.exports = Collaborator;
 
-},{"substance-document":82,"underscore":160}],98:[function(require,module,exports){
+},{"substance-document":68,"underscore":139}],84:[function(require,module,exports){
 "use strict";
 
 var _ = require("underscore");
@@ -15004,7 +10356,7 @@ CollaboratorView.prototype = new CollaboratorView.Prototype();
 
 module.exports = CollaboratorView;
 
-},{"../node":124,"substance-application":57,"substance-util":155,"underscore":160}],99:[function(require,module,exports){
+},{"../node":110,"substance-application":57,"substance-util":134,"underscore":139}],85:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -15012,14 +10364,14 @@ module.exports = {
   View: require("./collaborator_view")
 };
 
-},{"./collaborator":97,"./collaborator_view":98}],100:[function(require,module,exports){
+},{"./collaborator":83,"./collaborator_view":84}],86:[function(require,module,exports){
 "use strict";
 
 // Note: we leave the Composite in `substance-document` as it is an essential part of the API.
 var Document = require("substance-document");
 module.exports = Document.Composite;
 
-},{"substance-document":82}],101:[function(require,module,exports){
+},{"substance-document":68}],87:[function(require,module,exports){
 "use strict";
 
 var NodeView = require("../node").View;
@@ -15098,7 +10450,7 @@ CompositeView.prototype = new CompositeView.Prototype();
 
 module.exports = CompositeView;
 
-},{"../node":124}],102:[function(require,module,exports){
+},{"../node":110}],88:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -15106,7 +10458,7 @@ module.exports = {
   View: require("./composite_view")
 };
 
-},{"./composite":100,"./composite_view":101}],103:[function(require,module,exports){
+},{"./composite":86,"./composite_view":87}],89:[function(require,module,exports){
 var _ = require('underscore');
 var DocumentNode = require('../node/node');
 
@@ -15193,7 +10545,7 @@ Object.defineProperties(Cover.prototype, {
 
 module.exports = Cover;
 
-},{"../node/node":125,"underscore":160}],104:[function(require,module,exports){
+},{"../node/node":111,"underscore":139}],90:[function(require,module,exports){
 "use strict";
 
 var _ = require("underscore");
@@ -15239,7 +10591,7 @@ CoverView.Prototype = function() {
         // TODO: use data-* attribute to store the referenced collaborator node
         authorRefEl.setAttribute("id", ref.id);
         authorRefEl.classList.add("annotation");
-        authorRefEl.classList.add("collaborator_reference");
+        authorRefEl.classList.add("person_reference");
         authorRefEl.innerHTML = author.name;
         authorsEl.appendChild(authorRefEl);
       }
@@ -15259,9 +10611,9 @@ CoverView.prototype = new CoverView.Prototype();
 
 module.exports = CoverView;
 
-},{"../node/node_view":126,"substance-application":57,"underscore":160}],105:[function(require,module,exports){
+},{"../node/node_view":112,"substance-application":57,"underscore":139}],91:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./cover":103,"./cover_view":104}],106:[function(require,module,exports){
+},{"./cover":89,"./cover_view":90,"/home/oliver/projects/elife/lens/node_modules/lens-article/nodes/cover/index.js":22}],92:[function(require,module,exports){
 "use strict";
 
 var _ = require("underscore");
@@ -15329,7 +10681,7 @@ DocumentNode.defineProperties(Description.prototype, ["topic", "body"]);
 
 module.exports = Description;
 
-},{"substance-document":82,"underscore":160}],107:[function(require,module,exports){
+},{"substance-document":68,"underscore":139}],93:[function(require,module,exports){
 "use strict";
 
 var NodeView = require("../node").View;
@@ -15375,7 +10727,7 @@ DescriptionView.prototype = new DescriptionView.Prototype();
 
 module.exports = DescriptionView;
 
-},{"../node":124}],108:[function(require,module,exports){
+},{"../node":110}],94:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -15383,7 +10735,7 @@ module.exports = {
   View: require("./description_view")
 };
 
-},{"./description":106,"./description_view":107}],109:[function(require,module,exports){
+},{"./description":92,"./description_view":93}],95:[function(require,module,exports){
 "use strict";
 
 var Document = require("substance-document");
@@ -15501,7 +10853,7 @@ Object.defineProperties(Figure.prototype, {
 
 module.exports = Figure;
 
-},{"substance-document":82}],110:[function(require,module,exports){
+},{"substance-document":68}],96:[function(require,module,exports){
 "use strict";
 
 var CompositeView = require("../composite").View;
@@ -15555,9 +10907,9 @@ FigureView.prototype = new FigureView.Prototype();
 
 module.exports = FigureView;
 
-},{"../composite":102,"substance-application":57}],111:[function(require,module,exports){
+},{"../composite":88,"substance-application":57}],97:[function(require,module,exports){
 arguments[4][25][0].apply(exports,arguments)
-},{"./figure":109,"./figure_view":110}],112:[function(require,module,exports){
+},{"./figure":95,"./figure_view":96,"/home/oliver/projects/elife/lens/node_modules/lens-article/nodes/figure/index.js":25}],98:[function(require,module,exports){
 var _ = require('underscore');
 var Node = require('substance-document').Node;
 
@@ -15641,7 +10993,7 @@ Object.defineProperties(Formula.prototype, getters);
 
 module.exports = Formula;
 
-},{"substance-document":82,"underscore":160}],113:[function(require,module,exports){
+},{"substance-document":68,"underscore":139}],99:[function(require,module,exports){
 "use strict";
 
 var NodeView = require('../node').View;
@@ -15707,7 +11059,7 @@ FormulaView.prototype = new FormulaView.Prototype();
 
 module.exports = FormulaView;
 
-},{"../node":124}],114:[function(require,module,exports){
+},{"../node":110}],100:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -15715,7 +11067,7 @@ module.exports = {
   View: require('./formula_view')
 };
 
-},{"./formula":112,"./formula_view":113}],115:[function(require,module,exports){
+},{"./formula":98,"./formula_view":99}],101:[function(require,module,exports){
 "use strict";
 
 var DocumentNode = require("substance-document").Node;
@@ -15778,7 +11130,7 @@ DocumentNode.defineProperties(Heading.prototype, ["level"]);
 
 module.exports = Heading;
 
-},{"../text/text_node":134,"substance-document":82}],116:[function(require,module,exports){
+},{"../text/text_node":120,"substance-document":68}],102:[function(require,module,exports){
 "use strict";
 
 var TextView = require('../text/text_view');
@@ -15801,7 +11153,7 @@ HeadingView.prototype = new HeadingView.Prototype();
 
 module.exports = HeadingView;
 
-},{"../text/text_view":135}],117:[function(require,module,exports){
+},{"../text/text_view":121}],103:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -15809,7 +11161,7 @@ module.exports = {
   View: require("./heading_view")
 };
 
-},{"./heading":115,"./heading_view":116}],118:[function(require,module,exports){
+},{"./heading":101,"./heading_view":102}],104:[function(require,module,exports){
 "use strict";
 
 var DocumentNode = require("substance-document").Node;
@@ -15862,7 +11214,7 @@ ImageNode.prototype.constructor = ImageNode;
 
 module.exports = ImageNode;
 
-},{"../web_resource/web_resource":137,"substance-document":82}],119:[function(require,module,exports){
+},{"../web_resource/web_resource":123,"substance-document":68}],105:[function(require,module,exports){
 "use strict";
 
 var NodeView = require("../node").View;
@@ -15953,7 +11305,7 @@ ImageView.prototype = new ImageView.Prototype();
 
 module.exports = ImageView;
 
-},{"../node":124}],120:[function(require,module,exports){
+},{"../node":110}],106:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -15961,7 +11313,7 @@ module.exports = {
   View: require("./image_view")
 };
 
-},{"./image":118,"./image_view":119}],121:[function(require,module,exports){
+},{"./image":104,"./image_view":105}],107:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -15969,7 +11321,7 @@ module.exports = {
   View: require("./list_view")
 };
 
-},{"./list":122,"./list_view":123}],122:[function(require,module,exports){
+},{"./list":108,"./list_view":109}],108:[function(require,module,exports){
 "use strict";
 
 var _ = require("underscore");
@@ -16103,7 +11455,7 @@ DocumentNode.defineProperties(List.prototype, ["items", "ordered"]);
 
 module.exports = List;
 
-},{"substance-document":82,"underscore":160}],123:[function(require,module,exports){
+},{"substance-document":68,"underscore":139}],109:[function(require,module,exports){
 "use strict";
 
 var CompositeView = require("../composite/composite_view");
@@ -16172,7 +11524,7 @@ ListView.prototype = new ListView.Prototype();
 
 module.exports = ListView;
 
-},{"../composite/composite_view":101,"./list":122}],124:[function(require,module,exports){
+},{"../composite/composite_view":87,"./list":108}],110:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -16180,7 +11532,7 @@ module.exports = {
   View: require("./node_view")
 };
 
-},{"./node":125,"./node_view":126}],125:[function(require,module,exports){
+},{"./node":111,"./node_view":112}],111:[function(require,module,exports){
 "use strict";
 
 // Note: we leave the Node in `substance-document` as it is an essential part of the API.
@@ -16209,7 +11561,7 @@ Node.description = {
 
 module.exports = Node;
 
-},{"substance-document":82}],126:[function(require,module,exports){
+},{"substance-document":68}],112:[function(require,module,exports){
 var View = require("substance-application").View;
 
 // Substance.Node.View
@@ -16283,7 +11635,7 @@ NodeView.prototype = new NodeView.Prototype();
 
 module.exports = NodeView;
 
-},{"substance-application":57}],127:[function(require,module,exports){
+},{"substance-application":57}],113:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -16291,7 +11643,7 @@ module.exports = {
   View: require("./paragraph_view")
 };
 
-},{"./paragraph":128,"./paragraph_view":129}],128:[function(require,module,exports){
+},{"./paragraph":114,"./paragraph_view":115}],114:[function(require,module,exports){
 "use strict";
 
 var _ = require("underscore");
@@ -16422,7 +11774,7 @@ DocumentNode.defineProperties(Paragraph.prototype, ["children"]);
 
 module.exports = Paragraph;
 
-},{"substance-document":82,"underscore":160}],129:[function(require,module,exports){
+},{"substance-document":68,"underscore":139}],115:[function(require,module,exports){
 "use strict";
 
 var CompositeView = require("../composite/composite_view");
@@ -16448,7 +11800,7 @@ ParagraphView.prototype = new ParagraphView.Prototype();
 
 module.exports = ParagraphView;
 
-},{"../composite/composite_view":101}],130:[function(require,module,exports){
+},{"../composite/composite_view":87}],116:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -16456,7 +11808,7 @@ module.exports = {
   View: require("./table_view")
 };
 
-},{"./table":131,"./table_view":132}],131:[function(require,module,exports){
+},{"./table":117,"./table_view":118}],117:[function(require,module,exports){
 "use strict";
 
 var Document = require("substance-document");
@@ -16660,7 +12012,7 @@ Object.defineProperties(Table.prototype, {
 
 module.exports = Table;
 
-},{"substance-document":82,"underscore":160}],132:[function(require,module,exports){
+},{"substance-document":68,"underscore":139}],118:[function(require,module,exports){
 "use strict";
 
 var CompositeView = require("../composite/composite_view");
@@ -16758,7 +12110,7 @@ TableView.prototype.constructor = TableView;
 
 module.exports = TableView;
 
-},{"../composite/composite_view":101,"underscore":160}],133:[function(require,module,exports){
+},{"../composite/composite_view":87,"underscore":139}],119:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -16766,7 +12118,7 @@ module.exports = {
   View: require("./text_view")
 };
 
-},{"./text_node":134,"./text_view":135}],134:[function(require,module,exports){
+},{"./text_node":120,"./text_view":121}],120:[function(require,module,exports){
 "use strict";
 
 // Note: for now, we have left the Text node implementation in substance-document
@@ -16776,7 +12128,8 @@ module.exports = {
 var Document = require("substance-document");
 module.exports = Document.TextNode;
 
-},{"substance-document":82}],135:[function(require,module,exports){
+},{"substance-document":68}],121:[function(require,module,exports){
+var _ = require('underscore');
 var NodeView = require('../node/node_view');
 var Document = require("substance-document");
 var Annotator = Document.Annotator;
@@ -16790,11 +12143,24 @@ var $$ = require("substance-application").$$;
 
 var LAST_CHAR_HACK = false;
 
-var TextView = function(node) {
+var TextView = function(node, options) {
   NodeView.call(this, node);
 
-  this.$el.addClass('content-node text');
-  this.$el.attr('id', this.node.id);
+  options = options || {};
+
+  // HACK: this is messy and will be cleaner after updating lens to a more current Substance version
+
+  this.path = options.path || [ node.id, 'content' ];
+  this.property = node.document.resolve(this.path)
+
+  if (options.classes) {
+    this.$el.addClass(options.classes);
+  } else {
+    this.$el.addClass('content-node text');
+  }
+  if (!options.path) {
+    this.$el.attr('id', this.node.id);
+  }
 
   this._annotations = {};
 };
@@ -16821,7 +12187,7 @@ TextView.Prototype = function() {
   this.renderContent = function() {
     this.content.innerHTML = "";
 
-    this._annotations = this.node.getAnnotations();
+    this._annotations = this.node.document.getIndex("annotations").get(this.path);
     this.renderWithAnnotations(this._annotations);
   };
 
@@ -16844,23 +12210,22 @@ TextView.Prototype = function() {
   };
 
   this.onNodeUpdate = function(op) {
-    if (op.path[1] === "content") {
-      console.log("Updating text view: ", op);
-      if (op.type === "update") {
-        var update = op.diff;
-        if (update.isInsert()) {
-          this.insert(update.pos, update.str);
-        } else if (update.isDelete()) {
-          this.delete(update.pos, update.str.length);
-        }
-      } else if (op.type === "set") {
-        this.renderContent();
+    if (op.type === "update") {
+      var update = op.diff;
+      if (update.isInsert()) {
+        this.insert(update.pos, update.str);
+      } else if (update.isDelete()) {
+        this.delete(update.pos, update.str.length);
       }
+    } else if (op.type === "set") {
+      this.renderContent();
     }
   };
 
   this.onGraphUpdate = function(op) {
-    NodeView.prototype.onGraphUpdate.call(this, op);
+    if(_.isEqual(op.path, this.path) && (op.type === "update" || op.type === "set") ) {
+      this.onNodeUpdate(op);
+    }
 
     var doc = this.node.document;
     var schema = doc.getSchema();
@@ -16894,7 +12259,7 @@ TextView.Prototype = function() {
     range.setStart(this.content.childNodes[0], 0);
     range.setEnd(el, offset);
     var str = range.toString();
-    var charPos = Math.min(this.node.content.length, str.length);
+    var charPos = Math.min(this.property.get().length, str.length);
 
     // console.log("Requested char pos: ", charPos, this.node.content[charPos]);
 
@@ -16914,7 +12279,7 @@ TextView.Prototype = function() {
 
     var range = document.createRange();
 
-    if (this.node.content.length === 0) {
+    if (this.property.get().length === 0) {
       range.setStart(this.content.childNodes[0], 0);
       return range;
     }
@@ -16969,7 +12334,7 @@ TextView.Prototype = function() {
 
   this.renderWithAnnotations = function(annotations) {
     var that = this;
-    var text = this.node.content;
+    var text = this.property.get();
     var fragment = document.createDocumentFragment();
 
     // this splits the text and annotations into smaller pieces
@@ -17014,7 +12379,7 @@ TextView.prototype = new TextView.Prototype();
 
 module.exports = TextView;
 
-},{"../node/node_view":126,"substance-application":57,"substance-document":82}],136:[function(require,module,exports){
+},{"../node/node_view":112,"substance-application":57,"substance-document":68,"underscore":139}],122:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -17022,7 +12387,7 @@ module.exports = {
   View: require("./web_resource_view")
 };
 
-},{"./web_resource":137,"./web_resource_view":138}],137:[function(require,module,exports){
+},{"./web_resource":123,"./web_resource_view":124}],123:[function(require,module,exports){
 "use strict";
 
 var DocumentNode = require("substance-document").Node;
@@ -17068,1951 +12433,12 @@ DocumentNode.defineProperties(WebResource.prototype, ["url"]);
 
 module.exports = WebResource;
 
-},{"substance-document":82}],138:[function(require,module,exports){
+},{"substance-document":68}],124:[function(require,module,exports){
 "use strict";
 
 module.exports = require("../node").View;
 
-},{"../node":124}],139:[function(require,module,exports){
-"use strict";
-
-module.exports = {
-  Operation: require('./src/operation'),
-  Compound: require('./src/compound'),
-  ArrayOperation: require('./src/array_operation'),
-  TextOperation: require('./src/text_operation'),
-  ObjectOperation: require('./src/object_operation'),
-  Helpers: require('./src/operation_helpers')
-};
-
-},{"./src/array_operation":140,"./src/compound":141,"./src/object_operation":142,"./src/operation":143,"./src/operation_helpers":144,"./src/text_operation":145}],140:[function(require,module,exports){
-"use strict";
-
-// Import
-// ========
-
-var _ = require('underscore');
-var util   = require('substance-util');
-var errors = util.errors;
-var Operation = require('./operation');
-var Compound = require('./compound');
-
-var NOP = "NOP";
-var DEL = "delete";
-var INS = "insert";
-var MOV = 'move';
-
-// ArrayOperations can be used to describe changes to arrays by operations.
-// ========
-//
-// Insertions
-// --------
-//
-// An insertion is specified by
-//    {
-//      type: '+',
-//      val:  <value>,
-//      pos:  <position>
-//    }
-// or shorter:
-//    ['+', <value>, <position>]
-//
-//
-// Deletions
-// --------
-//
-// A deletion is in the same way as Insertions but with '-' as type.
-//
-//    ['-', <value>, <position>]
-//
-// The value must be specified too as otherwise the operation would not be invertible.
-//
-var Move;
-
-var ArrayOperation = function(options) {
-
-  if (options.type === undefined) {
-    throw new errors.OperationError("Illegal argument: insufficient data.");
-  }
-
-  // Insert: '+', Delete: '-', Move: '>>'
-  this.type = options.type;
-
-  if (this.type === NOP) return;
-
-  // the position where to apply the operation
-  this.pos = options.pos;
-
-  // the string to delete or insert
-  this.val = options.val;
-
-  // Move operations have a target position
-  this.target = options.target;
-
-  // sanity checks
-  if(this.type !== NOP && this.type !== INS && this.type !== DEL && this.type !== MOV) {
-    throw new errors.OperationError("Illegal type.");
-  }
-
-  if (this.type === INS || this.type === DEL) {
-    if (this.pos === undefined || this.val === undefined) {
-      throw new errors.OperationError("Illegal argument: insufficient data.");
-    }
-    if (!_.isNumber(this.pos) && this.pos < 0) {
-      throw new errors.OperationError("Illegal argument: expecting positive number as pos.");
-    }
-  } else if (this.type === MOV) {
-    if (this.pos === undefined || this.target === undefined) {
-      throw new errors.OperationError("Illegal argument: insufficient data.");
-    }
-    if (!_.isNumber(this.pos) && this.pos < 0) {
-      throw new errors.OperationError("Illegal argument: expecting positive number as pos.");
-    }
-    if (!_.isNumber(this.target) && this.target < 0) {
-      throw new errors.OperationError("Illegal argument: expecting positive number as target.");
-    }
-  }
-};
-
-ArrayOperation.fromJSON = function(data) {
-  if (_.isArray(data)) {
-    if (data[0] === MOV) {
-      return new Move(data[1], data[2]);
-    } else {
-      return new ArrayOperation(data);
-    }
-  }
-  if (data.type === MOV) {
-    return Move.fromJSON(data);
-  } else if (data.type === Compound.TYPE) {
-    var ops = [];
-    for (var idx = 0; idx < data.ops.length; idx ++) {
-      ops.push(ArrayOperation.fromJSON(data.ops[idx]));
-    }
-    return ArrayOperation.Compound(ops);
-  }
-  else  {
-    return new ArrayOperation(data);
-  }
-};
-
-ArrayOperation.Prototype = function() {
-
-  this.clone = function() {
-    return new ArrayOperation(this);
-  };
-
-  this.apply = function(array) {
-
-    if (this.type === NOP) {
-      return array;
-    }
-
-    var adapter = (array instanceof ArrayOperation.ArrayAdapter) ? array : new ArrayOperation.ArrayAdapter(array);
-
-    // Insert
-    if (this.type === INS) {
-      adapter.insert(this.pos, this.val);
-    }
-    // Delete
-    else if (this.type === DEL) {
-      adapter.delete(this.pos, this.val);
-    }
-    else {
-      throw new errors.OperationError("Illegal state.");
-    }
-    return array;
-  };
-
-  this.invert = function() {
-    var data = this.toJSON();
-
-    if (this.type === INS) data.type = DEL;
-    else if (this.type === DEL) data.type = INS;
-    else if (this.type === NOP) data.type = NOP;
-    else {
-      throw new errors.OperationError("Illegal state.");
-    }
-
-    return new ArrayOperation(data);
-  };
-
-  this.hasConflict = function(other) {
-    return ArrayOperation.hasConflict(this, other);
-  };
-
-  this.toJSON = function() {
-    var result = {
-      type: this.type,
-    };
-
-    if (this.type === NOP) return result;
-
-    result.pos = this.pos;
-    result.val = this.val;
-
-    return result;
-  };
-
-  this.isInsert = function() {
-    return this.type === INS;
-  };
-
-  this.isDelete = function() {
-    return this.type === DEL;
-  };
-
-  this.isNOP = function() {
-    return this.type === NOP;
-  };
-
-  this.isMove = function() {
-    return this.type === MOV;
-  };
-
-};
-ArrayOperation.Prototype.prototype = Operation.prototype;
-ArrayOperation.prototype = new ArrayOperation.Prototype();
-
-var _NOP = 0;
-var _DEL = 1;
-var _INS = 2;
-var _MOV = 4;
-
-var CODE = {};
-CODE[NOP] = _NOP;
-CODE[DEL] = _DEL;
-CODE[INS] = _INS;
-CODE[MOV] = _MOV;
-
-var _hasConflict = [];
-
-_hasConflict[_DEL | _DEL] = function(a,b) {
-  return a.pos === b.pos;
-};
-
-_hasConflict[_DEL | _INS] = function() {
-  return false;
-};
-
-_hasConflict[_INS | _INS] = function(a,b) {
-  return a.pos === b.pos;
-};
-
-/*
-  As we provide Move as quasi atomic operation we have to look at it conflict potential.
-
-  A move is realized as composite of Delete and Insert.
-
-  M / I: ( -> I / I conflict)
-
-    m.s < i && m.t == i-1
-    else i && m.t == i
-
-  M / D: ( -> D / D conflict)
-
-    m.s === d
-
-  M / M:
-
-    1. M/D conflict
-    2. M/I conflict
-*/
-
-var hasConflict = function(a, b) {
-  if (a.type === NOP || b.type === NOP) return false;
-  var caseId = CODE[a.type] | CODE[b.type];
-
-  if (_hasConflict[caseId]) {
-    return _hasConflict[caseId](a,b);
-  } else {
-    return false;
-  }
-};
-
-var transform0;
-
-function transform_insert_insert(a, b, first) {
-
-  if (a.pos === b.pos) {
-    if (first) {
-      b.pos += 1;
-    } else {
-      a.pos += 1;
-    }
-  }
-  // a before b
-  else if (a.pos < b.pos) {
-    b.pos += 1;
-  }
-
-  // a after b
-  else  {
-    a.pos += 1;
-  }
-
-}
-
-function transform_delete_delete(a, b) {
-
-  // turn the second of two concurrent deletes into a NOP
-  if (a.pos === b.pos) {
-    b.type = NOP;
-    a.type = NOP;
-    return;
-  }
-
-  if (a.pos < b.pos) {
-    b.pos -= 1;
-  } else {
-    a.pos -= 1;
-  }
-
-}
-
-function transform_insert_delete(a, b) {
-
-  // reduce to a normalized case
-  if (a.type === DEL) {
-    var tmp = a;
-    a = b;
-    b = tmp;
-  }
-
-  if (a.pos <= b.pos) {
-    b.pos += 1;
-  } else {
-    a.pos -= 1;
-  }
-
-}
-
-function transform_move(a, b, check, first) {
-  if (a.type !== MOV) return transform_move(b, a, check, !first);
-
-  var del = {type: DEL, pos: a.pos};
-  var ins = {type: INS, pos: a.target};
-
-  var options = {inplace: true, check:check};
-
-  if (b.type === DEL && a.pos === b.pos) {
-    a.type = NOP;
-    b.pos = a.target;
-
-  } else if (b.type === MOV && a.pos === b.pos) {
-    if (first) {
-      b.pos = a.target;
-      a.type = NOP;
-    } else {
-      a.pos = b.target;
-      b.type = NOP;
-    }
-  } else {
-
-    if (first) {
-      transform0(del, b, options);
-      transform0(ins, b, options);
-    } else {
-      transform0(b, del, options);
-      transform0(b, ins, options);
-    }
-
-    a.pos = del.pos;
-    a.target = ins.pos;
-
-  }
-}
-
-transform0 = function(a, b, options) {
-
-  options = options || {};
-
-  if (options.check && hasConflict(a, b)) {
-    throw Operation.conflict(a, b);
-  }
-
-  if (!options.inplace) {
-    a = util.clone(a);
-    b = util.clone(b);
-  }
-
-  if (a.type === NOP || b.type === NOP)  {
-    // nothing to transform
-  }
-  else if (a.type === INS && b.type === INS)  {
-    transform_insert_insert(a, b, true);
-  }
-  else if (a.type === DEL && b.type === DEL) {
-    transform_delete_delete(a, b, true);
-  }
-  else if (a.type === MOV || b.type === MOV) {
-    transform_move(a, b, options.check, true);
-  }
-  else {
-    transform_insert_delete(a, b, true);
-  }
-
-  return [a, b];
-};
-
-var __apply__ = function(op, array) {
-  if (_.isArray(op)) {
-    if (op[0] === MOV) {
-      op = new Move(op[1], op[2]);
-    } else {
-      op = new ArrayOperation(op);
-    }
-  } else if (!(op instanceof ArrayOperation)) {
-    op = ArrayOperation.fromJSON(op);
-  }
-  return op.apply(array);
-};
-
-ArrayOperation.transform = Compound.createTransform(transform0);
-ArrayOperation.hasConflict = hasConflict;
-
-ArrayOperation.perform = __apply__;
-// DEPRECATED: use ArrayOperation.perform
-ArrayOperation.apply = __apply__;
-
-// Note: this is implemented manually, to avoid the value parameter
-// necessary for Insert and Delete
-var Move = function(source, target) {
-
-  this.type = MOV;
-  this.pos = source;
-  this.target = target;
-
-  if (!_.isNumber(this.pos) || !_.isNumber(this.target) || this.pos < 0 || this.target < 0) {
-    throw new errors.OperationError("Illegal argument");
-  }
-};
-
-Move.Prototype = function() {
-
-  this.clone = function() {
-    return new Move(this.pos, this.target);
-  };
-
-  this.apply = function(array) {
-    if (this.type === NOP) return array;
-
-    var adapter = (array instanceof ArrayOperation.ArrayAdapter) ? array : new ArrayOperation.ArrayAdapter(array);
-
-    var val = array[this.pos];
-    adapter.move(val, this.pos, this.target);
-
-    return array;
-  };
-
-  this.invert = function() {
-    return new Move(this.target, this.pos);
-  };
-
-  this.toJSON = function() {
-    return {
-      type: MOV,
-      pos: this.pos,
-      target: this.target
-    };
-  };
-
-};
-Move.Prototype.prototype = ArrayOperation.prototype;
-Move.prototype = new Move.Prototype();
-
-Move.fromJSON = function(data) {
-  return new Move(data.pos, data.target);
-};
-
-
-// classical LCSS, implemented inplace and using traceback trick
-var lcss = function(arr1, arr2) {
-  var i,j;
-  var L = [0];
-
-  for (i = 0; i < arr1.length; i++) {
-    for (j = 0; j < arr2.length; j++) {
-      L[j+1] = L[j+1] || 0;
-      if (_.isEqual(arr1[i], arr2[j])) {
-        L[j+1] = Math.max(L[j+1], L[j]+1);
-      } else {
-        L[j+1] = Math.max(L[j+1], L[j]);
-      }
-    }
-  }
-
-  var seq = [];
-  for (j = arr2.length; j >= 0; j--) {
-    if (L[j] > L[j-1]) {
-      seq.unshift(arr2[j-1]);
-    }
-  }
-
-  return seq;
-};
-
-
-// Factory methods
-// -------
-// Note: you should use these methods instead of manually define
-// an operation. This is allows us to change the underlying implementation
-// without breaking your code.
-
-
-ArrayOperation.Insert = function(pos, val) {
-  return new ArrayOperation({type:INS, pos: pos, val: val});
-};
-
-ArrayOperation.Delete = function(pos, val) {
-  if (_.isArray(pos)) {
-    pos = pos.indexOf(val);
-  }
-  if (pos < 0) return new ArrayOperation({type: NOP});
-  return new ArrayOperation({type:DEL, pos: pos, val: val});
-};
-
-ArrayOperation.Move = function(pos1, pos2) {
-  return new Move(pos1, pos2);
-};
-
-ArrayOperation.Push = function(arr, val) {
-  var index = arr.length;
-  return ArrayOperation.Insert(index, val);
-};
-
-ArrayOperation.Pop = function(arr) {
-  // First we need to find a way to return values
-  var index = arr.length-1;
-  return ArrayOperation.Delete(index, arr[index]);
-};
-
-
-// Creates a compound operation that transforms the given oldArray
-// into the new Array
-ArrayOperation.Update = function(oldArray, newArray) {
-
-  // 1. Compute longest common subsequence
-  var seq = lcss(oldArray, newArray);
-
-  // 2. Iterate through the three sequences and generate a sequence of
-  //    retains, deletes, and inserts
-
-  var a = seq;
-  var b = oldArray;
-  var c = newArray;
-  var pos1, pos2, pos3;
-  pos1 = 0;
-  pos2 = 0;
-  pos3 = 0;
-
-  seq = [];
-
-  while(pos2 < b.length || pos3 < c.length) {
-    if (a[pos1] === b[pos2] && b[pos2] === c[pos3]) {
-      pos1++; pos2++; pos3++;
-      seq.push(1);
-    } else if (a[pos1] === b[pos2]) {
-      seq.push(['+', c[pos3++]]);
-    } else {
-      seq.push(['-', b[pos2++]]);
-    }
-  }
-
-  // 3. Create a compound for the computed sequence
-
-  return ArrayOperation.Sequence(seq);
-};
-
-ArrayOperation.Compound = function(ops) {
-  // do not create a Compound if not necessary
-  if (ops.length === 1) return ops[0];
-  else return new Compound(ops);
-};
-
-// Convenience factory method to create an operation that clears the given array.
-// --------
-//
-
-ArrayOperation.Clear = function(arr) {
-  var ops = [];
-  for (var idx = 0; idx < arr.length; idx++) {
-    ops.push(ArrayOperation.Delete(0, arr[idx]));
-  }
-  return ArrayOperation.Compound(ops);
-};
-
-
-
-// Convenience factory method to create an incremental complex array update.
-// --------
-//
-// Example:
-//  Input:
-//    [1,2,3,4,5,6,7]
-//  Sequence:
-//    [2, ['-', 3], 2, ['+', 8]]
-//  Output:
-//    [1,2,4,5,8,6,7]
-//
-// Syntax:
-//
-//  - positive Number: skip / retain
-//  - tuple ['-', <val>]: delete element at current position
-//  - tuple ['+', <val>]: insert element at current position
-
-ArrayOperation.Sequence = function(seq) {
-  var pos = 0;
-  var ops = [];
-
-  for (var idx = 0; idx < seq.length; idx++) {
-    var s = seq[idx];
-
-    if (_.isNumber(s) && s > 0) {
-      pos += s;
-    } else {
-      if (s[0] === "+") {
-        ops.push(ArrayOperation.Insert(pos, s[1]));
-        pos+=1;
-      } else if (s[0] === "-") {
-        ops.push(ArrayOperation.Delete(pos, s[1]));
-      } else {
-        throw new errors.OperationError("Illegal operation.");
-      }
-    }
-  }
-
-  return new Compound(ops);
-};
-
-ArrayOperation.create = function(array, spec) {
-  var type = spec[0];
-  var val, pos;
-  if (type === INS || type === "+") {
-    pos = spec[1];
-    val = spec[2];
-    return ArrayOperation.Insert(pos, val);
-  } else if (type === DEL || type === "-") {
-    pos = spec[1];
-    val = array[pos];
-    return ArrayOperation.Delete(pos, val);
-  } else if (type === MOV || type === ">>") {
-    pos = spec[1];
-    var target = spec[2];
-    return ArrayOperation.Move(pos, target);
-  } else {
-    throw new errors.OperationError("Illegal specification.");
-  }
-};
-
-var ArrayAdapter = function(arr) {
-  this.array = arr;
-};
-
-ArrayAdapter.prototype = {
-  insert: function(pos, val) {
-    if (this.array.length < pos) {
-      throw new errors.OperationError("Provided array is too small.");
-    }
-    this.array.splice(pos, 0, val);
-  },
-
-  delete: function(pos, val) {
-    if (this.array.length < pos) {
-      throw new errors.OperationError("Provided array is too small.");
-    }
-    if (this.array[pos] !== val) {
-      throw new errors.OperationError("Unexpected value at position " + pos + ". Expected " + val + ", found " + this.array[pos]);
-    }
-    this.array.splice(pos, 1);
-  },
-
-  move: function(val, pos, to) {
-    if (this.array.length < pos) {
-      throw new errors.OperationError("Provided array is too small.");
-    }
-    this.array.splice(pos, 1);
-
-    if (this.array.length < to) {
-      throw new errors.OperationError("Provided array is too small.");
-    }
-    this.array.splice(to, 0, val);
-  }
-};
-ArrayOperation.ArrayAdapter = ArrayAdapter;
-
-ArrayOperation.NOP = NOP;
-ArrayOperation.DELETE = DEL;
-ArrayOperation.INSERT = INS;
-ArrayOperation.MOVE = MOV;
-
-// Export
-// ========
-
-module.exports = ArrayOperation;
-
-},{"./compound":141,"./operation":143,"substance-util":155,"underscore":160}],141:[function(require,module,exports){
-"use strict";
-
-// Import
-// ========
-
-var _    = require('underscore');
-var util   = require('substance-util');
-var Operation = require('./operation');
-
-// Module
-// ========
-
-var COMPOUND = "compound";
-
-var Compound = function(ops) {
-  this.type = COMPOUND;
-  this.ops = ops;
-  this.alias = undefined;
-
-  if (!ops || ops.length === 0) {
-    throw new Operation.OperationError("No operations given.");
-  }
-};
-
-Compound.Prototype = function() {
-
-  this.clone = function() {
-    var ops = [];
-    for (var idx = 0; idx < this.ops.length; idx++) {
-      ops.push(util.clone(this.ops[idx]));
-    }
-    return new Compound(ops);
-  };
-
-  this.apply = function(obj) {
-    for (var idx = 0; idx < this.ops.length; idx++) {
-      obj = this.ops[idx].apply(obj);
-    }
-    return obj;
-  };
-
-  this.invert = function() {
-    var ops = [];
-    for (var idx = 0; idx < this.ops.length; idx++) {
-      // reverse the order of the inverted atomic commands
-      ops.unshift(this.ops[idx].invert());
-    }
-
-    return new Compound(ops);
-  };
-
-  this.toJSON = function() {
-    var result = {
-      type: COMPOUND,
-      ops: this.ops,
-    };
-    if (this.alias) result.alias = this.alias;
-    return result;
-  };
-
-};
-Compound.Prototype.prototype = Operation.prototype;
-Compound.prototype = new Compound.Prototype();
-
-Compound.TYPE = COMPOUND;
-
-// Transforms a compound and another given change inplace.
-// --------
-//
-
-var compound_transform = function(a, b, first, check, transform0) {
-  var idx;
-
-  if (b.type === COMPOUND) {
-    for (idx = 0; idx < b.ops.length; idx++) {
-      compound_transform(a, b.ops[idx], first, check, transform0);
-    }
-  }
-
-  else {
-    for (idx = 0; idx < a.ops.length; idx++) {
-      var _a, _b;
-      if (first) {
-        _a = a.ops[idx];
-        _b = b;
-      } else {
-        _a = b;
-        _b = a.ops[idx];
-      }
-      transform0(_a, _b, {inplace: true, check: check});
-    }
-  }
-};
-
-// A helper to create a transform method that supports Compounds.
-// --------
-//
-
-Compound.createTransform = function(primitive_transform) {
-  return function(a, b, options) {
-    options = options || {};
-    if(a.type === COMPOUND || b.type === COMPOUND) {
-      if (!options.inplace) {
-        a = util.clone(a);
-        b = util.clone(b);
-      }
-      if (a.type === COMPOUND) {
-        compound_transform(a, b, true, options.check, primitive_transform);
-      } else if (b.type === COMPOUND) {
-        compound_transform(b, a, false, options.check, primitive_transform);
-      }
-      return [a, b];
-    } else {
-      return primitive_transform(a, b, options);
-    }
-
-  };
-};
-
-// Export
-// ========
-
-module.exports = Compound;
-
-},{"./operation":143,"substance-util":155,"underscore":160}],142:[function(require,module,exports){
-"use strict";
-
-// Import
-// ========
-
-var _ = require('underscore');
-var util = require('substance-util');
-var errors = util.errors;
-var Operation = require('./operation');
-var Compound = require('./compound');
-var TextOperation = require('./text_operation');
-var ArrayOperation = require('./array_operation');
-
-var NOP = "NOP";
-var CREATE = "create";
-var DELETE = 'delete';
-var UPDATE = 'update';
-var SET = 'set';
-
-var ObjectOperation = function(data) {
-
-  this.type = data.type;
-  this.path = data.path;
-
-  if (this.type === CREATE || this.type === DELETE) {
-    this.val = data.val;
-  }
-
-  // Updates can be given as value or as Operation (Text, Array)
-  else if (this.type === UPDATE) {
-    if (data.diff !== undefined) {
-      this.diff = data.diff;
-      this.propertyType = data.propertyType;
-    } else {
-      throw new errors.OperationError("Illegal argument: update by value or by diff must be provided");
-    }
-  }
-
-  else if (this.type === SET) {
-    this.val = data.val;
-    this.original = data.original;
-  }
-};
-
-ObjectOperation.fromJSON = function(data) {
-  if (data.type === Compound.TYPE) {
-    var ops = [];
-    for (var idx = 0; idx < data.ops.length; idx++) {
-      ops.push(ObjectOperation.fromJSON(data.ops[idx]));
-    }
-    return ObjectOperation.Compound(ops);
-
-  } else {
-    return new ObjectOperation(data);
-  }
-};
-
-ObjectOperation.Prototype = function() {
-
-  this.clone = function() {
-    return new ObjectOperation(this);
-  };
-
-  this.isNOP = function() {
-    if (this.type === NOP) return true;
-    else if (this.type === UPDATE) return this.diff.isNOP();
-  };
-
-  this.apply = function(obj) {
-    if (this.type === NOP) return obj;
-
-    // Note: this allows to use a custom adapter implementation
-    // to support other object like backends
-    var adapter = (obj instanceof ObjectOperation.Object) ? obj : new ObjectOperation.Object(obj);
-
-    if (this.type === CREATE) {
-      // clone here as the operations value must not be changed
-      adapter.create(this.path, util.clone(this.val));
-      return obj;
-    }
-
-    var val = adapter.get(this.path);
-
-    if (this.type === DELETE) {
-      // TODO: maybe we could tolerate such deletes
-      if (val === undefined) {
-        throw new errors.OperationError("Property " + JSON.stringify(this.path) + " not found.");
-      }
-      adapter.delete(this.path, val);
-    }
-
-    else if (this.type === UPDATE) {
-      if (this.propertyType === 'object') {
-        val = ObjectOperation.apply(this.diff, val);
-        if(!adapter.inplace()) adapter.update(this.path, val, this.diff);
-      }
-      else if (this.propertyType === 'array') {
-        val = ArrayOperation.apply(this.diff, val);
-        if(!adapter.inplace()) adapter.update(this.path, val, this.diff);
-      }
-      else if (this.propertyType === 'string') {
-        val = TextOperation.apply(this.diff, val);
-        adapter.update(this.path, val, this.diff);
-      }
-      else {
-        throw new errors.OperationError("Unsupported type for operational update.");
-      }
-    }
-
-    else if (this.type === SET) {
-      // clone here as the operations value must not be changed
-      adapter.set(this.path, util.clone(this.val));
-    }
-
-    else {
-      throw new errors.OperationError("Illegal state.");
-    }
-
-    return obj;
-  };
-
-  this.invert = function() {
-
-    if (this.type === NOP) {
-      return { type: NOP };
-    }
-
-    var result = new ObjectOperation(this);
-
-    if (this.type === CREATE) {
-      result.type = DELETE;
-    }
-
-    else if (this.type === DELETE) {
-      result.type = CREATE;
-    }
-
-    else if (this.type === UPDATE) {
-      var invertedDiff;
-      if (this.propertyType === 'string') {
-        invertedDiff = TextOperation.fromJSON(this.diff).invert();
-      } else if (this.propertyType === 'array') {
-        invertedDiff = ArrayOperation.fromJSON(this.diff).invert();
-      }
-      result.diff = invertedDiff;
-      result.propertyType = this.propertyType;
-    }
-
-    else if (this.type === SET) {
-      result.val = this.original;
-      result.original = this.val;
-    }
-
-    else {
-      throw new errors.OperationError("Illegal state.");
-    }
-
-    return result;
-  };
-
-  this.hasConflict = function(other) {
-    return ObjectOperation.hasConflict(this, other);
-  };
-
-  this.toJSON = function() {
-
-    if (this.type === NOP) {
-      return {
-        type: NOP
-      };
-    }
-
-    var data = {
-      type: this.type,
-      path: this.path,
-    };
-
-    if (this.type === CREATE || this.type === DELETE) {
-      data.val = this.val;
-    }
-
-    else if (this.type === UPDATE) {
-      data.diff = this.diff;
-      data.propertyType = this.propertyType;
-    }
-
-    else if (this.type === SET) {
-      data.val = this.val;
-      data.original = this.original;
-    }
-
-    return data;
-  };
-
-};
-ObjectOperation.Prototype.prototype = Operation.prototype;
-ObjectOperation.prototype = new ObjectOperation.Prototype();
-
-ObjectOperation.Object = function(obj) {
-  this.obj = obj;
-};
-
-ObjectOperation.Object.Prototype = function() {
-
-  function resolve(self, obj, path, create) {
-    var item = obj;
-    var idx = 0;
-    for (; idx < path.length-1; idx++) {
-      if (item === undefined) {
-        throw new Error("Key error: could not find element for path " + JSON.stringify(self.path));
-      }
-
-      if (item[path[idx]] === undefined && create) {
-        item[path[idx]] = {};
-      }
-
-      item = item[path[idx]];
-    }
-    return {parent: item, key: path[idx]};
-  }
-
-  this.get = function(path) {
-    var item = resolve(this, this.obj, path);
-    return item.parent[item.key];
-  };
-
-  this.create = function(path, value) {
-    var item = resolve(this, this.obj, path, true);
-    if (item.parent[item.key] !== undefined) {
-      throw new errors.OperationError("Value already exists. path =" + JSON.stringify(path));
-    }
-    item.parent[item.key] = value;
-  };
-
-  // Note: in the default implementation we do not need the diff
-  this.update = function(path, value, diff) {
-    this.set(path, value);
-  };
-
-  this.set = function(path, value) {
-    var item = resolve(this, this.obj, path);
-    item.parent[item.key] = value;
-  };
-
-  this.delete = function(path) {
-    var item = resolve(this, this.obj, path);
-    delete item.parent[item.key];
-  };
-
-  this.inplace = function() {
-    return true;
-  };
-
-};
-ObjectOperation.Object.prototype = new ObjectOperation.Object.Prototype();
-
-
-var hasConflict = function(a, b) {
-  if (a.type === NOP || b.type === NOP) return false;
-
-  return _.isEqual(a.path, b.path);
-};
-
-var transform_delete_delete = function(a, b) {
-  // both operations have the same effect.
-  // the transformed operations are turned into NOPs
-  a.type = NOP;
-  b.type = NOP;
-};
-
-var transform_create_create = function() {
-  // TODO: maybe it would be possible to create an differntial update that transforms the one into the other
-  // However, we fail for now.
-  throw new errors.OperationError("Can not transform two concurring creates of the same property");
-};
-
-var transform_delete_create = function(a, b, flipped) {
-  if (a.type !== DELETE) {
-    return transform_delete_create(b, a, true);
-  }
-
-  if (!flipped) {
-    a.type = NOP;
-  } else {
-    a.val = b.val;
-    b.type = NOP;
-  }
-};
-
-var transform_delete_update = function(a, b, flipped) {
-  if (a.type !== DELETE) {
-    return transform_delete_update(b, a, true);
-  }
-
-  var op;
-  if (b.propertyType === 'string') {
-    op = TextOperation.fromJSON(b.diff);
-  } else if (b.propertyType === 'array') {
-    op = ArrayOperation.fromJSON(b.diff);
-  }
-
-  // (DELETE, UPDATE) is transformed into (DELETE, CREATE)
-  if (!flipped) {
-    a.type = NOP;
-    b.type = CREATE;
-    b.val = op.apply(a.val);
-  }
-  // (UPDATE, DELETE): the delete is updated to delete the updated value
-  else {
-    a.val = op.apply(a.val);
-    b.type = NOP;
-  }
-
-};
-
-var transform_create_update = function() {
-  // it is not possible to reasonably transform this.
-  throw new errors.OperationError("Can not transform a concurring create and update of the same property");
-};
-
-var transform_update_update = function(a, b) {
-
-  // Note: this is a conflict the user should know about
-
-  var op_a, op_b, t;
-  if (b.propertyType === 'string') {
-    op_a = TextOperation.fromJSON(a.diff);
-    op_b = TextOperation.fromJSON(b.diff);
-    t = TextOperation.transform(op_a, op_b, {inplace: true});
-  } else if (b.propertyType === 'array') {
-    op_a = ArrayOperation.fromJSON(a.diff);
-    op_b = ArrayOperation.fromJSON(b.diff);
-    t = ArrayOperation.transform(op_a, op_b, {inplace: true});
-  } else if (b.propertyType === 'object') {
-    op_a = ObjectOperation.fromJSON(a.diff);
-    op_b = ObjectOperation.fromJSON(b.diff);
-    t = ObjectOperation.transform(op_a, op_b, {inplace: true});
-  }
-
-  a.diff = t[0];
-  b.diff = t[1];
-};
-
-var transform_create_set = function(a, b, flipped) {
-  if (a.type !== CREATE) return transform_create_set(b, a, true);
-
-  if (!flipped) {
-    a.type = NOP;
-    b.original = a.val;
-  } else {
-    a.type = SET;
-    a.original = b.val;
-    b.type = NOP;
-  }
-
-};
-
-var transform_delete_set = function(a, b, flipped) {
-  if (a.type !== DELETE) return transform_delete_set(b, a, true);
-
-  if (!flipped) {
-    a.type = NOP;
-    b.type = CREATE;
-    b.original = undefined;
-  } else {
-    a.val = b.val;
-    b.type = NOP;
-  }
-
-};
-
-var transform_update_set = function() {
-  throw new errors.OperationError("Can not transform update/set of the same property.");
-};
-
-var transform_set_set = function(a, b) {
-  a.type = NOP;
-  b.original = a.val;
-};
-
-var _NOP = 0;
-var _CREATE = 1;
-var _DELETE = 2;
-var _UPDATE = 4;
-var _SET = 8;
-
-var CODE = {};
-CODE[NOP] =_NOP;
-CODE[CREATE] = _CREATE;
-CODE[DELETE] = _DELETE;
-CODE[UPDATE] = _UPDATE;
-CODE[SET] = _SET;
-
-var __transform__ = [];
-__transform__[_DELETE | _DELETE] = transform_delete_delete;
-__transform__[_DELETE | _CREATE] = transform_delete_create;
-__transform__[_DELETE | _UPDATE] = transform_delete_update;
-__transform__[_CREATE | _CREATE] = transform_create_create;
-__transform__[_CREATE | _UPDATE] = transform_create_update;
-__transform__[_UPDATE | _UPDATE] = transform_update_update;
-__transform__[_CREATE | _SET   ] = transform_create_set;
-__transform__[_DELETE | _SET   ] = transform_delete_set;
-__transform__[_UPDATE | _SET   ] = transform_update_set;
-__transform__[_SET    | _SET   ] = transform_set_set;
-
-var transform = function(a, b, options) {
-
-  options = options || {};
-
-  var conflict = hasConflict(a, b);
-
-  if (options.check && conflict) {
-    throw Operation.conflict(a, b);
-  }
-
-  if (!options.inplace) {
-    a = util.clone(a);
-    b = util.clone(b);
-  }
-
-  // without conflict: a' = a, b' = b
-  if (!conflict) {
-    return [a, b];
-  }
-
-  __transform__[CODE[a.type] | CODE[b.type]](a,b);
-
-  return [a, b];
-};
-
-ObjectOperation.transform = Compound.createTransform(transform);
-ObjectOperation.hasConflict = hasConflict;
-
-var __apply__ = function(op, obj) {
-  if (!(op instanceof ObjectOperation)) {
-    op = ObjectOperation.fromJSON(op);
-  }
-  return op.apply(obj);
-};
-
-// TODO: rename to "exec" or perform
-ObjectOperation.apply = __apply__;
-
-ObjectOperation.Create = function(path, val) {
-  return new ObjectOperation({type: CREATE, path: path, val: val});
-};
-
-ObjectOperation.Delete = function(path, val) {
-  return new ObjectOperation({type: DELETE, path: path, val: val});
-};
-
-function guessPropertyType(op) {
-
-  if (op instanceof Compound) {
-    return guessPropertyType(op.ops[0]);
-  }
-  if (op instanceof TextOperation) {
-    return "string";
-  }
-  else if (op instanceof ArrayOperation) {
-    return  "array";
-  }
-  else {
-    return "other";
-  }
-}
-
-ObjectOperation.Update = function(path, diff, propertyType) {
-  propertyType = propertyType || guessPropertyType(diff);
-
-  return new ObjectOperation({
-    type: UPDATE,
-    path: path,
-    diff: diff,
-    propertyType: propertyType
-  });
-};
-
-ObjectOperation.Set = function(path, oldVal, newVal) {
-  return new ObjectOperation({
-    type: SET,
-    path: path,
-    val: newVal,
-    original: oldVal
-  });
-};
-
-ObjectOperation.Compound = function(ops) {
-  if (ops.length === 0) return null;
-  else return new Compound(ops);
-};
-
-// TODO: this can not deal with cyclic references
-var __extend__ = function(obj, newVals, path, deletes, creates, updates) {
-  var keys = Object.getOwnPropertyNames(newVals);
-
-  for (var idx = 0; idx < keys.length; idx++) {
-    var key = keys[idx];
-    var p = path.concat(key);
-
-    if (newVals[key] === undefined && obj[key] !== undefined) {
-      deletes.push(ObjectOperation.Delete(p, obj[key]));
-
-    } else if (_.isObject(newVals[key])) {
-
-      // TODO: for now, the structure must be the same
-      if (!_.isObject(obj[key])) {
-        throw new errors.OperationError("Incompatible arguments: newVals must have same structure as obj.");
-      }
-      __extend__(obj[key], newVals[key], p, deletes, creates, updates);
-
-    } else {
-      if (obj[key] === undefined) {
-        creates.push(ObjectOperation.Create(p, newVals[key]));
-      } else {
-        var oldVal = obj[key];
-        var newVal = newVals[key];
-        if (!_.isEqual(oldVal, newVal)) {
-          updates.push(ObjectOperation.Set(p, oldVal, newVal));
-        }
-      }
-    }
-  }
-};
-
-ObjectOperation.Extend = function(obj, newVals) {
-  var deletes = [];
-  var creates = [];
-  var updates = [];
-  __extend__(obj, newVals, [], deletes, creates, updates);
-  return ObjectOperation.Compound(deletes.concat(creates).concat(updates));
-};
-
-ObjectOperation.NOP = NOP;
-ObjectOperation.CREATE = CREATE;
-ObjectOperation.DELETE = DELETE;
-ObjectOperation.UPDATE = UPDATE;
-ObjectOperation.SET = SET;
-
-// Export
-// ========
-
-module.exports = ObjectOperation;
-
-},{"./array_operation":140,"./compound":141,"./operation":143,"./text_operation":145,"substance-util":155,"underscore":160}],143:[function(require,module,exports){
-"use strict";
-
-// Import
-// ========
-
-var util   = require('substance-util');
-var errors   = util.errors;
-
-var OperationError = errors.define("OperationError", -1);
-var Conflict = errors.define("Conflict", -1);
-
-var Operation = function() {};
-
-Operation.Prototype = function() {
-
-  this.clone = function() {
-    throw new Error("Not implemented.");
-  };
-
-  this.apply = function() {
-    throw new Error("Not implemented.");
-  };
-
-  this.invert = function() {
-    throw new Error("Not implemented.");
-  };
-
-  this.hasConflict = function() {
-    throw new Error("Not implemented.");
-  };
-
-};
-
-Operation.prototype = new Operation.Prototype();
-
-Operation.conflict = function(a, b) {
-  var conflict = new errors.Conflict("Conflict: " + JSON.stringify(a) +" vs " + JSON.stringify(b));
-  conflict.a = a;
-  conflict.b = b;
-  return conflict;
-};
-
-Operation.OperationError = OperationError;
-Operation.Conflict = Conflict;
-
-// Export
-// ========
-
-module.exports = Operation;
-
-},{"substance-util":155}],144:[function(require,module,exports){
-var Helpers = {};
-
-Helpers.last = function(op) {
-  if (op.type === "compound") {
-    return op.ops[op.ops.length-1];
-  }
-  return op;
-};
-
-// Iterates all atomic operations contained in a given operation
-// --------
-//
-// - op: an Operation instance
-// - iterator: a `function(op)`
-// - context: the `this` context for the iterator function
-// - reverse: if present, the operations are iterated reversely
-
-Helpers.each = function(op, iterator, context, reverse) {
-  if (op.type === "compound") {
-    var l = op.ops.length;
-    for (var i = 0; i < l; i++) {
-      var child = op.ops[i];
-      if (reverse) {
-        child = op.ops[l-i-1];
-      }
-      if (child.type === "compound") {
-        if (Helpers.each(child, iterator, context, reverse) === false) {
-          return false;
-        }
-      }
-      else {
-        if (iterator.call(context, child) === false) {
-          return false;
-        }
-      }
-    }
-    return true;
-  } else {
-    return iterator.call(context, op);
-  }
-};
-
-module.exports = Helpers;
-
-},{}],145:[function(require,module,exports){
-"use strict";
-
-// Import
-// ========
-
-var _ = require('underscore');
-var util = require('substance-util');
-var errors = util.errors;
-var Operation = require('./operation');
-var Compound = require('./compound');
-
-
-var INS = "+";
-var DEL = "-";
-
-var TextOperation = function(options) {
-
-  // if this operation should be created using an array
-  if (_.isArray(options)) {
-    options = {
-      type: options[0],
-      pos: options[1],
-      str: options[2]
-    };
-  }
-
-  if (options.type === undefined || options.pos === undefined || options.str === undefined) {
-    throw new errors.OperationError("Illegal argument: insufficient data.");
-  }
-
-  // '+' or '-'
-  this.type = options.type;
-
-  // the position where to apply the operation
-  this.pos = options.pos;
-
-  // the string to delete or insert
-  this.str = options.str;
-
-  // sanity checks
-  if(!this.isInsert() && !this.isDelete()) {
-    throw new errors.OperationError("Illegal type.");
-  }
-  if (!_.isString(this.str)) {
-    throw new errors.OperationError("Illegal argument: expecting string.");
-  }
-  if (!_.isNumber(this.pos) && this.pos < 0) {
-    throw new errors.OperationError("Illegal argument: expecting positive number as pos.");
-  }
-};
-
-TextOperation.fromJSON = function(data) {
-
-  if (data.type === Compound.TYPE) {
-    var ops = [];
-    for (var idx = 0; idx < data.ops.length; idx++) {
-      ops.push(TextOperation.fromJSON(data.ops[idx]));
-    }
-    return TextOperation.Compound(ops);
-
-  } else {
-    return new TextOperation(data);
-  }
-};
-
-TextOperation.Prototype = function() {
-
-  this.clone = function() {
-    return new TextOperation(this);
-  };
-
-  this.isNOP = function() {
-    return this.type === "NOP" || this.str.length === 0;
-  };
-
-  this.isInsert = function() {
-    return this.type === INS;
-  };
-
-  this.isDelete = function() {
-    return this.type === DEL;
-  };
-
-  this.length = function() {
-    return this.str.length;
-  };
-
-  this.apply = function(str) {
-    if (this.isEmpty()) return str;
-
-    var adapter = (str instanceof TextOperation.StringAdapter) ? str : new TextOperation.StringAdapter(str);
-
-    if (this.type === INS) {
-      adapter.insert(this.pos, this.str);
-    }
-    else if (this.type === DEL) {
-      adapter.delete(this.pos, this.str.length);
-    }
-    else {
-      throw new errors.OperationError("Illegal operation type: " + this.type);
-    }
-
-    return adapter.get();
-  };
-
-  this.invert = function() {
-    var data = {
-      type: this.isInsert() ? '-' : '+',
-      pos: this.pos,
-      str: this.str
-    };
-    return new TextOperation(data);
-  };
-
-  this.hasConflict = function(other) {
-    return TextOperation.hasConflict(this, other);
-  };
-
-  this.isEmpty = function() {
-    return this.str.length === 0;
-  };
-
-  this.toJSON = function() {
-    return {
-      type: this.type,
-      pos: this.pos,
-      str: this.str
-    };
-  };
-
-};
-TextOperation.Prototype.prototype = Operation.prototype;
-TextOperation.prototype = new TextOperation.Prototype();
-
-var hasConflict = function(a, b) {
-
-  // Insert vs Insert:
-  //
-  // Insertions are conflicting iff their insert position is the same.
-
-  if (a.type === INS && b.type === INS)  return (a.pos === b.pos);
-
-  // Delete vs Delete:
-  //
-  // Deletions are conflicting if their ranges overlap.
-
-  if (a.type === DEL && b.type === DEL) {
-    // to have no conflict, either `a` should be after `b` or `b` after `a`, otherwise.
-    return !(a.pos >= b.pos + b.str.length || b.pos >= a.pos + a.str.length);
-  }
-
-  // Delete vs Insert:
-  //
-  // A deletion and an insertion are conflicting if the insert position is within the deleted range.
-
-  var del, ins;
-  if (a.type === DEL) {
-    del = a; ins = b;
-  } else {
-    del = b; ins = a;
-  }
-
-  return (ins.pos >= del.pos && ins.pos < del.pos + del.str.length);
-};
-
-// Transforms two Insertions
-// --------
-
-function transform_insert_insert(a, b, first) {
-
-  if (a.pos === b.pos) {
-    if (first) {
-      b.pos += a.str.length;
-    } else {
-      a.pos += b.str.length;
-    }
-  }
-
-  else if (a.pos < b.pos) {
-    b.pos += a.str.length;
-  }
-
-  else {
-    a.pos += b.str.length;
-  }
-
-}
-
-// Transform two Deletions
-// --------
-//
-
-function transform_delete_delete(a, b, first) {
-
-  // reduce to a normalized case
-  if (a.pos > b.pos) {
-    return transform_delete_delete(b, a, !first);
-  }
-
-  if (a.pos === b.pos && a.str.length > b.str.length) {
-    return transform_delete_delete(b, a, !first);
-  }
-
-
-  // take out overlapping parts
-  if (b.pos < a.pos + a.str.length) {
-    var s = b.pos - a.pos;
-    var s1 = a.str.length - s;
-    var s2 = s + b.str.length;
-
-    a.str = a.str.slice(0, s) + a.str.slice(s2);
-    b.str = b.str.slice(s1);
-    b.pos -= s;
-  } else {
-    b.pos -= a.str.length;
-  }
-
-}
-
-// Transform Insert and Deletion
-// --------
-//
-
-function transform_insert_delete(a, b) {
-
-  if (a.type === DEL) {
-    return transform_insert_delete(b, a);
-  }
-
-  // we can assume, that a is an insertion and b is a deletion
-
-  // a is before b
-  if (a.pos <= b.pos) {
-    b.pos += a.str.length;
-  }
-
-  // a is after b
-  else if (a.pos >= b.pos + b.str.length) {
-    a.pos -= b.str.length;
-  }
-
-  // Note: this is a conflict case the user should be noticed about
-  // If applied still, the deletion takes precedence
-  // a.pos > b.pos && <= b.pos + b.length()
-  else {
-    var s = a.pos - b.pos;
-    b.str = b.str.slice(0, s) + a.str + b.str.slice(s);
-    a.str = "";
-  }
-
-}
-
-var transform0 = function(a, b, options) {
-
-  options = options || {};
-
-  if (options.check && hasConflict(a, b)) {
-    throw Operation.conflict(a, b);
-  }
-
-  if (!options.inplace) {
-    a = util.clone(a);
-    b = util.clone(b);
-  }
-
-  if (a.type === INS && b.type === INS)  {
-    transform_insert_insert(a, b, true);
-  }
-  else if (a.type === DEL && b.type === DEL) {
-    transform_delete_delete(a, b, true);
-  }
-  else {
-    transform_insert_delete(a,b);
-  }
-
-  return [a, b];
-};
-
-var __apply__ = function(op, array) {
-  if (_.isArray(op)) {
-    op = new TextOperation(op);
-  }
-  else if (!(op instanceof TextOperation)) {
-    op = TextOperation.fromJSON(op);
-  }
-  return op.apply(array);
-};
-
-TextOperation.transform = Compound.createTransform(transform0);
-TextOperation.apply = __apply__;
-
-var StringAdapter = function(str) {
-  this.str = str;
-};
-StringAdapter.prototype = {
-  insert: function(pos, str) {
-    if (this.str.length < pos) {
-      throw new errors.OperationError("Provided string is too short.");
-    }
-    this.str = this.str.slice(0, pos) + str + this.str.slice(pos);
-  },
-
-  delete: function(pos, length) {
-    if (this.str.length < pos + length) {
-      throw new errors.OperationError("Provided string is too short.");
-    }
-    this.str = this.str.slice(0, pos) + this.str.slice(pos + length);
-  },
-
-  get: function() {
-    return this.str;
-  }
-};
-
-TextOperation.Insert = function(pos, str) {
-  return new TextOperation(["+", pos, str]);
-};
-
-TextOperation.Delete = function(pos, str) {
-  return new TextOperation(["-", pos, str]);
-};
-
-TextOperation.Compound = function(ops) {
-  // do not create a Compound if not necessary
-  if (ops.length === 1) return ops[0];
-  else return new Compound(ops);
-};
-
-// Converts from a given a sequence in the format of Tim's lib
-// which is an array of numbers and strings.
-// 1. positive number: retain a number of characters
-// 2. negative number: delete a string with the given length at the current position
-// 3. string: insert the given string at the current position
-
-TextOperation.fromOT = function(str, ops) {
-
-  var atomicOps = []; // atomic ops
-
-  // iterating through the sequence and bookkeeping the position
-  // in the source and destination str
-  var srcPos = 0,
-      dstPos = 0;
-
-  if (!_.isArray(ops)) {
-    ops = _.toArray(arguments).slice(1);
-  }
-
-  _.each(ops, function(op) {
-    if (_.isString(op)) { // insert chars
-      atomicOps.push(TextOperation.Insert(dstPos, op));
-      dstPos += op.length;
-    } else if (op<0) { // delete n chars
-      var n = -op;
-      atomicOps.push(TextOperation.Delete(dstPos, str.slice(srcPos, srcPos+n)));
-      srcPos += n;
-    } else { // skip n chars
-      srcPos += op;
-      dstPos += op;
-    }
-  });
-
-  if (atomicOps.length === 0) {
-    return null;
-  }
-
-  return TextOperation.Compound(atomicOps);
-};
-
-TextOperation.fromSequence = TextOperation.fromOT;
-
-// A helper class to model Text selections and to provide an easy way
-// to bookkeep changes by other applied TextOperations
-var Range = function(range) {
-  if (_.isArray(range)) {
-    this.start = range[0];
-    this.length = range[1];
-  } else {
-    this.start = range.start;
-    this.length = range.length;
-  }
-};
-
-// Transforms a given range tuple (offset, length) in-place.
-// --------
-//
-
-var range_transform = function(range, textOp, expandLeft, expandRight) {
-
-  var changed = false;
-
-  // handle compound operations
-  if (textOp.type === Compound.TYPE) {
-    for (var idx = 0; idx < textOp.ops.length; idx++) {
-      var op = textOp.ops[idx];
-      range_transform(range, op);
-    }
-    return;
-  }
-
-
-  var start, end;
-
-  if (_.isArray(range)) {
-    start = range[0];
-    end = range[1];
-  } else {
-    start = range.start;
-    end = start + range.length;
-  }
-
-  // Delete
-  if (textOp.type === DEL) {
-    var pos1 = textOp.pos;
-    var pos2 = textOp.pos+textOp.str.length;
-
-    if (pos1 <= start) {
-      start -= Math.min(pos2-pos1, start-pos1);
-      changed = true;
-    }
-    if (pos1 <= end) {
-      end -= Math.min(pos2-pos1, end-pos1);
-      changed = true;
-    }
-
-  } else if (textOp.type === INS) {
-    var pos = textOp.pos;
-    var l = textOp.str.length;
-
-    if ( (pos < start) ||
-         (pos === start && !expandLeft) ) {
-      start += l;
-      changed = true;
-    }
-
-    if ( (pos < end) ||
-         (pos === end && expandRight) ) {
-      end += l;
-      changed = true;
-    }
-  }
-
-  if (changed) {
-    if (_.isArray(range)) {
-      range[0] = start;
-      range[1] = end;
-    } else {
-      range.start = start;
-      range.length = end - start;
-    }
-  }
-
-  return changed;
-};
-
-Range.Prototype = function() {
-
-  this.clone = function() {
-    return new Range(this);
-  };
-
-  this.toJSON = function() {
-    var result = {
-      start: this.start,
-      length: this.length
-    };
-    // if (this.expand) result.expand = true;
-    return result;
-  };
-
-  this.transform = function(textOp, expand) {
-    return range_transform(this.range, textOp, expand);
-  };
-
-};
-Range.prototype = new Range.Prototype();
-
-Range.transform = function(range, op, expandLeft, expandRight) {
-  return range_transform(range, op, expandLeft, expandRight);
-};
-
-Range.fromJSON = function(data) {
-  return new Range(data);
-};
-
-TextOperation.StringAdapter = StringAdapter;
-TextOperation.Range = Range;
-TextOperation.INSERT = INS;
-TextOperation.DELETE = DEL;
-
-// Export
-// ========
-
-module.exports = TextOperation;
-
-},{"./compound":141,"./operation":143,"substance-util":155,"underscore":160}],146:[function(require,module,exports){
+},{"../node":110}],125:[function(require,module,exports){
 "use strict";
 
 var Reader = {
@@ -19021,7 +12447,7 @@ var Reader = {
 };
 
 module.exports = Reader;
-},{"./src/reader_controller":147,"./src/reader_view":148}],147:[function(require,module,exports){
+},{"./src/reader_controller":126,"./src/reader_view":127}],126:[function(require,module,exports){
 "use strict";
 
 var Document = require("substance-document");
@@ -19057,6 +12483,10 @@ var ReaderController = function(doc, state, options) {
 
   if (doc.get('info')) {
     this.info = new Document.Controller(doc, {view: "info"});
+  }
+
+  if (doc.get('definitions')) {
+    this.definitions = new Document.Controller(doc, {view: "definitions"});
   }
 
   this.state = state;
@@ -19110,7 +12540,7 @@ ReaderController.prototype = new ReaderController.Prototype();
 
 module.exports = ReaderController;
 
-},{"./reader_view":148,"substance-application":57,"substance-document":82,"substance-util":155}],148:[function(require,module,exports){
+},{"./reader_view":127,"substance-application":57,"substance-document":68,"substance-util":134}],127:[function(require,module,exports){
 "use strict";
 
 var _ = require("underscore");
@@ -19153,6 +12583,12 @@ var addResourceHeader = function(docCtrl, nodeView) {
       "sbs-click": "toggleFullscreen("+node.id+")"
     }));
   }
+
+  children.push($$('a.toggle-res', {
+    "href": "#",
+    "sbs-click": "toggleResource("+node.id+")",
+    "html": "<i class=\"icon-eye-open\"></i><i class=\"icon-eye-close\"></i>"
+  }));
 
   var resourceHeader = $$('.resource-header', {
     children: children
@@ -19198,7 +12634,7 @@ var Renderer = function(reader) {
       'href': '#',
       'sbs-click': 'switchContext(toc)',
       'title': 'Text',
-      'html': '<i class="icon-align-left"></i><span> Text</span>'
+      'html': '<i class="icon-align-left"></i><span> Text</span><div class="label">Contents</div>'
     }));
   }
 
@@ -19207,7 +12643,7 @@ var Renderer = function(reader) {
       'href': '#',
       'sbs-click': 'switchContext(figures)',
       'title': 'Figures',
-      'html': '<i class="icon-picture"></i><span> Figures</span>'
+      'html': '<i class="icon-picture"></i><span> Figures</span><div class="label">Figures</div>'
     }));
   }
 
@@ -19216,7 +12652,16 @@ var Renderer = function(reader) {
       'href': '#',
       'sbs-click': 'switchContext(citations)',
       'title': 'Citations',
-      'html': '<i class="icon-link"></i><span> Citations</span>'
+      'html': '<i class="icon-link"></i><span> Citations</span><div class="label">Citations</div>'
+    }));
+  }
+
+  if (reader.definitionsView) {
+    children.push($$('a.context-toggle.definitions', {
+      'href': '#',
+      'sbs-click': 'switchContext(definitions)',
+      'title': 'Glossary',
+      'html': '<i class="icon-book"></i><span>Glossary</span><div class="label">Glossary</div>'
     }));
   }
 
@@ -19225,9 +12670,11 @@ var Renderer = function(reader) {
       'href': '#',
       'sbs-click': 'switchContext(info)',
       'title': 'Article Info',
-      'html': '<i class="icon-info-sign"></i><span>Info</span>'
+      'html': '<i class="icon-info-sign"></i><span>Info</span><div class="label">Info</div>'
     }));
   }
+
+
 
 
   var contextToggles = $$('.context-toggles', {
@@ -19272,6 +12719,10 @@ var Renderer = function(reader) {
   
   if (reader.citationsView) {
     resourcesView.appendChild(reader.citationsView.render().el);
+  }
+
+  if (reader.definitionsView) {
+    resourcesView.appendChild(reader.definitionsView.render().el);
   }
 
   if (reader.infoView) {
@@ -19347,6 +12798,18 @@ var ReaderView = function(readerCtrl) {
     this.citationsView.$el.addClass('resource-view');
   }
 
+
+  // A Surface for the definitions View
+  if (this.readerCtrl.definitions && this.readerCtrl.definitions.get('definitions').nodes.length) {
+    this.definitionsView = new Surface(this.readerCtrl.definitions, {
+      editable: false,
+      renderer: new ArticleRenderer(this.readerCtrl.definitions, {
+        afterRender: addResourceHeader
+      })
+    });
+    this.definitionsView.$el.addClass('resource-view');
+  }
+
   // A Surface for the info view
   if (this.readerCtrl.info && this.readerCtrl.info.get('info').nodes.length) {
     this.infoView = new Surface(this.readerCtrl.info, {
@@ -19363,14 +12826,9 @@ var ReaderView = function(readerCtrl) {
   this.listenTo(this.readerCtrl, "state-changed", this.updateState);
 
 
-  // Index for resources
-  // --------
-  // 
-  // Keep in mind that Substance.Article uses collaborator_reference while the Lens article has
-  // contributor_reference instances.
-
+  // Keep an index for resources
   this.resources = new Index(this.readerCtrl.__document, {
-    types: ["figure_reference", "citation_reference", "contributor_reference", "collaborator_reference", "person_reference"],
+    types: ["figure_reference", "citation_reference", "contributor_reference", "definition_reference"],
     property: "target"
   });
 
@@ -19393,16 +12851,16 @@ var ReaderView = function(readerCtrl) {
   this.contentView.$el.on('scroll', _.bind(this.onContentScroll, this));
 
   // Resource content that is being scrolled
-  
   if (this.figuresView) this.figuresView.$el.on('scroll', _.bind(this.onResourceContentScroll, this));
   if (this.citationsView) this.citationsView.$el.on('scroll', _.bind(this.onResourceContentScroll, this));
+  if (this.definitionsView) this.definitionsView.$el.on('scroll', _.bind(this.onResourceContentScroll, this));
   if (this.infoView) this.infoView.$el.on('scroll', _.bind(this.onResourceContentScroll, this));
 
   // Resource references
   this.$el.on('click', '.annotation.figure_reference', _.bind(this.toggleFigureReference, this));
   this.$el.on('click', '.annotation.citation_reference', _.bind(this.toggleCitationReference, this));
   this.$el.on('click', '.annotation.contributor_reference', _.bind(this.toggleContributorReference, this));
-  this.$el.on('click', '.annotation.collaborator_reference', _.bind(this.toggleContributorReference, this));
+  this.$el.on('click', '.annotation.definition_reference', _.bind(this.toggleDefinitionReference, this));
 
   this.$el.on('click', '.annotation.cross_reference', _.bind(this.followCrossReference, this));
 
@@ -19454,6 +12912,11 @@ ReaderView.Prototype = function() {
 
   this.toggleFigureReference = function(e) {
     this.toggleResourceReference('figures', e);
+    e.preventDefault();
+  };
+
+  this.toggleDefinitionReference = function(e) {
+    this.toggleResourceReference('definitions', e);
     e.preventDefault();
   };
 
@@ -19591,6 +13054,7 @@ ReaderView.Prototype = function() {
       // Make sure to find out which resource view is currently active
       if (this.figuresView) this.figuresView.$el.scrollTop(topOffset);
       if (this.citationsView) this.citationsView.$el.scrollTop(topOffset);
+      if (this.definitionsView) this.definitionsView.$el.scrollTop(topOffset);
       if (this.infoView) this.infoView.$el.scrollTop(topOffset);
 
       // Brute force for mobile
@@ -19685,7 +13149,7 @@ ReaderView.Prototype = function() {
     // Set context on the reader view
     // -------
 
-    this.$el.removeClass('toc figures citations info');
+    this.$el.removeClass('toc figures citations info definitions');
     this.contentView.$('.content-node.active').removeClass('active');
     this.$el.addClass(state.context);
   
@@ -19710,7 +13174,6 @@ ReaderView.Prototype = function() {
     this.$('.resources .content-node.active').removeClass('active fullscreen');
     this.contentView.$('.annotation.active').removeClass('active');
     
-
     if (state.resource) {
       // Show selected resource
       var $res = this.$('#'+state.resource);
@@ -19719,7 +13182,6 @@ ReaderView.Prototype = function() {
 
       // Mark all annotations that reference the resource
       var annotations = this.resources.get(state.resource);
-      
       _.each(annotations, function(a) {
         this.contentView.$('#'+a.id).addClass('active');
       }, this);
@@ -19770,6 +13232,8 @@ ReaderView.Prototype = function() {
       that.resourcesOutline.surface = this.figuresView;
     } else if (state.context === "citations") {
       that.resourcesOutline.surface = this.citationsView;
+    } else if (state.context === "definitions") {
+      that.resourcesOutline.surface = this.definitionsView;
     } else {
       that.resourcesOutline.surface = this.infoView;
     }
@@ -19880,12 +13344,12 @@ ReaderView.prototype.constructor = ReaderView;
 
 module.exports = ReaderView;
 
-},{"lens-outline":55,"substance-application":57,"substance-data":75,"substance-surface":151,"substance-toc":153,"substance-util":155,"underscore":160}],149:[function(require,module,exports){
+},{"lens-outline":55,"substance-application":57,"substance-data":63,"substance-surface":130,"substance-toc":132,"substance-util":134,"underscore":139}],128:[function(require,module,exports){
 "use strict";
 
 module.exports = require("./src/regexp");
 
-},{"./src/regexp":150}],150:[function(require,module,exports){
+},{"./src/regexp":129}],129:[function(require,module,exports){
 "use strict";
 
 // Substanc.RegExp.Match
@@ -19964,14 +13428,14 @@ RegExp.Match = Match;
 
 module.exports = RegExp;
 
-},{}],151:[function(require,module,exports){
+},{}],130:[function(require,module,exports){
 "use strict";
 
 var Surface = require("./src/surface");
 
 module.exports = Surface;
 
-},{"./src/surface":152}],152:[function(require,module,exports){
+},{"./src/surface":131}],131:[function(require,module,exports){
 "use strict";
 
 var _ = require("underscore");
@@ -20401,13 +13865,13 @@ Surface.prototype = new Surface.Prototype();
 
 module.exports = Surface;
 
-},{"substance-application":57,"substance-commander":71,"substance-util":155,"underscore":160}],153:[function(require,module,exports){
+},{"substance-application":57,"substance-commander":143,"substance-util":134,"underscore":139}],132:[function(require,module,exports){
 "use strict";
 
 var TOC = require("./toc_view");
 
 module.exports = TOC;
-},{"./toc_view":154}],154:[function(require,module,exports){
+},{"./toc_view":133}],133:[function(require,module,exports){
 "use strict";
 
 var View = require("substance-application").View;
@@ -20468,7 +13932,7 @@ TOCView.prototype = new TOCView.Prototype();
 
 module.exports = TOCView;
 
-},{"substance-application":57,"substance-data":75,"underscore":160}],155:[function(require,module,exports){
+},{"substance-application":57,"substance-data":63,"underscore":139}],134:[function(require,module,exports){
 "use strict";
 
 var util = require("./src/util");
@@ -20479,7 +13943,7 @@ util.dom = require("./src/dom");
 
 module.exports = util;
 
-},{"./src/dom":156,"./src/errors":157,"./src/html":158,"./src/util":159}],156:[function(require,module,exports){
+},{"./src/dom":135,"./src/errors":136,"./src/html":137,"./src/util":138}],135:[function(require,module,exports){
 "use strict";
 
 var _ = require("underscore");
@@ -20543,7 +14007,7 @@ dom.getNodeType = function(el) {
 
 module.exports = dom;
 
-},{"underscore":160}],157:[function(require,module,exports){
+},{"underscore":139}],136:[function(require,module,exports){
 "use strict";
 
 // Imports
@@ -20614,7 +14078,7 @@ errors.define = function(className, code) {
 
 module.exports = errors;
 
-},{"./util":159,"underscore":160}],158:[function(require,module,exports){
+},{"./util":138,"underscore":139}],137:[function(require,module,exports){
 "use strict";
 
 var html = {};
@@ -20660,7 +14124,7 @@ html.tpl = function (tpl, ctx) {
 
 module.exports = html;
 
-},{"underscore":160}],159:[function(require,module,exports){
+},{"underscore":139}],138:[function(require,module,exports){
 "use strict";
 
 // Imports
@@ -21373,7 +14837,7 @@ util.isEmpty = function(str) {
 
 module.exports = util;
 
-},{"fs":164,"underscore":160}],160:[function(require,module,exports){
+},{"fs":143,"underscore":139}],139:[function(require,module,exports){
 //     Underscore.js 1.5.2
 //     http://underscorejs.org
 //     (c) 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -22651,7 +16115,7 @@ module.exports = util;
 
 }).call(this);
 
-},{}],161:[function(require,module,exports){
+},{}],140:[function(require,module,exports){
 "use strict";
 
 var _ = require("underscore");
@@ -22745,7 +16209,7 @@ var Substance = {
 Lens.Substance = Substance;
 module.exports = Lens;
 
-},{"./lens_controller":162,"./lens_view":163,"lens-article":3,"lens-outline":55,"substance-application":57,"substance-chronicle":63,"substance-data":75,"substance-document":82,"substance-operator":139,"substance-reader":146,"substance-surface":151,"substance-util":155,"underscore":160}],162:[function(require,module,exports){
+},{"./lens_controller":141,"./lens_view":142,"lens-article":3,"lens-outline":55,"substance-application":57,"substance-chronicle":143,"substance-data":63,"substance-document":68,"substance-operator":143,"substance-reader":125,"substance-surface":130,"substance-util":134,"underscore":139}],141:[function(require,module,exports){
 "use strict";
 
 var _ = require("underscore");
@@ -22909,7 +16373,7 @@ _.extend(LensController.prototype, util.Events);
 
 module.exports = LensController;
 
-},{"./lens_view":163,"lens-article":3,"lens-converter":48,"substance-application":57,"substance-reader":146,"substance-util":155,"underscore":160}],163:[function(require,module,exports){
+},{"./lens_view":142,"lens-article":3,"lens-converter":48,"substance-application":57,"substance-reader":125,"substance-util":134,"underscore":139}],142:[function(require,module,exports){
 "use strict";
 
 var _ = require("underscore");
@@ -23055,8 +16519,6 @@ LensView.Prototype.prototype = View.prototype;
 LensView.prototype = new LensView.Prototype();
 
 module.exports = LensView;
-},{"substance-application":57,"underscore":160}],164:[function(require,module,exports){
-// nothing to see here... no file methods for the browser
+},{"substance-application":57,"underscore":139}],143:[function(require,module,exports){
 
-},{}]},{},[1])
-;
+},{}]},{},[1]);

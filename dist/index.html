@@ -10,6 +10,28 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
 
     <link href='lens.css' rel='stylesheet' type='text/css'/>
+    <link href='node_modules/substance-surface/styles/surface.css' rel='stylesheet' type='text/css'/>
+    <link href='node_modules/lens-outline/outline.css' rel='stylesheet' type='text/css'/>
+    <link href='node_modules/substance-article/nodes/text/text.css' rel='stylesheet' type='text/css'/>
+    <link href='node_modules/substance-article/nodes/paragraph/paragraph.css' rel='stylesheet' type='text/css'/>
+    <link href='node_modules/substance-article/nodes/heading/heading.css' rel='stylesheet' type='text/css'/>
+    <link href='node_modules/substance-article/nodes/list/list.css' rel='stylesheet' type='text/css'/>
+    <link href='node_modules/substance-article/nodes/image/image.css' rel='stylesheet' type='text/css'/>
+    <link href='node_modules/substance-article/nodes/formula/formula.css' rel='stylesheet' type='text/css'/>
+    <link href='node_modules/substance-article/nodes/codeblock/codeblock.css' rel='stylesheet' type='text/css'/>
+    <link href='node_modules/lens-article/nodes/cover/cover.css' rel='stylesheet' type='text/css'/>
+    <link href='node_modules/lens-article/nodes/supplement/supplement.css' rel='stylesheet' type='text/css'/>
+    <link href='node_modules/lens-article/nodes/box/box.css' rel='stylesheet' type='text/css'/>
+    <link href='node_modules/lens-article/nodes/citation/citation.css' rel='stylesheet' type='text/css'/>
+    <link href='node_modules/lens-article/nodes/figure/figure.css' rel='stylesheet' type='text/css'/>
+    <link href='node_modules/lens-article/nodes/table/table.css' rel='stylesheet' type='text/css'/>
+    <link href='node_modules/lens-article/nodes/video/video.css' rel='stylesheet' type='text/css'/>
+    <link href='node_modules/lens-article/nodes/caption/caption.css' rel='stylesheet' type='text/css'/>
+    <link href='node_modules/lens-article/nodes/contributor/contributor.css' rel='stylesheet' type='text/css'/>
+    <link href='node_modules/lens-article/nodes/publication_info/publication_info.css' rel='stylesheet' type='text/css'/>
+    <link href='node_modules/substance-reader/reader.css' rel='stylesheet' type='text/css'/>
+    <link href='node_modules/substance-toc/toc.css' rel='stylesheet' type='text/css'/>
+    <link href='styles/lens.css' rel='stylesheet' type='text/css'/>
 
     <script src="lib/jquery-2.0.3.min.js"></script>
 
@@ -22,15 +44,9 @@
     </script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
-
-    <script src='./lens.js'></script>
+    <script src='lens.js'></script>
 
     <script>
-
-
-      if (window.Lens === undefined) {
-        window.Lens = require("/src/lens.js");
-      }
 
       // Little helper used to parse query strings from urls
       // --------
@@ -130,18 +146,19 @@
       // var documentURL = "data/kitchen_sink/index.xml";
 
 
-      
-      // Create a new Lens app instance
-      // --------
-      //
-      // Injects itself into body
-
-      var app = new Lens({
-        document_url: qs.url ? decodeURIComponent(qs.url) : documentURL
-      });
-
       $(function() {
+        // Create a new Lens app instance
+        // --------
+        //
+        // Injects itself into body
+
+        var app = new window.Lens({
+          document_url: qs.url ? decodeURIComponent(qs.url) : documentURL
+        });
+
         app.start();
+
+        window.app = app;
 
         if (isTouchDevice()) {
           $('#container').addClass('touchable');
