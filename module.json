@@ -14,14 +14,15 @@
     "express": "3.3.x",
     "substance-util": "",
     "substance-surface": "",
-    "substance-operator": "",
     "substance-document": "",
     "substance-data": "",
-    "substance-chronicle": "",
     "substance-application": "",
     "lens-article": "",
     "lens-outline": "",
     "lens-converter": ""
+  },
+  "devDependencies": {
+    "substance-njs": "*"
   },
   "version": "1.0.0"
 }

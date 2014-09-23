@@ -6,16 +6,6 @@
       "branch": "lens"
     },
     {
-      "repository": "https://github.com/substance/chronicle.git",
-      "folder": "node_modules/substance-chronicle",
-      "branch": "lens"
-    },
-    {
-      "repository": "https://github.com/substance/commander.git",
-      "folder": "node_modules/substance-commander",
-      "branch": "lens"
-    },
-    {
       "repository": "https://github.com/substance/data.git",
       "folder": "node_modules/substance-data",
       "branch": "lens"
@@ -61,11 +51,6 @@
       "branch": "0.3.x"
     },
     {
-      "repository": "https://github.com/substance/operator.git",
-      "folder": "node_modules/substance-operator",
-      "branch": "lens"
-    },
-    {
       "repository": "https://github.com/substance/regexp.git",
       "folder": "node_modules/substance-regexp",
       "branch": "lens"
@@ -81,6 +66,11 @@
       "branch": "lens"
     },
     {
+      "repository": "https://github.com/substance/cjs.git",
+      "folder": "node_modules/substance-cjs",
+      "branch": "master"
+    },
+    {
       "repository": "https://github.com/elifesciences/lens.git",
       "folder": ".",
       "branch": "1.0.x"
@@ -88,10 +78,7 @@
   ],
   "node_modules": {
     "underscore": "1.5.x",
-    "express": "3.3.x",
-    "mocha": "*",
-    "substance-test": "0.2.x",
-    "substance-store": "0.1.0"
+    "express": "3.3.x"
   },
   "npm": {
     "engines": {
