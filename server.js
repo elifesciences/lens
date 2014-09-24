@@ -1,9 +1,6 @@
 var http = require('http');
 var express = require('express');
-var path = require('path');
-var _ = require("underscore");
-var fs = require("fs");
-var cjsserve = require('substance-cjs');
+var CJSServer = require('substance-cjs');
 
 var app = express();
 
@@ -13,22 +10,18 @@ app.use(express.bodyParser());
 app.use(express.methodOverride());
 
 var config = require("./project.json");
-cjsserve(app, '/index.html', 'lens.js', './boot.js', __dirname, 'lens', {
-  blacklist: [
-    'substance-commander',
-    'substance-chronicle',
-    'substance-operator'
-  ]
-});
+new CJSServer(app, __dirname, 'lens')
+  .scripts('./boot.js', 'lens.js', {
+    ignores: [
+      'substance-commander',
+      'substance-chronicle',
+      'substance-operator'
+    ]
+  })
+  .styles(config.styles, 'lens.css')
+  .page('/index.html');
 
-app.use('/lib', express.static('lib'));
-app.use('/lib/substance', express.static('node_modules'));
-app.use('/node_modules', express.static('node_modules'));
-app.use('/styles', express.static('styles'));
-app.use('/src', express.static('src'));
-app.use('/data', express.static('data'));
-app.use('/config', express.static('config'));
-app.use('/images', express.static('images'));
+app.use(express.static(__dirname));
 
 // Serve Lens in dev mode
 // --------

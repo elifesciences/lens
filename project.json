@@ -115,6 +115,7 @@
   },
   "assets": {
     "lib/jquery-2.0.3.min.js": "lib/jquery-2.0.3.min.js",
+    "lib/jquery-2.0.3.min.map": "lib/jquery-2.0.3.min.map",
     "styles/font-awesome.css": "styles/font-awesome.css",
     "styles/fonts": "styles/fonts",
     "styles/elife.png": "styles/elife.png",
