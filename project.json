@@ -23,7 +23,7 @@
     {
       "repository": "https://github.com/elifesciences/lens-article.git",
       "folder": "node_modules/lens-article",
-      "branch": "0.3.x"
+      "branch": "master"
     },
     {
       "repository": "https://github.com/substance/article.git",
@@ -38,7 +38,7 @@
     {
       "repository": "https://github.com/elifesciences/lens-outline.git",
       "folder": "node_modules/lens-outline",
-      "branch": "0.2.x"
+      "branch": "master"
     },
     {
       "repository": "https://github.com/substance/toc.git",
@@ -48,7 +48,7 @@
     {
       "repository": "https://github.com/elifesciences/lens-converter.git",
       "folder": "node_modules/lens-converter",
-      "branch": "0.3.x"
+      "branch": "master"
     },
     {
       "repository": "https://github.com/substance/regexp.git",
