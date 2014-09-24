@@ -3,7 +3,6 @@ var LensArticle = require('lens-article');
 
 var addResourceHeader = function(docCtrl, nodeView) {
   var node = nodeView.node;
-  var typeDescr = node.constructor.description;
 
   // Don't render resource headers in info panel (except for contributor nodes)
   // TODO: Do we really need 'collaborator'?
@@ -43,7 +42,7 @@ var addResourceHeader = function(docCtrl, nodeView) {
 var createResourceRenderer = function(name, docCtrl) {
 	return new LensArticle.Renderer(docCtrl, {
 		afterRender: addResourceHeader
-	})
+	});
 };
 
 
@@ -62,7 +61,7 @@ var panelSpecs = {
     label: 'Content',
     title: 'Content',
 		icon: 'icon-align-left',
-    shouldBeVisible: function(name, doc) {
+    shouldBeVisible: function() {
     	// TODO: maybe implement some logic to hide toc when there is no content
     	return true;
     }
@@ -72,28 +71,32 @@ var panelSpecs = {
     label: 'Info',
     title: 'Article Info',
     icon: 'icon-info-sign',
-    createRenderer: createResourceRenderer
+    references: ['contributor_reference'],
+    createRenderer: createResourceRenderer,
   },
   figures: {
   	type: 'resource',
     label: 'Figures',
     title: 'Figures',
 		icon: 'icon-picture',
-    createRenderer: createResourceRenderer
+    references: ['figure_reference'],
+    createRenderer: createResourceRenderer,
   },
   citations: {
   	type: 'resource',
     label: 'References',
     title: 'References',
     icon: 'icon-link',
-    createRenderer: createResourceRenderer
+    references: ['citation_reference'],
+    createRenderer: createResourceRenderer,
   },
   definitions: {
   	type: 'resource',
     label: 'Glossary',
     title: 'Glossary',
     icon: 'icon-book',
-    createRenderer: createResourceRenderer
+    references: ['definition_reference'],
+    createRenderer: createResourceRenderer,
   }
 };
 
