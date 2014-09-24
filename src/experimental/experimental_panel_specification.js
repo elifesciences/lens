@@ -5,7 +5,7 @@ var RelationshipLookupService = require('./relationship_lookup_service');
 var relationshipLookupService = new RelationshipLookupService();
 
 panelSpec.citations.createRenderer = function(name, docCtrl) {
-  return new ReferencesRenderer(docCtrl, relationshipLookupService, {});
+  return new ReferencesRenderer(docCtrl, relationshipLookupService);
 };
 
 module.exports = panelSpec;

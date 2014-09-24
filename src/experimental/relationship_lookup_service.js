@@ -7,7 +7,10 @@ RelationshipLookup.Prototype = function() {
     for (var i = 0; i < this.data.length; i++) {
       var d = this.data[i];
       if (d.relationship_type === type && source === d.source && d.target === target) {
-        return cb(null, d);
+        window.setTimeout(function() {
+          cb(null, d);
+        }, 1000);
+        return;
       }
     }
     cb();

@@ -1,106 +1,55 @@
-var $$ = require("substance-application").$$;
 var LensArticle = require('lens-article');
-
-var addResourceHeader = function(docCtrl, nodeView) {
-  var node = nodeView.node;
-
-  // Don't render resource headers in info panel (except for contributor nodes)
-  // TODO: Do we really need 'collaborator'?
-  if (docCtrl.view === "info" && node.type !== "contributor" && node.type !== "collaborator") {
-    return;
-  }
-
-  var children = [
-    $$('a.name', {
-      href: "#",
-      text: node.header ,
-      "sbs-click": "toggleResource("+node.id+")"
-    })
-  ];
-
-  var config = node.constructor.config;
-  if (config && config.zoomable) {
-    children.push($$('a.toggle-fullscreen', {
-      "href": "#",
-      "html": "<i class=\"icon-resize-full\"></i><i class=\"icon-resize-small\"></i>",
-      "sbs-click": "toggleFullscreen("+node.id+")"
-    }));
-  }
-
-  children.push($$('a.toggle-res', {
-    "href": "#",
-    "sbs-click": "toggleResource("+node.id+")",
-    "html": "<i class=\"icon-eye-open\"></i><i class=\"icon-eye-close\"></i>"
-  }));
-
-  var resourceHeader = $$('.resource-header', {
-    children: children
-  });
-  nodeView.el.insertBefore(resourceHeader, nodeView.content);
-};
-
-var createResourceRenderer = function(name, docCtrl) {
-	return new LensArticle.Renderer(docCtrl, {
-		afterRender: addResourceHeader
-	});
-};
-
+var ResourceRenderer = require('./resource_renderer');
 
 var panelSpecs = {
-	content: {
-		type: 'content',
-		label: 'Text',
-		title: 'Content',
-		icon: 'icon-align-left',
-		createRenderer: function(name, docCtrl) {
-			return new LensArticle.Renderer(docCtrl);
-		}
-	},
+  content: {
+    type: 'content',
+    label: 'Text',
+    title: 'Content',
+    icon: 'icon-align-left',
+    renderer: LensArticle.Renderer
+  },
   toc: {
-  	type: 'toc',
+    type: 'toc',
     label: 'Content',
     title: 'Content',
-		icon: 'icon-align-left',
+    icon: 'icon-align-left',
     shouldBeVisible: function() {
-    	// TODO: maybe implement some logic to hide toc when there is no content
-    	return true;
+      // TODO: maybe implement some logic to hide toc when there is no content
+      return true;
     }
   },
   info: {
-  	type: 'resource',
+    type: 'resource',
     label: 'Info',
     title: 'Article Info',
     icon: 'icon-info-sign',
     references: ['contributor_reference'],
-    createRenderer: createResourceRenderer,
+    renderer: ResourceRenderer
   },
   figures: {
-  	type: 'resource',
+    type: 'resource',
     label: 'Figures',
     title: 'Figures',
-		icon: 'icon-picture',
+    icon: 'icon-picture',
     references: ['figure_reference'],
-    createRenderer: createResourceRenderer,
+    renderer: ResourceRenderer
   },
   citations: {
-  	type: 'resource',
+    type: 'resource',
     label: 'References',
     title: 'References',
     icon: 'icon-link',
     references: ['citation_reference'],
-    createRenderer: function(name, docCtrl) {
-      return new LensArticle.Renderer(docCtrl, {
-        afterRender: addResourceHeader
-      });
-    },
+    renderer: ResourceRenderer
   },
   definitions: {
-  	type: 'resource',
+    type: 'resource',
     label: 'Glossary',
     title: 'Glossary',
     icon: 'icon-book',
     references: ['definition_reference'],
-    createRenderer: createResourceRenderer,
+    renderer: ResourceRenderer
   }
 };
 

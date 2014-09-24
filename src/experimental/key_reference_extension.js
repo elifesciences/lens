@@ -7,17 +7,21 @@ var KeyReferenceExtension = function(citationView, keyRefRelationship) {
 KeyReferenceExtension.Prototype = function() {
 
   this.render = function() {
-    var $keyRefEl = this.citationView.$el.find('.key-reference');
+    var $content = this.citationView.$el.find('.content');
+    var $keyRefEl = $content.find('.key-reference');
     if ($keyRefEl.length === 0) {
       $keyRefEl = $('<div>').addClass('key-reference');
-      this.citationView.$el.append($keyRefEl);
+      $content[0].appendChild($keyRefEl[0]);
     }
-
     $keyRefEl.empty();
 
     var $descrEl = $('<div>').addClass('.description');
     $descrEl.text(this.keyRefRelationship.description);
+    var $creatorEl = $('<div>').addClass('.creator');
+    $creatorEl.text(this.keyRefRelationship.creator.join(','));
+
     $keyRefEl.append($descrEl);
+    $keyRefEl.append($creatorEl);
   };
 
 };

@@ -44,6 +44,8 @@ PanelFactory.Prototype = function() {
     } else {
       if (spec.createRenderer) {
         renderer = spec.createRenderer(name, docCtrl);
+      } else if (spec.renderer) {
+        renderer = new spec.renderer(docCtrl);
       } else {
         var DefaultRenderer = doc.constructor.Renderer;
         renderer = new DefaultRenderer(docCtrl);
