@@ -34,6 +34,12 @@ body.reader {
   bottom: 0px;
 }
 
+.container::after {
+  content:"";  /* not "."! */
+  display:block;
+  clear:both;
+}
+
 /*
 General Layout 
 --------------------------------------- */
