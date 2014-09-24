@@ -68,7 +68,7 @@
     {
       "repository": "https://github.com/elifesciences/lens.git",
       "folder": ".",
-      "branch": "1.0.x"
+      "branch": "master"
     }
   ],
   "node_modules": {
