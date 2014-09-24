@@ -16,11 +16,6 @@
       "branch": "lens"
     },
     {
-      "repository": "https://github.com/substance/reader.git",
-      "folder": "node_modules/substance-reader",
-      "branch": "lens"
-    },
-    {
       "repository": "https://github.com/elifesciences/lens-article.git",
       "folder": "node_modules/lens-article",
       "branch": "master"
@@ -111,8 +106,8 @@
     "styles/nodes/contributor.css": "node_modules/lens-article/nodes/contributor/contributor.css",
     "styles/nodes/publication_info.css": "node_modules/lens-article/nodes/publication_info/publication_info.css",
 
-    "styles/reader.css": "node_modules/substance-reader/reader.css",
     "styles/toc.css": "node_modules/substance-toc/toc.css",
+    "styles/reader.css": "styles/reader.css",
     "styles/lens.css":  "styles/lens.css"
   },
   "assets": {

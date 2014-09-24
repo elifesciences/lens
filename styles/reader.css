@@ -1,0 +1,1033 @@
+/* Fix weird behavior
+-------------------------------------------------------------------------------*/
+
+/*
+When using event delegation if the parent element has a click handler, when
+the user touches anything inside this element, the whole region will gray 
+out (on iOS 5.1), or flicker (on iOS 6). */
+
+* {
+  -webkit-tap-highlight-color:transparent;
+}
+
+
+/* Article
+-------------------------------------------------------------------------------*/
+
+.article {
+  height: 100%;
+}
+
+/* Surface specific styles */
+.content-node {
+
+}
+
+
+.hidden {
+  display: none;
+}
+
+.content-node .content {
+  margin: 0px;
+  background: white;
+}
+
+/* Main content panel 
+======================================================================= */
+
+.article .document {
+  line-height: 28.5px;
+  font-size: 18px;
+  position: relative;
+  float: left;
+  overflow: hidden;
+  height: 100%;
+  width: 50%;
+  border-right: 1px solid #ddd;
+}
+
+.article .document .surface.content {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  left: 0px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  /*overflow: auto;*/
+  -webkit-overflow-scrolling: touch;
+}
+
+.article .document .surface.content .nodes {
+  min-height: 100%;
+  padding-left: 40px;
+  padding-right: 0px;
+  background: #FFFFFF;
+}
+
+
+/* Back Navigation 
+=======================================================================*/
+
+
+
+/* Context Toggles 
+=======================================================================*/
+
+/* Switcher */
+
+.article .medial-strip {
+  /*overflow: hidden;*/
+  width: 40px;
+  position: absolute;
+  left: 50%;
+  margin-left: -18px; 
+
+  top: 0px;
+  bottom: 0px;
+  background: #fff;
+  z-index: 3000;
+}
+
+.article .back-nav {
+  display: block;
+  overflow: hidden;
+  width: 40px;
+  position: absolute;
+  top: 20px;
+  z-index: 5000;
+  font-size: 22px;
+  background: #fff;
+  color: #aaa;
+  padding: 10px 10px;
+}
+
+
+.article .back-nav:hover {
+  color: #333;
+}
+
+
+.article .medial-strip .separator-line {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 20px;
+  width: 1px;
+  background: #ddd;
+  z-index: 4000;
+}
+
+.article .context-toggles {
+  position: absolute;
+  top: 100px;
+  left: 0px;
+  right: 0px;
+  
+  z-index: 5000;
+}
+
+
+.article .context-toggles .context-toggle {
+  cursor: pointer;
+  display: block;
+  z-index: 5000;
+  padding: 0 10px;
+  line-height: 40px;
+  font-size: 22px;
+  color: #aaa;
+  background: #fff;
+  font-family: 'Avenir LT W01 85 Heavy', 'Montserrat', 'Source Sans Pro';
+}
+
+
+.article .context-toggles .context-toggle.pdf {
+  margin-top: 40px;
+}
+
+.article .context-toggles .context-toggle i {
+
+}
+
+.article .context-toggles .context-toggle span {
+  display: none;
+}
+
+.article .context-toggles .context-toggle div.label {
+  /*background: blue;*/
+  margin-left: -15px;
+  margin-right: -15px;
+  font-family: 'Source Sans Pro';
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 10px;
+  line-height: 12px;
+  padding-bottom: 10px;
+  text-align: center;
+
+}
+
+.article .context-toggles .context-toggle:hover {
+  color: #555;
+}
+
+/*Active states depend on the global reader context */
+
+/*.article .context-toggles .context-toggle.figures:hover {
+  color: rgba(145, 187, 4, 1);
+}
+
+.article .context-toggles .context-toggle.citations:hover {
+  color: rgba(11, 157, 217, 1);
+}
+*/
+
+
+.article.figures .context-toggles .context-toggle.figures {
+  color: #111; 
+}
+
+.article.citations .context-toggles .context-toggle.citations {
+  /*color: rgba(11, 157, 217, 1);*/
+  color: #111; 
+}
+
+.article.definitions .context-toggles .context-toggle.definitions {
+  color: #111;
+}
+
+.article.toc .context-toggles .context-toggle.toc {
+  color: #111;
+}
+
+.article.info .context-toggles .context-toggle.info {
+  color: #111;
+}
+
+
+/* Resources Panel 
+======================================================================= */
+
+
+.article .resources {
+  float: right;
+  line-height: 25px;
+  width: 50%;
+  
+  height: 100%;
+  padding-left: 50px;
+  padding-right: 50px;
+  position: relative;
+  /*overflow: auto;*/
+}
+
+.article .resources .surface {
+  /*padding-top: 20px;*/
+}
+
+.article .nodes {
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.article .resources .nodes {
+  padding-left: 55px;
+  padding-right: 40px;
+}
+
+.article .resources .nodes > .content-node {
+  color: #505050;
+  position: relative;
+  background: #fff;
+/*  margin-bottom: 30px;
+  margin-top: 30px;*/
+
+  padding: 0px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.article .resources .nodes > .content-node > .content {
+  border: 1px solid #ddd;
+  border-top: none;
+}
+
+.article .resources .content-node .resource-header:hover {
+  background: rgba(0,0,0,0.15);
+}
+
+/* Clickable header */
+.article .resources .content-node .resource-header {
+  min-height: 40px;
+  position: relative;
+  background: rgba(0,0,0,0.1);
+}
+
+
+/* Shared styles for selected and mouseover states
+----------------------------------------------------------------------- */
+
+/* Active resource */
+.article .resources .content-node.active .resource-header .name {
+  color: #fff;
+}
+
+/* active figure */
+.article .resources .figures .content-node.active {
+  /*border-color: rgba(145, 187, 4, 1);*/
+}
+
+.article .resources .figures .content-node.active .resource-header {
+  background: rgba(145, 187, 4, 1);
+}
+
+.article .resources .figures .content-node.active .resource-header a {
+  /*color: rgba(145, 187, 4, 1);*/
+}
+
+
+/* active citation */
+
+.article .resources .citations .content-node.active {
+  /*border-color: rgba(11, 157, 217, 1);*/
+}
+
+.article .resources .citations .content-node.active .resource-header {
+  background: rgba(11, 157, 217, 1);
+}
+
+.article .resources .citations .content-node.active .resource-header a {
+  /*color: rgba(11, 157, 217, 1);*/
+}
+
+/* active person */
+
+.article .resources .info .content-node.active {
+  /*border-color: #5c6570;*/
+}
+
+.article .resources .info .content-node.active .resource-header {
+  border-color: #5c6570;
+}
+
+.article .resources .info .content-node.active .resource-header a {
+  /*color: #5c6570;*/
+}
+
+/* active definition */
+.article .resources .definitions .content-node.active .resource-header {
+  background: #5c6570;
+}
+
+
+/* Figures View
+----------------------------------------------------------------------- */
+
+.article .resources .surface.figures {
+  display: none;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  font-size: 14px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.article.figures .resources .resource-view.figures {
+  display: block;
+}
+
+/* Citations View
+----------------------------------------------------------------------- */
+
+.article .resources .surface.citations {
+  font-size: 14px;
+
+  display: none;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+.article.citations .resources .resource-view.citations {
+  display: block;
+}
+
+
+/* Definitions View
+----------------------------------------------------------------------- */
+
+.article .resources .surface.definitions {
+  font-size: 14px;
+
+  display: none;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+.article.definitions .resources .resource-view.definitions {
+  display: block;
+}
+
+
+/* TOC View
+----------------------------------------------------------------------- */
+
+.resource-view.toc {
+  display: none;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 50px;
+  right: 0px;
+
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-top: 60px;
+}
+
+.article.toc .resources .resource-view.toc {
+  display: block;
+}
+
+
+/* Info View
+----------------------------------------------------------------------- */
+
+.article .resources .surface.info {
+  display: none;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+.article.info .resources .resource-view.info {
+  display: block;
+}
+
+
+/* Consistent Resource Header for figures captions and person cards 
+----------------------------------------------------------------------- */
+
+.article .resources .resource-header .name {
+  display: block;
+  min-height: 40px;
+  
+  color: #444;
+  /*font-family: 'Avenir LT W01 85 Medium', 'Montserrat', 'Source Sans Pro';*/
+  font-size: 16px;
+  line-height: 21px;
+  padding: 10px 20px;
+}
+
+
+.article .resources .content-node .reference-count {
+  font-size: 13px;
+  position: absolute;
+  right: 20px;
+  top: 40px;
+  text-align: right;
+}
+
+
+/* Resource toggle */
+
+.article .resources .content-node .resource-header .toggle-res {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  font-size: 20px;
+  bottom: 0px;
+  text-align: center;
+  line-height: 40px;
+  color: rgba(0,0,0, 0.2);
+  width: 60px;
+}
+
+/*.article .resources .content-node .resource-header:hover .toggle-res {
+  color: rgba(0,0,0, 0.5);
+}
+*/
+
+/* Active state adjustments */
+
+.article .resources .content-node.active .resource-header .toggle-res {
+  color: rgba(255,255,255, 0.5);
+}
+
+/*.article .resources .content-node.active .resource-header .toggle-res:hover {
+  color: rgba(255,255,255, 1);
+}*/
+
+
+/* Hide resize small icon by default */
+#container .article .content-node .icon-eye-close {
+  display: none;
+}
+
+#container .article .content-node.active .icon-eye-close {
+  display: inline;
+}
+
+#container .article .content-node.active .icon-eye-open {
+  display: none;
+}
+
+/* Resource Fullscreen Mode 
+======================================================================= */
+
+
+/* Styles for fullscreen toggle on resource cards */
+
+.article .resources .content-node .resource-header .toggle-fullscreen {
+  position: absolute;
+  right: 30px;
+  top: 0px;
+  font-size: 20px;
+  bottom: 0px;
+  text-align: center;
+  line-height: 40px;
+  color: rgba(0,0,0, 0.2);
+  width: 81px;
+}
+
+.article .resources .content-node .resource-header .toggle-fullscreen:hover {
+  color: rgba(0,0,0, 0.5);
+}
+
+/* Active state adjustments */
+
+.article .resources .content-node.active .resource-header .toggle-fullscreen {
+  color: rgba(255,255,255, 0.5);
+}
+
+.article .resources .content-node.active .resource-header .toggle-fullscreen:hover {
+  color: rgba(255,255,255, 1);
+}
+
+
+/* Hide resize small icon by default */
+#container .article .content-node .icon-resize-small {
+  display: none;
+}
+
+#container .article .content-node.fullscreen {
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: 100000;
+  margin-bottom: 0px;
+  margin-right: 0px;
+  padding: 0px;
+}
+
+#container .article .content-node.fullscreen .icon-resize-small {
+  display: inline;
+}
+
+#container .article .content-node.fullscreen .icon-resize-full {
+  display: none;
+}
+
+#container .article .content-node.fullscreen > .content {
+  position: absolute;
+  top: 80px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+
+  overflow: auto;
+}
+
+
+
+/* Info panel overrides 
+----------------------------------------------------------------------- */
+
+
+#container .article .surface.info .content-node.caption .content {
+  padding: 20px;
+}
+
+
+/* Annotations 
+----------------------------------------------------------------------- */
+
+.article span.annotation {
+  -webkit-transition-property: background, color;
+  -moz-transition-property: background, color;
+  transition-property: background, color;
+
+  -webkit-transition-duration: 0.1s;
+  -moz-transition-duration: 0.1s;
+  transition-duration: 0.1s;
+}
+
+span.annotation.formula_reference, span.publication_reference {
+  padding-left: 3px; padding-right: 3px;
+}
+
+.article span.emphasis, .article em {
+  font-style: italic;
+}
+
+.article span.superscript, .article span.subscript, .article sup, .article sub {
+  vertical-align: baseline;
+  position: relative;
+  top: -0.4em;
+  font-size: 12px;
+}
+
+.article .cover span.superscript, .article .cover span.subscript, .article .cover sup, .article .cover sub {
+  font-size: inherit;
+}
+
+.article span.subscript, .article sub {
+  top: 0.4em;
+}
+
+.article span.strong, .article strong {
+  font-weight: bold;
+}
+
+.article span.underline {
+  text-decoration: underline;
+}
+
+
+.content-node .idea { background-color: rgba(102, 182, 32, 0.3); }
+.content-node .question { background-color: rgba(16, 167, 222, 0.3); }
+.content-node .error { background-color: rgba(237, 96, 48, 0.3); }
+
+.content-node .link { color: #1B6685; font-weight: bold; }
+.content-node .link:hover, .content-node .link.active { color: rgba(11, 157, 217, 1); }
+
+/* Inline Code Annotations */
+
+.content-node .code {
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+  background: #eee;
+  font-size: 13px;
+  padding: 2px 3px;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+/* Highlighted states */
+
+.content-node .idea.highlight { background-color: rgba(102, 182, 32, 0.6); }
+.content-node .question.highlight { background-color: rgba(16, 167, 222, 0.6);}
+.content-node .error.highlight { background-color: rgba(237, 96, 48, 0.6); }
+
+/* Selected states */
+.content-node .content span.selected { background: rgba(0,0,0,0.08); }
+.content-node .content .idea.selected { background-color: rgba(102, 182, 32, 0.4); }
+.content-node .content .question.selected { background-color: rgba(16, 167, 222, 0.4);}
+.content-node .content .error.selected { background-color: rgba(237, 96, 48, 0.4); }
+
+/* Em, Strong, Link */
+.content-node .emphasis { font-style: italic; }
+.content-node .strong { font-weight: bold; }
+
+
+/* Figure Reference */
+.content-node .figure_reference {
+  background: rgba(145, 187, 4, 0.15);
+  border-bottom: 1px solid rgba(145, 187, 4, 0.8);
+  color: #495A11;
+  cursor: pointer;
+}
+
+.content-node .contributor_reference {
+  padding: 2px 1px;
+  cursor: pointer;
+}
+
+.content-node .citation_reference { 
+  background: rgba(11, 157, 217, 0.075);
+  color: #1B6685;
+  border-bottom: 1px solid rgba(11, 157, 217, 0.4);
+  cursor: pointer;
+}
+
+.content-node .cross_reference {
+  background: rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+
+
+.content-node .definition_reference {
+  font-style: italic;
+  background: rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+
+/* Hover states */
+.content-node .figure_reference:hover { background-color: rgba(145, 187, 4, 0.35); }
+.content-node .citation_reference:hover { background-color: rgba(11, 157, 217, 0.30); }
+.content-node .contributor_reference:hover { background-color: rgba(0,0,0, 0.05); }
+.content-node .definition_reference:hover { background-color: rgba(0,0,0, 0.1); }
+
+.content-node .figure_reference.active { background: rgba(145, 187, 4, 0.7); }
+.content-node .citation_reference.active { background: rgba(11, 157, 217, 0.6); }
+.content-node .contributor_reference.active { background-color: #5c6570; color: white; }
+
+.content-node .definition_reference.active { background-color: #5c6570; color: white; }
+
+/* Cross Reference */
+.content-node .cross_reference:hover {
+  background-color: rgba(0, 0, 0, 0.10);
+}
+
+
+/* Reader-specific overrides for content nodes
+======================================================================= */
+
+/* For the main content area 
+----------------------------------------------------------------------- */
+
+.surface.content .nodes > .content-node {
+  padding-top: 10px;
+  padding-bottom: 15px;
+  padding-left: 40px;
+  padding-right: 40px;
+  word-wrap: break-word;
+}
+
+/* Some extra cover spacing */
+.surface.content .nodes > .content-node.cover {
+  padding-top: 20px;
+  padding-bottom: 60px;
+}
+
+
+
+/* For the resources panel
+----------------------------------------------------------------------- */
+
+
+.resources .content-node.image div img {
+  width: auto;
+}
+
+.resources .content-node.paragraph .content-node.image div img {
+  width: auto;
+}
+
+/* padding for the content */
+.resources .nodes > .content-node > .content {
+  padding: 20px;
+
+}
+
+/* For the resources panel */
+.resources .info .nodes > .content-node.paragraph > .content > .content-node {
+  padding: 20px 0;
+}
+
+.article .document .surface.content::-webkit-scrollbar {
+  width: 2px;
+  height: 2px; 
+}
+
+.article .document .surface.content::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+
+/* Disable native scrollbar for resources except TOC */
+
+.article .resources .surface.figures::-webkit-scrollbar,
+.article .resources .surface.citations::-webkit-scrollbar,
+.article .resources .surface.info::-webkit-scrollbar {
+  width: 2px;
+  height: 2px; 
+}
+
+.article .resources .surface.figures::-webkit-scrollbar-thumb,
+.article .resources .surface.citations::-webkit-scrollbar-thumb,
+.article .resources .surface.info::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+
+/* Resources Outline */
+/* ---------------------------------------*/
+
+.resources .lens-outline {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  left: auto;
+  bottom: 0px;
+  width: 30px;
+}
+
+#container.touchable .resources .lens-outline {
+  right: 5px;
+}
+
+.resources .lens-outline .node {
+  width: 20px;
+}
+
+
+/* Responsiveness */
+/* ---------------------------------------*/
+
+
+
+/* Hide fullscreen toggle for small screens */
+#container.touchable .toggle-fullscreen {
+  display: none;
+}
+
+#container.touchable .article .document .surface.content {
+  right: 20px;
+}
+
+
+/* Only hide for IOS devices because of scrolling issues! */
+#container.touchable.ios .lens-outline .visible-area {
+  display: none;
+}
+
+#container.touchable .lens-outline .node:hover {
+  opacity: 0.15;
+}
+
+#container.touchable .lens-outline .arrow {
+  display: none;
+}
+
+.content-node.heading .top {
+  display: none;
+}
+
+/* Mobile (iPad Portrait, iPhone) */
+@media (max-width: 850px) {
+
+  .content-node.heading .top {
+    display: block;
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    padding: 10px;
+  }
+
+  .article .content-node.cover .title {
+    font-size: 24px;
+  }
+
+  .article .content-node.cover .authors .text {
+    font-size: 16px;
+  }
+
+
+  html body.reader {
+    height: auto;
+    overflow: visible;
+    position: relative;
+  }
+
+  /* Hide fullscreen toggle for small screens */
+  #container .toggle-fullscreen {
+    display: none;
+  }
+
+  /* Reset back */
+  #container.touchable .article .document .surface.content {
+    right: 0px;
+  }
+
+  .surface.content .nodes > .content-node {
+    padding-top: 10px;
+    padding-bottom: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    word-wrap: break-word;
+  }
+
+  .article .document .surface.content .nodes {
+    padding-left: 40px;
+  }
+
+  .article .document {
+    width: 100%;
+    height: auto;
+    position: relative;
+    z-index: 100;
+  }
+
+  .article .document .surface.content {
+    position: absolute;
+    position: relative;
+    overflow: visible;
+  }
+
+  .article .resources .surface.resource-view {
+    position: absolute;
+    position: relative;
+    overflow: visible;
+  }
+
+  .article.toc .document {
+    z-index: 200;
+  }
+
+  #container .article .resources {
+    background: #fff;
+    position: relative;
+    width: 100%;
+    height: auto;
+
+    padding-left: 0px;
+    padding-right: 0px;
+
+    z-index: 300;
+    word-wrap: break-word;
+  }
+
+  #container .article .resources .nodes {
+    padding: 0px 20px;
+  }
+
+  .article .document .surface.content .nodes {
+    padding-left: 0;
+  }
+
+  #container .article .resources .resource-view {
+    display: none;
+  }
+
+  #container .article.figures .resources .resource-view.figures {
+    display: block;
+    z-index: 200;
+  }
+
+  /* Hide document when in resource mode */
+  #container .article.figures .document,
+  #container .article.citations .document,
+  #container .article.info .document,
+  #container .article.definitions .document
+  {
+    display: none;
+  }
+
+  #container .article.info .resources .resource-view.info {
+    display: block;
+    z-index: 200;
+  }
+
+  #container .article.citations .resources .resource-view.citations {
+    display: block;
+    z-index: 200;
+  }
+
+  #container .article.definitions .resources .resource-view.definitions {
+    display: block;
+    z-index: 200;
+  }
+
+  .article .medial-strip {
+    background: #252525;
+    position: relative;
+    top: auto;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    margin-left: 0px;
+    height: 60px;
+    width: auto;
+  }
+
+  .article .medial-strip .context-toggles {
+    background: #252525;
+
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    top: 0px;
+  }
+
+  .article .medial-strip .context-toggles .context-toggle {
+    float: left;
+    height: 70px;
+    width: 80px;
+    padding-top: 10px;
+    text-align: center;
+    line-height: 17px;
+  }
+
+  .article .medial-strip .context-toggles .context-toggle:hover {
+    color: white;
+  }
+
+  .article .medial-strip .context-toggles .context-toggle span {
+    display: block;
+    font-size: 11px;
+  }
+
+  .article .medial-strip .context-toggles .context-toggle div.label {
+    display: none;
+  }
+
+  .article.figures .context-toggles .context-toggle.figures {
+    color: rgba(0,0,0,1);
+    background: white;
+  }
+
+  .article.citations .context-toggles .context-toggle.citations {
+    color: rgba(0,0,0,1);
+    background: white;
+  }
+
+  .article.toc .context-toggles .context-toggle.toc {
+    background: white;
+  }
+
+  .article.info .context-toggles .context-toggle.info {
+    color: rgba(0,0,0,1);
+    background: white;
+  }
+
+  .article.definitions .context-toggles .context-toggle.definitions {
+    color: rgba(0,0,0,1);
+    background: white;
+  }
+
+  .article .medial-strip .back-nav {
+    display: none;
+  }
+
+  .article .lens-outline {
+    display: none;
+  }
+
+}
+
