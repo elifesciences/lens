@@ -6,6 +6,7 @@ var LensController = require("./lens_controller");
 var LensView = require("./lens_view");
 var util = require("substance-util");
 var html = util.html;
+var SubstanceReader = require('substance-reader');
 
 var ROUTES = [
   {
@@ -25,7 +26,7 @@ var ROUTES = [
   },
   {
     "route": ":context/:node",
-    "name": "document-node", 
+    "name": "document-node",
     "command": "openReader"
   },
   {
@@ -54,11 +55,15 @@ var Lens = function(config) {
   config.routes = ROUTES;
   Application.call(this, config);
 
+  var panelSpecs = require('./panel_specification');
+  var panelFactory = new SubstanceReader.PanelFactory(panelSpecs);
+  config.panelFactory = panelFactory;
+
   this.controller = new LensController(config);
 };
 
 Lens.Article = require("lens-article");
-Lens.Reader = require("substance-reader");
+Lens.Reader = SubstanceReader;
 Lens.Outline = require("lens-outline");
 
 
@@ -71,6 +76,7 @@ Lens.Prototype = function() {
     this.view = this.controller.createView();
     this.$el.html(this.view.render().el);
   }
+
 };
 
 
