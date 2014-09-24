@@ -11,6 +11,8 @@ app.use(express.methodOverride());
 
 var config = require("./project.json");
 new CJSServer(app, __dirname, 'lens')
+  // ATTENTION: the second argument is the script which is resembled by injecting a list
+  // of script tags instead. It must be exactly the same string which is used in the script src.
   .scripts('./boot.js', 'lens.js', {
     ignores: [
       'substance-commander',
@@ -18,6 +20,7 @@ new CJSServer(app, __dirname, 'lens')
       'substance-operator'
     ]
   })
+  // ... the same applies to the css file
   .styles(config.styles, 'lens.css')
   .page('/index.html');
 
