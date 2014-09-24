@@ -84,7 +84,7 @@ LensController.Prototype = function() {
     var that = this;
 
     // Create new reader controller instance
-    this.reader = new ReaderController(doc, state);
+    this.reader = new ReaderController(doc, state, this.config);
 
     this.reader.on('state-changed', function() {
       that.updatePath(that.reader.state);

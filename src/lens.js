@@ -1,11 +1,7 @@
 "use strict";
 
-var _ = require("underscore");
 var Application = require("substance-application");
 var LensController = require("./lens_controller");
-var LensView = require("./lens_view");
-var util = require("substance-util");
-var html = util.html;
 
 var ROUTES = [
   {
@@ -25,7 +21,7 @@ var ROUTES = [
   },
   {
     "route": ":context/:node",
-    "name": "document-node", 
+    "name": "document-node",
     "command": "openReader"
   },
   {
@@ -54,13 +50,20 @@ var Lens = function(config) {
   config.routes = ROUTES;
   Application.call(this, config);
 
+  var panelSpecs = require('./panel_specification');
+  var panelFactory = new Lens.Reader.PanelFactory(panelSpecs);
+  config.panelFactory = panelFactory;
+
   this.controller = new LensController(config);
 };
 
 Lens.Article = require("lens-article");
-Lens.Reader = require("substance-reader");
+Lens.Reader = {
+  Controller: require('./reader_controller'),
+  View: require('./reader_view'),
+  PanelFactory: require('./panel_factory')
+};
 Lens.Outline = require("lens-outline");
-
 
 Lens.Prototype = function() {
 
@@ -70,9 +73,9 @@ Lens.Prototype = function() {
   this.render = function() {
     this.view = this.controller.createView();
     this.$el.html(this.view.render().el);
-  }
-};
+  };
 
+};
 
 Lens.Prototype.prototype = Application.prototype;
 Lens.prototype = new Lens.Prototype();

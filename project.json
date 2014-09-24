@@ -16,11 +16,6 @@
       "branch": "lens"
     },
     {
-      "repository": "https://github.com/substance/reader.git",
-      "folder": "node_modules/substance-reader",
-      "branch": "lens"
-    },
-    {
       "repository": "https://github.com/elifesciences/lens-article.git",
       "folder": "node_modules/lens-article",
       "branch": "lens_next"
@@ -38,7 +33,7 @@
     {
       "repository": "https://github.com/elifesciences/lens-outline.git",
       "folder": "node_modules/lens-outline",
-      "branch": "0.2.x"
+      "branch": "master"
     },
     {
       "repository": "https://github.com/substance/toc.git",
@@ -48,7 +43,7 @@
     {
       "repository": "https://github.com/elifesciences/lens-converter.git",
       "folder": "node_modules/lens-converter",
-      "branch": "0.3.x"
+      "branch": "master"
     },
     {
       "repository": "https://github.com/substance/regexp.git",
@@ -111,8 +106,8 @@
     "styles/nodes/contributor.css": "node_modules/lens-article/nodes/contributor/contributor.css",
     "styles/nodes/publication_info.css": "node_modules/lens-article/nodes/publication_info/publication_info.css",
 
-    "styles/reader.css": "node_modules/substance-reader/reader.css",
     "styles/toc.css": "node_modules/substance-toc/toc.css",
+    "styles/reader.css": "styles/reader.css",
     "styles/lens.css":  "styles/lens.css"
   },
   "assets": {
