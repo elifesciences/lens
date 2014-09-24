@@ -39,15 +39,15 @@ PanelFactory.Prototype = function() {
     var renderer, panelView;
     var spec = this.getSpec(name);
     var doc = docCtrl.__document;
-    if (spec.createRenderer) {
-      renderer = spec.createRenderer(name, docCtrl);
-    } else {
-      var DefaultRenderer = doc.constructor.Renderer;
-      renderer = new DefaultRenderer(docCtrl);
-    }
     if (name === 'toc') {
       panelView = new TOC(doc);
     } else {
+      if (spec.createRenderer) {
+        renderer = spec.createRenderer(name, docCtrl);
+      } else {
+        var DefaultRenderer = doc.constructor.Renderer;
+        renderer = new DefaultRenderer(docCtrl);
+      }
       panelView = new Surface(docCtrl, {
         editable: false,
         renderer: renderer

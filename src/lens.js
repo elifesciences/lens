@@ -50,7 +50,7 @@ var Lens = function(config) {
   config.routes = ROUTES;
   Application.call(this, config);
 
-  var panelSpecs = require('./panel_specification');
+  var panelSpecs = require('./experimental/experimental_panel_specification');
   var panelFactory = new Lens.Reader.PanelFactory(panelSpecs);
   config.panelFactory = panelFactory;
 

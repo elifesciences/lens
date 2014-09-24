@@ -88,7 +88,11 @@ var panelSpecs = {
     title: 'References',
     icon: 'icon-link',
     references: ['citation_reference'],
-    createRenderer: createResourceRenderer,
+    createRenderer: function(name, docCtrl) {
+      return new LensArticle.Renderer(docCtrl, {
+        afterRender: addResourceHeader
+      });
+    },
   },
   definitions: {
   	type: 'resource',
