@@ -371,10 +371,8 @@ ReaderView.Prototype = function() {
 
       // TODO: Brute force for now
       // Make sure to find out which resource view is currently active
-      if (this.figuresView) this.figuresView.$el.scrollTop(topOffset);
-      if (this.citationsView) this.citationsView.$el.scrollTop(topOffset);
-      if (this.definitionsView) this.definitionsView.$el.scrollTop(topOffset);
-      if (this.infoView) this.infoView.$el.scrollTop(topOffset);
+      var panelView = this.panelViews[this.readerCtrl.state.context];
+      if (panelView) panelView.$el.scrollTop(topOffset);
 
       // Brute force for mobile
       $(document).scrollTop(topOffset);
