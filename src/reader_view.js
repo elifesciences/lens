@@ -54,7 +54,7 @@ var Renderer = function(reader) {
   });
 
   var pubInfo = reader.doc.get('publication_info');
-  if (pubInfo.pdf_link) {
+  if (pubInfo && pubInfo.pdf_link) {
     // PDF Link
     children.push($$('a.context-toggle.pdf', {
       'href': pubInfo.pdf_link,
