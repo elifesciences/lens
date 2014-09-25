@@ -297,8 +297,11 @@ ReaderView.Prototype = function() {
   };
 
   this.onResourceContentScroll = function() {
-    var scrollTop = this.resourcesOutline.surface.$el.scrollTop();
-    this.resourcesOutline.updateVisibleArea(scrollTop);
+    // Make sure that a surface is attached to the resources outline
+    if (this.resourcesOutline.surface) {
+      var scrollTop = this.resourcesOutline.surface.$el.scrollTop();
+      this.resourcesOutline.updateVisibleArea(scrollTop);      
+    }
   };
 
 
