@@ -4,7 +4,11 @@ var _ = require("underscore");
 var util = require("substance-util");
 var Controller = require("substance-application").Controller;
 var LensView = require("./lens_view");
+<<<<<<< HEAD
 var ReaderController = require("./reader_controller");
+=======
+var ReaderController = require('./reader_controller');
+>>>>>>> FETCH_HEAD
 var Article = require("lens-article");
 var Converter = require("lens-converter");
 
