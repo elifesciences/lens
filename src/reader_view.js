@@ -466,7 +466,7 @@ ReaderView.Prototype = function() {
     // -------
 
     // TODO: we should have collected all resource types at this point
-    this.$el.removeClass('toc figures citations info definitions');
+    this.$el.removeClass(this.panelFactory.getNames().join(' '));
     this.contentView.$('.content-node.active').removeClass('active');
     this.$el.addClass(state.context);
 

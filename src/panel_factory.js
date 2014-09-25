@@ -19,6 +19,7 @@ PanelFactory.Prototype = function() {
 
   this.addPanel = function(name, panelSpec) {
     panelSpec.name = name;
+    panelSpec.container = panelSpec.container || name;
     panelSpec.shouldBeVisible = panelSpec.shouldBeVisible || shouldBeVisible;
     this.panelSpecs[panelSpec.name] = panelSpec;
   };
@@ -32,7 +33,12 @@ PanelFactory.Prototype = function() {
   };
 
   this.createPanelController = function(doc, name) {
-    return new Document.Controller( doc, {view: name} );
+    var spec = this.getSpec(name);
+    if (spec.container) {
+      return new Document.Controller( doc, {view: name} );
+    } else if (spec.createPanelController) {
+      return spec.createPanelController(doc);
+    }
   };
 
   this.createPanelView = function(name, docCtrl) {
@@ -41,6 +47,8 @@ PanelFactory.Prototype = function() {
     var doc = docCtrl.__document;
     if (name === 'toc') {
       panelView = new TOC(doc);
+    } else if (spec.createPanelView) {
+      panelView = spec.createPanelView(docCtrl, name);
     } else {
       if (spec.createRenderer) {
         renderer = spec.createRenderer(name, docCtrl);
