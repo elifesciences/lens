@@ -66,14 +66,6 @@ var panelSpecs = {
     	return true;
     }
   },
-  info: {
-  	type: 'resource',
-    label: 'Info',
-    title: 'Article Info',
-    icon: 'icon-info-sign',
-    references: ['contributor_reference'],
-    createRenderer: createResourceRenderer,
-  },
   figures: {
   	type: 'resource',
     label: 'Figures',
@@ -96,6 +88,14 @@ var panelSpecs = {
     title: 'Glossary',
     icon: 'icon-book',
     references: ['definition_reference'],
+    createRenderer: createResourceRenderer,
+  },
+  info: {
+    type: 'resource',
+    label: 'Info',
+    title: 'Article Info',
+    icon: 'icon-info-sign',
+    references: ['contributor_reference'],
     createRenderer: createResourceRenderer,
   }
 };
