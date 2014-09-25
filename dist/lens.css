@@ -394,6 +394,16 @@ Outline
   overflow: auto;
 }
 
+.lens-article .content-node.cover .content .links {
+  margin-top: 20px;
+  font-size: 15px;
+}
+
+.lens-article .content-node.cover .content .links a {
+  padding-left: 4px;
+  margin-right: 20px;
+}
+
 /* One para per author */
 .lens-article .content-node.cover .authors .text {
   float: left;
@@ -454,13 +464,35 @@ Box
 Citations 
 --------------------------------------- */
 
+.lens-article .content-node.citation .content .title {
+  font-family: 'Avenir LT W01 85 Medium', 'Montserrat', 'Source Sans Pro';
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
 .lens-article .content-node.citation .content .authors {
-  font-size: 17px;
+  font-size: 16px;
 }
 
 .lens-article .content-node.citation .content .source {
   color: #777;
+  padding-top: 10px;
+}
+
+.lens-article .content-node.citation .content .citation-urls {
   padding-top: 20px;
+}
+
+.lens-article .content-node.citation .content .citation-urls .url {
+  padding-right: 20px;
+}
+/*
+Definition 
+--------------------------------------- */
+
+
+.lens-article .content-node.definition .description {
+  font-size: 16px;
 }
 
 /* Figure Node
@@ -481,6 +513,10 @@ Citations
 
 .lens-article .content-node.table > .content {
   padding: 20px;
+}
+
+.lens-article .content-node.table > .content img {
+  width: 100%;
 }
 
 .lens-article .content-node.table .table-wrapper {
@@ -568,24 +604,30 @@ Contributor
 
 .lens-article .content-node.contributor .affiliation {
   margin-top: 10px;
-  font-size: 17px;
+  font-size: 16px;
+}
+
+.lens-article .content-node.contributor .contributor-name {
+  font-family: 'Avenir LT W01 85 Medium', 'Montserrat', 'Source Sans Pro';
+  font-size: 16px;
+  margin-bottom: 20px;
 }
 
 .lens-article .content-node.contributor .label {
-  font-size: 14px;
+  font-size: 15px;
   margin-top: 20px;
-  color: #777;
+  color: #999;
 }
 /* Publication Info */
 
 .lens-article .content-node.publication-info {
-  font-size: 17px;
+  font-size: 16px;
   color: #333;
 }
 
-.article .resources .nodes > .content-node.publication-info > .content {
-  border-top: 1px solid #ddd;
-}
+/*.article .resources .nodes > .content-node.publication-info > .content {*/
+  /*border-top: 1px solid #ddd;*/
+/*}*/
 
 .lens-article .content-node.publication-info table {
   padding: 10px 0;
@@ -593,64 +635,97 @@ Contributor
   width: 100%;
 }
 
+.lens-article .content-node.publication-info .meta-data > .container {
+  margin-bottom: 20px;
+}
+
+.lens-article .content-node.publication-info .meta-data {
+  padding-bottom: 30px;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 20px;
+}
+
 .lens-article .content-node.publication-info .label {
-  margin-top: 10px;
-  font-size: 13px;
-  color: #666;
-}
-
-.lens-article .content-node.publication-info .label.links {
-  padding-right: 30px;
-}
-
-.lens-article .content-node.publication-info .links {
-  overflow: auto;
-}
-
-.lens-article .content-node.publication-info .links .link {
-  margin-top: 10px;
-  padding: 10px;
   float: left;
-  display: block;
-  margin-right: 10px;
-  background: #fff;
-  border-radius: 5px;
-}
 
-.lens-article .content-node.publication-info table.dates {
-  background: #fff;
-  margin-top: 30px;
-}
-
-.lens-article .content-node.publication-info table.dates .value {
-  font-style: normal;
-
-}
-
-.lens-article .content-node.publication-info table.dates td {  
-  border: none;
-  padding-right: 30px;
-  padding-bottom: 10px;
-  width: 33%;
-}
-
-.lens-article .content-node.publication-info table.categorization td {
-  vertical-align: top;
-  border: none;
-  padding-right: 30px;
-  width: 50%;
+  width: 100px;
+  font-size: 15px;
+  color: #999;
 }
 
 .lens-article .content-node.publication-info .value {
-  font-style: italic;
+  margin-left: 140px;
 }
 
-.lens-article .content-node.publication-info a.value {
-  font-style: normal;
+.lens-article .content-node.publication-info .dates {
+  font-size: 16px;
 }
 
-.lens-article .content-node.publication-info .links {
-  padding-right: 30px;
+.article .resources .nodes > .content-node.publication-info > .content {
+  border: none;
+  padding: 10px;
+}
+
+.article .resources .nodes > .content-node.publication-info #articleinfo {
+  font-size: 16px;
+}
+
+.article .resources .nodes > .content-node.publication-info #articleinfo .heading.level-3 {
+  padding-top: 10px;
+}
+
+.article .resources .nodes > .content-node.publication-info #articleinfo .heading.level-3 .content {
+  font-size: 15px;
+  font-weight: normal;
+  font-family: "Source Sans Pro";
+  color: #999;
+}
+
+/*
+TOC 
+--------------------------------------- */
+
+
+.resource-view.toc .heading-ref {
+  cursor: pointer;
+  display: block;
+  color: rgba(0,0,0,0.7);
+  font-size: 17px;
+  padding: 4px 10px;
+  line-height: 20px;
+  font-family: 'Avenir LT W01 85 Heavy', 'Montserrat', 'Source Sans Pro';
+  margin-right: 10px;
+  border: 1px solid transparent;
+}
+
+.resource-view.toc .heading-ref.active {
+  color: rgba(0,0,0,0.9);
+  background: #fff;
+  border: 1px solid #eee;
+}
+
+.resource-view.toc .heading-ref.level-2 {
+  padding-left: 20px;
+  font-size: 13px;
+}
+
+.resource-view.toc .heading-ref.level-3 {
+  padding-left: 40px;
+  font-size: 13px;
+}
+
+.resource-view.toc .heading-ref.level-4 {
+  padding-left: 60px;
+  font-size: 12px;
+}
+
+.resource-view.toc .heading-ref.level-5 {
+  padding-left: 80px;
+  font-size: 12px;
+}
+
+.resource-view.toc .heading-ref:hover {
+  color: rgba(0,0,0,1.0);
 }
 
 /* Fix weird behavior
@@ -781,7 +856,6 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   left: 0px;
   right: 0px;
   
-  background: #fff;
   z-index: 5000;
 }
 
@@ -794,7 +868,13 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   line-height: 40px;
   font-size: 22px;
   color: #aaa;
+  background: #fff;
   font-family: 'Avenir LT W01 85 Heavy', 'Montserrat', 'Source Sans Pro';
+}
+
+
+.article .context-toggles .context-toggle.pdf {
+  margin-top: 40px;
 }
 
 .article .context-toggles .context-toggle i {
@@ -1425,12 +1505,6 @@ span.annotation.formula_reference, span.publication_reference {
 }
 
 
-.article .document .content-node.heading {
-  cursor: pointer;
-}
-
-
-
 /* Resources Outline */
 /* ---------------------------------------*/
 
@@ -1689,53 +1763,6 @@ span.annotation.formula_reference, span.publication_reference {
 
 
 /*
-TOC 
---------------------------------------- */
-
-
-.resource-view.toc .heading-ref {
-  cursor: pointer;
-  display: block;
-  color: rgba(0,0,0,0.7);
-  font-size: 17px;
-  padding: 4px 10px;
-  line-height: 20px;
-  font-family: 'Avenir LT W01 85 Heavy', 'Montserrat', 'Source Sans Pro';
-  margin-right: 10px;
-  border: 1px solid transparent;
-}
-
-.resource-view.toc .heading-ref.active {
-  color: rgba(0,0,0,0.9);
-  background: #fff;
-  border: 1px solid #eee;
-}
-
-.resource-view.toc .heading-ref.level-2 {
-  padding-left: 20px;
-  font-size: 13px;
-}
-
-.resource-view.toc .heading-ref.level-3 {
-  padding-left: 40px;
-  font-size: 13px;
-}
-
-.resource-view.toc .heading-ref.level-4 {
-  padding-left: 60px;
-  font-size: 12px;
-}
-
-.resource-view.toc .heading-ref.level-5 {
-  padding-left: 80px;
-  font-size: 12px;
-}
-
-.resource-view.toc .heading-ref:hover {
-  color: rgba(0,0,0,1.0);
-}
-
-/*
   Typography / Basics
 ---------------------------------------------*/
 
@@ -1769,6 +1796,12 @@ body.reader {
   right: 0px;
   top: 0px;
   bottom: 0px;
+}
+
+.container::after {
+  content:"";  /* not "."! */
+  display:block;
+  clear:both;
 }
 
 /*
