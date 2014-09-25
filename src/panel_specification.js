@@ -50,7 +50,7 @@ var panelSpecs = {
     icon: 'icon-book',
     references: ['definition_reference'],
     renderer: ResourceRenderer
-  }
+  },
 };
 
 module.exports = panelSpecs;
