@@ -142,7 +142,6 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   font-family: 'Avenir LT W01 85 Heavy', 'Montserrat', 'Source Sans Pro';
 }
 
-
 .article .context-toggles .context-toggle.pdf {
   margin-top: 40px;
 }
@@ -166,31 +165,21 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   line-height: 12px;
   padding-bottom: 10px;
   text-align: center;
-
 }
 
 .article .context-toggles .context-toggle:hover {
   color: #555;
 }
 
-/*Active states depend on the global reader context */
-
-/*.article .context-toggles .context-toggle.figures:hover {
-  color: rgba(145, 187, 4, 1);
-}
-
-.article .context-toggles .context-toggle.citations:hover {
-  color: rgba(11, 157, 217, 1);
-}
-*/
-
-
 .article.figures .context-toggles .context-toggle.figures {
   color: #111;
 }
 
 .article.citations .context-toggles .context-toggle.citations {
-  /*color: rgba(11, 157, 217, 1);*/
+  color: #111;
+}
+
+.article.related_articles .context-toggles .context-toggle.related_articles {
   color: #111;
 }
 
@@ -203,6 +192,10 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 }
 
 .article.info .context-toggles .context-toggle.info {
+  color: #111;
+}
+
+.article.figures .context-toggles .context-toggle.figures {
   color: #111;
 }
 
@@ -426,7 +419,7 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   display: block;
 }
 
-/* Citations View
+/* Related Articles View
 ----------------------------------------------------------------------- */
 
 .article .resources .surface.related_articles {
@@ -446,7 +439,6 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 .article.related_articles .resources .resource-view.related_articles {
   display: block;
 }
-
 
 /* Consistent Resource Header for figures captions and person cards
 ----------------------------------------------------------------------- */
@@ -821,7 +813,6 @@ span.annotation.formula_reference, span.publication_reference {
 /* ---------------------------------------*/
 
 
-
 /* Hide fullscreen toggle for small screens */
 #container.touchable .toggle-fullscreen {
   display: none;
@@ -830,7 +821,6 @@ span.annotation.formula_reference, span.publication_reference {
 #container.touchable .article .document .surface.content {
   right: 20px;
 }
-
 
 /* Only hide for IOS devices because of scrolling issues! */
 #container.touchable.ios .lens-outline .visible-area {

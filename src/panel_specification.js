@@ -19,14 +19,6 @@ var panelSpecs = {
       return true;
     }
   },
-  info: {
-    type: 'resource',
-    label: 'Info',
-    title: 'Article Info',
-    icon: 'icon-info-sign',
-    references: ['contributor_reference'],
-    renderer: ResourceRenderer
-  },
   figures: {
     type: 'resource',
     label: 'Figures',
@@ -51,6 +43,14 @@ var panelSpecs = {
     references: ['definition_reference'],
     renderer: ResourceRenderer
   },
+  info: {
+    type: 'resource',
+    label: 'Info',
+    title: 'Article Info',
+    icon: 'icon-info-sign',
+    references: ['contributor_reference'],
+    renderer: ResourceRenderer
+  }
 };
 
 module.exports = panelSpecs;

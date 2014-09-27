@@ -98,6 +98,7 @@
     "styles/nodes/box.css": "node_modules/lens-article/nodes/box/box.css",
     "styles/nodes/citation.css": "node_modules/lens-article/nodes/citation/citation.css",
     "styles/nodes/definition.css": "node_modules/lens-article/nodes/definition/definition.css",
+    "styles/nodes/article_relationship.css": "node_modules/lens-article/nodes/article_relationship/article_relationship.css",
     "styles/nodes/figure.css": "node_modules/lens-article/nodes/figure/figure.css",
     "styles/nodes/table.css": "node_modules/lens-article/nodes/table/table.css",
     "styles/nodes/video.css": "node_modules/lens-article/nodes/video/video.css",
