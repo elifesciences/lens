@@ -18,12 +18,12 @@ module.exports = [
     target: "http://dx.doi.org/10.7554/eLife.03665",
     type: 'insight',
     description: 'This provides an insight into the proposed work.',
-    creator: ["Lord Vader"]
+    creator: ["Goofy"]
   },
   {
     target: ["http://dx.doi.org/10.7554/eLife.02763", "http://dx.doi.org/10.7554/eLife.01739", "http://dx.doi.org/10.7554/eLife.01741"],
     type: 'co-published',
     description: 'This article has been co-published.',
-    creator: ["Lord Vader"]
+    creator: ["Dagobert Duck"]
   }
 ];
