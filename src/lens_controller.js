@@ -131,6 +131,18 @@ LensController.Prototype = function() {
           if(typeof data == 'string') data = $.parseJSON(data);
           doc = Article.fromSnapshot(data);
         }
+
+        // Extract headings
+        // TODO: this should be solved with an index on the document level
+        // This same code occurs in TOCView!
+        var headings = _.filter(doc.get('content').getNodes(), function(node) {
+          return node.type === "heading";
+        });
+
+        if (state.context === "toc" && headings.length < 2) {
+          state.context = "info";
+        }
+        
         that.createReader(doc, state);
       })
       .fail(function(err) {
