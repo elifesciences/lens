@@ -44,6 +44,10 @@ var Renderer = function(reader) {
     if (name === 'content') return;
     if (reader.panelViews[name]) {
       var spec = panelFactory.getSpec(name);
+
+      // Don't show TOC when there are not enough headings
+      if (name === "toc" && reader.doc.getHeadings().length < 2) return;
+
       children.push($$('a.context-toggle.' + name, {
         'href': '#',
         'sbs-click': 'switchContext('+name+')',
@@ -53,17 +57,6 @@ var Renderer = function(reader) {
     }
   });
 
-  var pubInfo = reader.doc.get('publication_info');
-  if (pubInfo && pubInfo.pdf_link) {
-    // PDF Link
-    children.push($$('a.context-toggle.pdf', {
-      'href': pubInfo.pdf_link,
-      'target': '_blank',
-      'style': 'position: absolute;',
-      'title': 'Download PDF',
-      'html': '<i class="icon-print"></i><div class="label">PDF</div>'
-    }));
-  }
 
   var contextToggles = $$('.context-toggles', {
     children: children
