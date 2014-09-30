@@ -146,6 +146,8 @@ var ReaderView = function(readerCtrl) {
     }
   }, this);
 
+  this.tocView = this.panelViews.toc;
+
   // Whenever a state change happens (e.g. user navigates somewhere)
   // the interface gets updated accordingly
   this.listenTo(this.readerCtrl, "state-changed", this.updateState);
@@ -298,18 +300,20 @@ ReaderView.Prototype = function() {
   };
 
 
-  // Clear selection
+  // Mark active heading
   // --------
   //
 
   this.markActiveHeading = function(scrollTop) {
     var contentHeight = $('.nodes').height();
-    var tocView = this.panelViews.toc;
+
+    var headings = this.doc.getHeadings();
+    
     // No headings?
-    if (tocView.headings.length === 0) return;
+    if (headings.length === 0) return;
 
     // Use first heading as default
-    var activeNode = _.first(tocView.headings).id;
+    var activeNode = _.first(headings).id;
 
     this.contentView.$('.content-node.heading').each(function() {
       if (scrollTop >= $(this).position().top + CORRECTION) {
@@ -319,9 +323,9 @@ ReaderView.Prototype = function() {
 
     // Edge case: select last item (once we reach the end of the doc)
     if (scrollTop + this.contentView.$el.height() >= contentHeight) {
-      activeNode = _.last(tocView.headings).id;
+      activeNode = _.last(headings).id;
     }
-    tocView.setActiveNode(activeNode);
+    this.tocView.setActiveNode(activeNode);
   };
 
   // Toggle on-off a resource
