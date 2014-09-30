@@ -6,8 +6,6 @@ var Controller = require("substance-application").Controller;
 var LensView = require("./lens_view");
 var ReaderController = require("./reader_controller");
 var Article = require("lens-article");
-var Converter = require("lens-converter");
-
 
 // Lens.Controller
 // -----------------
@@ -19,7 +17,7 @@ var LensController = function(config) {
 
   this.config = config;
 
-  this.converter = config.converter || new Converter.Importer();
+  this.converter = config.converter;
 
   // Main controls
   this.on('open:reader', this.openReader);
