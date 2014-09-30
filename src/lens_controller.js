@@ -8,6 +8,7 @@ var ReaderController = require("./reader_controller");
 var Article = require("lens-article");
 var Converter = require("lens-converter");
 
+
 // Lens.Controller
 // -----------------
 //
@@ -17,6 +18,8 @@ var LensController = function(config) {
   Controller.call(this);
 
   this.config = config;
+
+  this.converter = config.converter || new Converter.Importer();
 
   // Main controls
   this.on('open:reader', this.openReader);
@@ -42,8 +45,8 @@ LensController.Prototype = function() {
   // ---------
 
   this.importXML = function(xml) {
-    var importer = new Converter.Importer();
-    var doc = importer.import(xml, CONVERTER_OPTIONS);
+    // var importer = new Converter.Importer();
+    var doc = this.converter.import(xml, CONVERTER_OPTIONS);
     this.createReader(doc, {
       context: 'toc'
     });
@@ -125,8 +128,7 @@ LensController.Prototype = function() {
 
         // Process XML file
         if (xml) {
-          var importer = new Converter.Importer();
-          doc = importer.import(data, CONVERTER_OPTIONS);
+          doc = that.converter.import(data, CONVERTER_OPTIONS);
         } else {
           if(typeof data == 'string') data = $.parseJSON(data);
           doc = Article.fromSnapshot(data);
