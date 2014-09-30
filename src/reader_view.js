@@ -7,7 +7,7 @@ var Data = require("substance-data");
 var Index = Data.Graph.Index;
 var $$ = require("substance-application").$$;
 
-var CORRECTION = -100; // Extra offset from the top
+var CORRECTION = 0; // Extra offset from the top
 
 // Renders the reader view
 // --------
