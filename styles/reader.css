@@ -3,7 +3,7 @@
 
 /*
 When using event delegation if the parent element has a click handler, when
-the user touches anything inside this element, the whole region will gray 
+the user touches anything inside this element, the whole region will gray
 out (on iOS 5.1), or flicker (on iOS 6). */
 
 * {
@@ -33,7 +33,7 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   background: white;
 }
 
-/* Main content panel 
+/* Main content panel
 ======================================================================= */
 
 .article .document {
@@ -68,12 +68,12 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 }
 
 
-/* Back Navigation 
+/* Back Navigation
 =======================================================================*/
 
 
 
-/* Context Toggles 
+/* Context Toggles
 =======================================================================*/
 
 /* Switcher */
@@ -83,7 +83,7 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   width: 40px;
   position: absolute;
   left: 50%;
-  margin-left: -18px; 
+  margin-left: -18px;
 
   top: 0px;
   bottom: 0px;
@@ -125,7 +125,7 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   top: 100px;
   left: 0px;
   right: 0px;
-  
+
   z-index: 5000;
 }
 
@@ -186,12 +186,12 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 
 
 .article.figures .context-toggles .context-toggle.figures {
-  color: #111; 
+  color: #111;
 }
 
 .article.citations .context-toggles .context-toggle.citations {
   /*color: rgba(11, 157, 217, 1);*/
-  color: #111; 
+  color: #111;
 }
 
 .article.definitions .context-toggles .context-toggle.definitions {
@@ -207,7 +207,7 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 }
 
 
-/* Resources Panel 
+/* Resources Panel
 ======================================================================= */
 
 
@@ -215,7 +215,7 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   float: right;
   line-height: 25px;
   width: 50%;
-  
+
   height: 100%;
   padding-left: 50px;
   padding-right: 50px;
@@ -427,13 +427,13 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 }
 
 
-/* Consistent Resource Header for figures captions and person cards 
+/* Consistent Resource Header for figures captions and person cards
 ----------------------------------------------------------------------- */
 
 .article .resources .resource-header .name {
   display: block;
   min-height: 40px;
-  
+
   color: #444;
   /*font-family: 'Avenir LT W01 85 Medium', 'Montserrat', 'Source Sans Pro';*/
   font-size: 16px;
@@ -494,7 +494,7 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   display: none;
 }
 
-/* Resource Fullscreen Mode 
+/* Resource Fullscreen Mode
 ======================================================================= */
 
 
@@ -564,7 +564,7 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 
 
 
-/* Info panel overrides 
+/* Info panel overrides
 ----------------------------------------------------------------------- */
 
 
@@ -573,7 +573,7 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 }
 
 
-/* Annotations 
+/* Annotations
 ----------------------------------------------------------------------- */
 
 .article span.annotation {
@@ -674,7 +674,7 @@ span.annotation.formula_reference, span.publication_reference {
   cursor: pointer;
 }
 
-.content-node .citation_reference { 
+.content-node .citation_reference {
   background: rgba(11, 157, 217, 0.075);
   color: #1B6685;
   border-bottom: 1px solid rgba(11, 157, 217, 0.4);
@@ -716,7 +716,7 @@ span.annotation.formula_reference, span.publication_reference {
 /* Reader-specific overrides for content nodes
 ======================================================================= */
 
-/* For the main content area 
+/* For the main content area
 ----------------------------------------------------------------------- */
 
 .surface.content .nodes > .content-node {
@@ -760,7 +760,7 @@ span.annotation.formula_reference, span.publication_reference {
 
 .article .document .surface.content::-webkit-scrollbar {
   width: 2px;
-  height: 2px; 
+  height: 2px;
 }
 
 .article .document .surface.content::-webkit-scrollbar-thumb {
@@ -774,7 +774,7 @@ span.annotation.formula_reference, span.publication_reference {
 .article .resources .surface.citations::-webkit-scrollbar,
 .article .resources .surface.info::-webkit-scrollbar {
   width: 2px;
-  height: 2px; 
+  height: 2px;
 }
 
 .article .resources .surface.figures::-webkit-scrollbar-thumb,
