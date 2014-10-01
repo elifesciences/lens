@@ -617,6 +617,15 @@ span.annotation.formula_reference, span.publication_reference {
   text-decoration: underline;
 }
 
+.article span.label {
+  vertical-align: baseline;
+  position: relative;
+  top: -0.4em;
+  font-size: 12px;
+  padding: 5px;
+  font-weight: bold;
+}
+
 
 .content-node .idea { background-color: rgba(102, 182, 32, 0.3); }
 .content-node .question { background-color: rgba(16, 167, 222, 0.3); }
