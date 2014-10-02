@@ -9,7 +9,7 @@ app.use(express.cookieParser());
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 
-var config = require("./project.json");
+var config = require("./.screwdriver/project.json");
 new CJSServer(app, __dirname, 'lens')
   // ATTENTION: the second argument is the script which is resembled by injecting a list
   // of script tags instead. It must be exactly the same string which is used in the script src.
