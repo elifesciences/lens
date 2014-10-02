@@ -46,7 +46,7 @@ var Renderer = function(reader) {
       var spec = panelFactory.getSpec(name);
 
       // Don't show TOC when there are not enough headings
-      if (name === "toc" && reader.doc.getHeadings().length < 2) return;
+      if (name === "toc" && reader.doc.getHeadings().length <= 2) return;
 
       children.push($$('a.context-toggle.' + name, {
         'href': '#',

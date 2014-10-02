@@ -136,7 +136,7 @@ LensController.Prototype = function() {
         // TODO: this should be solved with an index on the document level
         // This same code occurs in TOCView!
 
-        if (state.context === "toc" && doc.getHeadings().length < 2) {
+        if (state.context === "toc" && doc.getHeadings().length <= 2) {
           state.context = "info";
         }
         
