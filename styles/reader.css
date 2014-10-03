@@ -199,7 +199,6 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   color: #111;
 }
 
-
 /* Resources Panel
 ======================================================================= */
 
@@ -628,6 +627,15 @@ span.annotation.formula_reference, span.publication_reference {
 
 .article span.underline {
   text-decoration: underline;
+}
+
+.article span.label {
+  vertical-align: baseline;
+  position: relative;
+  top: -0.4em;
+  font-size: 12px;
+  padding: 5px;
+  font-weight: bold;
 }
 
 

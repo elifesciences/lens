@@ -7,7 +7,7 @@ var Data = require("substance-data");
 var Index = Data.Graph.Index;
 var $$ = require("substance-application").$$;
 
-var CORRECTION = -100; // Extra offset from the top
+var CORRECTION = 0; // Extra offset from the top
 
 // Renders the reader view
 // --------
@@ -44,6 +44,10 @@ var Renderer = function(reader) {
     if (name === 'content') return;
     if (reader.panelViews[name]) {
       var spec = panelFactory.getSpec(name);
+
+      // Don't show TOC when there are not enough headings
+      if (name === "toc" && reader.doc.getHeadings().length <= 2) return;
+
       children.push($$('a.context-toggle.' + name, {
         'href': '#',
         'sbs-click': 'switchContext('+name+')',
@@ -53,17 +57,6 @@ var Renderer = function(reader) {
     }
   });
 
-  var pubInfo = reader.doc.get('publication_info');
-  if (pubInfo.pdf_link) {
-    // PDF Link
-    children.push($$('a.context-toggle.pdf', {
-      'href': pubInfo.pdf_link,
-      'target': '_blank',
-      'style': 'position: absolute;',
-      'title': 'Download PDF',
-      'html': '<i class="icon-print"></i><div class="label">PDF</div>'
-    }));
-  }
 
   var contextToggles = $$('.context-toggles', {
     children: children
@@ -152,6 +145,8 @@ var ReaderView = function(readerCtrl) {
       if (panelView) this.panelViews[name] = panelView;
     }
   }, this);
+
+  this.tocView = this.panelViews.toc;
 
   // Whenever a state change happens (e.g. user navigates somewhere)
   // the interface gets updated accordingly
@@ -297,23 +292,28 @@ ReaderView.Prototype = function() {
   };
 
   this.onResourceContentScroll = function() {
-    var scrollTop = this.resourcesOutline.surface.$el.scrollTop();
-    this.resourcesOutline.updateVisibleArea(scrollTop);
+    // Make sure that a surface is attached to the resources outline
+    if (this.resourcesOutline.surface) {
+      var scrollTop = this.resourcesOutline.surface.$el.scrollTop();
+      this.resourcesOutline.updateVisibleArea(scrollTop);      
+    }
   };
 
 
-  // Clear selection
+  // Mark active heading
   // --------
   //
 
   this.markActiveHeading = function(scrollTop) {
     var contentHeight = $('.nodes').height();
-    var tocView = this.panelViews.toc;
+
+    var headings = this.doc.getHeadings();
+    
     // No headings?
-    if (tocView.headings.length === 0) return;
+    if (headings.length === 0) return;
 
     // Use first heading as default
-    var activeNode = _.first(tocView.headings).id;
+    var activeNode = _.first(headings).id;
 
     this.contentView.$('.content-node.heading').each(function() {
       if (scrollTop >= $(this).position().top + CORRECTION) {
@@ -323,9 +323,9 @@ ReaderView.Prototype = function() {
 
     // Edge case: select last item (once we reach the end of the doc)
     if (scrollTop + this.contentView.$el.height() >= contentHeight) {
-      activeNode = _.last(tocView.headings).id;
+      activeNode = _.last(headings).id;
     }
-    tocView.setActiveNode(activeNode);
+    this.tocView.setActiveNode(activeNode);
   };
 
   // Toggle on-off a resource

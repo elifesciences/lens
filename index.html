@@ -20,8 +20,8 @@
              SVG: { linebreaks: { automatic: true } }
     });
     </script>
-    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script src='lens.js'></script>
 
     <script>
@@ -109,7 +109,6 @@
       // Remote Example 00951
       // var documentURL = "https://s3.amazonaws.com/elife-cdn/elife-articles/00951/elife00951.xml";
 
-
       // Examples for related article panel
 
       // Advance of "http://dx.doi.org/10.7554/eLife.03665"
@@ -120,6 +119,13 @@
 
       // Co-published: "http://dx.doi.org/10.7554/eLife.02763", "http://dx.doi.org/10.7554/eLife.01739", "http://dx.doi.org/10.7554/eLife.01741"
       var documentURL = "https://s3.amazonaws.com/elife-cdn/elife-articles/02763/elife02763.xml";
+
+      // Remote Example 01893
+      var documentURL = "https://s3.amazonaws.com/elife-cdn-dev/elife-articles/01893/elife01893.xml";
+
+      // Remote Example 03145
+      var documentURL = "https://s3.amazonaws.com/elife-cdn/elife-articles/03145/elife03145.xml";
+
 
       // Lens About Document
       // Deploy to: http://lens.elifesciences.org/about
@@ -133,10 +139,16 @@
       // var documentURL = "data/00778/index.xml";
 
       // Kitchen Sink Example (contains a lot of edge cases)
-      // var documentURL = "data/kitchen_sink/index.xml";
+      // var documentURL = "data/kitchen_sink_jats/index.xml";
 
+      // About document
+      // var documentURL = "data/about/index.xml";
+
+      // Local doc that has group authors
+      // var documentURL = "data/04024_has_group_authors/index.xml";
 
       $(function() {
+
         // Create a new Lens app instance
         // --------
         //

@@ -2,6 +2,7 @@
 
 var Application = require("substance-application");
 var LensController = require("./lens_controller");
+var Converter = require("lens-converter");
 
 var ROUTES = [
   {
@@ -53,6 +54,7 @@ var Lens = function(config) {
   var panelSpecs = require('./experimental/experimental_panel_specification');
   var panelFactory = new Lens.Reader.PanelFactory(panelSpecs);
   config.panelFactory = panelFactory;
+  config.converter = new Converter.Importer();
 
   this.controller = new LensController(config);
 };
