@@ -594,19 +594,18 @@ span.annotation.formula_reference, span.publication_reference {
   font-style: italic;
 }
 
-.article span.superscript, .article span.subscript, .article sup, .article sub {
-  vertical-align: baseline;
-  position: relative;
-  top: -0.4em;
+.article span.superscript, .article sup {
+  vertical-align: super;
+  font-size: 12px;
+}
+
+.article span.subscript, .article sub {
+  vertical-align: sub;
   font-size: 12px;
 }
 
 .article .cover span.superscript, .article .cover span.subscript, .article .cover sup, .article .cover sub {
   font-size: inherit;
-}
-
-.article span.subscript, .article sub {
-  top: 0.4em;
 }
 
 .article span.strong, .article strong {
