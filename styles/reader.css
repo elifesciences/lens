@@ -10,6 +10,13 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   -webkit-tap-highlight-color:transparent;
 }
 
+/* Clearfix solution */
+
+.container:after {
+  content:"";
+  display:table;
+  clear:both;
+}
 
 /* Article
 -------------------------------------------------------------------------------*/
@@ -22,7 +29,6 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 .content-node {
 
 }
-
 
 .hidden {
   display: none;
@@ -181,28 +187,26 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 
 .article .context-toggles .context-toggle.citations:hover {
   color: rgba(11, 157, 217, 1);
-}
-*/
+}*/
 
-
-.article.figures .context-toggles .context-toggle.figures {
+.article.figures .medial-strip .context-toggles .context-toggle.figures {
   color: #111;
 }
 
-.article.citations .context-toggles .context-toggle.citations {
+.article.citations .medial-strip .context-toggles .context-toggle.citations {
   /*color: rgba(11, 157, 217, 1);*/
   color: #111;
 }
 
-.article.definitions .context-toggles .context-toggle.definitions {
+.article.definitions .medial-strip .context-toggles .context-toggle.definitions {
   color: #111;
 }
 
-.article.toc .context-toggles .context-toggle.toc {
+.article.toc .medial-strip .context-toggles .context-toggle.toc {
   color: #111;
 }
 
-.article.info .context-toggles .context-toggle.info {
+.article.info .medial-strip .context-toggles .context-toggle.info {
   color: #111;
 }
 
@@ -988,9 +992,11 @@ span.annotation.formula_reference, span.publication_reference {
     height: 70px;
     width: 80px;
     padding-top: 10px;
+    background: none;
     text-align: center;
     line-height: 17px;
   }
+
 
   .article .medial-strip .context-toggles .context-toggle:hover {
     color: white;
@@ -1036,6 +1042,4 @@ span.annotation.formula_reference, span.publication_reference {
   .article .lens-outline {
     display: none;
   }
-
 }
-
