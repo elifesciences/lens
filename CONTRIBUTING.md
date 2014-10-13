@@ -2,6 +2,8 @@ This document explains how to setup a development environment.
 
 # Prerequisites
 
+You need to have Node.js >=0.10.x installed.
+
 ## Substance Screwdriver
 
 We use a custom Python tool to manage Git repositories.
@@ -54,6 +56,15 @@ $ cd lens
 $ substance --update
 ```
 
+Now you can run Lens locally
+
+```
+$ substance
+```
+
+
+
+
 # Pull Requests
 
 Unfortunately, this is still a bit inconvient as we have not yet connected the Screwdriver with the Github API.
@@ -88,3 +99,5 @@ Note: you can only push changes to repositories that you have forked before.
 ## Send Pull Request
 
 The last step is to send a pull request from within Github.
+
+
