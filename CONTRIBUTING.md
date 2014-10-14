@@ -22,7 +22,7 @@ $ cd screwdriver
 $ sudo python setup.py install
 ```
 
-You need to repeat that install step whenever you pull in updates.
+You need to repeat that install step whenever you updated the screwdriver repo.
 
 ## Sublime 2 Integration
 
