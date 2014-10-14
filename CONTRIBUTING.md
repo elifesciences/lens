@@ -1,10 +1,13 @@
+Contributing
+============
+
 This document explains how to setup a development environment.
 
-# Prerequisites
+## Prerequisites
 
 You need to have Node.js >=0.10.x installed.
 
-## Substance Screwdriver
+### Substance Screwdriver
 
 We use a custom Python tool to manage Git repositories.
 We didn't opt for using Git sub-modules as it doesn't make it easier but rather even more complicated.
@@ -24,7 +27,7 @@ $ sudo python setup.py install
 
 You need to repeat that install step whenever you updated the screwdriver repo.
 
-## Sublime 2 Integration
+### Sublime 2 Integration
 
 We use a custom Sublime plugin which adds a summary page to show all pending changes so that we do not forget to commit and push changes to some of the sub-modules.
 
@@ -41,7 +44,7 @@ $ cd ~/.config/sublime-text-2/Packages
 $ git clone https://github.com/substance/sublime.git Substance
 ```
 
-# Development Environment
+## Development Environment
 
 Clone the Lens repository
 
@@ -62,20 +65,17 @@ Now you can run Lens locally
 $ substance
 ```
 
-
-
-
-# Pull Requests
+## Pull Requests
 
 Unfortunately, this is still a bit inconvient as we have not yet connected the Screwdriver with the Github API.
 There are some commands that may be helpful, though.
 
-## Fork manually
+### Fork manually
 
 Very likely, your contributions will affect only a few or even only one repository.
 You should fork all necessary repositories within your Github account.
 
-## Register your own repositories
+### Register your own repositories
 
 As it doesn't hurt to register a non-existing remote, as long you are effectively pushing to it, it is the easiest way to just run this Screwdriver command:
 
@@ -86,7 +86,7 @@ Note: `substance --each` executes what is given after `--` on the shell for each
 
 Make sure you choose your own Github id and maybe you want to go for different remote name.
 
-## Push to your own fork
+### Push to your own fork
 
 To push the current state to your repository you would
 
@@ -96,8 +96,6 @@ $ substance --push --remote=mine
 
 Note: you can only push changes to repositories that you have forked before.
 
-## Send Pull Request
+### Send Pull Request
 
 The last step is to send a pull request from within Github.
-
-
