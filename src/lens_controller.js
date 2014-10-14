@@ -117,9 +117,14 @@ LensController.Prototype = function() {
       that.createReader(doc, state);
     } else {
       this.trigger("loading:started", "Loading article");
-      $.get(this.config.document_url)
-      .done(function(data) {
-        var doc, err;
+      $.ajax( this.config.document_url, {
+        type: 'GET',
+        crossDomain: true,
+        headers: {
+          Accept: "application/xml"
+        }
+      } ).done(function(data) {
+        var doc;
 
         // Determine type of resource
         var xml = $.isXMLDoc(data);
@@ -139,11 +144,11 @@ LensController.Prototype = function() {
         if (state.context === "toc" && doc.getHeadings().length <= 2) {
           state.context = "info";
         }
-        
+
         that.createReader(doc, state);
       })
       .fail(function(err) {
-        that.view.startLoading("Error during loading. Please try again.")
+        that.view.startLoading("Error during loading. Please try again.");
         console.error(err);
       });
     }
