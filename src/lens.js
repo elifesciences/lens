@@ -83,15 +83,4 @@ Lens.Prototype.prototype = Application.prototype;
 Lens.prototype = new Lens.Prototype();
 Lens.prototype.constructor = Lens;
 
-var Substance = {
-  util: require("substance-util"),
-  Application: require("substance-application"),
-  Document: require("substance-document"),
-  Operator: require("substance-operator"),
-  Chronicle: require("substance-chronicle"),
-  Data: require("substance-data"),
-  Surface: require("substance-surface")
-};
-
-Lens.Substance = Substance;
 module.exports = Lens;
