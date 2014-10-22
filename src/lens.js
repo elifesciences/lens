@@ -2,7 +2,7 @@
 
 var Application = require("substance-application");
 var LensController = require("./lens_controller");
-var LensConverter = require("lens-converter").Importer;
+var LensConverter = require("lens-converter");
 var LensArticle = require("lens-article");
 var ResourceRenderer = require("./resource_renderer");
 var ReaderController = require('./reader_controller');
