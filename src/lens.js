@@ -2,7 +2,7 @@
 
 var Application = require("substance-application");
 var LensController = require("./lens_controller");
-var LensConverter = require("lens-converter").Importer;
+var LensConverter = require("lens-converter");
 var LensArticle = require("lens-article");
 var ReaderController = require('./reader_controller');
 var ReaderView = require('./reader_view');
@@ -16,7 +16,7 @@ var Lens = function(config) {
   config = config || {};
   config.routes = config.routes || this.getRoutes();
   config.panelFactory = config.panelFactory || this.getPanelFactory();
-  config.converter = config.converter || this.getConverter();
+  config.converter = config.converter || this.getConverter(config.converterOptions);
 
   // Note: call this after configuration, e.g., routes must be configured before
   //   as they are used to setup a router
@@ -43,8 +43,8 @@ Lens.Prototype = function() {
     return Lens.getDefaultPanelFactory();
   };
 
-  this.getConverter = function() {
-    return Lens.getDefaultConverter();
+  this.getConverter = function(converterConfig) {
+    return Lens.getDefaultConverter(converterConfig);
   };
 
 };
@@ -110,8 +110,8 @@ Lens.getDefaultPanelFactory = function() {
   return new Lens.Reader.PanelFactory(Lens.defaultPanelSpecification);
 };
 
-Lens.getDefaultConverter = function() {
-  return new LensConverter();
+Lens.getDefaultConverter = function(converterOptions) {
+  return new LensConverter(converterOptions);
 };
 
 Lens.Outline = require("lens-outline");

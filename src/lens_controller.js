@@ -6,6 +6,7 @@ var Controller = require("substance-application").Controller;
 var LensView = require("./lens_view");
 var ReaderController = require("./reader_controller");
 var Article = require("lens-article");
+var NLMConverter = require('lens-converter');
 
 // Lens.Controller
 // -----------------
@@ -18,14 +19,10 @@ var LensController = function(config) {
   this.config = config;
 
   this.converter = config.converter;
+  this.converterOptions = _.extend({}, NLMConverter.DefaultOptions, config.converterOptions);
 
   // Main controls
   this.on('open:reader', this.openReader);
-};
-
-var CONVERTER_OPTIONS = {
-  TRIM_WHITESPACES: true,
-  REMOVE_INNER_WS: true
 };
 
 LensController.Prototype = function() {
@@ -43,8 +40,7 @@ LensController.Prototype = function() {
   // ---------
 
   this.importXML = function(xml) {
-    // var importer = new Converter.Importer();
-    var doc = this.converter.import(xml, CONVERTER_OPTIONS);
+    var doc = this.converter.import(xml, this.converterOptions);
     this.createReader(doc, {
       context: 'toc'
     });
@@ -126,7 +122,7 @@ LensController.Prototype = function() {
 
         // Process XML file
         if (xml) {
-          doc = that.converter.import(data, CONVERTER_OPTIONS);
+          doc = that.converter.import(data, that.converterOptions);
         } else {
           if(typeof data == 'string') data = $.parseJSON(data);
           doc = Article.fromSnapshot(data);
@@ -139,7 +135,7 @@ LensController.Prototype = function() {
         if (state.context === "toc" && doc.getHeadings().length <= 2) {
           state.context = "info";
         }
-        
+
         that.createReader(doc, state);
       })
       .fail(function(err) {
