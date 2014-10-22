@@ -4,8 +4,11 @@ var Surface = require("substance-surface");
 var TOC = require("substance-toc");
 
 function PanelFactory(panelSpecs) {
-  this.panelSpecs = {};
-  _.each(panelSpecs, function(spec, name) {
+  this.panelSpecs = {
+    panels: {},
+    panelOrder: panelSpecs.panelOrder
+  };
+  _.each(panelSpecs.panels, function(spec, name) {
     this.addPanel(name, spec);
   }, this);
 }
@@ -21,15 +24,17 @@ PanelFactory.Prototype = function() {
     panelSpec.name = name;
     panelSpec.container = panelSpec.container || name;
     panelSpec.shouldBeVisible = panelSpec.shouldBeVisible || shouldBeVisible;
-    this.panelSpecs[panelSpec.name] = panelSpec;
+    this.panelSpecs.panels[panelSpec.name] = panelSpec;
+
   };
 
   this.getSpec = function(name) {
-    return this.panelSpecs[name];
+    return this.panelSpecs.panels[name];
   };
 
   this.getNames = function() {
-    return Object.keys(this.panelSpecs);
+    return this.panelSpecs.panelOrder;
+    // return Object.keys(this.panelSpecs);
   };
 
   this.createPanelController = function(doc, name) {
