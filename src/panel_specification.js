@@ -53,7 +53,7 @@ var panelSpecs = {
       renderer: ResourceRenderer
     }
   },
-  panelOrder: ['toc', 'figures', 'citations', 'definitions', 'info']
+  panelOrder: ['content', 'toc', 'figures', 'citations', 'definitions', 'info']
 };
 
 module.exports = panelSpecs;
