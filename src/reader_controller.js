@@ -23,13 +23,14 @@ var ReaderController = function(doc, state, options) {
   // Reader state
   // -------
 
-  this.panelCtrls = {};
+  this.panels = {};
 
-  this.contentCtrl = this.panelFactory.createPanelController(doc, 'content');
+  this.contentPanel = this.panelFactory.createPanel(doc, 'content');
 
+  // skip 'content' and 'toc' as they are
   _.each(this.panelFactory.getNames(), function(name) {
     if (name === 'content' || name === 'toc') return;
-    this.panelCtrls[name] = this.panelFactory.createPanelController(doc, name);
+    this.panels[name] = this.panelFactory.createPanel(doc, name);
   }, this);
 
   this.state = state;
@@ -74,6 +75,11 @@ ReaderController.Prototype = function() {
     result.push(["reader", this.panelCtrls[this.context]]);
     return result;
   };
+
+  this.getDocument = function() {
+    return this.__document;
+  };
+
 };
 
 
