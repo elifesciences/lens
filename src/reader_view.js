@@ -24,22 +24,16 @@ var ReaderView = function(readerCtrl) {
   this.$el.addClass(this.doc.schema.id); // Substance article or lens article?
 
   // Stores latest body scroll positions per context
-  // Only relevant
+
   this.bodyScroll = {};
-
-  // Surfaces
-  // --------
-
 
   // Panels
   // ------
   this.panelViews = {};
-
   _.each(readerCtrl.panels, function(panel) {
     this.panelViews[panel.getName()] = panel.getView();
   }, this);
 
-  // A Substance.Document.Writer instance is provided by the controller
   // Note: ATM, it is not possible to override the content panel + toc via panelSpecification
   this.contentView = readerCtrl.contentPanel.getView();
   this.panelViews.toc = this.contentView.getTocView();

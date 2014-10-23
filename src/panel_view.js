@@ -26,9 +26,7 @@ var PanelView = function( doc, config ) {
   }
 
   this._onToggle = _.bind( this.onToggle, this );
-
   this.$toggleEl.click( this._onToggle );
-
 };
 
 PanelView.Prototype = function() {
@@ -40,7 +38,7 @@ PanelView.Prototype = function() {
   };
 
   this.onToggle = function() {
-    this.trigger( 'toggle', this.name );
+    this.trigger('toggle', this.name);
   };
 
   this.getToggleControl = function() {

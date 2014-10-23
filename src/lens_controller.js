@@ -143,16 +143,6 @@ LensController.Prototype = function() {
     }
   };
 
-  // Provides an array of (context, controller) tuples that describe the
-  // current state of responsibilities
-  // --------
-  //
-
-  this.getActiveControllers = function() {
-    var result = [["lens", this]];
-    result.push(["reader", this.reader]);
-    return result;
-  };
 };
 
 

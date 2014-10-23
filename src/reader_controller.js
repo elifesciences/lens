@@ -20,12 +20,10 @@ var ReaderController = function(doc, state, options) {
 
   this.panelFactory = options.panelFactory || new PanelFactory();
 
-  // Reader state
-  // -------
-
   this.panels = {};
   this.contentPanel = this.panelFactory.createPanel(doc, 'content');
-  // skip 'content' and 'toc' as they are
+  // skip 'content' and 'toc' as they are built-in
+  // ATM, we do not support overriding them
   _.each(this.panelFactory.getNames(), function(name) {
     if (name === 'content' || name === 'toc') return;
     this.panels[name] = this.panelFactory.createPanel(doc, name);
@@ -56,11 +54,6 @@ ReaderController.Prototype = function() {
       node: null,
       resource: null
     });
-  };
-
-  this.modifyState = function(state) {
-    // console.log('modifyState', state);
-    Controller.prototype.modifyState.call(this, state);
   };
 
   this.getDocument = function() {
