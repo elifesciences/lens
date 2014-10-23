@@ -12,11 +12,14 @@ var ContentPanelView = function( doc, docCtrl, renderer, config ) {
 
   this.tocView = new TocPanelView(doc, _.extend({}, config, { type: 'resource', name: 'toc' }));
 
+  this._onTocItemSelected = _.bind( this.jumpToNode, this );
+
   // scroll to the associated node when clicking onto the outline
   // TODO: make this a dedicated event of the outline
   this.outline.$el.on('click', '.node', _.bind(this._jumpToNode, this));
+  this.tocView.toc.on('toc-item-selected', this._onTocItemSelected);
 
-  this.$el.addClass('document')
+  this.$el.addClass('document');
 };
 
 ContentPanelView.Prototype = function() {
@@ -24,6 +27,11 @@ ContentPanelView.Prototype = function() {
   this.render = function() {
     this.surface.render();
     return this;
+  };
+
+  this.dispose = function() {
+    this.tocView.toc.off('toc-item-selected', this._onTocItemSelected);
+    this.stopListening();
   };
 
   this.getTocView = function() {
@@ -48,7 +56,7 @@ ContentPanelView.Prototype = function() {
     var $n = $('#'+nodeId);
     if ($n.length > 0) {
       var topOffset = $n.position().top+CORRECTION;
-      this.contentView.$el.scrollTop(topOffset);
+      this.surface.$el.scrollTop(topOffset);
     }
   };
 

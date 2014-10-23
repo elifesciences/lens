@@ -8,16 +8,17 @@ var TocPanelView = function( doc, config ) {
   this.toc = new TOC(doc);
 };
 TocPanelView.Prototype = function() {
+
   this.render = function() {
     this.el.appendChild(this.toc.render().el);
-
     return this;
   };
-  
+
   // Delegate
   this.setActiveNode = function(nodeId) {
     this.toc.setActiveNode(nodeId);
   };
+
 };
 TocPanelView.Prototype.prototype = PanelView.prototype;
 TocPanelView.prototype = new TocPanelView.Prototype();
