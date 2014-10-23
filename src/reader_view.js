@@ -326,7 +326,7 @@ ReaderView.Prototype = function() {
   // --------
   //
   // Only triggered by the explicit switch
-  // Implicit context switches happen someone clicks a figure reference
+  // Implicit context switches happen when someone clicks a figure reference
 
   this.switchContext = function(context) {
     console.log('Switch context');
