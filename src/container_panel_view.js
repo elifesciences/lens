@@ -21,7 +21,7 @@ var ContainerPanelView = function( doc, docCtrl, renderer, config ) {
   this.outline = new Outline(this.surface);
 
   this._onScroll = _.bind(this.onScroll, this);
-  this.$el.on('scroll', this._onScroll );
+  this.surface.$el.on('scroll', this._onScroll );
 
   this.el.appendChild(this.surface.el);
   this.el.appendChild(this.outline.el);

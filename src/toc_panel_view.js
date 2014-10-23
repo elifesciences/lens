@@ -13,6 +13,11 @@ TocPanelView.Prototype = function() {
 
     return this;
   };
+  
+  // Delegate
+  this.setActiveNode = function(nodeId) {
+    this.toc.setActiveNode(nodeId);
+  };
 };
 TocPanelView.Prototype.prototype = PanelView.prototype;
 TocPanelView.prototype = new TocPanelView.Prototype();

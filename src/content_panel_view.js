@@ -35,7 +35,7 @@ ContentPanelView.Prototype = function() {
   //
 
   this.onScroll = function() {
-    var scrollTop = this.$el.scrollTop();
+    var scrollTop = this.surface.$el.scrollTop();
     this.outline.updateVisibleArea(scrollTop);
     this.markActiveHeading(scrollTop);
   };
