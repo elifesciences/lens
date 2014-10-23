@@ -3,24 +3,16 @@ var ResourceRenderer = require('./resource_renderer');
 
 var panelSpecs = {
   content: {
-    type: 'content',
-    label: 'Text',
+    type: 'document',
+    container: 'content',
+    label: 'Content',
     title: 'Content',
     icon: 'icon-align-left',
     renderer: LensArticle.Renderer
   },
-  toc: {
-    type: 'toc',
-    label: 'Content',
-    title: 'Content',
-    icon: 'icon-align-left',
-    shouldBeVisible: function() {
-      // TODO: maybe implement some logic to hide toc when there is no content
-      return true;
-    }
-  },
   figures: {
     type: 'resource',
+    container: 'figures',
     label: 'Figures',
     title: 'Figures',
     icon: 'icon-picture',
@@ -29,6 +21,7 @@ var panelSpecs = {
   },
   citations: {
     type: 'resource',
+    container: 'citations',
     label: 'References',
     title: 'References',
     icon: 'icon-link',
@@ -37,6 +30,7 @@ var panelSpecs = {
   },
   definitions: {
     type: 'resource',
+    container: 'definitions',
     label: 'Glossary',
     title: 'Glossary',
     icon: 'icon-book',
@@ -45,6 +39,7 @@ var panelSpecs = {
   },
   info: {
     type: 'resource',
+    container: 'info',
     label: 'Info',
     title: 'Article Info',
     icon: 'icon-info-sign',

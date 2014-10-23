@@ -1,13 +1,10 @@
 "use strict";
 
 var _ = require("underscore");
-var Outline = require("lens-outline");
 var View = require("substance-application").View;
 var Data = require("substance-data");
 var Index = Data.Graph.Index;
 var $$ = require("substance-application").$$;
-
-var CORRECTION = 0; // Extra offset from the top
 
 // Lens.Reader.View
 // ==========================================================================
@@ -33,18 +30,19 @@ var ReaderView = function(readerCtrl) {
   // Surfaces
   // --------
 
-  // A Substance.Document.Writer instance is provided by the controller
-  this.contentView = readerCtrl.contentPanel.getView();
 
   // Panels
   // ------
   this.panelViews = {};
 
-  _.each(readerCtrl.panels, function(name, panel) {
-    this.panelViews[name] = panel.getView();
+  _.each(readerCtrl.panels, function(panel) {
+    this.panelViews[panel.getName()] = panel.getView();
   }, this);
 
-  this.tocView = this.contentView.getTocView();
+  // A Substance.Document.Writer instance is provided by the controller
+  // Note: ATM, it is not possible to override the content panel + toc via panelSpecification
+  this.contentView = readerCtrl.contentPanel.getView();
+  this.panelViews.toc = this.contentView.getTocView();
 
   // Keep an index for resources
   this.resources = new Index(this.readerCtrl.__document, {
@@ -60,9 +58,12 @@ var ReaderView = function(readerCtrl) {
   // the interface gets updated accordingly
   this.listenTo(this.readerCtrl, "state-changed", this.updateState);
 
+  // TODO: this seems a bit clumsy still. why not really try to look-up the panel automatically
+  // i.e., loop all panels and open the first found?
   // Register event delegates to react on clicks on a reference node in the content panel
   _.each(this.panelViews, function(panelView, name) {
     var spec = this.panelFactory.getSpec(name);
+    if (!spec) return;
     _.each(spec.references, function(refType) {
       this.$el.on('click', '.annotation.' + refType, _.bind(this.toggleResourceReference, this, name));
     }, this);
@@ -77,8 +78,7 @@ var ReaderView = function(readerCtrl) {
   // TODO: are these currently rendered? i.e. jump-to-top buttons?
   this.$el.on('click', '.document .content-node.heading .top', _.bind(this.gotoTop, this));
 
-  // TODO: what is this?
-  // this.outline.$el.on('click', '.node', _.bind(this._jumpToNode, this));
+  this._onToggleResourcePanel = _.bind( this.switchContext, this );
 };
 
 
@@ -95,23 +95,19 @@ ReaderView.Prototype = function() {
     // Prepare doc view
     // --------
 
-    var docViewEl = $$('.document');
-    docViewEl.appendChild(this.contentView.render().el);
-    docViewEl.appendChild(this.contentView.outline.el);
-    frag.appendChild(docViewEl);
+    frag.appendChild(this.contentView.render().el);
 
     // Prepare context toggles
     // --------
 
     var contextToggles = $$('.context-toggles');
+
     // TODO: consider the order of toggles
-    contextToggles.appendChild(this.contentView.getToggleControl());
-    _.each(this.panelViews, function(panelView, name) {
+    _.each(this.panelViews, function(panelView) {
       var toggleEl = panelView.getToggleControl();
-      // TODO: register to the panels toggle event
-      // toggleEl.on('toggle', ...)
       contextToggles.appendChild(toggleEl);
-    });
+      panelView.on('toggle', this._onToggleResourcePanel);
+    }, this);
 
     // Prepare resources view
     // --------
@@ -125,7 +121,8 @@ ReaderView.Prototype = function() {
     // Wrap everything within resources view
     var resourcesViewEl = $$('.resources');
     _.each(this.panelViews, function(panelView, name) {
-      resourcesViewEl.appendChild(panelView.render().el)
+      console.log('Rendering panel "%s"', name);
+      resourcesViewEl.appendChild(panelView.render().el);
     });
     frag.appendChild(resourcesViewEl);
 
@@ -174,6 +171,7 @@ ReaderView.Prototype = function() {
   this.dispose = function() {
     this.contentView.dispose();
     _.each(this.panelViews, function(panelView) {
+      panelView.off('toggle', this._onToggleResourcePanel);
       panelView.dispose();
     });
     this.resources.dispose();
@@ -328,9 +326,9 @@ ReaderView.Prototype = function() {
   // Implicit context switches happen someone clicks a figure reference
 
   this.switchContext = function(context) {
+    console.log('Switch context');
     // var currentContext = this.readerCtrl.state.context;
     this.saveScroll();
-
     // Which view actions are triggered here?
     this.readerCtrl.switchContext(context);
     this.recoverScroll();
@@ -365,7 +363,6 @@ ReaderView.Prototype = function() {
     var state = this.readerCtrl.state;
     this.$('.resources .content-node.active').removeClass('active fullscreen');
     this.contentView.$('.annotation.active').removeClass('active');
-
     if (state.resource) {
       // Show selected resource
       var $res = this.$('#'+state.resource);
@@ -380,6 +377,10 @@ ReaderView.Prototype = function() {
       this.recoverScroll();
       // Hide all resources (see above)
     }
+    _.each(this.panelViews, function(panelView) {
+      panelView.hide();
+    });
+    this.panelViews[state.context].show();
     this.updateOutline();
   };
 
@@ -396,7 +397,8 @@ ReaderView.Prototype = function() {
       selectedNode: state.node,
       highlightedNodes: nodes
     });
-    this.panelViews[state.context].updateOutline({
+    var panelView = this.panelViews[state.context];
+    if(panelView.hasOutline) panelView.updateOutline({
       context: state.context,
       selectedNode: state.node,
       highlightedNodes: [state.resource]
@@ -419,6 +421,11 @@ ReaderView.Prototype = function() {
     return nodes;
   };
 
+  this.jumpToResource = function(resourceId) {
+    var state =  this.getState();
+    var panelView = this.panelViews[state.context];
+    panelView.jumpToResource(resourceId);
+  };
 };
 
 ReaderView.Prototype.prototype = View.prototype;

@@ -8,6 +8,8 @@ var ResourceRenderer = require("./resource_renderer");
 var ReaderController = require('./reader_controller');
 var ReaderView = require('./reader_view');
 var PanelFactory = require('./panel_factory');
+var PanelView = require('./panel_view');
+var ContainerPanelView = require('./container_panel_view');
 
 // The Lens Application
 // ========
@@ -130,5 +132,7 @@ var Substance = {
 Lens.Substance = Substance;
 
 Lens.ResourceRenderer = ResourceRenderer;
+Lens.PanelView = PanelView;
+Lens.ContainerPanelView = ContainerPanelView;
 
 module.exports = Lens;

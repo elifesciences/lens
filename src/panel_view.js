@@ -5,16 +5,11 @@ var Application = require("substance-application");
 var $$ = Application.$$;
 var View = Application.View;
 
-var Outline = require("lens-outline");
-
-var PanelView = function( panel ) {
+var PanelView = function( doc, config ) {
   View.call(this);
 
-  var config = panel.getConfig();
-
-  this.panel = panel;
-  this.name = panel.getName();
-  this.outline = new Outline(this);
+  this.doc = doc;
+  this.name = config.name;
 
   this.toggleEl = $$('a.context-toggle.' + this.name,
     {
@@ -24,11 +19,17 @@ var PanelView = function( panel ) {
     } );
   this.$toggleEl = $(this.toggleEl);
 
-  this._onClick = _.bind( this.onClick, this );
-  this._onScroll = _.bind(this.onScroll, this);
+  this.$el.addClass('panel').addClass(this.name);
 
-  this.$toggleEl.click( this._onClick );
-  this.$el.on('scroll', this._onScroll );
+  // For legacy add 'resource-view' class
+  if (config.type === 'resource') {
+    this.$el.addClass('resource-view');
+  }
+
+  this._onToggle = _.bind( this.onToggle, this );
+
+  this.$toggleEl.click( this._onToggle );
+
 };
 
 PanelView.Prototype = function() {
@@ -39,16 +40,8 @@ PanelView.Prototype = function() {
     this.stopListening();
   };
 
-  this.onClick = function() {
-    this.emit('toggle', this.name );
-  };
-
-  this.onScroll = function() {
-    // Make sure that a surface is attached to the resources outline
-    if (this.outline.surface) {
-      var scrollTop = this.outline.surface.$el.scrollTop();
-      this.outline.updateVisibleArea(scrollTop);
-    }
+  this.onToggle = function() {
+    this.trigger( 'toggle', this.name );
   };
 
   this.getToggleControl = function() {
@@ -67,11 +60,36 @@ PanelView.Prototype = function() {
       // TODO: is it possible to detect this case and just do it in mobile?
       // Brute force for mobile
       $(document).scrollTop(topOffset);
+    } else {
+      console.log("PanelView.jumpToResource(): Unknown resource '%s'", nodeId);
     }
   };
 
-  this.updateOutline = function(options) {
-    this.outline.update(options);
+  this.hasOutline = function() {
+    return false;
+  };
+
+  this.updateOutline = function() {
+  };
+
+  this.show = function() {
+    this.$el.removeClass('hidden');
+  };
+
+  this.hide = function() {
+    this.$el.addClass('hidden');
+  };
+
+  this.showToggle = function() {
+    this.$toggleEl.removeClass('hidden');
+  };
+
+  this.hideToggle = function() {
+    this.$toggleEl.addClass('hidden');
+  };
+
+  this.getDocument = function() {
+    return this.doc;
   };
 
 };

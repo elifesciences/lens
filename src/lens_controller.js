@@ -83,8 +83,11 @@ LensController.Prototype = function() {
     // Create new reader controller instance
     this.reader = new ReaderController(doc, state, this.config);
 
+    // FIXME: deactivated this, for some reason my refactor damaged the backbone routing.
+    // Everytime, the path gets updated, backbone jumps back to the default route. Don't see how my changes could have affected this,
+    // but obviously did.
     this.reader.on('state-changed', function() {
-      that.updatePath(that.reader.state);
+      // that.updatePath(that.reader.state);
     });
 
     this.modifyState({
@@ -107,7 +110,7 @@ LensController.Prototype = function() {
     if (this.reader) {
       this.reader.modifyState(state);
       // HACK: This shouldn't be monkeypatched
-      if (state.resource) this.reader.view.jumpToResource(state.resource);
+      // if (state.resource) this.reader.view.jumpToResource(state.resource);
     } else if (this.config.document_url === "lens_article.xml") {
       var doc = this.Article.describe();
       that.createReader(doc, state);

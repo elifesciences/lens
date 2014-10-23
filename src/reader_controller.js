@@ -24,9 +24,7 @@ var ReaderController = function(doc, state, options) {
   // -------
 
   this.panels = {};
-
   this.contentPanel = this.panelFactory.createPanel(doc, 'content');
-
   // skip 'content' and 'toc' as they are
   _.each(this.panelFactory.getNames(), function(name) {
     if (name === 'content' || name === 'toc') return;
@@ -53,7 +51,6 @@ ReaderController.Prototype = function() {
   this.switchContext = function(context) {
     // Remember scrollpos of previous context
     this.currentContext = context;
-
     this.modifyState({
       context: context,
       node: null,
@@ -62,18 +59,12 @@ ReaderController.Prototype = function() {
   };
 
   this.modifyState = function(state) {
-    Controller.prototype.modifyState.call(this, state);
-  };
-
-  // TODO: Transition to ao new solid API
-  // --------
-  //
-
-  this.getActiveControllers = function() {
-    var result = [];
-    result.push(["article", this]);
-    result.push(["reader", this.panelCtrls[this.context]]);
-    return result;
+    try {
+      console.log('modifyState', state);
+      Controller.prototype.modifyState.call(this, state);
+    } catch (err) {
+      console.error("Exception occurred while ReaderController.modifyState: %s", err);
+    };
   };
 
   this.getDocument = function() {

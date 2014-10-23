@@ -1,7 +1,8 @@
 var _ = require('underscore');
 var Document = require("substance-document");
-var Surface = require("substance-surface");
-var TOC = require("substance-toc");
+var Panel = require('./panel');
+var ContainerPanelView = require('./container_panel_view');
+var ContentPanelView = require('./content_panel_view');
 
 function PanelFactory(panelSpecs) {
   this.panelSpecs = {};
@@ -12,15 +13,8 @@ function PanelFactory(panelSpecs) {
 
 PanelFactory.Prototype = function() {
 
-  var shouldBeVisible = function(name, doc) {
-    var container = doc.get(name);
-    return (!!container && container.nodes.length !== 0);
-  };
-
   this.addPanel = function(name, panelSpec) {
     panelSpec.name = name;
-    panelSpec.container = panelSpec.container || name;
-    panelSpec.shouldBeVisible = panelSpec.shouldBeVisible || shouldBeVisible;
     this.panelSpecs[panelSpec.name] = panelSpec;
   };
 
@@ -32,39 +26,43 @@ PanelFactory.Prototype = function() {
     return Object.keys(this.panelSpecs);
   };
 
-  this.createPanelController = function(doc, name) {
+  this.createPanel = function(doc, name) {
     var spec = this.getSpec(name);
-    if (spec.container) {
-      return new Document.Controller( doc, {view: name} );
-    } else if (spec.createPanelController) {
-      return spec.createPanelController(doc);
-    }
-  };
+    var panelView, panelCtrl;
+    var panel;
 
-  this.createPanelView = function(name, docCtrl) {
-    var renderer, panelView;
-    var spec = this.getSpec(name);
-    var doc = docCtrl.__document;
-    if (name === 'toc') {
-      panelView = new TOC(doc);
-    } else if (spec.createPanelView) {
-      panelView = spec.createPanelView(docCtrl, name);
-    } else {
+    // default container renderer
+    if (spec.container) {
+      var docCtrl = new Document.Controller( doc, { view: spec.container } );
+      var renderer;
+      // TODO: it doesn't feel good to need a DocumentCtrl for creating a renderer
+      // probably, a Container instance would be enough. Actually, it is a ContainerRenderer not an ArticleRenderer.
       if (spec.createRenderer) {
-        renderer = spec.createRenderer(name, docCtrl);
+        renderer = spec.createRenderer(docCtrl, spec.container);
       } else if (spec.renderer) {
         renderer = new spec.renderer(docCtrl);
       } else {
         var DefaultRenderer = doc.constructor.Renderer;
         renderer = new DefaultRenderer(docCtrl);
       }
-      panelView = new Surface(docCtrl, {
-        editable: false,
-        renderer: renderer
-      });
+      if (spec.container === "content") {
+        panelView = new ContentPanelView(doc, docCtrl, renderer, spec);
+      } else {
+        panelView = new ContainerPanelView(doc, docCtrl, renderer, spec);
+      }
+      panelCtrl = docCtrl;
     }
-    panelView.$el.addClass('resource-view');
-    return panelView;
+
+    if (spec.createPanelController) {
+      panelCtrl = spec.createPanelController(doc);
+    }
+    // let the spec create a view if a factory method is there
+    if (spec.createPanelView) {
+      panelView = spec.createPanelView(doc);
+    }
+
+    panel = new Panel(doc, spec, panelCtrl, panelView);
+    return panel;
   };
 
 };

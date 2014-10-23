@@ -82,6 +82,11 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 /* Context Toggles
 =======================================================================*/
 
+.article .panel.hidden {
+  display: none;
+}
+
+
 /* Switcher */
 
 .article .medial-strip {
@@ -146,6 +151,10 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   color: #aaa;
   background: #fff;
   font-family: 'Avenir LT W01 85 Heavy', 'Montserrat', 'Source Sans Pro';
+}
+
+.article .context-toggles .context-toggle.hidden {
+  display: none;
 }
 
 .article .context-toggles .context-toggle.pdf {
@@ -222,7 +231,15 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 }
 
 .article .resources .surface {
-  /*padding-top: 20px;*/
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  font-size: 14px;
+  -webkit-overflow-scrolling: touch;
 }
 
 .article .nodes {
@@ -323,125 +340,39 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 ----------------------------------------------------------------------- */
 
 .article .resources .surface.figures {
-  display: none;
-  position: absolute;
-  top: 0px;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  font-size: 14px;
-  -webkit-overflow-scrolling: touch;
-}
-
-.article.figures .resources .resource-view.figures {
-  display: block;
 }
 
 /* Citations View
 ----------------------------------------------------------------------- */
 
 .article .resources .surface.citations {
-  font-size: 14px;
-
-  display: none;
-  position: absolute;
-  top: 0px;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
 }
-
-.article.citations .resources .resource-view.citations {
-  display: block;
-}
-
 
 /* Definitions View
 ----------------------------------------------------------------------- */
 
 .article .resources .surface.definitions {
-  font-size: 14px;
-
-  display: none;
-  position: absolute;
-  top: 0px;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
 }
-
-.article.definitions .resources .resource-view.definitions {
-  display: block;
-}
-
 
 /* TOC View
 ----------------------------------------------------------------------- */
 
 .resource-view.toc {
-  display: none;
-  position: absolute;
-  top: 0px;
-  bottom: 0px;
   left: 50px;
-  right: 0px;
-
   overflow: auto;
-  -webkit-overflow-scrolling: touch;
   padding-top: 60px;
 }
-
-.article.toc .resources .resource-view.toc {
-  display: block;
-}
-
 
 /* Info View
 ----------------------------------------------------------------------- */
 
 .article .resources .surface.info {
-  display: none;
-  position: absolute;
-  top: 0px;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
-}
-
-.article.info .resources .resource-view.info {
-  display: block;
 }
 
 /* Related Articles View
 ----------------------------------------------------------------------- */
 
 .article .resources .surface.related_articles {
-  font-size: 14px;
-
-  display: none;
-  position: absolute;
-  top: 0px;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
-}
-
-.article.related_articles .resources .resource-view.related_articles {
-  display: block;
 }
 
 /* Consistent Resource Header for figures captions and person cards

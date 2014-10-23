@@ -1,24 +1,28 @@
+"use strict";
 
 var _ = require('underscore');
-var TOC = require("substance-toc");
-var PanelView = require('./panel_view');
+
+var TocPanelView = require("./toc_panel_view");
+var ContainerPanelView = require('./container_panel_view');
 
 var CORRECTION = 0; // Extra offset from the top
 
-var ContentView = function( panel, config ) {
-  PanelView.call(this, panel, config)
+var ContentPanelView = function( doc, docCtrl, renderer, config ) {
+  ContainerPanelView.call(this, doc, docCtrl, renderer, config);
 
-  this.tocView = new new TOC(panel.getDocument());
+  this.tocView = new TocPanelView(doc, _.extend({}, config, { type: 'resource', name: 'toc' }));
 
   // scroll to the associated node when clicking onto the outline
   // TODO: make this a dedicated event of the outline
   this.outline.$el.on('click', '.node', _.bind(this._jumpToNode, this));
+
+  this.$el.addClass('document')
 };
 
-ContentView.Prototype = function() {
+ContentPanelView.Prototype = function() {
 
   this.render = function() {
-    this.tocView.render();
+    this.surface.render();
     return this;
   };
 
@@ -60,7 +64,7 @@ ContentView.Prototype = function() {
 
   this.markActiveHeading = function(scrollTop) {
     var contentHeight = $('.nodes').height();
-    var headings = this.panel.getDocument().getHeadings();
+    var headings = this.getDocument().getHeadings();
     // No headings?
     if (headings.length === 0) return;
     // Use first heading as default
@@ -78,8 +82,8 @@ ContentView.Prototype = function() {
   };
 
 };
-ContentView.Prototype.prototype = PanelView.prototype;
-ContentView.prototype = new ContentView.Prototype();
-ContentView.prototype.constructor = ContentView;
+ContentPanelView.Prototype.prototype = ContainerPanelView.prototype;
+ContentPanelView.prototype = new ContentPanelView.Prototype();
+ContentPanelView.prototype.constructor = ContentPanelView;
 
-module.exports = ContentView;
+module.exports = ContentPanelView;
