@@ -103,10 +103,13 @@ ReaderView.Prototype = function() {
     var contextToggles = $$('.context-toggles');
 
     // TODO: consider the order of toggles
-    _.each(this.panelViews, function(panelView) {
-      var toggleEl = panelView.getToggleControl();
-      contextToggles.appendChild(toggleEl);
-      panelView.on('toggle', this._onToggleResourcePanel);
+    _.each(this.panelFactory.getNames(), function(name) {
+      var panelView = this.panelViews[name];
+      if (panelView) {
+        var toggleEl = panelView.getToggleControl();
+        contextToggles.appendChild(toggleEl);
+        panelView.on('toggle', this._onToggleResourcePanel);
+      }
     }, this);
 
     // Prepare resources view

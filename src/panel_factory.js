@@ -5,8 +5,11 @@ var ContainerPanelView = require('./container_panel_view');
 var ContentPanelView = require('./content_panel_view');
 
 function PanelFactory(panelSpecs) {
-  this.panelSpecs = {};
-  _.each(panelSpecs, function(spec, name) {
+  this.panelSpecs = {
+    panels: {},
+    panelOrder: panelSpecs.panelOrder
+  };
+  _.each(panelSpecs.panels, function(spec, name) {
     this.addPanel(name, spec);
   }, this);
 }
@@ -15,15 +18,15 @@ PanelFactory.Prototype = function() {
 
   this.addPanel = function(name, panelSpec) {
     panelSpec.name = name;
-    this.panelSpecs[panelSpec.name] = panelSpec;
+    this.panelSpecs.panels[panelSpec.name] = panelSpec;
   };
 
   this.getSpec = function(name) {
-    return this.panelSpecs[name];
+    return this.panelSpecs.panels[name];
   };
 
   this.getNames = function() {
-    return Object.keys(this.panelSpecs);
+    return this.panelSpecs.panelOrder;
   };
 
   this.createPanel = function(doc, name) {
