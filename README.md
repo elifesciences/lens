@@ -7,10 +7,9 @@ For a demo and more information see: http://lens.elifesciences.org
 Lens is composed of some independent modules. Those are:
 
 - The [Lens Article Format](http://github.com/elifesciences/lens-article) is a JSON based document model designed for representing scientific content. It features basic content types such as paragraphs, headings, and various figure types such as images, tables and videos complete with captions and cross-references.
-- The [Substance Reader](http://github.com/substance/reader) is the implementation of the reading interface, it can be embedded into any page
 - The [Lens Outline](http://github.com/elifesciences/lens-outline) is the visual document map we are using in Lens. It can be used independently.
 
-### Getting started
+## Getting started
 
 The easiest way to integrate Lens into your website is by creating one HTML file per document and adapt the url to the document you want to display. First [download](https://lens.elifesciences.org/lens-1.0.0.zip) the latest stable Lens distribution. Then adjust the `index.html` file accordingly.
 
@@ -26,20 +25,23 @@ When running this Lens distribution locally, note that your browser may enforce 
 Keep in mind, with eLife Lens you can display any NLM-compatible XML file or JSON document that corresponds to the Lens Article Format. You can enrich your HTML file with `<meta>` tags etc. to ensure Google crawlablility. There is no server infrastructure needed to run Lens, as it's 100% browser-based. If you have questions please consult the [Lens Mailinglist](https://groups.google.com/forum/#!forum/elife-lens).
 
 
-### Installing and contributing
+## Running the development version and contributing
 
-For install instructions and how to contribute see the official [Lens Manual](http://substance.io/#substance/lens_manual). 
+See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 
-### Lens in the wild
+## Lens in the wild
 
 - [eLife Journal](http://lens.elifesciences.org/01120/index.html)
 - [Landes Bioscience](https://www.landesbioscience.com/article/25414/full_text/#load/info/all)
 - [PeerJ Lens Demo](http://peerj.github.io/lens-demo/)
 
 
-### Changelog
+### Versions
 
+### 2.0.0
+
+- Work in progress (checkout current master)
 
 ### 1.0.0
 

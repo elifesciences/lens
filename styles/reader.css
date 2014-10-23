@@ -590,6 +590,13 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   transition-duration: 0.1s;
 }
 
+
+/* Small caps */
+span.annotation.sc {
+  font-variant: small-caps;
+}
+
+
 span.annotation.formula_reference, span.publication_reference {
   padding-left: 3px; padding-right: 3px;
 }
