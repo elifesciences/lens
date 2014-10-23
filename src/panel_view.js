@@ -78,7 +78,13 @@ PanelView.Prototype = function() {
 
   this.hide = function() {
     this.$el.addClass('hidden');
+    this.$toggleEl.removeClass('active');
   };
+
+  this.activate = function() {
+    this.show();
+    this.$toggleEl.addClass('active');
+  }
 
   this.showToggle = function() {
     this.$toggleEl.removeClass('hidden');

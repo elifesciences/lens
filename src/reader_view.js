@@ -380,7 +380,7 @@ ReaderView.Prototype = function() {
     _.each(this.panelViews, function(panelView) {
       panelView.hide();
     });
-    this.panelViews[state.context].show();
+    this.panelViews[state.context].activate();
     this.updateOutline();
   };
 
@@ -413,7 +413,7 @@ ReaderView.Prototype = function() {
     // For that we take all references pointing to the resource
     // and find the root of the node on which the annotation sticks on.
     var references = this.resources.get(state.resource);
-    var container = this.readerCtrl.contentCtrl.container;
+    var container = this.readerCtrl.contentPanel.getContainer();
     var nodes = _.uniq(_.map(references, function(ref) {
       var nodeId = container.getRoot(ref.path[0]);
       return nodeId;

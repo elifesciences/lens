@@ -36,6 +36,10 @@ Panel.Prototype = function() {
     return this.name;
   };
 
+  this.getContainer = function() {
+    return this.controller.container;
+  };
+
 };
 
 Panel.prototype = new Panel.Prototype();

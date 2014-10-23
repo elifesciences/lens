@@ -14,6 +14,7 @@ var ContainerPanelView = function( doc, docCtrl, renderer, config ) {
     editable: false,
     renderer: renderer
   });
+  this.docCtrl = docCtrl;
 
   // TODO: same here: why should the Outline need a Document.Controller?
   // This should be a container
@@ -29,9 +30,18 @@ var ContainerPanelView = function( doc, docCtrl, renderer, config ) {
 ContainerPanelView.Prototype = function() {
 
   this.render = function() {
-    this.surface.render();
-
+    // Hide the whole tab if there is no content
+    if (this.getContainer().getLength() === 0) {
+      this.hideToggle();
+      this.hide();
+    } else {
+      this.surface.render();
+    }
     return this;
+  };
+
+  this.getContainer = function() {
+    return this.docCtrl.container;
   };
 
   this.onScroll = function() {

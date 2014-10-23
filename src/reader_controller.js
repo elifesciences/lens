@@ -59,12 +59,8 @@ ReaderController.Prototype = function() {
   };
 
   this.modifyState = function(state) {
-    try {
-      console.log('modifyState', state);
-      Controller.prototype.modifyState.call(this, state);
-    } catch (err) {
-      console.error("Exception occurred while ReaderController.modifyState: %s", err);
-    };
+    // console.log('modifyState', state);
+    Controller.prototype.modifyState.call(this, state);
   };
 
   this.getDocument = function() {

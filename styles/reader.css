@@ -186,31 +186,7 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   color: #555;
 }
 
-.article.figures .context-toggles .context-toggle.figures {
-  color: #111;
-}
-
-.article.citations .context-toggles .context-toggle.citations {
-  color: #111;
-}
-
-.article.related_articles .context-toggles .context-toggle.related_articles {
-  color: #111;
-}
-
-.article.definitions .medial-strip .context-toggles .context-toggle.definitions {
-  color: #111;
-}
-
-.article.toc .medial-strip .context-toggles .context-toggle.toc {
-  color: #111;
-}
-
-.article.info .medial-strip .context-toggles .context-toggle.info {
-  color: #111;
-}
-
-.article.figures .context-toggles .context-toggle.figures {
+.article .context-toggles .context-toggle.active {
   color: #111;
 }
 
