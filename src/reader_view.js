@@ -295,7 +295,7 @@ ReaderView.Prototype = function() {
     // Make sure that a surface is attached to the resources outline
     if (this.resourcesOutline.surface) {
       var scrollTop = this.resourcesOutline.surface.$el.scrollTop();
-      this.resourcesOutline.updateVisibleArea(scrollTop);      
+      this.resourcesOutline.updateVisibleArea(scrollTop);
     }
   };
 
@@ -308,7 +308,7 @@ ReaderView.Prototype = function() {
     var contentHeight = $('.nodes').height();
 
     var headings = this.doc.getHeadings();
-    
+
     // No headings?
     if (headings.length === 0) return;
 
@@ -466,7 +466,7 @@ ReaderView.Prototype = function() {
     // -------
 
     // TODO: we should have collected all resource types at this point
-    this.$el.removeClass('toc figures citations info definitions');
+    this.$el.removeClass('toc figures citations info definitions math');
     this.contentView.$('.content-node.active').removeClass('active');
     this.$el.addClass(state.context);
 

@@ -97,6 +97,14 @@ var panelSpecs = {
     icon: 'icon-info-sign',
     references: ['contributor_reference'],
     createRenderer: createResourceRenderer,
+  },
+  math: {
+    type: 'resource',
+    label: 'Math',
+    title: 'Math',
+    icon: 'icon-subscript',
+    references: [],
+    createRenderer: createResourceRenderer,
   }
 };
 
