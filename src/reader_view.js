@@ -203,13 +203,16 @@ ReaderView.Prototype = function() {
     var ref = this.readerCtrl.getDocument().get(refId);
     var nodeId = this.readerCtrl.contentPanel.getContainer().getRoot(ref.path[0]);
     var resourceId = ref.target;
+    // If the resource is active currently, deactivate it
     if (resourceId === state.resource) {
       this.readerCtrl.modifyState({
         context: this.readerCtrl.currentContext,
         node: null,
         resource:  null
       });
-    } else {
+    }
+    // Otherwise, activate it und scroll to the resource
+    else {
       this.saveScroll();
       this.readerCtrl.modifyState({
         context: context,

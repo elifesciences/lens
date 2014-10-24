@@ -50,16 +50,7 @@ PanelView.Prototype = function() {
   //
 
   this.jumpToResource = function(nodeId) {
-    var $n = this.$el.find('#'+nodeId);
-    if ($n.length > 0) {
-      var topOffset = $n.position().top;
-      this.$el.scrollTop(topOffset);
-      // TODO: is it possible to detect this case and just do it in mobile?
-      // Brute force for mobile
-      $(document).scrollTop(topOffset);
-    } else {
-      console.log("PanelView.jumpToResource(): Unknown resource '%s'", nodeId);
-    }
+    // A panel with a scrollable element should implement this method (e.g., see ContainerPanelView)
   };
 
   this.hasOutline = function() {

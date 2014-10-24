@@ -60,6 +60,23 @@ ContainerPanelView.Prototype = function() {
     this.outline.update(options);
   };
 
+  // Jump to the given resource id
+  // --------
+  //
+
+  this.jumpToResource = function(nodeId) {
+    var $n = this.$el.find('#'+nodeId);
+    if ($n.length > 0) {
+      var topOffset = $n.position().top;
+      this.surface.$el.scrollTop(topOffset);
+      // TODO: is it possible to detect this case and just do it in mobile?
+      // Brute force for mobile
+      $(document).scrollTop(topOffset);
+    } else {
+      console.log("PanelView.jumpToResource(): Unknown resource '%s'", nodeId);
+    }
+  };
+
 };
 
 ContainerPanelView.Prototype.prototype = PanelView.prototype;
