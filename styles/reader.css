@@ -232,9 +232,6 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   color: #505050;
   position: relative;
   background: #fff;
-/*  margin-bottom: 30px;
-  margin-top: 30px;*/
-
   padding: 0px;
   padding-top: 20px;
   padding-bottom: 20px;
@@ -642,7 +639,6 @@ span.annotation.formula_reference, span.publication_reference {
   background-color: rgba(0, 0, 0, 0.10);
 }
 
-
 /* Reader-specific overrides for content nodes
 ======================================================================= */
 
@@ -662,8 +658,6 @@ span.annotation.formula_reference, span.publication_reference {
   padding-top: 20px;
   padding-bottom: 60px;
 }
-
-
 
 /* For the resources panel
 ----------------------------------------------------------------------- */
@@ -713,7 +707,6 @@ span.annotation.formula_reference, span.publication_reference {
   background-color: rgba(0, 0, 0, 0);
 }
 
-
 /* Resources Outline */
 /* ---------------------------------------*/
 
@@ -729,7 +722,6 @@ span.annotation.formula_reference, span.publication_reference {
 #container.touchable .resources .lens-outline {
   right: 5px;
 }
-
 
 /* Responsiveness */
 /* ---------------------------------------*/
@@ -761,6 +753,7 @@ span.annotation.formula_reference, span.publication_reference {
   display: none;
 }
 
+
 /* Mobile (iPad Portrait, iPhone) */
 @media (max-width: 850px) {
 
@@ -779,7 +772,6 @@ span.annotation.formula_reference, span.publication_reference {
   .article .content-node.cover .authors .text {
     font-size: 16px;
   }
-
 
   html body.reader {
     height: auto;
@@ -849,41 +841,27 @@ span.annotation.formula_reference, span.publication_reference {
     padding: 0px 20px;
   }
 
+  .article .panel.document {
+    margin-top: 50px;
+  }
+
+  /* Hide main content panel when context is not TOC */
+  .article:not([data-context=toc]) .panel.document {
+    display: none;
+  }
+
+  /* Hide the TOCView on mobile */
+  .article[data-context=toc] .panel.toc {
+    display: none;
+  }
+
   .article .document .surface.content .nodes {
     padding-left: 0;
   }
 
-  #container .article .resources .resource-view {
-    display: none;
-  }
-
-  #container .article.figures .resources .resource-view.figures {
-    display: block;
-    z-index: 200;
-  }
-
-  /* Hide document when in resource mode */
-  #container .article.figures .document,
-  #container .article.citations .document,
-  #container .article.info .document,
-  #container .article.definitions .document
-  {
-    display: none;
-  }
-
-  #container .article.info .resources .resource-view.info {
-    display: block;
-    z-index: 200;
-  }
-
-  #container .article.citations .resources .resource-view.citations {
-    display: block;
-    z-index: 200;
-  }
-
-  #container .article.definitions .resources .resource-view.definitions {
-    display: block;
-    z-index: 200;
+  .article .resources .surface {
+    overflow-y: visible; 
+    overflow-x: visible;
   }
 
   .article .medial-strip {
@@ -900,7 +878,6 @@ span.annotation.formula_reference, span.publication_reference {
 
   .article .medial-strip .context-toggles {
     background: #252525;
-
     position: absolute;
     left: 0px;
     right: 0px;
@@ -918,9 +895,16 @@ span.annotation.formula_reference, span.publication_reference {
     line-height: 17px;
   }
 
+  .article .medial-strip .context-toggles .context-toggle:hover {
+    color: white;
+  }
 
   .article .medial-strip .context-toggles .context-toggle:hover {
     color: white;
+  }
+
+  .article .medial-strip .context-toggles .context-toggle.active:hover {
+    color: black;
   }
 
   .article .medial-strip .context-toggles .context-toggle span {
@@ -932,32 +916,9 @@ span.annotation.formula_reference, span.publication_reference {
     display: none;
   }
 
-  .article.figures .context-toggles .context-toggle.figures {
+  .article .context-toggles .context-toggle.active {
     color: rgba(0,0,0,1);
     background: white;
-  }
-
-  .article.citations .context-toggles .context-toggle.citations {
-    color: rgba(0,0,0,1);
-    background: white;
-  }
-
-  .article.toc .context-toggles .context-toggle.toc {
-    background: white;
-  }
-
-  .article.info .context-toggles .context-toggle.info {
-    color: rgba(0,0,0,1);
-    background: white;
-  }
-
-  .article.definitions .context-toggles .context-toggle.definitions {
-    color: rgba(0,0,0,1);
-    background: white;
-  }
-
-  .article .medial-strip .back-nav {
-    display: none;
   }
 
   .article .lens-outline {
