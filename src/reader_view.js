@@ -345,6 +345,7 @@ ReaderView.Prototype = function() {
     var state = this.readerCtrl.state;
     // 'deactivate' previously 'active' nodes
     this.contentView.$('.content-node.active').removeClass('active');
+    this.el.dataset.context = state.context;
     if (state.node) {
       this.contentView.$('#'+state.node).addClass('active');
     }
