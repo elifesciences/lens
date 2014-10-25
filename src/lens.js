@@ -119,18 +119,6 @@ Lens.getDefaultConverter = function(converterOptions) {
 
 Lens.Outline = require("lens-outline");
 
-// TODO: this seems not necessary to me
-// Probably this is done to provide to the inherent Substance API which however is hacky.
-// A context which is Lens + Substance aware should provide its own bundle.
-var Substance = {
-  util: require("substance-util"),
-  Application: require("substance-application"),
-  Document: require("substance-document"),
-  Data: require("substance-data"),
-  Surface: require("substance-surface")
-};
-Lens.Substance = Substance;
-
 Lens.ResourcePanelViewFactory = ResourcePanelViewFactory;
 Lens.PanelView = PanelView;
 Lens.ContainerPanelView = ContainerPanelView;

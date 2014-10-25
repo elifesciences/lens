@@ -3,7 +3,7 @@
 var _ = require("underscore");
 
 var PanelView = require("./panel_view");
-var Surface = require("substance-surface");
+var Surface = require("./lens_surface");
 var Outline = require("lens-outline");
 
 // TODO: try to get rid of DocumentController and use the Container node instead
@@ -22,6 +22,8 @@ var ContainerPanelView = function( doc, docCtrl, viewFactory, config ) {
 
   this._onScroll = _.bind(this.onScroll, this);
   this.surface.$el.on('scroll', this._onScroll );
+
+  this.surface.$el.addClass('resource-view').addClass(config.container);
 
   this.el.appendChild(this.surface.el);
   this.el.appendChild(this.outline.el);
