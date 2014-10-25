@@ -1,103 +1,10 @@
 "use strict";
 
 var _ = require("underscore");
-var Outline = require("lens-outline");
 var View = require("substance-application").View;
 var Data = require("substance-data");
 var Index = Data.Graph.Index;
 var $$ = require("substance-application").$$;
-
-var CORRECTION = 0; // Extra offset from the top
-
-// Renders the reader view
-// --------
-//
-// .document
-// .context-toggles
-//   .toggle-toc
-//   .toggle-figures
-//   .toggle-citations
-//   .toggle-info
-// .resources
-//   .toc
-//   .surface.figures
-//   .surface.citations
-//   .info
-
-var Renderer = function(reader) {
-
-  var frag = document.createDocumentFragment();
-
-  // Prepare doc view
-  // --------
-
-  var docViewEl = $$('.document');
-  docViewEl.appendChild(reader.contentView.render().el);
-
-  // Prepare context toggles
-  // --------
-
-  var children = [];
-
-  var panelFactory = reader.panelFactory;
-  _.each(panelFactory.getNames(), function(name) {
-    if (name === 'content') return;
-    if (reader.panelViews[name]) {
-      var spec = panelFactory.getSpec(name);
-
-      // Don't show TOC when there are not enough headings
-      if (name === "toc" && reader.doc.getHeadings().length <= 2) return;
-
-      children.push($$('a.context-toggle.' + name, {
-        'href': '#',
-        'sbs-click': 'switchContext('+name+')',
-        'title': spec.title,
-        'html': '<i class="' + spec.icon + '"></i><span> '+spec.label+'</span><div class="label">'+spec.label+'</div>'
-      }));
-    }
-  });
-
-
-  var contextToggles = $$('.context-toggles', {
-    children: children
-  });
-
-  // Prepare resources view
-  // --------
-
-  var medialStrip = $$('.medial-strip');
-
-  var collection = reader.readerCtrl.options.collection;
-  if (collection) {
-    medialStrip.appendChild($$('a.back-nav', {
-      'href': collection.url,
-      'title': 'Go back',
-      'html': '<i class=" icon-chevron-up"></i>'
-    }));
-  }
-
-  medialStrip.appendChild($$('.separator-line'));
-  medialStrip.appendChild(contextToggles);
-
-  frag.appendChild(medialStrip);
-
-  // Wrap everything within resources view
-  var resourcesViewEl = $$('.resources');
-
-  // resourcesView.appendChild(medialStrip);
-
-  _.each(panelFactory.getNames(), function(name) {
-    if (name === 'content') return;
-    if (reader.panelViews[name]) {
-      resourcesViewEl.appendChild(reader.panelViews[name].render().el);
-    }
-  });
-
-  frag.appendChild(docViewEl);
-  frag.appendChild(resourcesViewEl);
-  return frag;
-};
-
 
 // Lens.Reader.View
 // ==========================================================================
@@ -110,47 +17,26 @@ var ReaderView = function(readerCtrl) {
   // --------
 
   this.readerCtrl = readerCtrl;
+  this.doc = this.readerCtrl.getDocument();
   this.panelFactory = readerCtrl.panelFactory;
 
-  var doc = this.readerCtrl.contentCtrl.__document;
-  this.doc = doc;
-
   this.$el.addClass('article');
-  this.$el.addClass(doc.schema.id); // Substance article or lens article?
+  this.$el.addClass(this.doc.schema.id); // Substance article or lens article?
 
   // Stores latest body scroll positions per context
-  // Only relevant
+
   this.bodyScroll = {};
-
-  // Surfaces
-  // --------
-  var panelFactory = readerCtrl.panelFactory;
-
-  // A Substance.Document.Writer instance is provided by the controller
-  this.contentView = panelFactory.createPanelView('content', readerCtrl.contentCtrl);
 
   // Panels
   // ------
   this.panelViews = {};
-  _.each(panelFactory.getNames(), function(name) {
-    if (name === 'content') return;
-    var spec = panelFactory.getSpec(name);
-    if (spec.shouldBeVisible(name, doc)) {
-      var panelView;
-      if (name === 'toc') {
-        panelView = panelFactory.createPanelView('toc', readerCtrl.contentCtrl);
-      } else if (readerCtrl.panelCtrls[name]) {
-        panelView = panelFactory.createPanelView(name, readerCtrl.panelCtrls[name]);
-      }
-      if (panelView) this.panelViews[name] = panelView;
-    }
+  _.each(readerCtrl.panels, function(panel) {
+    this.panelViews[panel.getName()] = panel.getView();
   }, this);
 
-  this.tocView = this.panelViews.toc;
-
-  // Whenever a state change happens (e.g. user navigates somewhere)
-  // the interface gets updated accordingly
-  this.listenTo(this.readerCtrl, "state-changed", this.updateState);
+  // Note: ATM, it is not possible to override the content panel + toc via panelSpecification
+  this.contentView = readerCtrl.contentPanel.getView();
+  this.panelViews.toc = this.contentView.getTocView();
 
   // Keep an index for resources
   this.resources = new Index(this.readerCtrl.__document, {
@@ -158,64 +44,140 @@ var ReaderView = function(readerCtrl) {
     property: "target"
   });
 
-  // Outline
-  // --------
-
-  this.outline = new Outline(this.contentView);
-
-
-  // Resource Outline
-  // --------
-
-  this.resourcesOutline = new Outline(this.figuresView);
-
-  // DOM Events
+  // Events
   // --------
   //
 
-  this.contentView.$el.on('scroll', _.bind(this.onContentScroll, this));
+  // Whenever a state change happens (e.g. user navigates somewhere)
+  // the interface gets updated accordingly
+  this.listenTo(this.readerCtrl, "state-changed", this.updateState);
 
-  // handle scrolling in resource panels
-  _.each(this.panelFactory.getNames(), function(name) {
-    if (!this.panelViews[name]) return;
-
+  // TODO: this seems a bit clumsy still. why not really try to look-up the panel automatically
+  // i.e., loop all panels and open the first found?
+  // Register event delegates to react on clicks on a reference node in the content panel
+  _.each(this.panelViews, function(panelView, name) {
     var spec = this.panelFactory.getSpec(name);
-    var panel = this.panelViews[name];
-    panel.$el.on('scroll', _.bind(this.onResourceContentScroll, this));
-
-    // Resource references
-    //
-    // attach click handler to open the right panel when clicking on
-    // a reference in the content panel
+    if (!spec) return;
     _.each(spec.references, function(refType) {
-      this.$el.on('click', '.annotation.' + refType, _.bind(this.toggleResourceReference, this, spec.name));
+      this.$el.on('click', '.annotation.' + refType, _.bind(this.toggleResourceReference, this, name));
     }, this);
-
   }, this);
-
 
   this.$el.on('click', '.annotation.cross_reference', _.bind(this.followCrossReference, this));
 
+  // NOTE: deactivated anchoring when clicking on heading
+  //       We decided to do so, as there were use-cases were link behavior was preferred.
   // this.$el.on('click', '.document .content-node.heading', _.bind(this.setAnchor, this));
 
+  // TODO: are these currently rendered? i.e. jump-to-top buttons?
   this.$el.on('click', '.document .content-node.heading .top', _.bind(this.gotoTop, this));
 
-  this.outline.$el.on('click', '.node', _.bind(this._jumpToNode, this));
-
+  this._onToggleResourcePanel = _.bind( this.switchContext, this );
 };
 
 
 ReaderView.Prototype = function() {
 
-  this.setAnchor = function(e) {
-    this.toggleNode('toc', $(e.currentTarget).attr('id'));
+  // Rendering
+  // --------
+  //
+
+  this.render = function() {
+    var state = this.getState();
+    var frag = document.createDocumentFragment();
+
+    // Prepare doc view
+    // --------
+
+    frag.appendChild(this.contentView.render().el);
+
+    // Prepare context toggles
+    // --------
+
+    var contextToggles = $$('.context-toggles');
+
+    // TODO: consider the order of toggles
+    _.each(this.panelFactory.getNames(), function(name) {
+      var panelView = this.panelViews[name];
+      if (panelView) {
+        var toggleEl = panelView.getToggleControl();
+        contextToggles.appendChild(toggleEl);
+        panelView.on('toggle', this._onToggleResourcePanel);
+      }
+    }, this);
+
+    // Prepare resources view
+    // --------
+
+    var medialStrip = $$('.medial-strip');
+    medialStrip.appendChild($$('.separator-line'));
+    medialStrip.appendChild(contextToggles);
+    frag.appendChild(medialStrip);
+
+
+    // Wrap everything within resources view
+    var resourcesViewEl = $$('.resources');
+    _.each(this.panelViews, function(panelView, name) {
+      console.log('Rendering panel "%s"', name);
+      resourcesViewEl.appendChild(panelView.render().el);
+    });
+    frag.appendChild(resourcesViewEl);
+
+    this.el.appendChild(frag);
+
+    // Await next UI tick to update layout and outline
+    _.delay(_.bind( function() {
+      // Render outline that sticks on this.surface
+      this.updateState();
+      window.MathJax.Hub.Queue(["Typeset", window.MathJax.Hub]);
+    }, this), 1);
+
+    // Wait for stuff to be rendered (e.g. formulas)
+    // TODO: use a handler? MathJax.Hub.Queue(fn) does not work for some reason
+
+    _.delay(_.bind( function() {
+      this.updateOutline();
+    }, this ), 2000);
+
+    // Jump marks for the win
+    if (state.node) {
+      _.delay(_.bind(function() {
+        this.contentView.jumpToNode(state.node);
+        if (state.resource) {
+          // TODO: Brute force for now
+          // Make sure to find out which resource view is currently active
+          var panelView = this.panelViews[state.context];
+          panelView.jumpToResource(state.resource);
+        }
+      }, this), 100);
+    }
+
+    // attach a lazy/debounced handler for resize events
+    // that updates the outline of the currently active panels
+    $(window).resize(_.debounce(_.bind(function() {
+      this.updateOutline();
+    }, this), 1) );
+
+    return this;
   };
 
-  this.gotoTop = function() {
-    // Jump to cover node as that's easiest
-    this.jumpToNode("cover");
-    $(document).scrollTop(0);
-    return false;
+  // Free the memory.
+  // --------
+  //
+
+  this.dispose = function() {
+    this.contentView.dispose();
+    _.each(this.panelViews, function(panelView) {
+      panelView.off('toggle', this._onToggleResourcePanel);
+      panelView.dispose();
+    });
+    this.resources.dispose();
+    this.stopListening();
+  };
+
+
+  this.getState = function() {
+    return this.readerCtrl.state;
   };
 
   // Toggles on and off the zoom
@@ -224,18 +186,11 @@ ReaderView.Prototype = function() {
 
   this.toggleFullscreen = function(resourceId) {
     var state = this.readerCtrl.state;
-
     // Always activate the resource
     this.readerCtrl.modifyState({
       resource: resourceId,
       fullscreen: !state.fullscreen
     });
-  };
-
-  this._jumpToNode = function(e) {
-    var nodeId = $(e.currentTarget).attr('id').replace("outline_", "");
-    this.jumpToNode(nodeId);
-    return false;
   };
 
   // Toggle Resource Reference
@@ -244,29 +199,28 @@ ReaderView.Prototype = function() {
 
   this.toggleResourceReference = function(context, e) {
     var state = this.readerCtrl.state;
-    var aid = $(e.currentTarget).attr('id');
-    var a = this.readerCtrl.__document.get(aid);
-
-    var nodeId = this.readerCtrl.contentCtrl.container.getRoot(a.path[0]);
-    var resourceId = a.target;
-
+    var refId = e.currentTarget.dataset.id;
+    var ref = this.readerCtrl.getDocument().get(refId);
+    var nodeId = this.readerCtrl.contentPanel.getContainer().getRoot(ref.path[0]);
+    var resourceId = ref.target;
+    // If the resource is active currently, deactivate it
     if (resourceId === state.resource) {
       this.readerCtrl.modifyState({
         context: this.readerCtrl.currentContext,
         node: null,
         resource:  null
       });
-    } else {
+    }
+    // Otherwise, activate it und scroll to the resource
+    else {
       this.saveScroll();
       this.readerCtrl.modifyState({
         context: context,
         node: nodeId,
         resource: resourceId
       });
-
-      this.jumpToResource(resourceId);
+      this.panelViews[context].jumpToResource(resourceId);
     }
-
     e.preventDefault();
   };
 
@@ -275,57 +229,16 @@ ReaderView.Prototype = function() {
   //
 
   this.followCrossReference = function(e) {
-    var aid = $(e.currentTarget).attr('id');
-    var a = this.readerCtrl.__document.get(aid);
-    this.jumpToNode(a.target);
+    var refId = e.currentTarget.dataset.id;
+    var crossRef = this.readerCtrl.getDocument().get(refId);
+    this.contentView.jumpToNode(crossRef.target);
   };
 
-
-  // On Scroll update outline and mark active heading
-  // --------
-  //
-
-  this.onContentScroll = function() {
-    var scrollTop = this.contentView.$el.scrollTop();
-    this.outline.updateVisibleArea(scrollTop);
-    this.markActiveHeading(scrollTop);
-  };
-
-  this.onResourceContentScroll = function() {
-    // Make sure that a surface is attached to the resources outline
-    if (this.resourcesOutline.surface) {
-      var scrollTop = this.resourcesOutline.surface.$el.scrollTop();
-      this.resourcesOutline.updateVisibleArea(scrollTop);
-    }
-  };
-
-
-  // Mark active heading
-  // --------
-  //
-
-  this.markActiveHeading = function(scrollTop) {
-    var contentHeight = $('.nodes').height();
-
-    var headings = this.doc.getHeadings();
-
-    // No headings?
-    if (headings.length === 0) return;
-
-    // Use first heading as default
-    var activeNode = _.first(headings).id;
-
-    this.contentView.$('.content-node.heading').each(function() {
-      if (scrollTop >= $(this).position().top + CORRECTION) {
-        activeNode = this.id;
-      }
-    });
-
-    // Edge case: select last item (once we reach the end of the doc)
-    if (scrollTop + this.contentView.$el.height() >= contentHeight) {
-      activeNode = _.last(headings).id;
-    }
-    this.tocView.setActiveNode(activeNode);
+  this.gotoTop = function() {
+    // Jump to cover node as that's easiest
+    this.contentView.jumpToNode("cover");
+    $(document).scrollTop(0);
+    return false;
   };
 
   // Toggle on-off a resource
@@ -340,7 +253,6 @@ ReaderView.Prototype = function() {
       id = null;
       node = null;
     }
-
     this.readerCtrl.modifyState({
       fullscreen: false,
       resource: id,
@@ -348,45 +260,12 @@ ReaderView.Prototype = function() {
     });
   };
 
-  // Jump to the given node id
-  // --------
-  //
-
-  this.jumpToNode = function(nodeId) {
-    var $n = $('#'+nodeId);
-    if ($n.length > 0) {
-      var topOffset = $n.position().top+CORRECTION;
-      this.contentView.$el.scrollTop(topOffset);
-    }
-  };
-
-  // Jump to the given resource id
-  // --------
-  //
-
-  this.jumpToResource = function(nodeId) {
-    var $n = $('#'+nodeId);
-    if ($n.length > 0) {
-      var topOffset = $n.position().top;
-
-      // TODO: Brute force for now
-      // Make sure to find out which resource view is currently active
-      var panelView = this.panelViews[this.readerCtrl.state.context];
-      if (panelView) panelView.$el.scrollTop(topOffset);
-
-      // Brute force for mobile
-      $(document).scrollTop(topOffset);
-    }
-  };
-
-
   // Toggle on-off node focus
   // --------
   //
 
   this.toggleNode = function(context, nodeId) {
     var state = this.readerCtrl.state;
-
     if (state.node === nodeId && state.context === context) {
       // Toggle off -> reset, preserve the context
       this.readerCtrl.modifyState({
@@ -419,8 +298,7 @@ ReaderView.Prototype = function() {
   // TODO: retrieve from cookie to persist scroll pos over reload?
 
   this.recoverScroll = function() {
-    var targetScroll = this.bodyScroll[this.readerCtrl.state.context];
-
+    var targetScroll = this.bodyScroll[this.getState().context];
     if (targetScroll) {
       $(document).scrollTop(targetScroll);
     } else {
@@ -434,19 +312,19 @@ ReaderView.Prototype = function() {
   //
 
   this.saveScroll = function() {
-    this.bodyScroll[this.readerCtrl.state.context] = this.getScroll();
+    this.bodyScroll[this.getState().context] = this.getScroll();
   };
 
   // Explicit context switch
   // --------
   //
   // Only triggered by the explicit switch
-  // Implicit context switches happen someone clicks a figure reference
+  // Implicit context switches happen when someone clicks a figure reference
 
   this.switchContext = function(context) {
+    console.log('Switch context');
     // var currentContext = this.readerCtrl.state.context;
     this.saveScroll();
-
     // Which view actions are triggered here?
     this.readerCtrl.switchContext(context);
     this.recoverScroll();
@@ -461,22 +339,14 @@ ReaderView.Prototype = function() {
   this.updateState = function(options) {
     options = options || {};
     var state = this.readerCtrl.state;
-
-    // Set context on the reader view
-    // -------
-
-    // TODO: we should have collected all resource types at this point
-    this.$el.removeClass('toc figures citations info definitions math');
+    // 'deactivate' previously 'active' nodes
     this.contentView.$('.content-node.active').removeClass('active');
-    this.$el.addClass(state.context);
-
+    this.el.dataset.context = state.context;
     if (state.node) {
-      this.contentView.$('#'+state.node).addClass('active');
+      $(this.contentView.findNodeView(state.node)).addClass('active');
     }
-
     // According to the current context show active resource panel
     // -------
-
     this.updateResource();
   };
 
@@ -490,33 +360,26 @@ ReaderView.Prototype = function() {
     var state = this.readerCtrl.state;
     this.$('.resources .content-node.active').removeClass('active fullscreen');
     this.contentView.$('.annotation.active').removeClass('active');
-
     if (state.resource) {
+      var resourcePanel = this.panelViews[state.context];
       // Show selected resource
-      var $res = this.$('#'+state.resource);
+      var $res = $(resourcePanel.findNodeView(state.resource));
       $res.addClass('active');
       if (state.fullscreen) $res.addClass('fullscreen');
-
       // Mark all annotations that reference the resource
       var annotations = this.resources.get(state.resource);
       _.each(annotations, function(a) {
-        this.contentView.$('#'+a.id).addClass('active');
+        $(this.contentView.findNodeView(a.id)).addClass('active');
       }, this);
-
-      // Update outline
     } else {
       this.recoverScroll();
       // Hide all resources (see above)
     }
-
+    _.each(this.panelViews, function(panelView) {
+      panelView.hide();
+    });
+    this.panelViews[state.context].activate();
     this.updateOutline();
-  };
-
-  // Returns true when on a mobile device
-  // --------
-
-  this.isMobile = function() {
-
   };
 
   // Whenever the app state changes
@@ -525,32 +388,15 @@ ReaderView.Prototype = function() {
   // Triggered by updateResource.
 
   this.updateOutline = function() {
-    var that = this;
-    var state = this.readerCtrl.state;
+    var state = this.getState();
     var nodes = this.getResourceReferenceContainers();
-
-    that.outline.update({
+    this.contentView.updateOutline({
       context: state.context,
       selectedNode: state.node,
       highlightedNodes: nodes
     });
-
-
-    // Resources outline
-    // -------------------
-
-    if (state.context === "toc") {
-      $(that.resourcesOutline.el).addClass('hidden');
-      return;
-    } else if (this.panelViews[state.context]) {
-      that.resourcesOutline.surface = this.panelViews[state.context];
-    } else {
-      that.resourcesOutline.surface = this.panelViews['info'];
-    }
-
-    $(that.resourcesOutline.el).removeClass('hidden');
-
-    that.resourcesOutline.update({
+    var panelView = this.panelViews[state.context];
+    if(panelView.hasOutline) panelView.updateOutline({
       context: state.context,
       selectedNode: state.node,
       highlightedNodes: [state.resource]
@@ -559,15 +405,13 @@ ReaderView.Prototype = function() {
 
   this.getResourceReferenceContainers = function() {
     var state = this.readerCtrl.state;
-
     if (!state.resource) return [];
-
     // A reference is an annotation node. We want to highlight
     // all (top-level) nodes that contain a reference to the currently activated resource
     // For that we take all references pointing to the resource
     // and find the root of the node on which the annotation sticks on.
     var references = this.resources.get(state.resource);
-    var container = this.readerCtrl.contentCtrl.container;
+    var container = this.readerCtrl.contentPanel.getContainer();
     var nodes = _.uniq(_.map(references, function(ref) {
       var nodeId = container.getRoot(ref.path[0]);
       return nodeId;
@@ -575,67 +419,10 @@ ReaderView.Prototype = function() {
     return nodes;
   };
 
-  // Rendering
-  // --------
-  //
-
-  this.render = function() {
-    var that = this;
-
-    var state = this.readerCtrl.state;
-    this.el.appendChild(new Renderer(this));
-
-    // After rendering make reader reflect the app state
-    this.$('.document').append(that.outline.el);
-
-    this.$('.resources').append(that.resourcesOutline.el);
-
-    // Await next UI tick to update layout and outline
-    _.delay(function() {
-      // Render outline that sticks on this.surface
-      that.updateState();
-      window.MathJax.Hub.Queue(["Typeset", window.MathJax.Hub]);
-    }, 1);
-
-    // Wait for stuff to be rendered (e.g. formulas)
-    // TODO: use a handler? MathJax.Hub.Queue(fn) does not work for some reason
-
-    _.delay(function() {
-      that.updateOutline();
-    }, 2000);
-
-    var lazyOutline = _.debounce(function() {
-      that.updateOutline();
-    }, 1);
-
-    // Jump marks for teh win
-    if (state.node) {
-      _.delay(function() {
-        that.jumpToNode(state.node);
-        if (state.resource) {
-          that.jumpToResource(state.resource);
-        }
-      }, 100);
-    }
-
-    $(window).resize(lazyOutline);
-
-    return this;
-  };
-
-
-  // Free the memory.
-  // --------
-  //
-
-  this.dispose = function() {
-    this.contentView.dispose();
-    if (this.figuresView) this.figuresView.dispose();
-    if (this.citationsView) this.citationsView.dispose();
-    if (this.infoView) this.infoView.dispose();
-    this.resources.dispose();
-
-    this.stopListening();
+  this.jumpToResource = function(resourceId) {
+    var state =  this.getState();
+    var panelView = this.panelViews[state.context];
+    panelView.jumpToResource(resourceId);
   };
 };
 

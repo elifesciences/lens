@@ -5,7 +5,7 @@ var util = require("substance-util");
 var Controller = require("substance-application").Controller;
 var LensView = require("./lens_view");
 var ReaderController = require("./reader_controller");
-var Article = require("lens-article");
+var LensArticle = require("lens-article");
 var NLMConverter = require('lens-converter');
 
 // Lens.Controller
@@ -17,7 +17,7 @@ var LensController = function(config) {
   Controller.call(this);
 
   this.config = config;
-
+  this.Article = config.articleClass || LensArticle;
   this.converter = config.converter;
   this.converterOptions = _.extend({}, NLMConverter.DefaultOptions, config.converterOptions);
 
@@ -83,6 +83,9 @@ LensController.Prototype = function() {
     // Create new reader controller instance
     this.reader = new ReaderController(doc, state, this.config);
 
+    // FIXME: deactivated this, for some reason my refactor damaged the backbone routing.
+    // Everytime, the path gets updated, backbone jumps back to the default route. Don't see how my changes could have affected this,
+    // but obviously did.
     this.reader.on('state-changed', function() {
       that.updatePath(that.reader.state);
     });
@@ -109,38 +112,28 @@ LensController.Prototype = function() {
       // HACK: This shouldn't be monkeypatched
       if (state.resource) this.reader.view.jumpToResource(state.resource);
     } else if (this.config.document_url === "lens_article.xml") {
-      var doc = Article.describe();
+      var doc = this.Article.describe();
       that.createReader(doc, state);
     } else {
       this.trigger("loading:started", "Loading article");
-      $.ajax( this.config.document_url, {
-        type: 'GET',
-        crossDomain: true,
-        headers: {
-          Accept: "application/xml"
-        }
-      } ).done(function(data) {
+      $.get(this.config.document_url)
+      .done(function(data) {
         var doc;
-
         // Determine type of resource
         var xml = $.isXMLDoc(data);
-
         // Process XML file
         if (xml) {
           doc = that.converter.import(data, that.converterOptions);
         } else {
           if(typeof data == 'string') data = $.parseJSON(data);
-          doc = Article.fromSnapshot(data);
+          doc = this.Article.fromSnapshot(data);
         }
-
         // Extract headings
         // TODO: this should be solved with an index on the document level
         // This same code occurs in TOCView!
-
         if (state.context === "toc" && doc.getHeadings().length <= 2) {
           state.context = "info";
         }
-
         that.createReader(doc, state);
       })
       .fail(function(err) {
@@ -150,16 +143,6 @@ LensController.Prototype = function() {
     }
   };
 
-  // Provides an array of (context, controller) tuples that describe the
-  // current state of responsibilities
-  // --------
-  //
-
-  this.getActiveControllers = function() {
-    var result = [["lens", this]];
-    result.push(["reader", this.reader]);
-    return result;
-  };
 };
 
 

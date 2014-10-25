@@ -20,16 +20,13 @@ var ReaderController = function(doc, state, options) {
 
   this.panelFactory = options.panelFactory || new PanelFactory();
 
-  // Reader state
-  // -------
-
-  this.panelCtrls = {};
-
-  this.contentCtrl = this.panelFactory.createPanelController(doc, 'content');
-
+  this.panels = {};
+  this.contentPanel = this.panelFactory.createPanel(doc, 'content');
+  // skip 'content' and 'toc' as they are built-in
+  // ATM, we do not support overriding them
   _.each(this.panelFactory.getNames(), function(name) {
     if (name === 'content' || name === 'toc') return;
-    this.panelCtrls[name] = this.panelFactory.createPanelController(doc, name);
+    this.panels[name] = this.panelFactory.createPanel(doc, name);
   }, this);
 
   this.state = state;
@@ -52,7 +49,6 @@ ReaderController.Prototype = function() {
   this.switchContext = function(context) {
     // Remember scrollpos of previous context
     this.currentContext = context;
-
     this.modifyState({
       context: context,
       node: null,
@@ -60,20 +56,10 @@ ReaderController.Prototype = function() {
     });
   };
 
-  this.modifyState = function(state) {
-    Controller.prototype.modifyState.call(this, state);
+  this.getDocument = function() {
+    return this.__document;
   };
 
-  // TODO: Transition to ao new solid API
-  // --------
-  //
-
-  this.getActiveControllers = function() {
-    var result = [];
-    result.push(["article", this]);
-    result.push(["reader", this.panelCtrls[this.context]]);
-    return result;
-  };
 };
 
 
