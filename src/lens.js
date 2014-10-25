@@ -4,7 +4,7 @@ var Application = require("substance-application");
 var LensController = require("./lens_controller");
 var LensConverter = require("lens-converter");
 var LensArticle = require("lens-article");
-var ResourceRenderer = require("./resource_renderer");
+var ResourcePanelViewFactory = require("./resource_panel_viewfactory");
 var ReaderController = require('./reader_controller');
 var ReaderView = require('./reader_view');
 var PanelFactory = require('./panel_factory');
@@ -131,7 +131,7 @@ var Substance = {
 };
 Lens.Substance = Substance;
 
-Lens.ResourceRenderer = ResourceRenderer;
+Lens.ResourcePanelViewFactory = ResourcePanelViewFactory;
 Lens.PanelView = PanelView;
 Lens.ContainerPanelView = ContainerPanelView;
 

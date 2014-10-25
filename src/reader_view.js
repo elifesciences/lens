@@ -199,7 +199,7 @@ ReaderView.Prototype = function() {
 
   this.toggleResourceReference = function(context, e) {
     var state = this.readerCtrl.state;
-    var refId = $(e.currentTarget).attr('id');
+    var refId = e.currentTarget.dataset.id;
     var ref = this.readerCtrl.getDocument().get(refId);
     var nodeId = this.readerCtrl.contentPanel.getContainer().getRoot(ref.path[0]);
     var resourceId = ref.target;
@@ -229,14 +229,10 @@ ReaderView.Prototype = function() {
   //
 
   this.followCrossReference = function(e) {
-    var refId = $(e.currentTarget).attr('id');
+    var refId = e.currentTarget.dataset.id;
     var crossRef = this.readerCtrl.getDocument().get(refId);
     this.contentView.jumpToNode(crossRef.target);
   };
-
-  // this.setAnchor = function(e) {
-  //   this.toggleNode('toc', $(e.currentTarget).attr('id'));
-  // };
 
   this.gotoTop = function() {
     // Jump to cover node as that's easiest
@@ -347,7 +343,7 @@ ReaderView.Prototype = function() {
     this.contentView.$('.content-node.active').removeClass('active');
     this.el.dataset.context = state.context;
     if (state.node) {
-      this.contentView.$('#'+state.node).addClass('active');
+      $(this.contentView.findNodeView(state.node)).addClass('active');
     }
     // According to the current context show active resource panel
     // -------
@@ -365,14 +361,15 @@ ReaderView.Prototype = function() {
     this.$('.resources .content-node.active').removeClass('active fullscreen');
     this.contentView.$('.annotation.active').removeClass('active');
     if (state.resource) {
+      var resourcePanel = this.panelViews[state.context];
       // Show selected resource
-      var $res = this.$('#'+state.resource);
+      var $res = $(resourcePanel.findNodeView(state.resource));
       $res.addClass('active');
       if (state.fullscreen) $res.addClass('fullscreen');
       // Mark all annotations that reference the resource
       var annotations = this.resources.get(state.resource);
       _.each(annotations, function(a) {
-        this.contentView.$('#'+a.id).addClass('active');
+        $(this.contentView.findNodeView(a.id)).addClass('active');
       }, this);
     } else {
       this.recoverScroll();

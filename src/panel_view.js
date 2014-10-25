@@ -86,6 +86,10 @@ PanelView.Prototype = function() {
     return this.doc;
   };
 
+  this.findNodeView = function(nodeId) {
+    return this.el.querySelector('*[data-id='+nodeId+']');
+  };
+
 };
 
 PanelView.Prototype.prototype = View.prototype;

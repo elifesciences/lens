@@ -1,5 +1,5 @@
 var LensArticle = require('lens-article');
-var ResourceRenderer = require('./resource_renderer');
+var ResourcePanelViewFactory = require('./resource_panel_viewfactory');
 
 var panelSpecs = {
   panels: {
@@ -9,7 +9,7 @@ var panelSpecs = {
       label: 'Content',
       title: 'Content',
       icon: 'icon-align-left',
-      renderer: LensArticle.Renderer
+      viewFactory: LensArticle.ViewFactory
     },
     figures: {
       type: 'resource',
@@ -18,7 +18,7 @@ var panelSpecs = {
       title: 'Figures',
       icon: 'icon-picture',
       references: ['figure_reference'],
-      renderer: ResourceRenderer
+      viewFactory: ResourcePanelViewFactory
     },
     citations: {
       type: 'resource',
@@ -27,7 +27,7 @@ var panelSpecs = {
       title: 'References',
       icon: 'icon-link',
       references: ['citation_reference'],
-      renderer: ResourceRenderer
+      viewFactory: ResourcePanelViewFactory
     },
     definitions: {
       type: 'resource',
@@ -36,7 +36,7 @@ var panelSpecs = {
       title: 'Glossary',
       icon: 'icon-book',
       references: ['definition_reference'],
-      renderer: ResourceRenderer
+      viewFactory: ResourcePanelViewFactory
     },
     info: {
       type: 'resource',
@@ -45,7 +45,7 @@ var panelSpecs = {
       title: 'Article Info',
       icon: 'icon-info-sign',
       references: ['contributor_reference'],
-      renderer: ResourceRenderer
+      viewFactory: ResourcePanelViewFactory
     }
   },
   panelOrder: ['toc', 'figures', 'citations', 'definitions', 'info']

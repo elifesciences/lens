@@ -7,12 +7,12 @@ var Surface = require("substance-surface");
 var Outline = require("lens-outline");
 
 // TODO: try to get rid of DocumentController and use the Container node instead
-var ContainerPanelView = function( doc, docCtrl, renderer, config ) {
+var ContainerPanelView = function( doc, docCtrl, viewFactory, config ) {
   PanelView.call(this, doc, config);
 
   this.surface = new Surface(docCtrl, {
     editable: false,
-    renderer: renderer
+    viewFactory: viewFactory
   });
   this.docCtrl = docCtrl;
 
@@ -65,9 +65,9 @@ ContainerPanelView.Prototype = function() {
   //
 
   this.jumpToResource = function(nodeId) {
-    var $n = this.$el.find('#'+nodeId);
-    if ($n.length > 0) {
-      var topOffset = $n.position().top;
+    var n = this.findNodeView(nodeId);
+    if (n) {
+      var topOffset = $(n).position().top;
       this.surface.$el.scrollTop(topOffset);
       // TODO: is it possible to detect this case and just do it in mobile?
       // Brute force for mobile
@@ -75,6 +75,10 @@ ContainerPanelView.Prototype = function() {
     } else {
       console.log("PanelView.jumpToResource(): Unknown resource '%s'", nodeId);
     }
+  };
+
+  this.findNodeView = function(nodeId) {
+    return this.surface.findNodeView(nodeId);
   };
 
 };

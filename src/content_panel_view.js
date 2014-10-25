@@ -7,8 +7,8 @@ var ContainerPanelView = require('./container_panel_view');
 
 var CORRECTION = 0; // Extra offset from the top
 
-var ContentPanelView = function( doc, docCtrl, renderer, config ) {
-  ContainerPanelView.call(this, doc, docCtrl, renderer, config);
+var ContentPanelView = function( doc, docCtrl, viewFactory, config ) {
+  ContainerPanelView.call(this, doc, docCtrl, viewFactory, config);
 
   this.tocView = new TocPanelView(doc, _.extend({}, config, { type: 'resource', name: 'toc' }));
 
@@ -53,9 +53,9 @@ ContentPanelView.Prototype = function() {
   //
 
   this.jumpToNode = function(nodeId) {
-    var $n = $('#'+nodeId);
-    if ($n.length > 0) {
-      var topOffset = $n.position().top+CORRECTION;
+    var n = this.findNodeView(nodeId);
+    if (n) {
+      var topOffset = $(n).position().top+CORRECTION;
       this.surface.$el.scrollTop(topOffset);
     }
   };

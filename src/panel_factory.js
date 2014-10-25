@@ -37,21 +37,21 @@ PanelFactory.Prototype = function() {
     // default container renderer
     if (spec.container) {
       var docCtrl = new Document.Controller( doc, { view: spec.container } );
-      var renderer;
+      var viewFactory;
       // TODO: it doesn't feel good to need a DocumentCtrl for creating a renderer
       // probably, a Container instance would be enough. Actually, it is a ContainerRenderer not an ArticleRenderer.
-      if (spec.createRenderer) {
-        renderer = spec.createRenderer(docCtrl, spec.container);
-      } else if (spec.renderer) {
-        renderer = new spec.renderer(docCtrl);
+      if (spec.createViewFactory) {
+        viewFactory = spec.createViewFactory(doc, spec.container);
+      } else if (spec.viewFactory) {
+        viewFactory = new spec.viewFactory(doc.nodeTypes);
       } else {
-        var DefaultRenderer = doc.constructor.Renderer;
-        renderer = new DefaultRenderer(docCtrl);
+        var DefaultViewFactory = doc.constructor.ViewFactory;
+        viewFactory = new DefaultViewFactory(doc.nodeTypes);
       }
       if (spec.container === "content") {
-        panelView = new ContentPanelView(doc, docCtrl, renderer, spec);
+        panelView = new ContentPanelView(doc, docCtrl, viewFactory, spec);
       } else {
-        panelView = new ContainerPanelView(doc, docCtrl, renderer, spec);
+        panelView = new ContainerPanelView(doc, docCtrl, viewFactory, spec);
       }
       panelCtrl = docCtrl;
     }
