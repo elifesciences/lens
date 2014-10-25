@@ -1,5 +1,6 @@
 "use strict";
 
+var _ = require('underscore');
 var Application = require("substance-application");
 var LensController = require("./lens_controller");
 var LensConverter = require("lens-converter");
@@ -108,6 +109,12 @@ Lens.getDefaultRoutes = function() {
 };
 
 Lens.defaultPanelSpecification = require('./panel_specification');
+
+Lens.getDefaultPanelSpecification = function() {
+  var spec = _.extend({}, Lens.defaultPanelSpecification);
+  spec.panels = _.extend({}, spec.panels);
+  return spec;
+};
 
 Lens.getDefaultPanelFactory = function() {
   return new Lens.Reader.PanelFactory(Lens.defaultPanelSpecification);
