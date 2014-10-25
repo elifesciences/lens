@@ -1,0 +1,52 @@
+/* Surface
+-------------------------------------------------------------------------------*/
+
+.surface {
+  position: relative;
+}
+
+/* Very important dude */
+/* Makes sure .nodes is used as a reference for absolute positioning */
+.surface .nodes {
+  position: relative;
+}
+
+/* Generic node styles */
+.surface .content-node {
+  position: relative;
+}
+
+.surface .nodes > .content-node {
+  /*margin: 0 60px;*/
+}
+
+
+/* Cursor
+-------------------------------------------------------------------------------*/
+
+.surface .cursor {
+  position: absolute;
+  top: 0px;
+  height: 20px;
+  width: 2px;
+  background: #00ACEA;
+}
+
+/*
+  blinking from http://codepen.io/hofweber/pen/vbJHc
+  thanks patch!
+*/
+
+.surface .cursor {
+  -webkit-animation: blink 1.2s step-end infinite;
+     -moz-animation: blink 1.2s step-end infinite;
+      -ms-animation: blink 1.2s step-end infinite;
+       -o-animation: blink 1.2s step-end infinite;
+          animation: blink 1.2s step-end infinite;
+}
+
+@-webkit-keyframes blink {0% {background: #00ACEA} 50% {background: transparent;}}
+   @-moz-keyframes blink {0% {background: #00ACEA} 50% {background: transparent;}}
+    @-ms-keyframes blink {0% {background: #00ACEA} 50% {background: transparent;}}
+     @-o-keyframes blink {0% {background: #00ACEA} 50% {background: transparent;}}
+        @keyframes blink {0% {background: #00ACEA} 50% {background: transparent;}}
