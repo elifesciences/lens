@@ -44,7 +44,7 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 
 .article .document {
   line-height: 28.5px;
-  font-size: 18px;
+  font-size: 17px;
   position: relative;
   float: left;
   overflow: hidden;
@@ -68,7 +68,7 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 
 .article .document .surface.content .nodes {
   min-height: 100%;
-  padding-left: 40px;
+  padding-left: 20px;
   padding-right: 0px;
   background: #FFFFFF;
 }
@@ -656,7 +656,6 @@ span.annotation.formula_reference, span.publication_reference {
 /* Some extra cover spacing */
 .surface.content .nodes > .content-node.cover {
   padding-top: 20px;
-  padding-bottom: 60px;
 }
 
 /* For the resources panel
