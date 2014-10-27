@@ -206,6 +206,10 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   /*overflow: auto;*/
 }
 
+.article .resources .panel {
+  height: 100%;
+}
+
 .article .resources .surface {
   position: absolute;
   top: 0px;
