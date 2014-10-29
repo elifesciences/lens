@@ -73,15 +73,18 @@ ContentPanelView.Prototype = function() {
   this.markActiveHeading = function(scrollTop) {
     var contentHeight = $('.nodes').height();
     var headings = this.getDocument().getHeadings();
+
     // No headings?
     if (headings.length === 0) return;
     // Use first heading as default
     var activeNode = _.first(headings).id;
+
     this.$('.content-node.heading').each(function() {
       if (scrollTop >= $(this).position().top + CORRECTION) {
-        activeNode = this.id;
+        activeNode = this.dataset.id;
       }
     });
+
     // Edge case: select last item (once we reach the end of the doc)
     if (scrollTop + this.$el.height() >= contentHeight) {
       activeNode = _.last(headings).id;
