@@ -150,7 +150,6 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   font-size: 22px;
   color: #aaa;
   background: #fff;
-  font-family: 'Avenir LT W01 85 Heavy', 'Montserrat', 'Source Sans Pro';
 }
 
 .article .context-toggles .context-toggle.hidden {
@@ -170,13 +169,10 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 }
 
 .article .context-toggles .context-toggle div.label {
-  /*background: blue;*/
   margin-left: -15px;
   margin-right: -15px;
-  font-family: 'Source Sans Pro';
-  text-transform: uppercase;
   font-weight: bold;
-  font-size: 10px;
+  font-size: 11px;
   line-height: 12px;
   padding-bottom: 10px;
   text-align: center;
@@ -360,7 +356,6 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   min-height: 40px;
 
   color: #444;
-  /*font-family: 'Avenir LT W01 85 Medium', 'Montserrat', 'Source Sans Pro';*/
   font-size: 16px;
   line-height: 21px;
   padding: 10px 20px;
