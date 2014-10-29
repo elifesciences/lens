@@ -26,7 +26,7 @@ var Lens = function(config) {
   //   as they are used to setup a router
   Application.call(this, config);
 
-  this.controller = new LensController(config);
+  this.controller = config.controller || this.createController(config);
 };
 
 Lens.Prototype = function() {
@@ -49,6 +49,10 @@ Lens.Prototype = function() {
 
   this.getConverter = function(converterConfig) {
     return Lens.getDefaultConverter(converterConfig);
+  };
+
+  this.createController = function(config) {
+    return new LensController(config);
   };
 
 };
@@ -129,5 +133,6 @@ Lens.Outline = require("lens-outline");
 Lens.ResourcePanelViewFactory = ResourcePanelViewFactory;
 Lens.PanelView = PanelView;
 Lens.ContainerPanelView = ContainerPanelView;
+Lens.Controller = LensController;
 
 module.exports = Lens;
