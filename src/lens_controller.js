@@ -79,17 +79,11 @@ LensController.Prototype = function() {
 
   this.createReader = function(doc, state) {
     var that = this;
-
     // Create new reader controller instance
     this.reader = new ReaderController(doc, state, this.config);
-
-    // FIXME: deactivated this, for some reason my refactor damaged the backbone routing.
-    // Everytime, the path gets updated, backbone jumps back to the default route. Don't see how my changes could have affected this,
-    // but obviously did.
     this.reader.on('state-changed', function() {
       that.updatePath(that.reader.state);
     });
-
     this.modifyState({
       context: 'reader'
     });
