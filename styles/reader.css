@@ -286,6 +286,7 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   font-size: 16px;
   line-height: 21px;
   padding: 10px 20px;
+  padding-right: 40px;
 }
 
 
