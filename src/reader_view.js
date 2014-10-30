@@ -203,6 +203,25 @@ ReaderView.Prototype = function() {
     var ref = this.readerCtrl.getDocument().get(refId);
     var nodeId = this.readerCtrl.contentPanel.getContainer().getRoot(ref.path[0]);
     var resourceId = ref.target;
+
+    // Experimental: in the AMS scenario there are cases where refIds address
+    // elements via HTML id. Such an element is a child of a regular node view.
+    // we try to lookup the owner
+    if (ref.targetType === "htmlId") {
+      var el = this.el.querySelector('#'+ref.target);
+      while (true) {
+        if (el.classList.contains('content-node')) {
+          break;
+        }
+        el = el.parentNode;
+        if (!el) {
+          console.log('Could not find node view for referenced');
+          return;
+        }
+      }
+      resourceId = el.dataset.id;
+    }
+
     // If the resource is active currently, deactivate it
     if (resourceId === state.resource) {
       this.readerCtrl.modifyState({
