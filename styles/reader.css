@@ -253,79 +253,6 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   background: rgba(0,0,0,0.1);
 }
 
-/* Shared styles for selected and mouseover states
------------------------------------------------------------------------ */
-
-/* Active resource */
-.article .resources .content-node.active .resource-header .name {
-  color: #fff;
-}
-
-/* active figure */
-.article .resources .figures .content-node.active {
-  /*border-color: rgba(145, 187, 4, 1);*/
-}
-
-.article .resources .figures .content-node.active .resource-header {
-  background: rgba(145, 187, 4, 1);
-}
-
-.article .resources .figures .content-node.active .resource-header a {
-  /*color: rgba(145, 187, 4, 1);*/
-}
-
-
-/* active citation */
-
-.article .resources .citations .content-node.active {
-  /*border-color: rgba(11, 157, 217, 1);*/
-}
-
-.article .resources .citations .content-node.active .resource-header {
-  background: rgba(11, 157, 217, 1);
-}
-
-.article .resources .citations .content-node.active .resource-header a {
-  /*color: rgba(11, 157, 217, 1);*/
-}
-
-/* active person */
-
-.article .resources .info .content-node.active {
-  /*border-color: #5c6570;*/
-}
-
-.article .resources .info .content-node.active .resource-header {
-  border-color: #5c6570;
-}
-
-.article .resources .info .content-node.active .resource-header a {
-  /*color: #5c6570;*/
-}
-
-/* active definition */
-.article .resources .definitions .content-node.active .resource-header {
-  background: #5c6570;
-}
-
-
-/* Figures View
------------------------------------------------------------------------ */
-
-.article .resources .surface.figures {
-}
-
-/* Citations View
------------------------------------------------------------------------ */
-
-.article .resources .surface.citations {
-}
-
-/* Definitions View
------------------------------------------------------------------------ */
-
-.article .resources .surface.definitions {
-}
 
 /* TOC View
 ----------------------------------------------------------------------- */
@@ -385,20 +312,12 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   width: 60px;
 }
 
-/*.article .resources .content-node .resource-header:hover .toggle-res {
-  color: rgba(0,0,0, 0.5);
-}
-*/
 
 /* Active state adjustments */
 
 .article .resources .content-node.active .resource-header .toggle-res {
   color: rgba(255,255,255, 0.5);
 }
-
-/*.article .resources .content-node.active .resource-header .toggle-res:hover {
-  color: rgba(255,255,255, 1);
-}*/
 
 
 /* Hide resize small icon by default */
@@ -437,7 +356,6 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 }
 
 /* Active state adjustments */
-
 .article .resources .content-node.active .resource-header .toggle-fullscreen {
   color: rgba(255,255,255, 0.5);
 }
@@ -672,7 +590,6 @@ span.annotation.formula_reference, span.publication_reference {
 /* padding for the content */
 .resources .nodes > .content-node > .content {
   padding: 20px;
-
 }
 
 /* For the resources panel */
@@ -923,3 +840,36 @@ span.annotation.formula_reference, span.publication_reference {
     display: none;
   }
 }
+
+
+
+/* Shared styles for selected and mouseover states
+----------------------------------------------------------------------- */
+
+/* This shouldn't live in reader.css, but we'll modularize as soon
+as we have a plugin concept for functionality / panels */
+
+/* Active resource */
+.article .resources .content-node.active .resource-header .name {
+  color: #fff;
+}
+
+.article .resources .figures .content-node.active .resource-header {
+  background: rgba(145, 187, 4, 1);
+}
+
+/* active citation */
+.article .resources .citations .content-node.active .resource-header {
+  background: rgba(11, 157, 217, 1);
+}
+
+/* active definition */
+.article .resources .definitions .content-node.active .resource-header {
+  background: #5c6570;
+}
+
+/* active math environment in math panel */
+.article .resources .math .content-node.active .resource-header {
+  background: #5c6570;
+}
+
