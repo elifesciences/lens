@@ -118,7 +118,7 @@ ReaderView.Prototype = function() {
     // Wrap everything within resources view
     var resourcesViewEl = $$('.resources');
     _.each(this.panelViews, function(panelView, name) {
-      console.log('Rendering panel "%s"', name);
+      // console.log('Rendering panel "%s"', name);
       resourcesViewEl.appendChild(panelView.render().el);
     });
     frag.appendChild(resourcesViewEl);
