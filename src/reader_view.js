@@ -322,7 +322,7 @@ ReaderView.Prototype = function() {
   // Implicit context switches happen when someone clicks a figure reference
 
   this.switchContext = function(context) {
-    console.log('Switch context');
+    // console.log('Switch context');
     // var currentContext = this.readerCtrl.state.context;
     this.saveScroll();
     // Which view actions are triggered here?
