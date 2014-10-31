@@ -256,7 +256,7 @@ ReaderView.Prototype = function() {
     this.readerCtrl.modifyState({
       fullscreen: false,
       resource: id,
-      node: node
+      node: null
     });
   };
 
