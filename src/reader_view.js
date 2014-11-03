@@ -49,7 +49,7 @@ var ReaderView = function(readerCtrl) {
   // --------
   //
 
-  this._onClickPanel = _.bind( this.switchContext, this );
+  this._onClickPanel = _.bind( this.switchPanel, this );
 
   // Whenever a state change happens (e.g. user navigates somewhere)
   // the interface gets updated accordingly
@@ -332,9 +332,9 @@ ReaderView.Prototype = function() {
   // Only triggered by the explicit switch
   // Implicit panel switches happen when someone clicks a figure reference
 
-  this.switchContext = function(panel) {
+  this.switchPanel = function(panel) {
     this.saveScroll();
-    this.readerCtrl.switchContext(panel);
+    this.readerCtrl.switchPanel(panel);
     this.recoverScroll();
   };
 

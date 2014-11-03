@@ -44,7 +44,7 @@ ReaderController.Prototype = function() {
   // --------
   //
 
-  this.switchContext = function(panel) {
+  this.switchPanel = function(panel) {
     this.currentPanel = panel;
     this.modifyState({
       panel: panel,
