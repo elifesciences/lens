@@ -55,34 +55,15 @@ var ReaderView = function(readerCtrl) {
   // the interface gets updated accordingly
   this.listenTo(this.readerCtrl, "state-changed", this.updateState);
 
-  this.registerContentHandlers();
+  // attach workflows
+  _.each(this.readerCtrl.workflows, function(workflow) {
+    workflow.attach(this.readerCtrl, this);
+  }, this);
+
 };
 
 
 ReaderView.Prototype = function() {
-
-  // TODO: this is still not elegant enough. Maybe this is a place where we could hook in something like 'behaviors' (~workflows)?
-  // at least it should be easier to add handlers without needing to derive ReaderView.
-  this.registerContentHandlers = function() {
-
-    // Register event delegates to react on clicks on a reference node in the content panel
-    _.each(this.readerCtrl.panels, function(panel) {
-      var name = panel.getName();
-      var config = panel.getConfig();
-      _.each(config.references, function(refType) {
-        this.$el.on('click', '.annotation.' + refType, _.bind(this.toggleResourceReference, this, name));
-      }, this);
-    }, this);
-
-    this.$el.on('click', '.annotation.cross_reference', _.bind(this.followCrossReference, this));
-
-    // NOTE: deactivated anchoring when clicking on heading
-    //       We decided to do so, as there were use-cases were link behavior was preferred.
-    // this.$el.on('click', '.document .content-node.heading', _.bind(this.setAnchor, this));
-
-    // TODO: are these currently rendered? i.e. jump-to-top buttons?
-    this.$el.on('click', '.document .content-node.heading .top', _.bind(this.gotoTop, this));
-  };
 
   // Rendering
   // --------
@@ -204,54 +185,6 @@ ReaderView.Prototype = function() {
     return this.readerCtrl.panelCtrls.content.getContainer();
   };
 
-  // Toggle Resource Reference
-  // --------
-  //
-
-  this.toggleResourceReference = function(panel, e) {
-    var state = this.readerCtrl.state;
-    var refId = e.currentTarget.dataset.id;
-    var ref = this.readerCtrl.getDocument().get(refId);
-    var nodeId = this.getContentContainer().getRoot(ref.path[0]);
-    var resourceId = ref.target;
-    // If the resource is active currently, deactivate it
-    if (resourceId === state.right) {
-      this.readerCtrl.modifyState({
-        panel: this.readerCtrl.currentPanel,
-        left: null,
-        right:  null
-      });
-    }
-    // Otherwise, activate it und scroll to the resource
-    else {
-      this.saveScroll();
-      this.readerCtrl.modifyState({
-        panel: panel,
-        left: nodeId,
-        right: resourceId
-      });
-      this.panelViews[panel].jumpToResource(resourceId);
-    }
-    e.preventDefault();
-  };
-
-  // Follow cross reference
-  // --------
-  //
-
-  this.followCrossReference = function(e) {
-    var refId = e.currentTarget.dataset.id;
-    var crossRef = this.readerCtrl.getDocument().get(refId);
-    this.contentView.jumpToNode(crossRef.target);
-  };
-
-  this.gotoTop = function() {
-    // Jump to cover node as that's easiest
-    this.contentView.jumpToNode("cover");
-    $(document).scrollTop(0);
-    return false;
-  };
-
   // Toggle on-off a resource
   // --------
   //
@@ -350,12 +283,25 @@ ReaderView.Prototype = function() {
     // 'deactivate' previously 'active' nodes
     this.contentView.$('.content-node.active').removeClass('active');
     this.el.dataset.context = state.panel;
-    if (state.left) {
-      $(this.contentView.findNodeView(state.left)).addClass('active');
+
+    var handled;
+    for (var i = 0; i < this.readerCtrl.workflows.length; i++) {
+      var workflow = this.readerCtrl.workflows[i];
+      if (workflow.handlesStateUpdate) {
+        handled = workflow.handleStateUpdate(state);
+        if (handled) break;
+      }
     }
-    // According to the current panel show active resource panel
-    // -------
-    this.updateResource();
+
+    // default behavior (maybe this is legacy?)
+    if (!handled) {
+      if (state.left) {
+        $(this.contentView.findNodeView(state.left)).addClass('active');
+      }
+      // According to the current panel show active resource panel
+      // -------
+      this.updateResource();
+    }
   };
 
 

@@ -27,6 +27,8 @@ var ReaderController = function(doc, state, options) {
     this.panelCtrls[panel.getName()] = panel.createController(doc);
   }, this);
 
+  this.workflows = options.workflows || [];
+
   this.state = state;
 
   // Current explicitly set panel
