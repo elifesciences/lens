@@ -15,7 +15,6 @@ var ReaderController = function(doc, state, options) {
   // Private reference to the document
   this.__document = doc;
 
-  // E.g. context information
   this.options = options || {};
 
   this.panels = options.panels;
@@ -30,8 +29,8 @@ var ReaderController = function(doc, state, options) {
 
   this.state = state;
 
-  // Current explicitly set context
-  this.currentContext = "toc";
+  // Current explicitly set panel
+  this.currentPanel = "toc";
 };
 
 ReaderController.Prototype = function() {
@@ -41,26 +40,23 @@ ReaderController.Prototype = function() {
     return this.view;
   };
 
-  // Explicit context switch
+  // Explicit panel switch
   // --------
   //
 
-  this.switchContext = function(context) {
-    // Remember scrollpos of previous context
-    this.currentContext = context;
+  this.switchContext = function(panel) {
+    this.currentPanel = panel;
     this.modifyState({
-      context: context,
-      node: null,
-      resource: null
+      panel: panel,
+      left: null,
+      right: null
     });
   };
 
   this.getDocument = function() {
     return this.__document;
   };
-
 };
-
 
 ReaderController.Prototype.prototype = Controller.prototype;
 ReaderController.prototype = new ReaderController.Prototype();

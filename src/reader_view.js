@@ -22,7 +22,7 @@ var ReaderView = function(readerCtrl) {
   this.$el.addClass('article');
   this.$el.addClass(this.doc.schema.id); // Substance article or lens article?
 
-  // Stores latest body scroll positions per context
+  // Stores latest body scroll positions per panel
 
   this.bodyScroll = {};
 
@@ -97,17 +97,17 @@ ReaderView.Prototype = function() {
 
     frag.appendChild(this.contentView.render().el);
 
-    // Prepare context toggles
+    // Prepare panel toggles
     // --------
 
-    var contextToggles = $$('.context-toggles');
-    contextToggles.appendChild(this.tocView.getToggleControl());
+    var panelToggles = $$('.context-toggles');
+    panelToggles.appendChild(this.tocView.getToggleControl());
     this.tocView.on('toggle', this._onClickPanel);
 
     _.each(this.readerCtrl.panels, function(panel) {
       var panelView = this.panelViews[panel.getName()];
       var toggleEl = panelView.getToggleControl();
-      contextToggles.appendChild(toggleEl);
+      panelToggles.appendChild(toggleEl);
       panelView.on('toggle', this._onClickPanel);
     }, this);
 
@@ -116,7 +116,7 @@ ReaderView.Prototype = function() {
 
     var medialStrip = $$('.medial-strip');
     medialStrip.appendChild($$('.separator-line'));
-    medialStrip.appendChild(contextToggles);
+    medialStrip.appendChild(panelToggles);
     frag.appendChild(medialStrip);
 
 
@@ -147,14 +147,14 @@ ReaderView.Prototype = function() {
     }, this ), 2000);
 
     // Jump marks for the win
-    if (state.node) {
+    if (state.left) {
       _.delay(_.bind(function() {
-        this.contentView.jumpToNode(state.node);
-        if (state.resource) {
+        this.contentView.jumpToNode(state.left);
+        if (state.right) {
           // TODO: Brute force for now
           // Make sure to find out which resource view is currently active
-          var panelView = this.panelViews[state.context];
-          panelView.jumpToResource(state.resource);
+          var panelView = this.panelViews[state.panel];
+          panelView.jumpToResource(state.right);
         }
       }, this), 100);
     }
@@ -195,7 +195,7 @@ ReaderView.Prototype = function() {
     var state = this.readerCtrl.state;
     // Always activate the resource
     this.readerCtrl.modifyState({
-      resource: resourceId,
+      right: resourceId,
       fullscreen: !state.fullscreen
     });
   };
@@ -208,29 +208,29 @@ ReaderView.Prototype = function() {
   // --------
   //
 
-  this.toggleResourceReference = function(context, e) {
+  this.toggleResourceReference = function(panel, e) {
     var state = this.readerCtrl.state;
     var refId = e.currentTarget.dataset.id;
     var ref = this.readerCtrl.getDocument().get(refId);
     var nodeId = this.getContentContainer().getRoot(ref.path[0]);
     var resourceId = ref.target;
     // If the resource is active currently, deactivate it
-    if (resourceId === state.resource) {
+    if (resourceId === state.right) {
       this.readerCtrl.modifyState({
-        context: this.readerCtrl.currentContext,
-        node: null,
-        resource:  null
+        panel: this.readerCtrl.currentPanel,
+        left: null,
+        right:  null
       });
     }
     // Otherwise, activate it und scroll to the resource
     else {
       this.saveScroll();
       this.readerCtrl.modifyState({
-        context: context,
-        node: nodeId,
-        resource: resourceId
+        panel: panel,
+        left: nodeId,
+        right: resourceId
       });
-      this.panelViews[context].jumpToResource(resourceId);
+      this.panelViews[panel].jumpToResource(resourceId);
     }
     e.preventDefault();
   };
@@ -258,16 +258,16 @@ ReaderView.Prototype = function() {
 
   this.toggleResource = function(id) {
     var state = this.readerCtrl.state;
-    var node = state.node;
+    var node = state.left;
     // Toggle off if already on
-    if (state.resource === id) {
+    if (state.right === id) {
       id = null;
       node = null;
     }
     this.readerCtrl.modifyState({
       fullscreen: false,
-      resource: id,
-      node: null
+      right: id,
+      left: null
     });
   };
 
@@ -275,20 +275,20 @@ ReaderView.Prototype = function() {
   // --------
   //
 
-  this.toggleNode = function(context, nodeId) {
+  this.toggleNode = function(panel, nodeId) {
     var state = this.readerCtrl.state;
-    if (state.node === nodeId && state.context === context) {
-      // Toggle off -> reset, preserve the context
+    if (state.left === nodeId && state.panel === panel) {
+      // Toggle off -> reset, preserve the panel
       this.readerCtrl.modifyState({
-        context: this.readerCtrl.currentContext,
-        node: null,
-        resource: null
+        panel: this.readerCtrl.currentPanel,
+        left: null,
+        right: null
       });
     } else {
       this.readerCtrl.modifyState({
-        context: context,
-        node: nodeId,
-        resource: null
+        panel: panel,
+        left: nodeId,
+        right: null
       });
     }
   };
@@ -309,7 +309,7 @@ ReaderView.Prototype = function() {
   // TODO: retrieve from cookie to persist scroll pos over reload?
 
   this.recoverScroll = function() {
-    var targetScroll = this.bodyScroll[this.getState().context];
+    var targetScroll = this.bodyScroll[this.getState().panel];
     if (targetScroll) {
       $(document).scrollTop(targetScroll);
     } else {
@@ -323,21 +323,18 @@ ReaderView.Prototype = function() {
   //
 
   this.saveScroll = function() {
-    this.bodyScroll[this.getState().context] = this.getScroll();
+    this.bodyScroll[this.getState().panel] = this.getScroll();
   };
 
-  // Explicit context switch
+  // Explicit panel switch
   // --------
   //
   // Only triggered by the explicit switch
-  // Implicit context switches happen when someone clicks a figure reference
+  // Implicit panel switches happen when someone clicks a figure reference
 
-  this.switchContext = function(context) {
-    // console.log('Switch context');
-    // var currentContext = this.readerCtrl.state.context;
+  this.switchContext = function(panel) {
     this.saveScroll();
-    // Which view actions are triggered here?
-    this.readerCtrl.switchContext(context);
+    this.readerCtrl.switchContext(panel);
     this.recoverScroll();
   };
 
@@ -352,11 +349,11 @@ ReaderView.Prototype = function() {
     var state = this.readerCtrl.state;
     // 'deactivate' previously 'active' nodes
     this.contentView.$('.content-node.active').removeClass('active');
-    this.el.dataset.context = state.context;
-    if (state.node) {
-      $(this.contentView.findNodeView(state.node)).addClass('active');
+    this.el.dataset.context = state.panel;
+    if (state.left) {
+      $(this.contentView.findNodeView(state.left)).addClass('active');
     }
-    // According to the current context show active resource panel
+    // According to the current panel show active resource panel
     // -------
     this.updateResource();
   };
@@ -371,14 +368,14 @@ ReaderView.Prototype = function() {
     var state = this.readerCtrl.state;
     this.$('.resources .content-node.active').removeClass('active fullscreen');
     this.contentView.$('.annotation.active').removeClass('active');
-    if (state.resource) {
-      var resourcePanel = this.panelViews[state.context];
+    if (state.right) {
+      var resourcePanel = this.panelViews[state.panel];
       // Show selected resource
-      var $res = $(resourcePanel.findNodeView(state.resource));
+      var $res = $(resourcePanel.findNodeView(state.right));
       $res.addClass('active');
       if (state.fullscreen) $res.addClass('fullscreen');
       // Mark all annotations that reference the resource
-      var annotations = this.resources.get(state.resource);
+      var annotations = this.resources.get(state.right);
       _.each(annotations, function(a) {
         $(this.contentView.findNodeView(a.id)).addClass('active');
       }, this);
@@ -389,7 +386,7 @@ ReaderView.Prototype = function() {
     _.each(this.panelViews, function(panelView) {
       panelView.hide();
     });
-    this.panelViews[state.context].activate();
+    this.panelViews[state.panel].activate();
     this.updateOutline();
   };
 
@@ -402,26 +399,26 @@ ReaderView.Prototype = function() {
     var state = this.getState();
     var nodes = this.getResourceReferenceContainers();
     this.contentView.updateOutline({
-      context: state.context,
-      selectedNode: state.node,
+      context: state.panel,
+      selectedNode: state.left,
       highlightedNodes: nodes
     });
-    var panelView = this.panelViews[state.context];
+    var panelView = this.panelViews[state.panel];
     if(panelView.hasOutline) panelView.updateOutline({
-      context: state.context,
-      selectedNode: state.node,
-      highlightedNodes: [state.resource]
+      context: state.panel,
+      selectedNode: state.left,
+      highlightedNodes: [state.right]
     });
   };
 
   this.getResourceReferenceContainers = function() {
     var state = this.readerCtrl.state;
-    if (!state.resource) return [];
+    if (!state.right) return [];
     // A reference is an annotation node. We want to highlight
     // all (top-level) nodes that contain a reference to the currently activated resource
     // For that we take all references pointing to the resource
     // and find the root of the node on which the annotation sticks on.
-    var references = this.resources.get(state.resource);
+    var references = this.resources.get(state.right);
     var container = this.getContentContainer();
     var nodes = _.uniq(_.map(references, function(ref) {
       var nodeId = container.getRoot(ref.path[0]);
@@ -432,7 +429,7 @@ ReaderView.Prototype = function() {
 
   this.jumpToResource = function(resourceId) {
     var state =  this.getState();
-    var panelView = this.panelViews[state.context];
+    var panelView = this.panelViews[state.panel];
     panelView.jumpToResource(resourceId);
   };
 };
