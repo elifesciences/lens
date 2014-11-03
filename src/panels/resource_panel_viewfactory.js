@@ -3,10 +3,11 @@ var ViewFactory = require('lens-article').ViewFactory;
 
 var ResourcePanelViewFactory = function(nodeTypes, options) {
   ViewFactory.call(this, nodeTypes);
-  this.options = options || {
-    header: true,
-    zoom: ResourcePanelViewFactory.enableZoom
-  };
+  this.options = options || {};
+
+  if (this.options.header === undefined) this.options.header = true;
+  if (this.options.zoom === undefined) this.options.zoom = ResourcePanelViewFactory.enableZoom;
+
 };
 
 ResourcePanelViewFactory.Prototype = function() {

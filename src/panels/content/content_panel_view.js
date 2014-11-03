@@ -1,16 +1,15 @@
 "use strict";
 
 var _ = require('underscore');
-
+var ContainerPanelView = require('../container_panel_view');
 var TocPanelView = require("./toc_panel_view");
-var ContainerPanelView = require('./container_panel_view');
 
 var CORRECTION = 0; // Extra offset from the top
 
-var ContentPanelView = function( doc, docCtrl, viewFactory, config ) {
-  ContainerPanelView.call(this, doc, docCtrl, viewFactory, config);
+var ContentPanelView = function( panelCtrl, viewFactory, config ) {
+  ContainerPanelView.call(this, panelCtrl, viewFactory, config);
 
-  this.tocView = new TocPanelView(doc, _.extend({}, config, { type: 'resource', name: 'toc' }));
+  this.tocView = new TocPanelView(panelCtrl, _.extend({}, config, { type: 'resource', name: 'toc' }));
 
   this._onTocItemSelected = _.bind( this.jumpToNode, this );
 

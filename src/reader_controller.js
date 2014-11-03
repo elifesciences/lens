@@ -3,7 +3,7 @@
 var _ = require('underscore');
 var Controller = require("substance-application").Controller;
 var ReaderView = require("./reader_view");
-var PanelFactory = require("./panel_factory");
+var ContentPanel = require("./panels/content");
 
 // Reader.Controller
 // -----------------
@@ -18,15 +18,14 @@ var ReaderController = function(doc, state, options) {
   // E.g. context information
   this.options = options || {};
 
-  this.panelFactory = options.panelFactory || new PanelFactory();
+  this.panels = options.panels;
+  this.contentPanel = new ContentPanel(doc);
 
-  this.panels = {};
-  this.contentPanel = this.panelFactory.createPanel(doc, 'content');
-  // skip 'content' and 'toc' as they are built-in
-  // ATM, we do not support overriding them
-  _.each(this.panelFactory.getNames(), function(name) {
-    if (name === 'content' || name === 'toc') return;
-    this.panels[name] = this.panelFactory.createPanel(doc, name);
+  // create panel controllers
+  this.panelCtrls = {};
+  this.panelCtrls['content'] = this.contentPanel.createController(doc);
+  _.each(this.panels, function(panel) {
+    this.panelCtrls[panel.getName()] = panel.createController(doc);
   }, this);
 
   this.state = state;

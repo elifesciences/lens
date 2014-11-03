@@ -1,20 +1,20 @@
 "use strict";
 
 var _ = require("underscore");
-
-var PanelView = require("./panel_view");
-var Surface = require("./lens_surface");
 var Outline = require("lens-outline");
 
-// TODO: try to get rid of DocumentController and use the Container node instead
-var ContainerPanelView = function( doc, docCtrl, viewFactory, config ) {
-  PanelView.call(this, doc, config);
+var Surface = require("../lens_surface");
+var PanelView = require("./panel_view");
 
-  this.surface = new Surface(docCtrl, {
+// TODO: try to get rid of DocumentController and use the Container node instead
+var ContainerPanelView = function( panelCtrl, viewFactory, config ) {
+  PanelView.call(this, panelCtrl, config);
+
+  this.surface = new Surface( panelCtrl.docCtrl, {
     editable: false,
     viewFactory: viewFactory
   });
-  this.docCtrl = docCtrl;
+  this.docCtrl = panelCtrl.docCtrl;
 
   // TODO: same here: why should the Outline need a Document.Controller?
   // This should be a container

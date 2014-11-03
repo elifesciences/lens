@@ -1,27 +1,28 @@
-
 var _ = require('underscore');
 
 var Application = require("substance-application");
 var $$ = Application.$$;
 var View = Application.View;
 
-var PanelView = function( doc, config ) {
+var PanelView = function(panelController, config) {
   View.call(this);
 
-  this.doc = doc;
+  this.controller = panelController;
+  this.config = config;
+  this.doc = panelController.getDocument();
+
   this.name = config.name;
 
-  this.toggleEl = $$('a.context-toggle.' + this.name,
-    {
-      'title': config.title,
-      'html': '<i class="' + config.icon + '"></i><span> '+config.label+'</span><div class="label">'+config.label+'</div>'
-    } );
+  this.toggleEl = $$('a.context-toggle.' + this.name, {
+    'title': this.config.title,
+    'html': '<i class="' + this.config.icon + '"></i><span> '+this.config.label+'</span>'
+  });
   this.$toggleEl = $(this.toggleEl);
 
   this.$el.addClass('panel').addClass(this.name);
 
   // For legacy add 'resource-view' class
-  if (config.type === 'resource') {
+  if (this.config.type === 'resource') {
     this.$el.addClass('resource-view');
   }
 

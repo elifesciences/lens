@@ -1,5 +1,5 @@
 var LensArticle = require('lens-article');
-var ResourcePanelViewFactory = require('./resource_panel_viewfactory');
+var ResourcePanelViewFactory = require('./panels/resource_panel_viewfactory');
 
 var panelSpecs = {
   panels: {
