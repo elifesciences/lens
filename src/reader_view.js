@@ -233,15 +233,29 @@ ReaderView.Prototype = function() {
     this.el.dataset.context = state.panel;
 
     var handled;
+
+    // EXPERIMENTAL: introducing workflows to handle state updates
+    // we extract some info to make it easier for workflows to detect if they need
+    // need to handle the state update.
+    var stateInfo = {};
+    if (state.left) {
+      stateInfo.left = this.doc.get(state.left);
+    }
+    if (state.right) {
+      stateInfo.right = this.doc.get(state.right);
+    }
+    // A workflow should have Workflow.handlesStateUpdates = true if it is interested in state updates
+    // and should override Workflow.handleStateUpdate(state, info) to perform the update.
+    // In case it has been responsible for the update it should return 'true'.
     for (var i = 0; i < this.readerCtrl.workflows.length; i++) {
       var workflow = this.readerCtrl.workflows[i];
       if (workflow.handlesStateUpdate) {
-        handled = workflow.handleStateUpdate(state);
+        handled = workflow.handleStateUpdate(state, stateInfo);
         if (handled) break;
       }
     }
 
-    // default behavior (maybe this is legacy?)
+    // default behavior (~legacy)
     if (!handled) {
       if (state.left) {
         $(this.contentView.findNodeView(state.left)).addClass('active');

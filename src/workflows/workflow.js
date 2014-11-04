@@ -29,10 +29,11 @@ Workflow.Prototype = function() {
     throw new Error('This method is abstract');
   };
 
-  // override this method if state changes are relevant
+  // override this if state changes are relevant
   this.handlesStateUpdate = false;
 
-  this.handleStateUpdate = function(state) {
+  // override this method and return true if the state update is handled by this workflow
+  this.handleStateUpdate = function(state, stateInfo) {
     throw new Error('This method is abstract');
   };
 
