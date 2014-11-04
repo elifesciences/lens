@@ -15,14 +15,14 @@ Workflow.Prototype = function() {
     this.registerHandlers();
   };
 
-  this.registerHandlers = function() {
-    throw new Error('This method is abstract');
-  };
-
   this.detach = function() {
     this.unRegisterHandlers();
     this.readerView = null;
     this.readerController = null;
+  };
+
+  this.registerHandlers = function() {
+    throw new Error('This method is abstract');
   };
 
   this.unRegisterHandlers = function() {

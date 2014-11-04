@@ -15,6 +15,8 @@ var ContainerPanel = require('./panels/container_panel');
 var ContainerPanelController = require('./panels/container_panel_controller');
 var ContainerPanelView = require('./panels/container_panel_view');
 
+var Workflow = require('./workflows/workflow');
+
 var defaultPanels = require('./default_panels');
 var defaultWorkflows = require('./default_workflows');
 
@@ -140,5 +142,7 @@ Lens.ContainerPanel = ContainerPanel;
 Lens.ContainerPanelController = ContainerPanelController;
 Lens.ContainerPanelView = ContainerPanelView;
 Lens.ResourcePanelViewFactory = ResourcePanelViewFactory;
+
+Lens.Workflow = Workflow;
 
 module.exports = Lens;
