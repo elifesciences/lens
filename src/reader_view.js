@@ -60,6 +60,12 @@ var ReaderView = function(readerCtrl) {
     workflow.attach(this.readerCtrl, this);
   }, this);
 
+  // attach a lazy/debounced handler for resize events
+  // that updates the outline of the currently active panels
+  $(window).resize(_.debounce(_.bind(function() {
+    this.updateOutline();
+  }, this), 1) );
+
 };
 
 
@@ -84,7 +90,6 @@ ReaderView.Prototype = function() {
     var panelToggles = $$('.context-toggles');
     panelToggles.appendChild(this.tocView.getToggleControl());
     this.tocView.on('toggle', this._onClickPanel);
-
     _.each(this.readerCtrl.panels, function(panel) {
       var panelView = this.panelViews[panel.getName()];
       var toggleEl = panelView.getToggleControl();
@@ -92,14 +97,13 @@ ReaderView.Prototype = function() {
       panelView.on('toggle', this._onClickPanel);
     }, this);
 
-    // Prepare resources view
-    // --------
-
     var medialStrip = $$('.medial-strip');
     medialStrip.appendChild($$('.separator-line'));
     medialStrip.appendChild(panelToggles);
     frag.appendChild(medialStrip);
 
+    // Prepare panel views
+    // -------
 
     // Wrap everything within resources view
     var resourcesViewEl = $$('.resources');
@@ -140,12 +144,6 @@ ReaderView.Prototype = function() {
       }, this), 100);
     }
 
-    // attach a lazy/debounced handler for resize events
-    // that updates the outline of the currently active panels
-    $(window).resize(_.debounce(_.bind(function() {
-      this.updateOutline();
-    }, this), 1) );
-
     return this;
   };
 
@@ -154,6 +152,10 @@ ReaderView.Prototype = function() {
   //
 
   this.dispose = function() {
+    _.each(this.workflows, function(workflow) {
+      workflow.detach();
+    });
+
     this.contentView.dispose();
     _.each(this.panelViews, function(panelView) {
       panelView.off('toggle', this._onClickPanel);
@@ -168,62 +170,8 @@ ReaderView.Prototype = function() {
     return this.readerCtrl.state;
   };
 
-  // Toggles on and off the zoom
-  // --------
-  //
-
-  this.toggleFullscreen = function(resourceId) {
-    var state = this.readerCtrl.state;
-    // Always activate the resource
-    this.readerCtrl.modifyState({
-      right: resourceId,
-      fullscreen: !state.fullscreen
-    });
-  };
-
   this.getContentContainer = function() {
     return this.readerCtrl.panelCtrls.content.getContainer();
-  };
-
-  // Toggle on-off a resource
-  // --------
-  //
-
-  this.toggleResource = function(id) {
-    var state = this.readerCtrl.state;
-    var node = state.left;
-    // Toggle off if already on
-    if (state.right === id) {
-      id = null;
-      node = null;
-    }
-    this.readerCtrl.modifyState({
-      fullscreen: false,
-      right: id,
-      left: null
-    });
-  };
-
-  // Toggle on-off node focus
-  // --------
-  //
-
-  this.toggleNode = function(panel, nodeId) {
-    var state = this.readerCtrl.state;
-    if (state.left === nodeId && state.panel === panel) {
-      // Toggle off -> reset, preserve the panel
-      this.readerCtrl.modifyState({
-        panel: this.readerCtrl.currentPanel,
-        left: null,
-        right: null
-      });
-    } else {
-      this.readerCtrl.modifyState({
-        panel: panel,
-        left: nodeId,
-        right: null
-      });
-    }
   };
 
   // Get scroll position of active panel
@@ -378,6 +326,45 @@ ReaderView.Prototype = function() {
     var panelView = this.panelViews[state.panel];
     panelView.jumpToResource(resourceId);
   };
+
+  // Toggles on and off the zoom
+  // --------
+  //
+  // Note: this is called via event delegator
+  // which is declared via sbs-click in node views (see resource_view)
+  // TODO: is there a way to make this mechanism more transparent?
+
+  this.toggleFullscreen = function(resourceId) {
+    var state = this.readerCtrl.state;
+    // Always activate the resource
+    this.readerCtrl.modifyState({
+      right: resourceId,
+      fullscreen: !state.fullscreen
+    });
+  };
+
+  // Toggle on-off a resource
+  // --------
+  //
+  // Note: this is called via event delegator
+  // which is declared via sbs-click in node views (see resource_view)
+  // TODO: is there a way to make this mechanism more transparent?
+
+  this.toggleResource = function(id) {
+    var state = this.readerCtrl.state;
+    var node = state.left;
+    // Toggle off if already on
+    if (state.right === id) {
+      id = null;
+      node = null;
+    }
+    this.readerCtrl.modifyState({
+      fullscreen: false,
+      right: id,
+      left: null
+    });
+  };
+
 };
 
 ReaderView.Prototype.prototype = View.prototype;
