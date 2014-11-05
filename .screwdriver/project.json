@@ -18,7 +18,7 @@
     {
       "repository": "https://github.com/elifesciences/lens-article.git",
       "folder": "node_modules/lens-article",
-      "branch": "lens_next"
+      "branch": "master"
     },
     {
       "repository": "https://github.com/substance/article.git",
@@ -68,7 +68,7 @@
     {
       "repository": "https://github.com/elifesciences/lens.git",
       "folder": ".",
-      "branch": "lens_next"
+      "branch": "master"
     }
   ],
   "node_modules": {
@@ -98,9 +98,8 @@
     "styles/nodes/box.css": "node_modules/lens-article/nodes/box/box.css",
     "styles/nodes/citation.css": "node_modules/lens-article/nodes/citation/citation.css",
     "styles/nodes/definition.css": "node_modules/lens-article/nodes/definition/definition.css",
-    "styles/nodes/article_relationship.css": "node_modules/lens-article/nodes/article_relationship/article_relationship.css",
     "styles/nodes/figure.css": "node_modules/lens-article/nodes/figure/figure.css",
-    "styles/nodes/table.css": "node_modules/lens-article/nodes/table/table.css",
+    "styles/nodes/html_table.css": "node_modules/lens-article/nodes/html_table/html_table.css",
     "styles/nodes/video.css": "node_modules/lens-article/nodes/video/video.css",
     "styles/nodes/caption.css": "node_modules/lens-article/nodes/caption/caption.css",
 
