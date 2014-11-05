@@ -244,6 +244,13 @@ ReaderView.Prototype = function() {
     if (state.right) {
       stateInfo.right = this.doc.get(state.right);
     }
+
+    // Show the active panel
+    _.each(this.panelViews, function(panelView) {
+      panelView.hide();
+    });
+    this.panelViews[state.panel].activate();
+
     // A workflow should have Workflow.handlesStateUpdates = true if it is interested in state updates
     // and should override Workflow.handleStateUpdate(state, info) to perform the update.
     // In case it has been responsible for the update it should return 'true'.
@@ -291,10 +298,6 @@ ReaderView.Prototype = function() {
       this.recoverScroll();
       // Hide all resources (see above)
     }
-    _.each(this.panelViews, function(panelView) {
-      panelView.hide();
-    });
-    this.panelViews[state.panel].activate();
     this.updateOutline();
   };
 
