@@ -225,8 +225,7 @@
     <title>Credits</title>
     <p>eLife Lens was developed in collaboration between <ext-link xlink:href="http://bioegrad.berkeley.edu/">UC Berkeley</ext-link> graduate student <ext-link xlink:href="http://www.linkedin.com/pub/ivan-grubisic/26/353/739">Ivan Grubisic</ext-link> and eLife. He was supported by Michael Aufreiter from Substance, who helped with the design and implementation of the tool. Samo Korošec (<ext-link xlink:href="http://dribbble.com/froodee">froodee</ext-link>) and Ian Hamilton (ripe) gave advice on the UX/UI design. <ext-link xlink:href="http://www.grahamnott.com/">Graham Nott</ext-link> implemented the deployment workflow and eLife provided support for the project and the initial corpus of documents against which the tool was developed. <ext-link xlink:href="http://www.linkedin.com/pub/rebecca-close/4a/585/224">Rebecca Close</ext-link>, integrated Lens at <ext-link xlink:href="https://www.landesbioscience.com">Landes Bioscience</ext-link> and helped with the redesign of the converter, that now supports all NLM-compatible content.</p>
     </sec>
-  </body>
-  <back>
+
     <media id="video1" content-type="glencoe play-in-place height-250 width-310" xlink:href="http://cdn.elifesciences.org/video/eLifeLensIntro2.mp4" mimetype="video" mime-subtype="avi">
       <object-id pub-id-type="doi">10.7554/eLife.00116.004</object-id>
       <label>Video 1.</label>
@@ -235,6 +234,7 @@
         <p>Watch Ian Mulvany from eLife demonstrating Lens.</p>
       </caption>
     </media>
+
     <fig id="fig1">
       <label>Figure 1.</label>
       <caption>
@@ -270,6 +270,10 @@
       </caption>
       <graphic xlink:href="data/about/figure_4.png"/>
     </fig>
+
+  </body>
+  <back>
+
 
   </back>
 </article>
