@@ -235,7 +235,7 @@ ReaderView.Prototype = function() {
     var handled;
 
     // EXPERIMENTAL: introducing workflows to handle state updates
-    // we extract some info to make it easier for workflows to detect if they need
+    // we extract some info to make it easier for workflows to detect if they
     // need to handle the state update.
     var stateInfo = {};
     if (state.left) {
