@@ -259,7 +259,7 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 .resource-view.toc {
   left: 50px;
   overflow: auto;
-  padding-top: 60px;
+  padding-top: 30px;
 }
 
 /* Info View
@@ -631,7 +631,6 @@ span.annotation.formula_reference, span.publication_reference {
   right: 0px;
   left: auto;
   bottom: 0px;
-  width: 30px;
 }
 
 #container.touchable .resources .lens-outline {
