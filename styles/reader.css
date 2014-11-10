@@ -36,7 +36,6 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 
 .content-node .content {
   margin: 0px;
-  background: white;
 }
 
 /* Main content panel
