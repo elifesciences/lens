@@ -298,16 +298,12 @@ ReaderView.Prototype = function() {
     if (state.right) {
       var resourcePanel = this.panelViews[state.panel];
       resourcePanel.activateResource(state.right, state.fullscreen);
-      this.markReferencesTo(state.right);
+      this.contentView.markReferencesTo(state.right);
     } else {
       this.recoverScroll();
       // Hide all resources (see above)
     }
     this.updateOutline();
-  };
-
-  this.markReferencesTo = function(target) {
-    this.contentView.markReferencesTo(target);
   };
 
   // Whenever the app state changes
@@ -319,13 +315,13 @@ ReaderView.Prototype = function() {
     var state = this.getState();
     this.contentView.updateOutline({
       selectedNode: state.left,
-      hightlightClass: state.panel,
+      highlightClass: state.panel,
       target: state.right
     });
     var panelView = this.panelViews[state.panel];
     if(panelView.hasOutline) panelView.updateOutline({
       selectedNode: state.left,
-      hightlightClass: state.panel,
+      highlightClass: state.panel,
       highlightedNodes: [state.right]
     });
   };

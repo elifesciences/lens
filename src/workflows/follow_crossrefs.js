@@ -20,6 +20,8 @@ FollowCrossrefs.Prototype = function() {
   };
 
   this.followCrossReference = function(e) {
+    e.preventDefault();
+    e.stopPropagation();
     var refId = e.currentTarget.dataset.id;
     var crossRef = this.readerCtrl.getDocument().get(refId);
     this.readerView.contentView.jumpToNode(crossRef.target);

@@ -31,6 +31,8 @@ ToggleResourceReference.Prototype = function() {
   };
 
   this.toggleResourceReference = function(panel, e) {
+    e.preventDefault();
+    e.stopPropagation();
     var state = this.readerCtrl.state;
     var refId = e.currentTarget.dataset.id;
     var doc = this.readerCtrl.getDocument();
@@ -55,7 +57,6 @@ ToggleResourceReference.Prototype = function() {
       });
       this.readerView.panelViews[panel].jumpToResource(resourceId);
     }
-    e.preventDefault();
   };
 
 };

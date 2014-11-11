@@ -20,6 +20,8 @@ JumpToTop.Prototype = function() {
   };
 
   this.gotoTop = function() {
+    e.preventDefault();
+    e.stopPropagation();
     // Jump to cover node as that's easiest
     this.readerCtrl.contentView.jumpToNode("cover");
     // Note: this is for mobile view only
