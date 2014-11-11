@@ -68,12 +68,21 @@ PanelView.Prototype = function() {
   this.hide = function() {
     this.$el.addClass('hidden');
     this.$toggleEl.removeClass('active');
+    this.deactivateResources();
   };
 
   this.activate = function() {
     this.show();
     this.$toggleEl.addClass('active');
-  }
+  };
+
+  this.deactivateResources = function() {
+    this.$el.find('.content-node.active').removeClass('active fullscreen');
+  };
+
+  this.activateResource = function(resourceId, fullscreen) {
+    // resource panels implement this to activate nodes
+  };
 
   this.showToggle = function() {
     this.$toggleEl.removeClass('hidden');

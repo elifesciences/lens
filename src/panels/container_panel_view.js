@@ -60,6 +60,7 @@ ContainerPanelView.Prototype = function() {
 
   this.updateOutline = function(options) {
     this.outline.update(options);
+    // TODO: hide outline if needless
   };
 
   // Jump to the given resource id
@@ -81,6 +82,15 @@ ContainerPanelView.Prototype = function() {
 
   this.findNodeView = function(nodeId) {
     return this.surface.findNodeView(nodeId);
+  };
+
+  this.activateResource = function(resourceId, fullscreen) {
+    // resource panels implement this to activate nodes
+    var resEl = this.findNodeView(resourceId);
+    if (resEl);
+    var $res = $(resEl);
+    $res.addClass('active');
+    if (fullscreen) $res.addClass('fullscreen');
   };
 
 };

@@ -3,6 +3,8 @@
 var _ = require('underscore');
 var ContainerPanelView = require('../container_panel_view');
 var TocPanelView = require("./toc_panel_view");
+var Data = require("substance-data");
+var Index = Data.Graph.Index;
 
 var CORRECTION = 0; // Extra offset from the top
 
@@ -12,6 +14,11 @@ var ContentPanelView = function( panelCtrl, viewFactory, config ) {
   this.tocView = new TocPanelView(panelCtrl, _.extend({}, config, { type: 'resource', name: 'toc' }));
 
   this._onTocItemSelected = _.bind( this.jumpToNode, this );
+
+  this.resources = new Index(panelCtrl.getDocument(), {
+    types: ["resource_reference"],
+    property: "target"
+  });
 
   // scroll to the associated node when clicking onto the outline
   // TODO: make this a dedicated event of the outline
@@ -89,6 +96,40 @@ ContentPanelView.Prototype = function() {
       activeNode = _.last(headings).id;
     }
     this.tocView.setActiveNode(activeNode);
+  };
+
+  this.markReferencesTo = function(target) {
+    // Mark all annotations that reference the resource
+    var annotations = this.resources.get(target);
+    _.each(annotations, function(a) {
+      $(this.findNodeView(a.id)).addClass('active');
+    }, this);
+  };
+
+  this.deactivateActiveAnnotations = function() {
+    this.$el.find('.annotation.active').removeClass('active');
+  };
+
+
+  this.getResourceReferenceContainers = function(target) {
+    if (!target) return [];
+    // A reference is an annotation node. We want to highlight
+    // all (top-level) nodes that contain a reference to the currently activated resource
+    // For that we take all references pointing to the resource
+    // and find the root of the node on which the annotation sticks on.
+    var references = this.resources.get(target);
+    var container = this.controller.getContainer();
+    var nodes = _.uniq(_.map(references, function(ref) {
+      var nodeId = container.getRoot(ref.path[0]);
+      return nodeId;
+    }));
+    return nodes;
+  };
+
+  this.updateOutline = function(options) {
+    var target = options.target;
+    options.highlightedNodes = this.getResourceReferenceContainers(target);
+    this.outline.update(options);
   };
 
 };

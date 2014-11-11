@@ -33,10 +33,10 @@ ToggleResourceReference.Prototype = function() {
   this.toggleResourceReference = function(panel, e) {
     var state = this.readerCtrl.state;
     var refId = e.currentTarget.dataset.id;
-    var ref = this.readerCtrl.getDocument().get(refId);
-    var nodeId = this.readerView.getContentContainer().getRoot(ref.path[0]);
+    var doc = this.readerCtrl.getDocument();
+    var ref = doc.get(refId);
+    var nodeId = doc.get('content').getRoot(ref.path[0]);
     var resourceId = ref.target;
-
     // If the resource is active currently, deactivate it
     if (resourceId === state.right) {
       this.readerCtrl.modifyState({

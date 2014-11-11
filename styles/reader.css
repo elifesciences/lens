@@ -774,7 +774,7 @@ span.annotation.formula_reference, span.publication_reference {
   }
 
   .article .resources .surface {
-    overflow-y: visible; 
+    overflow-y: visible;
     overflow-x: visible;
   }
 
@@ -853,7 +853,8 @@ as we have a plugin concept for functionality / panels */
   color: #fff;
 }
 
-.article .resources .figures .content-node.active .resource-header {
+.article .resources .figures .content-node.active .resource-header,
+.article .resources .math .content-node.active .resource-header {
   background: rgba(145, 187, 4, 1);
 }
 
@@ -864,11 +865,6 @@ as we have a plugin concept for functionality / panels */
 
 /* active definition */
 .article .resources .definitions .content-node.active .resource-header {
-  background: #5c6570;
-}
-
-/* active math environment in math panel */
-.article .resources .math .content-node.active .resource-header {
   background: #5c6570;
 }
 

@@ -45,6 +45,12 @@ var ReaderView = function(readerCtrl) {
     property: "target"
   });
 
+
+  // whenever a workflow takes control set this variable
+  // to be able to call it a last time when switching to another
+  // workflow
+  this.lastWorkflow = null;
+
   // Events
   // --------
   //
@@ -170,10 +176,6 @@ ReaderView.Prototype = function() {
     return this.readerCtrl.state;
   };
 
-  this.getContentContainer = function() {
-    return this.readerCtrl.panelCtrls.content.getContainer();
-  };
-
   // Get scroll position of active panel
   // --------
   //
@@ -225,8 +227,7 @@ ReaderView.Prototype = function() {
   // Called every time the controller state has been modified
   // Search for readerCtrl.modifyState occurences
 
-  this.updateState = function(options) {
-    options = options || {};
+  this.updateState = function() {
     var state = this.readerCtrl.state;
     // 'deactivate' previously 'active' nodes
     this.contentView.$('.content-node.active').removeClass('active');
@@ -254,14 +255,26 @@ ReaderView.Prototype = function() {
     // A workflow should have Workflow.handlesStateUpdates = true if it is interested in state updates
     // and should override Workflow.handleStateUpdate(state, info) to perform the update.
     // In case it has been responsible for the update it should return 'true'.
-    for (var i = 0; i < this.readerCtrl.workflows.length; i++) {
-      var workflow = this.readerCtrl.workflows[i];
-      if (workflow.handlesStateUpdate) {
-        handled = workflow.handleStateUpdate(state, stateInfo);
-        if (handled) break;
+
+    // Call the last active workflow first. This way it can clean up if it is not
+    // responsible anymore
+    if (this.lastWorkflow) {
+      handled = this.lastWorkflow.handleStateUpdate(state, stateInfo);
+    }
+    if (!handled) {
+      // Go through all workflows and let them try to handle the state update.
+      // Stop after the first hit.
+      for (var i = 0; i < this.readerCtrl.workflows.length; i++) {
+        var workflow = this.readerCtrl.workflows[i];
+        // lastWorkflow had its chance already, so skip it here
+        if (workflow !== this.lastWorkflow && workflow.handlesStateUpdate) {
+          handled = workflow.handleStateUpdate(state, stateInfo);
+          if (handled) {
+            break;
+          }
+        }
       }
     }
-
     // default behavior (~legacy)
     if (!handled) {
       if (state.left) {
@@ -281,24 +294,20 @@ ReaderView.Prototype = function() {
 
   this.updateResource = function() {
     var state = this.readerCtrl.state;
-    this.$('.resources .content-node.active').removeClass('active fullscreen');
-    this.contentView.$('.annotation.active').removeClass('active');
+    this.contentView.deactivateActiveAnnotations();
     if (state.right) {
       var resourcePanel = this.panelViews[state.panel];
-      // Show selected resource
-      var $res = $(resourcePanel.findNodeView(state.right));
-      $res.addClass('active');
-      if (state.fullscreen) $res.addClass('fullscreen');
-      // Mark all annotations that reference the resource
-      var annotations = this.resources.get(state.right);
-      _.each(annotations, function(a) {
-        $(this.contentView.findNodeView(a.id)).addClass('active');
-      }, this);
+      resourcePanel.activateResource(state.right, state.fullscreen);
+      this.markReferencesTo(state.right);
     } else {
       this.recoverScroll();
       // Hide all resources (see above)
     }
     this.updateOutline();
+  };
+
+  this.markReferencesTo = function(target) {
+    this.contentView.markReferencesTo(target);
   };
 
   // Whenever the app state changes
@@ -308,34 +317,21 @@ ReaderView.Prototype = function() {
 
   this.updateOutline = function() {
     var state = this.getState();
-    var nodes = this.getResourceReferenceContainers();
     this.contentView.updateOutline({
-      context: state.panel,
       selectedNode: state.left,
-      highlightedNodes: nodes
+      hightlightClass: state.panel,
+      target: state.right
     });
     var panelView = this.panelViews[state.panel];
     if(panelView.hasOutline) panelView.updateOutline({
-      context: state.panel,
       selectedNode: state.left,
+      hightlightClass: state.panel,
       highlightedNodes: [state.right]
     });
   };
 
-  this.getResourceReferenceContainers = function() {
-    var state = this.readerCtrl.state;
-    if (!state.right) return [];
-    // A reference is an annotation node. We want to highlight
-    // all (top-level) nodes that contain a reference to the currently activated resource
-    // For that we take all references pointing to the resource
-    // and find the root of the node on which the annotation sticks on.
-    var references = this.resources.get(state.right);
-    var container = this.getContentContainer();
-    var nodes = _.uniq(_.map(references, function(ref) {
-      var nodeId = container.getRoot(ref.path[0]);
-      return nodeId;
-    }));
-    return nodes;
+  this.getPanelView = function(name) {
+    return this.panelViews[name];
   };
 
   this.jumpToResource = function(resourceId) {
