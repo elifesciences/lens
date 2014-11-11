@@ -853,6 +853,7 @@ as we have a plugin concept for functionality / panels */
   color: #fff;
 }
 
+/* active figure */
 .article .resources .figures .content-node.active .resource-header {
   background: rgba(145, 187, 4, 1);
 }
@@ -869,6 +870,7 @@ as we have a plugin concept for functionality / panels */
 
 /* active math environment in math panel */
 .article .resources .math .content-node.active .resource-header {
-  background: #5c6570;
+  /*background: #5c6570;*/
+  background: rgba(145, 187, 4, 1);
 }
 
