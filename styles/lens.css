@@ -51,10 +51,9 @@ General Layout
 
 /* In reader view */
 body.reader #container {
-  max-width: 1400px; /* 988px / 16px = 61.75em */
+  /*max-width: 1400px;*/ /* 988px / 16px = 61.75em */
   height: 100%;
 }
-
 
 body, textarea, p, input {
   font-family: 'Source Sans Pro', Helvetica, Arial, Verdana, sans-serif;
