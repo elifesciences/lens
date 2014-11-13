@@ -123,19 +123,7 @@ ReaderView.Prototype = function() {
 
     this.el.appendChild(frag);
 
-    // Await next UI tick to update layout and outline
-    _.delay(_.bind( function() {
-      // Render outline that sticks on this.surface
-      this.updateState();
-      window.MathJax.Hub.Queue(["Typeset", window.MathJax.Hub]);
-    }, this), 1);
-
-    // Wait for stuff to be rendered (e.g. formulas)
-    // TODO: use a handler? MathJax.Hub.Queue(fn) does not work for some reason
-
-    _.delay(_.bind( function() {
-      this.updateOutline();
-    }, this ), 2000);
+    // TODO: also update the outline after image (et al.) are loaded
 
     // Jump marks for the win
     if (state.left) {
@@ -149,6 +137,17 @@ ReaderView.Prototype = function() {
         }
       }, this), 100);
     }
+
+    // We need to postpone this execution as MathJax requires the content to be in
+    // the DOM, which typically happens after this function is called.
+    _.delay(_.bind( function() {
+      var self = this;
+      // Render outline that sticks on this.surface
+      this.updateState();
+      window.MathJax.Hub.Queue(["Typeset", window.MathJax.Hub]);
+      // Note: this updates the outline after all MathJax processing - but not on every single change.
+      window.MathJax.Hub.Queue(function () { self.updateOutline(); });
+    }, this), 1);
 
     return this;
   };
