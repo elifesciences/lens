@@ -11,7 +11,7 @@ var CORRECTION = 0; // Extra offset from the top
 var ContentPanelView = function( panelCtrl, viewFactory, config ) {
   ContainerPanelView.call(this, panelCtrl, viewFactory, config);
 
-  this.tocView = new TocPanelView(panelCtrl, _.extend({}, config, { type: 'resource', name: 'toc' }));
+  this.tocView = new TocPanelView(panelCtrl, viewFactory, _.extend({}, config, { type: 'resource', name: 'toc' }));
 
   this._onTocItemSelected = _.bind( this.jumpToNode, this );
 

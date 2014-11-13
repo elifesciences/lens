@@ -3,9 +3,9 @@
 var TOC = require("substance-toc");
 var PanelView = require("../panel_view");
 
-var TocPanelView = function( panelCtrl, config ) {
+var TocPanelView = function( panelCtrl, viewFactory, config ) {
   PanelView.call(this, panelCtrl, config);
-  this.toc = new TOC(panelCtrl.getDocument());
+  this.toc = new TOC(panelCtrl.getDocument(), viewFactory);
 };
 TocPanelView.Prototype = function() {
 
