@@ -127,8 +127,10 @@ ContentPanelView.Prototype = function() {
   };
 
   this.updateOutline = function(options) {
-    var target = options.target;
-    options.highlightedNodes = this.getResourceReferenceContainers(target);
+    if (options.target) {
+      var annotations = this.resources.get(options.target);
+      options.highlightedNodes = Object.keys(annotations);
+    }
     this.outline.update(options);
   };
 

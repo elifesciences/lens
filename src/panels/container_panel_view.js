@@ -26,7 +26,7 @@ var ContainerPanelView = function( panelCtrl, viewFactory, config ) {
   this.surface.$el.addClass('resource-view').addClass(config.container);
 
   this.el.appendChild(this.surface.el);
-  this.el.appendChild(this.outline.el);
+  this.el.appendChild(this.outline.render().el);
 };
 
 ContainerPanelView.Prototype = function() {
@@ -47,11 +47,7 @@ ContainerPanelView.Prototype = function() {
   };
 
   this.onScroll = function() {
-    // Make sure that a surface is attached to the resources outline
-    if (this.outline.surface) {
-      var scrollTop = this.outline.surface.$el.scrollTop();
-      this.outline.updateVisibleArea(scrollTop);
-    }
+    this.outline.onScroll();
   };
 
   this.hasOutline = function() {
