@@ -146,7 +146,10 @@ ReaderView.Prototype = function() {
       this.updateState();
       window.MathJax.Hub.Queue(["Typeset", window.MathJax.Hub]);
       // Note: this updates the outline after all MathJax processing - but not on every single change.
-      window.MathJax.Hub.Queue(function () { self.updateOutline(); });
+      window.MathJax.Hub.Queue(function () {
+        console.log('Updating after MathJax has finished.');
+        self.updateState();
+      });
     }, this), 1);
 
     return this;
