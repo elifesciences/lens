@@ -82,7 +82,7 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 =======================================================================*/
 
 .article .panel.hidden {
-  display: none;
+  visibility: hidden;
 }
 
 
