@@ -7,6 +7,7 @@ var ToggleResourceReference = function() {
   Workflow.apply(this, arguments);
 
   this.handlers = [];
+  this.panelForRef = {};
 };
 
 ToggleResourceReference.Prototype = function() {
@@ -17,6 +18,7 @@ ToggleResourceReference.Prototype = function() {
       var name = panel.getName();
       var config = panel.getConfig();
       _.each(config.references, function(refType) {
+        this.panelForRef[refType] = name;
         var handler = _.bind(this.toggleResourceReference, this, name);
         this.handlers.push(handler);
         this.readerView.$el.on('click', '.annotation.' + refType, handler);
@@ -30,32 +32,55 @@ ToggleResourceReference.Prototype = function() {
     }
   };
 
+  this.handlesStateUpdate = true;
+
+  this.handleStateUpdate = function(state, stateInfo) {
+    // if the reference type is registered with this workflow
+    // open the panel and show highlights
+    if (stateInfo.focussedNode && this.panelForRef[stateInfo.focussedNode.type]) {
+      var ref = stateInfo.focussedNode;
+      var panel = this.panelForRef[ref.type];
+      var panelView = this.readerView.panelViews[panel];
+      var contentView = this.readerView.contentView;
+      var refId = ref.target;
+      // show the associated panel, hihglight the resource and scroll to its position
+      panelView.activate();
+      var classes = ["highlighted"];
+      if (state.fullscreen) classes.push("fullscreen");
+      panelView.addHighlight(refId, classes.join(" "));
+      panelView.scrollTo(refId);
+      // panelView.scrollbar.update();
+      // highlight all other references in the content panel for the same resource
+      var otherRefs = this.readerView.resources.get(refId);
+      delete otherRefs[ref.id];
+      _.each(otherRefs, function(ref) {
+        contentView.addHighlight(ref.id, "highlighted");
+      }, this);
+      // contentView.scrollbar.update();
+      return true;
+    }
+    return false;
+  };
+
   this.toggleResourceReference = function(panel, e) {
     e.preventDefault();
     e.stopPropagation();
+
     var state = this.readerCtrl.state;
     var refId = e.currentTarget.dataset.id;
-    var doc = this.readerCtrl.getDocument();
-    var ref = doc.get(refId);
-    var nodeId = doc.get('content').getRoot(ref.path[0]);
-    var resourceId = ref.target;
     // If the resource is active currently, deactivate it
-    if (resourceId === state.right) {
+    if (refId === state.focussedNode) {
       this.readerCtrl.modifyState({
         panel: this.readerCtrl.currentPanel,
-        left: null,
-        right:  null
+        focussedNode: null
       });
     }
-    // Otherwise, activate it und scroll to the resource
     else {
       this.readerView.saveScroll();
       this.readerCtrl.modifyState({
-        panel: panel,
-        left: nodeId,
-        right: resourceId
+        panel: "content",
+        focussedNode: refId
       });
-      this.readerView.panelViews[panel].jumpToResource(resourceId);
     }
   };
 

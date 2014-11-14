@@ -61,6 +61,10 @@ var ReaderView = function(readerCtrl) {
   // the interface gets updated accordingly
   this.listenTo(this.readerCtrl, "state-changed", this.updateState);
 
+  _.each(this.panelViews, function(panelView) {
+    this.listenTo(panelView, "toggle-resource", this.onToggleResource);
+  }, this);
+
   // attach workflows
   _.each(this.readerCtrl.workflows, function(workflow) {
     workflow.attach(this.readerCtrl, this);
@@ -69,11 +73,14 @@ var ReaderView = function(readerCtrl) {
   // attach a lazy/debounced handler for resize events
   // that updates the outline of the currently active panels
   $(window).resize(_.debounce(_.bind(function() {
-    this.updateOutline();
+    this.contentView.scrollbar.update();
+    var currentPanel = this.panelViews[this.readerCtrl.state.panel];
+    if (currentPanel && currentPanel.hasScrollbar()) {
+      currentPanel.scrollbar.update();
+    }
   }, this), 1) );
 
 };
-
 
 ReaderView.Prototype = function() {
 
@@ -82,7 +89,6 @@ ReaderView.Prototype = function() {
   //
 
   this.render = function() {
-    var state = this.getState();
     var frag = document.createDocumentFragment();
 
     // Prepare doc view
@@ -125,30 +131,17 @@ ReaderView.Prototype = function() {
 
     // TODO: also update the outline after image (et al.) are loaded
 
-    // Jump marks for the win
-    if (state.left) {
-      _.delay(_.bind(function() {
-        this.contentView.jumpToNode(state.left);
-        if (state.right) {
-          // TODO: Brute force for now
-          // Make sure to find out which resource view is currently active
-          var panelView = this.panelViews[state.panel];
-          panelView.jumpToResource(state.right);
-        }
-      }, this), 100);
-    }
-
-    // We need to postpone this execution as MathJax requires the content to be in
-    // the DOM, which typically happens after this function is called.
+    // Postpone things that expect this view has been inserted into the DOM already.
     _.delay(_.bind( function() {
-      var self = this;
-      // Render outline that sticks on this.surface
+      // initial state update here as scrollTo would not work out of DOM
       this.updateState();
+
+      var self = this;
+      // MathJax requires the processed elements to be in the DOM
       window.MathJax.Hub.Queue(["Typeset", window.MathJax.Hub]);
-      // Note: this updates the outline after all MathJax processing - but not on every single change.
       window.MathJax.Hub.Queue(function () {
         console.log('Updating after MathJax has finished.');
-        self.updateState();
+        self.updateScrollbars();
       });
     }, this), 1);
 
@@ -231,38 +224,42 @@ ReaderView.Prototype = function() {
 
   this.updateState = function() {
     var state = this.readerCtrl.state;
-    // 'deactivate' previously 'active' nodes
-    this.contentView.$('.content-node.active').removeClass('active');
-    this.el.dataset.context = state.panel;
 
     var handled;
 
     // EXPERIMENTAL: introducing workflows to handle state updates
     // we extract some info to make it easier for workflows to detect if they
     // need to handle the state update.
-    var stateInfo = {};
-    if (state.left) {
-      stateInfo.left = this.doc.get(state.left);
-    }
-    if (state.right) {
-      stateInfo.right = this.doc.get(state.right);
-    }
+    var stateInfo = {
+      focussedNode: state.focussedNode ? this.doc.get(state.focussedNode) : null
+    };
+    var currentPanelView = state.panel === "content" ? this.contentView : this.panelViews[state.panel];
 
-    // Show the active panel
     _.each(this.panelViews, function(panelView) {
       panelView.hide();
     });
-    this.panelViews[state.panel].activate();
+    // Always deactivate previous highlights
+    this.contentView.removeHighlights();
+    // and also rmove highlights from resource panels
+    _.each(this.panelViews, function(panelView) {
+      panelView.removeHighlights();
+    });
 
+    // Highlight the focussed node
+    if (state.focussedNode) {
+      currentPanelView.addHighlight(state.focussedNode, "focussed highlighted");
+      currentPanelView.scrollTo(state.focussedNode);
+    }
+
+    // A workflow needs to take care of
+    // 1. showing the correct panel
+    // 2. setting highlights in the content panel
+    // 3. setting highlights in the resource panel
+    // 4. scroll panels
     // A workflow should have Workflow.handlesStateUpdates = true if it is interested in state updates
     // and should override Workflow.handleStateUpdate(state, info) to perform the update.
     // In case it has been responsible for the update it should return 'true'.
 
-    // Call the last active workflow first. This way it can clean up if it is not
-    // responsible anymore
-    if (this.lastWorkflow) {
-      handled = this.lastWorkflow.handleStateUpdate(state, stateInfo);
-    }
     if (!handled) {
       // Go through all workflows and let them try to handle the state update.
       // Stop after the first hit.
@@ -277,66 +274,91 @@ ReaderView.Prototype = function() {
         }
       }
     }
-    // default behavior (~legacy)
+
+    // If not handled above, we at least show the correct panel
     if (!handled) {
-      if (state.left) {
-        $(this.contentView.findNodeView(state.left)).addClass('active');
+      // Default implementation for states with a panel set
+      if (state.panel !== "content") {
+        this.showPanel(state.panel);
+        // if there is a resource focussed in the panel, activate the resource, and highlight all references to it in the content panel
+        if (state.focussedNode) {
+          // get all references that point to the focussedNode and highlight them
+          var refs = this.resources.get(state.focussedNode);
+          _.each(refs, function(ref) {
+            this.contentView.addHighlight(ref.id, "highlighted ");
+          }, this);
+        }
+      } else {
+        this.showPanel("toc");
       }
-      // According to the current panel show active resource panel
-      // -------
-      this.updateResource();
     }
   };
 
+  this.updateScrollbars = function() {
+    var state = this.readerCtrl.state;
+    var currentPanelView = state.panel === "content" ? this.contentView : this.panelViews[state.panel];
+    this.contentView.scrollbar.update();
+    if (currentPanelView && currentPanelView.hasScrollbar()) currentPanelView.scrollbar.update();
+  };
+
+  this.showPanel = function(name) {
+    if (this.panelViews[name]) {
+      this.panelViews[name].activate();
+      this.el.dataset.context = name;
+    } else if (name === "content") {
+      this.panelViews.toc.activate();
+      this.el.dataset.context = name;
+    }
+  };
 
   // Based on the current application state, highlight the current resource
   // -------
   //
   // Triggered by updateState
 
-  this.updateResource = function() {
-    var state = this.readerCtrl.state;
-    this.contentView.deactivateActiveAnnotations();
-    if (state.right) {
-      var resourcePanel = this.panelViews[state.panel];
-      resourcePanel.activateResource(state.right, state.fullscreen);
-      this.contentView.markReferencesTo(state.right);
-    } else {
-      this.recoverScroll();
-      // Hide all resources (see above)
-    }
-    this.updateOutline();
-  };
+  // this.updateResource = function() {
+  //   var state = this.readerCtrl.state;
+  //   this.contentView.deactivateActiveAnnotations();
+  //   if (state.right) {
+  //     var resourcePanel = this.panelViews[state.panel];
+  //     resourcePanel.activateResource(state.right, state.fullscreen);
+  //     this.contentView.markReferencesTo(state.right);
+  //   } else {
+  //     this.recoverScroll();
+  //     // Hide all resources (see above)
+  //   }
+  //   this.updateOutline();
+  // };
 
   // Whenever the app state changes
   // --------
   //
   // Triggered by updateResource.
 
-  this.updateOutline = function() {
-    var state = this.getState();
-    this.contentView.updateOutline({
-      selectedNode: state.left,
-      highlightClass: state.panel,
-      target: state.right
-    });
-    var panelView = this.panelViews[state.panel];
-    if(panelView.hasOutline) panelView.updateOutline({
-      selectedNode: state.left,
-      highlightClass: state.panel,
-      highlightedNodes: [state.right]
-    });
-  };
+  // this.updateOutline = function() {
+  //   var state = this.getState();
+  //   this.contentView.updateOutline({
+  //     selectedNode: state.left,
+  //     highlightClass: state.panel,
+  //     target: state.right
+  //   });
+  //   var panelView = this.panelViews[state.panel];
+  //   if(panelView.hasOutline) panelView.updateOutline({
+  //     selectedNode: state.left,
+  //     highlightClass: state.panel,
+  //     highlightedNodes: [state.right]
+  //   });
+  // };
 
   this.getPanelView = function(name) {
     return this.panelViews[name];
   };
 
-  this.jumpToResource = function(resourceId) {
-    var state =  this.getState();
-    var panelView = this.panelViews[state.panel];
-    panelView.jumpToResource(resourceId);
-  };
+  // this.jumpToResource = function(resourceId) {
+  //   var state =  this.getState();
+  //   var panelView = this.panelViews[state.panel];
+  //   panelView.jumpToResource(resourceId);
+  // };
 
   // Toggles on and off the zoom
   // --------
@@ -345,34 +367,30 @@ ReaderView.Prototype = function() {
   // which is declared via sbs-click in node views (see resource_view)
   // TODO: is there a way to make this mechanism more transparent?
 
-  this.toggleFullscreen = function(resourceId) {
-    var state = this.readerCtrl.state;
-    // Always activate the resource
-    this.readerCtrl.modifyState({
-      right: resourceId,
-      fullscreen: !state.fullscreen
-    });
-  };
+  // this.toggleFullscreen = function(resourceId) {
+  //   var state = this.readerCtrl.state;
+  //   // Always activate the resource
+  //   this.readerCtrl.modifyState({
+  //     focussedNode: resourceId,
+  //     fullscreen: !state.fullscreen
+  //   });
+  // };
 
   // Toggle on-off a resource
   // --------
   //
-  // Note: this is called via event delegator
-  // which is declared via sbs-click in node views (see resource_view)
-  // TODO: is there a way to make this mechanism more transparent?
 
-  this.toggleResource = function(id) {
+  this.onToggleResource = function(panel, id) {
     var state = this.readerCtrl.state;
-    var node = state.left;
     // Toggle off if already on
-    if (state.right === id) {
+    if (state.panel === panel && state.focussedNode === id) {
       id = null;
-      node = null;
+      panel = state.panel;
     }
     this.readerCtrl.modifyState({
-      fullscreen: false,
-      right: id,
-      left: null
+      panel: panel || "toc",
+      focussedNode: id,
+      fullscreen: false
     });
   };
 

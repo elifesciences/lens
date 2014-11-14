@@ -57,14 +57,8 @@ LensController.Prototype = function() {
 
     path.push(state.panel);
 
-    if (state.left) {
-      path.push(state.left);
-    } else {
-      path.push('all');
-    }
-
-    if (state.right) {
-      path.push(state.right);
+    if (state.focussedNode) {
+      path.push(state.focussedNode);
     }
 
     if (state.fullscreen) {
@@ -89,22 +83,19 @@ LensController.Prototype = function() {
     });
   };
 
-  this.openReader = function(panel, node, resource, fullscreen) {
+  this.openReader = function(panel, focussedNode, fullscreen) {
     var that = this;
 
     // The article view state
     var state = {
       panel: panel || "toc",
-      left: node,
-      right: resource,
+      focussedNode: focussedNode,
       fullscreen: !!fullscreen
     };
 
     // Already loaded?
     if (this.reader) {
       this.reader.modifyState(state);
-      // HACK: This shouldn't be monkeypatched
-      if (state.right) this.reader.view.jumpToResource(state.right);
     } else if (this.config.document_url === "lens_article.xml") {
       var doc = this.Article.describe();
       that.createReader(doc, state);
@@ -136,9 +127,7 @@ LensController.Prototype = function() {
       });
     }
   };
-
 };
-
 
 // Exports
 // --------

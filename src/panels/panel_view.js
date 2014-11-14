@@ -28,6 +28,9 @@ var PanelView = function(panelController, config) {
 
   this._onToggle = _.bind( this.onToggle, this );
   this.$toggleEl.click( this._onToggle );
+
+  // we always keep track of nodes that have are highlighted ('active', 'focussed')
+  this.highlightedNodes = [];
 };
 
 PanelView.Prototype = function() {
@@ -46,19 +49,16 @@ PanelView.Prototype = function() {
     return this.toggleEl;
   };
 
-  // Jump to the given resource id
-  // --------
-  //
+  this.scrollTo = function(nodeId) {
+
+  };
 
   this.jumpToResource = function(nodeId) {
     // A panel with a scrollable element should implement this method (e.g., see ContainerPanelView)
   };
 
-  this.hasOutline = function() {
+  this.hasScrollbar = function() {
     return false;
-  };
-
-  this.updateOutline = function() {
   };
 
   this.show = function() {
@@ -68,7 +68,6 @@ PanelView.Prototype = function() {
   this.hide = function() {
     this.$el.addClass('hidden');
     this.$toggleEl.removeClass('active');
-    this.deactivateResources();
   };
 
   this.activate = function() {
@@ -76,12 +75,26 @@ PanelView.Prototype = function() {
     this.$toggleEl.addClass('active');
   };
 
-  this.deactivateResources = function() {
-    this.$el.find('.content-node.active').removeClass('active fullscreen');
+  this.addHighlight = function(id, cssClass) {
+    // console.log("Add highlight for", id, cssClass);
+    var nodeEl = this.findNodeView(id);
+    if (nodeEl) {
+      var $nodeEl = $(nodeEl);
+      $nodeEl.addClass(cssClass);
+      this.highlightedNodes.push({
+        $el: $nodeEl,
+        cssClass: cssClass
+      });
+    }
   };
 
-  this.activateResource = function(resourceId, fullscreen) {
-    // resource panels implement this to activate nodes
+  this.removeHighlights = function() {
+    // console.log("Removing highlights from panel ", this.name);
+    for (var i = 0; i < this.highlightedNodes.length; i++) {
+      var highlighted = this.highlightedNodes[i];
+      highlighted.$el.removeClass(highlighted.cssClass);
+    }
+    this.highlightedNodes = [];
   };
 
   this.showToggle = function() {

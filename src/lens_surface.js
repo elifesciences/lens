@@ -21,14 +21,13 @@ var LensSurface = function(docCtrl, options) {
 
   this.$el.addClass('surface');
 
+  this.$nodes = $('<div>').addClass("nodes");
+  this.$el.append(this.$nodes);
 };
 LensSurface.Prototype = function() {
 
   this.render = function() {
-    var nodes = document.createElement('div');
-    nodes.className = "nodes";
-    this.el.appendChild(nodes);
-    nodes.appendChild(this.build());
+    this.$nodes.html(this.build());
     return this;
   };
 

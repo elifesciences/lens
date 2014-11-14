@@ -13,27 +13,19 @@ var ContentPanelView = function( panelCtrl, viewFactory, config ) {
 
   this.tocView = new TocPanelView(panelCtrl, viewFactory, _.extend({}, config, { type: 'resource', name: 'toc' }));
 
-  this._onTocItemSelected = _.bind( this.jumpToNode, this );
+  this._onTocItemSelected = _.bind( this.onTocItemSelected, this );
 
   this.resources = new Index(panelCtrl.getDocument(), {
     types: ["resource_reference"],
     property: "target"
   });
 
-  // scroll to the associated node when clicking onto the outline
-  // TODO: make this a dedicated event of the outline
-  this.outline.$el.on('click', '.node', _.bind(this._jumpToNode, this));
   this.tocView.toc.on('toc-item-selected', this._onTocItemSelected);
 
   this.$el.addClass('document');
 };
 
 ContentPanelView.Prototype = function() {
-
-  this.render = function() {
-    this.surface.render();
-    return this;
-  };
 
   this.dispose = function() {
     this.tocView.toc.off('toc-item-selected', this._onTocItemSelected);
@@ -50,7 +42,7 @@ ContentPanelView.Prototype = function() {
 
   this.onScroll = function() {
     var scrollTop = this.surface.$el.scrollTop();
-    this.outline.updateVisibleArea(scrollTop);
+    this.scrollbar.update();
     this.markActiveHeading(scrollTop);
   };
 
@@ -58,18 +50,12 @@ ContentPanelView.Prototype = function() {
   // --------
   //
 
-  this.jumpToNode = function(nodeId) {
+  this.onTocItemSelected = function(nodeId) {
     var n = this.findNodeView(nodeId);
     if (n) {
       var topOffset = $(n).position().top+CORRECTION;
       this.surface.$el.scrollTop(topOffset);
     }
-  };
-
-  this._jumpToNode = function(e) {
-    var nodeId = $(e.currentTarget).attr('id').replace("outline_", "");
-    this.jumpToNode(nodeId);
-    return false;
   };
 
   // Mark active heading
@@ -106,32 +92,10 @@ ContentPanelView.Prototype = function() {
     }, this);
   };
 
-  this.deactivateActiveAnnotations = function() {
+  this.removeHighlights = function() {
+    ContainerPanelView.prototype.removeHighlights.call(this);
+    this.$el.find('.content-node.active').removeClass('active');
     this.$el.find('.annotation.active').removeClass('active');
-  };
-
-
-  this.getResourceReferenceContainers = function(target) {
-    if (!target) return [];
-    // A reference is an annotation node. We want to highlight
-    // all (top-level) nodes that contain a reference to the currently activated resource
-    // For that we take all references pointing to the resource
-    // and find the root of the node on which the annotation sticks on.
-    var references = this.resources.get(target);
-    var container = this.controller.getContainer();
-    var nodes = _.uniq(_.map(references, function(ref) {
-      var nodeId = container.getRoot(ref.path[0]);
-      return nodeId;
-    }));
-    return nodes;
-  };
-
-  this.updateOutline = function(options) {
-    if (options.target) {
-      var annotations = this.resources.get(options.target);
-      options.highlightedNodes = Object.keys(annotations);
-    }
-    this.outline.update(options);
   };
 
 };

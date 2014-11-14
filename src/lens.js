@@ -76,23 +76,13 @@ Lens.prototype.constructor = Lens;
 
 Lens.DEFAULT_ROUTES = [
   {
-    "route": ":context/:node/:resource/:fullscreen",
-    "name": "document-resource",
+    "route": ":context/:focussedNode/:fullscreen",
+    "name": "document-focussed-fullscreen",
     "command": "openReader"
   },
   {
-    "route": ":context/:node/:resource",
-    "name": "document-resource",
-    "command": "openReader"
-  },
-  {
-    "route": ":context/:node/:resource",
-    "name": "document-resource",
-    "command": "openReader"
-  },
-  {
-    "route": ":context/:node",
-    "name": "document-node",
+    "route": ":context/:focussedNode",
+    "name": "document-focussed",
     "command": "openReader"
   },
   {
@@ -102,7 +92,7 @@ Lens.DEFAULT_ROUTES = [
   },
   {
     "route": "url/:url",
-    "name": "document-context",
+    "name": "document",
     "command": "openReader"
   },
   {

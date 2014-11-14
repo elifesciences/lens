@@ -50,8 +50,8 @@ ReaderController.Prototype = function() {
     this.currentPanel = panel;
     this.modifyState({
       panel: panel,
-      left: null,
-      right: null
+      focussedNode: null,
+      fullscreen: false
     });
   };
 
