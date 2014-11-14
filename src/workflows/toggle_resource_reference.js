@@ -42,18 +42,18 @@ ToggleResourceReference.Prototype = function() {
       var panel = this.panelForRef[ref.type];
       var panelView = this.readerView.panelViews[panel];
       var contentView = this.readerView.contentView;
-      var refId = ref.target;
+      var resourceId = ref.target;
       // show the associated panel, hihglight the resource and scroll to its position
       panelView.activate();
       var classes = ["highlighted"];
       if (state.fullscreen) classes.push("fullscreen");
-      panelView.addHighlight(refId, classes.join(" "));
-      panelView.scrollTo(refId);
+      panelView.addHighlight(resourceId, classes.join(" "));
+      panelView.scrollTo(resourceId);
       // panelView.scrollbar.update();
       // highlight all other references in the content panel for the same resource
-      var otherRefs = this.readerView.resources.get(refId);
-      delete otherRefs[ref.id];
-      _.each(otherRefs, function(ref) {
+      var refs = this.readerView.resources.get(resourceId);
+      delete refs[ref.id];
+      _.each(refs, function(ref) {
         contentView.addHighlight(ref.id, "highlighted");
       }, this);
       // contentView.scrollbar.update();

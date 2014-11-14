@@ -430,7 +430,6 @@ span.annotation.sc {
   font-variant: small-caps;
 }
 
-
 span.annotation.formula_reference, span.publication_reference {
   padding-left: 3px; padding-right: 3px;
 }
@@ -550,10 +549,13 @@ span.annotation.formula_reference, span.publication_reference {
 .content-node .definition_reference.highlighted { background-color: #5c6570; color: white; }
 
 /* Focussed states */
-.content-node .figure_reference.highlighted.focussed { background-color: rgba(145, 187, 4, 0.7); border-bottom: 2px solid green; }
-.content-node .citation_reference.highlighted.focussed { background-color: rgba(11, 157, 217, 0.6); border-bottom: 2px solid blue; }
-.content-node .contributor_reference.highlighted.focussed { background-color: #5c6570; color: white; border-bottom: 2px solid black; }
-.content-node .definition_reference.highlighted.focussed { background-color: #5c6570; color: white; border-bottom: 2px solid black; }
+.content-node .annotation.highlighted.focussed {
+  border-bottom: 2px solid;
+}
+.content-node .figure_reference.highlighted.focussed { background-color: rgba(145, 187, 4, 0.7); border-color: green; }
+.content-node .citation_reference.highlighted.focussed { background-color: rgba(11, 157, 217, 0.6); border-color: blue; }
+.content-node .contributor_reference.highlighted.focussed { background-color: #5c6570; color: white; border-color: black; }
+.content-node .definition_reference.highlighted.focussed { background-color: #5c6570; color: white; border-color: black; }
 
 /* Cross Reference */
 .content-node .cross_reference:hover {
@@ -626,8 +628,13 @@ span.annotation.formula_reference, span.publication_reference {
   background-color: rgba(0, 0, 0, 0);
 }
 
-/* Resources Outline */
+/* Resources Scrollbar */
 /* ---------------------------------------*/
+
+/* make it overlay the slider for now */
+.surface-scrollbar .overlay {
+  z-index: 3000;
+}
 
 .resources .surface-scrollbar {
   position: absolute;
@@ -857,8 +864,7 @@ as we have a plugin concept for functionality / panels */
   color: #fff;
 }
 
-.article .resources .figures .content-node.highlighted .resource-header,
-.article .resources .math .content-node.highlighted .resource-header {
+.article .resources .figures .content-node.highlighted .resource-header {
   background: rgba(145, 187, 4, 1);
 }
 
@@ -938,10 +944,7 @@ as we have a plugin concept for functionality / panels */
 /* Colors for scroll-bar overlays */
 
 .article .resources .figures .surface-scrollbar .highlighted,
-.article .content .surface-scrollbar .highlighted.figure_reference,
-.article .resources .math .surface-scrollbar .highlighted,
-.article .content .surface-scrollbar .highlighted.math_environment_reference,
-.article .content .surface-scrollbar .highlighted.formula_environment_reference
+.article .content .surface-scrollbar .highlighted.figure_reference
  { background-color: rgba(145, 187, 4, 1); border-color: green; }
 
 .article .resources .citations .surface-scrollbar .highlighted,

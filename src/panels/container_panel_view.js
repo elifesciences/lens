@@ -49,7 +49,6 @@ ContainerPanelView.Prototype = function() {
   };
 
   this.onScroll = function() {
-    console.log("###");
     this.scrollbar.onScroll();
   };
 
@@ -86,7 +85,11 @@ ContainerPanelView.Prototype = function() {
         // and regular updates. However, this seems a bit too much for this rather weak requirement.
         topOffset = scrollTop + elTop - 0.5 * ( panelHeight - elHeight );
       }
-      // If this is not possible scroll to the top of the element
+      else if (elTop >= 0 && elTop < panelHeight) {
+        // We tolerate that in favor of not jumping when something is visible already
+        return;
+      }
+      // In all other cases scroll to the top of the element
       else {
         topOffset = scrollTop + elTop;
       }

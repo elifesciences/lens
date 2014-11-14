@@ -4,13 +4,13 @@ var View = require("substance-application").View;
 var $$ = require("substance-application").$$;
 var _ = require("underscore");
 
-// Lens.SurfaceScrollbar
+// Lens.Scrollbar
 // ==========================================================================
 //
 // A custom scrollbar which allows to add overlays which are rendered at the same
 // y-position as their reference elements in the surface.
 
-var SurfaceScrollbar = function(surface) {
+var Scrollbar = function(surface) {
   View.call(this);
 
   this.surface = surface;
@@ -34,9 +34,9 @@ var SurfaceScrollbar = function(surface) {
   $(window).mouseup(this.mouseUp);
 };
 
-SurfaceScrollbar.Prototype = function() {
+Scrollbar.Prototype = function() {
 
-  // Render Document SurfaceScrollbar
+  // Render Document Scrollbar
   // -------------
   //
   // Renders outline and calculates bounds
@@ -81,9 +81,9 @@ SurfaceScrollbar.Prototype = function() {
     var height = $el.outerHeight(true) / this.factor;
     var top = ($el.offset().top - this.surfaceTop) / this.factor;
     // HACK: make all highlights at least 3 pxls high, and centered around the desired top pos
-    if (height < 3) {
-      height = 3;
-      top = top - 1.5 + 0.5*height;
+    if (height < Scrollbar.OverlayMinHeight) {
+      height = Scrollbar.OverlayMinHeight;
+      top = top - 0.5 * Scrollbar.OverlayMinHeight;
     }
     $overlay.css({
         "height": height,
@@ -193,7 +193,9 @@ SurfaceScrollbar.Prototype = function() {
 
 };
 
-SurfaceScrollbar.Prototype.prototype = View.prototype;
-SurfaceScrollbar.prototype = new SurfaceScrollbar.Prototype();
+Scrollbar.Prototype.prototype = View.prototype;
+Scrollbar.prototype = new Scrollbar.Prototype();
 
-module.exports = SurfaceScrollbar;
+Scrollbar.OverlayMinHeight = 5;
+
+module.exports = Scrollbar;
