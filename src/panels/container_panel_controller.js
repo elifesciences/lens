@@ -15,7 +15,11 @@ ContainerPanelController.Prototype = function() {
     var doc = this.getDocument();
     var viewFactory;
     if (this.config.type === 'resource') {
-      viewFactory = new ResourcePanelViewFactory(doc.nodeTypes, this.config);
+      if (this.config.createViewFactory) {
+        viewFactory = this.config.createViewFactory(doc.nodeTypes, this.config);
+      } else {
+        viewFactory = new ResourcePanelViewFactory(doc.nodeTypes, this.config);
+      }
     } else {
       var DefaultViewFactory = doc.constructor.ViewFactory;
       viewFactory = new DefaultViewFactory(doc.nodeTypes, this.config);
