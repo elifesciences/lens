@@ -141,7 +141,8 @@ ReaderView.Prototype = function() {
       window.MathJax.Hub.Queue(["Typeset", window.MathJax.Hub]);
       window.MathJax.Hub.Queue(function () {
         console.log('Updating after MathJax has finished.');
-        self.updateScrollbars();
+        // HACK: using updateState() instead of updateScrollbars() as it also knows how to scroll
+        self.updateState();
       });
     }, this), 1);
 
