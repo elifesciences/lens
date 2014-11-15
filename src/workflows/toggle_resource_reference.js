@@ -56,7 +56,6 @@ ToggleResourceReference.Prototype = function() {
       _.each(refs, function(ref) {
         contentView.addHighlight(ref.id, "highlighted");
       }, this);
-      // contentView.scrollbar.update();
       return true;
     }
     return false;

@@ -280,6 +280,7 @@ ReaderView.Prototype = function() {
     if (!handled) {
       // Default implementation for states with a panel set
       if (state.panel !== "content") {
+        var panelView = this.panelViews[state.panel]
         this.showPanel(state.panel);
         // if there is a resource focussed in the panel, activate the resource, and highlight all references to it in the content panel
         if (state.focussedNode) {
@@ -288,6 +289,7 @@ ReaderView.Prototype = function() {
           _.each(refs, function(ref) {
             this.contentView.addHighlight(ref.id, "highlighted ");
           }, this);
+          if (panelView.hasScrollbar()) panelView.scrollTo(state.focussedNode);
         }
       } else {
         this.showPanel("toc");
