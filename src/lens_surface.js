@@ -51,7 +51,7 @@ LensSurface.Prototype = function() {
   };
 
   this.renderNodeView = function(n) {
-    var view = this.viewFactory.createView(n);
+    var view = this.viewFactory.createView(n, { topLevel: true });
     view.render();
     return view;
   };

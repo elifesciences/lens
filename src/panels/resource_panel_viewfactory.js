@@ -15,7 +15,7 @@ ResourcePanelViewFactory.Prototype = function() {
   this.createView = function(node, options, type) {
     options = options || {};
     var NodeView = this.getNodeViewClass(node, type);
-    if (NodeView.prototype.isResourceView && this.options.header) {
+    if (options.topLevel && NodeView.prototype.isResourceView && this.options.header) {
       options.header = true;
       if (NodeView.prototype.isZoomable && this.options.zoom) {
         options.zoom = true;
