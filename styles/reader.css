@@ -31,12 +31,11 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 }
 
 .hidden {
-  display: none;
+  visibility: hidden;
 }
 
 .content-node .content {
   margin: 0px;
-  background: white;
 }
 
 /* Main content panel
@@ -83,7 +82,7 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 =======================================================================*/
 
 .article .panel.hidden {
-  display: none;
+  visibility: hidden;
 }
 
 
@@ -260,7 +259,7 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 .resource-view.toc {
   left: 50px;
   overflow: auto;
-  padding-top: 60px;
+  padding-top: 30px;
 }
 
 /* Info View
@@ -316,7 +315,7 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 
 /* Active state adjustments */
 
-.article .resources .content-node.active .resource-header .toggle-res {
+.article .resources .content-node.highlighted .resource-header .toggle-res {
   color: rgba(255,255,255, 0.5);
 }
 
@@ -326,11 +325,11 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   display: none;
 }
 
-#container .article .content-node.active .icon-eye-close {
+#container .article .content-node.highlighted .icon-eye-close {
   display: inline;
 }
 
-#container .article .content-node.active .icon-eye-open {
+#container .article .content-node.highlighted .icon-eye-open {
   display: none;
 }
 
@@ -357,11 +356,11 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 }
 
 /* Active state adjustments */
-.article .resources .content-node.active .resource-header .toggle-fullscreen {
+.article .resources .content-node.highlighted .resource-header .toggle-fullscreen {
   color: rgba(255,255,255, 0.5);
 }
 
-.article .resources .content-node.active .resource-header .toggle-fullscreen:hover {
+.article .resources .content-node.highlighted .resource-header .toggle-fullscreen:hover {
   color: rgba(255,255,255, 1);
 }
 
@@ -431,7 +430,6 @@ span.annotation.sc {
   font-variant: small-caps;
 }
 
-
 span.annotation.formula_reference, span.publication_reference {
   padding-left: 3px; padding-right: 3px;
 }
@@ -477,7 +475,7 @@ span.annotation.formula_reference, span.publication_reference {
 .content-node .error { background-color: rgba(237, 96, 48, 0.3); }
 
 .content-node .link { color: #1B6685; font-weight: bold; }
-.content-node .link:hover, .content-node .link.active { color: rgba(11, 157, 217, 1); }
+.content-node .link:hover, .content-node .link.highlighted { color: rgba(11, 157, 217, 1); }
 
 /* Inline Code Annotations */
 
@@ -505,11 +503,9 @@ span.annotation.formula_reference, span.publication_reference {
 .content-node .emphasis { font-style: italic; }
 .content-node .strong { font-weight: bold; }
 
-
-/* Figure Reference */
 .content-node .figure_reference {
   background: rgba(145, 187, 4, 0.15);
-  border-bottom: 1px solid rgba(145, 187, 4, 0.8);
+  border-bottom: 1px solid rgba(145, 187, 4, 0.6);
   color: #495A11;
   cursor: pointer;
 }
@@ -546,11 +542,20 @@ span.annotation.formula_reference, span.publication_reference {
 .content-node .contributor_reference:hover { background-color: rgba(0,0,0, 0.05); }
 .content-node .definition_reference:hover { background-color: rgba(0,0,0, 0.1); }
 
-.content-node .figure_reference.active { background: rgba(145, 187, 4, 0.7); }
-.content-node .citation_reference.active { background: rgba(11, 157, 217, 0.6); }
-.content-node .contributor_reference.active { background-color: #5c6570; color: white; }
+/* Highlighted states */
+.content-node .figure_reference.highlighted { background: rgba(145, 187, 4, 0.7); }
+.content-node .citation_reference.highlighted { background: rgba(11, 157, 217, 0.6); }
+.content-node .contributor_reference.highlighted { background-color: #5c6570; color: white; }
+.content-node .definition_reference.highlighted { background-color: #5c6570; color: white; }
 
-.content-node .definition_reference.active { background-color: #5c6570; color: white; }
+/* Focussed states */
+.content-node .annotation.highlighted.focussed {
+  border-bottom: 2px solid;
+}
+.content-node .figure_reference.highlighted.focussed { background-color: rgba(145, 187, 4, 0.7); border-color: green; }
+.content-node .citation_reference.highlighted.focussed { background-color: rgba(11, 157, 217, 0.6); border-color: blue; }
+.content-node .contributor_reference.highlighted.focussed { background-color: #5c6570; color: white; border-color: black; }
+.content-node .definition_reference.highlighted.focussed { background-color: #5c6570; color: white; border-color: black; }
 
 /* Cross Reference */
 .content-node .cross_reference:hover {
@@ -623,19 +628,23 @@ span.annotation.formula_reference, span.publication_reference {
   background-color: rgba(0, 0, 0, 0);
 }
 
-/* Resources Outline */
+/* Resources Scrollbar */
 /* ---------------------------------------*/
 
-.resources .lens-outline {
+/* make it overlay the slider for now */
+.surface-scrollbar .overlay {
+  z-index: 3000;
+}
+
+.resources .surface-scrollbar {
   position: absolute;
   top: 0px;
   right: 0px;
   left: auto;
   bottom: 0px;
-  width: 30px;
 }
 
-#container.touchable .resources .lens-outline {
+#container.touchable .resources .surface-scrollbar {
   right: 5px;
 }
 
@@ -653,15 +662,15 @@ span.annotation.formula_reference, span.publication_reference {
 }
 
 /* Only hide for IOS devices because of scrolling issues! */
-#container.touchable.ios .lens-outline .visible-area {
+#container.touchable.ios .surface-scrollbar .visible-area {
   display: none;
 }
 
-#container.touchable .lens-outline .node:hover {
+#container.touchable .surface-scrollbar .node:hover {
   opacity: 0.15;
 }
 
-#container.touchable .lens-outline .arrow {
+#container.touchable .surface-scrollbar .arrow {
   display: none;
 }
 
@@ -776,7 +785,7 @@ span.annotation.formula_reference, span.publication_reference {
   }
 
   .article .resources .surface {
-    overflow-y: visible; 
+    overflow-y: visible;
     overflow-x: visible;
   }
 
@@ -819,7 +828,7 @@ span.annotation.formula_reference, span.publication_reference {
     color: white;
   }
 
-  .article .medial-strip .context-toggles .context-toggle.active:hover {
+  .article .medial-strip .context-toggles .context-toggle.highlighted:hover {
     color: black;
   }
 
@@ -832,16 +841,15 @@ span.annotation.formula_reference, span.publication_reference {
     display: none;
   }
 
-  .article .context-toggles .context-toggle.active {
+  .article .context-toggles .context-toggle.highlighted {
     color: rgba(0,0,0,1);
     background: white;
   }
 
-  .article .lens-outline {
+  .article .surface-scrollbar {
     display: none;
   }
 }
-
 
 
 /* Shared styles for selected and mouseover states
@@ -849,28 +857,106 @@ span.annotation.formula_reference, span.publication_reference {
 
 /* This shouldn't live in reader.css, but we'll modularize as soon
 as we have a plugin concept for functionality / panels */
+/* Not... still there is no idea how to 'export' css packages
 
 /* Active resource */
-.article .resources .content-node.active .resource-header .name {
+.article .resources .content-node.highlighted .resource-header .name {
   color: #fff;
 }
 
-.article .resources .figures .content-node.active .resource-header {
+.article .resources .figures .content-node.highlighted .resource-header {
   background: rgba(145, 187, 4, 1);
 }
 
 /* active citation */
-.article .resources .citations .content-node.active .resource-header {
+.article .resources .citations .content-node.highlighted .resource-header {
   background: rgba(11, 157, 217, 1);
 }
 
 /* active definition */
-.article .resources .definitions .content-node.active .resource-header {
+.article .resources .definitions .content-node.highlighted .resource-header {
   background: #5c6570;
 }
 
-/* active math environment in math panel */
-.article .resources .math .content-node.active .resource-header {
-  background: #5c6570;
+
+/* Scrollbar
+--------------------------------------- */
+
+.surface-scrollbar {
+  background: #eee;
+  position: absolute;
+  left: 0px;
+  width:20px;
+  top: 0px;
+  bottom: 0px;
 }
 
+.surface-scrollbar .node.overlay {
+  position: absolute;
+  min-height: 2px;
+}
+
+.surface-scrollbar .visible-area {
+  position: absolute;
+  cursor: pointer;
+  top: 40px;
+  left: 0px;
+  right: 0px;
+  height: 80px;
+  z-index: 2000;
+  background-color: rgba(0,0,0, 0.2);
+}
+
+.surface-scrollbar:hover .visible-area {
+  background-color: rgba(0,0,0, 0.25);
+}
+
+.surface-scrollbar .visible-area:hover {
+  background-color: rgba(0,0,0, 0.3);
+}
+
+.surface-scrollbar .node {
+  margin: 0 0px;
+  width: 20px;
+  cursor: pointer;
+}
+
+.surface-scrollbar .node:hover {
+}
+
+
+.surface-scrollbar .text {
+}
+
+.surface-scrollbar .heading {
+}
+
+
+.surface-scrollbar .node.selected {
+  opacity: 1.0;
+}
+
+.node.highlighted {
+  background: #5c6570;
+  opacity: 0.7;
+}
+
+/* Colors for scroll-bar overlays */
+
+.article .resources .figures .surface-scrollbar .highlighted,
+.article .content .surface-scrollbar .highlighted.figure_reference
+ { background-color: rgba(145, 187, 4, 1); border-color: green; }
+
+.article .resources .citations .surface-scrollbar .highlighted,
+.article .content .surface-scrollbar .highlighted.citation_reference
+ { background-color: rgba(11, 157, 217, 1); border-color: blue; }
+
+.article .resources .definitions .surface-scrollbar .highlighted,
+.article .content .surface-scrollbar .highlighted.definition_reference
+{ background-color: #5c6570; border-color: red; }
+
+/* additional right border in the content scrollbar */
+.surface-scrollbar.content .highlighted.focussed { border-right: 3px solid; border-left: none; }
+
+/* ... and left border in the resource panel scrollbars */
+.surface-scrollbar .highlighted.focussed { border-left: 3px solid; }

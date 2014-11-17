@@ -42,7 +42,7 @@ LensController.Prototype = function() {
   this.importXML = function(xml) {
     var doc = this.converter.import(xml, this.converterOptions);
     this.createReader(doc, {
-      context: 'toc'
+      panel: 'toc'
     });
   };
 
@@ -55,16 +55,10 @@ LensController.Prototype = function() {
   this.updatePath = function(state) {
     var path = [];
 
-    path.push(state.context);
+    path.push(state.panel);
 
-    if (state.node) {
-      path.push(state.node);
-    } else {
-      path.push('all');
-    }
-
-    if (state.resource) {
-      path.push(state.resource);
+    if (state.focussedNode) {
+      path.push(state.focussedNode);
     }
 
     if (state.fullscreen) {
@@ -89,22 +83,19 @@ LensController.Prototype = function() {
     });
   };
 
-  this.openReader = function(context, node, resource, fullscreen) {
+  this.openReader = function(panel, focussedNode, fullscreen) {
     var that = this;
 
     // The article view state
     var state = {
-      context: context || "toc",
-      node: node,
-      resource: resource,
+      panel: panel || "toc",
+      focussedNode: focussedNode,
       fullscreen: !!fullscreen
     };
 
     // Already loaded?
     if (this.reader) {
       this.reader.modifyState(state);
-      // HACK: This shouldn't be monkeypatched
-      if (state.resource) this.reader.view.jumpToResource(state.resource);
     } else if (this.config.document_url === "lens_article.xml") {
       var doc = this.Article.describe();
       that.createReader(doc, state);
@@ -125,8 +116,8 @@ LensController.Prototype = function() {
         // Extract headings
         // TODO: this should be solved with an index on the document level
         // This same code occurs in TOCView!
-        if (state.context === "toc" && doc.getHeadings().length <= 2) {
-          state.context = "info";
+        if (state.panel === "toc" && doc.getHeadings().length <= 2) {
+          state.panel = "info";
         }
         that.createReader(doc, state);
       })
@@ -136,9 +127,7 @@ LensController.Prototype = function() {
       });
     }
   };
-
 };
-
 
 // Exports
 // --------

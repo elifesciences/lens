@@ -1,32 +1,36 @@
-
 var _ = require('underscore');
 
 var Application = require("substance-application");
 var $$ = Application.$$;
 var View = Application.View;
 
-var PanelView = function( doc, config ) {
+var PanelView = function(panelController, config) {
   View.call(this);
 
-  this.doc = doc;
+  this.controller = panelController;
+  this.config = config;
+  this.doc = panelController.getDocument();
+
   this.name = config.name;
 
-  this.toggleEl = $$('a.context-toggle.' + this.name,
-    {
-      'title': config.title,
-      'html': '<i class="' + config.icon + '"></i><span> '+config.label+'</span><div class="label">'+config.label+'</div>'
-    } );
+  this.toggleEl = $$('a.context-toggle.' + this.name, {
+    'title': this.config.title,
+    'html': '<i class="' + this.config.icon + '"></i><div class="label">'+this.config.label+'</div><span> '+this.config.label+'</span>'
+  });
   this.$toggleEl = $(this.toggleEl);
 
   this.$el.addClass('panel').addClass(this.name);
 
   // For legacy add 'resource-view' class
-  if (config.type === 'resource') {
+  if (this.config.type === 'resource') {
     this.$el.addClass('resource-view');
   }
 
   this._onToggle = _.bind( this.onToggle, this );
   this.$toggleEl.click( this._onToggle );
+
+  // we always keep track of nodes that have are highlighted ('active', 'focussed')
+  this.highlightedNodes = [];
 };
 
 PanelView.Prototype = function() {
@@ -45,19 +49,16 @@ PanelView.Prototype = function() {
     return this.toggleEl;
   };
 
-  // Jump to the given resource id
-  // --------
-  //
+  this.scrollTo = function(nodeId) {
+
+  };
 
   this.jumpToResource = function(nodeId) {
     // A panel with a scrollable element should implement this method (e.g., see ContainerPanelView)
   };
 
-  this.hasOutline = function() {
+  this.hasScrollbar = function() {
     return false;
-  };
-
-  this.updateOutline = function() {
   };
 
   this.show = function() {
@@ -72,7 +73,29 @@ PanelView.Prototype = function() {
   this.activate = function() {
     this.show();
     this.$toggleEl.addClass('active');
-  }
+  };
+
+  this.addHighlight = function(id, cssClass) {
+    // console.log("Add highlight for", id, cssClass);
+    var nodeEl = this.findNodeView(id);
+    if (nodeEl) {
+      var $nodeEl = $(nodeEl);
+      $nodeEl.addClass(cssClass);
+      this.highlightedNodes.push({
+        $el: $nodeEl,
+        cssClass: cssClass
+      });
+    }
+  };
+
+  this.removeHighlights = function() {
+    // console.log("Removing highlights from panel ", this.name);
+    for (var i = 0; i < this.highlightedNodes.length; i++) {
+      var highlighted = this.highlightedNodes[i];
+      highlighted.$el.removeClass(highlighted.cssClass);
+    }
+    this.highlightedNodes = [];
+  };
 
   this.showToggle = function() {
     this.$toggleEl.removeClass('hidden');

@@ -1,16 +1,24 @@
 "use strict";
 
-var _ = require('underscore');
 var Application = require("substance-application");
 var LensController = require("./lens_controller");
 var LensConverter = require("lens-converter");
 var LensArticle = require("lens-article");
-var ResourcePanelViewFactory = require("./resource_panel_viewfactory");
+var ResourcePanelViewFactory = require("./panels/resource_panel_viewfactory");
 var ReaderController = require('./reader_controller');
 var ReaderView = require('./reader_view');
-var PanelFactory = require('./panel_factory');
-var PanelView = require('./panel_view');
-var ContainerPanelView = require('./container_panel_view');
+
+var Panel = require('./panels/panel');
+var PanelController = require('./panels/panel_controller');
+var PanelView = require('./panels/panel_view');
+var ContainerPanel = require('./panels/container_panel');
+var ContainerPanelController = require('./panels/container_panel_controller');
+var ContainerPanelView = require('./panels/container_panel_view');
+
+var Workflow = require('./workflows/workflow');
+
+var defaultPanels = require('./default_panels');
+var defaultWorkflows = require('./default_workflows');
 
 // The Lens Application
 // ========
@@ -19,7 +27,8 @@ var ContainerPanelView = require('./container_panel_view');
 var Lens = function(config) {
   config = config || {};
   config.routes = config.routes || this.getRoutes();
-  config.panelFactory = config.panelFactory || this.getPanelFactory();
+  config.panels = config.panels || this.getPanels();
+  config.workflows = config.workflows || this.getWorkflows();
   config.converter = config.converter || this.getConverter(config.converterOptions);
 
   // Note: call this after configuration, e.g., routes must be configured before
@@ -43,8 +52,12 @@ Lens.Prototype = function() {
     return Lens.getDefaultRoutes();
   };
 
-  this.getPanelFactory = function() {
-    return Lens.getDefaultPanelFactory();
+  this.getPanels = function() {
+    return Lens.getDefaultPanels();
+  };
+
+  this.getWorkflows = function() {
+    return Lens.getDefaultWorkflows();
   };
 
   this.getConverter = function(converterConfig) {
@@ -61,34 +74,15 @@ Lens.Prototype.prototype = Application.prototype;
 Lens.prototype = new Lens.Prototype();
 Lens.prototype.constructor = Lens;
 
-Lens.Article = LensArticle;
-
-// TODO: is it really helpful to wrap this into its own 'namespace'
-Lens.Reader = {
-  Controller: ReaderController,
-  View: ReaderView,
-  PanelFactory: PanelFactory
-};
-
 Lens.DEFAULT_ROUTES = [
   {
-    "route": ":context/:node/:resource/:fullscreen",
-    "name": "document-resource",
+    "route": ":context/:focussedNode/:fullscreen",
+    "name": "document-focussed-fullscreen",
     "command": "openReader"
   },
   {
-    "route": ":context/:node/:resource",
-    "name": "document-resource",
-    "command": "openReader"
-  },
-  {
-    "route": ":context/:node/:resource",
-    "name": "document-resource",
-    "command": "openReader"
-  },
-  {
-    "route": ":context/:node",
-    "name": "document-node",
+    "route": ":context/:focussedNode",
+    "name": "document-focussed",
     "command": "openReader"
   },
   {
@@ -98,7 +92,7 @@ Lens.DEFAULT_ROUTES = [
   },
   {
     "route": "url/:url",
-    "name": "document-context",
+    "name": "document",
     "command": "openReader"
   },
   {
@@ -112,27 +106,33 @@ Lens.getDefaultRoutes = function() {
   return Lens.DEFAULT_ROUTES;
 };
 
-Lens.defaultPanelSpecification = require('./panel_specification');
-
-Lens.getDefaultPanelSpecification = function() {
-  var spec = _.extend({}, Lens.defaultPanelSpecification);
-  spec.panels = _.extend({}, spec.panels);
-  return spec;
+Lens.getDefaultPanels = function() {
+  return defaultPanels.slice(0);
 };
 
-Lens.getDefaultPanelFactory = function() {
-  return new Lens.Reader.PanelFactory(Lens.defaultPanelSpecification);
+Lens.getDefaultWorkflows = function() {
+  return defaultWorkflows.slice(0);
 };
 
 Lens.getDefaultConverter = function(converterOptions) {
   return new LensConverter(converterOptions);
 };
 
+Lens.Article = LensArticle;
+Lens.ReaderController = ReaderController;
+Lens.ReaderView = ReaderView;
 Lens.Outline = require("lens-outline");
-
-Lens.ResourcePanelViewFactory = ResourcePanelViewFactory;
-Lens.PanelView = PanelView;
-Lens.ContainerPanelView = ContainerPanelView;
 Lens.Controller = LensController;
+Lens.LensController = LensController;
+
+Lens.Panel = Panel;
+Lens.PanelController = PanelController;
+Lens.PanelView = PanelView;
+Lens.ContainerPanel = ContainerPanel;
+Lens.ContainerPanelController = ContainerPanelController;
+Lens.ContainerPanelView = ContainerPanelView;
+Lens.ResourcePanelViewFactory = ResourcePanelViewFactory;
+
+Lens.Workflow = Workflow;
 
 module.exports = Lens;

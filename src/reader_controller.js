@@ -3,7 +3,7 @@
 var _ = require('underscore');
 var Controller = require("substance-application").Controller;
 var ReaderView = require("./reader_view");
-var PanelFactory = require("./panel_factory");
+var ContentPanel = require("./panels/content");
 
 // Reader.Controller
 // -----------------
@@ -15,24 +15,24 @@ var ReaderController = function(doc, state, options) {
   // Private reference to the document
   this.__document = doc;
 
-  // E.g. context information
   this.options = options || {};
 
-  this.panelFactory = options.panelFactory || new PanelFactory();
+  this.panels = options.panels;
+  this.contentPanel = new ContentPanel(doc);
 
-  this.panels = {};
-  this.contentPanel = this.panelFactory.createPanel(doc, 'content');
-  // skip 'content' and 'toc' as they are built-in
-  // ATM, we do not support overriding them
-  _.each(this.panelFactory.getNames(), function(name) {
-    if (name === 'content' || name === 'toc') return;
-    this.panels[name] = this.panelFactory.createPanel(doc, name);
+  // create panel controllers
+  this.panelCtrls = {};
+  this.panelCtrls['content'] = this.contentPanel.createController(doc);
+  _.each(this.panels, function(panel) {
+    this.panelCtrls[panel.getName()] = panel.createController(doc);
   }, this);
+
+  this.workflows = options.workflows || [];
 
   this.state = state;
 
-  // Current explicitly set context
-  this.currentContext = "toc";
+  // Current explicitly set panel
+  this.currentPanel = "toc";
 };
 
 ReaderController.Prototype = function() {
@@ -42,26 +42,23 @@ ReaderController.Prototype = function() {
     return this.view;
   };
 
-  // Explicit context switch
+  // Explicit panel switch
   // --------
   //
 
-  this.switchContext = function(context) {
-    // Remember scrollpos of previous context
-    this.currentContext = context;
+  this.switchPanel = function(panel) {
+    this.currentPanel = panel;
     this.modifyState({
-      context: context,
-      node: null,
-      resource: null
+      panel: panel,
+      focussedNode: null,
+      fullscreen: false
     });
   };
 
   this.getDocument = function() {
     return this.__document;
   };
-
 };
-
 
 ReaderController.Prototype.prototype = Controller.prototype;
 ReaderController.prototype = new ReaderController.Prototype();

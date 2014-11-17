@@ -1,33 +1,31 @@
 "use strict";
 
 var _ = require('underscore');
-
+var ContainerPanelView = require('../container_panel_view');
 var TocPanelView = require("./toc_panel_view");
-var ContainerPanelView = require('./container_panel_view');
+var Data = require("substance-data");
+var Index = Data.Graph.Index;
 
 var CORRECTION = 0; // Extra offset from the top
 
-var ContentPanelView = function( doc, docCtrl, viewFactory, config ) {
-  ContainerPanelView.call(this, doc, docCtrl, viewFactory, config);
+var ContentPanelView = function( panelCtrl, viewFactory, config ) {
+  ContainerPanelView.call(this, panelCtrl, viewFactory, config);
 
-  this.tocView = new TocPanelView(doc, _.extend({}, config, { type: 'resource', name: 'toc' }));
+  this.tocView = new TocPanelView(panelCtrl, viewFactory, _.extend({}, config, { type: 'resource', name: 'toc' }));
 
-  this._onTocItemSelected = _.bind( this.jumpToNode, this );
+  this._onTocItemSelected = _.bind( this.onTocItemSelected, this );
 
-  // scroll to the associated node when clicking onto the outline
-  // TODO: make this a dedicated event of the outline
-  this.outline.$el.on('click', '.node', _.bind(this._jumpToNode, this));
+  this.resources = new Index(panelCtrl.getDocument(), {
+    types: ["resource_reference"],
+    property: "target"
+  });
+
   this.tocView.toc.on('toc-item-selected', this._onTocItemSelected);
 
   this.$el.addClass('document');
 };
 
 ContentPanelView.Prototype = function() {
-
-  this.render = function() {
-    this.surface.render();
-    return this;
-  };
 
   this.dispose = function() {
     this.tocView.toc.off('toc-item-selected', this._onTocItemSelected);
@@ -44,7 +42,7 @@ ContentPanelView.Prototype = function() {
 
   this.onScroll = function() {
     var scrollTop = this.surface.$el.scrollTop();
-    this.outline.updateVisibleArea(scrollTop);
+    this.scrollbar.update();
     this.markActiveHeading(scrollTop);
   };
 
@@ -52,18 +50,12 @@ ContentPanelView.Prototype = function() {
   // --------
   //
 
-  this.jumpToNode = function(nodeId) {
+  this.onTocItemSelected = function(nodeId) {
     var n = this.findNodeView(nodeId);
     if (n) {
       var topOffset = $(n).position().top+CORRECTION;
       this.surface.$el.scrollTop(topOffset);
     }
-  };
-
-  this._jumpToNode = function(e) {
-    var nodeId = $(e.currentTarget).attr('id').replace("outline_", "");
-    this.jumpToNode(nodeId);
-    return false;
   };
 
   // Mark active heading
@@ -90,6 +82,20 @@ ContentPanelView.Prototype = function() {
       activeNode = _.last(headings).id;
     }
     this.tocView.setActiveNode(activeNode);
+  };
+
+  this.markReferencesTo = function(target) {
+    // Mark all annotations that reference the resource
+    var annotations = this.resources.get(target);
+    _.each(annotations, function(a) {
+      $(this.findNodeView(a.id)).addClass('active');
+    }, this);
+  };
+
+  this.removeHighlights = function() {
+    ContainerPanelView.prototype.removeHighlights.call(this);
+    this.$el.find('.content-node.active').removeClass('active');
+    this.$el.find('.annotation.active').removeClass('active');
   };
 
 };

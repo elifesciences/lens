@@ -7,7 +7,7 @@ var $$ = require("substance-application").$$;
 
 // Lens.View Constructor
 // ========
-// 
+//
 
 var LensView = function(controller) {
   View.call(this);
@@ -17,7 +17,7 @@ var LensView = function(controller) {
 
   // Handle state transitions
   // --------
-  
+
   this.listenTo(this.controller, 'state-changed', this.onStateChanged);
   this.listenTo(this.controller, 'loading:started', this.startLoading);
 
@@ -29,7 +29,7 @@ var LensView = function(controller) {
 LensView.Prototype = function() {
 
 
-  this.handleDroppedFile = function(e) {
+  this.handleDroppedFile = function(/*e*/) {
     var ctrl = this.controller;
     var files = event.dataTransfer.files;
     var file = files[0];
@@ -74,12 +74,12 @@ LensView.Prototype = function() {
   this.openReader = function() {
     var view = this.controller.reader.createView();
     var that = this;
-    
+
     that.replaceMainView('reader', view);
     that.startLoading("Typesetting");
 
     this.$('#main').css({opacity: 0});
-    
+
     _.delay(function() {
       that.stopLoading();
       that.$('#main').css({opacity: 1});
@@ -113,7 +113,7 @@ LensView.Prototype = function() {
     }));
 
     // Spinner
-    // ------------  
+    // ------------
 
     this.el.appendChild($$('.spinner-wrapper', {
       children: [
