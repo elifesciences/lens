@@ -121,7 +121,6 @@ Lens.getDefaultConverter = function(converterOptions) {
 Lens.Article = LensArticle;
 Lens.ReaderController = ReaderController;
 Lens.ReaderView = ReaderView;
-Lens.Outline = require("lens-outline");
 Lens.Controller = LensController;
 Lens.LensController = LensController;
 

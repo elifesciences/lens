@@ -21,11 +21,6 @@
       "branch": "master"
     },
     {
-      "repository": "https://github.com/elifesciences/lens-outline.git",
-      "folder": "node_modules/lens-outline",
-      "branch": "master"
-    },
-    {
       "repository": "https://github.com/substance/toc.git",
       "folder": "node_modules/substance-toc",
       "branch": "lens"
@@ -63,7 +58,6 @@
   },
   "styles": {
     "styles/surface.css": "node_modules/substance-surface/styles/surface.css",
-    "styles/lens-outline.css": "node_modules/lens-outline/outline.css",
 
     "styles/nodes/text.css": "node_modules/substance-article/nodes/text/text.css",
     "styles/nodes/paragraph.css": "node_modules/substance-article/nodes/paragraph/paragraph.css",
