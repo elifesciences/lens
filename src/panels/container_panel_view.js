@@ -59,20 +59,15 @@ ContainerPanelView.Prototype = function() {
   this.scrollTo = function(nodeId) {
     var n = this.findNodeView(nodeId);
     if (n) {
-      console.log("Scrolling to node", nodeId);
       var $n = $(n);
       var scrollTop = this.surface.$el.scrollTop();
       var panelHeight = this.surface.$el.height();
       var elTop = $n.offset().top;
       var elHeight = $n.height();
       var topOffset;
-
-      if (this.name === "citations") console.log("#### elTop=%s, scrollTop=%s", elTop, scrollTop);
-
       // Do not scroll if the element is fully visible
       if (elTop > 0 && elTop + elHeight < panelHeight) {
-        if (this.name === "citations") console.log("... No need to scroll", elTop, scrollTop);
-        // everything fine the
+        // everything fine
         return;
       }
 
@@ -100,7 +95,7 @@ ContainerPanelView.Prototype = function() {
       $(document).scrollTop(topOffset);
       this.scrollbar.update();
     } else {
-      console.log("PanelView.jumpToResource(): Unknown resource '%s'", nodeId);
+      console.info("PanelView.jumpToResource(): Unknown resource '%s'", nodeId);
     }
   };
 
@@ -132,7 +127,7 @@ ContainerPanelView.Prototype = function() {
   this.hide = function() {
     this.lastScrollPos = this.surface.$el.scrollTop();
     PanelView.prototype.hide.call(this);
-  }
+  };
 
   this.show = function() {
     this.surface.$el.scrollTop(this.lastScrollPos);
