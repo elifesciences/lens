@@ -632,6 +632,7 @@ span.annotation.formula_reference, span.publication_reference {
   background-color: rgba(0, 0, 0, 0);
 }
 
+
 /* Resources Scrollbar */
 /* ---------------------------------------*/
 
@@ -902,12 +903,11 @@ as we have a plugin concept for functionality / panels */
 
 .surface-scrollbar .visible-area {
   position: absolute;
-  cursor: pointer;
   top: 40px;
   left: 0px;
   right: 0px;
   height: 80px;
-  z-index: 2000;
+  z-index: 4000;
   background-color: rgba(0,0,0, 0.2);
 }
 
@@ -922,7 +922,6 @@ as we have a plugin concept for functionality / panels */
 .surface-scrollbar .node {
   margin: 0 0px;
   width: 20px;
-  cursor: pointer;
 }
 
 .surface-scrollbar .node:hover {
@@ -936,28 +935,23 @@ as we have a plugin concept for functionality / panels */
 }
 
 
-.surface-scrollbar .node.selected {
-  opacity: 1.0;
-}
-
 .node.highlighted {
   background: #5c6570;
-  opacity: 0.7;
 }
 
 /* Colors for scroll-bar overlays */
 
 .article .resources .figures .surface-scrollbar .highlighted,
 .article .content .surface-scrollbar .highlighted.figure_reference
- { background-color: rgba(145, 187, 4, 1); border-color: green; }
+ { background-color: rgba(145, 187, 4, 1); }
 
 .article .resources .citations .surface-scrollbar .highlighted,
 .article .content .surface-scrollbar .highlighted.citation_reference
- { background-color: rgba(11, 157, 217, 1); border-color: blue; }
+ { background-color: rgba(11, 157, 217, 1); }
 
 .article .resources .definitions .surface-scrollbar .highlighted,
 .article .content .surface-scrollbar .highlighted.definition_reference
-{ background-color: #5c6570; border-color: red; }
+{ background-color: #5c6570; }
 
 /* additional right border in the content scrollbar */
 /*.surface-scrollbar.content .highlighted.focussed { border-right: 3px solid; border-left: none; }*/
