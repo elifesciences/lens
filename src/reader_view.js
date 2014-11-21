@@ -261,6 +261,10 @@ ReaderView.Prototype = function() {
     // and should override Workflow.handleStateUpdate(state, info) to perform the update.
     // In case it has been responsible for the update it should return 'true'.
 
+    if (this.lastWorkflow) {
+      handled = this.lastWorkflow.handleStateUpdate(state, stateInfo);
+    }
+
     if (!handled) {
       // Go through all workflows and let them try to handle the state update.
       // Stop after the first hit.
@@ -270,6 +274,7 @@ ReaderView.Prototype = function() {
         if (workflow !== this.lastWorkflow && workflow.handlesStateUpdate) {
           handled = workflow.handleStateUpdate(state, stateInfo);
           if (handled) {
+            this.lastWorkflow = workflow;
             break;
           }
         }
@@ -280,7 +285,7 @@ ReaderView.Prototype = function() {
     if (!handled) {
       // Default implementation for states with a panel set
       if (state.panel !== "content") {
-        var panelView = this.panelViews[state.panel]
+        var panelView = this.panelViews[state.panel];
         this.showPanel(state.panel);
         // if there is a resource focussed in the panel, activate the resource, and highlight all references to it in the content panel
         if (state.focussedNode) {
@@ -384,17 +389,24 @@ ReaderView.Prototype = function() {
   //
 
   this.onToggleResource = function(panel, id) {
-    var state = this.readerCtrl.state;
-    // Toggle off if already on
-    if (state.panel === panel && state.focussedNode === id) {
-      id = null;
-      panel = state.panel;
+    var handled = false;
+    if (this.lastWorkflow && this.lastWorkflow.toggleResource) {
+      handled = this.lastWorkflow.toggleResource(panel, id);
     }
-    this.readerCtrl.modifyState({
-      panel: panel || "toc",
-      focussedNode: id,
-      fullscreen: false
-    });
+    if (!handled) {
+      var state = this.readerCtrl.state;
+      this.lastWorkflow = null;
+      // Toggle off if already on
+      if (state.panel === panel && state.focussedNode === id) {
+        id = null;
+        panel = state.panel;
+      }
+      this.readerCtrl.modifyState({
+        panel: panel || "toc",
+        focussedNode: id,
+        fullscreen: false
+      });
+    }
   };
 
 };
