@@ -549,13 +549,14 @@ span.annotation.formula_reference, span.publication_reference {
 .content-node .definition_reference.highlighted { background-color: #5c6570; color: white; }
 
 /* Focussed states */
-.content-node .annotation.highlighted.focussed {
+/*.content-node .annotation.highlighted.focussed {
   border-bottom: 2px solid;
-}
-.content-node .figure_reference.highlighted.focussed { background-color: rgba(145, 187, 4, 0.7); border-color: green; }
+}*/
+
+/*.content-node .figure_reference.highlighted.focussed { background-color: rgba(145, 187, 4, 0.7); border-color: green; }
 .content-node .citation_reference.highlighted.focussed { background-color: rgba(11, 157, 217, 0.6); border-color: blue; }
 .content-node .contributor_reference.highlighted.focussed { background-color: #5c6570; color: white; border-color: black; }
-.content-node .definition_reference.highlighted.focussed { background-color: #5c6570; color: white; border-color: black; }
+.content-node .definition_reference.highlighted.focussed { background-color: #5c6570; color: white; border-color: black; }*/
 
 /* Cross Reference */
 .content-node .cross_reference:hover {
@@ -956,7 +957,29 @@ as we have a plugin concept for functionality / panels */
 { background-color: #5c6570; border-color: red; }
 
 /* additional right border in the content scrollbar */
-.surface-scrollbar.content .highlighted.focussed { border-right: 3px solid; border-left: none; }
+/*.surface-scrollbar.content .highlighted.focussed { border-right: 3px solid; border-left: none; }*/
 
 /* ... and left border in the resource panel scrollbars */
-.surface-scrollbar .highlighted.focussed { border-left: 3px solid; }
+/*.surface-scrollbar .highlighted.focussed { border-left: 3px solid; }*/
+
+/* new FOCUS handles */
+
+.panel.document  .nodes > .content-node > .focus-handle {
+  display: none;
+  position: absolute;
+  top: 0px;
+  bottom:2px;
+  left: 0px;
+  width: 30px;
+  background: white;
+  border-left: 3px solid #ccc;
+  /*background: #f7f7f7;*/
+  cursor: pointer;
+}
+
+.panel.document  .nodes > .content-node > .focus-handle:hover {
+  /*background: #ccc;*/
+  border-left: 3px solid #bbb;
+  /*border-left: 3px solid #aaa;*/
+  /*border-left: 3px solid #777;*/
+}
