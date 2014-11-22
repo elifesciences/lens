@@ -883,6 +883,11 @@ as we have a plugin concept for functionality / panels */
   background: #5c6570;
 }
 
+/* active contributor */
+.article .resources .info .content-node.highlighted .resource-header {
+  background: #5c6570;
+}
+
 
 /* Scrollbar
 --------------------------------------- */
