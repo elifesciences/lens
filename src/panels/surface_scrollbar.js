@@ -131,6 +131,13 @@ Scrollbar.Prototype = function() {
     // get the new dimensions
     var contentHeight = this.$nodes.height();
     var panelHeight = this.surface.$el.height();
+
+    if (contentHeight > panelHeight) {
+      $(this.el).removeClass('hidden');
+    } else {
+      $(this.el).addClass('hidden');
+    }
+
     // console.log("Scrollbar.update()", contentHeight, panelHeight);
     this.factor = (contentHeight / panelHeight);
     this.surfaceTop = this.$nodes.offset().top;
