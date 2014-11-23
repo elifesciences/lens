@@ -248,7 +248,11 @@ ReaderView.Prototype = function() {
 
     // Highlight the focussed node
     if (state.focussedNode) {
-      currentPanelView.addHighlight(state.focussedNode, "focussed highlighted");
+      var classes = ["focussed", "highlighted"];
+      // HACK: abusing addHighlight for adding the fullscreen class
+      // instead I would prefer to handle such focussing explicitely in a workflow
+      if (state.fullscreen) classes.push("fullscreen");
+      currentPanelView.addHighlight(state.focussedNode, classes.join(' '));
       currentPanelView.scrollTo(state.focussedNode);
     }
 
@@ -375,14 +379,14 @@ ReaderView.Prototype = function() {
   // which is declared via sbs-click in node views (see resource_view)
   // TODO: is there a way to make this mechanism more transparent?
 
-  // this.toggleFullscreen = function(resourceId) {
-  //   var state = this.readerCtrl.state;
-  //   // Always activate the resource
-  //   this.readerCtrl.modifyState({
-  //     focussedNode: resourceId,
-  //     fullscreen: !state.fullscreen
-  //   });
-  // };
+  this.toggleFullscreen = function(resourceId) {
+    var state = this.readerCtrl.state;
+    // Always activate the resource
+    this.readerCtrl.modifyState({
+      focussedNode: resourceId,
+      fullscreen: !state.fullscreen
+    });
+  };
 
   // Toggle on-off a resource
   // --------

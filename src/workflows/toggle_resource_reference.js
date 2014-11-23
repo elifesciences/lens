@@ -46,7 +46,6 @@ ToggleResourceReference.Prototype = function() {
       // show the associated panel, hihglight the resource and scroll to its position
       panelView.activate();
       var classes = ["highlighted"];
-      if (state.fullscreen) classes.push("fullscreen");
       panelView.addHighlight(resourceId, classes.join(" "));
       panelView.scrollTo(resourceId);
       // panelView.scrollbar.update();
