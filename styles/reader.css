@@ -186,6 +186,7 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   color: #111;
 }
 
+
 /* Resources Panel
 ======================================================================= */
 
@@ -687,6 +688,10 @@ span.annotation.formula_reference, span.publication_reference {
 /* Mobile (iPad Portrait, iPhone) */
 @media (max-width: 850px) {
 
+  .article .panel.hidden {
+    display: none;
+  }
+
   .content-node.heading .top {
     display: block;
     position: absolute;
@@ -706,8 +711,18 @@ span.annotation.formula_reference, span.publication_reference {
   html body.reader {
     height: auto;
     overflow: visible;
-    position: relative;
+    position: static;
   }
+
+  /* For mobile it is important that we have no position relative on any element */
+  #container #main {
+    position: static;
+  }
+
+  #container .panel .nodes {
+    position: static;
+  }
+
 
   /* Hide fullscreen toggle for small screens */
   #container .toggle-fullscreen {
@@ -734,19 +749,19 @@ span.annotation.formula_reference, span.publication_reference {
   .article .document {
     width: 100%;
     height: auto;
-    position: relative;
+    position: static;
     z-index: 100;
   }
 
   .article .document .surface.content {
-    position: absolute;
-    position: relative;
+    /*position: absolute;*/
+    position: static;
     overflow: visible;
   }
 
   .article .resources .surface.resource-view {
-    position: absolute;
-    position: relative;
+    /*position: absolute;*/
+    position: static;
     overflow: visible;
   }
 
@@ -756,7 +771,7 @@ span.annotation.formula_reference, span.publication_reference {
 
   #container .article .resources {
     background: #fff;
-    position: relative;
+    position: static;
     width: 100%;
     height: auto;
 
@@ -829,9 +844,11 @@ span.annotation.formula_reference, span.publication_reference {
     color: white;
   }
 
-  .article .medial-strip .context-toggles .context-toggle:hover {
+
+  .article .medial-strip .context-toggles .context-toggle.active {
     color: white;
   }
+
 
   .article .medial-strip .context-toggles .context-toggle.highlighted:hover {
     color: black;

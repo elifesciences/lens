@@ -19,6 +19,11 @@ TocPanelView.Prototype = function() {
     this.toc.setActiveNode(nodeId);
   };
 
+  this.onToggle = function(e) {
+    this.trigger('toggle', "toc");
+    e.preventDefault();
+    e.stopPropagation();
+  };
 };
 TocPanelView.Prototype.prototype = PanelView.prototype;
 TocPanelView.prototype = new TocPanelView.Prototype();

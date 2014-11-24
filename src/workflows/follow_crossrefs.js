@@ -24,7 +24,7 @@ FollowCrossrefs.Prototype = function() {
     e.stopPropagation();
     var refId = e.currentTarget.dataset.id;
     var crossRef = this.readerCtrl.getDocument().get(refId);
-    this.readerView.contentView.jumpToNode(crossRef.target);
+    this.readerView.contentView.scrollTo(crossRef.target);
   };
 
 };

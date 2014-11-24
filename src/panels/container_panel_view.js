@@ -60,45 +60,56 @@ ContainerPanelView.Prototype = function() {
     var n = this.findNodeView(nodeId);
     if (n) {
       var $n = $(n);
-      var scrollTop = this.surface.$el.scrollTop();
+
+      var windowHeight = $(window).height();
       var panelHeight = this.surface.$el.height();
-      var elTop = $n.offset().top;
-      var elHeight = $n.height();
-      var topOffset;
-      // Do not scroll if the element is fully visible
-      if (elTop > 0 && elTop + elHeight < panelHeight) {
-        // everything fine
-        return;
+      var scrollTop;
+      var mobileView = windowHeight < panelHeight
+
+      // In the mobile view we don't relative positioning / absolute.
+      // Everything is in flow of the body element.
+      // This affects how to compute the top offset of a content-node
+      // offset (dependent on scrollpos) vs position (independent of scrollpos)
+      if (mobileView) {
+        scrollTop = $(document).scrollTop();
+
+        var elTop = $n.position().top; // offset from top of panel (either panel-view or document)
+        var elHeight = $n.height();
+        var topOffset;
+
+        // Do not scroll if the element is fully visible
+        if (elTop > scrollTop && elTop < scrollTop + windowHeight) {
+          // everything fine
+          return;
+        } else {
+          topOffset = elTop;
+          $(document).scrollTop(topOffset);
+        }
+
+      } else {
+        scrollTop = this.surface.$el.scrollTop();
+        var elTop = $n.offset().top;
+        var elHeight = $n.height();
+        var topOffset;
+        // Do not scroll if the element is fully visible
+        if ((elTop > 0 && elTop + elHeight < panelHeight) || (elTop >= 0 && elTop < panelHeight)) {
+          // everything fine
+          return;
+        }
+        // In all other cases scroll to the top of the element
+        else {
+          topOffset = scrollTop + elTop;
+        }
+        this.surface.$el.scrollTop(topOffset);
       }
 
-      // If possible scroll so that the element is centered vertically
-      if ( elHeight < panelHeight ) {
-        // Note: if you are wondering why the initial scroll is often not exact
-        // this is currently because the first scrollTo is called while the element is not rendered fully (e.g., image or MathJax)
-        // and the second scrollTo does not do anything because the element might still be visible
-        // To solve that we would need to distinguish updates during initialization (e.g., before images or MathJax has finished)
-        // and regular updates. However, this seems a bit too much for this rather weak requirement.
-        topOffset = scrollTop + elTop - 0.5 * ( panelHeight - elHeight );
-      }
-      else if (elTop >= 0 && elTop < panelHeight) {
-        // We tolerate that in favor of not jumping when something is visible already
-        return;
-      }
-      // In all other cases scroll to the top of the element
-      else {
-        topOffset = scrollTop + elTop;
-      }
-
-      this.surface.$el.scrollTop(topOffset);
-      // TODO: is it possible to detect this case and just do it in mobile?
-      // Brute force for mobile
-      $(document).scrollTop(topOffset);
       this.scrollbar.update();
     } else {
       console.info("PanelView.jumpToResource(): Unknown resource '%s'", nodeId);
     }
   };
 
+  // Legacy API?
   this.jumpToResource = function(nodeId) {
     this.scrollTo(nodeId);
   };
@@ -110,7 +121,7 @@ ContainerPanelView.Prototype = function() {
   this.addHighlight = function(id, classes) {
     PanelView.prototype.addHighlight.call(this, id, classes);
     var node = this.getDocument().get(id);
-    this.scrollbar.addHighlight(id, classes + " " + node.type);
+    if (node) this.scrollbar.addHighlight(id, classes + " " + node.type);
   };
 
   this.removeHighlights = function() {
@@ -124,15 +135,18 @@ ContainerPanelView.Prototype = function() {
     this.scrollbar.update();
   };
 
+  // Note: scrollpos recovery not working atm (only relevant to mobile view)
   this.hide = function() {
-    this.lastScrollPos = this.surface.$el.scrollTop();
+    if (this.hidden) return;
+    this.lastScrollPos = $(document).scrollTop();
     PanelView.prototype.hide.call(this);
   };
 
+  // Note: scrollpos recovery not working atm (only relevant to mobile view)
   this.show = function() {
-    this.surface.$el.scrollTop(this.lastScrollPos);
     this.scrollbar.update();
-    this.$el.removeClass('hidden');
+    PanelView.prototype.show.call(this);
+    $(document).scrollTop(this.lastScrollPos);
   };
 
   // Toggle on-off a resource

@@ -74,7 +74,6 @@ ToggleResourceReference.Prototype = function() {
       });
     }
     else {
-      this.readerView.saveScroll();
       this.readerCtrl.modifyState({
         panel: "content",
         focussedNode: refId

@@ -41,8 +41,10 @@ PanelView.Prototype = function() {
     this.stopListening();
   };
 
-  this.onToggle = function() {
+  this.onToggle = function(e) {
     this.trigger('toggle', this.name);
+    e.preventDefault();
+    e.stopPropagation();
   };
 
   this.getToggleControl = function() {
@@ -51,6 +53,10 @@ PanelView.Prototype = function() {
 
   this.scrollTo = function(nodeId) {
 
+  };
+
+  this.isHidden = function() {
+    return this.hidden;
   };
 
   this.jumpToResource = function(nodeId) {
@@ -63,15 +69,19 @@ PanelView.Prototype = function() {
 
   this.show = function() {
     this.$el.removeClass('hidden');
+    this.hidden = false;
   };
 
   this.hide = function() {
+    if (this.hidden) return;
     this.$el.addClass('hidden');
     this.$toggleEl.removeClass('active');
+    this.hidden = true;
   };
 
   this.activate = function() {
     this.show();
+    $('#main .article')[0].dataset.context = this.name;
     this.$toggleEl.addClass('active');
   };
 

@@ -45,7 +45,6 @@ var ReaderView = function(readerCtrl) {
     property: "target"
   });
 
-
   // whenever a workflow takes control set this variable
   // to be able to call it a last time when switching to another
   // workflow
@@ -78,11 +77,22 @@ var ReaderView = function(readerCtrl) {
     if (currentPanel && currentPanel.hasScrollbar()) {
       currentPanel.scrollbar.update();
     }
+    this.detectRenderMode();
+
   }, this), 1) );
 
 };
 
 ReaderView.Prototype = function() {
+
+  // Mobile or desktop?
+  this.detectRenderMode = function() {
+    if ($(window).width()<=850) {
+      this.renderMode = "mobile";
+    } else {
+      this.renderMode = "desktop";
+    }
+  };
 
   // Rendering
   // --------
@@ -146,6 +156,8 @@ ReaderView.Prototype = function() {
       });
     }, this), 1);
 
+    this.detectRenderMode();
+
     return this;
   };
 
@@ -167,42 +179,8 @@ ReaderView.Prototype = function() {
     this.stopListening();
   };
 
-
   this.getState = function() {
     return this.readerCtrl.state;
-  };
-
-  // Get scroll position of active panel
-  // --------
-  //
-  // Content, Figures, Citations, Info
-
-  this.getScroll = function() {
-    // Only covers the mobile mode!
-    return $(document).scrollTop();
-  };
-
-  // Recover scroll from previous state (if there is any)
-  // --------
-  //
-  // TODO: retrieve from cookie to persist scroll pos over reload?
-
-  this.recoverScroll = function() {
-    var targetScroll = this.bodyScroll[this.getState().panel];
-    if (targetScroll) {
-      $(document).scrollTop(targetScroll);
-    } else {
-      // Scroll to top
-      // $(document).scrollTop(0);
-    }
-  };
-
-  // Save current scroll position
-  // --------
-  //
-
-  this.saveScroll = function() {
-    this.bodyScroll[this.getState().panel] = this.getScroll();
   };
 
   // Explicit panel switch
@@ -212,9 +190,7 @@ ReaderView.Prototype = function() {
   // Implicit panel switches happen when someone clicks a figure reference
 
   this.switchPanel = function(panel) {
-    this.saveScroll();
     this.readerCtrl.switchPanel(panel);
-    this.recoverScroll();
   };
 
   // Update Reader State
@@ -237,8 +213,9 @@ ReaderView.Prototype = function() {
     var currentPanelView = state.panel === "content" ? this.contentView : this.panelViews[state.panel];
 
     _.each(this.panelViews, function(panelView) {
-      panelView.hide();
+      if (!panelView.isHidden()) panelView.hide();
     });
+
     // Always deactivate previous highlights
     this.contentView.removeHighlights();
     // and also rmove highlights from resource panels
@@ -412,7 +389,6 @@ ReaderView.Prototype = function() {
       });
     }
   };
-
 };
 
 ReaderView.Prototype.prototype = View.prototype;
