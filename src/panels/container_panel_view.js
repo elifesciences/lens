@@ -105,13 +105,8 @@ ContainerPanelView.Prototype = function() {
 
       this.scrollbar.update();
     } else {
-      console.info("PanelView.jumpToResource(): Unknown resource '%s'", nodeId);
+      console.info("ContainerPanelView.scrollTo(): Unknown resource '%s'", nodeId);
     }
-  };
-
-  // Legacy API?
-  this.jumpToResource = function(nodeId) {
-    this.scrollTo(nodeId);
   };
 
   this.findNodeView = function(nodeId) {
@@ -147,17 +142,6 @@ ContainerPanelView.Prototype = function() {
     this.scrollbar.update();
     PanelView.prototype.show.call(this);
     $(document).scrollTop(this.lastScrollPos);
-  };
-
-  // Toggle on-off a resource
-  // --------
-  //
-  // Note: this is called via event delegator
-  // which is declared via sbs-click in node views (see resource_view)
-  // TODO: is there a way to make this mechanism more transparent?
-
-  this.toggleResource = function(id) {
-    this.trigger("toggle-resource", this.name, id);
   };
 
 };
