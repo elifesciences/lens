@@ -5,31 +5,14 @@ var Workflow = require('./workflow');
 
 var ToggleResourceReference = function() {
   Workflow.apply(this, arguments);
-
-  this.handlers = [];
-  this.panelForRef = {};
 };
 
 ToggleResourceReference.Prototype = function() {
 
   this.registerHandlers = function() {
-    // Register event delegates to react on clicks on a reference node in the content panel
-    _.each(this.readerCtrl.panels, function(panel) {
-      var name = panel.getName();
-      var config = panel.getConfig();
-      _.each(config.references, function(refType) {
-        this.panelForRef[refType] = name;
-        var handler = _.bind(this.toggleResourceReference, this, name);
-        this.handlers.push(handler);
-        this.readerView.$el.on('click', '.annotation.' + refType, handler);
-      }, this);
-    }, this);
   };
 
   this.unRegisterHandlers = function() {
-    for (var i = 0; i < this.handlers.length; i++) {
-      this.readerView.$el.off('click', this.handlers[i]);
-    }
   };
 
   this.handlesStateUpdate = true;
@@ -37,10 +20,10 @@ ToggleResourceReference.Prototype = function() {
   this.handleStateUpdate = function(state, stateInfo) {
     // if the reference type is registered with this workflow
     // open the panel and show highlights
-    if (stateInfo.focussedNode && this.panelForRef[stateInfo.focussedNode.type]) {
+    if (stateInfo.focussedNode && this.readerView.panelForRef[stateInfo.focussedNode.type]) {
       var ref = stateInfo.focussedNode;
-      var panel = this.panelForRef[ref.type];
-      var panelView = this.readerView.panelViews[panel];
+      var panelName = this.readerView.panelForRef[ref.type];
+      var panelView = this.readerView.panelViews[panelName];
       var contentView = this.readerView.contentView;
       var resourceId = ref.target;
       // show the associated panel, hihglight the resource and scroll to its position
@@ -58,27 +41,6 @@ ToggleResourceReference.Prototype = function() {
       return true;
     }
     return false;
-  };
-
-  this.toggleResourceReference = function(panel, e) {
-    e.preventDefault();
-    e.stopPropagation();
-
-    var state = this.readerCtrl.state;
-    var refId = e.currentTarget.dataset.id;
-    // If the resource is active currently, deactivate it
-    if (refId === state.focussedNode) {
-      this.readerCtrl.modifyState({
-        panel: this.readerCtrl.currentPanel,
-        focussedNode: null
-      });
-    }
-    else {
-      this.readerCtrl.modifyState({
-        panel: "content",
-        focussedNode: refId
-      });
-    }
   };
 
 };

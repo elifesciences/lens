@@ -32,10 +32,20 @@ var ReaderView = function(readerCtrl) {
   this.contentView = readerCtrl.panelCtrls.content.createView();
   this.tocView = this.contentView.getTocView();
 
+
   this.panelViews = {};
+  // mapping to associate reference types to panels
+  // NB, in Lens each resource type has one dedicated panel;
+  // clicking on a reference opens this panel
+  this.panelForRef = {};
+
   _.each(readerCtrl.panels, function(panel) {
-    var panelCtrl = readerCtrl.panelCtrls[panel.getName()];
-    this.panelViews[panel.getName()] = panelCtrl.createView();
+    var name = panel.getName();
+    var panelCtrl = readerCtrl.panelCtrls[name];
+    this.panelViews[name] = panelCtrl.createView();
+    _.each(panel.config.references, function(refType) {
+      this.panelForRef[refType] = name;
+    }, this);
   }, this);
   this.panelViews['toc'] = this.tocView;
 
@@ -49,25 +59,36 @@ var ReaderView = function(readerCtrl) {
   // to be able to call it a last time when switching to another
   // workflow
   this.lastWorkflow = null;
+  this.lastPanel = "toc";
 
   // Events
   // --------
   //
 
-  this._onClickPanel = _.bind( this.switchPanel, this );
+  this._onTogglePanel = _.bind( this.switchPanel, this );
 
   // Whenever a state change happens (e.g. user navigates somewhere)
   // the interface gets updated accordingly
   this.listenTo(this.readerCtrl, "state-changed", this.updateState);
 
+  this.listenTo(this.tocView,'toggle', this._onTogglePanel);
   _.each(this.panelViews, function(panelView) {
+    this.listenTo(panelView, "toggle", this._onTogglePanel);
     this.listenTo(panelView, "toggle-resource", this.onToggleResource);
+    this.listenTo(panelView, "toggle-resource-reference", this.onToggleResourceReference);
+    this.listenTo(panelView, "toggle-fullscreen", this.onToggleFullscreen);
   }, this);
+  // TODO: treat content panel as panelView and delegate to tocView where necessary
+  this.listenTo(this.contentView, "toggle", this._onTogglePanel);
+  this.listenTo(this.contentView, "toggle-resource", this.onToggleResource);
+  this.listenTo(this.contentView, "toggle-resource-reference", this.onToggleResourceReference);
+  this.listenTo(this.contentView, "toggle-fullscreen", this.onToggleFullscreen);
 
   // attach workflows
   _.each(this.readerCtrl.workflows, function(workflow) {
     workflow.attach(this.readerCtrl, this);
   }, this);
+
 
   // attach a lazy/debounced handler for resize events
   // that updates the outline of the currently active panels
@@ -191,6 +212,8 @@ ReaderView.Prototype = function() {
 
   this.switchPanel = function(panel) {
     this.readerCtrl.switchPanel(panel);
+    // keep this so that it gets opened when leaving another panel (toggling reference)
+    this.lastPanel = panel;
   };
 
   // Update Reader State
@@ -300,95 +323,60 @@ ReaderView.Prototype = function() {
     }
   };
 
-  // Based on the current application state, highlight the current resource
-  // -------
-  //
-  // Triggered by updateState
-
-  // this.updateResource = function() {
-  //   var state = this.readerCtrl.state;
-  //   this.contentView.deactivateActiveAnnotations();
-  //   if (state.right) {
-  //     var resourcePanel = this.panelViews[state.panel];
-  //     resourcePanel.activateResource(state.right, state.fullscreen);
-  //     this.contentView.markReferencesTo(state.right);
-  //   } else {
-  //     this.recoverScroll();
-  //     // Hide all resources (see above)
-  //   }
-  //   this.updateOutline();
-  // };
-
-  // Whenever the app state changes
-  // --------
-  //
-  // Triggered by updateResource.
-
-  // this.updateOutline = function() {
-  //   var state = this.getState();
-  //   this.contentView.updateOutline({
-  //     selectedNode: state.left,
-  //     highlightClass: state.panel,
-  //     target: state.right
-  //   });
-  //   var panelView = this.panelViews[state.panel];
-  //   if(panelView.hasOutline) panelView.updateOutline({
-  //     selectedNode: state.left,
-  //     highlightClass: state.panel,
-  //     highlightedNodes: [state.right]
-  //   });
-  // };
-
   this.getPanelView = function(name) {
     return this.panelViews[name];
   };
 
-  // this.jumpToResource = function(resourceId) {
-  //   var state =  this.getState();
-  //   var panelView = this.panelViews[state.panel];
-  //   panelView.jumpToResource(resourceId);
-  // };
-
-  // Toggles on and off the zoom
+  // Toggle (off) a resource
   // --------
   //
-  // Note: this is called via event delegator
-  // which is declared via sbs-click in node views (see resource_view)
-  // TODO: is there a way to make this mechanism more transparent?
 
-  this.toggleFullscreen = function(resourceId) {
-    var state = this.readerCtrl.state;
-    // Always activate the resource
-    this.readerCtrl.modifyState({
-      focussedNode: resourceId,
-      fullscreen: !state.fullscreen
-    });
+  this.onToggleResource = function(panel, id, element) {
+    console.log("ReaderView.onToggleResource", panel, id, element);
+    if (element.classList.contains('highlighted')) {
+      this.readerCtrl.modifyState({
+        panel: this.lastPanel,
+        focussedNode: null,
+        fullscreen: false
+      });
+    } else {
+      this.readerCtrl.modifyState({
+        panel: panel,
+        focussedNode: id
+      });
+    }
   };
 
-  // Toggle on-off a resource
+  // Toggle (off) a reference
   // --------
-  //
 
-  this.onToggleResource = function(panel, id) {
-    var handled = false;
-    if (this.lastWorkflow && this.lastWorkflow.toggleResource) {
-      handled = this.lastWorkflow.toggleResource(panel, id);
-    }
-    if (!handled) {
-      var state = this.readerCtrl.state;
-      this.lastWorkflow = null;
-      // Toggle off if already on
-      if (state.panel === panel && state.focussedNode === id) {
-        id = null;
-        panel = state.panel;
-      }
+  this.onToggleResourceReference = function(panel, id, element) {
+    if (element.classList.contains('highlighted')) {
       this.readerCtrl.modifyState({
-        panel: panel || "toc",
+        panel: this.lastPanel,
+        focussedNode: null,
+        fullscreen: false
+      });
+    } else {
+      // FIXME: ATM the state always assumes 'content' as the containing panel
+      // Instead, we also let the panel catch the event and then delegate to ReaderView providing the context as done with onToggleResource
+      this.readerCtrl.modifyState({
+        panel: "content",
         focussedNode: id,
         fullscreen: false
       });
     }
   };
+
+  this.onToggleFullscreen = function(panel, id) {
+    var fullscreen = !this.readerCtrl.state.fullscreen;
+    this.readerCtrl.modifyState({
+      panel: panel,
+      focussedNode: id,
+      fullscreen: fullscreen
+    });
+  };
+
 };
 
 ReaderView.Prototype.prototype = View.prototype;

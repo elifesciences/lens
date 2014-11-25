@@ -26,8 +26,17 @@ var PanelView = function(panelController, config) {
     this.$el.addClass('resource-view');
   }
 
+  // Events
+
   this._onToggle = _.bind( this.onToggle, this );
+  this._onToggleResource = _.bind( this.onToggleResource, this );
+  this._onToggleResourceReference = _.bind( this.onToggleResourceReference, this );
+  this._onToggleFullscreen = _.bind( this.onToggleFullscreen, this);
+
   this.$toggleEl.click( this._onToggle );
+  this.$el.on('click', '.action-toggle-resource', this._onToggleResource);
+  this.$el.on('click', '.toggle-fullscreen', this._onToggleFullscreen);
+  this.$el.on('click', '.annotation.resource-reference', this._onToggleResourceReference);
 
   // we always keep track of nodes that have are highlighted ('active', 'focussed')
   this.highlightedNodes = [];
@@ -38,6 +47,9 @@ PanelView.Prototype = function() {
   this.dispose = function() {
     this.$toggleEl.off('click', this._onClick);
     this.$el.off('scroll', this._onScroll);
+    this.$el.off('click', '.a.action-toggle-resource', this._onToggleResource);
+    this.$el.off('click', '.a.toggle-fullscreen', this._onToggleFullscreen);
+    this.$el.off('click', '.annotation.reference', this._onToggleResourceReference);
     this.stopListening();
   };
 
@@ -49,18 +61,6 @@ PanelView.Prototype = function() {
 
   this.getToggleControl = function() {
     return this.toggleEl;
-  };
-
-  this.scrollTo = function(nodeId) {
-
-  };
-
-  this.isHidden = function() {
-    return this.hidden;
-  };
-
-  this.jumpToResource = function(nodeId) {
-    // A panel with a scrollable element should implement this method (e.g., see ContainerPanelView)
   };
 
   this.hasScrollbar = function() {
@@ -77,6 +77,10 @@ PanelView.Prototype = function() {
     this.$el.addClass('hidden');
     this.$toggleEl.removeClass('active');
     this.hidden = true;
+  };
+
+  this.isHidden = function() {
+    return this.hidden;
   };
 
   this.activate = function() {
@@ -121,6 +125,36 @@ PanelView.Prototype = function() {
 
   this.findNodeView = function(nodeId) {
     return this.el.querySelector('*[data-id='+nodeId+']');
+  };
+
+
+  // Event handling
+  // --------
+  //
+
+  this.onToggleResource = function(event) {
+    console.log("PanelView.onToggleResource");
+    event.preventDefault();
+    event.stopPropagation();
+    var element = $(event.currentTarget).parents('.content-node')[0];
+    var id = element.dataset.id;
+    this.trigger("toggle-resource", this.name, id, element);
+  };
+
+  this.onToggleResourceReference = function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    var element = event.currentTarget;
+    var refId = event.currentTarget.dataset.id;
+    this.trigger("toggle-resource-reference", this.name, refId, element);
+  };
+
+  this.onToggleFullscreen = function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    var id = event.currentTarget.dataset.id;
+    var element = this.findNodeView(id);
+    this.trigger("toggle-fullscreen", this.name, id, element);
   };
 
 };
