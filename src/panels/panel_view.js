@@ -152,8 +152,8 @@ PanelView.Prototype = function() {
   this.onToggleFullscreen = function(event) {
     event.preventDefault();
     event.stopPropagation();
-    var id = event.currentTarget.dataset.id;
-    var element = this.findNodeView(id);
+    var element = $(event.currentTarget).parents('.content-node')[0];
+    var id = element.dataset.id;
     this.trigger("toggle-fullscreen", this.name, id, element);
   };
 
