@@ -162,7 +162,6 @@ body.reader #main {
 }
 
 #container .loading {
-  font-family: 'Avenir LT W01 85 Heavy', 'Montserrat', 'Source Sans Pro';
   position: absolute;
   top: 15px;
   left: 70px;
@@ -175,7 +174,6 @@ body.reader #main {
 
 /* Loading bar */
 
-
 .spinner-wrapper {
   position: fixed;
   display: none;
@@ -184,7 +182,6 @@ body.reader #main {
   width: 150px;
   top: 40%;
   z-index: 5000;
-  font-family: 'Avenir LT W01 85 Heavy', 'Montserrat', 'Source Sans Pro';
 }
 
 body.loading .spinner-wrapper {
