@@ -15,7 +15,8 @@ var ContentPanelView = function( panelCtrl, viewFactory, config ) {
 
   this._onTocItemSelected = _.bind( this.onTocItemSelected, this );
 
-  this.resources = new Index(panelCtrl.getDocument(), {
+  // TODO: we should provide this index 'by default', as it is required by other (node/panel) views, too
+  this.resources = panelCtrl.getDocument().addIndex('referenceByTarget', {
     types: ["resource_reference"],
     property: "target"
   });
