@@ -3,8 +3,8 @@
 var Panel = require('./panel');
 var ContainerPanelController = require('./container_panel_controller');
 
-var ContainerPanel = function( doc, config ) {
-  Panel.call(this, doc, config);
+var ContainerPanel = function( config ) {
+  Panel.call(this, config);
 };
 ContainerPanel.Prototype = function() {
   this.createController = function(doc) {
