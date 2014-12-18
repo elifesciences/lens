@@ -133,7 +133,7 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 
 .article .context-toggles {
   position: absolute;
-  top: 100px;
+  top: 30px;
   left: 0px;
   right: 0px;
 
@@ -203,11 +203,11 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   /*overflow: auto;*/
 }
 
-.article .resources .panel {
+/*.article .resources .panel {
   height: 100%;
-}
+}*/
 
-.article .resources .surface {
+.article .resources .panel {
   position: absolute;
   top: 0px;
   bottom: 0px;
