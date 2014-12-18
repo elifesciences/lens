@@ -258,8 +258,9 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 /* TOC View
 ----------------------------------------------------------------------- */
 
-.resource-view.toc {
-  left: 50px;
+
+.article .resources .panel .toc {
+  padding-left: 50px;
   overflow: auto;
   padding-top: 30px;
 }
