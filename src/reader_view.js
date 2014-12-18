@@ -61,6 +61,8 @@ var ReaderView = function(readerCtrl) {
   this.lastWorkflow = null;
   this.lastPanel = "toc";
 
+  this.formulaWidths = {};
+
   // Events
   // --------
   //
@@ -99,6 +101,7 @@ var ReaderView = function(readerCtrl) {
       currentPanel.scrollbar.update();
     }
     this.detectRenderMode();
+    this.fitFormulas();
 
   }, this), 1) );
 
@@ -174,12 +177,46 @@ ReaderView.Prototype = function() {
         console.log('Updating after MathJax has finished.');
         // HACK: using updateState() instead of updateScrollbars() as it also knows how to scroll
         self.updateState();
+
+        if (self.fitFormulas) {
+          self.fitFormulas();
+        }
       });
     }, this), 1);
 
     this.detectRenderMode();
 
     return this;
+  };
+
+  this.fitFormulas = function() {
+    var self = this;
+
+    // MathJax_Display
+    $('.content-node.formula').each(function() {
+      var nodeId = $(this).find('.MathJax_Display .MathJax').attr("id");
+
+      var mathjaxContainer = $(this).find('.MathJax_Display')[0];
+      var containerWidth = $(mathjaxContainer).width();
+      
+      if (!self.formulaWidths[nodeId]) {
+        var range = document.createRange();
+        range.selectNodeContents(mathjaxContainer);
+        var rect = range.getBoundingClientRect();
+
+        self.formulaWidths[nodeId] = rect.width;
+        // console.log("content width for ", nodeId, self.formulaWidths[nodeId]);
+      }
+
+      var CORRECTION_FACTOR = 0.92;
+      var ratio = containerWidth / self.formulaWidths[nodeId]*CORRECTION_FACTOR;
+
+      if (ratio < 1) {
+        var mathEl = $(this).find('.math')[0];
+        mathEl.style["transform-origin"] = "0 0";
+        mathEl.style.transform = "scale("+ratio+")";
+      }
+    });
   };
 
   // Free the memory.
