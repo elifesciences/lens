@@ -198,13 +198,14 @@ ReaderView.Prototype = function() {
 
       var mathjaxContainer = $(this).find('.MathJax_Display')[0];
       var containerWidth = $(mathjaxContainer).width();
+
+      var INDENT = 3.0;
       
       if (!self.formulaWidths[nodeId]) {
-        var range = document.createRange();
-        range.selectNodeContents(mathjaxContainer);
-        var rect = range.getBoundingClientRect();
+        var spanElement = $(mathjaxContainer).find(".math")[0];
+        var style = window.getComputedStyle(spanElement);
 
-        self.formulaWidths[nodeId] = rect.width;
+        self.formulaWidths[nodeId] = parseFloat(style.fontSize) * (spanElement.bbox.w + INDENT);
         // console.log("content width for ", nodeId, self.formulaWidths[nodeId]);
       }
 
