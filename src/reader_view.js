@@ -214,7 +214,7 @@ ReaderView.Prototype = function() {
 
       if (ratio < 1) {
         var mathEl = $(this).find('.math')[0];
-        mathEl.style["transform-origin"] = "0 0";
+        mathEl.style.transformOrigin = "top left";
         mathEl.style.transform = "scale("+ratio+")";
       }
     });
