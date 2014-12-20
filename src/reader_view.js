@@ -210,13 +210,11 @@ ReaderView.Prototype = function() {
       }
 
       var CORRECTION_FACTOR = 0.92;
-      var ratio = containerWidth / self.formulaWidths[nodeId]*CORRECTION_FACTOR;
+      var ratio = Math.min(containerWidth / self.formulaWidths[nodeId]*CORRECTION_FACTOR,1.0);
 
-      if (ratio < 1) {
-        var mathEl = $(this).find('.math')[0];
-        mathEl.style.transformOrigin = "top left";
-        mathEl.style.transform = "scale("+ratio+")";
-      }
+      var mathEl = $(this).find('.math')[0];
+      mathEl.style.transformOrigin = "top left";
+      mathEl.style.transform = "scale("+ratio+")";
     });
   };
 
