@@ -2,13 +2,10 @@
 
 <!--**Lens** provides a novel way of looking at content on the web. It is designed to make life easier for researchers, reviewers, authors and readers. For example, have you tried to look at a figure in an online article, while at the same time trying to see what the author says about the figure, jumping all around the article, losing track of what you were looking for in the first place? The reason for this is that most online research articles are published in a fixed digital version of the original paper. With Lens, we take full advantage of the internet’s flexibility.-->
 
-Lens provides a novel way of looking at content on the web. It is designed to make life easier for researchers, reviewers, authors and readers.
+**Lens** provides a novel way of looking at content on the web. It is designed to make life easier for researchers, reviewers, authors and readers.
 
 **Read the [announcement](http://elifesciences.org/elife-news/lens) and watch the [introduction video](http://vimeo.com/67254579).**
 
-## 
-
-Lens has a pretty simple architecture. It is a stand-alone web component that can be embedded into any web page. Lens can display any NLM XML document or, alternatively, the Lens-native JSON representation. What is important to note is that Lens doesn't dictate a specific architecture for content hosting. It is all just client-side Javascript. Anyone (even authors) can host their own documents and customized Lens instances.
 
 <!--
 ## The Lens Article Format
@@ -20,9 +17,7 @@ The Lens Article is based on the [Substance Document Model](http://github.com/su
 
 # Using Lens
 
-The easiest way to integrate Lens into your website is by creating one HTML file per document and adapting the url to the document you want to display.
-
-Just take the contents from the latest [distribution](https://github.com/elifesciences/lens/releases), then adjust the `document_url` parameter in `index.html`.
+Lens is a stand-alone web component that can be embedded into any web page. Just take the contents from the latest [distribution](https://github.com/elifesciences/lens/releases), then adjust the `document_url` parameter in `index.html`.
 
 ```js
 // Endpoint must have CORS enabled, or file is served from the same domain as the app
@@ -33,7 +28,7 @@ var app = new Lens({
 });
 ```
 
-Keep in mind, with eLife Lens you can display any NLM-compatible XML file or JSON document that corresponds to the Lens Article Format. You can enrich your HTML file with `<meta>` tags etc. to ensure Google crawlablility. There is no server infrastructure needed to run Lens, as it's 100% browser-based. If you have questions please consult the [Lens Mailinglist](https://groups.google.com/forum/#!forum/elife-lens).
+Lens can display any NLM XML document or, alternatively, the Lens-native JSON representation. What is important to note is that Lens doesn't dictate a specific architecture for content hosting. It is all just client-side Javascript. Anyone (even authors) can host their own documents and customized Lens instances.
 
 # Lens development
 
