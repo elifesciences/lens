@@ -33,13 +33,13 @@ Lens can display any NLM XML document or, alternatively, the Lens-native JSON re
 
 ## Lens development
 
-Lens is meant to be customized, so you want to 
+Lens is meant to be extended and customized. Touch the code!
 
-## Prerequisites
+### Prerequisites
 
 For Lens development, you need to have Node.js >=0.10.x installed.
 
-### Substance Screwdriver
+#### Substance Screwdriver
 
 We use a custom Python tool to manage Git repositories.
 We didn't opt for using Git sub-modules as it doesn't make it easier but rather even more complicated.
@@ -59,7 +59,7 @@ $ sudo python setup.py install
 
 You need to repeat that install step whenever you updated the screwdriver repo.
 
-## Setup
+### Setup
 
 1. Clone the lens-starter repository
 
@@ -95,7 +95,7 @@ $ git pull
 $ substance --update
 ```
 
-## Panels
+### Panels
 
 Lens can easily be extended with a customized panel. It can be used to show additional information relevant to the displayed article. A few examples of what you could do:
 
@@ -105,11 +105,8 @@ Lens can easily be extended with a customized panel. It can be used to show addi
 
 For demonstration we will look at the implementation of a simple Altmetrics panel. It will pull data asynchronously from the Altmetrics API (http://api.altmetric.com/v1/doi/10.7554/eLife.00005) and render the information in Lens.
 
-### Preparation
 
-Please install and run [Lens Starter](http://github.com/elifesciences/lens-starter) first. Follow the instructions in the README.
-
-### Panel Definition
+#### Panel Definition
 
 This is the main entry point for a panel.
 
@@ -123,7 +120,6 @@ var AltmetricsController = require('./altmetrics_controller');
 var panel = new Panel({
 	name: "altmetrics",
   type: 'resource',
-  label: 'Altmetrics',
   title: 'Altmetrics',
   icon: 'icon-bar-chart',
 });
@@ -137,7 +133,7 @@ module.exports = panel;
 
 ### Panel Controller
 
-The controller provides a `getAltmetrics` method that we will use in the view to fetch data from altmetrics.com asynchronously. Using the Substance Document API we retrieve the DOI, which is stored on the `publication_info` node.
+Our custom controller provides a `getAltmetrics` method, that we will use in the view to fetch data from altmetrics.com asynchronously. Using the Substance Document API we retrieve the DOI, which is stored on the `publication_info` node.
 
 ```js
 // src panels/altmetrics_controller.js
@@ -239,16 +235,12 @@ In the app definition file `src/app.js` find the following line:
 var panels = Lens.getDefaultPanels();
 ```
 
-Now you are able to manipulate that array to include
+Now you are able to manipulate that array to include an additional panel. This code adds the altmetrics panel to the next to last position (before the info panel).
 
 ```js
 var altmetricsPanel = require('./panels/altmetrics');
 panels.splice(-1, 0, altmetricsPanel);
 ```
-
-This code adds the panel to the next to last position (before the info panel).
-
-
 
 ## Bundling
 
@@ -288,8 +280,7 @@ http://127.0.0.1:8000/doc.html?url=data/samples/preprocessed/bproc1.xml
 Adjust the 'url' parameter to open a different document.
 
 
-
-# Advanced tools
+## Advanced tools
 
 ### Sublime 2 Integration
 
@@ -297,22 +288,23 @@ We use a custom Sublime plugin which adds a summary page to show all pending cha
 
 MacOSX:
 
-```
+```bash
 $ cd $HOME/Library/Application Support/Sublime Text 2/Packages
 $ git clone https://github.com/substance/sublime.git Substance
 ```
 
 Linux (Ubuntu):
-```
+
+```bash
 $ cd ~/.config/sublime-text-2/Packages
 $ git clone https://github.com/substance/sublime.git Substance
 ```
 
-# Credits
+## Credits
 
 Lens was developed in collaboration between [UC Berkeley](http://bioegrad.berkeley.edu/) graduate student [Ivan Grubisic](http://www.linkedin.com/pub/ivan-grubisic/26/353/739) and [eLife](http://elifesciences.org). The team of [Substance](http://substance.io) is helping with the technical execution.
 
-Substantial contributions were made by HighWire, which launched Lens for a number of science journals in fall 2014 (The Journal of Biological Chemistry, The Plant Cell, Journal of Lipid Research, mBio®, and more). The American Mathematical Society (AMS) made Lens ready for viewing math articles, using LaTeX an input.
+Substantial contributions were made by [HighWire](highwire.org), which launched Lens for a number of science journals in fall 2014 (The Journal of Biological Chemistry, The Plant Cell, Journal of Lipid Research, mBio®, and more). [The American Mathematical Society (AMS)](http://ams.org/) made Lens ready for rendering math articles.
 
 Thanks go to the following people, who made Lens possible:
 
