@@ -245,10 +245,18 @@ panels.splice(-1, 0, altmetricsPanel);
 
 ### Custom CSS
 
-Lens can be styled with custom CSS easily. The following code is a fragment of 
+Lens can be styled with custom CSS easily. You can put a CSS file anywhere and reference it from the style section in `project.json`. E.g. the styles for the altmetrics panel were referenced like that.
 
-// src/panels/altmetrics.css.js
+```js
+// .screwdriver/project.json
+In order to consider 
 
+  "styles": {
+    ...
+    "styles/altmetrics.css": "src/panels/altmetrics/altmetrics.css",
+    ...
+  },
+```
 
 ### Converter
 
