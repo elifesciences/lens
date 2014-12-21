@@ -213,7 +213,13 @@ ReaderView.Prototype = function() {
       var ratio = Math.min(containerWidth / self.formulaWidths[nodeId]*CORRECTION_FACTOR,1.0);
 
       var mathEl = $(this).find('.math')[0];
+      mathEl.style["-webkit-transform-origin"] = "top left";
+      mathEl.style["-moz-transform-origin"] = "top left";
+      mathEl.style["-ms-transform-origin"] = "top left";
       mathEl.style.transformOrigin = "top left";
+      mathEl.style["-webkit-transform"] = "scale("+ratio+")";
+      mathEl.style["-moz-transform"] = "scale("+ratio+")";
+      mathEl.style["-ms-transform"] = "scale("+ratio+")";
       mathEl.style.transform = "scale("+ratio+")";
     });
   };
