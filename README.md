@@ -4,8 +4,9 @@
 
 **Lens** provides a novel way of looking at content on the web. It is designed to make life easier for researchers, reviewers, authors and readers.
 
-**Read the [announcement](http://elifesciences.org/elife-news/lens) and watch the [introduction video](http://vimeo.com/67254579).**
-
+- **See an example article [announcement](http://lens.elifesciences.org/00778)**
+- **Read the [announcement](http://elifesciences.org/elife-news/lens)**
+- **Watch the [introduction video](http://vimeo.com/67254579).**
 
 <!--
 ## The Lens Article Format
