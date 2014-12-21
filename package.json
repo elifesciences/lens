@@ -35,7 +35,7 @@
   "devDependencies": {
     "substance-cjs": "git+https://github.com/substance/cjs.git#master"
   },
-  "version": "1.0.0",
+  "version": "2.0.0",
   "engines": {
     "node": ">=0.8.x",
     "npm": ">=1.1.x"
