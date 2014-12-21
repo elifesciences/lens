@@ -1,6 +1,6 @@
-**Lens** provides a novel way of looking at content on the web. It is designed to make life easier for researchers, reviewers, authors and readers. For example, have you tried to look at a figure in an online article, while at the same time trying to see what the author says about the figure, jumping all around the article, losing track of what you were looking for in the first place? The reason for this is that most online research articles are published in a fixed digital version of the original paper. With eLife Lens, we take full advantage of the internet’s flexibility.
+# Lens
 
-# Introduction
+**Lens** provides a novel way of looking at content on the web. It is designed to make life easier for researchers, reviewers, authors and readers. For example, have you tried to look at a figure in an online article, while at the same time trying to see what the author says about the figure, jumping all around the article, losing track of what you were looking for in the first place? The reason for this is that most online research articles are published in a fixed digital version of the original paper. With eLife Lens, we take full advantage of the internet’s flexibility.
 
 Lens has a pretty simple architecture. It is a stand-alone web component that can be embedded into any web page. Lens can display any NLM XML document or, alternatively, the Lens-native JSON representation. What is important to note is that Lens doesn't dictate a specific architecture for content hosting. It is all just client-side Javascript. Anyone (even authors) can host their own documents and customized Lens instances.
 
