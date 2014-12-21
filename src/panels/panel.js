@@ -2,6 +2,7 @@
 
 var Panel = function(config) {
   this.config = config;
+  this.config.label = config.title;
 };
 
 Panel.Prototype = function() {
