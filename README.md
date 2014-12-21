@@ -88,15 +88,13 @@ To receive all new changes update the main repo and then use the screwdriver aga
 ```
 $ git pull
 $ substance --update
-
+```
 
 ## Panels
 
-<!--AMS uses this mechanism to show a math panel. eLife is displaying a related articles in a separate panel.-->
+Lens can easily be extended with a customized panel. It can be used to show additional information relevant to the displayed article. A few examples of what you could do:
 
-It is easy to extend Lens with a customized panel. It can be used to show additional information relevant to the displayed article. A few examples of what you could do:
-
-- Pull in tweets that talk about current article
+- Pull in tweets that talk about the current article
 - Pull in metrics (click count, number of articles citing that article etc.)
 - Retrieve related articles dynamically (e.g. important ones that reference the existing one)
 
