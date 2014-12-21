@@ -131,12 +131,12 @@ panel.createController = function(doc) {
 module.exports = panel;
 ```
 
-### Panel Controller
+#### Panel Controller
 
 Our custom controller provides a `getAltmetrics` method, that we will use in the view to fetch data from altmetrics.com asynchronously. Using the Substance Document API we retrieve the DOI, which is stored on the `publication_info` node.
 
 ```js
-// src panels/altmetrics_controller.js
+// src/panels/altmetrics_controller.js
 
 var PanelController = require("lens").PanelController;
 var AltmetricsView = require("./altmetrics_view");
@@ -170,11 +170,12 @@ AltmetricsController.prototype = new AltmetricsController.Prototype();
 module.exports = AltmetricsController;
 ```
 
-### Panel View
+#### Panel View
 
-The Panel View is where you define, what should be rendered in your custom panel. Your implementation needs to inherit from `Lens.PanelView` and define a render method. The implementation of the altmetrics panel is pretty simple.
+The Panel View is where you define, what should be rendered in your custom panel. Your implementation needs to inherit from `Lens.PanelView` and define a render method. The implementation of the altmetrics panel is pretty simple. We will show the panel (`PanelView.showToggle`) as soon as data from altmetric.com has arrived.
 
 ```js
+// src/panels/altmetrics_view.js
 var PanelView = require('lens').PanelView;
 
 var AltmetricsView = function(panelCtrl, config) {
@@ -227,7 +228,7 @@ AltmetricsView.prototype.constructor = AltmetricsView;
 module.exports = AltmetricsView;
 ```
 
-### Activate Panel
+#### Activate Panel
 
 In the app definition file `src/app.js` find the following line:
 
@@ -242,7 +243,30 @@ var altmetricsPanel = require('./panels/altmetrics');
 panels.splice(-1, 0, altmetricsPanel);
 ```
 
-## Bundling
+### Custom CSS
+
+Lens can be styled with custom CSS easily. The following code is a fragment of 
+
+// src/panels/altmetrics.css.js
+
+
+### Converter
+
+Lens can natively read the JATS (formerly NLM) format, thanks to its built-in converter.
+Conversion is done on the client side using the browser-native DOM Parser. Using it is simple:
+
+```js
+var importer = new LensImporter();
+var doc = importer.import(xmlData, {
+  // this path is used to resolve relative figure urls
+  baseURL: "http://docs.example.com/doc-25/"
+});
+```
+
+The converter can handle any NLM-compatible file. Some portions are publisher-specific, such as when resolving the urls for figures and videos. This is done in configurations.
+
+
+### Bundling
 
 You need to have `browserify` and `uglify-js` installed.
 
@@ -308,10 +332,22 @@ Substantial contributions were made by [HighWire](highwire.org), which launched 
 
 Thanks go to the following people, who made Lens possible:
 
-- Ivan Grubisic
-- Ian Mulvany (eLife)
-- Oliver Buchtala (Substance)
-- Michael Aufreiter (Substance)
-- Graham Nott
-- Rebecca Close
-- Samo Korošec (froodee)
+- Ivan Grubisic (concept, dev)
+- Ian Mulvany (leadership)
+- Oliver Buchtala (dev)
+- Michael Aufreiter (dev)
+- Graham Nott (infrastructure)
+- Rebecca Close (converter)
+- Felix Breuer (math)
+- Peter Krautzberger (math)
+- Samo Korošec (design)
+
+
+<!-- 
+	TODO:
+	
+	- proper converter docs (custom property)
+	- update to fontawesome 4.2.0
+	update jquery
+-->
+
