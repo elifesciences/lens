@@ -25,7 +25,7 @@ var app = new Lens({
 });
 ```
 
-Keep in mind, with eLife Lens you can display any NLM-compatible XML file or JSON document that conforms to the Lens Article spec. You can enrich your HTML file with `<meta>` tags etc. to ensure Google crawlablility. There is no server infrastructure needed to run Lens, as it is 100% browser-based. If you have questions, please consult the Lens Mailinglist.
+Keep in mind, with eLife Lens you can display any NLM-compatible XML file or JSON document that corresponds to the Lens Article Format. You can enrich your HTML file with `<meta>` tags etc. to ensure Google crawlablility. There is no server infrastructure needed to run Lens, as it's 100% browser-based. If you have questions please consult the [Lens Mailinglist](https://groups.google.com/forum/#!forum/elife-lens).
 
 # Lens development
 
