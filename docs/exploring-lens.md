@@ -79,11 +79,13 @@ Once you've verified that these key bindings work as expected, commit or discard
 
 
 ## Contributing code
+
 If you are going to write code that you want to contribute back to the lens communtiy, then you're going to be putting in pull requests to three repos: lens, lens-article[? TODO: verify this, and confirm specificity order], and lens-converter. When you have PRs into >1 repo that are for the same feature, make sure that you reference the *least* specific repo in the PRs for the other more-specific repo(s).
 
 Obviously fork what you need to, and make sure you push to your forks, not the origin.
 
 ## Building Lens
+
 You've made some super updates to Lens, you now want to deploy them onto your website, so you'll need to re-bundle Lens: there are a **lot** of JavaScript files that need concatonating, which Lens does using browserify.
 
 The bundling settings are found at the bottom of ```lens/.screwdriver/project.json```
