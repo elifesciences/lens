@@ -1,14 +1,22 @@
 # Lens
 
-**Lens** provides a novel way of looking at content on the web. It is designed to make life easier for researchers, reviewers, authors and readers. For example, have you tried to look at a figure in an online article, while at the same time trying to see what the author says about the figure, jumping all around the article, losing track of what you were looking for in the first place? The reason for this is that most online research articles are published in a fixed digital version of the original paper. With Lens, we take full advantage of the internet’s flexibility.
+<!--**Lens** provides a novel way of looking at content on the web. It is designed to make life easier for researchers, reviewers, authors and readers. For example, have you tried to look at a figure in an online article, while at the same time trying to see what the author says about the figure, jumping all around the article, losing track of what you were looking for in the first place? The reason for this is that most online research articles are published in a fixed digital version of the original paper. With Lens, we take full advantage of the internet’s flexibility.-->
+
+Lens provides a novel way of looking at content on the web. It is designed to make life easier for researchers, reviewers, authors and readers.
+
+**Read the [announcement](http://elifesciences.org/elife-news/lens) and watch the [introduction video](http://vimeo.com/67254579).**
+
+## 
 
 Lens has a pretty simple architecture. It is a stand-alone web component that can be embedded into any web page. Lens can display any NLM XML document or, alternatively, the Lens-native JSON representation. What is important to note is that Lens doesn't dictate a specific architecture for content hosting. It is all just client-side Javascript. Anyone (even authors) can host their own documents and customized Lens instances.
 
+<!--
 ## The Lens Article Format
 
 XML-based formats such as NLM are hard to consume by web clients. Existing formats target print, and thus contain style information, which makes them hard to process by computer programs. We needed strict separation of content for our vision, so we developed the Lens Article Format.
 
 The Lens Article is based on the [Substance Document Model](http://github.com/substance/document) and features basic content types such as paragraphs and headings, as well as figure types, such as images, tables and videos complete with captions and cross-references. Each content element lives as a node in a flat address space, identified by a unique id. Think of it as a database of independent content fragments. The document definitions can easily be extended. Developers can either create their own flavours or contribute to the Lens Article Format directly.
+-->
 
 # Using Lens
 
@@ -247,19 +255,19 @@ This code adds the panel to the next to last position (before the info panel).
 
 ## Bundling
 
-You need to have `browserify` and `uglify-js` installed:
+You need to have `browserify` and `uglify-js` installed.
 
 ```bash
 $ sudo npm install -g browserify uglify-js
 ```
 
-A bundle is created via
+A bundle is created via:
 
 ```bash
 $ substance --bundle
 ```
 
-There are two options available (not-minified JS bundle, bundle with souremap):
+There are two options available (not-minified JS bundle, bundle with sourcemap):
 
 ```bash
 $ substance --bundle nominify,sourcemap
@@ -281,6 +289,10 @@ http://127.0.0.1:8000/doc.html?url=data/samples/preprocessed/bproc1.xml
 ```
 
 > Adjust the 'url' parameter to open a different document.
+
+
+# Credits
+
 
 
 # Advanced tools
