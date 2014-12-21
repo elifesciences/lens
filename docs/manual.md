@@ -284,3 +284,22 @@ http://127.0.0.1:8000/doc.html?url=data/samples/preprocessed/bproc1.xml
 
 > Adjust the 'url' parameter to open a different document.
 
+
+# Advanced tools
+
+### Sublime 2 Integration
+
+We use a custom Sublime plugin which adds a summary page to show all pending changes so that we do not forget to commit and push changes to some of the sub-modules.
+
+MacOSX:
+
+```
+$ cd $HOME/Library/Application Support/Sublime Text 2/Packages
+$ git clone https://github.com/substance/sublime.git Substance
+```
+
+Linux (Ubuntu):
+```
+$ cd ~/.config/sublime-text-2/Packages
+$ git clone https://github.com/substance/sublime.git Substance
+```
