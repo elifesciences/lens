@@ -133,7 +133,6 @@ PanelView.Prototype = function() {
   //
 
   this.onToggleResource = function(event) {
-    console.log("PanelView.onToggleResource");
     event.preventDefault();
     event.stopPropagation();
     var element = $(event.currentTarget).parents('.content-node')[0];

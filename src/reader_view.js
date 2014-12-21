@@ -332,7 +332,6 @@ ReaderView.Prototype = function() {
   //
 
   this.onToggleResource = function(panel, id, element) {
-    console.log("ReaderView.onToggleResource", panel, id, element);
     if (element.classList.contains('highlighted')) {
       this.readerCtrl.modifyState({
         panel: this.lastPanel,
