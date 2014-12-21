@@ -62,6 +62,7 @@ var ReaderView = function(readerCtrl) {
   this.lastPanel = "toc";
 
   this.formulaWidths = {};
+  this.formulaHeights = {};
 
   // Events
   // --------
@@ -209,6 +210,12 @@ ReaderView.Prototype = function() {
         // console.log("content width for ", nodeId, self.formulaWidths[nodeId]);
       }
 
+      if (!self.formulaHeights[nodeId]) {
+        var style = window.getComputedStyle(mathjaxContainer);
+
+        self.formulaHeights[nodeId] = parseFloat(style.height);
+      }
+
       var CORRECTION_FACTOR = 0.92;
       var ratio = Math.min(containerWidth / self.formulaWidths[nodeId]*CORRECTION_FACTOR,1.0);
 
@@ -221,6 +228,9 @@ ReaderView.Prototype = function() {
       mathEl.style["-moz-transform"] = "scale("+ratio+")";
       mathEl.style["-ms-transform"] = "scale("+ratio+")";
       mathEl.style.transform = "scale("+ratio+")";
+
+      var mathCont = $(this).find('.MathJax_Display')[0];
+      mathCont.style.height = "" + (self.formulaHeights[nodeId] * ratio) + "px";
     });
   };
 
