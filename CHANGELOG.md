@@ -1,4 +1,4 @@
-### Versions
+# Changelog
 
 ### 2.0.0
 
@@ -66,3 +66,5 @@
 - Native support for NLM using a new browser-based converter
 
 ### 0.1.0
+
+- Initial version
