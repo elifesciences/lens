@@ -780,9 +780,14 @@ span.annotation.formula_reference, span.publication_reference {
     padding-left: 0;
   }
 
-  .article .resources .surface {
+  .article .resources .panel {
+    position: relative;
     overflow-y: visible;
     overflow-x: visible;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    top: auto;
   }
 
   .article .medial-strip {
