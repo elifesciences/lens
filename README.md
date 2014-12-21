@@ -16,7 +16,7 @@ XML-based formats such as NLM are hard to consume by web clients. Existing forma
 The Lens Article is based on the [Substance Document Model](http://github.com/substance/document) and features basic content types such as paragraphs and headings, as well as figure types, such as images, tables and videos complete with captions and cross-references. Each content element lives as a node in a flat address space, identified by a unique id. Think of it as a database of independent content fragments. The document definitions can easily be extended. Developers can either create their own flavours or contribute to the Lens Article Format directly.
 -->
 
-# Using Lens
+## Using Lens
 
 Lens is a stand-alone web component that can be embedded into any web page. Just take the contents from the latest [distribution](https://github.com/elifesciences/lens/releases), then adjust the `document_url` parameter in `index.html`.
 
@@ -29,10 +29,11 @@ var app = new Lens({
 });
 ```
 
-Lens can display any NLM XML document or, alternatively, the Lens-native JSON representation. What is important to note is that Lens doesn't dictate a specific architecture for content hosting. It is all just client-side Javascript. Anyone (even authors) can host their own documents and customized Lens instances.
+Lens can display any NLM XML document or, alternatively, the Lens-native JSON representation. Lens is pure client-side Javascript, so anyone (even authors) can host their own documents on a regular webspace.
 
-# Lens development
+## Lens development
 
+Lens is meant to be customized, so you want to 
 
 ## Prerequisites
 
@@ -284,10 +285,7 @@ To open one of the bundled samples you need open the following URL in your brows
 http://127.0.0.1:8000/doc.html?url=data/samples/preprocessed/bproc1.xml
 ```
 
-> Adjust the 'url' parameter to open a different document.
-
-
-# Credits
+Adjust the 'url' parameter to open a different document.
 
 
 
@@ -309,3 +307,19 @@ Linux (Ubuntu):
 $ cd ~/.config/sublime-text-2/Packages
 $ git clone https://github.com/substance/sublime.git Substance
 ```
+
+# Credits
+
+Lens was developed in collaboration between [UC Berkeley](http://bioegrad.berkeley.edu/) graduate student [Ivan Grubisic](http://www.linkedin.com/pub/ivan-grubisic/26/353/739) and [eLife](http://elifesciences.org). The team of [Substance](http://substance.io) is helping with the technical execution.
+
+Substantial contributions were made by HighWire, which launched Lens for a number of science journals in fall 2014 (The Journal of Biological Chemistry, The Plant Cell, Journal of Lipid Research, mBio®, and more). The American Mathematical Society (AMS) made Lens ready for viewing math articles, using LaTeX an input.
+
+Thanks go to the following people, who made Lens possible:
+
+- Ivan Grubisic
+- Ian Mulvany (eLife)
+- Oliver Buchtala (Substance)
+- Michael Aufreiter (Substance)
+- Graham Nott
+- Rebecca Close
+- Samo Korošec (froodee)
