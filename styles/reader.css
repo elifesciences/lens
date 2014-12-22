@@ -896,6 +896,57 @@ as we have a plugin concept for functionality / panels */
   background: #5c6570;
 }
 
+/* Table of contents */
+
+/*
+TOC
+--------------------------------------- */
+
+.resource-view.toc .heading-ref {
+  cursor: pointer;
+  display: block;
+  color: rgba(0,0,0,0.8);
+  font-weight: 600;
+  font-size: 20px;
+  padding: 4px 10px;
+  line-height: 20px;
+  margin-right: 10px;
+  border: 1px solid transparent;
+}
+
+.resource-view.toc .heading-ref .label { display: inline; padding-right: 10px; }
+.resource-view.toc .heading-ref .title, .resource-view.toc .heading .content .title .content { display: inline; }
+
+.resource-view.toc .heading-ref.active {
+  color: rgba(0,0,0,0.9);
+  background: #fff;
+  border: 1px solid #eee;
+}
+
+.resource-view.toc .heading-ref.level-2 {
+  padding-left: 20px;
+  font-size: 17px;
+}
+
+.resource-view.toc .heading-ref.level-3 {
+  padding-left: 40px;
+  font-size: 14px;
+}
+
+.resource-view.toc .heading-ref.level-4 {
+  padding-left: 60px;
+  font-size: 14px;
+}
+
+.resource-view.toc .heading-ref.level-5 {
+  padding-left: 80px;
+  font-size: 14px;
+}
+
+.resource-view.toc .heading-ref:hover {
+  color: rgba(0,0,0,1.0);
+}
+
 
 /* Scrollbar
 --------------------------------------- */
