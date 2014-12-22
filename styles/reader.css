@@ -145,6 +145,7 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   font-size: 22px;
   color: #aaa;
   background: #fff;
+  text-align: center;
 }
 
 .article .context-toggles .context-toggle.hidden {
@@ -320,16 +321,17 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 }
 
 
+
 /* Hide resize small icon by default */
-#container .article .content-node .icon-eye-close {
+#container .article .content-node .fa.fa-eye-slash {
   display: none;
 }
 
-#container .article .content-node.highlighted .icon-eye-close {
+#container .article .content-node.highlighted .fa.fa-eye-slash {
   display: inline;
 }
 
-#container .article .content-node.highlighted .icon-eye-open {
+#container .article .content-node.highlighted .fa.fa-eye {
   display: none;
 }
 
@@ -365,8 +367,11 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 }
 
 
+
+
+
 /* Hide resize small icon by default */
-#container .article .content-node .icon-resize-small {
+#container .article .content-node .fa.fa-compress {
   display: none;
 }
 
@@ -382,11 +387,11 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   padding: 0px;
 }
 
-#container .article .content-node.fullscreen .icon-resize-small {
+#container .article .content-node.fullscreen .fa.fa-compress {
   display: inline;
 }
 
-#container .article .content-node.fullscreen .icon-resize-full {
+#container .article .content-node.fullscreen .fa.fa-expand {
   display: none;
 }
 
