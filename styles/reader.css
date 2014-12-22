@@ -90,7 +90,6 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 /* Switcher */
 
 .article .medial-strip {
-  /*overflow: hidden;*/
   width: 40px;
   position: absolute;
   left: 50%;
@@ -115,11 +114,9 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   padding: 10px 10px;
 }
 
-
 .article .back-nav:hover {
   color: #333;
 }
-
 
 .article .medial-strip .separator-line {
   position: absolute;
@@ -136,10 +133,8 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   top: 30px;
   left: 0px;
   right: 0px;
-
   z-index: 5000;
 }
-
 
 .article .context-toggles .context-toggle {
   cursor: pointer;
@@ -190,7 +185,6 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 /* Resources Panel
 ======================================================================= */
 
-
 .article .resources {
   float: right;
   line-height: 25px;
@@ -200,14 +194,20 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   padding-left: 50px;
   padding-right: 50px;
   position: relative;
-  /*overflow: auto;*/
 }
 
-/*.article .resources .panel {
-  height: 100%;
-}*/
-
 .article .resources .panel {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+.article .resources .surface {
   position: absolute;
   top: 0px;
   bottom: 0px;
@@ -258,7 +258,6 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 /* TOC View
 ----------------------------------------------------------------------- */
 
-
 .article .resources .panel .toc {
   padding-left: 50px;
   overflow: auto;
@@ -302,7 +301,6 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 
 
 /* Resource toggle */
-
 .article .resources .content-node .resource-header .toggle-res {
   position: absolute;
   right: 0px;
@@ -317,7 +315,6 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 
 
 /* Active state adjustments */
-
 .article .resources .content-node.highlighted .resource-header .toggle-res {
   color: rgba(255,255,255, 0.5);
 }
@@ -553,15 +550,6 @@ span.annotation.formula_reference, span.publication_reference {
 .content-node .contributor_reference.highlighted { background-color: #5c6570; color: white; }
 .content-node .definition_reference.highlighted { background-color: #5c6570; color: white; }
 
-/* Focussed states */
-/*.content-node .annotation.highlighted.focussed {
-  border-bottom: 2px solid;
-}*/
-
-/*.content-node .figure_reference.highlighted.focussed { background-color: rgba(145, 187, 4, 0.7); border-color: green; }
-.content-node .citation_reference.highlighted.focussed { background-color: rgba(11, 157, 217, 0.6); border-color: blue; }
-.content-node .contributor_reference.highlighted.focussed { background-color: #5c6570; color: white; border-color: black; }
-.content-node .definition_reference.highlighted.focussed { background-color: #5c6570; color: white; border-color: black; }*/
 
 /* Cross Reference */
 .content-node .cross_reference:hover {
@@ -755,13 +743,11 @@ span.annotation.formula_reference, span.publication_reference {
   }
 
   .article .document .surface.content {
-    /*position: absolute;*/
     position: static;
     overflow: visible;
   }
 
   .article .resources .surface.resource-view {
-    /*position: absolute;*/
     position: static;
     overflow: visible;
   }
@@ -805,9 +791,14 @@ span.annotation.formula_reference, span.publication_reference {
     padding-left: 0;
   }
 
-  .article .resources .surface {
+  .article .resources .panel {
+    position: relative;
     overflow-y: visible;
     overflow-x: visible;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    top: auto;
   }
 
   .article .medial-strip {
@@ -844,7 +835,6 @@ span.annotation.formula_reference, span.publication_reference {
   .article .medial-strip .context-toggles .context-toggle:hover {
     color: white;
   }
-
 
   .article .medial-strip .context-toggles .context-toggle.active {
     color: white;
@@ -904,6 +894,57 @@ as we have a plugin concept for functionality / panels */
 /* active contributor */
 .article .resources .info .content-node.highlighted .resource-header {
   background: #5c6570;
+}
+
+/* Table of contents */
+
+/*
+TOC
+--------------------------------------- */
+
+.resource-view.toc .heading-ref {
+  cursor: pointer;
+  display: block;
+  color: rgba(0,0,0,0.8);
+  font-weight: 600;
+  font-size: 20px;
+  padding: 4px 10px;
+  line-height: 20px;
+  margin-right: 10px;
+  border: 1px solid transparent;
+}
+
+.resource-view.toc .heading-ref .label { display: inline; padding-right: 10px; }
+.resource-view.toc .heading-ref .title, .resource-view.toc .heading .content .title .content { display: inline; }
+
+.resource-view.toc .heading-ref.active {
+  color: rgba(0,0,0,0.9);
+  background: #fff;
+  border: 1px solid #eee;
+}
+
+.resource-view.toc .heading-ref.level-2 {
+  padding-left: 20px;
+  font-size: 17px;
+}
+
+.resource-view.toc .heading-ref.level-3 {
+  padding-left: 40px;
+  font-size: 14px;
+}
+
+.resource-view.toc .heading-ref.level-4 {
+  padding-left: 60px;
+  font-size: 14px;
+}
+
+.resource-view.toc .heading-ref.level-5 {
+  padding-left: 80px;
+  font-size: 14px;
+}
+
+.resource-view.toc .heading-ref:hover {
+  color: rgba(0,0,0,1.0);
 }
 
 
@@ -976,11 +1017,6 @@ as we have a plugin concept for functionality / panels */
 .article .content .surface-scrollbar .highlighted.definition_reference
 { background-color: #5c6570; }
 
-/* additional right border in the content scrollbar */
-/*.surface-scrollbar.content .highlighted.focussed { border-right: 3px solid; border-left: none; }*/
-
-/* ... and left border in the resource panel scrollbars */
-/*.surface-scrollbar .highlighted.focussed { border-left: 3px solid; }*/
 
 /* new FOCUS handles */
 
@@ -993,13 +1029,9 @@ as we have a plugin concept for functionality / panels */
   width: 30px;
   background: white;
   border-left: 3px solid #ccc;
-  /*background: #f7f7f7;*/
   cursor: pointer;
 }
 
 .panel.document  .nodes > .content-node > .focus-handle:hover {
-  /*background: #ccc;*/
   border-left: 3px solid #bbb;
-  /*border-left: 3px solid #aaa;*/
-  /*border-left: 3px solid #777;*/
 }

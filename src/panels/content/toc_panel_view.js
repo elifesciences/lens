@@ -1,11 +1,11 @@
 "use strict";
 
-var TOC = require("substance-toc");
+var TOCView = require("./toc_view");
 var PanelView = require("../panel_view");
 
 var TocPanelView = function( panelCtrl, viewFactory, config ) {
   PanelView.call(this, panelCtrl, config);
-  this.toc = new TOC(panelCtrl.getDocument(), viewFactory);
+  this.toc = new TOCView(panelCtrl.getDocument(), viewFactory);
 };
 TocPanelView.Prototype = function() {
 

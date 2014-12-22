@@ -111,7 +111,7 @@ LensController.Prototype = function() {
           doc = that.converter.import(data, that.converterOptions);
         } else {
           if(typeof data == 'string') data = $.parseJSON(data);
-          doc = this.Article.fromSnapshot(data);
+          doc = that.Article.fromSnapshot(data);
         }
         // Extract headings
         // TODO: this should be solved with an index on the document level
