@@ -41,8 +41,7 @@ For Lens development, you need to have Node.js >=0.10.x installed.
 
 #### Substance Screwdriver
 
-We use a custom Python tool to manage Git repositories.
-We didn't opt for using Git sub-modules as it doesn't make it easier but rather even more complicated.
+Lens uses a custom Python tool to manage Git repositories, the [Substance Screwdriver](http://github.com/substance/screwdriver).
 
 To install Substance Screwdriver do
 
@@ -261,7 +260,7 @@ In order to consider
 ### Converter
 
 Lens can natively read the JATS (formerly NLM) format, thanks to its built-in converter.
-Conversion is done on the client side using the browser-native DOM Parser. Using it is simple:
+Conversion is done on the client side using the browser-native DOM Parser.
 
 ```js
 var importer = new LensImporter();
@@ -270,8 +269,6 @@ var doc = importer.import(xmlData, {
   baseURL: "http://docs.example.com/doc-25/"
 });
 ```
-
-The converter can handle any NLM-compatible file. Some portions are publisher-specific, such as when resolving the urls for figures and videos. This is done in configurations.
 
 
 ### Bundling
@@ -350,7 +347,6 @@ Thanks go to the following people, who made Lens possible:
 - Peter Krautzberger (math)
 - Samo Korošec (design)
 
-
 <!-- 
 	TODO:
 	
@@ -358,4 +354,3 @@ Thanks go to the following people, who made Lens possible:
 	- update to fontawesome 4.2.0
 	update jquery
 -->
-
