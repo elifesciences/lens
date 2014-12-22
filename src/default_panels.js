@@ -5,7 +5,7 @@ var figuresPanel = new ContainerPanel({
   name: 'figures',
   container: 'figures',
   title: 'Figures',
-  icon: 'icon-picture',
+  icon: 'fa-picture-o',
   references: ['figure_reference'],
   zoom: true,
 });
@@ -15,7 +15,7 @@ var citationsPanel = new ContainerPanel({
   name: 'citations',
   container: 'citations',
   title: 'References',
-  icon: 'icon-link',
+  icon: 'fa-link',
   references: ['citation_reference'],
 });
 
@@ -24,7 +24,7 @@ var definitionsPanel = new ContainerPanel({
   name: 'definitions',
   container: 'definitions',
   title: 'Glossary',
-  icon: 'icon-book',
+  icon: 'fa-book',
   references: ['definition_reference'],
 });
 
@@ -33,7 +33,7 @@ var infoPanel = new ContainerPanel({
   name: 'info',
   container: 'info',
   title: 'Info',
-  icon: 'icon-info-sign',
+  icon: 'fa-info',
   references: ['contributor_reference'],
 });
 

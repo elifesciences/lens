@@ -10,7 +10,7 @@ var ContentPanel = function() {
     container: "content",
     label: 'Content',
     title: 'Content',
-    icon: 'icon-align-left',
+    icon: 'fa-align-left',
   });
 };
 ContentPanel.Prototype = function() {
