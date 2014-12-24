@@ -19,6 +19,8 @@ var LensController = function(config) {
   this.config = config;
   this.Article = config.articleClass || LensArticle;
   this.converter = config.converter;
+  this.converters = config.converters;
+
   this.converterOptions = _.extend({}, NLMConverter.DefaultOptions, config.converterOptions);
 
   // Main controls
@@ -41,6 +43,12 @@ LensController.Prototype = function() {
 
   this.importXML = function(xml) {
     var doc = this.converter.import(xml, this.converterOptions);
+    // Pick suitable converter
+    // _.each(this.converters, function(converter) {
+    //   console.log('LE CONVERTER', converter);
+    // });
+    console.error('make aware of multiple controllaz');
+
     this.createReader(doc, {
       panel: 'toc'
     });
@@ -93,6 +101,7 @@ LensController.Prototype = function() {
       fullscreen: !!fullscreen
     };
 
+
     // Already loaded?
     if (this.reader) {
       this.reader.modifyState(state);
@@ -109,6 +118,19 @@ LensController.Prototype = function() {
         // Process XML file
         if (xml) {
           doc = that.converter.import(data, that.converterOptions);
+
+          var doc = undefined;
+          var i = 0;
+          while (!doc && i < that.converters.length) {
+            var converter = that.converters[i];
+            // First match will be used as the converter
+            if (converter.test(data, that.document_url)) {
+              console.log('using', converter, 'for ', that.config.document_url);
+              doc = converter.import(data);
+            }
+            i += 1;
+          }
+          
         } else {
           if(typeof data == 'string') data = $.parseJSON(data);
           doc = that.Article.fromSnapshot(data);

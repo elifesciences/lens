@@ -31,6 +31,9 @@ var Lens = function(config) {
   config.panels = config.panels || this.getPanels();
   config.workflows = config.workflows || this.getWorkflows();
   config.converter = config.converter || this.getConverter(config.converterOptions);
+  
+  // All available converters
+  config.converters = this.getConverters(config.converterOptions);
 
   // Note: call this after configuration, e.g., routes must be configured before
   //   as they are used to setup a router
