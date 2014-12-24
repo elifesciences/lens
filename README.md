@@ -94,169 +94,6 @@ $ git pull
 $ substance --update
 ```
 
-### Panels
-
-Lens can easily be extended with a customized panel. It can be used to show additional information relevant to the displayed article. A few examples of what you could do:
-
-- Pull in tweets that talk about the current article
-- Pull in metrics (click count, number of articles citing that article etc.)
-- Retrieve related articles dynamically (e.g. important ones that reference the existing one)
-
-For demonstration we will look at the implementation of a simple Altmetrics panel. It will pull data asynchronously from the Altmetrics API (http://api.altmetric.com/v1/doi/10.7554/eLife.00005) and render the information in Lens.
-
-
-#### Panel Definition
-
-This is the main entry point for a panel.
-
-```js
-// src/panels/altmetrics/index.js
-"use strict";
-
-var Panel = require('lens').Panel;
-var AltmetricsController = require('./altmetrics_controller');
-
-var panel = new Panel({
-	name: "altmetrics",
-  type: 'resource',
-  title: 'Altmetrics',
-  icon: 'fa-bar-chart',
-});
-
-panel.createController = function(doc) {
-  return new AltmetricsController(doc, this.config);
-};
-
-module.exports = panel;
-```
-
-#### Panel Controller
-
-Our custom controller provides a `getAltmetrics` method, that we will use in the view to fetch data from altmetrics.com asynchronously. Using the Substance Document API we retrieve the DOI, which is stored on the `publication_info` node.
-
-```js
-// src/panels/altmetrics_controller.js
-
-var PanelController = require("lens").PanelController;
-var AltmetricsView = require("./altmetrics_view");
-
-var AltmetricsController = function(document, config) {
-  PanelController.call(this, document, config);
-};
-
-AltmetricsController.Prototype = function() {
-  this.createView = function() {
-    return new AltmetricsView(this, this.config);
-  };
-
-  this.getAltmetrics = function(cb) {
-    var doi = this.document.get('publication_info').doi;
-
-		$.ajax({
-		  url: "http://api.altmetric.com/v1/doi/"+doi,
-		  dataType: "json",
-		}).done(function(res) {
-			cb(null, res);
-		}).error(function(err) {
-			cb(err);
-		});
-  };
-};
-
-AltmetricsController.Prototype.prototype = PanelController.prototype;
-AltmetricsController.prototype = new AltmetricsController.Prototype();
-
-module.exports = AltmetricsController;
-```
-
-#### Panel View
-
-The Panel View is where you define, what should be rendered in your custom panel. Your implementation needs to inherit from `Lens.PanelView` and define a render method. The implementation of the altmetrics panel is pretty simple. We will show the panel (`PanelView.showToggle`) as soon as data from altmetric.com has arrived.
-
-```js
-// src/panels/altmetrics_view.js
-var PanelView = require('lens').PanelView;
-
-var AltmetricsView = function(panelCtrl, config) {
-  PanelView.call(this, panelCtrl, config);
-
-  this.$el.addClass('altmetrics-panel');
-
-  // Hide toggle on contruction, it will be displayed once data has arrived
-  this.hideToggle();
-};
-
-AltmetricsView.Prototype = function() {
-
-  this.render = function() {
-    var self = this;
-    this.el.innerHTML = '';
-
-    this.controller.getAltmetrics(function(err, altmetrics) {
-      if (!err) {
-        self.renderAltmetrics(altmetrics);  
-      } else {
-        console.error("Could not retrieve altmetrics data:", err);
-      }
-    });
-    
-    return this;
-  };
-
-  this.renderAltmetrics = function(altmetrics) {
-    // Finally data is available so we tell the panel to show up as a tab
-    this.showToggle();
-
-    var $altmetrics = $('<div class="altmetrics"></div>');
-    $altmetrics.append($('<div class="label">Altmetric.com Score</div>'));
-    $altmetrics.append($('<div class="value"></div>').text(altmetrics.score));
-    $altmetrics.append($('<div class="label">Cited on Twitter</div>'));
-    $altmetrics.append($('<div class="value"></div>').text(altmetrics.cited_by_tweeters_count));
-    $altmetrics.append($('<div class="label">Readers on Mendeley</div>'));
-    $altmetrics.append($('<div class="value"></div>').text(altmetrics.readers.mendeley));
-    $altmetrics.append($('<div class="copyright">Data provided by <a href="http://altmetric.com">altmetrics.com</div>'));
-
-    this.$el.append($altmetrics);
-  };
-};
-
-AltmetricsView.Prototype.prototype = PanelView.prototype;
-AltmetricsView.prototype = new AltmetricsView.Prototype();
-AltmetricsView.prototype.constructor = AltmetricsView;
-
-module.exports = AltmetricsView;
-```
-
-#### Activate Panel
-
-In the app definition file `src/app.js` find the following line:
-
-```js
-var panels = Lens.getDefaultPanels();
-```
-
-Now you are able to manipulate that array to include an additional panel. This code adds the altmetrics panel to the next to last position (before the info panel).
-
-```js
-var altmetricsPanel = require('./panels/altmetrics');
-panels.splice(-1, 0, altmetricsPanel);
-```
-
-### Custom CSS
-
-Lens can be styled with custom CSS easily. You can put a CSS file anywhere and reference it from the style section in `project.json`. E.g. the styles for the altmetrics panel were referenced like that.
-
-```js
-// .screwdriver/project.json
-In order to consider 
-
-  "styles": {
-    ...
-    "styles/altmetrics.css": "src/panels/altmetrics/altmetrics.css",
-    ...
-  },
-```
-
 ### Converter
 
 Lens can natively read the JATS (formerly NLM) format, thanks to its built-in converter.
@@ -303,22 +140,149 @@ ElifeConverter.Prototype = function() {
 };
 ```
 
-In order to display 
+You can configure a chain of converters if you need to support different journals at a time for a single Lens instance.
+
+See [src/app.js](https://github.com/elifesciences/lens-starter/blob/master/src/app.js)
+
+```js
+LensApp.Prototype = function() {
+  this.getConverters = function(converterOptions) {
+    return [
+      new ElifeConverter(converterOptions),
+      new PLOSConverter(converterOptions),
+      new LensConverter(converterOptions)
+    ]
+  };
+  ...
+};
+```
+
+The `Converter.match` method will be called on each instance with the XML document to be processed. The one that returns `true` first will be used. You can change the order to prioritize converters over others.
 
 
-#### Provide a chain of converters
+### Panels
 
-You can assign a chain of converters if you need to support different journals at a time for one Lens instance.
+Lens can easily be extended with a customized panel. It can be used to show additional information relevant to the displayed article. A few examples of what you could do:
+
+- Pull in tweets that talk about the current article
+- Pull in metrics (click count, number of articles citing that article etc.)
+- Retrieve related articles dynamically (e.g. important ones that reference the existing one)
+
+For demonstration we will look at the implementation of a simple Altmetrics panel. It will pull data asynchronously from the Altmetrics API (http://api.altmetric.com/v1/doi/10.7554/eLife.00005) and render the information in Lens.
+
+#### Panel Definition
+
+This is the main entry point for a panel.
+
+See: [src/panels/altmetrics/index.js](https://github.com/elifesciences/lens-starter/blob/master/src/panels/altmetrics.index.js)
+
+```js
+var panel = new Panel({
+	name: "altmetrics",
+  type: 'resource',
+  title: 'Altmetrics',
+  icon: 'fa-bar-chart',
+});
+
+panel.createController = function(doc) {
+  return new AltmetricsController(doc, this.config);
+};
+```
+
+#### Panel Controller
+
+Our custom controller provides a `getAltmetrics` method, that we will use in the view to fetch data from altmetrics.com asynchronously. Using the Substance Document API we retrieve the DOI, which is stored on the `publication_info` node.
+
+See: [src/panels/altmetrics/altmetrics_controller.js](https://github.com/elifesciences/lens-starter/blob/master/src/panels/altmetrics/altmetrics_controller.js)
+
+```js
+var AltmetricsController = function(document, config) {
+  PanelController.call(this, document, config);
+};
+
+AltmetricsController.Prototype = function() {
+  ...
+  this.getAltmetrics = function(cb) {
+    var doi = this.document.get('publication_info').doi;
+
+		$.ajax({
+		  url: "http://api.altmetric.com/v1/doi/"+doi,
+		  dataType: "json",
+		}).done(function(res) {
+			cb(null, res);
+		}).error(function(err) {
+			cb(err);
+		});
+  };
+  ...
+};
+```
+
+#### Panel View
+
+The Panel View is where you define, what should be rendered in your custom panel. Your implementation needs to inherit from `Lens.PanelView` and define a render method. The implementation of the altmetrics panel is pretty simple. We will show the panel (`PanelView.showToggle`) as soon as data from altmetric.com has arrived.
+
+See: [src/panels/altmetrics/index.js](https://github.com/elifesciences/lens-starter/blob/master/src/panels/altmetrics/altmetrics_view.js)
+
+```js
+var AltmetricsView = function(panelCtrl, config) {
+  PanelView.call(this, panelCtrl, config);
+  this.$el.addClass('altmetrics-panel');
+  // Hide toggle on contruction, it will be displayed once data has arrived
+  this.hideToggle();
+};
+
+AltmetricsView.Prototype = function() {
+  ...
+  this.render = function() {
+    var self = this;
+    this.el.innerHTML = '';
+
+    this.controller.getAltmetrics(function(err, altmetrics) {
+      if (!err) {
+        self.renderAltmetrics(altmetrics);  
+      } else {
+        console.error("Could not retrieve altmetrics data:", err);
+      }
+    });
+    return this;
+  };
+  ...
+};
+```
+
+#### Activate Panel
+
+Panels are enabled in the projects `app.js` file by manipulating the `panels` array.
 
 
+See: [src/app.js](https://github.com/elifesciences/lens-starter/blob/master/src/app.js)
 
 
 ```js
-var importer = new LensImporter();
-var doc = importer.import(xmlData, {
-  // this path is used to resolve relative figure urls
-  baseURL: "http://docs.example.com/doc-25/"
-});
+var panels = Lens.getDefaultPanels();
+```
+
+This code adds the altmetrics panel to the next to last position (before the info panel). 
+
+```js
+var altmetricsPanel = require('./panels/altmetrics');
+panels.splice(-1, 0, altmetricsPanel);
+```
+
+### Custom CSS
+
+Lens can be styled with custom CSS easily. You can put a CSS file anywhere and reference it from the style section in `project.json`. E.g. the styles for the altmetrics panel were referenced like that.
+
+```js
+// .screwdriver/project.json
+In order to consider 
+
+  "styles": {
+    ...
+    "styles/altmetrics.css": "src/panels/altmetrics/altmetrics.css",
+    ...
+  },
 ```
 
 
@@ -402,6 +366,4 @@ Thanks go to the following people, who made Lens possible:
 	TODO:
 	
 	- proper converter docs (custom property)
-	- update to fontawesome 4.2.0
-	update jquery
 -->
