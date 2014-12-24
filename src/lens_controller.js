@@ -86,7 +86,7 @@ LensController.Prototype = function() {
   };
 
   this.convertDocument = function(data) {
-    var doc = undefined;
+    var doc;
     var i = 0;
     while (!doc && i < this.converters.length) {
       var converter = this.converters[i];
@@ -98,7 +98,7 @@ LensController.Prototype = function() {
     }
 
     if (!doc) {
-      throw new Error("No suitable converter found for this document", xml);
+      throw new Error("No suitable converter found for this document", data);
     }
 
     return doc;
