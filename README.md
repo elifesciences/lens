@@ -262,6 +262,57 @@ In order to consider
 Lens can natively read the JATS (formerly NLM) format, thanks to its built-in converter.
 Conversion is done on the client side using the browser-native DOM Parser.
 
+You can find the implementation of the Lens converter [here](https://github.com/elifesciences/lens-converter/blob/master/src/lens_converter.js). The Lens Converter is meant to be customized, so publishers can develop a their own flavor easily.
+
+
+Let's have a look at the [eLife Converter](https://github.com/elifesciences/lens-converter/blob/master/src/elife_converter.js) for instance.
+
+Each converter must have a method `test` that takes the XML document as well as the document url. It's there to tell if it can handle the content or not. In the case of eLife we check for the `publisher-name` element in the XML. 
+
+
+```js
+ElifeConverter.Prototype = function() {
+  ...
+  this.test = function(xmlDoc, documentUrl) {
+    var publisherName = xmlDoc.querySelector("publisher-name").textContent;
+    return publisherName === "eLife Sciences Publications, Ltd";
+  };
+  ...
+};
+```
+
+A customized converter can override any method of the original LensConverter. However, we have designated some hooks that are intended to be customized. Watch for methods starting with `enhance`. For eLife we needed to resolve supplement urls, so we implemented an `enhanceSupplement` method, to resolve the `supplement.url` according to a fixed url scheme that eLife uses.
+
+```js
+ElifeConverter.Prototype = function() {
+  ...
+  this.enhanceSupplement = function(state, node) {
+    var baseURL = this.getBaseURL(state);
+    if (baseURL) {
+      return [baseURL, node.url].join('');
+    } else {
+      node.url = [
+        "http://cdn.elifesciences.org/elife-articles/",
+        state.doc.id,
+        "/suppl/",
+        node.url
+      ].join('');
+    }
+  };
+  ...
+};
+```
+
+In order to display 
+
+
+#### Provide a chain of converters
+
+You can assign a chain of converters if you need to support different journals at a time for one Lens instance.
+
+
+
+
 ```js
 var importer = new LensImporter();
 var doc = importer.import(xmlData, {
