@@ -14,12 +14,10 @@ var PanelView = require('./panels/panel_view');
 var ContainerPanel = require('./panels/container_panel');
 var ContainerPanelController = require('./panels/container_panel_controller');
 var ContainerPanelView = require('./panels/container_panel_view');
-
 var Workflow = require('./workflows/workflow');
 
 var defaultPanels = require('./default_panels');
 var defaultWorkflows = require('./default_workflows');
-
 
 // The Lens Application
 // ========
@@ -30,7 +28,9 @@ var Lens = function(config) {
   config.routes = config.routes || this.getRoutes();
   config.panels = config.panels || this.getPanels();
   config.workflows = config.workflows || this.getWorkflows();
-  config.converter = config.converter || this.getConverter(config.converterOptions);
+
+  // All available converters
+  config.converters = this.getConverters(config.converterOptions);
 
   // Note: call this after configuration, e.g., routes must be configured before
   //   as they are used to setup a router
@@ -86,7 +86,6 @@ Lens.Prototype = function() {
 
   this.start = function() {
     Application.prototype.start.call(this);
-    
   };
 
   // Start listening to routes
@@ -110,14 +109,13 @@ Lens.Prototype = function() {
     return Lens.getDefaultWorkflows();
   };
 
-  this.getConverter = function(converterConfig) {
-    return Lens.getDefaultConverter(converterConfig);
+  this.getConverters = function(converterConfig) {
+    return [ Lens.getDefaultConverter(converterConfig) ];
   };
 
   this.createController = function(config) {
     return new LensController(config);
   };
-
 };
 
 Lens.Prototype.prototype = Application.prototype;

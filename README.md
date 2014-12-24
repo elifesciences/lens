@@ -94,6 +94,72 @@ $ git pull
 $ substance --update
 ```
 
+### Converter
+
+Lens can natively read the JATS (formerly NLM) format, thanks to its built-in converter.
+Conversion is done on the client side using the browser-native DOM Parser.
+
+You can find the implementation of the Lens converter [here](https://github.com/elifesciences/lens-converter/blob/master/src/lens_converter.js). The Lens Converter is meant to be customized, so publishers can develop a their own flavor easily.
+
+
+Let's have a look at the [eLife Converter](https://github.com/elifesciences/lens-converter/blob/master/src/elife_converter.js) for instance.
+
+Each converter must have a method `test` that takes the XML document as well as the document url. It's there to tell if it can handle the content or not. In the case of eLife we check for the `publisher-name` element in the XML. 
+
+
+```js
+ElifeConverter.Prototype = function() {
+  ...
+  this.test = function(xmlDoc, documentUrl) {
+    var publisherName = xmlDoc.querySelector("publisher-name").textContent;
+    return publisherName === "eLife Sciences Publications, Ltd";
+  };
+  ...
+};
+```
+
+A customized converter can override any method of the original LensConverter. However, we have designated some hooks that are intended to be customized. Watch for methods starting with `enhance`. For eLife we needed to resolve supplement urls, so we implemented an `enhanceSupplement` method, to resolve the `supplement.url` according to a fixed url scheme that eLife uses.
+
+```js
+ElifeConverter.Prototype = function() {
+  ...
+  this.enhanceSupplement = function(state, node) {
+    var baseURL = this.getBaseURL(state);
+    if (baseURL) {
+      return [baseURL, node.url].join('');
+    } else {
+      node.url = [
+        "http://cdn.elifesciences.org/elife-articles/",
+        state.doc.id,
+        "/suppl/",
+        node.url
+      ].join('');
+    }
+  };
+  ...
+};
+```
+
+You can configure a chain of converters if you need to support different journals at a time for a single Lens instance.
+
+See [src/app.js](https://github.com/elifesciences/lens-starter/blob/master/src/app.js)
+
+```js
+LensApp.Prototype = function() {
+  this.getConverters = function(converterOptions) {
+    return [
+      new ElifeConverter(converterOptions),
+      new PLOSConverter(converterOptions),
+      new LensConverter(converterOptions)
+    ]
+  };
+  ...
+};
+```
+
+The `Converter.match` method will be called on each instance with the XML document to be processed. The one that returns `true` first will be used. You can change the order to prioritize converters over others.
+
+
 ### Panels
 
 Lens can easily be extended with a customized panel. It can be used to show additional information relevant to the displayed article. A few examples of what you could do:
@@ -104,18 +170,13 @@ Lens can easily be extended with a customized panel. It can be used to show addi
 
 For demonstration we will look at the implementation of a simple Altmetrics panel. It will pull data asynchronously from the Altmetrics API (http://api.altmetric.com/v1/doi/10.7554/eLife.00005) and render the information in Lens.
 
-
 #### Panel Definition
 
 This is the main entry point for a panel.
 
+See: [src/panels/altmetrics/index.js](https://github.com/elifesciences/lens-starter/blob/master/src/panels/altmetrics.index.js)
+
 ```js
-// src/panels/altmetrics/index.js
-"use strict";
-
-var Panel = require('lens').Panel;
-var AltmetricsController = require('./altmetrics_controller');
-
 var panel = new Panel({
 	name: "altmetrics",
   type: 'resource',
@@ -126,29 +187,21 @@ var panel = new Panel({
 panel.createController = function(doc) {
   return new AltmetricsController(doc, this.config);
 };
-
-module.exports = panel;
 ```
 
 #### Panel Controller
 
 Our custom controller provides a `getAltmetrics` method, that we will use in the view to fetch data from altmetrics.com asynchronously. Using the Substance Document API we retrieve the DOI, which is stored on the `publication_info` node.
 
+See: [src/panels/altmetrics/altmetrics_controller.js](https://github.com/elifesciences/lens-starter/blob/master/src/panels/altmetrics/altmetrics_controller.js)
+
 ```js
-// src/panels/altmetrics_controller.js
-
-var PanelController = require("lens").PanelController;
-var AltmetricsView = require("./altmetrics_view");
-
 var AltmetricsController = function(document, config) {
   PanelController.call(this, document, config);
 };
 
 AltmetricsController.Prototype = function() {
-  this.createView = function() {
-    return new AltmetricsView(this, this.config);
-  };
-
+  ...
   this.getAltmetrics = function(cb) {
     var doi = this.document.get('publication_info').doi;
 
@@ -161,33 +214,26 @@ AltmetricsController.Prototype = function() {
 			cb(err);
 		});
   };
+  ...
 };
-
-AltmetricsController.Prototype.prototype = PanelController.prototype;
-AltmetricsController.prototype = new AltmetricsController.Prototype();
-
-module.exports = AltmetricsController;
 ```
 
 #### Panel View
 
 The Panel View is where you define, what should be rendered in your custom panel. Your implementation needs to inherit from `Lens.PanelView` and define a render method. The implementation of the altmetrics panel is pretty simple. We will show the panel (`PanelView.showToggle`) as soon as data from altmetric.com has arrived.
 
-```js
-// src/panels/altmetrics_view.js
-var PanelView = require('lens').PanelView;
+See: [src/panels/altmetrics/index.js](https://github.com/elifesciences/lens-starter/blob/master/src/panels/altmetrics/altmetrics_view.js)
 
+```js
 var AltmetricsView = function(panelCtrl, config) {
   PanelView.call(this, panelCtrl, config);
-
   this.$el.addClass('altmetrics-panel');
-
   // Hide toggle on contruction, it will be displayed once data has arrived
   this.hideToggle();
 };
 
 AltmetricsView.Prototype = function() {
-
+  ...
   this.render = function() {
     var self = this;
     this.el.innerHTML = '';
@@ -199,43 +245,25 @@ AltmetricsView.Prototype = function() {
         console.error("Could not retrieve altmetrics data:", err);
       }
     });
-    
     return this;
   };
-
-  this.renderAltmetrics = function(altmetrics) {
-    // Finally data is available so we tell the panel to show up as a tab
-    this.showToggle();
-
-    var $altmetrics = $('<div class="altmetrics"></div>');
-    $altmetrics.append($('<div class="label">Altmetric.com Score</div>'));
-    $altmetrics.append($('<div class="value"></div>').text(altmetrics.score));
-    $altmetrics.append($('<div class="label">Cited on Twitter</div>'));
-    $altmetrics.append($('<div class="value"></div>').text(altmetrics.cited_by_tweeters_count));
-    $altmetrics.append($('<div class="label">Readers on Mendeley</div>'));
-    $altmetrics.append($('<div class="value"></div>').text(altmetrics.readers.mendeley));
-    $altmetrics.append($('<div class="copyright">Data provided by <a href="http://altmetric.com">altmetrics.com</div>'));
-
-    this.$el.append($altmetrics);
-  };
+  ...
 };
-
-AltmetricsView.Prototype.prototype = PanelView.prototype;
-AltmetricsView.prototype = new AltmetricsView.Prototype();
-AltmetricsView.prototype.constructor = AltmetricsView;
-
-module.exports = AltmetricsView;
 ```
 
 #### Activate Panel
 
-In the app definition file `src/app.js` find the following line:
+Panels are enabled in the projects `app.js` file by manipulating the `panels` array.
+
+
+See: [src/app.js](https://github.com/elifesciences/lens-starter/blob/master/src/app.js)
+
 
 ```js
 var panels = Lens.getDefaultPanels();
 ```
 
-Now you are able to manipulate that array to include an additional panel. This code adds the altmetrics panel to the next to last position (before the info panel).
+This code adds the altmetrics panel to the next to last position (before the info panel). 
 
 ```js
 var altmetricsPanel = require('./panels/altmetrics');
@@ -255,19 +283,6 @@ In order to consider
     "styles/altmetrics.css": "src/panels/altmetrics/altmetrics.css",
     ...
   },
-```
-
-### Converter
-
-Lens can natively read the JATS (formerly NLM) format, thanks to its built-in converter.
-Conversion is done on the client side using the browser-native DOM Parser.
-
-```js
-var importer = new LensImporter();
-var doc = importer.import(xmlData, {
-  // this path is used to resolve relative figure urls
-  baseURL: "http://docs.example.com/doc-25/"
-});
 ```
 
 
@@ -351,6 +366,4 @@ Thanks go to the following people, who made Lens possible:
 	TODO:
 	
 	- proper converter docs (custom property)
-	- update to fontawesome 4.2.0
-	update jquery
 -->

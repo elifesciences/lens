@@ -19,6 +19,8 @@ var LensController = function(config) {
   this.config = config;
   this.Article = config.articleClass || LensArticle;
   this.converter = config.converter;
+  this.converters = config.converters;
+
   this.converterOptions = _.extend({}, NLMConverter.DefaultOptions, config.converterOptions);
 
   // Main controls
@@ -39,8 +41,8 @@ LensController.Prototype = function() {
   // After a file gets drag and dropped it will be remembered in Local Storage
   // ---------
 
-  this.importXML = function(xml) {
-    var doc = this.converter.import(xml, this.converterOptions);
+  this.importXML = function(xmlData) {
+    var doc = this.convertDocument(xml);
     this.createReader(doc, {
       panel: 'toc'
     });
@@ -83,6 +85,27 @@ LensController.Prototype = function() {
     });
   };
 
+  this.convertDocument = function(data) {
+    var doc = undefined;
+    var i = 0;
+    while (!doc && i < this.converters.length) {
+      var converter = this.converters[i];
+      // First match will be used as the converter
+      if (converter.test(data, this.config.document_url)) {
+        doc = converter.import(data);
+      }
+      i += 1;
+    }
+
+    if (!doc) {
+      throw new Error("No suitable converter found for this document", xml);
+    }
+
+    return doc;
+  };
+
+
+
   this.openReader = function(panel, focussedNode, fullscreen) {
     var that = this;
 
@@ -104,11 +127,10 @@ LensController.Prototype = function() {
       $.get(this.config.document_url)
       .done(function(data) {
         var doc;
+
         // Determine type of resource
-        var xml = $.isXMLDoc(data);
-        // Process XML file
-        if (xml) {
-          doc = that.converter.import(data, that.converterOptions);
+        if ($.isXMLDoc(data)) {
+          doc = that.convertDocument(data);
         } else {
           if(typeof data == 'string') data = $.parseJSON(data);
           doc = that.Article.fromSnapshot(data);
