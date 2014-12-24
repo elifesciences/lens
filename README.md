@@ -157,7 +157,7 @@ LensApp.Prototype = function() {
 };
 ```
 
-The `Converter.match` method will be called on each instance with the XML document to be processed. The one that returns `true` first will be used. You can change the order to prioritize converters over others.
+The `Converter.test` method will be called on each instance with the XML document to be processed. The one that returns `true` first will be used. You can change the order to prioritize converters over others.
 
 
 ### Panels
