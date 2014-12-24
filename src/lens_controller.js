@@ -41,14 +41,8 @@ LensController.Prototype = function() {
   // After a file gets drag and dropped it will be remembered in Local Storage
   // ---------
 
-  this.importXML = function(xml) {
-    var doc = this.converter.import(xml, this.converterOptions);
-    // Pick suitable converter
-    // _.each(this.converters, function(converter) {
-    //   console.log('LE CONVERTER', converter);
-    // });
-    console.error('make aware of multiple controllaz');
-
+  this.importXML = function(xmlData) {
+    var doc = this.convertDocument(xml);
     this.createReader(doc, {
       panel: 'toc'
     });
@@ -91,6 +85,27 @@ LensController.Prototype = function() {
     });
   };
 
+  this.convertDocument = function(data) {
+    var doc = undefined;
+    var i = 0;
+    while (!doc && i < this.converters.length) {
+      var converter = this.converters[i];
+      // First match will be used as the converter
+      if (converter.test(data, this.config.document_url)) {
+        doc = converter.import(data);
+      }
+      i += 1;
+    }
+
+    if (!doc) {
+      throw new Error("No suitable converter found for this document", xml);
+    }
+
+    return doc;
+  };
+
+
+
   this.openReader = function(panel, focussedNode, fullscreen) {
     var that = this;
 
@@ -100,7 +115,6 @@ LensController.Prototype = function() {
       focussedNode: focussedNode,
       fullscreen: !!fullscreen
     };
-
 
     // Already loaded?
     if (this.reader) {
@@ -113,24 +127,10 @@ LensController.Prototype = function() {
       $.get(this.config.document_url)
       .done(function(data) {
         var doc;
-        // Determine type of resource
-        var xml = $.isXMLDoc(data);
-        // Process XML file
-        if (xml) {
-          doc = that.converter.import(data, that.converterOptions);
 
-          var doc = undefined;
-          var i = 0;
-          while (!doc && i < that.converters.length) {
-            var converter = that.converters[i];
-            // First match will be used as the converter
-            if (converter.test(data, that.document_url)) {
-              console.log('using', converter, 'for ', that.config.document_url);
-              doc = converter.import(data);
-            }
-            i += 1;
-          }
-          
+        // Determine type of resource
+        if ($.isXMLDoc(data)) {
+          doc = that.convertDocument(data);
         } else {
           if(typeof data == 'string') data = $.parseJSON(data);
           doc = that.Article.fromSnapshot(data);
