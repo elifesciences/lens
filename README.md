@@ -1,7 +1,7 @@
 # Lens
 
 <!--**Lens** provides a novel way of looking at content on the web. It is designed to make life easier for researchers, reviewers, authors and readers. For example, have you tried to look at a figure in an online article, while at the same time trying to see what the author says about the figure, jumping all around the article, losing track of what you were looking for in the first place? The reason for this is that most online research articles are published in a fixed digital version of the original paper. With Lens, we take full advantage of the internet’s flexibility.-->
-
+a
 **Lens** provides a novel way of looking at content on the web. It is designed to make life easier for researchers, reviewers, authors and readers.
 
 - **Read the [announcement](http://elifesciences.org/elife-news/lens)**
@@ -60,7 +60,7 @@ You need to repeat that install step whenever you updated the screwdriver repo.
 
 ### Setup
 
-1. Clone the lens-starter repository
+1. Clone the `lens-starter` repository
 
   ```bash
   $ git clone https://github.com/elifesciences/lens-starter.git
@@ -69,7 +69,7 @@ You need to repeat that install step whenever you updated the screwdriver repo.
 2. Fetch dependencies
 
   ```bash
-  $ cd lens-ams
+  $ cd lens-starter
   $ substance --update
   ```
 
@@ -361,9 +361,3 @@ Thanks go to the following people, who made Lens possible:
 - Felix Breuer (math)
 - Peter Krautzberger (math)
 - Samo Korošec (design)
-
-<!-- 
-	TODO:
-	
-	- proper converter docs (custom property)
--->
