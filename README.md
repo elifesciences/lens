@@ -6,7 +6,6 @@
 - **Watch the [introduction video](http://vimeo.com/67254579).**
 - **See Lens in [action](http://lens.elifesciences.org/00778)**
 
-
 ## Using Lens
 
 Lens is a stand-alone web component that can be embedded into any web page. Just take the contents from the latest [distribution](https://github.com/elifesciences/lens/releases), then adjust the `document_url` parameter in `index.html`.
@@ -96,7 +95,7 @@ You can find the implementation of Lens Converter [here](https://github.com/elif
 Each converter must have a method `test` that takes the XML document as well as the document url. The method is there to tell if the converter can handle the content or not. In the case of eLife we check for the `publisher-name` element in the XML. 
 
 
-See: [lens-converter/elife_converter.js](https://github.com/elifesciences/lens-converter/blob/master/elife_converter.js#L16)
+See: [lens-converter/elife_converter.js](https://github.com/elifesciences/lens-converter/blob/master/elife_converter.js)
 
 ```js
 ElifeConverter.Prototype = function() {
@@ -111,7 +110,7 @@ ElifeConverter.Prototype = function() {
 
 A customized converter can override any method of the original LensConverter. However, we have designated some hooks that are intended to be customized. Watch for methods starting with `enhance`. For eLife we needed to resolve supplement urls, so we implemented an `enhanceSupplement` method, to resolve the `supplement.url` according to a fixed url scheme that eLife uses.
 
-See: [lens-converter/elife_converter.js](https://github.com/elifesciences/lens-converter/blob/master/elife_converter.js#L145)
+See: [lens-converter/elife_converter.js](https://github.com/elifesciences/lens-converter/blob/master/elife_converter.js)
 
 ```js
 ElifeConverter.Prototype = function() {
@@ -162,7 +161,7 @@ We can either define a completely new node or override an existing implementatio
 
 The following example from the starter repo overrides the [Cover node](https://github.com/elifesciences/lens-article/blob/master/nodes/cover/cover_view.js) and adds a feedback link to the top.
 
-See [src/nodes/cover/cover_view.js](https://github.com/elifesciences/lens-starter/blob/master/src/nodes/cover/cover_view.js)
+See [lens-starter/src/nodes/cover/cover_view.js](https://github.com/elifesciences/lens-starter/blob/master/src/nodes/cover/cover_view.js)
 
 ```js
 CustomCoverView.Prototype = function() {
@@ -191,7 +190,7 @@ CustomCoverView.Prototype = function() {
 
 In this example only the view code is modified while the original model definition is being reused.
 
-See [lens-starter/src/nodes/cover/cover.js](https://github.com/elifesciences/lens-starter/blob/master/src/nodes/cover/cover_view.js)
+See [lens-starter/src/nodes/cover/index.js](https://github.com/elifesciences/lens-starter/blob/master/src/nodes/cover/index.js)
 
 ```js
 var LensNodes = require("lens-article/nodes");
@@ -208,6 +207,8 @@ In order to activate in that patched node, your custom converter has to instanti
 See [lens-starter/src/custom_converter.js](https://github.com/elifesciences/lens-starter/blob/master/src/custom_converter.js#L23)
 
 ```js
+var CustomNodeTypes = require("./nodes");
+
 CustomConverter.Prototype = function() {
   ...
   // Override document factory so we can create a customized Lens article,
@@ -334,6 +335,8 @@ panels.splice(-1, 0, altmetricsPanel);
 ### Custom CSS
 
 Lens can be styled with custom CSS easily. You can put a CSS file anywhere and reference it from the style section in `project.json`. E.g. the styles for the altmetrics panel were referenced like that.
+
+See: [lens-starter/.screwdriver/project.json](https://github.com/elifesciences/lens-starter/blob/master/.screwdriver/project.json)
 
 ```js
 // .screwdriver/project.json
