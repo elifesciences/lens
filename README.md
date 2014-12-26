@@ -1,20 +1,11 @@
 # Lens
 
-<!--**Lens** provides a novel way of looking at content on the web. It is designed to make life easier for researchers, reviewers, authors and readers. For example, have you tried to look at a figure in an online article, while at the same time trying to see what the author says about the figure, jumping all around the article, losing track of what you were looking for in the first place? The reason for this is that most online research articles are published in a fixed digital version of the original paper. With Lens, we take full advantage of the internet’s flexibility.-->
-a
 **Lens** provides a novel way of looking at content on the web. It is designed to make life easier for researchers, reviewers, authors and readers.
 
 - **Read the [announcement](http://elifesciences.org/elife-news/lens)**
 - **Watch the [introduction video](http://vimeo.com/67254579).**
 - **See Lens in [action](http://lens.elifesciences.org/00778)**
 
-<!--
-## The Lens Article Format
-
-XML-based formats such as NLM are hard to consume by web clients. Existing formats target print, and thus contain style information, which makes them hard to process by computer programs. We needed strict separation of content for our vision, so we developed the Lens Article Format.
-
-The Lens Article is based on the [Substance Document Model](http://github.com/substance/document) and features basic content types such as paragraphs and headings, as well as figure types, such as images, tables and videos complete with captions and cross-references. Each content element lives as a node in a flat address space, identified by a unique id. Think of it as a database of independent content fragments. The document definitions can easily be extended. Developers can either create their own flavours or contribute to the Lens Article Format directly.
--->
 
 ## Using Lens
 
@@ -105,7 +96,7 @@ You can find the implementation of Lens Converter [here](https://github.com/elif
 Each converter must have a method `test` that takes the XML document as well as the document url. The method is there to tell if the converter can handle the content or not. In the case of eLife we check for the `publisher-name` element in the XML. 
 
 
-See: [lens-converter](https://github.com/elifesciences/lens-converter)/[elife_converter.js](https://github.com/elifesciences/lens-converter/blob/master/elife_converter.js)
+See: [lens-converter/elife_converter.js](https://github.com/elifesciences/lens-converter/blob/master/elife_converter.js#L16)
 
 ```js
 ElifeConverter.Prototype = function() {
@@ -119,6 +110,8 @@ ElifeConverter.Prototype = function() {
 ```
 
 A customized converter can override any method of the original LensConverter. However, we have designated some hooks that are intended to be customized. Watch for methods starting with `enhance`. For eLife we needed to resolve supplement urls, so we implemented an `enhanceSupplement` method, to resolve the `supplement.url` according to a fixed url scheme that eLife uses.
+
+See: [lens-converter/elife_converter.js](https://github.com/elifesciences/lens-converter/blob/master/elife_converter.js#L145)
 
 ```js
 ElifeConverter.Prototype = function() {
@@ -196,9 +189,9 @@ CustomCoverView.Prototype = function() {
 };
 ```
 
-In this example only the view code is touched while the model definition is reused.
+In this example only the view code is modified while the original model definition is being reused.
 
-See [src/nodes/cover/cover.js](https://github.com/elifesciences/lens-starter/blob/master/src/nodes/cover/cover_view.js)
+See [lens-starter/src/nodes/cover/cover.js](https://github.com/elifesciences/lens-starter/blob/master/src/nodes/cover/cover_view.js)
 
 ```js
 var LensNodes = require("lens-article/nodes");
@@ -212,7 +205,7 @@ module.exports = {
 
 In order to activate in that patched node, your custom converter has to instantiate a custom Lens Article instance.
 
-See [src/custom_converter.js](https://github.com/elifesciences/lens-starter/blob/master/src/custom_converter.js#L23)
+See [lens-starter/src/custom_converter.js](https://github.com/elifesciences/lens-starter/blob/master/src/custom_converter.js#L23)
 
 ```js
 CustomConverter.Prototype = function() {
@@ -242,7 +235,7 @@ For demonstration we will look at the implementation of a simple Altmetrics pane
 
 This is the main entry point for a panel.
 
-See: [src/panels/altmetrics/index.js](https://github.com/elifesciences/lens-starter/blob/master/src/panels/altmetrics.index.js)
+See: [lens-starter/src/panels/altmetrics/index.js](https://github.com/elifesciences/lens-starter/blob/master/src/panels/altmetrics.index.js)
 
 ```js
 var panel = new Panel({
@@ -261,7 +254,7 @@ panel.createController = function(doc) {
 
 Our custom controller provides a `getAltmetrics` method, that we will use in the view to fetch data from altmetrics.com asynchronously. Using the Substance Document API we retrieve the DOI, which is stored on the `publication_info` node.
 
-See: [src/panels/altmetrics/altmetrics_controller.js](https://github.com/elifesciences/lens-starter/blob/master/src/panels/altmetrics/altmetrics_controller.js)
+See: [lens-starter/src/panels/altmetrics/altmetrics_controller.js](https://github.com/elifesciences/lens-starter/blob/master/src/panels/altmetrics/altmetrics_controller.js)
 
 ```js
 var AltmetricsController = function(document, config) {
@@ -290,7 +283,7 @@ AltmetricsController.Prototype = function() {
 
 The Panel View is where you define, what should be rendered in your custom panel. Your implementation needs to inherit from `Lens.PanelView` and define a render method. The implementation of the altmetrics panel is pretty simple. We will show the panel (`PanelView.showToggle`) as soon as data from altmetric.com has arrived.
 
-See: [src/panels/altmetrics/index.js](https://github.com/elifesciences/lens-starter/blob/master/src/panels/altmetrics/altmetrics_view.js)
+See: [lens-starter/src/panels/altmetrics/index.js](https://github.com/elifesciences/lens-starter/blob/master/src/panels/altmetrics/altmetrics_view.js)
 
 ```js
 var AltmetricsView = function(panelCtrl, config) {
@@ -324,7 +317,7 @@ AltmetricsView.Prototype = function() {
 Panels are enabled in the projects `app.js` file by manipulating the `panels` array.
 
 
-See: [src/app.js](https://github.com/elifesciences/lens-starter/blob/master/src/app.js)
+See: [lens-starter/src/app.js](https://github.com/elifesciences/lens-starter/blob/master/src/app.js)
 
 
 ```js
