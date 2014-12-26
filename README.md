@@ -99,13 +99,13 @@ You need to repeat that install step whenever you updated the screwdriver repo.
 Lens can natively read the JATS (formerly NLM) format, thanks to its built-in converter.
 Conversion is done on the client side using the browser-native DOM Parser.
 
-You can find the implementation of the Lens converter [here](https://github.com/elifesciences/lens-converter/blob/master/src/lens_converter.js). The Lens Converter is meant to be customized, so publishers can develop a their own flavor easily.
+You can find the implementation of Lens Converter [here](https://github.com/elifesciences/lens-converter/blob/master/lens_converter.js). Lens Converter is meant to be customized, so publishers can develop a their own flavor easily.
 
 
-Let's have a look at the [eLife Converter](https://github.com/elifesciences/lens-converter/blob/master/src/elife_converter.js) for instance.
+Each converter must have a method `test` that takes the XML document as well as the document url. The method is there to tell if the converter can handle the content or not. In the case of eLife we check for the `publisher-name` element in the XML. 
 
-Each converter must have a method `test` that takes the XML document as well as the document url. It's there to tell if it can handle the content or not. In the case of eLife we check for the `publisher-name` element in the XML. 
 
+See: [lens-converter](https://github.com/elifesciences/lens-converter)/[elife_converter.js](https://github.com/elifesciences/lens-converter/blob/master/elife_converter.js)
 
 ```js
 ElifeConverter.Prototype = function() {
@@ -158,7 +158,6 @@ LensApp.Prototype = function() {
 ```
 
 The `Converter.test` method will be called on each instance with the XML document to be processed. The one that returns `true` first will be used. You can change the order to prioritize converters over others.
-
 
 ### Custom Nodes
 
