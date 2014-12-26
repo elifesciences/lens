@@ -83,16 +83,16 @@ You need to repeat that install step whenever you updated the screwdriver repo.
 
 4. Open in browser
 
-This will show you a simple index page with links to sample files.
+  This will show you a simple index page with links to sample files.
 
 5. Updates
 
-To receive all new changes update the main repo and then use the screwdriver again
+  To receive all new changes update the main repo and then use the screwdriver again
 
-```
-$ git pull
-$ substance --update
-```
+  ```
+  $ git pull
+  $ substance --update
+  ```
 
 ### Converter
 
@@ -159,6 +159,75 @@ LensApp.Prototype = function() {
 
 The `Converter.test` method will be called on each instance with the XML document to be processed. The one that returns `true` first will be used. You can change the order to prioritize converters over others.
 
+
+### Custom Nodes
+
+You may want to customize how information is displayed in Lens. Here's how it works.
+
+#### Define node model and view
+
+We can either define a completely new node or override an existing implementation.
+
+The following example from the starter repo overrides the [Cover node](https://github.com/elifesciences/lens-article/blob/master/nodes/cover/cover_view.js) and adds a feedback link to the top.
+
+See [src/nodes/cover/cover_view.js](https://github.com/elifesciences/lens-starter/blob/master/src/nodes/cover/cover_view.js)
+
+```js
+CustomCoverView.Prototype = function() {
+  this.render = function() {
+    CoverView.prototype.render.call(this);
+
+    var refUrl = encodeURIComponent(window.location.href);
+
+    // Add feeback info
+    var introEl = $$('.intro.container', {
+      children: [
+        $$('.intro-text', {
+          html: '<i class="icon-info"></i>&nbsp;&nbsp;<b>Lens</b> provides a novel way of viewing research'
+        }),
+        $$('a.send-feedback', {href: "mailto:feeback@example.com", text: "Send feedback", target: "_blank" })
+      ]
+    });
+
+    // Prepend
+    this.content.insertBefore(introEl, this.content.firstChild);
+    
+    return this;
+  }
+};
+```
+
+In this example only the view code is touched while the model definition is reused.
+
+See [src/nodes/cover/cover.js](https://github.com/elifesciences/lens-starter/blob/master/src/nodes/cover/cover_view.js)
+
+```js
+var LensNodes = require("lens-article/nodes");
+var CoverModel = LensNodes["cover"].Model;
+
+module.exports = {
+  Model: CoverModel,
+  View: require('./cover_view')
+};
+```
+
+In order to activate in that patched node, your custom converter has to instantiate a custom Lens Article instance.
+
+See [src/custom_converter.js](https://github.com/elifesciences/lens-starter/blob/master/src/custom_converter.js#L23)
+
+```js
+CustomConverter.Prototype = function() {
+  ...
+  // Override document factory so we can create a customized Lens article,
+  // including overridden node types
+  this.createDocument = function() {
+    var doc = new LensArticle({
+      nodeTypes: CustomNodeTypes
+    });
+    return doc;
+  };
+  ...
+```
 
 ### Panels
 
