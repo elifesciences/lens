@@ -63,6 +63,7 @@ var ReaderView = function(readerCtrl) {
 
   this.formulaWidths = {};
   this.formulaHeights = {};
+  this.formulaIsZoomed = {};
 
   // Events
   // --------
@@ -92,6 +93,10 @@ var ReaderView = function(readerCtrl) {
     workflow.attach(this.readerCtrl, this);
   }, this);
 
+  // listen for clicks on formulas to toggle scale/scroll
+  // this way to handle the event is a hack! lens/substance infrastructure should be used here!
+  var self = this;
+  $(this.$el).on("click",".formula .content .MathJax_Display",function(event){ self.toggleFormulaScaling(event,this); });
 
   // attach a lazy/debounced handler for resize events
   // that updates the outline of the currently active panels
@@ -190,36 +195,47 @@ ReaderView.Prototype = function() {
     return this;
   };
 
-  this.fitFormulas = function() {
-    var self = this;
+  this.fitFormula = function(nodeId,formulaNode) {
 
-    // MathJax_Display
-    $('.content-node.formula').each(function() {
-      var nodeId = $(this).find('.MathJax_Display .MathJax').attr("id");
+    var mathjaxContainer = $(formulaNode).find('.MathJax_Display')[0];
+    var mathEl = $(formulaNode).find('.math')[0];
 
-      var mathjaxContainer = $(this).find('.MathJax_Display')[0];
+    if(this.getFormulaIsZoomed(nodeId)) { // Zoomed
+
+      mathEl.style["-webkit-transform-origin"] = "";
+      mathEl.style["-moz-transform-origin"] = "";
+      mathEl.style["-ms-transform-origin"] = "";
+      mathEl.style.transformOrigin = "";
+      mathEl.style["-webkit-transform"] = "";
+      mathEl.style["-moz-transform"] = "";
+      mathEl.style["-ms-transform"] = "";
+      mathEl.style.transform = "";
+
+      mathjaxContainer.style.height = "";
+      mathjaxContainer.style.overflowX = "scroll";
+
+    } else { // Scaled
+
       var containerWidth = $(mathjaxContainer).width();
 
       var INDENT = 3.0;
       
-      if (!self.formulaWidths[nodeId]) {
+      if (!this.formulaWidths[nodeId]) {
         var spanElement = $(mathjaxContainer).find(".math")[0];
         var style = window.getComputedStyle(spanElement);
 
-        self.formulaWidths[nodeId] = parseFloat(style.fontSize) * (spanElement.bbox.w + INDENT);
-        // console.log("content width for ", nodeId, self.formulaWidths[nodeId]);
+        this.formulaWidths[nodeId] = parseFloat(style.fontSize) * (spanElement.bbox.w + INDENT);
       }
 
-      if (!self.formulaHeights[nodeId]) {
+      if (!this.formulaHeights[nodeId]) {
         var style = window.getComputedStyle(mathjaxContainer);
 
-        self.formulaHeights[nodeId] = parseFloat(style.height);
+        this.formulaHeights[nodeId] = parseFloat(style.height);
       }
 
       var CORRECTION_FACTOR = 0.92;
-      var ratio = Math.min(containerWidth / self.formulaWidths[nodeId]*CORRECTION_FACTOR,1.0);
+      var ratio = Math.min(containerWidth / this.formulaWidths[nodeId]*CORRECTION_FACTOR,1.0);
 
-      var mathEl = $(this).find('.math')[0];
       mathEl.style["-webkit-transform-origin"] = "top left";
       mathEl.style["-moz-transform-origin"] = "top left";
       mathEl.style["-ms-transform-origin"] = "top left";
@@ -229,10 +245,49 @@ ReaderView.Prototype = function() {
       mathEl.style["-ms-transform"] = "scale("+ratio+")";
       mathEl.style.transform = "scale("+ratio+")";
 
-      var mathCont = $(this).find('.MathJax_Display')[0];
-      mathCont.style.height = "" + (self.formulaHeights[nodeId] * ratio) + "px";
+      mathjaxContainer.style.height = "" + (this.formulaHeights[nodeId] * ratio) + "px";
+      mathjaxContainer.style.overflowX = "visible";
+
+    }
+  };
+
+  this.fitFormulas = function() {
+    var self = this;
+
+    // MathJax_Display
+    $('.content-node.formula').each(function() {
+      var nodeId = $(this).find('.MathJax_Display .MathJax').attr("id");
+      self.fitFormula(nodeId,this);
     });
   };
+
+  // these methods handle the toggling logic and should be replaced,
+  // maybe by a workflow along the lines of ToggleResource
+
+  this.getFormulaIsZoomed = function(nodeId) {
+    if(this.formulaIsZoomed[nodeId] == undefined) {
+      return false;
+    } else {
+      return this.formulaIsZoomed[nodeId];      
+    }
+  }
+
+  this.setFormulaIsZoomed = function(nodeId,value) {
+    //console.log("formulaIsZoomed of " + nodeId + " is set from " + this.formulaIsZoomed[nodeId] + " to " + value );
+    this.formulaIsZoomed[nodeId] = value;
+  }
+
+  this.toggleFormulaIsZoomed = function(nodeId) {
+    this.setFormulaIsZoomed(nodeId,!this.getFormulaIsZoomed(nodeId));
+  }
+
+  this.toggleFormulaScaling = function(event,node) {
+    //console.log(event,node);
+    var nodeId = $(node).find('.MathJax').attr("id");
+    var formulaNode = $(node).parents('.content-node.formula')[0];
+    this.toggleFormulaIsZoomed(nodeId);
+    this.fitFormula(nodeId,formulaNode);
+  }
 
   // Free the memory.
   // --------
