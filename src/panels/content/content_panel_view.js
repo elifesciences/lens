@@ -12,6 +12,9 @@ var ContentPanelView = function( panelCtrl, viewFactory, config ) {
   ContainerPanelView.call(this, panelCtrl, viewFactory, config);
 
   this.tocView = new TocPanelView(panelCtrl, viewFactory, _.extend({}, config, { type: 'resource', name: 'toc' }));
+  // cache the elements of all toc nodes to allow an efficient implementation
+  // of a scroll-spy in the TOC
+  this.tocNodeElements = {};
 
   this._onTocItemSelected = _.bind( this.onTocItemSelected, this );
 
@@ -59,28 +62,40 @@ ContentPanelView.Prototype = function() {
     }
   };
 
-  // Mark active heading
+  // Mark active heading / TOC node (~ scroll-spy)
   // --------
   //
 
   this.markActiveHeading = function(scrollTop) {
     var contentHeight = $('.nodes').height();
-    var headings = this.getDocument().getHeadings();
-
-    // No headings?
-    if (headings.length === 0) return;
-    // Use first heading as default
-    var activeNode = _.first(headings).id;
-
-    this.$('.content-node.heading').each(function() {
-      if (scrollTop >= $(this).position().top + CORRECTION) {
-        activeNode = this.dataset.id;
-      }
-    });
-
+    var tocNodes = this.getDocument().getTocNodes();
+    // No toc items?
+    if (tocNodes.length === 0) return;
+    // Use first item as default
+    var activeNode = _.first(tocNodes).id;
     // Edge case: select last item (once we reach the end of the doc)
     if (scrollTop + this.$el.height() >= contentHeight) {
-      activeNode = _.last(headings).id;
+      activeNode = _.last(tocNodes).id;
+    } else {
+      // starting from the end of document find the first node which is above the
+      // current scroll position
+      // TODO: maybe this could be optimized by a binary search
+      for (var i = tocNodes.length - 1; i >= 0; i--) {
+        var tocNode = tocNodes[i];
+        var el = this.tocNodeElements[tocNode.id];
+        if (!el) {
+          el = this.tocNodeElements[tocNode.id] = this.findNodeView(tocNode.id);
+        }
+        if (!el) {
+          console.error('Could not find element for node %s', tocNode.id);
+          return;
+        }
+        var elTop = $(el).position().top;
+        if (scrollTop >= elTop + CORRECTION) {
+          activeNode = el.dataset.id;
+          break;
+        }
+      }
     }
     this.tocView.setActiveNode(activeNode);
   };
