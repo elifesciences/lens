@@ -96,7 +96,9 @@ var ReaderView = function(readerCtrl) {
   // listen for clicks on formulas to toggle scale/scroll
   // this way to handle the event is a hack! lens/substance infrastructure should be used here!
   var self = this;
-  $(this.$el).on("click",".formula .content .MathJax_Display",function(event){ self.toggleFormulaScaling(event,this); });
+  $(this.$el).on("click",".formula .content .MathJax_Display",
+    function(event){ self.toggleFormulaScaling(event,this); }
+  );
 
   // attach a lazy/debounced handler for resize events
   // that updates the outline of the currently active panels
@@ -280,15 +282,15 @@ ReaderView.Prototype = function() {
   };
 
   this.toggleFormulaIsZoomed = function(nodeId) {
-    this.setFormulaIsZoomed(nodeId,!this.getFormulaIsZoomed(nodeId));
+    this.setFormulaIsZoomed(nodeId, !this.getFormulaIsZoomed(nodeId));
   };
 
-  this.toggleFormulaScaling = function(event,node) {
+  this.toggleFormulaScaling = function(event, node) {
     //console.log(event,node);
     var nodeId = $(node).find('.MathJax').attr("id");
     var formulaNode = $(node).parents('.content-node.formula')[0];
     this.toggleFormulaIsZoomed(nodeId);
-    this.fitFormula(nodeId,formulaNode);
+    this.fitFormula(nodeId, formulaNode);
   };
 
   // Free the memory.
