@@ -107,8 +107,8 @@ var ReaderView = function(readerCtrl) {
       currentPanel.scrollbar.update();
     }
     this.detectRenderMode();
+    // TODO: we need a generalized concept to add custom 'onResize' extensions
     this.fitFormulas();
-
   }, this), 1) );
 
 };
@@ -171,6 +171,7 @@ ReaderView.Prototype = function() {
 
     // TODO: also update the outline after image (et al.) are loaded
 
+    // TODO: we could generalized this as an extension point named 'afterInsertedElement'
     // Postpone things that expect this view has been inserted into the DOM already.
     _.delay(_.bind( function() {
       // initial state update here as scrollTo would not work out of DOM
@@ -219,17 +220,18 @@ ReaderView.Prototype = function() {
       var containerWidth = $(mathjaxContainer).width();
 
       var INDENT = 3.0;
-      
+      var style;
+
       if (!this.formulaWidths[nodeId]) {
         var spanElement = $(mathjaxContainer).find(".math")[0];
-        var style = window.getComputedStyle(spanElement);
-
-        this.formulaWidths[nodeId] = parseFloat(style.fontSize) * (spanElement.bbox.w + INDENT);
+        if (spanElement) {
+          style = window.getComputedStyle(spanElement);
+          this.formulaWidths[nodeId] = parseFloat(style.fontSize) * (spanElement.bbox.w + INDENT);
+        }
       }
 
       if (!this.formulaHeights[nodeId]) {
-        var style = window.getComputedStyle(mathjaxContainer);
-
+        style = window.getComputedStyle(mathjaxContainer);
         this.formulaHeights[nodeId] = parseFloat(style.height);
       }
 
@@ -265,21 +267,21 @@ ReaderView.Prototype = function() {
   // maybe by a workflow along the lines of ToggleResource
 
   this.getFormulaIsZoomed = function(nodeId) {
-    if(this.formulaIsZoomed[nodeId] == undefined) {
+    if(this.formulaIsZoomed[nodeId] === undefined) {
       return false;
     } else {
-      return this.formulaIsZoomed[nodeId];      
+      return this.formulaIsZoomed[nodeId];
     }
-  }
+  };
 
   this.setFormulaIsZoomed = function(nodeId,value) {
     //console.log("formulaIsZoomed of " + nodeId + " is set from " + this.formulaIsZoomed[nodeId] + " to " + value );
     this.formulaIsZoomed[nodeId] = value;
-  }
+  };
 
   this.toggleFormulaIsZoomed = function(nodeId) {
     this.setFormulaIsZoomed(nodeId,!this.getFormulaIsZoomed(nodeId));
-  }
+  };
 
   this.toggleFormulaScaling = function(event,node) {
     //console.log(event,node);
@@ -287,7 +289,7 @@ ReaderView.Prototype = function() {
     var formulaNode = $(node).parents('.content-node.formula')[0];
     this.toggleFormulaIsZoomed(nodeId);
     this.fitFormula(nodeId,formulaNode);
-  }
+  };
 
   // Free the memory.
   // --------
