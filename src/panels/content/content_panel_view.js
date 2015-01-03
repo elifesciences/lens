@@ -3,8 +3,6 @@
 var _ = require('underscore');
 var ContainerPanelView = require('../container_panel_view');
 var TocPanelView = require("./toc_panel_view");
-var Data = require("substance-data");
-var Index = Data.Graph.Index;
 
 var CORRECTION = 0; // Extra offset from the top
 
@@ -69,29 +67,41 @@ ContentPanelView.Prototype = function() {
   this.markActiveHeading = function(scrollTop) {
     var contentHeight = $('.nodes').height();
     var tocNodes = this.getDocument().getTocNodes();
+
+    var _getTocNodeElement = function(id) {
+      var el = this.tocNodeElements[id];
+      if (!el) {
+        el = this.tocNodeElements[id] = this.findNodeView(id);
+      }
+      return el;
+    }.bind(this);
+
     // No toc items?
     if (tocNodes.length === 0) return;
-    // Use first item as default
-    var activeNode = _.first(tocNodes).id;
-    // Edge case: select last item (once we reach the end of the doc)
+
+    var activeNode;
+    var firstEl = _getTocNodeElement(tocNodes[0].id);
+
+    // default
+    activeNode = tocNodes[0].id;
+
+    // and select the last item (once we reach the end of the doc)
     if (scrollTop + this.$el.height() >= contentHeight) {
       activeNode = _.last(tocNodes).id;
-    } else {
-      // starting from the end of document find the first node which is above the
-      // current scroll position
+    }
+    // starting from the end of document find the first node which is above the
+    // current scroll position
+    else {
       // TODO: maybe this could be optimized by a binary search
-      for (var i = tocNodes.length - 1; i >= 0; i--) {
+      for (var i = tocNodes.length - 1; i >= 1; i--) {
         var tocNode = tocNodes[i];
-        var el = this.tocNodeElements[tocNode.id];
-        if (!el) {
-          el = this.tocNodeElements[tocNode.id] = this.findNodeView(tocNode.id);
-        }
+        var el = _getTocNodeElement(tocNode.id);
         if (!el) {
           console.error('Could not find element for node %s', tocNode.id);
-          return;
+          continue;
         }
-        var elTop = $(el).position().top;
-        if (scrollTop >= elTop + CORRECTION) {
+        var elTopOffset = $(el).offset().top;
+        if (elTopOffset < 0) {
           activeNode = el.dataset.id;
           break;
         }
