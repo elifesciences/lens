@@ -83,7 +83,8 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 =======================================================================*/
 
 .article .panel.hidden {
-  visibility: hidden;
+  /* Note: visibility: hidden; kills mobile view since touch events are only received on the last panel */
+  display: none;
 }
 
 
@@ -614,6 +615,7 @@ span.annotation.formula_reference, span.publication_reference {
 
 /* Disable native scrollbar for resources except TOC */
 
+.article .resources .panel::-webkit-scrollbar,
 .article .resources .surface.figures::-webkit-scrollbar,
 .article .resources .surface.citations::-webkit-scrollbar,
 .article .resources .surface.info::-webkit-scrollbar {
@@ -621,6 +623,7 @@ span.annotation.formula_reference, span.publication_reference {
   height: 2px;
 }
 
+.article .resources .panel::-webkit-scrollbar-thumb,
 .article .resources .surface.figures::-webkit-scrollbar-thumb,
 .article .resources .surface.citations::-webkit-scrollbar-thumb,
 .article .resources .surface.info::-webkit-scrollbar-thumb {
