@@ -99,8 +99,7 @@ var ReaderView = function(readerCtrl) {
       currentPanel.scrollbar.update();
     }
     this.detectRenderMode();
-
-  }, this), 1) );
+  }, this), 1));
 
 };
 
@@ -223,6 +222,7 @@ ReaderView.Prototype = function() {
   // Search for readerCtrl.modifyState occurences
 
   this.updateState = function() {
+    var self = this;
     var state = this.readerCtrl.state;
 
     var handled;
@@ -240,6 +240,23 @@ ReaderView.Prototype = function() {
       if (!panelView.isHidden()) panelView.hide();
     });
 
+    // Always deactivate previous highlights
+    this.contentView.removeHighlights();
+
+    // and also remove highlights from resource panels
+    _.each(this.panelViews, function(panelView) {
+      panelView.removeHighlights();
+    });
+
+    // Highlight the focussed node
+    if (state.focussedNode) {
+      var classes = ["focussed", "highlighted"];
+      // HACK: abusing addHighlight for adding the fullscreen class
+      // instead I would prefer to handle such focussing explicitely in a workflow
+      if (state.fullscreen) classes.push("fullscreen");
+      currentPanelView.addHighlight(state.focussedNode, classes.join(' '));
+      currentPanelView.scrollTo(state.focussedNode);
+    }
 
     // A workflow needs to take care of
     // 1. showing the correct panel
@@ -250,6 +267,7 @@ ReaderView.Prototype = function() {
     // and should override Workflow.handleStateUpdate(state, info) to perform the update.
     // In case it has been responsible for the update it should return 'true'.
 
+    // TODO: what is this exactly for?
     if (this.lastWorkflow) {
       handled = this.lastWorkflow.handleStateUpdate(state, stateInfo);
     }
@@ -283,6 +301,8 @@ ReaderView.Prototype = function() {
           _.each(refs, function(ref) {
             this.contentView.addHighlight(ref.id, "highlighted ");
           }, this);
+          // TODO: Jumps to wrong position esp. for figures, because content like images has not completed loading
+          // at that stage. WE should make corrections afterwards
           if (panelView.hasScrollbar()) panelView.scrollTo(state.focussedNode);
         }
       } else {
@@ -290,32 +310,29 @@ ReaderView.Prototype = function() {
       }
     }
 
-    
-    // Always deactivate previous highlights
-    this.contentView.removeHighlights();
+    // HACK: Update the scrollbar after short delay
+    // This was necessary after we went back to using display: none for hiding panels,
+    // instead of visibility: hidden (caused problems with scrolling on iPad)
+    // This hack should not be necessary if we can ensure that
+    // - panel is shown first (so scrollbar can grab the dimensions)
+    // - whenever the contentHeight changes scrollbars should be updated
+    // - e.g. when an image completed loading
 
-    // and also remove highlights from resource panels
-    _.each(this.panelViews, function(panelView) {
-      panelView.removeHighlights();
-    });
-
-    // Highlight the focussed node
-    if (state.focussedNode) {
-      var classes = ["focussed", "highlighted"];
-      // HACK: abusing addHighlight for adding the fullscreen class
-      // instead I would prefer to handle such focussing explicitely in a workflow
-      if (state.fullscreen) classes.push("fullscreen");
-      currentPanelView.addHighlight(state.focussedNode, classes.join(' '));
-      currentPanelView.scrollTo(state.focussedNode);
-    }
-
+    self.updateScrollbars();
+    _.delay(function() {
+      self.updateScrollbars();        
+    }, 2000);
   };
 
   this.updateScrollbars = function() {
     var state = this.readerCtrl.state;
-    var currentPanelView = state.panel === "content" ? this.contentView : this.panelViews[state.panel];
+    // var currentPanelView = state.panel === "content" ? this.contentView : this.panelViews[state.panel];
     this.contentView.scrollbar.update();
-    if (currentPanelView && currentPanelView.hasScrollbar()) currentPanelView.scrollbar.update();
+
+    _.each(this.panelViews, function(panelView) {
+      if (panelView.hasScrollbar()) panelView.scrollbar.update();
+    });
+    // if (currentPanelView && currentPanelView.hasScrollbar()) currentPanelView.scrollbar.update();
   };
 
   this.showPanel = function(name) {

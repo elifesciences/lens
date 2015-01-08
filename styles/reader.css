@@ -590,8 +590,8 @@ span.annotation.formula_reference, span.publication_reference {
 }
 
 .article .document .surface.content::-webkit-scrollbar {
-  width: 2px;
-  height: 2px;
+  width: 0px;
+  height: 0px;
 }
 
 .article .document .surface.content::-webkit-scrollbar-thumb {
@@ -605,8 +605,8 @@ span.annotation.formula_reference, span.publication_reference {
 .article .resources .surface.figures::-webkit-scrollbar,
 .article .resources .surface.citations::-webkit-scrollbar,
 .article .resources .surface.info::-webkit-scrollbar {
-  width: 2px;
-  height: 2px;
+  width: 0px;
+  height: 0px;
 }
 
 .article .resources .panel::-webkit-scrollbar-thumb,
