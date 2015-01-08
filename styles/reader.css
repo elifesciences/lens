@@ -11,7 +11,6 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 }
 
 /* Clearfix solution */
-
 .container:after {
   content:"";
   display:table;
@@ -31,7 +30,7 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 }
 
 .hidden {
-  visibility: hidden;
+  display: none;
 }
 
 .content-node .content {
@@ -78,18 +77,15 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 =======================================================================*/
 
 
-
 /* Context Toggles
 =======================================================================*/
 
 .article .panel.hidden {
-  /* Note: visibility: hidden; kills mobile view since touch events are only received on the last panel */
+  /* Note: visibility: hidden; kills mobile view (iPad) since touch events are only received on the last panel */
   display: none;
 }
 
-
 /* Switcher */
-
 .article .medial-strip {
   width: 40px;
   position: absolute;
@@ -197,6 +193,10 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   padding-right: 50px;
   position: relative;
 }
+
+/* It's not exactly good to have the overflow-y: scroll for the container AND the surface.
+   There should be just one overflowing container, if possible
+*/
 
 .article .resources .panel {
   position: absolute;
@@ -315,13 +315,10 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   width: 60px;
 }
 
-
 /* Active state adjustments */
 .article .resources .content-node.highlighted .resource-header .toggle-res {
   color: rgba(255,255,255, 0.5);
 }
-
-
 
 /* Hide resize small icon by default */
 #container .article .content-node .fa.fa-eye-slash {
@@ -368,9 +365,6 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 }
 
 
-
-
-
 /* Hide resize small icon by default */
 #container .article .content-node .fa.fa-compress {
   display: none;
@@ -406,11 +400,8 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   overflow: auto;
 }
 
-
-
 /* Info panel overrides
 ----------------------------------------------------------------------- */
-
 
 #container .article .surface.info .content-node.caption .content {
   padding: 20px;
@@ -429,7 +420,6 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   -moz-transition-duration: 0.1s;
   transition-duration: 0.1s;
 }
-
 
 /* Small caps */
 span.annotation.sc {
@@ -475,7 +465,6 @@ span.annotation.formula_reference, span.publication_reference {
   font-weight: bold;
 }
 
-
 .content-node .idea { background-color: rgba(102, 182, 32, 0.3); }
 .content-node .question { background-color: rgba(16, 167, 222, 0.3); }
 .content-node .error { background-color: rgba(237, 96, 48, 0.3); }
@@ -494,7 +483,6 @@ span.annotation.formula_reference, span.publication_reference {
 }
 
 /* Highlighted states */
-
 .content-node .idea.highlight { background-color: rgba(102, 182, 32, 0.6); }
 .content-node .question.highlight { background-color: rgba(16, 167, 222, 0.6);}
 .content-node .error.highlight { background-color: rgba(237, 96, 48, 0.6); }
@@ -536,7 +524,6 @@ span.annotation.formula_reference, span.publication_reference {
   cursor: pointer;
 }
 
-
 .content-node .definition_reference {
   font-style: italic;
   background: rgba(0, 0, 0, 0.05);
@@ -555,7 +542,6 @@ span.annotation.formula_reference, span.publication_reference {
 .content-node .citation_reference.highlighted { background: rgba(11, 157, 217, 0.6); }
 .content-node .contributor_reference.highlighted { background-color: #5c6570; color: white; }
 .content-node .definition_reference.highlighted { background-color: #5c6570; color: white; }
-
 
 /* Cross Reference */
 .content-node .cross_reference:hover {
