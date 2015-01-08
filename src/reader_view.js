@@ -202,6 +202,7 @@ ReaderView.Prototype = function() {
 
     var mathjaxContainer = $(formulaNode).find('.MathJax_Display')[0];
     var mathEl = $(formulaNode).find('.math')[0];
+    if (!mathEl) return;
 
     if(this.getFormulaIsZoomed(nodeId)) { // Zoomed
 
