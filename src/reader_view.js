@@ -233,28 +233,13 @@ ReaderView.Prototype = function() {
     var stateInfo = {
       focussedNode: state.focussedNode ? this.doc.get(state.focussedNode) : null
     };
+
     var currentPanelView = state.panel === "content" ? this.contentView : this.panelViews[state.panel];
 
     _.each(this.panelViews, function(panelView) {
       if (!panelView.isHidden()) panelView.hide();
     });
 
-    // Always deactivate previous highlights
-    this.contentView.removeHighlights();
-    // and also rmove highlights from resource panels
-    _.each(this.panelViews, function(panelView) {
-      panelView.removeHighlights();
-    });
-
-    // Highlight the focussed node
-    if (state.focussedNode) {
-      var classes = ["focussed", "highlighted"];
-      // HACK: abusing addHighlight for adding the fullscreen class
-      // instead I would prefer to handle such focussing explicitely in a workflow
-      if (state.fullscreen) classes.push("fullscreen");
-      currentPanelView.addHighlight(state.focussedNode, classes.join(' '));
-      currentPanelView.scrollTo(state.focussedNode);
-    }
 
     // A workflow needs to take care of
     // 1. showing the correct panel
@@ -304,6 +289,26 @@ ReaderView.Prototype = function() {
         this.showPanel("toc");
       }
     }
+
+    
+    // Always deactivate previous highlights
+    this.contentView.removeHighlights();
+
+    // and also remove highlights from resource panels
+    _.each(this.panelViews, function(panelView) {
+      panelView.removeHighlights();
+    });
+
+    // Highlight the focussed node
+    if (state.focussedNode) {
+      var classes = ["focussed", "highlighted"];
+      // HACK: abusing addHighlight for adding the fullscreen class
+      // instead I would prefer to handle such focussing explicitely in a workflow
+      if (state.fullscreen) classes.push("fullscreen");
+      currentPanelView.addHighlight(state.focussedNode, classes.join(' '));
+      currentPanelView.scrollTo(state.focussedNode);
+    }
+
   };
 
   this.updateScrollbars = function() {
