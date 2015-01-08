@@ -202,6 +202,7 @@ ReaderView.Prototype = function() {
 
     var mathjaxContainer = $(formulaNode).find('.MathJax_Display')[0];
     var mathEl = $(formulaNode).find('.math')[0];
+    if (!mathEl) return;
 
     if(this.getFormulaIsZoomed(nodeId)) { // Zoomed
 
@@ -213,9 +214,12 @@ ReaderView.Prototype = function() {
       mathEl.style["-moz-transform"] = "";
       mathEl.style["-ms-transform"] = "";
       mathEl.style.transform = "";
+      mathEl.style["padding-top"] = "10px"; // pop it out a bit; also a hack to compensate for scrollbar size on most platforms
+      mathEl.style["padding-bottom"] = "10px";
+
 
       mathjaxContainer.style.height = "";
-      mathjaxContainer.style.overflowX = "scroll";
+      mathjaxContainer.style.overflowX = "auto";
 
     } else { // Scaled
 
@@ -239,7 +243,7 @@ ReaderView.Prototype = function() {
 
       var CORRECTION_FACTOR = 0.92;
       var ratio = Math.min(containerWidth / this.formulaWidths[nodeId]*CORRECTION_FACTOR,1.0);
-
+      ratio < 0.9 ? mathEl.style.cursor = "zoom-in" : mathEl.style.cursor = "" //simple zoom UI
       mathEl.style["-webkit-transform-origin"] = "top left";
       mathEl.style["-moz-transform-origin"] = "top left";
       mathEl.style["-ms-transform-origin"] = "top left";
