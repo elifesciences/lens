@@ -424,6 +424,7 @@ Thanks go to the following people, who made Lens possible:
 - Graham Nott (infrastructure)
 - Rebecca Close (converter)
 - Felix Breuer (math)
+- David Jones (math)
 - Peter Krautzberger (math)
 - Samo Korošec (design)
 - John Sack (guidance)
