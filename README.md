@@ -6,6 +6,7 @@
 - **Watch the [introduction video](http://vimeo.com/67254579).**
 - **See Lens in [action](http://lens.elifesciences.org/00778)**
 
+
 ## Using Lens
 
 Lens is a stand-alone web component that can be embedded into any web page. Just take the contents from the latest [distribution](https://github.com/elifesciences/lens/releases), then adjust the `document_url` parameter in `index.html`.
@@ -174,7 +175,7 @@ CustomCoverView.Prototype = function() {
     var introEl = $$('.intro.container', {
       children: [
         $$('.intro-text', {
-          html: '<i class="icon-info"></i>&nbsp;&nbsp;<b>Lens</b> provides a novel way of viewing research'
+          html: '<i class="fa fa-info"></i>&nbsp;&nbsp;<b>Lens</b> provides a novel way of viewing research'
         }),
         $$('a.send-feedback', {href: "mailto:feeback@example.com", text: "Send feedback", target: "_blank" })
       ]
@@ -412,7 +413,7 @@ $ git clone https://github.com/substance/sublime.git Substance
 
 Lens was developed in collaboration between [UC Berkeley](http://bioegrad.berkeley.edu/) graduate student [Ivan Grubisic](http://www.linkedin.com/pub/ivan-grubisic/26/353/739) and [eLife](http://elifesciences.org). The team of [Substance](http://substance.io) is helping with the technical execution.
 
-Substantial contributions were made by [HighWire](highwire.org), which launched Lens for a number of science journals in fall 2014 (The Journal of Biological Chemistry, The Plant Cell, Journal of Lipid Research, mBio®, and more). [The American Mathematical Society (AMS)](http://ams.org/) made Lens ready for rendering math articles.
+Substantial contributions were made by [HighWire](highwire.org), which launched Lens for a number of science journals in fall 2014 (The Journal of Biological Chemistry, The Plant Cell, Journal of Lipid Research, mBio®, and more). [The American Mathematical Society (AMS)](http://ams.org/) made Lens ready for advanced rendering of math articles.
 
 Thanks go to the following people, who made Lens possible:
 
@@ -425,3 +426,5 @@ Thanks go to the following people, who made Lens possible:
 - Felix Breuer (math)
 - Peter Krautzberger (math)
 - Samo Korošec (design)
+- John Sack (guidance)
+- Greg Schwartz (content variation)
