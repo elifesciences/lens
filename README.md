@@ -67,7 +67,7 @@ You need to repeat that install step whenever you updated the screwdriver repo.
 3. Run the server
 
   ```bash
-  ~/projects/lens-ams $ node server
+  ~/projects/lens-starter $ node server
   Lens running on port 4001
   http://127.0.0.1:4001/
   ```
