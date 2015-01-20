@@ -62,6 +62,7 @@ You need to repeat that install step whenever you updated the screwdriver repo.
   ```bash
   $ cd lens-starter
   $ substance --update
+  $ npm install
   ```
 
 3. Run the server
