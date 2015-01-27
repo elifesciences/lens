@@ -341,9 +341,6 @@ Lens can be styled with custom CSS easily. You can put a CSS file anywhere and r
 See: [lens-starter/.screwdriver/project.json](https://github.com/elifesciences/lens-starter/blob/master/.screwdriver/project.json)
 
 ```js
-// .screwdriver/project.json
-In order to consider 
-
   "styles": {
     ...
     "styles/altmetrics.css": "src/panels/altmetrics/altmetrics.css",
