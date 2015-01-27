@@ -242,7 +242,7 @@ See: [lens-starter/src/panels/altmetrics/index.js](https://github.com/elifescien
 
 ```js
 var panel = new Panel({
-	name: "altmetrics",
+  name: "altmetrics",
   type: 'resource',
   title: 'Altmetrics',
   icon: 'fa-bar-chart',
