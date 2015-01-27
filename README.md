@@ -269,14 +269,14 @@ AltmetricsController.Prototype = function() {
   this.getAltmetrics = function(cb) {
     var doi = this.document.get('publication_info').doi;
 
-		$.ajax({
-		  url: "http://api.altmetric.com/v1/doi/"+doi,
-		  dataType: "json",
-		}).done(function(res) {
-			cb(null, res);
-		}).error(function(err) {
-			cb(err);
-		});
+  	$.ajax({
+  	  url: "http://api.altmetric.com/v1/doi/"+doi,
+  	  dataType: "json",
+  	}).done(function(res) {
+  		cb(null, res);
+  	}).error(function(err) {
+  		cb(err);
+  	});
   };
   ...
 };
