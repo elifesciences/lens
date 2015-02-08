@@ -375,7 +375,7 @@ After bundling you can serve the bundle e.g. using
 
 ```bash
 $ cd dist
-$ pyhton -m SimpleHTTPServer
+$ python -m SimpleHTTPServer
 ```
 
 To open one of the bundled samples you need open the following URL in your browser
