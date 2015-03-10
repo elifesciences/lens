@@ -3954,13 +3954,14 @@ LensImporter.Prototype = function() {
       // Extract member list for person group
       // eLife specific?
       // ----------------
-
-      var memberListId = contrib.querySelector("xref[ref-type=other]").getAttribute("rid");
-      var members = state.xmlDoc.querySelectorAll("#"+memberListId+" contrib");
-      
-      contribNode.members = _.map(members, function(m) {
-        return _getName(m.querySelector("name"));
-      });
+      if (contrib.querySelector("xref[ref-type=other]")) {
+        var memberListId = contrib.querySelector("xref[ref-type=other]").getAttribute("rid");
+        var members = state.xmlDoc.querySelectorAll("#"+memberListId+" contrib");
+        
+        contribNode.members = _.map(members, function(m) {
+          return _getName(m.querySelector("name"));
+        });
+      }
     }
 
 
