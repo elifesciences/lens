@@ -5,9 +5,9 @@ var Workflow = require('./workflow');
 
 var JumpToTop = function() {
   Workflow.apply(this, arguments);
-
   this._gotoTop = _.bind(this.gotoTop, this);
 };
+
 
 JumpToTop.Prototype = function() {
 
@@ -24,11 +24,9 @@ JumpToTop.Prototype = function() {
     e.stopPropagation();
     // Jump to cover node as that's easiest
     this.readerCtrl.contentView.jumpToNode("cover");
-    // Note: this is for mobile view only
-    $(document).scrollTop(0);
   };
-
 };
+
 JumpToTop.Prototype.prototype = Workflow.prototype;
 JumpToTop.prototype = new JumpToTop.Prototype();
 
