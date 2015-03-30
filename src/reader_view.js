@@ -194,7 +194,7 @@ ReaderView.Prototype = function() {
     _.each(this.panelViews, function(panelView) {
       panelView.off('toggle', this._onClickPanel);
       panelView.dispose();
-    });
+    }, this);
     this.resources.dispose();
     this.stopListening();
   };

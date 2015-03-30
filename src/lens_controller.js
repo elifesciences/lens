@@ -41,8 +41,11 @@ LensController.Prototype = function() {
   // After a file gets drag and dropped it will be remembered in Local Storage
   // ---------
 
-  this.importXML = function(xmlData) {
-    var doc = this.convertDocument(xml);
+  this.importXML = function(rawXML) {
+    var parser = new DOMParser();
+    var xmlDoc = parser.parseFromString(rawXML,"text/xml");
+
+    var doc = this.convertDocument(xmlDoc);
     this.createReader(doc, {
       panel: 'toc'
     });
