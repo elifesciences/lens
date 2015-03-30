@@ -98,21 +98,12 @@ var ReaderView = function(readerCtrl) {
     if (currentPanel && currentPanel.hasScrollbar()) {
       currentPanel.scrollbar.update();
     }
-    this.detectRenderMode();
   }, this), 1));
 
 };
 
 ReaderView.Prototype = function() {
 
-  // Mobile or desktop?
-  this.detectRenderMode = function() {
-    if ($(window).width()<=850) {
-      this.renderMode = "mobile";
-    } else {
-      this.renderMode = "desktop";
-    }
-  };
 
   // Rendering
   // --------
@@ -175,8 +166,6 @@ ReaderView.Prototype = function() {
         self.updateState();
       });
     }, this), 1);
-
-    this.detectRenderMode();
 
     return this;
   };

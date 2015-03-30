@@ -26,7 +26,6 @@ var ContainerPanelView = function( panelCtrl, viewFactory, config ) {
   this.el.appendChild(this.scrollbar.el);
 
   this.$activeResource = null;
-  this.lastScrollPos = 0;
 };
 
 ContainerPanelView.Prototype = function() {
@@ -106,18 +105,14 @@ ContainerPanelView.Prototype = function() {
     this.scrollbar.update();
   };
 
-  // Note: scrollpos recovery not working atm (only relevant to mobile view)
   this.hide = function() {
     if (this.hidden) return;
-    this.lastScrollPos = $(document).scrollTop();
     PanelView.prototype.hide.call(this);
   };
 
-  // Note: scrollpos recovery not working atm (only relevant to mobile view)
   this.show = function() {
     this.scrollbar.update();
     PanelView.prototype.show.call(this);
-    $(document).scrollTop(this.lastScrollPos);
   };
 
 };
