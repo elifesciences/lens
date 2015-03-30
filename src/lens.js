@@ -41,49 +41,6 @@ var Lens = function(config) {
 
 Lens.Prototype = function() {
 
-  this.determineDevice = function() {
-
-    // Check for devices
-    // --------
-    //
-
-    function isIOSDevice() {
-      var iPadAgent = navigator.userAgent.match(/iPad/i) != null;
-      var iPodAgent = navigator.userAgent.match(/iPhone/i) != null;
-      return iPadAgent || iPodAgent;
-    }
-
-    function isIphone() {
-      var iPhoneAgent = navigator.userAgent.match(/iPhone/i) != null;
-      return true // iPhoneAgent;
-    }
-
-    function isMobile() {
-      var iPadAgent = navigator.userAgent.match(/iPad/i) != null;
-      var iPodAgent = navigator.userAgent.match(/iPhone/i) != null;
-      var AndroidAgent = navigator.userAgent.match(/Android/i) != null;
-      var webOSAgent = navigator.userAgent.match(/webOS/i) != null;
-
-      return iPadAgent || iPodAgent || AndroidAgent || webOSAgent;
-    }
-
-    function isTouchDevice() {
-      return 'ontouchstart' in document.documentElement;
-    }
-
-    if (isTouchDevice()) {
-      $('#container').addClass('touchable');
-    }
-
-    if (isIOSDevice()) {
-      $('#container').addClass('ios');
-    }
-
-    if (isIphone()) {
-      $('#container').addClass('iphone');
-    }
-  };
-
   this.start = function() {
     Application.prototype.start.call(this);
   };
@@ -94,7 +51,6 @@ Lens.Prototype = function() {
   this.render = function() {
     this.view = this.controller.createView();
     this.$el.html(this.view.render().el);
-    this.determineDevice();
   };
 
   this.getRoutes = function() {

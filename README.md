@@ -407,6 +407,11 @@ $ cd ~/.config/sublime-text-2/Packages
 $ git clone https://github.com/substance/sublime.git Substance
 ```
 
+
+## A note on mobile
+
+Mobile support has been removed with Lens 2.0 to reduce technical debt and iterate more quickly on features. Eventually the Lens team will come up with a dedicated reader for mobile. We want to solve it right, and also consider shipping native versions for iOS and android. 
+
 ## Credits
 
 Lens was developed in collaboration between [UC Berkeley](http://bioegrad.berkeley.edu/) graduate student [Ivan Grubisic](http://www.linkedin.com/pub/ivan-grubisic/26/353/739) and [eLife](http://elifesciences.org). The team of [Substance](http://substance.io) is helping with the technical execution.
@@ -429,3 +434,4 @@ Thanks go to the following people, who made Lens possible:
 - Ian Hamilton (design)
 - John Sack (guidance)
 - Greg Schwartz (content variation)
+

@@ -2,7 +2,6 @@
 
 var _ = require("underscore");
 var Scrollbar = require("./surface_scrollbar");
-
 var Surface = require("../lens_surface");
 var PanelView = require("./panel_view");
 
@@ -64,44 +63,21 @@ ContainerPanelView.Prototype = function() {
       var windowHeight = $(window).height();
       var panelHeight = this.surface.$el.height();
       var scrollTop;
-      var mobileView = windowHeight < panelHeight
 
-      // In the mobile view we don't relative positioning / absolute.
-      // Everything is in flow of the body element.
-      // This affects how to compute the top offset of a content-node
-      // offset (dependent on scrollpos) vs position (independent of scrollpos)
-      if (mobileView) {
-        scrollTop = $(document).scrollTop();
-
-        var elTop = $n.position().top; // offset from top of panel (either panel-view or document)
-        var elHeight = $n.height();
-        var topOffset;
-
-        // Do not scroll if the element is fully visible
-        if (elTop > scrollTop && elTop < scrollTop + windowHeight) {
-          // everything fine
-          return;
-        } else {
-          topOffset = elTop;
-          $(document).scrollTop(topOffset);
-        }
-
-      } else {
-        scrollTop = this.surface.$el.scrollTop();
-        var elTop = $n.offset().top;
-        var elHeight = $n.height();
-        var topOffset;
-        // Do not scroll if the element is fully visible
-        if ((elTop > 0 && elTop + elHeight < panelHeight) || (elTop >= 0 && elTop < panelHeight)) {
-          // everything fine
-          return;
-        }
-        // In all other cases scroll to the top of the element
-        else {
-          topOffset = scrollTop + elTop;
-        }
-        this.surface.$el.scrollTop(topOffset);
+      scrollTop = this.surface.$el.scrollTop();
+      var elTop = $n.offset().top;
+      var elHeight = $n.height();
+      var topOffset;
+      // Do not scroll if the element is fully visible
+      if ((elTop > 0 && elTop + elHeight < panelHeight) || (elTop >= 0 && elTop < panelHeight)) {
+        // everything fine
+        return;
       }
+      // In all other cases scroll to the top of the element
+      else {
+        topOffset = scrollTop + elTop;
+      }
+      this.surface.$el.scrollTop(topOffset);
 
       this.scrollbar.update();
     } else {

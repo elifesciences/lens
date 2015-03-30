@@ -4,7 +4,6 @@ var _ = require("underscore");
 var View = require("substance-application").View;
 var $$ = require("substance-application").$$;
 
-
 // Lens.View Constructor
 // ========
 //
@@ -27,7 +26,6 @@ var LensView = function(controller) {
 };
 
 LensView.Prototype = function() {
-
 
   this.handleDroppedFile = function(/*e*/) {
     var ctrl = this.controller;

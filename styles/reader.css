@@ -30,7 +30,7 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 }
 
 .hidden {
-  display: none;
+  visibility: none;
 }
 
 .content-node .content {
@@ -81,8 +81,7 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 =======================================================================*/
 
 .article .panel.hidden {
-  /* Note: visibility: hidden; kills mobile view (iPad) since touch events are only received on the last panel */
-  display: none;
+  visibility: hidden;
 }
 
 /* Switcher */
@@ -668,195 +667,6 @@ span.annotation.formula_reference, span.publication_reference {
 }
 
 
-/* Mobile (iPad Portrait, iPhone) */
-@media (max-width: 850px) {
-
-  .article .panel.hidden {
-    display: none;
-  }
-
-  .content-node.heading .top {
-    display: block;
-    position: absolute;
-    right: 10px;
-    top: 5px;
-    padding: 10px;
-  }
-
-  .article .content-node.cover .title {
-    font-size: 24px;
-  }
-
-  .article .content-node.cover .authors .text {
-    font-size: 16px;
-  }
-
-  html body.reader {
-    height: auto;
-    overflow: visible;
-    position: static;
-  }
-
-  /* For mobile it is important that we have no position relative on any element */
-  #container #main {
-    position: static;
-  }
-
-  #container .panel .nodes {
-    position: static;
-  }
-
-
-  /* Hide fullscreen toggle for small screens */
-  #container .toggle-fullscreen {
-    display: none;
-  }
-
-  /* Reset back */
-  #container.touchable .article .document .surface.content {
-    right: 0px;
-  }
-
-  .surface.content .nodes > .content-node {
-    padding-top: 10px;
-    padding-bottom: 15px;
-    padding-left: 20px;
-    padding-right: 20px;
-    word-wrap: break-word;
-  }
-
-  .article .document .surface.content .nodes {
-    padding-left: 40px;
-  }
-
-  .article .document {
-    width: 100%;
-    height: auto;
-    position: static;
-    z-index: 100;
-  }
-
-  .article .document .surface.content {
-    position: static;
-    overflow: visible;
-  }
-
-  .article .resources .surface.resource-view {
-    position: static;
-    overflow: visible;
-  }
-
-  .article.toc .document {
-    z-index: 200;
-  }
-
-  #container .article .resources {
-    background: #fff;
-    position: static;
-    width: 100%;
-    height: auto;
-
-    padding-left: 0px;
-    padding-right: 0px;
-
-    z-index: 300;
-    word-wrap: break-word;
-  }
-
-  #container .article .resources .nodes {
-    padding: 0px 20px;
-  }
-
-  .article .panel.document {
-    margin-top: 50px;
-  }
-
-  /* Hide main content panel when context is not TOC */
-  .article:not([data-context=toc]) .panel.document {
-    display: none;
-  }
-
-  /* Hide the TOCView on mobile */
-  .article[data-context=toc] .panel.toc {
-    display: none;
-  }
-
-  .article .document .surface.content .nodes {
-    padding-left: 0;
-  }
-
-  .article .resources .panel {
-    position: relative;
-    overflow-y: visible;
-    overflow-x: visible;
-    left: auto;
-    right: auto;
-    bottom: auto;
-    top: auto;
-  }
-
-  .article .medial-strip {
-    background: #252525;
-    position: relative;
-    top: auto;
-    bottom: auto;
-    left: auto;
-    right: auto;
-    margin-left: 0px;
-    height: 60px;
-    width: auto;
-  }
-
-  .article .medial-strip .context-toggles {
-    background: #252525;
-    position: absolute;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-    top: 0px;
-  }
-
-  .article .medial-strip .context-toggles .context-toggle {
-    float: left;
-    height: 70px;
-    width: 80px;
-    padding-top: 10px;
-    background: none;
-    text-align: center;
-    line-height: 17px;
-  }
-
-  .article .medial-strip .context-toggles .context-toggle:hover {
-    color: white;
-  }
-
-  .article .medial-strip .context-toggles .context-toggle.active {
-    color: white;
-  }
-
-
-  .article .medial-strip .context-toggles .context-toggle.highlighted:hover {
-    color: black;
-  }
-
-  .article .medial-strip .context-toggles .context-toggle span {
-    display: block;
-    font-size: 11px;
-  }
-
-  .article .medial-strip .context-toggles .context-toggle div.label {
-    display: none;
-  }
-
-  .article .context-toggles .context-toggle.highlighted {
-    color: rgba(0,0,0,1);
-    background: white;
-  }
-
-  .article .surface-scrollbar {
-    display: none;
-  }
-}
 
 
 /* Shared styles for selected and mouseover states
