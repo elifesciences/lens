@@ -407,10 +407,9 @@ $ cd ~/.config/sublime-text-2/Packages
 $ git clone https://github.com/substance/sublime.git Substance
 ```
 
-
 ## A note on mobile
 
-Mobile support has been removed with Lens 2.0 to reduce technical debt and iterate more quickly on features. Eventually the Lens team will come up with a dedicated reader for mobile. We want to solve it right, and also consider shipping native versions for iOS and android. 
+Mobile support has been removed with Lens 2.0 to reduce technical debt and iterate more quickly on features. Eventually the Lens team will come up with a dedicated reader for mobile. We want to solve it right, and eventually also ship native versions for iOS and Android.
 
 ## Credits
 
