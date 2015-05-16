@@ -3,8 +3,6 @@
 var _ = require('underscore');
 var ContainerPanelView = require('../container_panel_view');
 var TocPanelView = require("./toc_panel_view");
-var Data = require("substance-data");
-var Index = Data.Graph.Index;
 
 var CORRECTION = 0; // Extra offset from the top
 
@@ -12,6 +10,9 @@ var ContentPanelView = function( panelCtrl, viewFactory, config ) {
   ContainerPanelView.call(this, panelCtrl, viewFactory, config);
 
   this.tocView = new TocPanelView(panelCtrl, viewFactory, _.extend({}, config, { type: 'resource', name: 'toc' }));
+  // cache the elements of all toc nodes to allow an efficient implementation
+  // of a scroll-spy in the TOC
+  this.tocNodeElements = {};
 
   this._onTocItemSelected = _.bind( this.onTocItemSelected, this );
 
@@ -59,28 +60,52 @@ ContentPanelView.Prototype = function() {
     }
   };
 
-  // Mark active heading
+  // Mark active heading / TOC node (~ scroll-spy)
   // --------
   //
 
   this.markActiveHeading = function(scrollTop) {
     var contentHeight = $('.nodes').height();
-    var headings = this.getDocument().getHeadings();
+    var tocNodes = this.getDocument().getTocNodes();
 
-    // No headings?
-    if (headings.length === 0) return;
-    // Use first heading as default
-    var activeNode = _.first(headings).id;
-
-    this.$('.content-node.heading').each(function() {
-      if (scrollTop >= $(this).position().top + CORRECTION) {
-        activeNode = this.dataset.id;
+    var _getTocNodeElement = function(id) {
+      var el = this.tocNodeElements[id];
+      if (!el) {
+        el = this.tocNodeElements[id] = this.findNodeView(id);
       }
-    });
+      return el;
+    }.bind(this);
 
-    // Edge case: select last item (once we reach the end of the doc)
+    // No toc items?
+    if (tocNodes.length === 0) return;
+
+    var activeNode;
+    var firstEl = _getTocNodeElement(tocNodes[0].id);
+
+    // default
+    activeNode = tocNodes[0].id;
+
+    // and select the last item (once we reach the end of the doc)
     if (scrollTop + this.$el.height() >= contentHeight) {
-      activeNode = _.last(headings).id;
+      activeNode = _.last(tocNodes).id;
+    }
+    // starting from the end of document find the first node which is above the
+    // current scroll position
+    else {
+      // TODO: maybe this could be optimized by a binary search
+      for (var i = tocNodes.length - 1; i >= 1; i--) {
+        var tocNode = tocNodes[i];
+        var el = _getTocNodeElement(tocNode.id);
+        if (!el) {
+          console.error('Could not find element for node %s', tocNode.id);
+          continue;
+        }
+        var elTopOffset = $(el).offset().top;
+        if (elTopOffset <= 0) {
+          activeNode = el.dataset.id;
+          break;
+        }
+      }
     }
     this.tocView.setActiveNode(activeNode);
   };
