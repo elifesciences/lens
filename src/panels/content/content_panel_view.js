@@ -6,6 +6,8 @@ var TocPanelView = require("./toc_panel_view");
 
 var CORRECTION = 0; // Extra offset from the top
 
+var MENU_BAR_HEIGHT = 30;
+
 var ContentPanelView = function( panelCtrl, viewFactory, config ) {
   ContainerPanelView.call(this, panelCtrl, viewFactory, config);
 
@@ -65,6 +67,7 @@ ContentPanelView.Prototype = function() {
   //
 
   this.markActiveHeading = function(scrollTop) {
+    // scrollTop = scrollTop - 30;
     var contentHeight = $('.nodes').height();
     var tocNodes = this.getDocument().getTocNodes();
 
@@ -100,7 +103,9 @@ ContentPanelView.Prototype = function() {
           console.error('Could not find element for node %s', tocNode.id);
           continue;
         }
-        var elTopOffset = $(el).offset().top;
+        
+        // HACK: we subtract height of menu bar so marking of active nodes stays accurate
+        var elTopOffset = $(el).offset().top - MENU_BAR_HEIGHT;
         if (elTopOffset <= 0) {
           activeNode = el.dataset.id;
           break;

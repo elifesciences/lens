@@ -10,12 +10,12 @@ var PanelView = function(panelController, config) {
   this.controller = panelController;
   this.config = config;
   this.doc = panelController.getDocument();
-
   this.name = config.name;
 
   this.toggleEl = $$('a.context-toggle.' + this.name, {
+    'href': '#',
     'title': this.config.title,
-    'html': '<i class="fa ' + this.config.icon + '"></i><div class="label">'+this.config.label+'</div><span> '+this.config.label+'</span>'
+    'html': '<i class="fa ' + this.config.icon + '"></i> '+this.config.label
   });
   this.$toggleEl = $(this.toggleEl);
 

@@ -130,10 +130,11 @@ ReaderView.Prototype = function() {
       panelView.on('toggle', this._onClickPanel);
     }, this);
 
-    var medialStrip = $$('.medial-strip');
-    medialStrip.appendChild($$('.separator-line'));
-    medialStrip.appendChild(panelToggles);
-    frag.appendChild(medialStrip);
+
+    var menuBar = $$('.menu-bar');
+    menuBar.appendChild($$('.doc-title', {html: this.doc.title}));
+    menuBar.appendChild(panelToggles);
+    frag.appendChild(menuBar);
 
     // Prepare panel views
     // -------
