@@ -15,7 +15,7 @@ var PanelView = function(panelController, config) {
   this.toggleEl = $$('a.context-toggle.' + this.name, {
     'href': '#',
     'title': this.config.title,
-    'html': '<i class="fa ' + this.config.icon + '"></i> '+this.config.label
+    'html': '<i class="fa ' + this.config.icon + '"></i> '+this.config.title
   });
   this.$toggleEl = $(this.toggleEl);
 

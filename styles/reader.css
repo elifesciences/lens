@@ -162,9 +162,9 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   bottom: 0px;
   left: 0px;
   right: 0px;
-  overflow-y: scroll;
+/*  overflow-y: scroll;
   overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
+  -webkit-overflow-scrolling: touch;*/
 }
 
 .article .resources .surface {
@@ -211,11 +211,9 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   padding-top: 20px;
   /*min-height: 40px;*/
 
-
   font-weight: 600;
   position: relative;
 }
-
 
 /* TOC View
 ----------------------------------------------------------------------- */
@@ -268,12 +266,30 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   position: absolute;
   right: 0px;
   top: 0px;
-  font-size: 20px;
+  font-size: 12px;
+  font-weight: 600;
   bottom: 0px;
   text-align: center;
   line-height: 40px;
-  color: rgba(0,0,0, 0.2);
-  width: 60px;
+  color: rgba(0,0,0, 0.4);
+  padding: 0px 20px;
+}
+
+.article .resources .figures .content-node.highlighted .resource-header .toggle-res,
+.article .resources .math .content-node.highlighted .resource-header .toggle-res {
+  color: rgba(145, 187, 4, 1);
+}
+
+.article .resources .citations .content-node.highlighted .resource-header .toggle-res {
+  color: rgba(11, 157, 217, 1);
+}
+
+.article .resources .info .content-node.highlighted .resource-header .toggle-res {
+  color: #5c6570;
+}
+
+.article .resources .content-node .resource-header .toggle-res:hover {
+  color: rgba(0,0,0, 0.6);
 }
 
 /* Active state adjustments */
@@ -282,17 +298,17 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 }*/
 
 /* Hide resize small icon by default */
-#container .article .content-node .fa.fa-eye-slash {
+/*#container .article .content-node .fa.fa-eye-slash {
   display: none;
-}
+}*/
 
 #container .article .content-node.highlighted .fa.fa-eye-slash {
   display: inline;
 }
 
-#container .article .content-node.highlighted .fa.fa-eye {
+/*#container .article .content-node.highlighted .fa.fa-eye {
   display: none;
-}
+}*/
 
 
 /* Resource Fullscreen Mode

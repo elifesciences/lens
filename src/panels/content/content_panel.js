@@ -8,8 +8,8 @@ var ContentPanel = function() {
     name: "content",
     type: "document",
     container: "content",
-    label: 'Content',
-    title: 'Content',
+    label: 'Contents',
+    title: 'Contents',
     icon: 'fa-align-left',
   });
 };
