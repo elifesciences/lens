@@ -162,7 +162,6 @@ ReaderView.Prototype = function() {
       // MathJax requires the processed elements to be in the DOM
       window.MathJax.Hub.Queue(["Typeset", window.MathJax.Hub]);
       window.MathJax.Hub.Queue(function () {
-        console.log('Updating after MathJax has finished.');
         // HACK: using updateState() instead of updateScrollbars() as it also knows how to scroll
         self.updateState();
       });
