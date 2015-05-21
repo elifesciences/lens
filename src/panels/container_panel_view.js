@@ -5,6 +5,8 @@ var Scrollbar = require("./surface_scrollbar");
 var Surface = require("../lens_surface");
 var PanelView = require("./panel_view");
 
+var MENU_BAR_HEIGHT = 30;
+
 // TODO: try to get rid of DocumentController and use the Container node instead
 var ContainerPanelView = function( panelCtrl, viewFactory, config ) {
   PanelView.call(this, panelCtrl, config);
@@ -74,10 +76,12 @@ ContainerPanelView.Prototype = function() {
       }
       // In all other cases scroll to the top of the element
       else {
-        topOffset = scrollTop + elTop;
+        // HACK: we subtract the height of the menu bar to the scroll position,
+        // because elTop does not consider the offset
+        topOffset = scrollTop + elTop - MENU_BAR_HEIGHT;
       }
-      this.surface.$el.scrollTop(topOffset);
 
+      this.surface.$el.scrollTop(topOffset);
       this.scrollbar.update();
     } else {
       console.info("ContainerPanelView.scrollTo(): Unknown resource '%s'", nodeId);

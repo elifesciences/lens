@@ -346,7 +346,7 @@ ReaderView.Prototype = function() {
   this.onToggleResource = function(panel, id, element) {
     if (element.classList.contains('highlighted')) {
       this.readerCtrl.modifyState({
-        panel: this.lastPanel,
+        panel: panel,
         focussedNode: null,
         fullscreen: false
       });
