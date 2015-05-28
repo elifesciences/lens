@@ -248,7 +248,7 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   font-size: 16px;
   line-height: 21px;
   padding: 0px 20px;
-  padding-right: 40px;
+  padding-right: 200px;
 }
 
 
@@ -260,12 +260,17 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   text-align: right;
 }
 
+/* Resource toggles */
+.article .resources .content-node .resource-header .toggles {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  overflow: auto;
+}
 
 /* Resource toggle */
-.article .resources .content-node .resource-header .toggle-res {
-  position: absolute;
-  right: 0px;
-  top: 0px;
+.article .resources .content-node .resource-header .toggle {
+  float: left;
   font-size: 12px;
   font-weight: 600;
   bottom: 0px;
@@ -275,40 +280,27 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   padding: 0px 20px;
 }
 
-.article .resources .figures .content-node.highlighted .resource-header .toggle-res,
-.article .resources .math .content-node.highlighted .resource-header .toggle-res {
+.article .resources .figures .content-node.highlighted .resource-header .toggle.toggle-res,
+.article .resources .math .content-node.highlighted .resource-header .toggle.toggle-res {
   color: rgba(145, 187, 4, 1);
 }
 
-.article .resources .citations .content-node.highlighted .resource-header .toggle-res {
+.article .resources .citations .content-node.highlighted .resource-header .toggle.toggle-res {
   color: rgba(11, 157, 217, 1);
 }
 
-.article .resources .info .content-node.highlighted .resource-header .toggle-res {
+.article .resources .info .content-node.highlighted .resource-header .toggle.toggle-res {
   color: #5c6570;
 }
 
-.article .resources .content-node .resource-header .toggle-res:hover {
+.article .resources .content-node .resource-header .toggle:hover {
   color: rgba(0,0,0, 0.6);
 }
 
-/* Active state adjustments */
-/*.article .resources .content-node.highlighted .resource-header .toggle-res {
-  color: rgba(255,255,255, 0.5);
-}*/
-
-/* Hide resize small icon by default */
-/*#container .article .content-node .fa.fa-eye-slash {
-  display: none;
-}*/
 
 #container .article .content-node.highlighted .fa.fa-eye-slash {
   display: inline;
 }
-
-/*#container .article .content-node.highlighted .fa.fa-eye {
-  display: none;
-}*/
 
 
 /* Resource Fullscreen Mode
@@ -316,36 +308,11 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 
 /* Styles for fullscreen toggle on resource cards */
 
-.article .resources .content-node .resource-header .toggle-fullscreen {
-  position: absolute;
-  right: 30px;
-  top: 0px;
-  font-size: 20px;
-  bottom: 0px;
-  text-align: center;
-  line-height: 40px;
-  color: rgba(0,0,0, 0.2);
-  width: 81px;
+.article .resources .figures .content-node.fullscreen .resource-header .toggle.toggle-fullscreen,
+.article .resources .math .content-node.fullscreen .resource-header .toggle.toggle-fullscreen {
+  color: rgba(145, 187, 4, 1);
 }
 
-.article .resources .content-node .resource-header .toggle-fullscreen:hover {
-  color: rgba(0,0,0, 0.5);
-}
-
-/* Active state adjustments */
-.article .resources .content-node.highlighted .resource-header .toggle-fullscreen {
-  color: rgba(255,255,255, 0.5);
-}
-
-.article .resources .content-node.highlighted .resource-header .toggle-fullscreen:hover {
-  color: rgba(255,255,255, 1);
-}
-
-
-/* Hide resize small icon by default */
-#container .article .content-node .fa.fa-compress {
-  display: none;
-}
 
 #container .article .content-node.fullscreen {
   position: fixed;
@@ -359,13 +326,6 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   padding: 0px;
 }
 
-#container .article .content-node.fullscreen .fa.fa-compress {
-  display: inline;
-}
-
-#container .article .content-node.fullscreen .fa.fa-expand {
-  display: none;
-}
 
 #container .article .content-node.fullscreen > .content {
   position: absolute;
