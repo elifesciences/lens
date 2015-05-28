@@ -132,6 +132,20 @@ ReaderView.Prototype = function() {
 
 
     var menuBar = $$('.menu-bar');
+
+    // TODO: Render annotated version of document.title
+    // --------------
+    // 
+    // Oliver, can we use the TextPropertyView here?
+    // - how do we get access to the viewFactory?
+    // 
+    // Here's the relevant code from the cover view:
+    // 
+    // this.renderAnnotatedText = function(path, el) {
+    //   var property = this.node.document.resolve(path);
+    //   var view = TextPropertyView.renderAnnotatedText(this.node.document, property, el, this.viewFactory);
+    // }
+
     menuBar.appendChild($$('.doc-title', {html: this.doc.title}));
     menuBar.appendChild(panelToggles);
     frag.appendChild(menuBar);
