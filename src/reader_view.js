@@ -117,6 +117,11 @@ ReaderView.Prototype = function() {
 
     frag.appendChild(this.contentView.render().el);
 
+    // Scrollbar cover
+    // This is only there to cover the content panel's scrollbar in Firefox.
+    var scrollbarCover = $$('.scrollbar-cover');
+    this.contentView.el.appendChild(scrollbarCover);
+
     // Prepare panel toggles
     // --------
 
@@ -149,6 +154,7 @@ ReaderView.Prototype = function() {
     frag.appendChild(resourcesViewEl);
 
     this.el.appendChild(frag);
+
 
     // TODO: also update the outline after image (et al.) are loaded
 
