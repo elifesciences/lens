@@ -6,7 +6,9 @@ var TocPanelView = require("./toc_panel_view");
 
 var CORRECTION = 0; // Extra offset from the top
 
-var MENU_BAR_HEIGHT = 30;
+/* Adding + 1 pixel solves an edge case where clicking on a
+   TOC item did not mark it as active, but the previous one */
+var MENU_BAR_HEIGHT = 1; 
 
 var ContentPanelView = function( panelCtrl, viewFactory, config ) {
   ContainerPanelView.call(this, panelCtrl, viewFactory, config);

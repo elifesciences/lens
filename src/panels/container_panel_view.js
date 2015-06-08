@@ -5,7 +5,7 @@ var Scrollbar = require("./surface_scrollbar");
 var Surface = require("../lens_surface");
 var PanelView = require("./panel_view");
 
-var MENU_BAR_HEIGHT = 30;
+var MENU_BAR_HEIGHT = 40;
 
 // TODO: try to get rid of DocumentController and use the Container node instead
 var ContainerPanelView = function( panelCtrl, viewFactory, config ) {

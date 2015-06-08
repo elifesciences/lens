@@ -53,7 +53,7 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 
 .article .document .surface.content {
   position: absolute;
-  top: 30px;
+  top: 0px;
   bottom: 0px;
   right: 0px;
   left: 0px;
@@ -84,43 +84,32 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   visibility: hidden;
 }
 
-
 .menu-bar {
   position: absolute;
   top: 0px;
-  height: 30px;
+  height: 40px;
   left: 0px;
   right: 0px;
   overflow: hidden;
-  background: #444;
-  color: #fff;
+  /*background: #444;*/
+  color: #444;
+  border-bottom: 1px solid #ddd;
   z-index: 20000;
 }
 
-.menu-bar .doc-title {
-  float: left;
-  width: 50%;
-  /*border-right: 1px solid #ddd;*/
-  padding: 0px 10px;
-  line-height: 30px;
-  font-weight: 600;
-  font-size: 12px;
-}
-
 .menu-bar .context-toggles {
-  float: left;
-  width: 50%;
 }
 
 .menu-bar .context-toggles a {
   display: block;
   float: left;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
-  line-height: 30px;
-  color: rgba(255,255,255,0.7);
-  padding-right: 10px;
-  padding-left: 10px;
+  line-height: 40px;
+  color: rgba(0,0,0, 0.4);
+  border-right: 1px solid #ddd;
+  padding-right: 15px;
+  padding-left: 15px;
 }
 
 .menu-bar .context-toggles a.context-toggle.hidden {
@@ -128,15 +117,28 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 }
 
 .menu-bar .context-toggles a:hover {
-  color: #fff;
+  /*color: #fff;*/
+  color: rgba(0,0,0, 0.5);
+  background: rgba(0,0,0, 0.03);
 }
 
 .menu-bar .context-toggles a.active {
-  /*background: #B6CDD6;*/
-  background: #fff;
-  color: #000;
+  background: rgba(0,0,0, 0.05);
+  color: #444;
   border-bottom: 3px solid #444;
 }
+
+.menu-bar .context-toggles a.context-toggle.active.figures,
+.menu-bar .context-toggles a.context-toggle.active.math {
+  color: rgba(145, 187, 4, 1);
+  background: rgba(145, 187, 4, 0.05);
+}
+
+.menu-bar .context-toggles a.context-toggle.active.citations {
+  color: rgba(11, 157, 217, 1);
+  background: rgba(11, 157, 217, 0.05);
+}
+
 
 /* Resources Panel
 ======================================================================= */
@@ -158,11 +160,11 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 
 .article .resources .panel {
   position: absolute;
-  top: 30px;
+  top: 40px;
   bottom: 0px;
   left: 0px;
   right: 0px;
-/*  overflow-y: scroll;
+  /*  overflow-y: scroll;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;*/
 }
@@ -699,7 +701,7 @@ TOC
   position: absolute;
   left: 0px;
   width:20px;
-  top: 30px;
+  top: 0px;
   bottom: 0px;
 }
 
