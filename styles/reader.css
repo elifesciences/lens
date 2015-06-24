@@ -554,17 +554,13 @@ span.annotation.formula_reference, span.publication_reference {
 /* Disable native scrollbar for resources except TOC */
 
 .article .resources .panel::-webkit-scrollbar,
-.article .resources .surface.figures::-webkit-scrollbar,
-.article .resources .surface.citations::-webkit-scrollbar,
-.article .resources .surface.info::-webkit-scrollbar {
+.article .resources .surface::-webkit-scrollbar {
   width: 0px;
   height: 0px;
 }
 
 .article .resources .panel::-webkit-scrollbar-thumb,
-.article .resources .surface.figures::-webkit-scrollbar-thumb,
-.article .resources .surface.citations::-webkit-scrollbar-thumb,
-.article .resources .surface.info::-webkit-scrollbar-thumb {
+.article .resources .surface::-webkit-scrollbar-thumb {
   background-color: rgba(0, 0, 0, 0);
 }
 
