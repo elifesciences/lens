@@ -701,9 +701,8 @@ TOC
 }
 
 .resource-view.toc .heading-ref:hover {
-  color: rgba(0,0,0,1.0);
+  color: rgba(0,0,0,1);
 }
-
 
 /* Scrollbar
 --------------------------------------- */
@@ -730,6 +729,10 @@ TOC
   height: 80px;
   z-index: 4000;
   background-color: rgba(0,0,0, 0.2);
+}
+
+.surface-scrollbar.hidden .visible-area {
+  display: none;
 }
 
 .surface-scrollbar:hover .visible-area {
