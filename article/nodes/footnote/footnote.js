@@ -1,6 +1,6 @@
 "use strict";
 
-var Document = require("substance-document");
+var Document = require('../../../substance/document');
 var DocumentNode = Document.Node;
 var Paragraph = require('../paragraph').Model;
 

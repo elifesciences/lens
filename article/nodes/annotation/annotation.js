@@ -1,5 +1,5 @@
 
-var Document = require('substance-document');
+var Document = require('../../../substance/document');
 
 var Annotation = function(node, doc) {
   Document.Node.call(this, node, doc);

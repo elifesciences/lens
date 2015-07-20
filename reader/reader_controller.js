@@ -1,7 +1,7 @@
 "use strict";
 
 var _ = require('underscore');
-var Controller = require("substance-application").Controller;
+var Controller = require("../substance/application").Controller;
 var ReaderView = require("./reader_view");
 var ContentPanel = require("./panels/content");
 

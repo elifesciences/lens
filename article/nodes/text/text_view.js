@@ -1,9 +1,9 @@
 "use strict";
 
-var util = require("substance-util");
+var util = require("../../../substance/util");
 var Fragmenter = util.Fragmenter;
 var NodeView = require('../node/node_view');
-var $$ = require("substance-application").$$;
+var $$ = require("../../../substance/application").$$;
 
 // Substance.Text.View
 // -----------------

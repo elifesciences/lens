@@ -1,6 +1,7 @@
 "use strict";
 
-var DocumentNode = require("substance-document").Node;
+var Document = require('../../../substance/document');
+var DocumentNode = Document.Node;
 var Text = require("../text/text_node");
 
 var Heading = function(node, document) {

@@ -1,10 +1,10 @@
 "use strict";
 
 var _ = require("underscore");
-var View = require("substance-application").View;
-var Data = require("substance-data");
+var View = require("../substance/application").View;
+var Data = require("../substance/data");
 var Index = Data.Graph.Index;
-var $$ = require("substance-application").$$;
+var $$ = require("../substance/application").$$;
 
 // Lens.Reader.View
 // ==========================================================================

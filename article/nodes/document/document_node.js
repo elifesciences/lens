@@ -1,6 +1,6 @@
 "use strict";
 
-var Document = require("substance-document");
+var Document = require('../../../substance/document');
 
 var DocumentNode = function(node, document) {
   Document.Node.call(this, node, document);

@@ -1,6 +1,6 @@
 "use strict";
 
-var Application = require("substance-application");
+var Application = require("../substance/application");
 var LensController = require("./lens_controller");
 var LensConverter = require("lens/converter");
 var LensArticle = require("lens/article");

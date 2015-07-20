@@ -2,8 +2,7 @@
 
 var NodeView = require('../node').View;
 var CompositeView = require("../composite").View;
-var $$ = require("substance-application").$$;
-
+var $$ = require("../../../substance/application").$$;
 
 // Lens.Box.View
 // ==========================================================================

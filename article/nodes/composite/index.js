@@ -1,6 +1,6 @@
 "use strict";
 
-var Document = require("substance-document");
+var Document = require('../../../substance/document');
 
 module.exports = {
   Model: Document.Composite,

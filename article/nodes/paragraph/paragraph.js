@@ -1,7 +1,7 @@
 "use strict";
 
 var _ = require("underscore");
-var Document = require("substance-document");
+var Document = require('../../../substance/document');
 var DocumentNode = Document.Node;
 var Composite = Document.Composite;
 

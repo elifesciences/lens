@@ -1,7 +1,7 @@
 "use strict";
 
 var NodeView = require("../node").View;
-var $$ = require("substance-application").$$;
+var $$ = require("../../../substance/application").$$;
 var articleUtil = require("../../article_util");
 
 var _labels = {

@@ -1,7 +1,7 @@
 "use strict";
 
-var View = require("substance-application").View;
-var $$ = require("substance-application").$$;
+var View = require("../../substance/application").View;
+var $$ = require("../../substance/application").$$;
 var _ = require("underscore");
 
 // Lens.Scrollbar

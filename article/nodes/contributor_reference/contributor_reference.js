@@ -1,6 +1,4 @@
-
-
-var Document = require('substance-document');
+var Document = require('../../../substance/document');
 var Annotation = require('../annotation/annotation');
 var ResourceReference = require('../resource_reference/resource_reference');
 

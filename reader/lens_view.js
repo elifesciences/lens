@@ -1,8 +1,8 @@
 "use strict";
 
 var _ = require("underscore");
-var View = require("substance-application").View;
-var $$ = require("substance-application").$$;
+var View = require("../substance/application").View;
+var $$ = require("../substance/application").$$;
 
 // Lens.View Constructor
 // ========

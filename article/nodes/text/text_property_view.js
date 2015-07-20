@@ -1,8 +1,9 @@
 "use strict";
 
-var util = require("substance-util");
+var util = require("../../../substance/util");
+
 var Fragmenter = util.Fragmenter;
-var View = require("substance-application").View;
+var View = require("../../../substance/application").View;
 
 // Substance.TextPropertyView
 // -----------------

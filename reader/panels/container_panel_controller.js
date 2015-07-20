@@ -1,6 +1,6 @@
 "use strict";
 
-var Document = require('substance-document');
+var Document = require('../../substance/document');
 var PanelController = require('./panel_controller');
 var ResourcePanelViewFactory = require('./resource_panel_viewfactory');
 var ContainerPanelView = require('./container_panel_view');

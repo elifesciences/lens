@@ -1,7 +1,7 @@
 "use strict";
-var Controller = require("substance-application").Controller;
+var Controller = require("../../substance/application").Controller;
 var _ = require("underscore");
-var util = require("substance-util");
+var util = require("../../substance/util");
 
 
 // Panel.Controller

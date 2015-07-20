@@ -8,7 +8,7 @@
 // data-id="pone.0113605-Mathews1" is invalid
 // 
 
-var util = require("substance-util");
+var util = require("../substance/util");
 var _ = require("underscore");
 var LensConverter = require('./lens_converter');
 

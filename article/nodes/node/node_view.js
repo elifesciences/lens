@@ -1,6 +1,6 @@
 "use strict";
 
-var View = require("substance-application").View;
+var View = require("../../../substance/application").View;
 var TextPropertyView = require("../text/text_property_view");
 
 // Substance.Node.View

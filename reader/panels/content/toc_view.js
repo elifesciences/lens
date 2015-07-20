@@ -1,8 +1,8 @@
 "use strict";
 
-var View = require("substance-application").View;
-var $$ = require("substance-application").$$;
-var Data = require("substance-data");
+var View = require("../../../substance/application").View;
+var $$ = require("../../../substance/application").$$;
+var Data = require("../../../substance/data");
 var Index = Data.Graph.Index;
 var _ = require("underscore");
 

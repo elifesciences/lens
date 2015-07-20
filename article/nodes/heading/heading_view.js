@@ -1,7 +1,7 @@
 "use strict";
 
 var NodeView = require("../node").View;
-var $$ = require("substance-application").$$;
+var $$ = require("../../../substance/application").$$;
 
 
 // Substance.Heading.View

@@ -1,6 +1,6 @@
 var _ = require('underscore');
 
-var Application = require("substance-application");
+var Application = require("../../substance/application");
 var $$ = Application.$$;
 var View = Application.View;
 

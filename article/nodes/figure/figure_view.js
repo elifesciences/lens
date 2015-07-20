@@ -2,7 +2,7 @@
 
 var _ = require('underscore');
 var CompositeView = require("../composite").View;
-var $$ = require ("substance-application").$$;
+var $$ = require ("../../../substance/application").$$;
 var ResourceView = require('../../resource_view');
 
 // Substance.Figure.View

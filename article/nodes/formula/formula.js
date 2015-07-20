@@ -1,5 +1,5 @@
 
-var Document = require('substance-document');
+var Document = require('../../../substance/document');
 
 // Formula
 // -----------------

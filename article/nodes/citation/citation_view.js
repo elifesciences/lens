@@ -1,7 +1,7 @@
 "use strict";
 
 var _ = require('underscore');
-var $$ = require("substance-application").$$;
+var $$ = require("../../../substance/application").$$;
 var NodeView = require("../node").View;
 var ResourceView = require('../../resource_view');
 

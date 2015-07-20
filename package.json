@@ -25,10 +25,7 @@
     "url": "https://github.com/elifesciences/lens.git"
   },
   "dependencies": {
-    "substance-application": "substance/application.git#5256cf23ce60f35898691ccf3cb6260143db9359",
-    "substance-document": "substance/document.git#1531611d5b352494fd3b9c80e5af5551e432c43c",
-    "substance-util": "substance/util.git#97dabc022c28a01575c207ce986b5ffa36361bb6",
-    "substance-data": "substance/data.git#lens"
+    "underscore": "1.8.3"
   },
   
   "engines": {

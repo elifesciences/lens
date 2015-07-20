@@ -1,6 +1,5 @@
-
 var _ = require('underscore');
-var Application = require('substance-application');
+var Application = require('../substance/application');
 var View = Application.View;
 
 // This class replaces substance-surface in a minimalistic way.

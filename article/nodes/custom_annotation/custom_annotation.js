@@ -1,5 +1,4 @@
-
-var Document = require('substance-document');
+var Document = require('../../../substance/document');
 var Annotation = require('../annotation/annotation');
 
 var Custom = function(node, doc) {

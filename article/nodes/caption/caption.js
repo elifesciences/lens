@@ -1,6 +1,6 @@
 "use strict";
 
-var Document = require("substance-document");
+var Document = require('../../../substance/document');
 
 var Caption = function(node, document) {
   Document.Composite.call(this, node, document);

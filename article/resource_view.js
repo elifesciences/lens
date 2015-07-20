@@ -2,7 +2,7 @@
 
 var _ = require('underscore');
 var NodeView = require("./nodes/node").View;
-var $$ = require ("substance-application").$$;
+var $$ = require ("../substance/application").$$;
 
 var DEFAULT_OPTIONS = {
   header: false,

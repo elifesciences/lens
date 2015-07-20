@@ -1,6 +1,6 @@
 "use strict";
 
-var util = require("substance-util");
+var util = require("../substance/util");
 var _ = require("underscore");
 
 var LensConverter = require('lens/converter');

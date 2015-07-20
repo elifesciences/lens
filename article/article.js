@@ -1,8 +1,8 @@
 "use strict";
 
 var _ = require("underscore");
-var util = require("substance-util");
-var Document = require("substance-document");
+var util = require("../substance/util");
+var Document = require("../substance/document");
 
 // Lens.Article
 // -----------------

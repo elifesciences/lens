@@ -1,6 +1,6 @@
 var _ = require('underscore');
 
-var Document = require("substance-document");
+var Document = require('../../../substance/document');
 
 // Lens.Supplement
 // -----------------

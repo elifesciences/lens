@@ -1,5 +1,5 @@
 
-var Document = require('substance-document');
+var Document = require('../../../substance/document');
 var Annotation = require('../annotation/annotation');
 
 var InlineFormula = function(node, doc) {
