@@ -1,5 +1,5 @@
 
-var ViewFactory = require('lens-article').ViewFactory;
+var ViewFactory = require('../../article').ViewFactory;
 
 var ResourcePanelViewFactory = function(nodeTypes, options) {
   ViewFactory.call(this, nodeTypes);

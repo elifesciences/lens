@@ -2,8 +2,8 @@
 
 var Application = require("substance-application");
 var LensController = require("./lens_controller");
-var LensConverter = require("lens-converter");
-var LensArticle = require("lens-article");
+var LensConverter = require("lens/converter");
+var LensArticle = require("lens/article");
 var ResourcePanelViewFactory = require("./panels/resource_panel_viewfactory");
 var ReaderController = require('./reader_controller');
 var ReaderView = require('./reader_view');

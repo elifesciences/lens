@@ -195,7 +195,7 @@ In this example only the view code is modified while the original model definiti
 See [lens-starter/src/nodes/cover/index.js](https://github.com/elifesciences/lens-starter/blob/master/src/nodes/cover/index.js)
 
 ```js
-var LensNodes = require("lens-article/nodes");
+var LensNodes = require("lens/article/nodes");
 var CoverModel = LensNodes["cover"].Model;
 
 module.exports = {

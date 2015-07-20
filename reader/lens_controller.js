@@ -1,12 +1,13 @@
 "use strict";
 
-var _ = require("underscore");
-var util = require("substance-util");
-var Controller = require("substance-application").Controller;
+var _ = require('underscore');
+var util = require('substance-util');
+var Controller = require('substance-application').Controller;
 var LensView = require("./lens_view");
-var ReaderController = require("./reader_controller");
-var LensArticle = require("lens-article");
-var NLMConverter = require('lens-converter');
+var ReaderController = require('./reader_controller');
+var LensArticle = require('lens/article');
+var NLMConverter = require('lens/converter');
+
 
 // Lens.Controller
 // -----------------

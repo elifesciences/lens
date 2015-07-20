@@ -93,7 +93,7 @@ Article.prepareOptions = function(options) {
 Article.getSchema = function(nodeTypes) {
   var schema = util.deepclone(Document.schema);
   schema.id = "lens-article";
-  schema.version = "0.3.0";
+  schema.version = "2.0.0";
   _.each(nodeTypes, function(nodeSpec, key) {
     schema.types[key] = nodeSpec.Model.type;
   });
