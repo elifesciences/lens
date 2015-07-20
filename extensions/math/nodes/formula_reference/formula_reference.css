@@ -1,0 +1,29 @@
+
+.content-node .formula_reference {
+  background: rgba(145, 187, 4, 0.15);
+  border-bottom: 1px solid rgba(145, 187, 4, 0.8);
+  color: #495A11;
+  cursor: pointer;
+}
+
+.content-node .formula_reference:hover {
+  background-color: rgba(145, 187, 4, 0.35);
+}
+
+.content-node .formula_reference.active {
+  background: rgba(145, 187, 4, 0.7);
+}
+
+span.annotation.formula_reference {
+  padding-left: 3px; padding-right: 3px;
+}
+
+.MathJax_Display.zoomable {
+  cursor: zoom-in;
+}
+
+.MathJax_Display .math {
+  /* work around to compensate for scrollbar size on most platforms */
+  padding-top: 10px;
+  padding-bottom: 10px;
+}

@@ -1,0 +1,47 @@
+.content-node.proof > .content {
+}
+
+.surface.content .content-node.proof {
+}
+
+
+/* Apply default spacing for nested content inside math environments */
+.surface.content .nodes > .content-node.proof > .content > .content-node {
+  padding-top: 10px;
+  padding-bottom: 15px;
+}
+
+
+/* TODO: try to make the current .label selector more specific. IMO it is only used in publication info right now */   
+.surface.content .content-node.proof > .content > .proof-label {   
+  vertical-align: baseline;
+  position: static;
+  top: auto;
+  font-size: 17px;
+  padding: 0px;
+  font-weight: 600; 
+  padding-bottom: 5px;
+}
+
+.surface.content .nodes > .content-node.proof > .content > .proof-label + .paragraph {
+  display: inline;   
+}
+
+.surface.content .nodes > .content-node.proof > .content > .proof-label + .paragraph > .content {   
+  display: inline;
+  padding-left: 20px;
+  padding-bottom: 15px;
+}
+
+.surface.content .content-node.proof > .content {
+  padding-bottom: 20px;
+  /*border-bottom: 1px solid #ddd;*/
+}
+
+.surface.content .content-node.proof > .content > .content-node:last-child > .content:after {
+	content: "\25A1";
+	font-size: 26px;
+	float: right;
+}
+
+

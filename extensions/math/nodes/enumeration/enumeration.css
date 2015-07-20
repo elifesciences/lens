@@ -1,0 +1,20 @@
+.content-node.enumeration {
+	padding-top: 20px;
+	position: relative;
+}
+
+.content-node.enumeration > .content > .content-node.enumeration-item {
+	position: relative;
+}
+
+.content-node.enumeration > .content > .content-node.enumeration-item > .content > .enum-label {
+  font-weight: normal;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+.content-node.enumeration > .content > .content-node.enumeration-item > .content > .enum-body {
+	margin-left: 40px;
+	padding-bottom: 5px;
+}

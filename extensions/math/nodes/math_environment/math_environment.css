@@ -1,0 +1,150 @@
+
+/* Apply default spacing for nested content inside math environments */
+.surface.content .nodes > .content-node.math-environment > .content > .content-node {
+  padding-top: 10px;
+  padding-bottom: 15px;
+}
+
+.panel.content .math-environment .content {
+  position: relative;
+}
+
+.panel.content .math-environment .corners {
+  position: absolute;
+  width: 6px;
+  left: -15px;
+  bottom: 10px;
+  top: 10px;
+  border-style: solid;
+  border-width: 1px 0px 1px 1px;
+  border-color: #ddd;
+  cursor: pointer;
+}
+
+.panel.content .formula .content {
+  position: relative;
+}
+
+.panel.content .formula .corners {
+  position: absolute;
+  width: 6px;
+  left: -15px;
+  bottom: 0px;
+  top: 0px;
+  border-style: solid;
+  border-width: 1px 0px 1px 1px;
+  border-color: #ddd;
+  cursor: pointer;
+  visibility: hidden;
+}
+
+/* TODO: try to make the current .label selector more specific. IMO it is only used in publication info right now */
+.surface.content .content-node.math-environment > .content > .env-label {
+  vertical-align: baseline;
+  position: static;
+  top: auto;
+  font-size: 17px;
+  padding: 0px;
+  font-weight: 600;
+  padding-bottom: 5px;
+}
+
+.surface.content .nodes > .content-node.math-environment > .content > .env-label + .paragraph {
+  display: inline;
+}
+
+.surface.content .nodes > .content-node.math-environment > .content > .env-label + .paragraph > .content {
+  display: inline;
+  padding-left: 20px;
+  padding-bottom: 15px;
+}
+
+.content-node.math-environment .comment {
+  font-weight: normal;
+  padding-left: 15px;
+  margin-right: 50px;
+}
+
+/*
+   TODO: we need a general concept for nested containers. Currently many styles are applied to the .nodes of .surface.
+   In this case (and probably many more), we would need some padding etc. after paragraphs, etc.
+ */
+
+.content-node.math-environment .body .content-node {
+  padding-bottom: 15px;
+}
+
+.article .resources .math .content-node.highlighted {
+  border-left: 3px solid rgba(145, 187, 4, 1);
+}
+
+.article .resources .math .surface-scrollbar .highlighted,
+.article .content .surface-scrollbar .highlighted.math_environment_reference,
+.article .content .surface-scrollbar .highlighted.formula_reference {
+  background-color: rgba(145, 187, 4, 1);
+}
+
+span.annotation.math_environment_reference,
+span.annotation.formula_reference {
+  padding-left: 3px; padding-right: 3px;
+}
+
+/* Hover states */
+.content-node .math_environment_reference:hover { background-color: rgba(145, 187, 4, 0.35); }
+.content-node .formula_reference:hover { background-color: rgba(145, 187, 4, 0.35); }
+
+/* Highlighted states */
+.content-node .math_environment_reference.highlighted { background-color: rgba(145, 187, 4, 0.7); }
+.content-node .formula_reference.highlighted { background-color: rgba(145, 187, 4, 0.7); }
+
+/* Focussed states */
+.content-node .math_environment_reference.highlighted.focussed,
+.content-node .formula_reference.highlighted.focussed {
+  background-color: rgba(145, 187, 4, 0.7);
+  /*border-color: green;*/
+}
+
+.panel.content .math-environment.highlighted .corners {
+  border-color: rgba(145, 187, 4, 1);
+  border-width: 3px 0px 3px 3px;
+}
+
+.panel.content .math-environment.highlighted.focussed .corners {
+  border-color: rgba(145, 187, 4, 1);
+}
+
+.surface-scrollbar .overlay.math_environment.main-occurrence,
+.surface-scrollbar .overlay.formula.main-occurrence {
+  background-color: rgba(145, 187, 4, 1);
+  border-right: 3px solid #5C6148;
+}
+
+.panel.content .formula.highlighted .corners {
+  border-color: rgba(145, 187, 4, 1);
+  border-width: 3px 0px 3px 3px;
+  visibility: visible;
+}
+
+/* show the corners also for display-formulas outside of an environment */
+.panel.content .content-node.formula > .content > .corners {
+  visibility: visible;
+}
+
+.article .resources .content-node .jump-to-resource {
+  padding-top: 20px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.article .resources .content-node .number-of-references {
+  float: right;
+  font-size: 10px;
+  text-transform: uppercase;
+  margin-left: 100px;
+}
+
+/* add space to separate env label and comment in toc */
+.resource-view.toc .heading-ref > .comment {
+  padding-left: 0.5em;
+}

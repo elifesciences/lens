@@ -1,0 +1,42 @@
+.document .content-node.formula {
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  /*
+  ATTENTION: overflow must be visible or brackets won't be visible
+  overflow: hidden;
+  */
+}
+
+.document .content-node.formula .label {
+  position: absolute;
+  right: 50px;
+  top: 0px;
+  bottom: 0px;
+  line-height: 90px;
+}
+
+.document .content-node .MathJax_Display {
+  margin: 0;
+/*  overflow-x: visible;
+  overflow-y: visible;*/
+  overflow: visible;
+  /*z-index: 10000;*/
+}
+
+.panel.content .formula .content {
+  position: relative;
+}
+
+.panel.content .formula .corners {
+  position: absolute;
+  width: 6px;
+  left: -15px;
+  bottom: 0px;
+  top: 0px;
+  border-style: solid;
+  border-width: 1px 0px 1px 1px;
+  border-color: #ddd;
+  cursor: pointer;
+  visibility: hidden;
+}

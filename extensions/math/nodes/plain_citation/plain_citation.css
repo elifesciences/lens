@@ -1,0 +1,73 @@
+.plain-citation .person-group {
+  /*font-weight: 600;*/
+}
+
+.plain-citation .person-group .surname + .given-names:before {
+  content: " ";
+}
+
+.plain-citation .person-group:nth-last-of-type(0) {
+  background: red;
+}
+
+.plain-citation .article-title {
+  font-style: italic;
+}
+
+.plain-citation .article-title:before {
+  content: " ";
+}
+
+.plain-citation .source:before {
+  content: " ";
+}
+
+.plain-citation .volume:before {
+  content: ",";
+}
+
+.plain-citation .issue:before {
+  content: ",";
+}
+
+.plain-citation .fpage:before {
+  content: ",p.";
+}
+
+.plain-citation .lpage:before {
+  content: "-";
+}
+
+.plain-citation a.ext-link {
+  /*color: blue;*/
+}
+
+.plain-citation a.ext-link {
+  margin-left: 10px;
+}
+
+.plain-citation .italic {
+  font-style: italic;
+}
+
+.raw-formats {
+  margin-top: 10px;
+  overflow: auto;
+}
+
+.raw-formats .raw-format {
+  display: block;
+  float: left;
+  color: #999;
+  font-size: 11px;
+  font-weight: 600;
+  border: 1px solid #ddd;
+  padding: 0px 5px;
+  line-height: 20px;
+  margin-right: -1px;
+}
+
+.raw-formats .raw-format:hover {
+  background: #ddd;
+}
+

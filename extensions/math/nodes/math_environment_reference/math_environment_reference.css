@@ -1,0 +1,15 @@
+.content-node .math_environment_reference {
+  background: rgba(145, 187, 4, 0.15);
+  border-bottom: 1px solid rgba(145, 187, 4, 0.8);
+  color: #495A11;
+  cursor: pointer;
+}
+
+.content-node .math_environment_reference:hover { 
+  background-color: rgba(145, 187, 4, 0.35);
+}
+
+.content-node .math_environment_reference.active {
+  background: rgba(145, 187, 4, 0.7);
+}
+
