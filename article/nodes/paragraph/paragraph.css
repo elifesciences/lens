@@ -1,0 +1,34 @@
+/* Paragraph Node
+-------------------------------------------------------------------------------*/
+
+.content-node.paragraph {
+}
+
+.content-node.paragraph .content {
+  min-height: 28px;
+}
+
+.content-node.paragraph .content-node.text {
+  padding: 0px;
+  display:inline;
+  width: auto;
+}
+
+.content-node.paragraph .content-node.text.heading {
+  display:block;
+}
+
+.content-node.paragraph .content-node.text div {
+  display:inline;
+  width: auto;
+}
+
+.content-node.paragraph .content-node.image div img {
+  display:inline;
+  width: 100%;
+}
+
+.content-node.paragraph .content-node.formula.inline {
+  display: inline;
+  padding: 0px;
+}

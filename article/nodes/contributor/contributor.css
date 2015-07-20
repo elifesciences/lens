@@ -1,0 +1,45 @@
+/*
+Contributor 
+--------------------------------------- */
+
+.lens-article .content-node.contributor .content {
+  
+}
+
+.lens-article .content-node.contributor .affiliation {
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+.lens-article .content-node.contributor .contributor-bio {
+  padding-top: 30px;  
+}
+
+.lens-article .content-node.contributor .contributor-bio .bio {
+
+  font-size: 13px;
+}
+
+.lens-article .content-node.contributor .contributor-bio .bio .content {
+  background: transparent;
+}
+
+.lens-article .content-node.contributor .contributor-bio img {
+  max-width: 120px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  display: inline;
+  float: left;
+  display: block;
+}
+
+.lens-article .content-node.contributor .contributor-name {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.lens-article .content-node.contributor .label {
+  font-size: 15px;
+  margin-top: 20px;
+  color: #999;
+}

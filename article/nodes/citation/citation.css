@@ -1,0 +1,26 @@
+/*
+Citations 
+--------------------------------------- */
+
+.lens-article .content-node.citation .content .title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.lens-article .content-node.citation .content .authors {
+  font-size: 16px;
+}
+
+.lens-article .content-node.citation .content .source {
+  color: #777;
+  padding-top: 10px;
+}
+
+.lens-article .content-node.citation .content .citation-urls {
+  padding-top: 20px;
+}
+
+.lens-article .content-node.citation .content .citation-urls .url {
+  padding-right: 20px;
+}

@@ -1,0 +1,21 @@
+.document .content-node.formula {
+  padding: 30px 60px;
+  padding-left: 100px;
+  min-height: 80px;
+  text-align: center;
+}
+
+.document .content-node.formula .label {
+  position: absolute;
+  right: 50px;
+  top: 0px;
+  bottom: 0px;
+  line-height: 40px;
+}
+
+/* TODO: This must be smarter */
+.document .content-node .MathJax_Display {
+  margin: 0;
+  padding: 20px;
+  overflow: auto;
+}

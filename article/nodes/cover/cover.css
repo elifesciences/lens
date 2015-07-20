@@ -1,0 +1,99 @@
+.lens-article .content-node.cover {
+  color: rgba(0,0,0,0.8);
+}
+
+.lens-article .content-node.cover .breadcrumbs {
+  font-size: 14px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+
+  /* Prevent from nasty scrollbars that appear when eLife logo is shown */
+  overflow: hidden;
+}
+
+.lens-article .content-node.cover .breadcrumbs a {
+  margin-right: 20px;
+  display: block;
+  float: left;
+  line-height: 40px;
+  height: 40px;
+}
+
+.lens-article .content-node.cover .content {
+  background: none;
+}
+
+.lens-article .content-node.cover .title {
+  font-weight: 600;
+  line-height: 1.3em;
+  font-size: 30px;
+  padding-top: 20px;
+}
+
+.lens-article .content-node.cover .published-on {
+  margin-top: 50px;
+  margin-bottom: 20px;
+  color: #666;
+}
+
+.lens-article .content-node.cover .doi {
+  margin-top: 30px;
+  margin-bottom: 20px;
+  color: #666;
+  font-size: 14px;
+}
+
+.lens-article .content-node.cover .content .authors {
+  padding-top: 30px;
+  color: #1B6685;
+  overflow: auto;
+}
+
+.lens-article .content-node.cover .content .links {
+  margin-top: 20px;
+  font-size: 15px;
+}
+
+.lens-article .content-node.cover .content .links a {
+  padding-left: 4px;
+  margin-right: 20px;
+}
+
+/* One para per author */
+.lens-article .content-node.cover .authors .text {
+  float: left;
+  padding: 0px;
+  margin: 0px;
+  font-size: 17px;
+  margin-right: 10px;
+  margin-bottom: 8px;
+}
+
+.lens-article .content-node.cover .authors .text.plain {
+  color: #777;
+  padding-left: 1px;
+}
+
+
+.lens-article .intro {
+  font-size: 13px;
+  background: #FFFEF5;
+  border: 1px solid#D8D9C1;
+  color: rgba(0,0,0,0.6);
+  padding: 0 10px;
+  line-height: 30px;
+}
+
+.lens-article .intro .intro-text {
+  float: left;
+}
+
+.lens-article .intro .send-feedback {
+  float: right;
+  color: #E40000;
+  font-weight: bold;
+}
+
+.lens-article .intro .send-feedback:hover {
+  color: #ff0000;
+}

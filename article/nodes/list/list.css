@@ -1,0 +1,40 @@
+/* List Node
+-------------------------------------------------------------------------------*/
+
+.content-node.list {
+  padding: 10px 0px;
+  padding-top: 0px;
+}
+
+.content-node .listitem {
+  padding: 2px 0px;
+  padding-left: 20px;
+  position: relative;
+}
+
+.content-node .listitem .bullet {
+  position: absolute;
+  left: 0px;
+  top: 14px;
+  width: 4px;
+  height: 4px;
+  background: #bbb;
+}
+
+.content-node.list .content {
+  min-height: 30px;
+}
+
+.content-node.list { }
+
+.content-node.list .content {
+
+}
+
+.content-node.list.level-2 .content {
+  font-size: 20px;
+}
+
+.content-node.list.level-3 .content {
+  font-size: 17px;
+}

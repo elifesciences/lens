@@ -1,2 +1,3 @@
-
-module.exports = require('./src/lens');
+module.exports = {
+  Reader: require('./reader')
+}

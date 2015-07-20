@@ -1,0 +1,15 @@
+/* Textish Styles
+-------------------------------------------------------------------------------*/
+
+.content-node.text .content {
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+}
+
+
+/* When rendered in main panel */
+.document .content-node.text {
+  padding: 20px 60px;
+  padding-left: 100px;
+}

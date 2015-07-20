@@ -1,0 +1,38 @@
+/*
+Box
+--------------------------------------- */
+
+.content-node.box > .content {
+  padding: 20px;
+}
+
+.surface.content .content-node.box {
+  /*margin-left: 60px;*/
+/*  padding-left: 100px;
+  padding-right: 60px;*/
+
+  /*padding: 0px;*/
+  /*background: #ccc;*/
+}
+
+.document .content-node.box .content-node.paragraph {
+  /*padding: 0px;*/
+  /*padding: 20px 60px 20px 100px;*/
+}
+
+.surface.content .content-node.box {
+  /*background: #ccc;*/
+}
+
+.surface.content .content-node.box > .content {
+  border: 1px dotted #ddd;
+}
+
+.surface.content .content-node.box .content {
+  background: #fbfbfb;
+}
+
+.surface.content .content-node.box > .content > .label  {
+  font-weight: 600;
+  padding-bottom: 20px;
+}
