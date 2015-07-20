@@ -118,21 +118,22 @@ CitationView.Prototype = function() {
     // TODO: Add display citations urls
     // -------
 
-    var citationUrlsEl = $$('.citation-urls');
+    if (node.citation_urls.length > 0) {
+      var citationUrlsEl = $$('.citation-urls');
 
-    _.each(node.citation_urls, function(url) {
-      citationUrlsEl.appendChild($$('a.url', {
-        href: url.url,
-        text: url.name,
-        target: "_blank"
-      }));
-    });
+      _.each(node.citation_urls, function(url) {
+        citationUrlsEl.appendChild($$('a.url', {
+          href: url.url,
+          text: url.name,
+          target: "_blank"
+        }));
+      });
 
-    frag.appendChild(citationUrlsEl);
+      frag.appendChild(citationUrlsEl);      
+    }
 
     this.content.appendChild(frag);
   };
-
 };
 
 CitationView.Prototype.prototype = NodeView.prototype;

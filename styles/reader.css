@@ -220,8 +220,14 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 .article .resources .panel .toc {
   padding-left: 20px;
   padding-right: 20px;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
   overflow: auto;
   padding-top: 30px;
+  padding-bottom: 30px;
 }
 
 /* Info View
@@ -241,7 +247,7 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 
 .article .resources .resource-header .name {
   display: block;
-  min-height: 40px;
+  min-height: 30px;
 
   color: #444;
   font-size: 16px;
