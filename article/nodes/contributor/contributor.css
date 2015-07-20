@@ -2,13 +2,19 @@
 Contributor 
 --------------------------------------- */
 
+.lens-article .resources .content-node.contributor .resource-header .name {
+  font-weight: normal;
+  font-size: 12px;
+  color: #888;
+}
+
 .lens-article .content-node.contributor .content {
   
 }
 
 .lens-article .content-node.contributor .affiliation {
   margin-top: 10px;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .lens-article .content-node.contributor .contributor-bio {
@@ -16,8 +22,7 @@ Contributor
 }
 
 .lens-article .content-node.contributor .contributor-bio .bio {
-
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .lens-article .content-node.contributor .contributor-bio .bio .content {
@@ -35,11 +40,12 @@ Contributor
 
 .lens-article .content-node.contributor .contributor-name {
   font-size: 16px;
+  font-weight: 600;
   margin-bottom: 20px;
 }
 
 .lens-article .content-node.contributor .label {
-  font-size: 15px;
+  font-size: 14px;
   margin-top: 20px;
   color: #999;
 }

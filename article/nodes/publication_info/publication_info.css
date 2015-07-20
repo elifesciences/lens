@@ -1,13 +1,9 @@
 /* Publication Info */
 
 .lens-article .content-node.publication-info {
-  font-size: 16px;
+  font-size: 14px;
   color: #333;
 }
-
-/*.article .resources .nodes > .content-node.publication-info > .content {*/
-  /*border-top: 1px solid #ddd;*/
-/*}*/
 
 .lens-article .content-node.publication-info table {
   padding: 10px 0;
@@ -16,17 +12,13 @@
 }
 
 .lens-article .content-node.publication-info .meta-data > .container {
-  margin-bottom: 20px;
-}
-
-.lens-article .content-node.publication-info .meta-data {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .lens-article .content-node.publication-info .label {
   float: left;
   width: 100px;
-  font-size: 15px;
+  font-size: 14px;
   color: #999;
 }
 
@@ -44,7 +36,7 @@
 }
 
 .article .resources .nodes > .content-node.publication-info .content-node[data-id=articleinfo] {
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .article .resources .nodes > .content-node.publication-info .content-node[data-id=articleinfo] .heading.level-3 {
@@ -52,7 +44,7 @@
 }
 
 .article .resources .nodes > .content-node.publication-info .content-node[data-id=articleinfo] .heading.level-3 .content {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: normal;
   font-family: "Source Sans Pro";
   color: #999;
