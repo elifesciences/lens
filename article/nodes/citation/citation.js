@@ -107,7 +107,7 @@ Citation.Prototype = function() {
   };
 
   this.getHeader = function() {
-    return _.compact([this.properties.label, this.properties.citation_type || "Citation"]).join(' - ');
+    return _.compact([this.properties.label, this.properties.citation_type || ""]).join(' - ');
   };
 };
 

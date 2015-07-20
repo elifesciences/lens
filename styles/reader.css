@@ -207,15 +207,9 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   border-top: none;
 }
 
-/*.article .resources .content-node .resource-header:hover {
-  background: rgba(0,0,0,0.15);
-}*/
-
 /* Clickable header */
 .article .resources .content-node .resource-header {
-  padding-top: 20px;
-  /*min-height: 40px;*/
-
+  padding-top: 15px;
   font-weight: 600;
   position: relative;
 }
@@ -280,9 +274,13 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   font-weight: 600;
   bottom: 0px;
   text-align: center;
-  line-height: 40px;
+  line-height: 50px;
   color: rgba(0,0,0, 0.4);
   padding: 0px 20px;
+}
+
+.article .resources .content-node .resource-header .toggle i {
+  padding-right: 5px;
 }
 
 .article .resources .figures .content-node.highlighted .resource-header .toggle.toggle-res,
