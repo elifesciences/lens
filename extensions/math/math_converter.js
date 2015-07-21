@@ -58,7 +58,7 @@ MathConverter.Prototype = function MathConverterPrototype() {
   // and we create an Lens.Article which supports these new node types
   this.createDocument = function() {
     var doc = new LensArticle({
-      nodeTypes: MathNodeTypes
+      nodeTypes: (this.options.nodeTypes || MathNodeTypes)
     });
     // initialize a container for the math environments
     doc.create({
