@@ -6,7 +6,6 @@
 - **Watch the [introduction video](http://vimeo.com/67254579).**
 - **See Lens in [action](http://lens.elifesciences.org/00778)**
 
-
 ## Using Lens
 
 Lens is a stand-alone web component that can be embedded into any web page. Just take the contents from the latest [distribution](https://github.com/elifesciences/lens/releases), then adjust the `document_url` parameter in `index.html`.
@@ -30,23 +29,6 @@ Lens is meant to be extended and customized. Touch the code!
 
 For Lens development, you need to have Node.js >=0.10.x installed.
 
-#### Substance Screwdriver
-
-Lens uses a custom Python tool to manage Git repositories, the [Substance Screwdriver](http://github.com/substance/screwdriver).
-
-To install Substance Screwdriver do
-
-```bash
-$ git clone https://github.com/substance/screwdriver.git
-```
-
-and install it globally
-
-```bash
-$ cd screwdriver
-$ sudo python setup.py install
-```
-
 You need to repeat that install step whenever you updated the screwdriver repo.
 
 ### Setup
@@ -61,7 +43,6 @@ You need to repeat that install step whenever you updated the screwdriver repo.
 
   ```bash
   $ cd lens-starter
-  $ substance --update
   $ npm install
   ```
 
@@ -73,31 +54,19 @@ You need to repeat that install step whenever you updated the screwdriver repo.
   http://127.0.0.1:4001/
   ```
 
-4. Open in browser
-
-  This will show you a simple index page with links to sample files.
-
-5. Updates
-
-  To receive all new changes update the main repo and then use the screwdriver again
-
-  ```
-  $ git pull
-  $ substance --update
-  ```
 
 ### Converter
 
 Lens can natively read the JATS (formerly NLM) format, thanks to its built-in converter.
 Conversion is done on the client side using the browser-native DOM Parser.
 
-You can find the implementation of Lens Converter [here](https://github.com/elifesciences/lens-converter/blob/master/lens_converter.js). Lens Converter is meant to be customized, so publishers can develop a their own flavor easily.
+You can find the implementation of Lens Converter [here](https://github.com/elifesciences/lens/blob/master/converter/lens_converter.js). Lens Converter is meant to be customized, so publishers can develop a their own flavor easily.
 
 
 Each converter must have a method `test` that takes the XML document as well as the document url. The method is there to tell if the converter can handle the content or not. In the case of eLife we check for the `publisher-name` element in the XML. 
 
 
-See: [lens-converter/elife_converter.js](https://github.com/elifesciences/lens-converter/blob/master/elife_converter.js)
+See: [lens/converter/elife_converter.js](https://github.com/elifesciences/lens/blob/master/converter/elife_converter.js)
 
 ```js
 ElifeConverter.Prototype = function() {
@@ -112,7 +81,7 @@ ElifeConverter.Prototype = function() {
 
 A customized converter can override any method of the original LensConverter. However, we have designated some hooks that are intended to be customized. Watch for methods starting with `enhance`. For eLife we needed to resolve supplement urls, so we implemented an `enhanceSupplement` method, to resolve the `supplement.url` according to a fixed url scheme that eLife uses.
 
-See: [lens-converter/elife_converter.js](https://github.com/elifesciences/lens-converter/blob/master/elife_converter.js)
+See: [lens/converter/elife_converter.js](https://github.com/elifesciences/lens/blob/master/converter/elife_converter.js)
 
 ```js
 ElifeConverter.Prototype = function() {
@@ -136,7 +105,7 @@ ElifeConverter.Prototype = function() {
 
 You can configure a chain of converters if you need to support different journals at a time for a single Lens instance.
 
-See [src/app.js](https://github.com/elifesciences/lens-starter/blob/master/src/app.js)
+See [src/my-lens.js](https://github.com/elifesciences/lens-starter/blob/master/src/my-lens.js)
 
 ```js
 LensApp.Prototype = function() {
@@ -161,7 +130,7 @@ You may want to customize how information is displayed in Lens. Here's how it wo
 
 We can either define a completely new node or override an existing implementation.
 
-The following example from the starter repo overrides the [Cover node](https://github.com/elifesciences/lens-article/blob/master/nodes/cover/cover_view.js) and adds a feedback link to the top.
+The following example from the starter repo overrides the [Cover node](https://github.com/elifesciences/lens/blob/master/article/nodes/cover/cover_view.js) and adds a feedback link to the top.
 
 See [lens-starter/src/nodes/cover/cover_view.js](https://github.com/elifesciences/lens-starter/blob/master/src/nodes/cover/cover_view.js)
 
@@ -269,14 +238,14 @@ AltmetricsController.Prototype = function() {
   this.getAltmetrics = function(cb) {
     var doi = this.document.get('publication_info').doi;
 
-  	$.ajax({
-  	  url: "http://api.altmetric.com/v1/doi/"+doi,
-  	  dataType: "json",
-  	}).done(function(res) {
-  		cb(null, res);
-  	}).error(function(err) {
-  		cb(err);
-  	});
+    $.ajax({
+      url: "http://api.altmetric.com/v1/doi/"+doi,
+      dataType: "json",
+    }).done(function(res) {
+      cb(null, res);
+    }).error(function(err) {
+      cb(err);
+    });
   };
   ...
 };
@@ -334,44 +303,16 @@ var altmetricsPanel = require('./panels/altmetrics');
 panels.splice(-1, 0, altmetricsPanel);
 ```
 
-### Custom CSS
-
-Lens can be styled with custom CSS easily. You can put a CSS file anywhere and reference it from the style section in `project.json`. E.g. the styles for the altmetrics panel were referenced like that.
-
-See: [lens-starter/.screwdriver/project.json](https://github.com/elifesciences/lens-starter/blob/master/.screwdriver/project.json)
-
-```js
-  "styles": {
-    ...
-    "styles/altmetrics.css": "src/panels/altmetrics/altmetrics.css",
-    ...
-  },
-```
-
 
 ### Bundling
 
-You need to have `browserify` and `uglify-js` installed.
+Lens uses gulp and browserify for bundling. Just run the `gulp` command.
 
 ```bash
-$ sudo npm install -g browserify uglify-js
+$ gulp
 ```
 
-A bundle is created via:
-
-```bash
-$ substance --bundle
-```
-
-There are two options available (not-minified JS bundle, bundle with sourcemap):
-
-```bash
-$ substance --bundle nominify,sourcemap
-```
-
-To control which assets are bundled adjust the `assets` block in `.screwdriver/project.json`.
-
-After bundling you can serve the bundle e.g. using
+You can find your bundle in the `dist` folder.
 
 ```bash
 $ cd dist
@@ -381,31 +322,10 @@ $ python -m SimpleHTTPServer
 To open one of the bundled samples you need open the following URL in your browser
 
 ```bash
-http://127.0.0.1:8000/doc.html?url=data/samples/preprocessed/bproc1.xml
+http://127.0.0.1:8000/
 ```
 
 Adjust the 'url' parameter to open a different document.
-
-
-## Advanced tools
-
-### Sublime 2 Integration
-
-We use a custom Sublime plugin which adds a summary page to show all pending changes so that we do not forget to commit and push changes to some of the sub-modules.
-
-MacOSX:
-
-```bash
-$ cd $HOME/Library/Application Support/Sublime Text 2/Packages
-$ git clone https://github.com/substance/sublime.git Substance
-```
-
-Linux (Ubuntu):
-
-```bash
-$ cd ~/.config/sublime-text-2/Packages
-$ git clone https://github.com/substance/sublime.git Substance
-```
 
 ## A note on mobile
 
