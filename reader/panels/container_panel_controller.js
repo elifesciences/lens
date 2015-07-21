@@ -24,6 +24,7 @@ ContainerPanelController.Prototype = function() {
       var DefaultViewFactory = doc.constructor.ViewFactory;
       viewFactory = new DefaultViewFactory(doc.nodeTypes, this.config);
     }
+    this.viewFactory = viewFactory;
     return new ContainerPanelView(this, viewFactory, this.config);
   };
 

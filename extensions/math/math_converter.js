@@ -1,9 +1,7 @@
 
 var _ = require('underscore');
 var util = require("lens/substance/util");
-
 var LensConverter = require('lens/converter');
-
 var LensArticle = require("lens/article");
 var MathNodeTypes = require("./nodes");
 
@@ -446,8 +444,6 @@ MathConverter.Prototype = function MathConverterPrototype() {
         content: content
       });
     });
-
-
 
     var i;
     var id = state.nextId("plain_citation");
