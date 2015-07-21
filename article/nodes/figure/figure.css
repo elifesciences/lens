@@ -1,0 +1,15 @@
+/* Figure Node
+-------------------------------------------------------------------------------*/
+
+.content-node.figure { 
+}
+
+.content-node.figure div.image-wrapper {
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.content-node.figure div .image-wrapper img {
+  width: 100%;
+}

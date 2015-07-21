@@ -1,0 +1,17 @@
+.resources .content-node.video .video-wrapper {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.resources .content-node.video .content video {
+  /* We use a fix value of 100% now (instead of max-width: 100%), so small videos don't look so ugly; */
+  width: 100%;
+  max-height: 500px;
+}
+
+/* Fullscreen overrides */
+
+.resources .content-node.video.fullscreen .content .video-wrapper {
+  padding: 50px 0;
+  text-align: center;
+}

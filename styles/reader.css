@@ -77,6 +77,9 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 =======================================================================*/
 
 
+
+
+
 /* Context Toggles
 =======================================================================*/
 
@@ -84,98 +87,59 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   visibility: hidden;
 }
 
-/* Switcher */
-.article .medial-strip {
-  width: 40px;
-  position: absolute;
-  left: 50%;
-  margin-left: -18px;
-
-  top: 0px;
-  bottom: 0px;
-  background: #fff;
-  z-index: 3000;
-}
-
-.article .back-nav {
-  display: block;
-  overflow: hidden;
-  width: 40px;
-  position: absolute;
-  top: 20px;
-  z-index: 5000;
-  font-size: 22px;
-  background: #fff;
-  color: #aaa;
-  padding: 10px 10px;
-}
-
-.article .back-nav:hover {
-  color: #333;
-}
-
-.article .medial-strip .separator-line {
+.menu-bar {
   position: absolute;
   top: 0px;
-  bottom: 0px;
-  left: 20px;
-  width: 1px;
-  background: #ddd;
-  z-index: 4000;
-}
-
-.article .context-toggles {
-  position: absolute;
-  top: 30px;
+  height: 40px;
   left: 0px;
   right: 0px;
-  z-index: 5000;
+  overflow: hidden;
+  /*background: #444;*/
+  color: #444;
+  border-bottom: 1px solid #ddd;
+  z-index: 20000;
 }
 
-.article .context-toggles .context-toggle {
-  cursor: pointer;
+.menu-bar .context-toggles {
+}
+
+.menu-bar .context-toggles a {
   display: block;
-  z-index: 5000;
-  padding: 0 10px;
+  float: left;
+  font-size: 13px;
+  font-weight: 600;
   line-height: 40px;
-  font-size: 22px;
-  color: #aaa;
-  background: #fff;
-  text-align: center;
+  color: rgba(0,0,0, 0.4);
+  border-right: 1px solid #ddd;
+  padding-right: 15px;
+  padding-left: 15px;
 }
 
-.article .context-toggles .context-toggle.hidden {
+.menu-bar .context-toggles a.context-toggle.hidden {
   display: none;
 }
 
-.article .context-toggles .context-toggle.pdf {
-  margin-top: 40px;
+.menu-bar .context-toggles a:hover {
+  /*color: #fff;*/
+  color: rgba(0,0,0, 0.5);
+  background: rgba(0,0,0, 0.03);
 }
 
-.article .context-toggles .context-toggle i {
-
+.menu-bar .context-toggles a.active {
+  background: rgba(0,0,0, 0.05);
+  color: #444;
+  border-bottom: 3px solid #444;
 }
 
-.article .context-toggles .context-toggle span {
-  display: none;
+.menu-bar .context-toggles a.context-toggle.active.figures,
+.menu-bar .context-toggles a.context-toggle.active.math {
+  color: rgba(145, 187, 4, 1);
+  background: rgba(145, 187, 4, 0.05);
 }
 
-.article .context-toggles .context-toggle div.label {
-  margin-left: -15px;
-  margin-right: -15px;
-  font-weight: bold;
-  font-size: 11px;
-  line-height: 12px;
-  padding-bottom: 10px;
-  text-align: center;
-}
-
-.article .context-toggles .context-toggle:hover {
-  color: #555;
-}
-
-.article .context-toggles .context-toggle.active {
-  color: #111;
+.menu-bar .context-toggles a.context-toggle.active.citations {
+  color: rgba(11, 157, 217, 1);
+  background: rgba(11, 157, 217, 0.05);
 }
 
 
@@ -199,13 +163,13 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 
 .article .resources .panel {
   position: absolute;
-  top: 0px;
+  top: 40px;
   bottom: 0px;
   left: 0px;
   right: 0px;
-  overflow-y: scroll;
+  /*  overflow-y: scroll;
   overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
+  -webkit-overflow-scrolling: touch;*/
 }
 
 .article .resources .surface {
@@ -226,43 +190,44 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 }
 
 .article .resources .nodes {
-  padding-left: 55px;
-  padding-right: 40px;
+  padding-left: 0px;
+  padding-right: 20px;
 }
 
 .article .resources .nodes > .content-node {
   color: #505050;
   position: relative;
   background: #fff;
+  border-bottom: 1px solid #ddd;
+  border-left: 3px solid transparent;
   padding: 0px;
-  padding-top: 20px;
-  padding-bottom: 20px;
 }
 
 .article .resources .nodes > .content-node > .content {
-  border: 1px solid #ddd;
   border-top: none;
-}
-
-.article .resources .content-node .resource-header:hover {
-  background: rgba(0,0,0,0.15);
 }
 
 /* Clickable header */
 .article .resources .content-node .resource-header {
-  min-height: 40px;
+  padding-top: 15px;
+  font-weight: 600;
   position: relative;
-  background: rgba(0,0,0,0.1);
 }
-
 
 /* TOC View
 ----------------------------------------------------------------------- */
 
 .article .resources .panel .toc {
-  padding-left: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
   overflow: auto;
   padding-top: 30px;
+  padding-bottom: 30px;
 }
 
 /* Info View
@@ -282,13 +247,13 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 
 .article .resources .resource-header .name {
   display: block;
-  min-height: 40px;
+  min-height: 30px;
 
   color: #444;
   font-size: 16px;
   line-height: 21px;
-  padding: 10px 20px;
-  padding-right: 40px;
+  padding: 0px 20px;
+  padding-right: 200px;
 }
 
 
@@ -300,36 +265,50 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   text-align: right;
 }
 
+/* Resource toggles */
+.article .resources .content-node .resource-header .toggles {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  overflow: auto;
+}
 
 /* Resource toggle */
-.article .resources .content-node .resource-header .toggle-res {
-  position: absolute;
-  right: 0px;
-  top: 0px;
-  font-size: 20px;
+.article .resources .content-node .resource-header .toggle {
+  float: left;
+  font-size: 12px;
+  font-weight: 600;
   bottom: 0px;
   text-align: center;
-  line-height: 40px;
-  color: rgba(0,0,0, 0.2);
-  width: 60px;
+  line-height: 50px;
+  color: rgba(0,0,0, 0.4);
+  padding: 0px 20px;
 }
 
-/* Active state adjustments */
-.article .resources .content-node.highlighted .resource-header .toggle-res {
-  color: rgba(255,255,255, 0.5);
+.article .resources .content-node .resource-header .toggle i {
+  padding-right: 5px;
 }
 
-/* Hide resize small icon by default */
-#container .article .content-node .fa.fa-eye-slash {
-  display: none;
+.article .resources .figures .content-node.highlighted .resource-header .toggle.toggle-res,
+.article .resources .math .content-node.highlighted .resource-header .toggle.toggle-res {
+  color: rgba(145, 187, 4, 1);
 }
+
+.article .resources .citations .content-node.highlighted .resource-header .toggle.toggle-res {
+  color: rgba(11, 157, 217, 1);
+}
+
+.article .resources .info .content-node.highlighted .resource-header .toggle.toggle-res {
+  color: #5c6570;
+}
+
+.article .resources .content-node .resource-header .toggle:hover {
+  color: rgba(0,0,0, 0.6);
+}
+
 
 #container .article .content-node.highlighted .fa.fa-eye-slash {
   display: inline;
-}
-
-#container .article .content-node.highlighted .fa.fa-eye {
-  display: none;
 }
 
 
@@ -338,36 +317,11 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 
 /* Styles for fullscreen toggle on resource cards */
 
-.article .resources .content-node .resource-header .toggle-fullscreen {
-  position: absolute;
-  right: 30px;
-  top: 0px;
-  font-size: 20px;
-  bottom: 0px;
-  text-align: center;
-  line-height: 40px;
-  color: rgba(0,0,0, 0.2);
-  width: 81px;
+.article .resources .figures .content-node.fullscreen .resource-header .toggle.toggle-fullscreen,
+.article .resources .math .content-node.fullscreen .resource-header .toggle.toggle-fullscreen {
+  color: rgba(145, 187, 4, 1);
 }
 
-.article .resources .content-node .resource-header .toggle-fullscreen:hover {
-  color: rgba(0,0,0, 0.5);
-}
-
-/* Active state adjustments */
-.article .resources .content-node.highlighted .resource-header .toggle-fullscreen {
-  color: rgba(255,255,255, 0.5);
-}
-
-.article .resources .content-node.highlighted .resource-header .toggle-fullscreen:hover {
-  color: rgba(255,255,255, 1);
-}
-
-
-/* Hide resize small icon by default */
-#container .article .content-node .fa.fa-compress {
-  display: none;
-}
 
 #container .article .content-node.fullscreen {
   position: fixed;
@@ -381,13 +335,6 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   padding: 0px;
 }
 
-#container .article .content-node.fullscreen .fa.fa-compress {
-  display: inline;
-}
-
-#container .article .content-node.fullscreen .fa.fa-expand {
-  display: none;
-}
 
 #container .article .content-node.fullscreen > .content {
   position: absolute;
@@ -411,13 +358,13 @@ out (on iOS 5.1), or flicker (on iOS 6). */
 ----------------------------------------------------------------------- */
 
 .article span.annotation {
-  -webkit-transition-property: background, color;
+/*  -webkit-transition-property: background, color;
   -moz-transition-property: background, color;
   transition-property: background, color;
 
   -webkit-transition-duration: 0.1s;
   -moz-transition-duration: 0.1s;
-  transition-duration: 0.1s;
+  transition-duration: 0.1s;*/
 }
 
 /* Small caps */
@@ -556,8 +503,8 @@ span.annotation.formula_reference, span.publication_reference {
 .surface.content .nodes > .content-node {
   padding-top: 10px;
   padding-bottom: 15px;
-  padding-left: 40px;
-  padding-right: 40px;
+  padding-left: 30px;
+  padding-right: 30px;
   word-wrap: break-word;
 }
 
@@ -581,6 +528,7 @@ span.annotation.formula_reference, span.publication_reference {
 /* padding for the content */
 .resources .nodes > .content-node > .content {
   padding: 20px;
+  padding-top: 0px;
 }
 
 /* For the resources panel */
@@ -597,21 +545,26 @@ span.annotation.formula_reference, span.publication_reference {
   background-color: rgba(0, 0, 0, 0);
 }
 
+.scrollbar-cover {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  width: 20px;
+  overflow: hidden;
+  background: #fff;
+}
 
 /* Disable native scrollbar for resources except TOC */
 
 .article .resources .panel::-webkit-scrollbar,
-.article .resources .surface.figures::-webkit-scrollbar,
-.article .resources .surface.citations::-webkit-scrollbar,
-.article .resources .surface.info::-webkit-scrollbar {
+.article .resources .surface::-webkit-scrollbar {
   width: 0px;
   height: 0px;
 }
 
 .article .resources .panel::-webkit-scrollbar-thumb,
-.article .resources .surface.figures::-webkit-scrollbar-thumb,
-.article .resources .surface.citations::-webkit-scrollbar-thumb,
-.article .resources .surface.info::-webkit-scrollbar-thumb {
+.article .resources .surface::-webkit-scrollbar-thumb {
   background-color: rgba(0, 0, 0, 0);
 }
 
@@ -678,26 +631,26 @@ as we have a plugin concept for functionality / panels */
 
 /* Active resource */
 .article .resources .content-node.highlighted .resource-header .name {
-  color: #fff;
+  /*color: #fff;*/
 }
 
-.article .resources .figures .content-node.highlighted .resource-header {
-  background: rgba(145, 187, 4, 1);
+.article .resources .figures .content-node.highlighted {
+  border-left: 3px solid rgba(145, 187, 4, 1);
 }
 
 /* active citation */
-.article .resources .citations .content-node.highlighted .resource-header {
-  background: rgba(11, 157, 217, 1);
+.article .resources .citations .content-node.highlighted {
+  border-left: 3px solid rgba(11, 157, 217, 1);
 }
 
 /* active definition */
-.article .resources .definitions .content-node.highlighted .resource-header {
-  background: #5c6570;
+.article .resources .definitions .content-node.highlighted {
+  border-left: 3px solid #5c6570;
 }
 
 /* active contributor */
-.article .resources .info .content-node.highlighted .resource-header {
-  background: #5c6570;
+.article .resources .info .content-node.highlighted {
+  border-left: 3px solid #5c6570;
 }
 
 /* Table of contents */
@@ -748,9 +701,8 @@ TOC
 }
 
 .resource-view.toc .heading-ref:hover {
-  color: rgba(0,0,0,1.0);
+  color: rgba(0,0,0,1);
 }
-
 
 /* Scrollbar
 --------------------------------------- */
@@ -777,6 +729,10 @@ TOC
   height: 80px;
   z-index: 4000;
   background-color: rgba(0,0,0, 0.2);
+}
+
+.surface-scrollbar.hidden .visible-area {
+  display: none;
 }
 
 .surface-scrollbar:hover .visible-area {

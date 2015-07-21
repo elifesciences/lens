@@ -1,0 +1,36 @@
+.panel.math .nodes > .unreferenced.content-node {
+  display: none;
+}
+
+.show-unreferenced-math {
+  position: fixed;
+  display: block;
+  right: 0px;
+  font-size: 12px;
+  font-weight: 600;
+  top: 0px;
+  padding-right: 15px;
+  line-height: 40px;
+  z-index: 60000;
+  color: rgba(0,0,0,0.4);
+}
+
+.show-unreferenced-math.active {
+  color: rgba(0,0,0, 1);
+}
+
+.show-unreferenced-math .fa-check-square-o {
+  display: none;
+}
+
+.show-unreferenced-math.active .fa-square-o {
+  display: none;
+}
+
+.show-unreferenced-math.active .fa-check-square-o {
+  display: inline;
+}
+
+.show-unreferenced-math:hover {
+  color: rgba(0,0,0, 0.7);
+}

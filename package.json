@@ -1,5 +1,6 @@
 {
   "name": "lens",
+  "version": "2.0.0-beta5",
   "description": "A novel way of seeing content.",
   "url": "http://github.com/elifesciences/lens",
   "keywords": [
@@ -24,20 +25,9 @@
     "url": "https://github.com/elifesciences/lens.git"
   },
   "dependencies": {
-    "underscore": "1.5.x",
-    "express": "3.3.x",
-    "substance-application": "git+https://github.com/substance/application.git#lens",
-    "substance-data": "git+https://github.com/substance/data.git#lens",
-    "substance-document": "git+https://github.com/substance/document.git#lens",
-    "lens-article": "git+https://github.com/elifesciences/lens-article.git#master",
-    "substance-toc": "git+https://github.com/substance/toc.git#lens",
-    "lens-converter": "git+https://github.com/elifesciences/lens-converter.git#master",
-    "substance-util": "git+https://github.com/substance/util.git#lens"
+    "underscore": "1.8.3"
   },
-  "devDependencies": {
-    "substance-cjs": "git+https://github.com/substance/cjs.git#master"
-  },
-  "version": "2.0.0",
+  
   "engines": {
     "node": ">=0.8.x",
     "npm": ">=1.1.x"

@@ -1,0 +1,12 @@
+.content-node.supplement > .content {
+  padding: 10px 20px;
+}
+
+.content-node.supplement .content .file {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.content-node.supplement .content .file a {
+  font-weight: 600;
+}

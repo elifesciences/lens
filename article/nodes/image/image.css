@@ -1,0 +1,26 @@
+/* Image Node
+-------------------------------------------------------------------------------*/
+
+.content-node.image { }
+
+
+.content-node.image .content {
+  padding: 0px;
+}
+
+.content-node.image div.image-char {
+  width: 100%;
+}
+
+.content-node.image div.selected .overlay {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  background: rgba(0,169, 255, 0.25);
+}
+
+.content-node.image div img {
+  width: 100%;
+}

@@ -10,10 +10,11 @@ body {
   padding: 0;
   margin: 0;
   background-color: white;
-  -moz-transition: background-color 200ms linear;
+
+/*  -moz-transition: background-color 200ms linear;
   -o-transition: background-color 200ms linear;
   -webkit-transition: background-color 200ms linear;
-  transition: background-color 200ms linear;
+  transition: background-color 200ms linear;*/
 
 }
 
@@ -66,10 +67,11 @@ a {
   color: #1B6685;
   font-weight: normal;
   text-decoration: none;
-  -moz-transition: background-color 100ms linear, color 100ms linear, opacity 100ms linear;
+  
+/*  -moz-transition: background-color 100ms linear, color 100ms linear, opacity 100ms linear;
   -o-transition: background-color 100ms linear, color 100ms linear, opacity 100ms linear;
   -webkit-transition: background-color 100ms linear, color 100ms linear, opacity 100ms linear;
-  transition: background-color 100ms linear, color 100ms linear, opacity 100ms linear;
+  transition: background-color 100ms linear, color 100ms linear, opacity 100ms linear;*/
 }
 
 a:hover {

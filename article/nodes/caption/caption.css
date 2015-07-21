@@ -1,0 +1,8 @@
+.lens-article .content-node.caption .caption-title {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.lens-article .content-node.caption > .content > .content-node.paragraph {
+  padding-bottom: 10px;
+}

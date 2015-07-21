@@ -1,0 +1,32 @@
+/* Heading Node
+-------------------------------------------------------------------------------*/
+
+.content-node.heading {
+}
+
+.content-node.heading .content {
+  min-height: 40px;
+}
+
+.content-node.heading .label { display: inline; padding-right: 10px; }
+.content-node.heading .title, .content-node.heading .content .title .content { display: inline; }
+
+.content-node.heading { }
+
+.content-node.heading .content {
+  color: rgba(0,0,0,0.8);
+  font-weight: 600;
+  line-height: 40px;
+}
+
+.content-node.heading.level-1 .content {
+  font-size: 24px;
+}
+
+.content-node.heading.level-2 .content {
+  font-size: 21px;
+}
+
+.content-node.heading.level-3 .content {
+  font-size: 18px;
+}

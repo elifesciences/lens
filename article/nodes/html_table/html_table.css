@@ -1,0 +1,55 @@
+.lens-article .content-node.html-table > .content {
+  padding: 20px;
+}
+
+.lens-article .content-node.html-table > .content img {
+  width: 100%;
+}
+
+.lens-article .content-node.html-table .table-wrapper {
+  width: 100%;
+  overflow: auto;
+}
+
+.lens-article .content-node.html-table .caption {
+  padding-top: 20px;
+}
+
+.lens-article .content-node.html-table table {
+  position: relative;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin-bottom: 20px;
+  margin: 0 auto;
+}
+
+.lens-article .content-node.html-table thead tr {
+  background: #eee;
+}
+
+.lens-article .content-node.html-table thead td {
+  font-weight: bold;
+}
+
+/* Table sub tags */
+.lens-article .content-node.html-table table sub {
+  vertical-align: baseline;
+  position: relative;
+  top: 0.4em;
+  font-size: 11px;
+}
+
+.lens-article .content-node.html-table table td {
+  padding: 5px;
+  font-size: 12px;
+  border: 1px solid lightgrey;
+  /* Enable white-space: nowrap; if author controls wrapping (<br> in HTML)
+  /* white-space: nowrap; */ 
+}
+
+.lens-article .content-node.html-table .footers {
+  padding: 0 20px;
+  padding-top: 10px;
+  font-size: 12px;
+  background: #fff;
+}

@@ -1,0 +1,15 @@
+/* Codeblock Node
+-------------------------------------------------------------------------------*/
+
+.content-node.codeblock > .content {
+  border: 1px dashed #ddd;
+  line-height: 20px;
+  padding: 10px 10px;
+}
+
+.content-node.codeblock > .content {
+  font-family: 'Menlo', monospace;
+  font-size: 14px;
+  color: #777;
+  min-height: 28px;
+}

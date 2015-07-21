@@ -1,0 +1,12 @@
+/* Node
+-------------------------------------------------------------------------------*/
+
+.content-node.node {
+  padding: 20px 0px;
+  background: #ccc;
+}
+
+.content-node.node .content {
+  min-height: 28px;
+}
+

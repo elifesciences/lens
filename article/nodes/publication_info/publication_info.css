@@ -1,0 +1,55 @@
+/* Publication Info */
+
+.lens-article .content-node.publication-info {
+  font-size: 14px;
+  color: #333;
+}
+
+.lens-article .content-node.publication-info table {
+  padding: 10px 0;
+  border: none;
+  width: 100%;
+}
+
+.lens-article .content-node.publication-info .meta-data > .container {
+  margin-bottom: 10px;
+}
+
+.lens-article .content-node.publication-info .label {
+  float: left;
+  width: 100px;
+  font-size: 14px;
+  color: #999;
+}
+
+.lens-article .content-node.publication-info .value {
+  margin-left: 140px;
+}
+
+.lens-article .content-node.publication-info .dates {
+  /*font-size: 14px;*/
+}
+
+.article .resources .nodes > .content-node.publication-info > .content {
+  border: none;
+  padding: 20px;
+}
+
+.article .resources .nodes > .content-node.publication-info .content-node[data-id=articleinfo] {
+  font-size: 14px;
+}
+
+.article .resources .nodes > .content-node.publication-info .content-node[data-id=articleinfo] .heading.level-3 {
+  padding-top: 10px;
+}
+
+.article .resources .nodes > .content-node.publication-info .content-node[data-id=articleinfo] .heading.level-3 .content {
+  font-size: 14px;
+  font-weight: normal;
+  font-family: "Source Sans Pro";
+  color: #999;
+}
+
+.article .resources .nodes > .content-node.publication-info .content-node[data-id=articleinfo] .content-node {
+  padding-top: 10px;
+}

@@ -1,0 +1,12 @@
+.surface .content-node.footnote > .content {
+  display: inline;
+}
+
+.surface .content-node.footnote > .content > .content-node {
+  display: inline;
+}
+
+.surface .content-node.footnote > .content > .content-node > .content {
+  display: inline;
+}
+
