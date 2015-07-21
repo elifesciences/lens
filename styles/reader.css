@@ -131,17 +131,6 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   border-bottom: 3px solid #444;
 }
 
-.menu-bar .context-toggles a.context-toggle.active.figures,
-.menu-bar .context-toggles a.context-toggle.active.math {
-  color: rgba(145, 187, 4, 1);
-  background: rgba(145, 187, 4, 0.05);
-}
-
-.menu-bar .context-toggles a.context-toggle.active.citations {
-  color: rgba(11, 157, 217, 1);
-  background: rgba(11, 157, 217, 0.05);
-}
-
 
 /* Resources Panel
 ======================================================================= */
