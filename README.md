@@ -207,7 +207,7 @@ For demonstration we will look at the implementation of a simple Altmetrics pane
 
 This is the main entry point for a panel.
 
-See: [lens-starter/src/panels/altmetrics/index.js](https://github.com/elifesciences/lens-starter/blob/master/src/panels/altmetrics.index.js)
+See: [lens-starter/src/panels/altmetrics/index.js](https://github.com/elifesciences/lens-starter/blob/master/src/panels/altmetrics/index.js)
 
 ```js
 var panel = new Panel({
