@@ -21,9 +21,11 @@ var app = new Lens({
 
 Lens can display any NLM XML document or, alternatively, the Lens-native JSON representation. Lens is pure client-side Javascript, so anyone (even authors) can host their own documents on a regular webspace.
 
-## Lens development
+## Make your own Lens
 
-Lens is meant to be extended and customized. Touch the code!
+Lens is meant to be extended and customized. The American Mathematical Society developed a [math extension](extensions/math) for the Lens Reader to display JATS files with Math content, i.e. environments and formulas. See the official [AMS Lens](https://github.com/AmerMathSoc/AMS-Lens) repo for a complete integration example.
+
+However, now let's look into developing our own extensions.
 
 ### Prerequisites
 
