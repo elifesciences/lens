@@ -3,6 +3,22 @@
 
 .content-node.figure { 
 }
+  
+/* When displayed in resource panel */
+.resources .nodes > .content-node.figure .label {
+  display: none;
+}
+
+.panel.content .nodes > .content-node.figure .label {
+  color: #777;
+  padding-bottom: 10px;
+}
+
+/* Special styles when figure is displayed in document flow */
+.panel.content .nodes > .content-node.figure > .content {
+  padding: 15px;
+  border: 1px solid #ddd;
+}
 
 .content-node.figure div.image-wrapper {
   text-align: center;

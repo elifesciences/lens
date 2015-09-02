@@ -11,6 +11,7 @@ var ResourceView = require('../../resource_view');
 var FigureView = function(node, viewFactory, options) {
   CompositeView.call(this, node, viewFactory);
 
+  
   // Mix-in
   ResourceView.call(this, options);
 };
@@ -27,6 +28,8 @@ FigureView.Prototype = function() {
   //
 
   this.renderBody = function() {
+    this.content.appendChild($$('.label', {text: this.node.label}));
+
     if (this.node.url) {
       // Add graphic (img element)
       var imgEl = $$('.image-wrapper', {
