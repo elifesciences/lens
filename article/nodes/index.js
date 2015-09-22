@@ -47,5 +47,6 @@ module.exports = {
   "list": require("./list"),
   "codeblock": require("./codeblock"),
   "affiliation": require("./_affiliation"),
-  "footnote": require("./footnote")
+  "footnote": require("./footnote"),
+  "quotation": require("./quotation")
 };
