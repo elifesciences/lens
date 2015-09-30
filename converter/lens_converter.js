@@ -1270,19 +1270,19 @@ NlmToLensConverter.Prototype = function() {
   };
 
   this.quoteText = function (state, quote) {
-        var doc = state.doc;
-        // Assuming that there are no nested <disp-quote> elements
-        var childNodes = this.bodyNodes(state, util.dom.getChildren(quote));
-        var quoteId = state.nextId("quote");
-        var quoteNode = {
-            "type": "quote",
-            "id": quoteId,
-            "source_id": quote.getAttribute("id"),
-            "label": "",
-            "children": _.pluck(childNodes, 'id')
-        };
-        doc.create(quoteNode);
-        return quoteNode;
+    var doc = state.doc;
+    // Assuming that there are no nested <disp-quote> elements
+    var childNodes = this.bodyNodes(state, util.dom.getChildren(quote));
+    var quoteId = state.nextId("quote");
+    var quoteNode = {
+      "type": "quote",
+      "id": quoteId,
+      "source_id": quote.getAttribute("id"),
+      "label": "",
+      "children": _.pluck(childNodes, 'id')
+    };
+    doc.create(quoteNode);
+    return quoteNode;
     };
 
     this.datasets = function(state, datasets) {

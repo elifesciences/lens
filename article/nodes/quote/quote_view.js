@@ -13,21 +13,20 @@ var QuoteView = function(node, viewFactory) {
 
 QuoteView.Prototype = function() {
 
+  this.render = function() {
+    NodeView.prototype.render.call(this);
 
-    this.render = function() {
-        NodeView.prototype.render.call(this);
+    if (this.node.label) {
+      var labelEl = $$('.label', {
+        text: this.node.label
+      });
+      this.content.appendChild(labelEl);
+    }
 
-        if (this.node.label) {
-            var labelEl = $$('.label', {
-                text: this.node.label
-            });
-            this.content.appendChild(labelEl);
-        }
-
-        this.renderChildren();
-        this.el.appendChild(this.content);
-        return this;
-    };
+    this.renderChildren();
+    this.el.appendChild(this.content);
+    return this;
+  };
 };
 
 QuoteView.Prototype.prototype = CompositeView.prototype;

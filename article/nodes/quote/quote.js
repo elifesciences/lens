@@ -16,13 +16,13 @@ var Quote = function(node, doc) {
 //
 
 Quote.type = {
-    "id": "quote",
-    "parent": "content",
-    "properties": {
-        "source_id": "string",
-        "label": "string",
-        "children": ["array", "paragraph"]
-    }
+  "id": "quote",
+  "parent": "content",
+  "properties": {
+    "source_id": "string",
+    "label": "string",
+    "children": ["array", "paragraph"]
+  }
 };
 
 // This is used for the auto-generated docs
@@ -30,14 +30,12 @@ Quote.type = {
 //
 
 Quote.description = {
-    "name": "Quote",
-    "remarks": [
-        "A quote type.",
-    ],
-    "properties": {
-        "label": "string",
-        "children": "0..n Paragraph nodes",
-    }
+  "name": "Quote",
+  "remarks": ["A quote type."],
+  "properties": {
+    "label": "string",
+    "children": "0..n Paragraph nodes"
+  }
 };
 
 
@@ -46,17 +44,17 @@ Quote.description = {
 //
 
 Quote.example = {
-    "id": "quote_1",
-    "type": "quote",
-    "label": "Quote 1",
-    "children": ["paragraph_1", "paragraph_2"]
+  "id": "quote_1",
+  "type": "quote",
+  "label": "Quote 1",
+  "children": ["paragraph_1", "paragraph_2"]
 };
 
 Quote.Prototype = function() {
 
-    this.getChildrenIds = function() {
-        return this.properties.children;
-    };
+  this.getChildrenIds = function() {
+    return this.properties.children;
+  };
 
 };
 
