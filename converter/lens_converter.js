@@ -1232,7 +1232,7 @@ NlmToLensConverter.Prototype = function() {
     return this.boxedText(state, child);
   };
   this._bodyNodes["disp-quote"] = function(state, child) {
-    return this.quotationText(state, child);
+    return this.quoteText(state, child);
   };
   this._bodyNodes["attrib"] = function(state, child) {
     return this.paragraphGroup(state, child);
@@ -1269,20 +1269,20 @@ NlmToLensConverter.Prototype = function() {
     return boxNode;
   };
 
-  this.quotationText = function (state, quotation) {
+  this.quoteText = function (state, quote) {
         var doc = state.doc;
         // Assuming that there are no nested <disp-quote> elements
-        var childNodes = this.bodyNodes(state, util.dom.getChildren(quotation));
-        var quotationId = state.nextId("quotation");
-        var quotationNode = {
-            "type": "quotation",
-            "id": quotationId,
-            "source_id": quotation.getAttribute("id"),
+        var childNodes = this.bodyNodes(state, util.dom.getChildren(quote));
+        var quoteId = state.nextId("quote");
+        var quoteNode = {
+            "type": "quote",
+            "id": quoteId,
+            "source_id": quote.getAttribute("id"),
             "label": "",
             "children": _.pluck(childNodes, 'id')
         };
-        doc.create(quotationNode);
-        return quotationNode;
+        doc.create(quoteNode);
+        return quoteNode;
     };
 
     this.datasets = function(state, datasets) {
@@ -1418,7 +1418,7 @@ NlmToLensConverter.Prototype = function() {
 
   this.acceptedParagraphElements = {
     "boxed-text": {handler: "boxedText"},
-        "disp-quote": {handler: "quotationText"},
+        "disp-quote": {handler: "quoteText"},
         "list": { handler: "list" },
     "disp-formula": { handler: "formula" },
   };
