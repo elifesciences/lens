@@ -1,0 +1,23 @@
+
+.content-node.quote > .content {
+  padding: 20px;
+}
+
+.document .content-node.quote .content-node.paragraph {
+  padding: 10px 40px 10px 40px;
+  border-left: 3px solid #ccc;
+}
+
+.surface.content .content-node.quote {
+
+}
+
+.surface.content .content-node.quote > .content {
+
+}
+
+
+.surface.content .content-node.quote > .content > .label  {
+  font-weight: 600;
+  padding-bottom: 20px;
+}

@@ -1232,7 +1232,7 @@ NlmToLensConverter.Prototype = function() {
     return this.boxedText(state, child);
   };
   this._bodyNodes["disp-quote"] = function(state, child) {
-    return this.boxedText(state, child);
+    return this.quoteText(state, child);
   };
   this._bodyNodes["attrib"] = function(state, child) {
     return this.paragraphGroup(state, child);
@@ -1269,7 +1269,23 @@ NlmToLensConverter.Prototype = function() {
     return boxNode;
   };
 
-  this.datasets = function(state, datasets) {
+  this.quoteText = function (state, quote) {
+    var doc = state.doc;
+    // Assuming that there are no nested <disp-quote> elements
+    var childNodes = this.bodyNodes(state, util.dom.getChildren(quote));
+    var quoteId = state.nextId("quote");
+    var quoteNode = {
+      "type": "quote",
+      "id": quoteId,
+      "source_id": quote.getAttribute("id"),
+      "label": "",
+      "children": _.pluck(childNodes, 'id')
+    };
+    doc.create(quoteNode);
+    return quoteNode;
+    };
+
+    this.datasets = function(state, datasets) {
     var nodes = [];
 
     for (var i=0;i<datasets.length;i++) {
@@ -1402,7 +1418,8 @@ NlmToLensConverter.Prototype = function() {
 
   this.acceptedParagraphElements = {
     "boxed-text": {handler: "boxedText"},
-    "list": { handler: "list" },
+        "disp-quote": {handler: "quoteText"},
+        "list": { handler: "list" },
     "disp-formula": { handler: "formula" },
   };
 
