@@ -2125,6 +2125,8 @@ NlmToLensConverter.Prototype = function() {
     } else if (type === 'inline-formula') {
       var formula = this.formula(state, el, "inline");
       anno.target = formula.id;
+    } else if (anno.type === 'custom_annotation') {
+      anno.name = type;
     }
   };
 
