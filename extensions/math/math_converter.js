@@ -21,6 +21,10 @@ MathConverter.Prototype = function MathConverterPrototype() {
   this._refTypeMapping["disp-formula"] = "formula_reference";
   this._refTypeMapping["statement"] = "math_environment_reference";
 
+  this.acceptedParagraphElements = _.extend(__super__.acceptedParagraphElements, {
+    "def-list": { handler: 'defList' }
+  });
+
   this.test = function(xmlDoc, documentUrl) {
     /* jshint unused:false */
     var publisherName = xmlDoc.querySelector("publisher-name").textContent;
@@ -96,7 +100,7 @@ MathConverter.Prototype = function MathConverterPrototype() {
     }
   };
 
-  this._bodyNodes['def-list'] = function(state, defList) {
+  this._bodyNodes['def-list'] = this.defList = function(state, defList) {
     var enumerationNode = {
       type: 'enumeration',
       id: state.nextId('enumeration'),
