@@ -25,6 +25,10 @@ MathConverter.Prototype = function MathConverterPrototype() {
     "def-list": { handler: 'defList' }
   });
 
+  this._annotationTypes = _.extend(__super__._annotationTypes, {
+    "roman": "custom_annotation"
+  });
+
   this.test = function(xmlDoc, documentUrl) {
     /* jshint unused:false */
     var publisherName = xmlDoc.querySelector("publisher-name").textContent;
@@ -763,6 +767,7 @@ MathConverter.Prototype = function MathConverterPrototype() {
       }
     }
   };
+
 };
 
 MathConverter.Prototype.prototype = LensConverter.prototype;
