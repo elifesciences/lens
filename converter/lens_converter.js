@@ -176,7 +176,7 @@ NlmToLensConverter.Prototype = function() {
 
   // Overridden to create a Lens Article instance
   this.createDocument = function() {
-    
+
     var doc = new Article();
     return doc;
   };
@@ -1429,8 +1429,15 @@ NlmToLensConverter.Prototype = function() {
       // ignore some elements
       if (this.ignoredParagraphElements[type]) continue;
 
+      // paragraph block-types such as disp-formula
+      // i.e they are allowed within a paragraph, but
+      // we pull them out on the top level
+      if (this.acceptedParagraphElements[type]) {
+        blocks.push(_.extend({node: child}, this.acceptedParagraphElements[type]));
+      }
       // paragraph elements
-      if (type === "text" || this.isAnnotation(type) || this.inlineParagraphElements[type]) {
+      //if (type === "text" || this.isAnnotation(type) || this.inlineParagraphElements[type]) {
+      else {
         if (lastType !== "paragraph") {
           blocks.push({ handler: "paragraph", nodes: [] });
           lastType = "paragraph";
@@ -1438,10 +1445,7 @@ NlmToLensConverter.Prototype = function() {
         _.last(blocks).nodes.push(child);
         continue;
       }
-      // other elements are treated as single blocks
-      else if (this.acceptedParagraphElements[type]) {
-        blocks.push(_.extend({node: child}, this.acceptedParagraphElements[type]));
-      }
+
       lastType = type;
     }
     return blocks;
@@ -1474,6 +1478,11 @@ NlmToLensConverter.Prototype = function() {
     return nodes;
   };
 
+  // DEPRECATED: using this handler for <p> elements is
+  // deprecated, as in JATS <p> can contain certain block-level
+  // elements. Better use this.paragraphGroup in cases where you
+  // convert <p> elements.
+  // TODO: we should refactor this and make it a 'private' helper
   this.paragraph = function(state, children) {
     var doc = state.doc;
 
@@ -1509,7 +1518,13 @@ NlmToLensConverter.Prototype = function() {
         // In that case, the iterator will still have more elements
         // and the loop is continued
         // Before descending, we reset the iterator to provide the current element again.
-        var annotatedText = this._annotatedText(state, iterator.back(), { offset: 0, breakOnUnknown: true });
+        // TODO: We have disabled the described behavior as it seems
+        // worse to break automatically on unknown inline tags,
+        // than to render plain text, as it results in data loss.
+        // If you find a situation where you want to flatten structure
+        // found within a paragraph, use this.acceptedParagraphElements instead
+        // which is used in a preparation step before converting paragraphs.
+        var annotatedText = this._annotatedText(state, iterator.back(), { offset: 0, breakOnUnknown: false });
 
         // Ignore empty paragraphs
         if (annotatedText.length > 0) {
@@ -1521,7 +1536,6 @@ NlmToLensConverter.Prototype = function() {
         // popping the stack
         state.stack.pop();
       }
-
       // inline image node
       else if (type === "inline-graphic") {
         var url = child.getAttribute("xlink:href");
