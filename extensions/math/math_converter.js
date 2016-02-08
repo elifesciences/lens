@@ -108,11 +108,22 @@ MathConverter.Prototype = function MathConverterPrototype() {
       var enumItemNode = {
         type: 'enumeration-item',
         id: state.nextId('enumeration-item'),
+        children: []
       };
       var term = defItem.querySelector('term');
       enumItemNode.label = this.annotatedText(state, term, [enumItemNode.id, 'label']);
-      var content = defItem.querySelector('def p');
-      enumItemNode.children = _.pluck(this.paragraphGroup(state, content), "id");
+      var pEls = defItem.querySelectorAll('def p');
+      for (var j = 0; j < pEls.length; j++) {
+        var p = pEls[j];
+        var children = this.paragraphGroup(state, p);
+        var pgroup = {
+          type: 'paragraph',
+          id: state.nextId('pgroup'),
+          children: _.pluck(children, 'id')
+        };
+        state.doc.create(pgroup);
+        enumItemNode.children.push(pgroup.id);
+      }
       state.doc.create(enumItemNode);
       enumerationNode.items.push(enumItemNode.id);
     }
