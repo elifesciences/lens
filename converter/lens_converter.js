@@ -600,6 +600,8 @@ NlmToLensConverter.Prototype = function() {
     var label = aff.querySelector("label");
     var department = aff.querySelector("addr-line named-content[content-type=department]");
     var city = aff.querySelector("addr-line named-content[content-type=city]");
+    // TODO: there are a lot more elements which can have this.
+    var specific_use = aff.getAttribute('specific-use');
 
     // TODO: this is a potential place for implementing a catch-bin
     // For that, iterate all children elements and fill into properties as needed or add content to the catch-bin
@@ -612,7 +614,8 @@ NlmToLensConverter.Prototype = function() {
       department: department ? department.textContent : null,
       city: city ? city.textContent : null,
       institution: institution ? institution.textContent : null,
-      country: country ? country.textContent: null
+      country: country ? country.textContent: null,
+      specific_use: specific_use || null
     };
     doc.create(affiliationNode);
   };
@@ -1128,6 +1131,8 @@ NlmToLensConverter.Prototype = function() {
     }, this);
   };
 
+  // TODO: abstract should be a dedicated node
+  // as it can have some extra information in JATS, such as specific-use
   this.abstract = function(state, abs) {
     var doc = state.doc;
     var nodes = [];

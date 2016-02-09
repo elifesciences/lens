@@ -515,6 +515,7 @@ MathConverter.Prototype = function MathConverterPrototype() {
       if (type === 'label' || !el.textContent) continue;
       institutionText += el.textContent;
     }
+    var specific_use = aff.getAttribute('specific-use');
 
     // TODO: we might add a property to the affiliation node that collects
     // data which is not handled here
@@ -524,7 +525,8 @@ MathConverter.Prototype = function MathConverterPrototype() {
       type: "affiliation",
       source_id: aff.getAttribute("id"),
       label: label ? label.textContent : null,
-      institution: institutionText
+      institution: institutionText,
+      specific_use: specific_use || null
     };
 
     state.affiliations.push(affiliationNode.id);
