@@ -1,12 +1,12 @@
 "use strict";
 
 var _ = require('underscore');
-var LensArticle = require('lens/article');
-var LensNodes = require('lens/article/nodes');
+var LensArticle = require('../../../../article');
+var LensNodes = require('../../../../article/nodes');
 var NodeView = LensNodes["node"].View;
 var ResourceView = LensArticle.ResourceView;
 
-var $$ = require('lens/substance/application').$$;
+var $$ = require('../../../../substance/application').$$;
 
 // Lens.MathEnvironment.View
 // ==========================================================================

@@ -1,6 +1,6 @@
 "use strict";
 
-var Lens = require('lens/reader');
+var Lens = require('../../reader');
 var ContainerPanel = Lens.ContainerPanel;
 var ContainerPanelController = Lens.ContainerPanelController;
 var ContainerPanelView = Lens.ContainerPanelView;

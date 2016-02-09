@@ -1,7 +1,7 @@
 "use strict";
 
-var Document = require('lens/substance/document');
-var LensNodes = require('lens/article/nodes');
+var Document = require('../../../../substance/document');
+var LensNodes = require('../../../../article/nodes');
 var Annotation = LensNodes['annotation'].Model;
 var ResourceReference = LensNodes['resource_reference'].Model;
 

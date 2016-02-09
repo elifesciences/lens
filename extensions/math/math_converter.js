@@ -1,8 +1,8 @@
 
 var _ = require('underscore');
-var util = require("lens/substance/util");
-var LensConverter = require('lens/converter');
-var LensArticle = require("lens/article");
+var util = require("../../substance/util");
+var LensConverter = require('../../converter');
+var LensArticle = require("../../article");
 var MathNodeTypes = require("./nodes");
 
 // Options:
