@@ -120,7 +120,8 @@ MathConverter.Prototype = function MathConverterPrototype() {
       };
       var term = defItem.querySelector('term');
       enumItemNode.label = this.annotatedText(state, term, [enumItemNode.id, 'label']);
-      var pEls = defItem.querySelectorAll('def p');
+      var def = defItem.querySelector('def');
+      var pEls = this.selectDirectChildren(def, 'p');
       for (var j = 0; j < pEls.length; j++) {
         var p = pEls[j];
         var children = this.paragraphGroup(state, p);
