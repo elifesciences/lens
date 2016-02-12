@@ -113,14 +113,24 @@ MathConverter.Prototype = function MathConverterPrototype() {
     var defItems = this.selectDirectChildren(defList, 'def-item');
     for (var i = 0; i < defItems.length; i++) {
       var defItem = defItems[i];
+      var term = defItem.querySelector('term');
+      var termId = term.id;
+      var def = defItem.querySelector('def');
       var enumItemNode = {
         type: 'enumeration-item',
+        // TODO: enabling the correct id makes warnings disappear
+        // which are given when seeing references to this def
+        // However, to work properly, we would need nesting support
+        // for definition references
+        // so we leave it for now
+        // id: termId || state.nextId('enumeration-item'),
         id: state.nextId('enumeration-item'),
         children: []
       };
-      var term = defItem.querySelector('term');
+      // convert label
       enumItemNode.label = this.annotatedText(state, term, [enumItemNode.id, 'label']);
-      var def = defItem.querySelector('def');
+      // convert content
+      // TODO: is the assumption correct that def-item content is always wrapped in a p element?
       var pEls = this.selectDirectChildren(def, 'p');
       for (var j = 0; j < pEls.length; j++) {
         var p = pEls[j];
@@ -694,6 +704,7 @@ MathConverter.Prototype = function MathConverterPrototype() {
             anno.target = targetNode.id;
           } else {
             console.log("Could not lookup math environment for reference", anno);
+            continue;
           }
           referencedMath[targetNode.id] = true;
         } else {
@@ -702,6 +713,7 @@ MathConverter.Prototype = function MathConverterPrototype() {
             anno.target = targetNode.id;
           } else {
             console.log("Could not lookup targetNode for annotation", anno);
+            continue;
           }
         }
       }
