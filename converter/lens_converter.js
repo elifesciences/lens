@@ -1039,8 +1039,10 @@ NlmToLensConverter.Prototype = function() {
   this.extractFigures = function(state, xmlDoc) {
     // Globally query all figure-ish content, <fig>, <supplementary-material>, <table-wrap>, <media video>
     // mimetype="video"
-    var body = xmlDoc.querySelector("body");
-    var figureElements = body.querySelectorAll("fig, table-wrap, supplementary-material, media[mimetype=video]");
+    
+    // NOTE: We previously only considered figures within <body> but since
+    // appendices can also have figures we now use a gobal selector.
+    var figureElements = xmlDoc.querySelectorAll("fig, table-wrap, supplementary-material, media[mimetype=video]");
     var nodes = [];
     for (var i = 0; i < figureElements.length; i++) {
       var figEl = figureElements[i];
