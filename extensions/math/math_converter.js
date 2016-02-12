@@ -75,6 +75,7 @@ MathConverter.Prototype = function MathConverterPrototype() {
     return doc;
   };
 
+
   // TODO: the default implemenation should be plain, i.e. not adding an extra heading 'Main Text'
   // Instead the LensConverter should override this...
   // ...or we should consider adding an option (if the eLife way to do it is more often applicable...)
@@ -149,6 +150,10 @@ MathConverter.Prototype = function MathConverterPrototype() {
     state.doc.create(enumerationNode);
     return enumerationNode;
   };
+
+  // HACK: There is content that has nested <app> elements, which is not allowed
+  // we just treat them as sections
+  this._bodyNodes['app'] = this._bodyNodes['sec'];
 
   this.extractDefinitions = function(/*state, article*/) {
     // We don't want to show a definitions (glossary) panel
@@ -372,6 +377,7 @@ MathConverter.Prototype = function MathConverterPrototype() {
     state.labelsForFormula[formulaId] = labels;
     return result;
   };
+
   this.formula = function(state, formulaElement, inline) {
     var doc = state.doc;
     var id = state.nextId("formula");

@@ -955,6 +955,10 @@ NlmToLensConverter.Prototype = function() {
 
     this.extractFigures(state, article);
 
+    // Extract back element
+    var back = article.querySelector("back");
+    this.back(state,back);
+
     this.enhanceArticle(state, article);
   };
 
@@ -2085,10 +2089,74 @@ NlmToLensConverter.Prototype = function() {
   // Article.Back
   // --------
 
-  this.back = function(/*state, back*/) {
-    // No processing at the moment
-    return null;
+  this.back = function(state, back) {
+    var appGroups = back.querySelectorAll('app-group');
+
+    if (appGroups && appGroups.length > 0) {
+      _.each(appGroups, function(appGroup) {
+        this.appGroup(state, appGroup);
+      }.bind(this));
+    } else {
+      // HACK: We treat <back> element as app-group, sine there
+      // are docs that wrongly put <app> elements into the back
+      // element directly.
+      this.appGroup(state, back);
+    }
   };
+
+  this.appGroup = function(state, appGroup) {
+    var apps = appGroup.querySelectorAll('app');
+    var doc = state.doc;
+    var title = appGroup.querySelector('title');
+    if (!title) {
+      console.error("FIXME: every app should have a title", this.toHtml(title));
+    }
+
+    var headingId =state.nextId("heading");
+    // Insert top level element for Appendix
+    var heading = doc.create({
+      "type" : "heading",
+      "id" : headingId,
+      "level" : 1,
+      "content" : title ? this.annotatedText(state, title, [headingId, "content"]) : "Appendix"
+    });
+
+    this.show(state, [heading]);
+    _.each(apps, function(app) {
+      state.sectionLevel = 2;
+      this.app(state, app);
+    }.bind(this));
+  };
+
+  this.app = function(state, app) {
+    var doc = state.doc;
+    var nodes = [];
+    var title = app.querySelector('title');
+    if (!title) {
+      console.error("FIXME: every app should have a title", this.toHtml(title));
+    }
+
+    var headingId = state.nextId("heading");
+    var heading = {
+      "type" : "heading",
+      "id" : headingId,
+      "level" : 2,
+      "content": title ? this.annotatedText(state, title, [headingId, "content"]) : ""
+    };
+    var headingNode = doc.create(heading);
+    nodes.push(headingNode);
+
+    // There may be multiple paragraphs per ack element
+    var pars = this.bodyNodes(state, util.dom.getChildren(app), {
+      ignore: ["title", "label", "ref-list"]
+    });
+    _.each(pars, function(par) {
+      nodes.push(par);
+    });
+    this.show(state, nodes);
+  };
+
+
 
 
   // Annotations
