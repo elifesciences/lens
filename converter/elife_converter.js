@@ -128,12 +128,19 @@ ElifeConverter.Prototype = function() {
       return [baseURL, url].join('');
     } else {
       // Use special URL resolving for production articles
+
+      // File extension support
+      if (url.match(/\.tif$/g)) {
+        url = url.replace(/\.tif$/g, '.jpg')
+      } else if (!(url.match(/\.gif$/g))) {
+        url = url+'.jpg'
+      }
+      
       return [
-        "http://cdn.elifesciences.org/elife-articles/",
+        "http://publishing-cdn.elifesciences.org/",
         state.doc.id,
-        "/jpg/",
-        url,
-        ".jpg"
+        "/",
+        url
       ].join('');
     }
   };
@@ -144,9 +151,9 @@ ElifeConverter.Prototype = function() {
       return [baseURL, node.url].join('');
     } else {
       node.url = [
-        "http://cdn.elifesciences.org/elife-articles/",
+        "http://publishing-cdn.elifesciences.org/",
         state.doc.id,
-        "/suppl/",
+        "/",
         node.url
       ].join('');
     }
@@ -211,9 +218,9 @@ ElifeConverter.Prototype = function() {
     var pdfURI = article.querySelector("self-uri[content-type=pdf]");
 
     var pdfLink = [
-      "http://cdn.elifesciences.org/elife-articles/",
+      "http://publishing-cdn.elifesciences.org/",
       state.doc.id,
-      "/pdf/",
+      "/",
       pdfURI ? pdfURI.getAttribute("xlink:href") : "#"
     ].join('');
 
@@ -259,9 +266,9 @@ ElifeConverter.Prototype = function() {
       return [baseURL, node.url].join('');
     } else {
       node.url = [
-        "http://cdn.elifesciences.org/elife-articles/",
+        "http://publishing-cdn.elifesciences.org/",
         state.doc.id,
-        "/suppl/",
+        "/",
         node.url
       ].join('');
     }
@@ -288,12 +295,19 @@ ElifeConverter.Prototype = function() {
       return [baseURL, url].join('');
     } else {
       // Use special URL resolving for production articles
+      
+      // File extension support
+      if (url.match(/\.tif$/g)) {
+        url = url.replace(/\.tif$/g, '.jpg')
+      } else if (!(url.match(/\.gif$/g))) {
+        url = url+'.jpg'
+      }
+      
       return [
-        "http://cdn.elifesciences.org/elife-articles/",
+        "http://publishing-cdn.elifesciences.org/",
         state.doc.id,
-        "/jpg/",
-        url,
-        ".jpg"
+        "/",
+        url
       ].join('');
     }
   };
