@@ -955,9 +955,11 @@ NlmToLensConverter.Prototype = function() {
 
     this.extractFigures(state, article);
 
-    // Extract back element
+    // Extract back element, if it exists
     var back = article.querySelector("back");
-    this.back(state,back);
+    if (back){
+        this.back(state,back);
+    }
 
     this.enhanceArticle(state, article);
   };
