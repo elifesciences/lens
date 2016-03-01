@@ -217,12 +217,14 @@ ElifeConverter.Prototype = function() {
 
     var pdfURI = article.querySelector("self-uri[content-type=pdf]");
 
-    var pdfLink = [
-      "http://publishing-cdn.elifesciences.org/",
-      state.doc.id,
-      "/",
-      pdfURI ? pdfURI.getAttribute("xlink:href") : "#"
-    ].join('');
+    if (pdfURI) {
+      var pdfLink = [
+        "http://publishing-cdn.elifesciences.org/",
+        state.doc.id,
+        "/",
+        pdfURI ? pdfURI.getAttribute("xlink:href") : "#"
+      ].join('');
+    }
     
     // Version number from the PDF href, default to 1
     var match = null;
