@@ -223,6 +223,13 @@ ElifeConverter.Prototype = function() {
       "/",
       pdfURI ? pdfURI.getAttribute("xlink:href") : "#"
     ].join('');
+    
+    // Version number from the PDF href, default to 1
+    var match = null;
+    if (pdfURI) {
+      match = pdfURI.getAttribute("xlink:href").match(/\w*-\w*-v(\d*).pdf$/);
+    }
+    var version = match ? match[1] : 1;
 
     // Collect Links
     // ---------------
@@ -238,7 +245,7 @@ ElifeConverter.Prototype = function() {
     }
 
     links.push({
-      url: "https://s3.amazonaws.com/elife-cdn/elife-articles/"+state.doc.id+"/elife"+state.doc.id+".xml",
+      url: "https://s3.amazonaws.com/elife-publishing-cdn/"+state.doc.id+"/elife-"+state.doc.id+"-v"+version+".xml",
       name: "Source XML",
       type: "xml"
     });
