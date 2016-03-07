@@ -128,12 +128,19 @@ ElifeConverter.Prototype = function() {
       return [baseURL, url].join('');
     } else {
       // Use special URL resolving for production articles
+
+      // File extension support
+      if (url.match(/\.tif$/g)) {
+        url = url.replace(/\.tif$/g, '.jpg')
+      } else if (!(url.match(/\.gif$/g))) {
+        url = url+'.jpg'
+      }
+      
       return [
-        "http://cdn.elifesciences.org/elife-articles/",
+        "http://publishing-cdn.elifesciences.org/",
         state.doc.id,
-        "/jpg/",
-        url,
-        ".jpg"
+        "/",
+        url
       ].join('');
     }
   };
@@ -144,9 +151,9 @@ ElifeConverter.Prototype = function() {
       return [baseURL, node.url].join('');
     } else {
       node.url = [
-        "http://cdn.elifesciences.org/elife-articles/",
+        "http://publishing-cdn.elifesciences.org/",
         state.doc.id,
-        "/suppl/",
+        "/",
         node.url
       ].join('');
     }
@@ -210,12 +217,21 @@ ElifeConverter.Prototype = function() {
 
     var pdfURI = article.querySelector("self-uri[content-type=pdf]");
 
-    var pdfLink = [
-      "http://cdn.elifesciences.org/elife-articles/",
-      state.doc.id,
-      "/pdf/",
-      pdfURI ? pdfURI.getAttribute("xlink:href") : "#"
-    ].join('');
+    if (pdfURI) {
+      var pdfLink = [
+        "http://publishing-cdn.elifesciences.org/",
+        state.doc.id,
+        "/",
+        pdfURI ? pdfURI.getAttribute("xlink:href") : "#"
+      ].join('');
+    }
+    
+    // Version number from the PDF href, default to 1
+    var match = null;
+    if (pdfURI) {
+      match = pdfURI.getAttribute("xlink:href").match(/\w*-\w*-v(\d*).pdf$/);
+    }
+    var version = match ? match[1] : 1;
 
     // Collect Links
     // ---------------
@@ -231,7 +247,7 @@ ElifeConverter.Prototype = function() {
     }
 
     links.push({
-      url: "https://s3.amazonaws.com/elife-cdn/elife-articles/"+state.doc.id+"/elife"+state.doc.id+".xml",
+      url: "https://s3.amazonaws.com/elife-publishing-cdn/"+state.doc.id+"/elife-"+state.doc.id+"-v"+version+".xml",
       name: "Source XML",
       type: "xml"
     });
@@ -259,9 +275,9 @@ ElifeConverter.Prototype = function() {
       return [baseURL, node.url].join('');
     } else {
       node.url = [
-        "http://cdn.elifesciences.org/elife-articles/",
+        "http://publishing-cdn.elifesciences.org/",
         state.doc.id,
-        "/suppl/",
+        "/",
         node.url
       ].join('');
     }
@@ -288,12 +304,19 @@ ElifeConverter.Prototype = function() {
       return [baseURL, url].join('');
     } else {
       // Use special URL resolving for production articles
+      
+      // File extension support
+      if (url.match(/\.tif$/g)) {
+        url = url.replace(/\.tif$/g, '.jpg')
+      } else if (!(url.match(/\.gif$/g))) {
+        url = url+'.jpg'
+      }
+      
       return [
-        "http://cdn.elifesciences.org/elife-articles/",
+        "http://publishing-cdn.elifesciences.org/",
         state.doc.id,
-        "/jpg/",
-        url,
-        ".jpg"
+        "/",
+        url
       ].join('');
     }
   };
