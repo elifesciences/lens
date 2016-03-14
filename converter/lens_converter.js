@@ -442,7 +442,7 @@ NlmToLensConverter.Prototype = function() {
     var nodeIds = [];
     var doc = state.doc;
 
-    var customMetaEls = article.querySelectorAll('article-meta-group custom-meta');
+    var customMetaEls = article.querySelectorAll('article-meta custom-meta');
     if (customMetaEls.length === 0) return nodeIds;
 
     for (var i = 0; i < customMetaEls.length; i++) {
