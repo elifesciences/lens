@@ -102,7 +102,7 @@ NlmToLensConverter.Prototype = function() {
 
     if (givenNamesEl) names.push(givenNamesEl.textContent);
     if (surnameEl) names.push(surnameEl.textContent);
-    if (suffix) return [names.join(" "), suffix.textContent].join(", ");
+    if (suffix && !(suffix.textContent.trim() === "")) return [names.join(" "), suffix.textContent].join(", ");
 
     return names.join(" ");
   };
