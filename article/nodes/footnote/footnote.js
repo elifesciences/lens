@@ -4,7 +4,6 @@ var Document = require('../../../substance/document');
 var DocumentNode = Document.Node;
 var Paragraph = require('../paragraph').Model;
 
-
 var Footnote = function(node, document) {
   Paragraph.call(this, node, document);
 };
@@ -13,21 +12,10 @@ Footnote.type = {
   "id": "footnote",
   "parent": "paragraph",
   "properties": {
-    "label": "string"
-  }
-};
-
-// This is used for the auto-generated docs
-// -----------------
-//
-
-Footnote.description = {
-  "name": "Footnote",
-  "remarks": [
-    "A Footnote is basically a Paragraph with a label."
-  ],
-  "properties": {
-    "label": "A string used as label",
+    "footnoteType": "string",
+    "specificUse": "string",
+    "label": "string",
+    "children": ["array", "string"]
   }
 };
 
