@@ -31,6 +31,10 @@ NlmToLensConverter.Prototype = function() {
     "uri": "link"
   };
 
+  this._inlineNodeTypes = {
+    "fn": true,
+  };
+
   // mapping from xref.refType to node type
   this._refTypeMapping = {
     "bibr": "citation_reference",
@@ -39,6 +43,7 @@ NlmToLensConverter.Prototype = function() {
     "supplementary-material": "figure_reference",
     "other": "figure_reference",
     "list": "definition_reference",
+    "fn": "footnote_reference",
   };
 
   // mapping of contrib type to human readable names
@@ -76,6 +81,10 @@ NlmToLensConverter.Prototype = function() {
     return this._annotationTypes[type] !== undefined;
   };
 
+  this.isInlineNode = function(type) {
+    return this._inlineNodeTypes[type] !== undefined;
+  };
+
   this.isParagraphish = function(node) {
     for (var i = 0; i < node.childNodes.length; i++) {
       var el = node.childNodes[i];
@@ -102,7 +111,7 @@ NlmToLensConverter.Prototype = function() {
 
     if (givenNamesEl) names.push(givenNamesEl.textContent);
     if (surnameEl) names.push(surnameEl.textContent);
-    if (suffix && !(suffix.textContent.trim() === "")) return [names.join(" "), suffix.textContent].join(", ");
+    if (suffix && suffix.textContent.trim() !== "") return [names.join(" "), suffix.textContent].join(", ");
 
     return names.join(" ");
   };
@@ -305,8 +314,6 @@ NlmToLensConverter.Prototype = function() {
   };
 
   this.extractFundingInfo = function(state, article) {
-    var doc = state.doc;
-
     var fundingInfo = [];
 
     var fundingStatements = article.querySelectorAll("funding-statement");
@@ -1437,12 +1444,13 @@ NlmToLensConverter.Prototype = function() {
   this.acceptedParagraphElements = {
     "boxed-text": {handler: "boxedText"},
     "list": { handler: "list" },
-    "disp-formula": { handler: "formula" },
+    "disp-formula": { handler: "formula" }
   };
 
   this.inlineParagraphElements = {
     "inline-graphic": true,
-    "inline-formula": true
+    "inline-formula": true,
+    "fn": true,
   };
 
   // Segments children elements of a NLM <p> element
@@ -1944,6 +1952,30 @@ NlmToLensConverter.Prototype = function() {
     return formulaNode;
   };
 
+  this.footnote = function(state, footnoteElement) {
+    var doc = state.doc;
+    var footnote = {
+      type: 'footnote',
+      id: state.nextId('fn'),
+      source_id: footnoteElement.getAttribute("id"),
+      label: '',
+      children: []
+    };
+    var children = footnoteElement.children;
+    var i = 0;
+    if (children[i].tagName.toLowerCase() === 'label') {
+      footnote.label = this.annotatedText(state, children[i], [footnote.id, 'label']);
+      i++;
+    }
+    footnote.children = [];
+    for (; i<children.length; i++) {
+      var nodes = this.paragraphGroup(state, children[i]);
+      Array.prototype.push.apply(footnote.children, _.pluck(nodes, 'id'));
+    }
+    doc.create(footnote);
+    return footnote;
+  };
+
   // Citations
   // ---------
 
@@ -2236,6 +2268,39 @@ NlmToLensConverter.Prototype = function() {
     if (sourceId) anno.target = sourceId;
   };
 
+  this.createInlineNode = function(state, el, start) {
+    var inlineNode = {
+      type: "inline-node",
+      path: _.last(state.stack).path,
+      range: [start, start+1],
+    };
+
+    this.addInlineNodeData(state, inlineNode, el);
+    this.enhanceInlineNodeData(state, inlineNode, el);
+
+    // assign an id after the type has been extracted to be able to create typed ids
+    inlineNode.id = state.nextId(inlineNode.type);
+
+    state.annotations.push(inlineNode);
+  };
+
+  this.addInlineNodeData = function(state, inlineNode, el) {
+    /*jshint unused: false*/
+    var tagName = el.tagName.toLowerCase();
+    switch(tagName) {
+      case 'fn':
+        // when we hit a <fn> inline, we will create a footnote-reference
+        var footnote = this.footnote(state, el);
+        inlineNode.type = 'footnote_reference';
+        inlineNode.target = footnote.id;
+        break;
+    }
+  };
+
+  this.enhanceInlineNodeData = function(state, inlineNode, el, tagName) {
+    /*jshint unused: false*/
+  };
+
   // Parse annotated text
   // --------------------
   // Make sure you call this method only for nodes where `this.isParagraphish(node) === true`
@@ -2290,6 +2355,10 @@ NlmToLensConverter.Prototype = function() {
               this.createAnnotation(state, el, start, charPos);
             }
           }
+        }
+        else if (this.isInlineNode(type)) {
+          plainText += " ";
+          this.createInlineNode(state, el, charPos);
         }
         // Unsupported...
         else if (!breakOnUnknown) {
