@@ -1479,7 +1479,7 @@ NlmToLensConverter.Prototype = function() {
   this.inlineParagraphElements = {
     "inline-graphic": true,
     "inline-formula": true,
-    "fn": true,
+    "fn": true
   };
 
   // Segments children elements of a NLM <p> element
