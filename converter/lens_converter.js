@@ -1557,7 +1557,7 @@ NlmToLensConverter.Prototype = function() {
       var type = util.dom.getNodeType(child);
 
       // annotated text node
-      if (type === "text" || this.isAnnotation(type)) {
+      if (type === "text" || this.isAnnotation(type) || this.isInlineNode(type)) {
         var textNode = {
           id: state.nextId("text"),
           type: "text",
