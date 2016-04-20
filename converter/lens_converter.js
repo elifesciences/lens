@@ -978,6 +978,9 @@ NlmToLensConverter.Prototype = function() {
 
     this.extractFigures(state, article);
 
+    // catch all unhandled foot-notes
+    this.extractFootNotes(state, article);
+
     // Extract back element, if it exists
     var back = article.querySelector("back");
     if (back){
@@ -1089,6 +1092,17 @@ NlmToLensConverter.Prototype = function() {
       }
     }
     this.show(state, nodes);
+  };
+
+  // Catch-all implementation for footnotes that have not been
+  // converted yet.
+  this.extractFootNotes = function(state, article) {
+    var fnEls = article.querySelectorAll('fn');
+    for (var i = 0; i < fnEls.length; i++) {
+      var fnEl = fnEls[i];
+      if (fnEl.__converted__) continue;
+      this.footnote(state, fnEl);
+    }
   };
 
   this.extractCitations = function(state, xmlDoc) {
@@ -1971,6 +1985,9 @@ NlmToLensConverter.Prototype = function() {
       Array.prototype.push.apply(footnote.children, _.pluck(nodes, 'id'));
     }
     doc.create(footnote);
+    // leave a trace for the catch-all converter
+    // to know that this has been converted already
+    footnoteElement.__converted__ = true;
     return footnote;
   };
 
