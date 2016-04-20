@@ -304,7 +304,7 @@ NlmToLensConverter.Prototype = function() {
     nodes = nodes.concat(this.extractAcknowledgements(state, article));
     // License and Copyright
     nodes = nodes.concat(this.extractCopyrightAndLicense(state, article));
-    // Notes (Footnotes + Author notes)
+    // Notes (<note> elements)
     nodes = nodes.concat(this.extractNotes(state, article));
 
     articleInfo.children = nodes;
@@ -448,14 +448,12 @@ NlmToLensConverter.Prototype = function() {
   };
 
   //
-  // Extracts footnotes that should be shown in article info
+  // Extracts notes that should be shown in article info
   // ------------------------------------------
   //
-  // Needs to be overwritten in configuration
-
-  this.extractNotes = function(/*state, article*/) {
-    var nodes = [];
-    return nodes;
+  this.extractNotes = function(state, article) {
+    /* jshint unused:false */
+    return [];
   };
 
   // Can be overridden by custom converter to ignore <meta-name> values.
@@ -1248,7 +1246,7 @@ NlmToLensConverter.Prototype = function() {
         node = this.ignoredNode(state, child, type);
         if (node) nodes.push(node);
       } else {
-        console.error("Node not yet supported as top-level node: " + type);
+        console.error("Node not supported as block-level element: " + type +"\n"+child.outerHTML);
       }
     }
     return nodes;
@@ -2369,7 +2367,7 @@ NlmToLensConverter.Prototype = function() {
           }
         } else {
           if (nested) {
-            console.error("Node not yet supported in annoted text: " + type);
+            console.error("Node not supported in annoted text: " + type +"\n"+el.outerHTML);
           }
           else {
             // on paragraph level other elements can break a text block
