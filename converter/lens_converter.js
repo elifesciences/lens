@@ -228,6 +228,9 @@ NlmToLensConverter.Prototype = function() {
     // Article information
     var articleInfo = this.extractArticleInfo(state, article);
 
+    // Funding information
+    var fundingInfo = this.extractFundingInfo(state, article);
+
     // Create PublicationInfo node
     // ---------------
 
@@ -239,6 +242,7 @@ NlmToLensConverter.Prototype = function() {
       "related_article": relatedArticle ? relatedArticle.getAttribute("xlink:href") : "",
       "doi": articleDOI ? articleDOI.textContent : "",
       "article_info": articleInfo.id,
+      "funding_info": fundingInfo,
       // TODO: 'article_type' should not be optional; we need to find a good default implementation
       "article_type": "",
       // Optional fields not covered by the default implementation
@@ -298,6 +302,20 @@ NlmToLensConverter.Prototype = function() {
     doc.create(articleInfo);
 
     return articleInfo;
+  };
+
+  this.extractFundingInfo = function(state, article) {
+    var doc = state.doc;
+
+    var fundingInfo = [];
+
+    var fundingStatements = article.querySelectorAll("funding-statement");
+    if (fundingStatements.length > 0){
+      for (var i = 0; i < fundingStatements.length; i++){
+        fundingInfo.push(fundingStatements[i].textContent);
+      }
+    }
+    return fundingInfo;
   };
 
   // Get reviewing editor
@@ -1041,7 +1059,7 @@ NlmToLensConverter.Prototype = function() {
   this.extractFigures = function(state, xmlDoc) {
     // Globally query all figure-ish content, <fig>, <supplementary-material>, <table-wrap>, <media video>
     // mimetype="video"
-    
+
     // NOTE: We previously only considered figures within <body> but since
     // appendices can also have figures we now use a gobal selector.
     var figureElements = xmlDoc.querySelectorAll("fig, table-wrap, supplementary-material, media[mimetype=video]");
