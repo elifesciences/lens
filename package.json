@@ -1,6 +1,6 @@
 {
   "name": "lens",
-  "version": "2.0.0-beta5",
+  "version": "2.1.0",
   "description": "A novel way of seeing content.",
   "url": "http://github.com/elifesciences/lens",
   "keywords": [
@@ -9,6 +9,7 @@
     "research",
     "science"
   ],
+  "license": "BSD",
   "author": "Michael Aufreiter",
   "contributors": [
     "Ivan Grubisic",
