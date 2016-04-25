@@ -125,7 +125,7 @@ NlmToLensConverter.Prototype = function() {
     var els = scopeEl.querySelectorAll(selector);
     for (var i = 0; i < els.length; i++) {
       var el = els[i];
-      if (el.parentElement === scopeEl) result.push(el);
+      if ((el.parentElement || el.parentNode) === scopeEl) result.push(el);
     }
     return result;
   };
@@ -176,7 +176,7 @@ NlmToLensConverter.Prototype = function() {
 
   // Overridden to create a Lens Article instance
   this.createDocument = function() {
-    
+
     var doc = new Article();
     return doc;
   };
