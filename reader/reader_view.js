@@ -165,11 +165,13 @@ ReaderView.Prototype = function() {
 
       var self = this;
       // MathJax requires the processed elements to be in the DOM
-      window.MathJax.Hub.Queue(["Typeset", window.MathJax.Hub]);
-      window.MathJax.Hub.Queue(function () {
-        // HACK: using updateState() instead of updateScrollbars() as it also knows how to scroll
-        self.updateState();
-      });
+      if (window.MathJax){
+        window.MathJax.Hub.Queue(["Typeset", window.MathJax.Hub]);
+        window.MathJax.Hub.Queue(function () {
+          // HACK: using updateState() instead of updateScrollbars() as it also knows how to scroll
+          self.updateState();
+        });
+      }
     }, this), 1);
 
     return this;
@@ -314,7 +316,7 @@ ReaderView.Prototype = function() {
 
     self.updateScrollbars();
     _.delay(function() {
-      self.updateScrollbars();        
+      self.updateScrollbars();
     }, 2000);
   };
 
