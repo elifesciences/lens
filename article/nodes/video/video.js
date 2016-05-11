@@ -58,10 +58,10 @@ Video.example = {
   "id": "video_1",
   "type": "video",
   "label": "Video 1.",
-  "url": "http://cdn.elifesciences.org/video/eLifeLensIntro2.mp4",
-  "url_webm": "http://cdn.elifesciences.org/video/eLifeLensIntro2.webm",
-  "url_ogv": "http://cdn.elifesciences.org/video/eLifeLensIntro2.ogv",
-  "poster": "http://cdn.elifesciences.org/video/eLifeLensIntro2.png",
+  "url": "https://cdn.elifesciences.org/video/eLifeLensIntro2.mp4",
+  "url_webm": "https://cdn.elifesciences.org/video/eLifeLensIntro2.webm",
+  "url_ogv": "https://cdn.elifesciences.org/video/eLifeLensIntro2.ogv",
+  "poster": "https://cdn.elifesciences.org/video/eLifeLensIntro2.png",
   // "doi": "http://dx.doi.org/10.7554/Fake.doi.003",
   "caption": "caption_25"
 };
