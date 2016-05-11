@@ -98,11 +98,11 @@ ElifeConverter.Prototype = function() {
     }
 
     node.breadcrumbs = [
-      { name: "eLife", url: "http://elifesciences.org/", image: "http://lens.elifesciences.org/lens-elife/styles/elife.png" },
-      { name: dispChannel, url: "http://elifesciences.org/category/"+dispChannel.replace(/ /g, '-').toLowerCase() },
+      { name: "eLife", url: "https://elifesciences.org/", image: "https://lens.elifesciences.org/lens-elife/styles/elife.png" },
+      { name: dispChannel, url: "https://elifesciences.org/category/"+dispChannel.replace(/ /g, '-').toLowerCase() },
     ];
 
-    if (category) node.breadcrumbs.push( { name: category, url: "http://elifesciences.org/category/"+category.replace(/ /g, '-').toLowerCase() } );
+    if (category) node.breadcrumbs.push( { name: category, url: "https://elifesciences.org/category/"+category.replace(/ /g, '-').toLowerCase() } );
   };
 
   // Resolves figure url
@@ -116,7 +116,7 @@ ElifeConverter.Prototype = function() {
   };
 
 
-  // Example url to JPG: http://cdn.elifesciences.org/elife-articles/00768/svg/elife00768f001.jpg
+  // Example url to JPG: https://cdn.elifesciences.org/elife-articles/00768/svg/elife00768f001.jpg
   this.resolveURL = function(state, url) {
     // Use absolute URL
     if (url.match(/http:\/\//)) return url;
@@ -137,7 +137,7 @@ ElifeConverter.Prototype = function() {
       }
       
       return [
-        "http://publishing-cdn.elifesciences.org/",
+        "https://publishing-cdn.elifesciences.org/",
         state.doc.id,
         "/",
         url
@@ -151,7 +151,7 @@ ElifeConverter.Prototype = function() {
       return [baseURL, node.url].join('');
     } else {
       node.url = [
-        "http://publishing-cdn.elifesciences.org/",
+        "https://publishing-cdn.elifesciences.org/",
         state.doc.id,
         "/",
         node.url
@@ -219,7 +219,7 @@ ElifeConverter.Prototype = function() {
 
     if (pdfURI) {
       var pdfLink = [
-        "http://publishing-cdn.elifesciences.org/",
+        "https://publishing-cdn.elifesciences.org/",
         state.doc.id,
         "/",
         pdfURI ? pdfURI.getAttribute("xlink:href") : "#"
@@ -275,7 +275,7 @@ ElifeConverter.Prototype = function() {
       return [baseURL, node.url].join('');
     } else {
       node.url = [
-        "http://publishing-cdn.elifesciences.org/",
+        "https://publishing-cdn.elifesciences.org/",
         state.doc.id,
         "/",
         node.url
@@ -286,13 +286,13 @@ ElifeConverter.Prototype = function() {
   this.enhanceVideo = function(state, node, element) {
     var href = element.getAttribute("xlink:href").split(".");
     var name = href[0];
-    node.url = "http://api.elifesciences.org/v2/articles/"+state.doc.id+"/media/file/"+name+".mp4";
-    node.url_ogv = "http://api.elifesciences.org/v2/articles/"+state.doc.id+"/media/file//"+name+".ogv";
-    node.url_webm = "http://api.elifesciences.org/v2/articles/"+state.doc.id+"/media/file//"+name+".webm";
-    node.poster = "http://api.elifesciences.org/v2/articles/"+state.doc.id+"/media/file/"+name+".jpg";
+    node.url = "https://api.elifesciences.org/v2/articles/"+state.doc.id+"/media/file/"+name+".mp4";
+    node.url_ogv = "https://api.elifesciences.org/v2/articles/"+state.doc.id+"/media/file//"+name+".ogv";
+    node.url_webm = "https://api.elifesciences.org/v2/articles/"+state.doc.id+"/media/file//"+name+".webm";
+    node.poster = "https://api.elifesciences.org/v2/articles/"+state.doc.id+"/media/file/"+name+".jpg";
   };
 
-  // Example url to JPG: http://cdn.elifesciences.org/elife-articles/00768/svg/elife00768f001.jpg
+  // Example url to JPG: https://cdn.elifesciences.org/elife-articles/00768/svg/elife00768f001.jpg
   this.resolveURL = function(state, url) {
     // Use absolute URL
     if (url.match(/http:\/\//)) return url;
@@ -313,7 +313,7 @@ ElifeConverter.Prototype = function() {
       }
       
       return [
-        "http://publishing-cdn.elifesciences.org/",
+        "https://publishing-cdn.elifesciences.org/",
         state.doc.id,
         "/",
         url
