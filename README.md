@@ -263,7 +263,7 @@ See: [lens-starter/src/panels/altmetrics/index.js](https://github.com/elifescien
 var AltmetricsView = function(panelCtrl, config) {
   PanelView.call(this, panelCtrl, config);
   this.$el.addClass('altmetrics-panel');
-  // Hide toggle on contruction, it will be displayed once data has arrived
+  // Hide toggle on construction, it will be displayed once data has arrived
   this.hideToggle();
 };
 
