@@ -19,6 +19,9 @@ NlmToLensConverter.Prototype = function() {
     "sub": "subscript",
     "sup": "superscript",
     "sc": "custom_annotation",
+    "roman": "custom_annotation",
+    "sans-serif": "custom_annotation",
+    "styled-content": "custom_annotation",
     "underline": "underline",
     "ext-link": "link",
     "xref": "",
@@ -99,7 +102,7 @@ NlmToLensConverter.Prototype = function() {
 
     if (givenNamesEl) names.push(givenNamesEl.textContent);
     if (surnameEl) names.push(surnameEl.textContent);
-    if (suffix) return [names.join(" "), suffix.textContent].join(", ");
+    if (suffix && !(suffix.textContent.trim() === "")) return [names.join(" "), suffix.textContent].join(", ");
 
     return names.join(" ");
   };
@@ -176,7 +179,7 @@ NlmToLensConverter.Prototype = function() {
 
   // Overridden to create a Lens Article instance
   this.createDocument = function() {
-    
+
     var doc = new Article();
     return doc;
   };
@@ -225,6 +228,9 @@ NlmToLensConverter.Prototype = function() {
     // Article information
     var articleInfo = this.extractArticleInfo(state, article);
 
+    // Funding information
+    var fundingInfo = this.extractFundingInfo(state, article);
+
     // Create PublicationInfo node
     // ---------------
 
@@ -236,6 +242,7 @@ NlmToLensConverter.Prototype = function() {
       "related_article": relatedArticle ? relatedArticle.getAttribute("xlink:href") : "",
       "doi": articleDOI ? articleDOI.textContent : "",
       "article_info": articleInfo.id,
+      "funding_info": fundingInfo,
       // TODO: 'article_type' should not be optional; we need to find a good default implementation
       "article_type": "",
       // Optional fields not covered by the default implementation
@@ -295,6 +302,20 @@ NlmToLensConverter.Prototype = function() {
     doc.create(articleInfo);
 
     return articleInfo;
+  };
+
+  this.extractFundingInfo = function(state, article) {
+    var doc = state.doc;
+
+    var fundingInfo = [];
+
+    var fundingStatements = article.querySelectorAll("funding-statement");
+    if (fundingStatements.length > 0){
+      for (var i = 0; i < fundingStatements.length; i++){
+        fundingInfo.push(fundingStatements[i].textContent);
+      }
+    }
+    return fundingInfo;
   };
 
   // Get reviewing editor
@@ -600,6 +621,8 @@ NlmToLensConverter.Prototype = function() {
     var label = aff.querySelector("label");
     var department = aff.querySelector("addr-line named-content[content-type=department]");
     var city = aff.querySelector("addr-line named-content[content-type=city]");
+    // TODO: there are a lot more elements which can have this.
+    var specific_use = aff.getAttribute('specific-use');
 
     // TODO: this is a potential place for implementing a catch-bin
     // For that, iterate all children elements and fill into properties as needed or add content to the catch-bin
@@ -612,7 +635,8 @@ NlmToLensConverter.Prototype = function() {
       department: department ? department.textContent : null,
       city: city ? city.textContent : null,
       institution: institution ? institution.textContent : null,
-      country: country ? country.textContent: null
+      country: country ? country.textContent: null,
+      specific_use: specific_use || null
     };
     doc.create(affiliationNode);
   };
@@ -949,6 +973,12 @@ NlmToLensConverter.Prototype = function() {
 
     this.extractFigures(state, article);
 
+    // Extract back element, if it exists
+    var back = article.querySelector("back");
+    if (back){
+        this.back(state,back);
+    }
+
     this.enhanceArticle(state, article);
   };
 
@@ -1029,8 +1059,10 @@ NlmToLensConverter.Prototype = function() {
   this.extractFigures = function(state, xmlDoc) {
     // Globally query all figure-ish content, <fig>, <supplementary-material>, <table-wrap>, <media video>
     // mimetype="video"
-    var body = xmlDoc.querySelector("body");
-    var figureElements = body.querySelectorAll("fig, table-wrap, supplementary-material, media[mimetype=video]");
+
+    // NOTE: We previously only considered figures within <body> but since
+    // appendices can also have figures we now use a gobal selector.
+    var figureElements = xmlDoc.querySelectorAll("fig, table-wrap, supplementary-material, media[mimetype=video]");
     var nodes = [];
     for (var i = 0; i < figureElements.length; i++) {
       var figEl = figureElements[i];
@@ -1128,6 +1160,8 @@ NlmToLensConverter.Prototype = function() {
     }, this);
   };
 
+  // TODO: abstract should be a dedicated node
+  // as it can have some extra information in JATS, such as specific-use
   this.abstract = function(state, abs) {
     var doc = state.doc;
     var nodes = [];
@@ -1446,8 +1480,15 @@ NlmToLensConverter.Prototype = function() {
       // ignore some elements
       if (this.ignoredParagraphElements[type]) continue;
 
+      // paragraph block-types such as disp-formula
+      // i.e they are allowed within a paragraph, but
+      // we pull them out on the top level
+      if (this.acceptedParagraphElements[type]) {
+        blocks.push(_.extend({node: child}, this.acceptedParagraphElements[type]));
+      }
       // paragraph elements
-      if (type === "text" || this.isAnnotation(type) || this.inlineParagraphElements[type]) {
+      //if (type === "text" || this.isAnnotation(type) || this.inlineParagraphElements[type]) {
+      else {
         if (lastType !== "paragraph") {
           blocks.push({ handler: "paragraph", nodes: [] });
           lastType = "paragraph";
@@ -1455,10 +1496,7 @@ NlmToLensConverter.Prototype = function() {
         _.last(blocks).nodes.push(child);
         continue;
       }
-      // other elements are treated as single blocks
-      else if (this.acceptedParagraphElements[type]) {
-        blocks.push(_.extend({node: child}, this.acceptedParagraphElements[type]));
-      }
+
       lastType = type;
     }
     return blocks;
@@ -1491,6 +1529,11 @@ NlmToLensConverter.Prototype = function() {
     return nodes;
   };
 
+  // DEPRECATED: using this handler for <p> elements is
+  // deprecated, as in JATS <p> can contain certain block-level
+  // elements. Better use this.paragraphGroup in cases where you
+  // convert <p> elements.
+  // TODO: we should refactor this and make it a 'private' helper
   this.paragraph = function(state, children) {
     var doc = state.doc;
 
@@ -1526,7 +1569,13 @@ NlmToLensConverter.Prototype = function() {
         // In that case, the iterator will still have more elements
         // and the loop is continued
         // Before descending, we reset the iterator to provide the current element again.
-        var annotatedText = this._annotatedText(state, iterator.back(), { offset: 0, breakOnUnknown: true });
+        // TODO: We have disabled the described behavior as it seems
+        // worse to break automatically on unknown inline tags,
+        // than to render plain text, as it results in data loss.
+        // If you find a situation where you want to flatten structure
+        // found within a paragraph, use this.acceptedParagraphElements instead
+        // which is used in a preparation step before converting paragraphs.
+        var annotatedText = this._annotatedText(state, iterator.back(), { offset: 0, breakOnUnknown: false });
 
         // Ignore empty paragraphs
         if (annotatedText.length > 0) {
@@ -1538,7 +1587,6 @@ NlmToLensConverter.Prototype = function() {
         // popping the stack
         state.stack.pop();
       }
-
       // inline image node
       else if (type === "inline-graphic") {
         var url = child.getAttribute("xlink:href");
@@ -2080,10 +2128,74 @@ NlmToLensConverter.Prototype = function() {
   // Article.Back
   // --------
 
-  this.back = function(/*state, back*/) {
-    // No processing at the moment
-    return null;
+  this.back = function(state, back) {
+    var appGroups = back.querySelectorAll('app-group');
+
+    if (appGroups && appGroups.length > 0) {
+      _.each(appGroups, function(appGroup) {
+        this.appGroup(state, appGroup);
+      }.bind(this));
+    } else {
+      // HACK: We treat <back> element as app-group, sine there
+      // are docs that wrongly put <app> elements into the back
+      // element directly.
+      this.appGroup(state, back);
+    }
   };
+
+  this.appGroup = function(state, appGroup) {
+    var apps = appGroup.querySelectorAll('app');
+    var doc = state.doc;
+    var title = appGroup.querySelector('title');
+    if (!title) {
+      console.error("FIXME: every app should have a title", this.toHtml(title));
+    }
+
+    var headingId =state.nextId("heading");
+    // Insert top level element for Appendix
+    var heading = doc.create({
+      "type" : "heading",
+      "id" : headingId,
+      "level" : 1,
+      "content" : title ? this.annotatedText(state, title, [headingId, "content"]) : "Appendix"
+    });
+
+    this.show(state, [heading]);
+    _.each(apps, function(app) {
+      state.sectionLevel = 2;
+      this.app(state, app);
+    }.bind(this));
+  };
+
+  this.app = function(state, app) {
+    var doc = state.doc;
+    var nodes = [];
+    var title = app.querySelector('title');
+    if (!title) {
+      console.error("FIXME: every app should have a title", this.toHtml(title));
+    }
+
+    var headingId = state.nextId("heading");
+    var heading = {
+      "type" : "heading",
+      "id" : headingId,
+      "level" : 2,
+      "content": title ? this.annotatedText(state, title, [headingId, "content"]) : ""
+    };
+    var headingNode = doc.create(heading);
+    nodes.push(headingNode);
+
+    // There may be multiple paragraphs per ack element
+    var pars = this.bodyNodes(state, util.dom.getChildren(app), {
+      ignore: ["title", "label", "ref-list"]
+    });
+    _.each(pars, function(par) {
+      nodes.push(par);
+    });
+    this.show(state, nodes);
+  };
+
+
 
 
   // Annotations
@@ -2128,6 +2240,8 @@ NlmToLensConverter.Prototype = function() {
     } else if (type === 'inline-formula') {
       var formula = this.formula(state, el, "inline");
       anno.target = formula.id;
+    } else if (anno.type === 'custom_annotation') {
+      anno.name = type;
     }
   };
 

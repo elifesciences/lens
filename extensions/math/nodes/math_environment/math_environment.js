@@ -1,6 +1,6 @@
 "use strict";
 
-var LensNodes = require('lens/article/nodes');
+var LensNodes = require('../../../../article/nodes');
 var DocumentNode = LensNodes['node'].Model;
 
 var MathEnvironment = function(node, document) {

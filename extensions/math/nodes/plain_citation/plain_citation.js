@@ -1,6 +1,6 @@
 "use strict";
 
-var Document = require('lens/substance/document');
+var Document = require('../../../../substance/document');
 
 var PlainCitation = function(node, doc) {
   Document.Node.call(this, node, doc);

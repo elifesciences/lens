@@ -1,7 +1,7 @@
 "use strict";
 
 var _ = require('underscore');
-var Document = require('lens/substance/document');
+var Document = require('../../../../substance/document');
 
 var EnumerationItem = function(node, doc) {
   Document.Composite.call(this, node, doc);
