@@ -2308,6 +2308,8 @@ NlmToLensConverter.Prototype = function() {
         var footnote = this.footnote(state, el);
         inlineNode.type = 'footnote_reference';
         inlineNode.target = footnote.id;
+        // We generate footnote references if we find an inline fn element
+        inlineNode.generated = true;
         break;
     }
   };

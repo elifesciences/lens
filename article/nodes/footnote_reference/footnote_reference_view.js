@@ -9,6 +9,7 @@ var FootnoteReferenceView = function(node, viewFactory) {
   this._expanded = false;
 };
 
+
 FootnoteReferenceView.Prototype = function() {
 
   this.render = function() {
@@ -16,12 +17,15 @@ FootnoteReferenceView.Prototype = function() {
     // this.el.innerHTML = formulaView.render().el.innerHTML;
     this.el.innerHTML = "";
     this.toggleEl = $$('a', {href: '#', html: footnote.properties.label});
-    
+
     $(this.toggleEl).on('click', this._onToggle.bind(this));
     this.$el.append(this.toggleEl);
     this.footnoteView = this._createView(footnote).render();
     // HACK: some use xref with ref-type='fn' which will produce a different view class
     this.footnoteView.$el.addClass('footnote');
+    if (this.node.properties.generated) {
+      this.$el.addClass('sm-generated');
+    }
     this.$el.append(this.footnoteView.el);
   };
 
