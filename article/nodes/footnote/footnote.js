@@ -3,31 +3,20 @@
 var Document = require('../../../substance/document');
 var DocumentNode = Document.Node;
 var Paragraph = require('../paragraph').Model;
-
+var Composite = Document.Composite;
 
 var Footnote = function(node, document) {
-  Paragraph.call(this, node, document);
+  Composite.call(this, node, document);
 };
 
 Footnote.type = {
   "id": "footnote",
   "parent": "paragraph",
   "properties": {
-    "label": "string"
-  }
-};
-
-// This is used for the auto-generated docs
-// -----------------
-//
-
-Footnote.description = {
-  "name": "Footnote",
-  "remarks": [
-    "A Footnote is basically a Paragraph with a label."
-  ],
-  "properties": {
-    "label": "A string used as label",
+    "footnoteType": "string",
+    "specificUse": "string",
+    "label": "string",
+    "children": ["array", "string"]
   }
 };
 
@@ -54,6 +43,6 @@ Footnote.Prototype.prototype = Paragraph.prototype;
 Footnote.prototype = new Footnote.Prototype();
 Footnote.prototype.constructor = Footnote;
 
-DocumentNode.defineProperties(Footnote);
+DocumentNode.defineProperties(Footnote.prototype, ["children", "label", "footnoteType", "specificUse"]);
 
 module.exports = Footnote;

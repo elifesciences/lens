@@ -5,8 +5,8 @@ var util = require("../substance/util");
 var Controller = require('../substance/application').Controller;
 var LensView = require("./lens_view");
 var ReaderController = require('./reader_controller');
-var LensArticle = require('lens/article');
-var NLMConverter = require('lens/converter');
+var LensArticle = require('../article');
+var NLMConverter = require('../converter');
 
 
 // Lens.Controller

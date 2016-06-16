@@ -146,7 +146,7 @@ out (on iOS 5.1), or flicker (on iOS 6). */
   position: relative;
 }
 
-/* It's not exactly good to have the overflow-y: scroll for the container AND the surface.
+/* It's not exactly good to have the overflow-y: scroll for the container AND the surface.
    There should be just one overflowing container, if possible
 */
 
@@ -783,4 +783,41 @@ TOC
 
 .panel.document  .nodes > .content-node > .focus-handle:hover {
   border-left: 3px solid #bbb;
+}
+
+
+/* Footnote
+=============================== */
+
+.content-node.footnote {
+  font-size: 13px;
+  display: block !important;
+  margin: 20px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.footnote-reference > a {
+  color: #444 ;
+  vertical-align: super;
+  padding: 0 2px;
+  border: 1px solid #ddd;
+  font-size: 13px;
+}
+
+.footnote-reference > a:hover {
+  background: #eee;
+}
+
+.footnote-reference.sm-expanded > a {
+  background: #ddd;
+}
+
+.footnote-reference > .footnote {
+  display: none !important;
+}
+
+.footnote-reference.sm-expanded  >.footnote {
+  display: block !important;
 }

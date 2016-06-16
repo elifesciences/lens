@@ -1,8 +1,8 @@
 
 var _ = require('underscore');
-var util = require("lens/substance/util");
-var LensConverter = require('lens/converter');
-var LensArticle = require("lens/article");
+var util = require("../../substance/util");
+var LensConverter = require('../../converter');
+var LensArticle = require("../../article");
 var MathNodeTypes = require("./nodes");
 
 // Options:
@@ -20,6 +20,14 @@ MathConverter.Prototype = function MathConverterPrototype() {
 
   this._refTypeMapping["disp-formula"] = "formula_reference";
   this._refTypeMapping["statement"] = "math_environment_reference";
+
+  this.acceptedParagraphElements = _.extend(__super__.acceptedParagraphElements, {
+    "def-list": { handler: 'defList' }
+  });
+
+  this._annotationTypes = _.extend(__super__._annotationTypes, {
+    "roman": "custom_annotation"
+  });
 
   this.test = function(xmlDoc, documentUrl) {
     /* jshint unused:false */
@@ -67,6 +75,7 @@ MathConverter.Prototype = function MathConverterPrototype() {
     return doc;
   };
 
+
   // TODO: the default implemenation should be plain, i.e. not adding an extra heading 'Main Text'
   // Instead the LensConverter should override this...
   // ...or we should consider adding an option (if the eLife way to do it is more often applicable...)
@@ -96,7 +105,7 @@ MathConverter.Prototype = function MathConverterPrototype() {
     }
   };
 
-  this._bodyNodes['def-list'] = function(state, defList) {
+  this._bodyNodes['def-list'] = this.defList = function(state, defList) {
     var enumerationNode = {
       type: 'enumeration',
       id: state.nextId('enumeration'),
@@ -105,20 +114,46 @@ MathConverter.Prototype = function MathConverterPrototype() {
     var defItems = this.selectDirectChildren(defList, 'def-item');
     for (var i = 0; i < defItems.length; i++) {
       var defItem = defItems[i];
+      var term = defItem.querySelector('term');
+      var termId = term.id;
+      var def = defItem.querySelector('def');
       var enumItemNode = {
         type: 'enumeration-item',
+        // TODO: enabling the correct id makes warnings disappear
+        // which are given when seeing references to this def
+        // However, to work properly, we would need nesting support
+        // for definition references
+        // so we leave it for now
+        // id: termId || state.nextId('enumeration-item'),
         id: state.nextId('enumeration-item'),
+        children: []
       };
-      var term = defItem.querySelector('term');
+      // convert label
       enumItemNode.label = this.annotatedText(state, term, [enumItemNode.id, 'label']);
-      var content = defItem.querySelector('def p');
-      enumItemNode.children = _.pluck(this.paragraphGroup(state, content), "id");
+      // convert content
+      // TODO: is the assumption correct that def-item content is always wrapped in a p element?
+      var pEls = this.selectDirectChildren(def, 'p');
+      for (var j = 0; j < pEls.length; j++) {
+        var p = pEls[j];
+        var children = this.paragraphGroup(state, p);
+        var pgroup = {
+          type: 'paragraph',
+          id: state.nextId('pgroup'),
+          children: _.pluck(children, 'id')
+        };
+        state.doc.create(pgroup);
+        enumItemNode.children.push(pgroup.id);
+      }
       state.doc.create(enumItemNode);
       enumerationNode.items.push(enumItemNode.id);
     }
     state.doc.create(enumerationNode);
     return enumerationNode;
   };
+
+  // HACK: There is content that has nested <app> elements, which is not allowed
+  // we just treat them as sections
+  this._bodyNodes['app'] = this._bodyNodes['sec'];
 
   this.extractDefinitions = function(/*state, article*/) {
     // We don't want to show a definitions (glossary) panel
@@ -342,6 +377,7 @@ MathConverter.Prototype = function MathConverterPrototype() {
     state.labelsForFormula[formulaId] = labels;
     return result;
   };
+
   this.formula = function(state, formulaElement, inline) {
     var doc = state.doc;
     var id = state.nextId("formula");
@@ -496,6 +532,7 @@ MathConverter.Prototype = function MathConverterPrototype() {
       if (type === 'label' || !el.textContent) continue;
       institutionText += el.textContent;
     }
+    var specific_use = aff.getAttribute('specific-use');
 
     // TODO: we might add a property to the affiliation node that collects
     // data which is not handled here
@@ -505,7 +542,8 @@ MathConverter.Prototype = function MathConverterPrototype() {
       type: "affiliation",
       source_id: aff.getAttribute("id"),
       label: label ? label.textContent : null,
-      institution: institutionText
+      institution: institutionText,
+      specific_use: specific_use || null
     };
 
     state.affiliations.push(affiliationNode.id);
@@ -672,6 +710,7 @@ MathConverter.Prototype = function MathConverterPrototype() {
             anno.target = targetNode.id;
           } else {
             console.log("Could not lookup math environment for reference", anno);
+            continue;
           }
           referencedMath[targetNode.id] = true;
         } else {
@@ -680,6 +719,7 @@ MathConverter.Prototype = function MathConverterPrototype() {
             anno.target = targetNode.id;
           } else {
             console.log("Could not lookup targetNode for annotation", anno);
+            continue;
           }
         }
       }
@@ -748,6 +788,7 @@ MathConverter.Prototype = function MathConverterPrototype() {
       }
     }
   };
+
 };
 
 MathConverter.Prototype.prototype = LensConverter.prototype;

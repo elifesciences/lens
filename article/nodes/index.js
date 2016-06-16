@@ -22,6 +22,7 @@ module.exports = {
   "citation_reference": require("./citation_reference"),
   "definition_reference": require("./definition_reference"),
   "cross_reference": require("./cross_reference"),
+  "footnote_reference": require("./footnote_reference"),
   "publication_info": require("./publication_info"),
   /* Annotation'ish content types */
   "link": require("./link"),
@@ -48,5 +49,5 @@ module.exports = {
   "codeblock": require("./codeblock"),
   "affiliation": require("./_affiliation"),
   "footnote": require("./footnote"),
-  "quote": require("./quote")
+  "quote": require("./quote"),
 };
