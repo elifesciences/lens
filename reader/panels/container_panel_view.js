@@ -4,8 +4,7 @@ var _ = require("underscore");
 var Scrollbar = require("./surface_scrollbar");
 var Surface = require("../lens_surface");
 var PanelView = require("./panel_view");
-
-var MENU_BAR_HEIGHT = 40;
+var getRelativeBoundingRect = require('../../substance/util/getRelativeBoundingRect');
 
 // TODO: try to get rid of DocumentController and use the Container node instead
 var ContainerPanelView = function( panelCtrl, viewFactory, config ) {
@@ -59,29 +58,18 @@ ContainerPanelView.Prototype = function() {
   this.scrollTo = function(nodeId) {
     var n = this.findNodeView(nodeId);
     if (n) {
-      var $n = $(n);
-
-      var windowHeight = $(window).height();
       var panelHeight = this.surface.$el.height();
-      var scrollTop;
+      var elRect = getRelativeBoundingRect([n], this.surface.$nodes[0]);
+      var elTop = elRect.top;
+      var elHeight = elRect.height;
 
-      scrollTop = this.surface.$el.scrollTop();
-      var elTop = $n.offset().top;
-      var elHeight = $n.height();
-      var topOffset;
       // Do not scroll if the element is fully visible
       if ((elTop > 0 && elTop + elHeight < panelHeight) || (elTop >= 0 && elTop < panelHeight)) {
         // everything fine
         return;
       }
-      // In all other cases scroll to the top of the element
-      else {
-        // HACK: we subtract the height of the menu bar to the scroll position,
-        // because elTop does not consider the offset
-        topOffset = scrollTop + elTop - MENU_BAR_HEIGHT;
-      }
 
-      this.surface.$el.scrollTop(topOffset);
+      this.surface.$el.scrollTop(elTop);
       this.scrollbar.update();
     } else {
       console.info("ContainerPanelView.scrollTo(): Unknown resource '%s'", nodeId);

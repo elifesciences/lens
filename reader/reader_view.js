@@ -31,8 +31,6 @@ var ReaderView = function(readerCtrl) {
   // Note: ATM, it is not possible to override the content panel + toc via panelSpecification
   this.contentView = readerCtrl.panelCtrls.content.createView();
   this.tocView = this.contentView.getTocView();
-
-
   this.panelViews = {};
   // mapping to associate reference types to panels
   // NB, in Lens each resource type has one dedicated panel;
@@ -78,6 +76,7 @@ var ReaderView = function(readerCtrl) {
     this.listenTo(panelView, "toggle-resource-reference", this.onToggleResourceReference);
     this.listenTo(panelView, "toggle-fullscreen", this.onToggleFullscreen);
   }, this);
+
   // TODO: treat content panel as panelView and delegate to tocView where necessary
   this.listenTo(this.contentView, "toggle", this._onTogglePanel);
   this.listenTo(this.contentView, "toggle-resource", this.onToggleResource);
@@ -314,7 +313,7 @@ ReaderView.Prototype = function() {
 
     self.updateScrollbars();
     _.delay(function() {
-      self.updateScrollbars();        
+      self.updateScrollbars();
     }, 2000);
   };
 
