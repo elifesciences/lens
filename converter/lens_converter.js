@@ -315,11 +315,10 @@ NlmToLensConverter.Prototype = function() {
 
   this.extractFundingInfo = function(state, article) {
     var fundingInfo = [];
-
-    var fundingStatements = article.querySelectorAll("funding-statement");
-    if (fundingStatements.length > 0){
-      for (var i = 0; i < fundingStatements.length; i++){
-        fundingInfo.push(fundingStatements[i].textContent);
+    var fundingStatementEls = article.querySelectorAll("funding-statement");
+    if (fundingStatementEls.length > 0){
+      for (var i = 0; i < fundingStatementEls.length; i++) {
+        fundingInfo.push(this.annotatedText(state, fundingStatementEls[i], ["publication_info", "funding_info", i]));
       }
     }
     return fundingInfo;
@@ -1479,7 +1478,7 @@ NlmToLensConverter.Prototype = function() {
   this.inlineParagraphElements = {
     "inline-graphic": true,
     "inline-formula": true,
-    "fn": true,
+    "fn": true
   };
 
   // Segments children elements of a NLM <p> element

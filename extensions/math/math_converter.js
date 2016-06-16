@@ -577,7 +577,7 @@ MathConverter.Prototype = function MathConverterPrototype() {
     //  <kwd>lipid droplet</kwd>
     //  <kwd>anti-bacterial</kwd>
     // </kwd-group>
-    var keyWords = articleMeta.querySelectorAll("kwd-group kwd");
+    var keywordEls = articleMeta.querySelectorAll("kwd-group kwd");
 
     // Extract subjects
     // ------------
@@ -589,7 +589,7 @@ MathConverter.Prototype = function MathConverterPrototype() {
     // <subject>Microbiology and infectious disease</subject>
     // </subj-group>
 
-    var subjects = articleMeta.querySelectorAll("subj-group[subj-group-type=heading] subject");
+    var subjectEls = articleMeta.querySelectorAll("subj-group[subj-group-type=heading] subject");
 
     // Article Type
     //
@@ -634,8 +634,18 @@ MathConverter.Prototype = function MathConverterPrototype() {
 
     publicationInfo.raw_formats = rawFormats;
 
-    publicationInfo.keywords = _.pluck(keyWords, "textContent");
-    publicationInfo.subjects = _.pluck(subjects, "textContent");
+    var keywords = [];
+    for (var i = 0; i < keywordEls.length; i++) {
+      keywords.push(this.annotatedText(state, keywordEls[i], ["publication_info", "keywords", i]));
+    }
+    publicationInfo.keywords = keywords;
+
+    var subjects = [];
+    for (var i = 0; i < subjectEls.length; i++) {
+      subjects.push(this.annotatedText(state, subjectEls[i], ["publication_info", "subjects", i]));
+    }
+    publicationInfo.subjects = subjects;
+
     publicationInfo.article_type = articleType ? articleType.textContent : "";
     publicationInfo.links = links;
   };
