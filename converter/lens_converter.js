@@ -31,6 +31,10 @@ NlmToLensConverter.Prototype = function() {
     "uri": "link"
   };
 
+  this._inlineNodeTypes = {
+    "fn": true,
+  };
+
   // mapping from xref.refType to node type
   this._refTypeMapping = {
     "bibr": "citation_reference",
@@ -39,6 +43,7 @@ NlmToLensConverter.Prototype = function() {
     "supplementary-material": "figure_reference",
     "other": "figure_reference",
     "list": "definition_reference",
+    "fn": "footnote_reference",
   };
 
   // mapping of contrib type to human readable names
@@ -76,6 +81,10 @@ NlmToLensConverter.Prototype = function() {
     return this._annotationTypes[type] !== undefined;
   };
 
+  this.isInlineNode = function(type) {
+    return this._inlineNodeTypes[type] !== undefined;
+  };
+
   this.isParagraphish = function(node) {
     for (var i = 0; i < node.childNodes.length; i++) {
       var el = node.childNodes[i];
@@ -102,7 +111,7 @@ NlmToLensConverter.Prototype = function() {
 
     if (givenNamesEl) names.push(givenNamesEl.textContent);
     if (surnameEl) names.push(surnameEl.textContent);
-    if (suffix && !(suffix.textContent.trim() === "")) return [names.join(" "), suffix.textContent].join(", ");
+    if (suffix && suffix.textContent.trim() !== "") return [names.join(" "), suffix.textContent].join(", ");
 
     return names.join(" ");
   };
@@ -295,7 +304,7 @@ NlmToLensConverter.Prototype = function() {
     nodes = nodes.concat(this.extractAcknowledgements(state, article));
     // License and Copyright
     nodes = nodes.concat(this.extractCopyrightAndLicense(state, article));
-    // Notes (Footnotes + Author notes)
+    // Notes (<note> elements)
     nodes = nodes.concat(this.extractNotes(state, article));
 
     articleInfo.children = nodes;
@@ -305,8 +314,6 @@ NlmToLensConverter.Prototype = function() {
   };
 
   this.extractFundingInfo = function(state, article) {
-    var doc = state.doc;
-
     var fundingInfo = [];
 
     var fundingStatements = article.querySelectorAll("funding-statement");
@@ -441,14 +448,12 @@ NlmToLensConverter.Prototype = function() {
   };
 
   //
-  // Extracts footnotes that should be shown in article info
+  // Extracts notes that should be shown in article info
   // ------------------------------------------
   //
-  // Needs to be overwritten in configuration
-
-  this.extractNotes = function(/*state, article*/) {
-    var nodes = [];
-    return nodes;
+  this.extractNotes = function(state, article) {
+    /* jshint unused:false */
+    return [];
   };
 
   // Can be overridden by custom converter to ignore <meta-name> values.
@@ -973,6 +978,9 @@ NlmToLensConverter.Prototype = function() {
 
     this.extractFigures(state, article);
 
+    // catch all unhandled foot-notes
+    this.extractFootNotes(state, article);
+
     // Extract back element, if it exists
     var back = article.querySelector("back");
     if (back){
@@ -1084,6 +1092,17 @@ NlmToLensConverter.Prototype = function() {
       }
     }
     this.show(state, nodes);
+  };
+
+  // Catch-all implementation for footnotes that have not been
+  // converted yet.
+  this.extractFootNotes = function(state, article) {
+    var fnEls = article.querySelectorAll('fn');
+    for (var i = 0; i < fnEls.length; i++) {
+      var fnEl = fnEls[i];
+      if (fnEl.__converted__) continue;
+      this.footnote(state, fnEl);
+    }
   };
 
   this.extractCitations = function(state, xmlDoc) {
@@ -1241,7 +1260,7 @@ NlmToLensConverter.Prototype = function() {
         node = this.ignoredNode(state, child, type);
         if (node) nodes.push(node);
       } else {
-        console.error("Node not yet supported as top-level node: " + type);
+        console.error("Node not supported as block-level element: " + type +"\n"+child.outerHTML);
       }
     }
     return nodes;
@@ -1437,12 +1456,13 @@ NlmToLensConverter.Prototype = function() {
   this.acceptedParagraphElements = {
     "boxed-text": {handler: "boxedText"},
     "list": { handler: "list" },
-    "disp-formula": { handler: "formula" },
+    "disp-formula": { handler: "formula" }
   };
 
   this.inlineParagraphElements = {
     "inline-graphic": true,
-    "inline-formula": true
+    "inline-formula": true,
+    "fn": true,
   };
 
   // Segments children elements of a NLM <p> element
@@ -1537,7 +1557,7 @@ NlmToLensConverter.Prototype = function() {
       var type = util.dom.getNodeType(child);
 
       // annotated text node
-      if (type === "text" || this.isAnnotation(type)) {
+      if (type === "text" || this.isAnnotation(type) || this.isInlineNode(type)) {
         var textNode = {
           id: state.nextId("text"),
           type: "text",
@@ -1944,6 +1964,33 @@ NlmToLensConverter.Prototype = function() {
     return formulaNode;
   };
 
+  this.footnote = function(state, footnoteElement) {
+    var doc = state.doc;
+    var footnote = {
+      type: 'footnote',
+      id: state.nextId('fn'),
+      source_id: footnoteElement.getAttribute("id"),
+      label: '',
+      children: []
+    };
+    var children = footnoteElement.children;
+    var i = 0;
+    if (children[i].tagName.toLowerCase() === 'label') {
+      footnote.label = this.annotatedText(state, children[i], [footnote.id, 'label']);
+      i++;
+    }
+    footnote.children = [];
+    for (; i<children.length; i++) {
+      var nodes = this.paragraphGroup(state, children[i]);
+      Array.prototype.push.apply(footnote.children, _.pluck(nodes, 'id'));
+    }
+    doc.create(footnote);
+    // leave a trace for the catch-all converter
+    // to know that this has been converted already
+    footnoteElement.__converted__ = true;
+    return footnote;
+  };
+
   // Citations
   // ---------
 
@@ -2236,6 +2283,41 @@ NlmToLensConverter.Prototype = function() {
     if (sourceId) anno.target = sourceId;
   };
 
+  this.createInlineNode = function(state, el, start) {
+    var inlineNode = {
+      type: "inline-node",
+      path: _.last(state.stack).path,
+      range: [start, start+1],
+    };
+
+    this.addInlineNodeData(state, inlineNode, el);
+    this.enhanceInlineNodeData(state, inlineNode, el);
+
+    // assign an id after the type has been extracted to be able to create typed ids
+    inlineNode.id = state.nextId(inlineNode.type);
+
+    state.annotations.push(inlineNode);
+  };
+
+  this.addInlineNodeData = function(state, inlineNode, el) {
+    /*jshint unused: false*/
+    var tagName = el.tagName.toLowerCase();
+    switch(tagName) {
+      case 'fn':
+        // when we hit a <fn> inline, we will create a footnote-reference
+        var footnote = this.footnote(state, el);
+        inlineNode.type = 'footnote_reference';
+        inlineNode.target = footnote.id;
+        // We generate footnote references if we find an inline fn element
+        inlineNode.generated = true;
+        break;
+    }
+  };
+
+  this.enhanceInlineNodeData = function(state, inlineNode, el, tagName) {
+    /*jshint unused: false*/
+  };
+
   // Parse annotated text
   // --------------------
   // Make sure you call this method only for nodes where `this.isParagraphish(node) === true`
@@ -2291,6 +2373,10 @@ NlmToLensConverter.Prototype = function() {
             }
           }
         }
+        else if (this.isInlineNode(type)) {
+          plainText += " ";
+          this.createInlineNode(state, el, charPos);
+        }
         // Unsupported...
         else if (!breakOnUnknown) {
           if (state.top().ignore.indexOf(type) < 0) {
@@ -2300,7 +2386,7 @@ NlmToLensConverter.Prototype = function() {
           }
         } else {
           if (nested) {
-            console.error("Node not yet supported in annoted text: " + type);
+            console.error("Node not supported in annoted text: " + type +"\n"+el.outerHTML);
           }
           else {
             // on paragraph level other elements can break a text block
