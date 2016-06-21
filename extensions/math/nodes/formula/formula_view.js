@@ -153,6 +153,14 @@ FormulaView.Prototype = function() {
               hasPreview = true;
             }
             break;
+            case "html":
+              // add only if no preview
+              if (!hasPreview) {
+                // don't use a preview element
+                this.$content.append($(data));
+                hasPreview = true;
+              }
+              break;
           default:
             console.error("Unknown formula format:", format);
         }
