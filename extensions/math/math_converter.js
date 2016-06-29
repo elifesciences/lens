@@ -311,7 +311,7 @@ MathConverter.Prototype = function MathConverterPrototype() {
 
   this._getFormulaData = function(state, formulaElement, formulaId, inline) {
     var result = [];
-    var labels = {'tex' : {}, 'svg': {}, 'math': {}};
+    var labels = {'tex' : {}, 'svg': {}, 'html': {}, 'math': {}};
     var el = formulaElement;
     var alternatives = el.querySelector('alternatives');
     if (alternatives) el = alternatives;
@@ -330,6 +330,13 @@ MathConverter.Prototype = function MathConverterPrototype() {
           result.push({
             format: "svg",
             data: this.toHtml(child)
+          });
+          break;
+        case "textual-form":
+          labels.html = this._extractLabels(child);
+          result.push({
+            format: "html",
+            data: $(child).text()
           });
           break;
         case "mml:math":
