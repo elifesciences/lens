@@ -42,9 +42,11 @@ ZoomFormula.Prototype = function() {
     //
 
     var self = this;
-    MathJax.Hub.Register.MessageHook("End Process", function (message) {
-      self.fitFormulas();
-    });
+    if (window.MathJax){
+      MathJax.Hub.Register.MessageHook("End Process", function (message) {
+        self.fitFormulas();
+      });
+    }
 
     this.readerView.doc.on('app:formulas:changed', this._handleFormulasChange);
   };
