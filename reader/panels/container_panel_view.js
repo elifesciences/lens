@@ -59,17 +59,20 @@ ContainerPanelView.Prototype = function() {
     var n = this.findNodeView(nodeId);
     if (n) {
       var panelHeight = this.surface.$el.height();
+      var screenTop = this.surface.$el.scrollTop();
+      var screenBottom = screenTop + panelHeight;
       var elRect = getRelativeBoundingRect([n], this.surface.$nodes[0]);
-      var elTop = elRect.top;
       var elHeight = elRect.height;
 
+      var upperBound = elRect.top; // top-offset of upper bound to relative parent
+      var lowerBound = upperBound+elRect.height; // top-offset of lower bound to relative parent
+
       // Do not scroll if the element is fully visible
-      if ((elTop > 0 && elTop + elHeight < panelHeight) || (elTop >= 0 && elTop < panelHeight)) {
-        // everything fine
+      if (upperBound>=screenTop && lowerBound <= screenBottom) {
         return;
       }
 
-      this.surface.$el.scrollTop(elTop);
+      this.surface.$el.scrollTop(upperBound);
       this.scrollbar.update();
     } else {
       console.info("ContainerPanelView.scrollTo(): Unknown resource '%s'", nodeId);
