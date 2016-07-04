@@ -249,6 +249,7 @@ ReaderView.Prototype = function() {
       // HACK: abusing addHighlight for adding the fullscreen class
       // instead I would prefer to handle such focussing explicitely in a workflow
       if (state.fullscreen) classes.push("fullscreen");
+      this.contentView.addHighlight(state.focussedNode, classes.concat('main-occurrence').join(' '));
       currentPanelView.addHighlight(state.focussedNode, classes.join(' '));
       currentPanelView.scrollTo(state.focussedNode);
     }

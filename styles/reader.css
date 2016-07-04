@@ -755,8 +755,11 @@ TOC
 /* Colors for scroll-bar overlays */
 
 .article .resources .figures .surface-scrollbar .highlighted,
-.article .content .surface-scrollbar .highlighted.figure_reference
+.article .content .surface-scrollbar .highlighted.figure_reference,
+.article .content .surface-scrollbar .highlighted.figure
  { background-color: rgba(145, 187, 4, 1); }
+.article .content .surface-scrollbar .highlighted.figure.main-occurrence
+ { border-right: 3px solid #5C6148; }
 
 .article .resources .citations .surface-scrollbar .highlighted,
 .article .content .surface-scrollbar .highlighted.citation_reference
