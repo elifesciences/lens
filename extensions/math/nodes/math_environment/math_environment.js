@@ -8,6 +8,7 @@ var MathEnvironment = function(node, document) {
 };
 
 MathEnvironment.type = {
+  "id": "math_environment",
   "parent": "content",
   "properties": {
     "source_id": "string",

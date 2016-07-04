@@ -753,6 +753,71 @@ MathConverter.Prototype = function MathConverterPrototype() {
     state.referencedMath = referencedMath;
   };
 
+  function _showFigure(state, node) {
+    // show figures without captions are only in-flow
+    if (!node.caption) {
+      state.doc.show('content', node.id);
+    }
+    // all others are shown in the figures panel
+    else {
+      state.doc.show('figures', node.id);
+      // in addition a figure can be shown in-flow using position='anchor'
+      if (node.position === 'anchor') {
+        state.doc.show('content', node.id);
+      }
+    }
+  }
+
+  function _showFormulaOrEnvironment(state, node, nested) {
+    var referencedMath = state.referencedMath;
+    var info = state.nodeInfo[node.id];
+    // only show formulas and environments in the math panel
+    // - if they are referenced
+    // - or have specificUse='resource' set explicitly
+    if (referencedMath[node.id] ||
+        (info && info.specificUse === "resource")) {
+      doc.show(MATH_PANEL, node.id);
+    }
+    if (!nested) {
+      doc.show('content', node.id);
+    }
+    // a math environment can have nested content
+    // such as figures or environments which need
+    // to be processed recursively
+    if (node.type === 'math_environment') {
+      _showNestedContent(state, node.body);
+    }
+  }
+
+  function _showNestedContent(state, nodeIds) {
+    var referencedMath = state.referencedMath;
+    nodeIds.forEach(function(nodeId) {
+      var node = state.doc.get(nodeId);
+      var info = state.nodeInfo[nodeId];
+      switch (node.type) {
+        case 'figure':
+          // only show figures in the figures panel,
+          // which have a caption
+          if (node.caption) {
+           state.doc.show('figures', nodeId);
+          }
+          break;
+        case 'formula':
+        case 'math_environment':
+          _showFormulaOrEnvironment(state, node, 'nested');
+          break;
+        default:
+          // nothing
+      }
+    });
+  }
+
+  function _showProof(state, node) {
+    // proofs are always shown only in the content
+    state.doc.show('content', node.id);
+    _showNestedContent(state, node.children);
+  }
+
   this.populatePanels = function(state) {
     var doc = state.doc;
     var referencedMath = state.referencedMath;
@@ -761,44 +826,14 @@ MathConverter.Prototype = function MathConverterPrototype() {
       node = state.shownNodes[i];
       switch (node.type) {
         case 'figure':
-          // show figures without captions are only in-flow
-          if (!node.caption) {
-            state.doc.show('content', node.id);
-          }
-          // all others are shown in the figures panel
-          else {
-            state.doc.show('figures', node.id);
-            // in addition a figure can be shown in-flow using position='anchor'
-            if (node.position === 'anchor') {
-              state.doc.show('content', node.id);
-            }
-          }
+          _showFigure(state, node);
           break;
         case 'formula':
         case 'math_environment':
-          info = state.nodeInfo[node.id];
-          // only environments or formulas go into the math panel
-          // that ar referenced or forced using `specific-use='resource'`
-          if (referencedMath[node.id] ||
-              (info && info.specificUse === "resource")) {
-            doc.show(MATH_PANEL, node.id);
-          }
-          doc.show('content', node.id);
+          _showFormulaOrEnvironment(state, node);
           break;
-        // Special treatment for proofs as they may contain equations
-        // which when referenced should be displayed in the resource panel
         case 'proof':
-          LensConverter.prototype.showNode.call(this, state, node);
-          for (var j = 0; j < node.children.length; j++) {
-            child = doc.get(node.children[j]);
-            if (child.type === 'formula' || child.type === 'math_environment') {
-              info = state.nodeInfo[child.id];
-              if (referencedMath[child.id] ||
-                (info && info.specificUse === "resource")) {
-                doc.show(MATH_PANEL, child.id);
-              }
-            }
-          }
+          _showProof(state, node);
           break;
         default:
           LensConverter.prototype.showNode.call(this, state, node);
