@@ -754,7 +754,7 @@ MathConverter.Prototype = function MathConverterPrototype() {
   };
 
   function _showFigure(state, node) {
-    // show figures without captions are only in-flow
+    // show figures without captions only in the content panel
     if (!node.caption) {
       state.doc.show('content', node.id);
     }
@@ -791,15 +791,22 @@ MathConverter.Prototype = function MathConverterPrototype() {
 
   function _showNestedContent(state, nodeIds) {
     var referencedMath = state.referencedMath;
-    nodeIds.forEach(function(nodeId) {
+    for (var i = 0; i < nodeIds.length; i++) {
+      var nodeId = nodeIds[i]
       var node = state.doc.get(nodeId);
       var info = state.nodeInfo[nodeId];
       switch (node.type) {
         case 'figure':
-          // only show figures in the figures panel,
-          // which have a caption
+          // showing a figure in figures panel if it has a caption
+          // and it is not explicitly anchored (position='anchor')
+          // If a figure doen't have a caption or is anchored explicitly,
+          // it is shown in the original position.
           if (node.caption) {
-           state.doc.show('figures', nodeId);
+            state.doc.show('figures', nodeId);
+            if (node.position !== 'anchor') {
+              nodeIds.splice(i, 1);
+              i--;
+            }
           }
           break;
         case 'formula':
@@ -809,7 +816,7 @@ MathConverter.Prototype = function MathConverterPrototype() {
         default:
           // nothing
       }
-    });
+    }
   }
 
   function _showProof(state, node) {
