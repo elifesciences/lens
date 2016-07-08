@@ -734,6 +734,7 @@ MathConverter.Prototype = function MathConverterPrototype() {
           targetNode = state.doc.getNodeBySourceId(anno.target) || state.doc.get(anno.target);
           if (targetNode) {
             anno.target = targetNode.id;
+            targetNode.isReferenced = true;
           } else {
             console.log("Could not lookup targetNode for annotation", anno);
             continue;
@@ -755,7 +756,7 @@ MathConverter.Prototype = function MathConverterPrototype() {
 
   function _showFigure(state, node) {
     // show figures without captions only in the content panel
-    if (!node.caption) {
+    if (!node.isReferenced) {
       state.doc.show('content', node.id);
     }
     // all others are shown in the figures panel
@@ -801,7 +802,7 @@ MathConverter.Prototype = function MathConverterPrototype() {
           // and it is not explicitly anchored (position='anchor')
           // If a figure doen't have a caption or is anchored explicitly,
           // it is shown in the original position.
-          if (node.caption) {
+          if (node.isReferenced) {
             state.doc.show('figures', nodeId);
             if (node.position !== 'anchor') {
               nodeIds.splice(i, 1);
@@ -830,7 +831,7 @@ MathConverter.Prototype = function MathConverterPrototype() {
     var referencedMath = state.referencedMath;
     var node, child, info;
     for (var i = 0; i < state.shownNodes.length; i++) {
-      node = state.shownNodes[i];
+      node = doc.get(state.shownNodes[i].id);
       switch (node.type) {
         case 'figure':
           _showFigure(state, node);
