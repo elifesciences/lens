@@ -755,17 +755,11 @@ MathConverter.Prototype = function MathConverterPrototype() {
   };
 
   function _showFigure(state, node) {
-    // show figures without captions only in the content panel
-    if (!node.isReferenced) {
+    // show all figures in the figures panel
+    state.doc.show('figures', node.id);
+    // show unreferenced and anchored figures in the main content
+    if (!node.isReferenced || node.position === 'anchor') {
       state.doc.show('content', node.id);
-    }
-    // all others are shown in the figures panel
-    else {
-      state.doc.show('figures', node.id);
-      // in addition a figure can be shown in-flow using position='anchor'
-      if (node.position === 'anchor') {
-        state.doc.show('content', node.id);
-      }
     }
   }
 
@@ -798,16 +792,12 @@ MathConverter.Prototype = function MathConverterPrototype() {
       var info = state.nodeInfo[nodeId];
       switch (node.type) {
         case 'figure':
-          // showing a figure in figures panel if it has a caption
-          // and it is not explicitly anchored (position='anchor')
-          // If a figure doen't have a caption or is anchored explicitly,
-          // it is shown in the original position.
-          if (node.isReferenced) {
-            state.doc.show('figures', nodeId);
-            if (node.position !== 'anchor') {
-              nodeIds.splice(i, 1);
-              i--;
-            }
+          // show all figures in the figures panel
+          state.doc.show('figures', nodeId);
+          // hide referenced and unanchored figures from the environment
+          if (node.isReferenced && node.position !== 'anchor') {
+            nodeIds.splice(i, 1);
+            i--;
           }
           break;
         case 'formula':
