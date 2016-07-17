@@ -734,6 +734,7 @@ MathConverter.Prototype = function MathConverterPrototype() {
           targetNode = state.doc.getNodeBySourceId(anno.target) || state.doc.get(anno.target);
           if (targetNode) {
             anno.target = targetNode.id;
+            targetNode.isReferenced = true;
           } else {
             console.log("Could not lookup targetNode for annotation", anno);
             continue;
@@ -754,17 +755,11 @@ MathConverter.Prototype = function MathConverterPrototype() {
   };
 
   function _showFigure(state, node) {
-    // show figures without captions are only in-flow
-    if (!node.caption) {
+    // show all figures in the figures panel
+    state.doc.show('figures', node.id);
+    // show unreferenced and anchored figures in the main content
+    if (!node.isReferenced || node.position === 'anchor') {
       state.doc.show('content', node.id);
-    }
-    // all others are shown in the figures panel
-    else {
-      state.doc.show('figures', node.id);
-      // in addition a figure can be shown in-flow using position='anchor'
-      if (node.position === 'anchor') {
-        state.doc.show('content', node.id);
-      }
     }
   }
 
@@ -791,15 +786,18 @@ MathConverter.Prototype = function MathConverterPrototype() {
 
   function _showNestedContent(state, nodeIds) {
     var referencedMath = state.referencedMath;
-    nodeIds.forEach(function(nodeId) {
+    for (var i = 0; i < nodeIds.length; i++) {
+      var nodeId = nodeIds[i]
       var node = state.doc.get(nodeId);
       var info = state.nodeInfo[nodeId];
       switch (node.type) {
         case 'figure':
-          // only show figures in the figures panel,
-          // which have a caption
-          if (node.caption) {
-           state.doc.show('figures', nodeId);
+          // show all figures in the figures panel
+          state.doc.show('figures', nodeId);
+          // hide referenced and unanchored figures from the environment
+          if (node.isReferenced && node.position !== 'anchor') {
+            nodeIds.splice(i, 1);
+            i--;
           }
           break;
         case 'formula':
@@ -809,7 +807,7 @@ MathConverter.Prototype = function MathConverterPrototype() {
         default:
           // nothing
       }
-    });
+    }
   }
 
   function _showProof(state, node) {
@@ -823,7 +821,7 @@ MathConverter.Prototype = function MathConverterPrototype() {
     var referencedMath = state.referencedMath;
     var node, child, info;
     for (var i = 0; i < state.shownNodes.length; i++) {
-      node = state.shownNodes[i];
+      node = doc.get(state.shownNodes[i].id);
       switch (node.type) {
         case 'figure':
           _showFigure(state, node);
