@@ -620,10 +620,16 @@ NlmToLensConverter.Prototype = function() {
   this.affiliation = function(state, aff) {
     var doc = state.doc;
 
-    var institution = aff.querySelector("institution");
+    var department = aff.querySelector("institution[content-type=dept]");
+    if (department) {
+      var institution = aff.querySelector("institution:not([content-type=dept])");
+    } else {
+      var department = aff.querySelector("addr-line named-content[content-type=department]");
+      var institution = aff.querySelector("institution");
+    }
     var country = aff.querySelector("country");
     var label = aff.querySelector("label");
-    var department = aff.querySelector("addr-line named-content[content-type=department]");
+
     var city = aff.querySelector("addr-line named-content[content-type=city]");
     // TODO: there are a lot more elements which can have this.
     var specific_use = aff.getAttribute('specific-use');
