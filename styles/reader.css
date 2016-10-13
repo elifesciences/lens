@@ -404,7 +404,7 @@ span.annotation.formula_reference, span.publication_reference {
 .content-node .question { background-color: rgba(16, 167, 222, 0.3); }
 .content-node .error { background-color: rgba(237, 96, 48, 0.3); }
 
-.content-node .link { color: #1B6685; font-weight: bold; }
+.content-node .link { font-weight: bold; }
 .content-node .link:hover, .content-node .link.highlighted { color: rgba(11, 157, 217, 1); }
 
 /* Inline Code Annotations */

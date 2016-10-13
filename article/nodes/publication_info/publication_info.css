@@ -46,10 +46,10 @@
 .article .resources .nodes > .content-node.publication-info .content-node[data-id=articleinfo] .heading.level-3 .content {
   font-size: 14px;
   font-weight: normal;
-  font-family: "Source Sans Pro";
   color: #999;
 }
 
 .article .resources .nodes > .content-node.publication-info .content-node[data-id=articleinfo] .content-node {
   padding-top: 10px;
 }
+
