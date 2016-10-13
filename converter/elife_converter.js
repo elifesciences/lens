@@ -3,7 +3,7 @@
 var util = require("../substance/util");
 var _ = require("underscore");
 
-var LensConverter = require('lens/converter');
+var LensConverter = require('./lens_converter');
 
 var ElifeConverter = function(options) {
   LensConverter.call(this, options);
@@ -135,7 +135,7 @@ ElifeConverter.Prototype = function() {
       } else if (!(url.match(/\.gif$/g))) {
         url = url+'.jpg'
       }
-      
+
       return [
         "https://publishing-cdn.elifesciences.org/",
         state.doc.id,
@@ -225,7 +225,7 @@ ElifeConverter.Prototype = function() {
         pdfURI ? pdfURI.getAttribute("xlink:href") : "#"
       ].join('');
     }
-    
+
     // Version number from the PDF href, default to 1
     var match = null;
     if (pdfURI) {
@@ -304,14 +304,14 @@ ElifeConverter.Prototype = function() {
       return [baseURL, url].join('');
     } else {
       // Use special URL resolving for production articles
-      
+
       // File extension support
       if (url.match(/\.tif$/g)) {
         url = url.replace(/\.tif$/g, '.jpg')
       } else if (!(url.match(/\.gif$/g))) {
         url = url+'.jpg'
       }
-      
+
       return [
         "https://publishing-cdn.elifesciences.org/",
         state.doc.id,
