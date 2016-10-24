@@ -1,5 +1,5 @@
 .lens-article .content-node.cover {
-  color: rgba(0,0,0,0.8);
+
 }
 
 .lens-article .content-node.cover .breadcrumbs {
@@ -31,8 +31,6 @@
 }
 
 .lens-article .content-node.cover .published-on {
-  margin-top: 50px;
-  margin-bottom: 20px;
   color: #666;
 }
 

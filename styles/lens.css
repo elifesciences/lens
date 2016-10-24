@@ -11,11 +11,10 @@ body {
   margin: 0;
   background-color: white;
 
-/*  -moz-transition: background-color 200ms linear;
+  /* -moz-transition: background-color 200ms linear;
   -o-transition: background-color 200ms linear;
   -webkit-transition: background-color 200ms linear;
   transition: background-color 200ms linear;*/
-
 }
 
 body.loading {
@@ -43,7 +42,7 @@ body.reader {
 }
 
 /*
-General Layout 
+General Layout
 --------------------------------------- */
 
 #container {
@@ -67,7 +66,7 @@ a {
   color: #1B6685;
   font-weight: normal;
   text-decoration: none;
-  
+
 /*  -moz-transition: background-color 100ms linear, color 100ms linear, opacity 100ms linear;
   -o-transition: background-color 100ms linear, color 100ms linear, opacity 100ms linear;
   -webkit-transition: background-color 100ms linear, color 100ms linear, opacity 100ms linear;
@@ -86,7 +85,7 @@ img {
 
 strong { font-weight: 700; }
 
-h1, h2, h3 { 
+h1, h2, h3 {
   font-weight: 700;
 }
 
@@ -94,16 +93,16 @@ h1 a { color: white; }
 h1 a:hover { color: white; }
 
 h2 {
-  font-size: 1.75em; 
+  font-size: 1.75em;
   padding-bottom: 20px;
 }
-  
+
 h3, h4, h5, h6 {
   margin-bottom: 20px;
   font-size: 1em;
   font-weight: 700;
 }
-  
+
 p {
   padding-bottom: 20px;
 }
@@ -195,7 +194,7 @@ body.loading .spinner-wrapper {
 .spinner-wrapper .spinner {
   width: 40px;
   height: 40px;
-  margin: 0 auto;  
+  margin: 0 auto;
   background: #444;
   -webkit-animation: rotateplane 1.2s infinite ease-in-out;
   animation: rotateplane 1.2s infinite ease-in-out;

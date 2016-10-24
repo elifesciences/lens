@@ -98,7 +98,7 @@ ElifeConverter.Prototype = function() {
     }
 
     node.breadcrumbs = [
-      { name: "eLife", url: "https://elifesciences.org/", image: "https://lens.elifesciences.org/lens-elife/styles/elife.png" },
+      // { name: "eLife", url: "https://elifesciences.org/", image: "https://lens.elifesciences.org/lens-elife/styles/elife.png" },
       { name: dispChannel, url: "https://elifesciences.org/category/"+dispChannel.replace(/ /g, '-').toLowerCase() },
     ];
 
