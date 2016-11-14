@@ -43,15 +43,6 @@ ElifeConverter.Prototype = function() {
         id: state.nextId("heading"),
         type: "heading",
         level: 1,
-        content: "Article Commentary"
-      };
-      doc.create(heading);
-      nodes.push(heading);
-
-      heading = {
-        id: state.nextId("heading"),
-        type: "heading",
-        level: 2,
         content: "Decision letter"
       };
       doc.create(heading);
@@ -70,7 +61,7 @@ ElifeConverter.Prototype = function() {
       heading = {
         id: state.nextId("heading"),
         type: "heading",
-        level: 2,
+        level: 1,
         content: "Author response"
       };
       doc.create(heading);
@@ -331,6 +322,16 @@ ElifeConverter.Prototype = function() {
         anno.type = "author_callout";
         anno.style = contentType;
       }
+    }
+  };
+
+  this.back = function(state, back) {
+    var appGroups = back.querySelectorAll('app-group');
+
+    if (appGroups && appGroups.length > 0) {
+      _.each(appGroups, function(appGroup) {
+        this.appGroup(state, appGroup);
+      }.bind(this));
     }
   };
 

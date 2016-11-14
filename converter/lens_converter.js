@@ -430,6 +430,7 @@ NlmToLensConverter.Prototype = function() {
           "level" : 3,
           "content" : title ? this.capitalized(title.textContent.toLowerCase(), "all") : "Acknowledgements"
         };
+
         doc.create(header);
         nodes.push(header.id);
 
@@ -437,6 +438,7 @@ NlmToLensConverter.Prototype = function() {
         var pars = this.bodyNodes(state, util.dom.getChildren(ack), {
           ignore: ["title"]
         });
+
         _.each(pars, function(par) {
           nodes.push(par.id);
         });
@@ -1219,14 +1221,7 @@ NlmToLensConverter.Prototype = function() {
 
   this.body = function(state, body) {
     var doc = state.doc;
-    var heading = {
-      id: state.nextId("heading"),
-      type: "heading",
-      level: 1,
-      content: "Main Text"
-    };
-    doc.create(heading);
-    var nodes = [heading].concat(this.bodyNodes(state, util.dom.getChildren(body)));
+    var nodes = this.bodyNodes(state, util.dom.getChildren(body));
     if (nodes.length > 0) {
       this.show(state, nodes);
     }
@@ -2602,7 +2597,7 @@ NlmToLensConverter.State = function(converter, xmlDoc, doc) {
   // of processed nodes to be able to associate other things (e.g., annotations) correctly.
   this.stack = [];
 
-  this.sectionLevel = 1;
+  this.sectionLevel = 0;
 
   // Tracks all available affiliations
   this.affiliations = [];
