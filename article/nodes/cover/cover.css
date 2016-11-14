@@ -30,14 +30,11 @@
   padding-top: 20px;
 }
 
-.lens-article .content-node.cover .published-on {
-  color: #666;
-}
+.lens-article .content-node.cover .published-on {}
 
 .lens-article .content-node.cover .doi {
   margin-top: 30px;
   margin-bottom: 20px;
-  color: #666;
   font-size: 14px;
 }
 
