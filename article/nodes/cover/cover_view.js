@@ -30,32 +30,16 @@ CoverView.Prototype = function() {
     var node = this.node;
     var pubInfo = this.node.document.get('publication_info');
 
-    if (node.breadcrumbs && node.breadcrumbs.length > 0) {
-      var breadcrumbs = $$('.breadcrumbs', {
-        children: _.map(node.breadcrumbs, function(bc) {
-          var html;
-          if (bc.image) {
-            html = '<img src="'+bc.image+'" title="'+bc.name+'"/>';
-          } else {
-            html = bc.name;
-          }
-          return $$('a', {href: bc.url, html: html});
-        })
-      });
-      this.content.appendChild(breadcrumbs);
-    }
 
+    // Render Subject(s) if available
+    // --------------
+    //
 
     if (pubInfo) {
-      var pubDate = pubInfo.published_on;
-      if (pubDate) {
-        var items = [articleUtil.formatDate(pubDate)];
-        if (pubInfo.journal && !node.breadcrumbs) {
-          items.push(' in <i>'+pubInfo.journal+'</i>');
-        }
-
-        this.content.appendChild($$('.published-on', {
-          html: items.join('')
+      var subjects = pubInfo.subjects;
+      if (subjects) {
+        this.content.appendChild($$('.subjects', {
+          html: subjects.join(' ')
         }));
       }
     }
@@ -87,6 +71,22 @@ CoverView.Prototype = function() {
     }));
 
     this.content.appendChild(authors);
+
+    if (pubInfo) {
+      var pubDate = pubInfo.published_on;
+      var articleType = pubInfo.article_type;
+      if (pubDate) {
+        var items = [articleUtil.formatDate(pubDate)];
+
+        if (articleType) {
+          items.unshift(articleType)
+        }
+
+        this.content.appendChild($$('.published-on', {
+          html: items.join(' ')
+        }));
+      }
+    }
 
     // Render Links
     // --------------

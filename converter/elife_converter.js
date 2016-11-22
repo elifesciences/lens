@@ -79,23 +79,6 @@ ElifeConverter.Prototype = function() {
     }
   };
 
-  this.enhanceCover = function(state, node, element) {
-    var category;
-    var dispChannel = element.querySelector("subj-group[subj-group-type=display-channel] subject").textContent;
-    try {
-      category = element.querySelector("subj-group[subj-group-type=heading] subject").textContent;
-    } catch(err) {
-      category = null;
-    }
-
-    node.breadcrumbs = [
-      // { name: "eLife", url: "https://elifesciences.org/", image: "https://lens.elifesciences.org/lens-elife/styles/elife.png" },
-      { name: dispChannel, url: "https://elifesciences.org/category/"+dispChannel.replace(/ /g, '-').toLowerCase() },
-    ];
-
-    if (category) node.breadcrumbs.push( { name: category, url: "https://elifesciences.org/category/"+category.replace(/ /g, '-').toLowerCase() } );
-  };
-
   // Resolves figure url
   // --------
   //
