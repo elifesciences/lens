@@ -1,5 +1,5 @@
 .lens-article .content-node.cover {
-
+  text-align: center;
 }
 
 .lens-article .content-node.cover .breadcrumbs {
@@ -13,8 +13,7 @@
 
 .lens-article .content-node.cover .breadcrumbs a {
   margin-right: 20px;
-  display: block;
-  float: left;
+  display: inline-block;
   line-height: 40px;
   height: 40px;
 }
@@ -30,7 +29,12 @@
   padding-top: 20px;
 }
 
-.lens-article .content-node.cover .published-on {}
+.lens-article .content-node.cover .subjects {
+}
+
+.lens-article .content-node.cover .published-on {
+  color: #999;
+}
 
 .lens-article .content-node.cover .doi {
   margin-top: 30px;
@@ -56,7 +60,8 @@
 
 /* One para per author */
 .lens-article .content-node.cover .authors .text {
-  float: left;
+  /*float: left;*/
+  display: inline-block;
   padding: 0px;
   margin: 0px;
   font-size: 17px;
