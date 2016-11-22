@@ -321,6 +321,7 @@ NlmToLensConverter.Prototype = function() {
         fundingInfo.push(this.annotatedText(state, fundingStatementEls[i], ["publication_info", "funding_info", i]));
       }
     }
+
     return fundingInfo;
   };
 
@@ -807,7 +808,20 @@ NlmToLensConverter.Prototype = function() {
         // </funding-source>
         //
         // and we only want to display the first text node, excluding the funder id
-        var fundingSourceName = fundingSource.childNodes[0].textContent;
+        // or this
+        //
+        // They can also look like this
+        //
+        // <funding-source>
+        //   <institution-wrap>
+        //     <institution-id institution-id-type="FundRef">http://dx.doi.org/10.13039/100005156</institution-id>
+        //     <institution>Alexander von Humboldt-Stiftung</institution>
+        //   </institution-wrap>
+        // </funding-source>
+        // Then we take the institution element
+
+        var institution = fundingSource.querySelector('institution')
+        var fundingSourceName = institution ? institution.textContent : fundingSource.childNodes[0].textContent;
         contribNode.fundings.push([fundingSourceName, awardId].join(''));
       } else if (xref.getAttribute("ref-type") === "corresp") {
         var correspId = xref.getAttribute("rid");
@@ -1336,9 +1350,9 @@ NlmToLensConverter.Prototype = function() {
     };
     doc.create(quoteNode);
     return quoteNode;
-    };
+  };
 
-    this.datasets = function(state, datasets) {
+  this.datasets = function(state, datasets) {
     var nodes = [];
 
     for (var i=0;i<datasets.length;i++) {
