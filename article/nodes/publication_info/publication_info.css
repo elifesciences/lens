@@ -34,7 +34,8 @@
 .article .resources .nodes > .content-node.publication-info .content-node[data-id=articleinfo] .heading.level-3 .content {
   font-size: 20px;
   margin-top: 12px;
-  margin-bottom: 12px;
+  /* The 'content-node paragraph' below has a padding top making the space between the heading and text 22px rather than 12. */
+  /* margin-bottom: 12px; */
 }
 
 .article .resources .nodes > .content-node.publication-info .content-node[data-id=articleinfo] .content-node {
