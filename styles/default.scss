@@ -59,6 +59,10 @@ a:hover {
   @extend .contextual-label;
 }
 
+.lens-article .content-node.cover .subjects a {
+  font-weight: 600;
+}
+
 /* Authors on cover page */
 .lens-article .content-node.cover .doi {
   @extend .contextual-label;
@@ -84,12 +88,14 @@ a:hover {
 
 .lens-article .content-node.cover .authors .text a:hover {
   background: none;
-  border-bottom: 1px solid #212121;
+  // border-bottom: 1px solid #212121;
+  color: #0277BD;
 }
 
 .lens-article .content-node.cover .authors .contributor_reference.highlighted {
-  border-bottom: 1px solid #212121;
+  // border-bottom: 1px solid #212121;
   background: none;
+  color: #0277BD;
 }
 
 /* Links on cover page (PDF, Source XML, Lens JSON) */

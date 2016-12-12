@@ -38,9 +38,20 @@ CoverView.Prototype = function() {
     if (pubInfo) {
       var subjects = pubInfo.subjects;
       if (subjects) {
-        this.content.appendChild($$('.subjects', {
-          html: subjects.join(' ')
-        }));
+        var subjectsEl
+        if (pubInfo.subject_link) {
+          subjectsEl = $$('.subjects', {
+            children: _.map(pubInfo.getSubjectLinks(), function(subject) {
+              return $$('a', {href: subject.url, text: subject.name})
+            })
+          })
+
+        } else {
+          subjectsEl = $$('.subjects', {
+            html: subjects.join(' ')
+          })
+        }
+        this.content.appendChild(subjectsEl);
       }
     }
 
@@ -79,7 +90,13 @@ CoverView.Prototype = function() {
         var items = [articleUtil.formatDate(pubDate)];
 
         if (articleType) {
-          items.unshift(articleType)
+          if (pubInfo.article_type_link) {
+            var linkData = pubInfo.getArticleTypeLink()
+            items.unshift('<a href="'+linkData.url+'">'+linkData.name+'</a>')
+          } else {
+            items.unshift(articleType)
+          }
+          
         }
 
         this.content.appendChild($$('.published-on', {
