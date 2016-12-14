@@ -26,6 +26,10 @@
   color: #999;
 }
 
+.lens-article .content-node.cover .published-on a:hover {
+  color: #0277BD;
+}
+
 .lens-article .content-node.cover .doi {
   margin-top: 30px;
   margin-bottom: 20px;
