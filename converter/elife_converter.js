@@ -221,7 +221,7 @@ ElifeConverter.Prototype = function() {
     }
 
     links.push({
-      url: "https://s3.amazonaws.com/prod-elife-published/articles/"+state.doc.id+"/elife-"+state.doc.id+"-v"+version+".xml",
+      url: "https://cdn.elifesciences.org/articles/"+state.doc.id+"/elife-"+state.doc.id+"-v"+version+".xml",
       name: "Source XML",
       type: "xml"
     });
