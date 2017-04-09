@@ -240,8 +240,8 @@ ElifeConverter.Prototype = function() {
     publicationInfo.article_type = articleType ? articleType.textContent : "";
     publicationInfo.links = links;
 
-    publicationInfo.subject_link = 'http://elifesciences.org/category'
-    publicationInfo.article_type_link = 'http://elifesciences.org/category'
+    publicationInfo.subject_link = 'https://elifesciences.org/category'
+    publicationInfo.article_type_link = 'https://elifesciences.org/category'
 
     if (publicationInfo.related_article) publicationInfo.related_article = "http://dx.doi.org/" + publicationInfo.related_article;
   };
