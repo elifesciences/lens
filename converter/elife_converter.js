@@ -111,7 +111,7 @@ ElifeConverter.Prototype = function() {
       }
 
       return [
-        "https://publishing-cdn.elifesciences.org/",
+        "https://cdn.elifesciences.org/articles/",
         state.doc.id,
         "/",
         url
@@ -125,7 +125,7 @@ ElifeConverter.Prototype = function() {
       return [baseURL, node.url].join('');
     } else {
       node.url = [
-        "https://publishing-cdn.elifesciences.org/",
+        "https://cdn.elifesciences.org/articles/",
         state.doc.id,
         "/",
         node.url
@@ -193,7 +193,7 @@ ElifeConverter.Prototype = function() {
 
     if (pdfURI) {
       var pdfLink = [
-        "https://publishing-cdn.elifesciences.org/",
+        "https://cdn.elifesciences.org/articles/",
         state.doc.id,
         "/",
         pdfURI ? pdfURI.getAttribute("xlink:href") : "#"
@@ -221,7 +221,7 @@ ElifeConverter.Prototype = function() {
     }
 
     links.push({
-      url: "https://s3.amazonaws.com/elife-publishing-cdn/"+state.doc.id+"/elife-"+state.doc.id+"-v"+version+".xml",
+      url: "https://cdn.elifesciences.org/articles/"+state.doc.id+"/elife-"+state.doc.id+"-v"+version+".xml",
       name: "Source XML",
       type: "xml"
     });
@@ -240,8 +240,8 @@ ElifeConverter.Prototype = function() {
     publicationInfo.article_type = articleType ? articleType.textContent : "";
     publicationInfo.links = links;
 
-    publicationInfo.subject_link = 'http://elifesciences.org/category'
-    publicationInfo.article_type_link = 'http://elifesciences.org/category'
+    publicationInfo.subject_link = 'https://elifesciences.org/category'
+    publicationInfo.article_type_link = 'https://elifesciences.org/category'
 
     if (publicationInfo.related_article) publicationInfo.related_article = "http://dx.doi.org/" + publicationInfo.related_article;
   };
@@ -252,7 +252,7 @@ ElifeConverter.Prototype = function() {
       return [baseURL, node.url].join('');
     } else {
       node.url = [
-        "https://publishing-cdn.elifesciences.org/",
+        "https://cdn.elifesciences.org/articles/",
         state.doc.id,
         "/",
         node.url
@@ -290,7 +290,7 @@ ElifeConverter.Prototype = function() {
       }
 
       return [
-        "https://publishing-cdn.elifesciences.org/",
+        "https://cdn.elifesciences.org/articles/",
         state.doc.id,
         "/",
         url
