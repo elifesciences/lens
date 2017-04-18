@@ -263,10 +263,10 @@ ElifeConverter.Prototype = function() {
   this.enhanceVideo = function(state, node, element) {
     var href = element.getAttribute("xlink:href").split(".");
     var name = href[0];
-    node.url = "https://master.api.elifesciences.org/v2/articles/"+state.doc.id+"/media/file/"+name+".mp4";
-    node.url_ogv = "https://master.api.elifesciences.org/v2/articles/"+state.doc.id+"/media/file//"+name+".ogv";
-    node.url_webm = "https://master.api.elifesciences.org/v2/articles/"+state.doc.id+"/media/file//"+name+".webm";
-    node.poster = "https://master.api.elifesciences.org/v2/articles/"+state.doc.id+"/media/file/"+name+".jpg";
+    node.url = "https://legacy--api.elifesciences.org/v2/articles/"+state.doc.id+"/media/file/"+name+".mp4";
+    node.url_ogv = "https://legacy--api.elifesciences.org/v2/articles/"+state.doc.id+"/media/file//"+name+".ogv";
+    node.url_webm = "https://legacy--api.elifesciences.org/v2/articles/"+state.doc.id+"/media/file//"+name+".webm";
+    node.poster = "https://legacy--api.elifesciences.org/v2/articles/"+state.doc.id+"/media/file/"+name+".jpg";
   };
 
   // Example url to JPG: https://cdn.elifesciences.org/elife-articles/00768/svg/elife00768f001.jpg
