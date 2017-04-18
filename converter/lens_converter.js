@@ -1681,6 +1681,8 @@ NlmToLensConverter.Prototype = function() {
     var listItems = list.querySelectorAll("list-item");
     for (var i = 0; i < listItems.length; i++) {
       var listItem = listItems[i];
+      // Only consider direct children
+      if (listItem.parentNode !== list) continue;
       // Note: we do not care much about what is served as items
       // However, we do not have complex nodes on paragraph level
       // They will be extract as sibling items
