@@ -153,6 +153,10 @@ p:last-child { padding-bottom: 0; }
   color: gold;
 }
 
+.lens-article .content-node.cover .subjects a:not(:last-child):after {
+  content: ', '
+}
+
 /* main
    --------------------------------------- */
 
