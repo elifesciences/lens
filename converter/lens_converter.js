@@ -841,7 +841,11 @@ NlmToLensConverter.Prototype = function() {
           var fnType = fnElem.getAttribute("fn-type");
           switch (fnType) {
             case "con":
-              contribNode.contribution = fnElem.textContent;
+              if (fnElem.getAttribute("id").indexOf("equal-contrib")>=0) {
+                equalContribs = this._getEqualContribs(state, contrib, fnElem.getAttribute("id"));
+              } else {
+                contribNode.contribution = fnElem.textContent;
+              }
               break;
             case "conflict":
               compInterests.push(fnElem.textContent.trim());
