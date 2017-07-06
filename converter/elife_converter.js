@@ -325,11 +325,15 @@ ElifeConverter.Prototype = function() {
     switch(node.type) {
     // Boxes go into the figures view if these conditions are met
     // 1. box has a label (e.g. elife 00288)
+    // Disable it July 2017: no box has a label, and also cross reference links do not work if
+    //  they do try to link to the figures panel
+    /*
     case "box":
       if (node.label) {
         state.doc.show("figures", node.id);
       }
       break;
+    */
     default:
       __super__.showNode.apply(this, arguments);
     }
