@@ -94,7 +94,7 @@ ContributorView.Prototype = function() {
         $$('.equal-contribution.contrib-data', {
           children: [
             $$('span.contrib-label', {text: 'Contributed equally with: '}),
-            $$('span', {text: this.node.equal_contrib})
+            $$('span', {text: this.node.equal_contrib.join(', ')})
           ]
         })
       );
