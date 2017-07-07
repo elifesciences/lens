@@ -2224,7 +2224,7 @@ NlmToLensConverter.Prototype = function() {
       "type" : "heading",
       "id" : headingId,
       "level" : 1,
-      "content" : title ? this.annotatedText(state, title, [headingId, "content"]) : "Appendix"
+      "content" : "Appendices"
     });
 
     this.show(state, [heading]);
