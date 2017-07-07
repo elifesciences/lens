@@ -1329,11 +1329,13 @@ NlmToLensConverter.Prototype = function() {
     // Assuming that there are no nested <boxed-text> elements
     var childNodes = this.bodyNodes(state, util.dom.getChildren(box));
     var boxId = state.nextId("box");
+    // Optional heading label
+    var label = this.selectDirectChildren(box, "label")[0];
     var boxNode = {
       "type": "box",
       "id": boxId,
       "source_id": box.getAttribute("id"),
-      "label": "",
+      "label": label ? label.textContent : "",
       "children": _.pluck(childNodes, 'id')
     };
     doc.create(boxNode);
