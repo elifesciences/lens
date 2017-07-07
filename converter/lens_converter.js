@@ -1915,9 +1915,11 @@ NlmToLensConverter.Prototype = function() {
     };
 
     // Note: using a DOM div element to create HTML
-    var table = tableWrap.querySelector("table");
+    var table = tableWrap.querySelectorAll("table");
     if (table) {
-      tableNode.content = this.toHtml(table);
+      for (var i = 0; i < table.length; i++) {
+        tableNode.content += this.toHtml(table[i]);
+      }
     }
     this.extractTableCaption(state, tableNode, tableWrap);
 
