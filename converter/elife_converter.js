@@ -260,6 +260,20 @@ ElifeConverter.Prototype = function() {
     }
   };
 
+  this.enhanceTable = function(state, tableNode, tableWrap) {
+    tableNode.content = this.enhanceHTML(tableNode.content);
+  }
+
+  this.enhanceHTML = function(html) {
+    html = html.replace(/<(\/)?bold>/g, "<$1strong>");
+    html = html.replace(/<(\/)?italic>/g, "<$1em>");
+    // Table colours
+    html = html.replace(/<td style=\"([^"]+)\"([^>]*)>/g, "<td class=\"$1\"$2>");
+    // named-content span
+    html = html.replace(/<named-content content-type="([^"]+)"([^>]*)>([^<]*)<\/named-content>/g, "<span class=\"$1\"$2>$3</span>");
+    return html;
+  };
+
   this.enhanceVideo = function(state, node, element) {
     var href = element.getAttribute("xlink:href").split(".");
     var name = href[0];
