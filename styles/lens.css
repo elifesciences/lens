@@ -153,6 +153,50 @@ p:last-child { padding-bottom: 0; }
   color: gold;
 }
 
+.author-callout-style-a1 {
+  color: rgb(54, 107, 251); // Blue
+}
+
+.author-callout-style-a2 {
+  color: rgb(156, 39, 176); // Purple
+}
+
+.author-callout-style-a3 {
+  color: rgb(213, 0, 0); // Red
+}
+
+.author-callout-style-b1 {
+  background-color: rgb(144, 202, 249); // Blue
+}
+
+.author-callout-style-b2 {
+  background-color: rgb(197, 225, 165); // Green
+}
+
+.author-callout-style-b3 {
+  background-color: rgb(255, 183, 77); // Orange
+}
+
+.author-callout-style-b4 {
+  background-color: rgb(255, 241, 118); // Yellow
+}
+
+.author-callout-style-b5 {
+  background-color: rgb(158, 134, 201); // Purple
+}
+
+.author-callout-style-b6 {
+  background-color: rgb(229, 115, 115); // Red
+}
+
+.author-callout-style-b7 {
+  background-color: rgb(244, 143, 177); // Pink
+}
+
+.author-callout-style-b8 {
+  background-color: rgb(230, 230, 230); // Grey
+}
+
 .lens-article .content-node.cover .subjects a:not(:last-child):after {
   content: ', '
 }

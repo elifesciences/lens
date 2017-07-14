@@ -260,6 +260,55 @@ ElifeConverter.Prototype = function() {
     }
   };
 
+  this.enhanceTable = function(state, tableNode, tableWrap) {
+    this.mapCitations(state);
+    tableNode.content = this.enhanceHTML(tableNode.content);
+  }
+
+  this.mapCitations = function (state)
+  {
+    // Map citation id to their citation reference for use in HTML replacements
+    this.citationCitationReferenceMap = [];
+    var citationSourceIdMap = [];
+    var doc = state.doc;
+    _.each(doc.nodes, function(node) {
+      if(node.type == "citation")
+      {
+        citationSourceIdMap[node.source_id] = node.id;
+      }
+    }.bind(this));
+    var annotations = state.annotations;
+    _.each(annotations, function(anno) {
+      if(anno.type == "citation_reference")
+      {
+        this.citationCitationReferenceMap[anno.target] = anno.id;
+      }
+    }.bind(this));
+  }
+
+  this.enhanceHTML = function(html) {
+    html = html.replace(/<(\/)?bold>/g, "<$1strong>");
+    html = html.replace(/<(\/)?italic>/g, "<$1em>");
+    // Table colours
+    html = html.replace(/<td style=\"([^"]+)\"([^>]*)>/g, "<td class=\"$1\"$2>");
+    // named-content span
+    html = html.replace(/<named-content content-type="([^"]+)"([^>]*)>([^<]*)<\/named-content>/g, "<span class=\"$1\"$2>$3</span>");
+    // Hacky way to convert references inside tables
+    if(this.citationCitationReferenceMap)
+    {
+      var xref_pattern = /<xref ref-type="bibr" rid="([^"]+)">([^<]*)<\/xref>/g;
+      var matches = html.match(xref_pattern);
+      _.each(matches, function(match) {
+        var rid = match.replace(xref_pattern, "$1");
+        var content = match.replace(xref_pattern, "$2");
+        var citation_reference = this.citationCitationReferenceMap[rid];
+        var replace_tag = '<a href="" data-id="' + citation_reference + '" class="annotation citation_reference resource-reference">'+content+'</a>';
+        html = html.replace(match, replace_tag);
+      }.bind(this));
+    }
+    return html;
+  };
+
   this.enhanceVideo = function(state, node, element) {
     var href = element.getAttribute("xlink:href").split(".");
     var name = href[0];
