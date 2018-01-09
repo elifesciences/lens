@@ -1311,9 +1311,10 @@ NlmToLensConverter.Prototype = function() {
   this._bodyNodes["comment"] = function(state, child) {
     return this.comment(state, child);
   };
-  this._bodyNodes["fig"] = function(state, child) {
-    return this.figure(state, child);
-  };
+  // Disable fig as a body node, otherwise the order of nodes in the Figures tab can be incorrect
+  //this._bodyNodes["fig"] = function(state, child) {
+  //  return this.figure(state, child);
+  //};
 
   // Overwirte in specific converter
   this.ignoredNode = function(/*state, node, type*/) {
