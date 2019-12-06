@@ -310,12 +310,17 @@ ElifeConverter.Prototype = function() {
   };
 
   this.enhanceVideo = function(state, node, element) {
+    var id = element.getAttribute("id");
     var href = element.getAttribute("xlink:href").split(".");
     var name = href[0];
-    node.url = "https://legacy--api.elifesciences.org/v2/articles/"+state.doc.id+"/media/file/"+name+".mp4";
-    node.url_ogv = "https://legacy--api.elifesciences.org/v2/articles/"+state.doc.id+"/media/file//"+name+".ogv";
-    node.url_webm = "https://legacy--api.elifesciences.org/v2/articles/"+state.doc.id+"/media/file//"+name+".webm";
-    node.poster = "https://legacy--api.elifesciences.org/v2/articles/"+state.doc.id+"/media/file/"+name+".jpg";
+
+    // set attributes from previously populated data in video_data
+    if(typeof video_data !== 'undefined' && id in video_data) {
+      node.url = video_data[id]['mp4_href'];
+      node.url_ogv = video_data[id]['ogv_href'];
+      node.url_webm = video_data[id]['webm_href'];
+      node.poster = video_data[id]['jpg_href'];
+    }
   };
 
   // Example url to JPG: https://cdn.elifesciences.org/elife-articles/00768/svg/elife00768f001.jpg
