@@ -13,6 +13,12 @@ ElifeConverter.Prototype = function() {
 
   var __super__ = LensConverter.prototype;
 
+  // Fix to focus on videos from left reading pane to the right figures pane
+  if (!("video" in __super__._refTypeMapping))
+  {
+    __super__._refTypeMapping["video"] = "figure_reference";
+  }
+
   this.test = function(xmlDoc, documentUrl) {
 		var publisherName = xmlDoc.querySelector("publisher-name").textContent;
     return publisherName === "eLife Sciences Publications, Ltd";
