@@ -55,13 +55,13 @@ pyenv install
 pvenv local
 ```
 
-2. Fetch dependencies
+3. Fetch dependencies
 
 ```bash
 npm install
 ```
 
-3. Run the server
+4. Run the server
 
 ```bash
 npm start
