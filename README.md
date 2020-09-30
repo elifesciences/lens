@@ -29,7 +29,7 @@ However, now let's look into developing our own extensions.
 
 ### Prerequisites
 
-For Lens development, you need to have Node.js >=0.10.x installed.
+For Lens development, you need to have Node.js >=10.x installed.
 
 You need to repeat that install step whenever you updated the screwdriver repo.
 
@@ -37,25 +37,37 @@ You need to repeat that install step whenever you updated the screwdriver repo.
 
 1. Clone the `lens-starter` repository
 
-  ```bash
-  $ git clone https://github.com/elifesciences/lens-starter.git
-  ```
+```bash
+  git clone https://github.com/elifesciences/lens-starter.git
+  cd lens-starter
+```
+
+2. Configure System
+
+As stated above, you'll need version 10.x of Node installed, and you'll also need version 2.7.x of Python available. You can use [nvm](https://github.com/nvm-sh/nvm) to manage which version of node to use on a per-project basis, and [PyEnv](https://github.com/pyenv/pyenv) to do the same for Python. With both of these tools setup, you can...
+
+```bash
+echo "lts/dubnium" > .nvmrc
+nvm install
+nvm use
+echo "2.7.17" > .python-version
+pyenv install
+pvenv local
+```
 
 2. Fetch dependencies
 
-  ```bash
-  $ cd lens-starter
-  $ npm install
-  ```
+```bash
+npm install
+```
 
 3. Run the server
 
-  ```bash
-  ~/projects/lens-starter $ node server
-  Lens running on port 4001
-  http://127.0.0.1:4001/
-  ```
+```bash
+npm start
+```
 
+Then navigate to http://127.0.0.1:4001/ in your web browser.
 
 ### Converter
 
