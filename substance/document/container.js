@@ -136,6 +136,10 @@ Container.Prototype = function() {
     return this.listView.length;
   };
 
+  this.hasContent = function(panelType) {
+    return this.listView.length > 0 || (panelType === 'resource' && this.treeView.length > 0);
+  };
+
   // Returns true if there is another node after a given position.
   // --------
   //
