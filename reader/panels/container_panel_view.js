@@ -33,12 +33,12 @@ ContainerPanelView.Prototype = function() {
 
   this.render = function() {
     // Hide the whole tab if there is no content
-    if (this.getContainer().getLength() === 0) {
-      this.hideToggle();
-      this.hide();
-    } else {
+    if (this.getContainer().hasContent(this.config.type)) {
       this.surface.render();
       this.scrollbar.render();
+    } else {
+      this.hideToggle();
+      this.hide();
     }
     return this;
   };
