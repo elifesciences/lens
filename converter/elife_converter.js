@@ -40,42 +40,23 @@ ElifeConverter.Prototype = function() {
     var doc = state.doc;
     var heading, body;
 
-    // Decision letter (if available)
+    // Decision letter and author response sub articles (if available)
     // -----------
+    var subArticles = article.querySelectorAll("sub-article");
+    _.each(subArticles, function(subArticle) {
+        var subArticleTitle = subArticle.querySelector("title-group article-title").textContent;
+        heading = {
+          id: state.nextId("heading"),
+          type: "heading",
+          level: 1,
+          content: subArticleTitle
+        };
+        doc.create(heading);
+        nodes.push(heading);
 
-    var articleCommentary = article.querySelector("#SA1");
-    if (articleCommentary) {
-      heading = {
-        id: state.nextId("heading"),
-        type: "heading",
-        level: 1,
-        content: "Decision letter"
-      };
-      doc.create(heading);
-      nodes.push(heading);
-
-      body = articleCommentary.querySelector("body");
-      nodes = nodes.concat(this.bodyNodes(state, util.dom.getChildren(body)));
-    }
-
-    // Author response
-    // -----------
-
-    var authorResponse = article.querySelector("#SA2");
-    if (authorResponse) {
-
-      heading = {
-        id: state.nextId("heading"),
-        type: "heading",
-        level: 1,
-        content: "Author response"
-      };
-      doc.create(heading);
-      nodes.push(heading);
-
-      body = authorResponse.querySelector("body");
-      nodes = nodes.concat(this.bodyNodes(state, util.dom.getChildren(body)));
-    }
+        body = subArticle.querySelector("body");
+        nodes = nodes.concat(this.bodyNodes(state, util.dom.getChildren(body)));
+    }.bind(this));
 
     // Show them off
     // ----------
