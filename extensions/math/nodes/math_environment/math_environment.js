@@ -1,6 +1,6 @@
 "use strict";
 
-var LensNodes = require('lens/article/nodes');
+var LensNodes = require('../../../../article/nodes');
 var DocumentNode = LensNodes['node'].Model;
 
 var MathEnvironment = function(node, document) {
@@ -8,6 +8,7 @@ var MathEnvironment = function(node, document) {
 };
 
 MathEnvironment.type = {
+  "id": "math_environment",
   "parent": "content",
   "properties": {
     "source_id": "string",

@@ -31,8 +31,6 @@ var ReaderView = function(readerCtrl) {
   // Note: ATM, it is not possible to override the content panel + toc via panelSpecification
   this.contentView = readerCtrl.panelCtrls.content.createView();
   this.tocView = this.contentView.getTocView();
-
-
   this.panelViews = {};
   // mapping to associate reference types to panels
   // NB, in Lens each resource type has one dedicated panel;
@@ -78,6 +76,7 @@ var ReaderView = function(readerCtrl) {
     this.listenTo(panelView, "toggle-resource-reference", this.onToggleResourceReference);
     this.listenTo(panelView, "toggle-fullscreen", this.onToggleFullscreen);
   }, this);
+
   // TODO: treat content panel as panelView and delegate to tocView where necessary
   this.listenTo(this.contentView, "toggle", this._onTogglePanel);
   this.listenTo(this.contentView, "toggle-resource", this.onToggleResource);
@@ -165,11 +164,13 @@ ReaderView.Prototype = function() {
 
       var self = this;
       // MathJax requires the processed elements to be in the DOM
-      window.MathJax.Hub.Queue(["Typeset", window.MathJax.Hub]);
-      window.MathJax.Hub.Queue(function () {
-        // HACK: using updateState() instead of updateScrollbars() as it also knows how to scroll
-        self.updateState();
-      });
+      if (window.MathJax){
+        window.MathJax.Hub.Queue(["Typeset", window.MathJax.Hub]);
+        window.MathJax.Hub.Queue(function () {
+          // HACK: using updateState() instead of updateScrollbars() as it also knows how to scroll
+          self.updateState();
+        });
+      }
     }, this), 1);
 
     return this;
@@ -248,6 +249,7 @@ ReaderView.Prototype = function() {
       // HACK: abusing addHighlight for adding the fullscreen class
       // instead I would prefer to handle such focussing explicitely in a workflow
       if (state.fullscreen) classes.push("fullscreen");
+      this.contentView.addHighlight(state.focussedNode, classes.concat('main-occurrence').join(' '));
       currentPanelView.addHighlight(state.focussedNode, classes.join(' '));
       currentPanelView.scrollTo(state.focussedNode);
     }
@@ -314,7 +316,7 @@ ReaderView.Prototype = function() {
 
     self.updateScrollbars();
     _.delay(function() {
-      self.updateScrollbars();        
+      self.updateScrollbars();
     }, 2000);
   };
 

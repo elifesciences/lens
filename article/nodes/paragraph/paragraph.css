@@ -18,7 +18,7 @@
   display:block;
 }
 
-.content-node.paragraph .content-node.text div {
+.content-node.paragraph > .content-node.text > div {
   display:inline;
   width: auto;
 }

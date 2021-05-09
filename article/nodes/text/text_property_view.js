@@ -34,7 +34,7 @@ TextPropertyView.Prototype = function() {
 
   this.render = function() {
     this.el.innerHTML = "";
-    TextPropertyView.renderAnnotatedText(this.document, this.property, this.el, this.viewFactory);
+    TextPropertyView.renderAnnotatedText(this.document, this.path, this.el, this.viewFactory);
     return this;
   };
 
@@ -81,10 +81,10 @@ TextPropertyView.Prototype = function() {
 TextPropertyView.Prototype.prototype = View.prototype;
 TextPropertyView.prototype = new TextPropertyView.Prototype();
 
-TextPropertyView.renderAnnotatedText = function(doc, property, el, viewFactory) {
+TextPropertyView.renderAnnotatedText = function(doc, path, el, viewFactory) {
   var fragment = window.document.createDocumentFragment();
-  var text = property.get();
-  var annotations = doc.getIndex("annotations").get(property.path);
+  var text = doc.get(path);
+  var annotations = doc.getIndex("annotations").get(path);
   // this splits the text and annotations into smaller pieces
   // which is necessary to generate proper HTML.
   var annotationViews = [];

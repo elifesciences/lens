@@ -19,6 +19,9 @@ NlmToLensConverter.Prototype = function() {
     "sub": "subscript",
     "sup": "superscript",
     "sc": "custom_annotation",
+    "roman": "custom_annotation",
+    "sans-serif": "custom_annotation",
+    "styled-content": "custom_annotation",
     "underline": "underline",
     "ext-link": "link",
     "xref": "",
@@ -26,6 +29,10 @@ NlmToLensConverter.Prototype = function() {
     "named-content": "",
     "inline-formula": "inline-formula",
     "uri": "link"
+  };
+
+  this._inlineNodeTypes = {
+    "fn": true,
   };
 
   // mapping from xref.refType to node type
@@ -36,6 +43,7 @@ NlmToLensConverter.Prototype = function() {
     "supplementary-material": "figure_reference",
     "other": "figure_reference",
     "list": "definition_reference",
+    "fn": "footnote_reference",
   };
 
   // mapping of contrib type to human readable names
@@ -73,6 +81,10 @@ NlmToLensConverter.Prototype = function() {
     return this._annotationTypes[type] !== undefined;
   };
 
+  this.isInlineNode = function(type) {
+    return this._inlineNodeTypes[type] !== undefined;
+  };
+
   this.isParagraphish = function(node) {
     for (var i = 0; i < node.childNodes.length; i++) {
       var el = node.childNodes[i];
@@ -99,7 +111,7 @@ NlmToLensConverter.Prototype = function() {
 
     if (givenNamesEl) names.push(givenNamesEl.textContent);
     if (surnameEl) names.push(surnameEl.textContent);
-    if (suffix) return [names.join(" "), suffix.textContent].join(", ");
+    if (suffix && suffix.textContent.trim() !== "") return [names.join(" "), suffix.textContent].join(", ");
 
     return names.join(" ");
   };
@@ -176,7 +188,7 @@ NlmToLensConverter.Prototype = function() {
 
   // Overridden to create a Lens Article instance
   this.createDocument = function() {
-    
+
     var doc = new Article();
     return doc;
   };
@@ -225,6 +237,9 @@ NlmToLensConverter.Prototype = function() {
     // Article information
     var articleInfo = this.extractArticleInfo(state, article);
 
+    // Funding information
+    var fundingInfo = this.extractFundingInfo(state, article);
+
     // Create PublicationInfo node
     // ---------------
 
@@ -236,6 +251,7 @@ NlmToLensConverter.Prototype = function() {
       "related_article": relatedArticle ? relatedArticle.getAttribute("xlink:href") : "",
       "doi": articleDOI ? articleDOI.textContent : "",
       "article_info": articleInfo.id,
+      "funding_info": fundingInfo,
       // TODO: 'article_type' should not be optional; we need to find a good default implementation
       "article_type": "",
       // Optional fields not covered by the default implementation
@@ -288,13 +304,25 @@ NlmToLensConverter.Prototype = function() {
     nodes = nodes.concat(this.extractAcknowledgements(state, article));
     // License and Copyright
     nodes = nodes.concat(this.extractCopyrightAndLicense(state, article));
-    // Notes (Footnotes + Author notes)
+    // Notes (<note> elements)
     nodes = nodes.concat(this.extractNotes(state, article));
 
     articleInfo.children = nodes;
     doc.create(articleInfo);
 
     return articleInfo;
+  };
+
+  this.extractFundingInfo = function(state, article) {
+    var fundingInfo = [];
+    var fundingStatementEls = article.querySelectorAll("funding-statement");
+    if (fundingStatementEls.length > 0){
+      for (var i = 0; i < fundingStatementEls.length; i++) {
+        fundingInfo.push(this.annotatedText(state, fundingStatementEls[i], ["publication_info", "funding_info", i]));
+      }
+    }
+
+    return fundingInfo;
   };
 
   // Get reviewing editor
@@ -403,6 +431,7 @@ NlmToLensConverter.Prototype = function() {
           "level" : 3,
           "content" : title ? this.capitalized(title.textContent.toLowerCase(), "all") : "Acknowledgements"
         };
+
         doc.create(header);
         nodes.push(header.id);
 
@@ -410,6 +439,7 @@ NlmToLensConverter.Prototype = function() {
         var pars = this.bodyNodes(state, util.dom.getChildren(ack), {
           ignore: ["title"]
         });
+
         _.each(pars, function(par) {
           nodes.push(par.id);
         });
@@ -420,14 +450,12 @@ NlmToLensConverter.Prototype = function() {
   };
 
   //
-  // Extracts footnotes that should be shown in article info
+  // Extracts notes that should be shown in article info
   // ------------------------------------------
   //
-  // Needs to be overwritten in configuration
-
-  this.extractNotes = function(/*state, article*/) {
-    var nodes = [];
-    return nodes;
+  this.extractNotes = function(state, article) {
+    /* jshint unused:false */
+    return [];
   };
 
   // Can be overridden by custom converter to ignore <meta-name> values.
@@ -439,7 +467,7 @@ NlmToLensConverter.Prototype = function() {
     var nodeIds = [];
     var doc = state.doc;
 
-    var customMetaEls = article.querySelectorAll('article-meta-group custom-meta');
+    var customMetaEls = article.querySelectorAll('article-meta custom-meta');
     if (customMetaEls.length === 0) return nodeIds;
 
     for (var i = 0; i < customMetaEls.length; i++) {
@@ -595,11 +623,19 @@ NlmToLensConverter.Prototype = function() {
   this.affiliation = function(state, aff) {
     var doc = state.doc;
 
-    var institution = aff.querySelector("institution");
+    var department = aff.querySelector("institution[content-type=dept]");
+    if (department) {
+      var institution = aff.querySelector("institution:not([content-type=dept])");
+    } else {
+      var department = aff.querySelector("addr-line named-content[content-type=department]");
+      var institution = aff.querySelector("institution");
+    }
     var country = aff.querySelector("country");
     var label = aff.querySelector("label");
-    var department = aff.querySelector("addr-line named-content[content-type=department]");
+
     var city = aff.querySelector("addr-line named-content[content-type=city]");
+    // TODO: there are a lot more elements which can have this.
+    var specific_use = aff.getAttribute('specific-use');
 
     // TODO: this is a potential place for implementing a catch-bin
     // For that, iterate all children elements and fill into properties as needed or add content to the catch-bin
@@ -612,7 +648,8 @@ NlmToLensConverter.Prototype = function() {
       department: department ? department.textContent : null,
       city: city ? city.textContent : null,
       institution: institution ? institution.textContent : null,
-      country: country ? country.textContent: null
+      country: country ? country.textContent: null,
+      specific_use: specific_use || null
     };
     doc.create(affiliationNode);
   };
@@ -771,7 +808,20 @@ NlmToLensConverter.Prototype = function() {
         // </funding-source>
         //
         // and we only want to display the first text node, excluding the funder id
-        var fundingSourceName = fundingSource.childNodes[0].textContent;
+        // or this
+        //
+        // They can also look like this
+        //
+        // <funding-source>
+        //   <institution-wrap>
+        //     <institution-id institution-id-type="FundRef">http://dx.doi.org/10.13039/100005156</institution-id>
+        //     <institution>Alexander von Humboldt-Stiftung</institution>
+        //   </institution-wrap>
+        // </funding-source>
+        // Then we take the institution element
+
+        var institution = fundingSource.querySelector('institution')
+        var fundingSourceName = institution ? institution.textContent : fundingSource.childNodes[0].textContent;
         contribNode.fundings.push([fundingSourceName, awardId].join(''));
       } else if (xref.getAttribute("ref-type") === "corresp") {
         var correspId = xref.getAttribute("rid");
@@ -791,7 +841,11 @@ NlmToLensConverter.Prototype = function() {
           var fnType = fnElem.getAttribute("fn-type");
           switch (fnType) {
             case "con":
-              contribNode.contribution = fnElem.textContent;
+              if (fnElem.getAttribute("id").indexOf("equal-contrib")>=0) {
+                equalContribs = this._getEqualContribs(state, contrib, fnElem.getAttribute("id"));
+              } else {
+                contribNode.contribution = fnElem.textContent;
+              }
               break;
             case "conflict":
               compInterests.push(fnElem.textContent.trim());
@@ -949,6 +1003,15 @@ NlmToLensConverter.Prototype = function() {
 
     this.extractFigures(state, article);
 
+    // catch all unhandled foot-notes
+    this.extractFootNotes(state, article);
+
+    // Extract back element, if it exists
+    var back = article.querySelector("back");
+    if (back){
+        this.back(state,back);
+    }
+
     this.enhanceArticle(state, article);
   };
 
@@ -1029,8 +1092,10 @@ NlmToLensConverter.Prototype = function() {
   this.extractFigures = function(state, xmlDoc) {
     // Globally query all figure-ish content, <fig>, <supplementary-material>, <table-wrap>, <media video>
     // mimetype="video"
-    var body = xmlDoc.querySelector("body");
-    var figureElements = body.querySelectorAll("fig, table-wrap, supplementary-material, media[mimetype=video]");
+
+    // NOTE: We previously only considered figures within <body> but since
+    // appendices can also have figures we now use a gobal selector.
+    var figureElements = xmlDoc.querySelectorAll("fig, table-wrap, supplementary-material, media[mimetype=video]");
     var nodes = [];
     for (var i = 0; i < figureElements.length; i++) {
       var figEl = figureElements[i];
@@ -1052,6 +1117,17 @@ NlmToLensConverter.Prototype = function() {
       }
     }
     this.show(state, nodes);
+  };
+
+  // Catch-all implementation for footnotes that have not been
+  // converted yet.
+  this.extractFootNotes = function(state, article) {
+    var fnEls = article.querySelectorAll('fn');
+    for (var i = 0; i < fnEls.length; i++) {
+      var fnEl = fnEls[i];
+      if (fnEl.__converted__) continue;
+      this.footnote(state, fnEl);
+    }
   };
 
   this.extractCitations = function(state, xmlDoc) {
@@ -1128,6 +1204,8 @@ NlmToLensConverter.Prototype = function() {
     }, this);
   };
 
+  // TODO: abstract should be a dedicated node
+  // as it can have some extra information in JATS, such as specific-use
   this.abstract = function(state, abs) {
     var doc = state.doc;
     var nodes = [];
@@ -1161,14 +1239,7 @@ NlmToLensConverter.Prototype = function() {
 
   this.body = function(state, body) {
     var doc = state.doc;
-    var heading = {
-      id: state.nextId("heading"),
-      type: "heading",
-      level: 1,
-      content: "Main Text"
-    };
-    doc.create(heading);
-    var nodes = [heading].concat(this.bodyNodes(state, util.dom.getChildren(body)));
+    var nodes = this.bodyNodes(state, util.dom.getChildren(body));
     if (nodes.length > 0) {
       this.show(state, nodes);
     }
@@ -1207,7 +1278,7 @@ NlmToLensConverter.Prototype = function() {
         node = this.ignoredNode(state, child, type);
         if (node) nodes.push(node);
       } else {
-        console.error("Node not yet supported as top-level node: " + type);
+        console.error("Node not supported as block-level element: " + type +"\n"+child.outerHTML);
       }
     }
     return nodes;
@@ -1240,9 +1311,10 @@ NlmToLensConverter.Prototype = function() {
   this._bodyNodes["comment"] = function(state, child) {
     return this.comment(state, child);
   };
-  this._bodyNodes["fig"] = function(state, child) {
-    return this.figure(state, child);
-  };
+  // Disable fig as a body node, otherwise the order of nodes in the Figures tab can be incorrect
+  //this._bodyNodes["fig"] = function(state, child) {
+  //  return this.figure(state, child);
+  //};
 
   // Overwirte in specific converter
   this.ignoredNode = function(/*state, node, type*/) {
@@ -1258,11 +1330,13 @@ NlmToLensConverter.Prototype = function() {
     // Assuming that there are no nested <boxed-text> elements
     var childNodes = this.bodyNodes(state, util.dom.getChildren(box));
     var boxId = state.nextId("box");
+    // Optional heading label
+    var label = this.selectDirectChildren(box, "label")[0];
     var boxNode = {
       "type": "box",
       "id": boxId,
       "source_id": box.getAttribute("id"),
-      "label": "",
+      "label": label ? label.textContent : "",
       "children": _.pluck(childNodes, 'id')
     };
     doc.create(boxNode);
@@ -1283,9 +1357,9 @@ NlmToLensConverter.Prototype = function() {
     };
     doc.create(quoteNode);
     return quoteNode;
-    };
+  };
 
-    this.datasets = function(state, datasets) {
+  this.datasets = function(state, datasets) {
     var nodes = [];
 
     for (var i=0;i<datasets.length;i++) {
@@ -1418,14 +1492,15 @@ NlmToLensConverter.Prototype = function() {
 
   this.acceptedParagraphElements = {
     "boxed-text": {handler: "boxedText"},
-        "disp-quote": {handler: "quoteText"},
-        "list": { handler: "list" },
+    "disp-quote": {handler: "quoteText"},
+    "list": { handler: "list" },
     "disp-formula": { handler: "formula" },
   };
 
   this.inlineParagraphElements = {
     "inline-graphic": true,
-    "inline-formula": true
+    "inline-formula": true,
+    "fn": true
   };
 
   // Segments children elements of a NLM <p> element
@@ -1446,8 +1521,15 @@ NlmToLensConverter.Prototype = function() {
       // ignore some elements
       if (this.ignoredParagraphElements[type]) continue;
 
+      // paragraph block-types such as disp-formula
+      // i.e they are allowed within a paragraph, but
+      // we pull them out on the top level
+      if (this.acceptedParagraphElements[type]) {
+        blocks.push(_.extend({node: child}, this.acceptedParagraphElements[type]));
+      }
       // paragraph elements
-      if (type === "text" || this.isAnnotation(type) || this.inlineParagraphElements[type]) {
+      //if (type === "text" || this.isAnnotation(type) || this.inlineParagraphElements[type]) {
+      else {
         if (lastType !== "paragraph") {
           blocks.push({ handler: "paragraph", nodes: [] });
           lastType = "paragraph";
@@ -1455,10 +1537,7 @@ NlmToLensConverter.Prototype = function() {
         _.last(blocks).nodes.push(child);
         continue;
       }
-      // other elements are treated as single blocks
-      else if (this.acceptedParagraphElements[type]) {
-        blocks.push(_.extend({node: child}, this.acceptedParagraphElements[type]));
-      }
+
       lastType = type;
     }
     return blocks;
@@ -1491,6 +1570,11 @@ NlmToLensConverter.Prototype = function() {
     return nodes;
   };
 
+  // DEPRECATED: using this handler for <p> elements is
+  // deprecated, as in JATS <p> can contain certain block-level
+  // elements. Better use this.paragraphGroup in cases where you
+  // convert <p> elements.
+  // TODO: we should refactor this and make it a 'private' helper
   this.paragraph = function(state, children) {
     var doc = state.doc;
 
@@ -1511,7 +1595,7 @@ NlmToLensConverter.Prototype = function() {
       var type = util.dom.getNodeType(child);
 
       // annotated text node
-      if (type === "text" || this.isAnnotation(type)) {
+      if (type === "text" || this.isAnnotation(type) || this.isInlineNode(type)) {
         var textNode = {
           id: state.nextId("text"),
           type: "text",
@@ -1526,7 +1610,13 @@ NlmToLensConverter.Prototype = function() {
         // In that case, the iterator will still have more elements
         // and the loop is continued
         // Before descending, we reset the iterator to provide the current element again.
-        var annotatedText = this._annotatedText(state, iterator.back(), { offset: 0, breakOnUnknown: true });
+        // TODO: We have disabled the described behavior as it seems
+        // worse to break automatically on unknown inline tags,
+        // than to render plain text, as it results in data loss.
+        // If you find a situation where you want to flatten structure
+        // found within a paragraph, use this.acceptedParagraphElements instead
+        // which is used in a preparation step before converting paragraphs.
+        var annotatedText = this._annotatedText(state, iterator.back(), { offset: 0, breakOnUnknown: false });
 
         // Ignore empty paragraphs
         if (annotatedText.length > 0) {
@@ -1538,7 +1628,6 @@ NlmToLensConverter.Prototype = function() {
         // popping the stack
         state.stack.pop();
       }
-
       // inline image node
       else if (type === "inline-graphic") {
         var url = child.getAttribute("xlink:href");
@@ -1599,6 +1688,8 @@ NlmToLensConverter.Prototype = function() {
     var listItems = list.querySelectorAll("list-item");
     for (var i = 0; i < listItems.length; i++) {
       var listItem = listItems[i];
+      // Only consider direct children
+      if (listItem.parentNode !== list) continue;
       // Note: we do not care much about what is served as items
       // However, we do not have complex nodes on paragraph level
       // They will be extract as sibling items
@@ -1825,9 +1916,11 @@ NlmToLensConverter.Prototype = function() {
     };
 
     // Note: using a DOM div element to create HTML
-    var table = tableWrap.querySelector("table");
+    var table = tableWrap.querySelectorAll("table");
     if (table) {
-      tableNode.content = this.toHtml(table);
+      for (var i = 0; i < table.length; i++) {
+        tableNode.content += this.toHtml(table[i]);
+      }
     }
     this.extractTableCaption(state, tableNode, tableWrap);
 
@@ -1911,6 +2004,33 @@ NlmToLensConverter.Prototype = function() {
     }
     doc.create(formulaNode);
     return formulaNode;
+  };
+
+  this.footnote = function(state, footnoteElement) {
+    var doc = state.doc;
+    var footnote = {
+      type: 'footnote',
+      id: state.nextId('fn'),
+      source_id: footnoteElement.getAttribute("id"),
+      label: '',
+      children: []
+    };
+    var children = footnoteElement.children;
+    var i = 0;
+    if (children[i].tagName.toLowerCase() === 'label') {
+      footnote.label = this.annotatedText(state, children[i], [footnote.id, 'label']);
+      i++;
+    }
+    footnote.children = [];
+    for (; i<children.length; i++) {
+      var nodes = this.paragraphGroup(state, children[i]);
+      Array.prototype.push.apply(footnote.children, _.pluck(nodes, 'id'));
+    }
+    doc.create(footnote);
+    // leave a trace for the catch-all converter
+    // to know that this has been converted already
+    footnoteElement.__converted__ = true;
+    return footnote;
   };
 
   // Citations
@@ -2080,10 +2200,74 @@ NlmToLensConverter.Prototype = function() {
   // Article.Back
   // --------
 
-  this.back = function(/*state, back*/) {
-    // No processing at the moment
-    return null;
+  this.back = function(state, back) {
+    var appGroups = back.querySelectorAll('app-group');
+
+    if (appGroups && appGroups.length > 0) {
+      _.each(appGroups, function(appGroup) {
+        this.appGroup(state, appGroup);
+      }.bind(this));
+    } else {
+      // HACK: We treat <back> element as app-group, sine there
+      // are docs that wrongly put <app> elements into the back
+      // element directly.
+      this.appGroup(state, back);
+    }
   };
+
+  this.appGroup = function(state, appGroup) {
+    var apps = appGroup.querySelectorAll('app');
+    var doc = state.doc;
+    var title = appGroup.querySelector('title');
+    if (!title) {
+      console.error("FIXME: every app should have a title", this.toHtml(title));
+    }
+
+    var headingId =state.nextId("heading");
+    // Insert top level element for Appendix
+    var heading = doc.create({
+      "type" : "heading",
+      "id" : headingId,
+      "level" : 1,
+      "content" : "Appendices"
+    });
+
+    this.show(state, [heading]);
+    _.each(apps, function(app) {
+      state.sectionLevel = 2;
+      this.app(state, app);
+    }.bind(this));
+  };
+
+  this.app = function(state, app) {
+    var doc = state.doc;
+    var nodes = [];
+    var title = app.querySelector('title');
+    if (!title) {
+      console.error("FIXME: every app should have a title", this.toHtml(title));
+    }
+
+    var headingId = state.nextId("heading");
+    var heading = {
+      "type" : "heading",
+      "id" : headingId,
+      "level" : 2,
+      "content": title ? this.annotatedText(state, title, [headingId, "content"]) : ""
+    };
+    var headingNode = doc.create(heading);
+    nodes.push(headingNode);
+
+    // There may be multiple paragraphs per ack element
+    var pars = this.bodyNodes(state, util.dom.getChildren(app), {
+      ignore: ["title", "label", "ref-list"]
+    });
+    _.each(pars, function(par) {
+      nodes.push(par);
+    });
+    this.show(state, nodes);
+  };
+
+
 
 
   // Annotations
@@ -2128,6 +2312,8 @@ NlmToLensConverter.Prototype = function() {
     } else if (type === 'inline-formula') {
       var formula = this.formula(state, el, "inline");
       anno.target = formula.id;
+    } else if (anno.type === 'custom_annotation') {
+      anno.name = type;
     }
   };
 
@@ -2137,6 +2323,41 @@ NlmToLensConverter.Prototype = function() {
     // Default reference is a cross_reference
     anno.type = this._refTypeMapping[refType] || "cross_reference";
     if (sourceId) anno.target = sourceId;
+  };
+
+  this.createInlineNode = function(state, el, start) {
+    var inlineNode = {
+      type: "inline-node",
+      path: _.last(state.stack).path,
+      range: [start, start+1],
+    };
+
+    this.addInlineNodeData(state, inlineNode, el);
+    this.enhanceInlineNodeData(state, inlineNode, el);
+
+    // assign an id after the type has been extracted to be able to create typed ids
+    inlineNode.id = state.nextId(inlineNode.type);
+
+    state.annotations.push(inlineNode);
+  };
+
+  this.addInlineNodeData = function(state, inlineNode, el) {
+    /*jshint unused: false*/
+    var tagName = el.tagName.toLowerCase();
+    switch(tagName) {
+      case 'fn':
+        // when we hit a <fn> inline, we will create a footnote-reference
+        var footnote = this.footnote(state, el);
+        inlineNode.type = 'footnote_reference';
+        inlineNode.target = footnote.id;
+        // We generate footnote references if we find an inline fn element
+        inlineNode.generated = true;
+        break;
+    }
+  };
+
+  this.enhanceInlineNodeData = function(state, inlineNode, el, tagName) {
+    /*jshint unused: false*/
   };
 
   // Parse annotated text
@@ -2194,6 +2415,10 @@ NlmToLensConverter.Prototype = function() {
             }
           }
         }
+        else if (this.isInlineNode(type)) {
+          plainText += " ";
+          this.createInlineNode(state, el, charPos);
+        }
         // Unsupported...
         else if (!breakOnUnknown) {
           if (state.top().ignore.indexOf(type) < 0) {
@@ -2203,7 +2428,7 @@ NlmToLensConverter.Prototype = function() {
           }
         } else {
           if (nested) {
-            console.error("Node not yet supported in annoted text: " + type);
+            console.error("Node not supported in annoted text: " + type +"\n"+el.outerHTML);
           }
           else {
             // on paragraph level other elements can break a text block
@@ -2397,7 +2622,7 @@ NlmToLensConverter.State = function(converter, xmlDoc, doc) {
   // of processed nodes to be able to associate other things (e.g., annotations) correctly.
   this.stack = [];
 
-  this.sectionLevel = 1;
+  this.sectionLevel = 0;
 
   // Tracks all available affiliations
   this.affiliations = [];

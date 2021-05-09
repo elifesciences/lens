@@ -1,12 +1,12 @@
 "use strict";
 
 var _ = require('underscore');
-var LensNodes = require('lens/article/nodes');
+var LensNodes = require('../../../../article/nodes');
 var NodeView = LensNodes["node"].View;
-var LensArticle = require('lens/article');
+var LensArticle = require('../../../../article');
 var ResourceView = LensArticle.ResourceView;
 
-var $$ = require('lens/substance/application').$$;
+var $$ = require('../../../../substance/application').$$;
 
 // FormulaView
 // ===========
@@ -153,6 +153,14 @@ FormulaView.Prototype = function() {
               hasPreview = true;
             }
             break;
+            case "html":
+              // add only if no preview
+              if (!hasPreview) {
+                // don't use a preview element
+                this.$content.append($(data));
+                hasPreview = true;
+              }
+              break;
           default:
             console.error("Unknown formula format:", format);
         }

@@ -35,9 +35,9 @@ ContributorView.Prototype = function() {
     // -------
 
     if (this.node.role) {
-      this.content.appendChild($$('.role', {text: this.node.role}));  
+      this.content.appendChild($$('.role', {text: this.node.role}));
     }
-    
+
 
     // Add Affiliations
     // -------
@@ -57,29 +57,47 @@ ContributorView.Prototype = function() {
     }));
 
 
-
     // Present Address
     // -------
 
     if (this.node.present_address) {
-      this.content.appendChild($$('.label', {text: 'Present address'}));
-      this.content.appendChild($$('.contribution', {text: this.node.present_address}));
+      this.content.appendChild(
+        $$('.present-address.contrib-data', {
+          children: [
+            $$('span.contrib-label', {text: 'Present address: '}),
+            $$('span', {text: this.node.present_address})
+          ]
+        })
+      );
     }
 
     // Contribution
     // -------
 
     if (this.node.contribution) {
-      this.content.appendChild($$('.label', {text: 'Contribution'}));
-      this.content.appendChild($$('.contribution', {text: this.node.contribution}));
+      this.content.appendChild(
+        $$('.contribution.contrib-data', {
+          children: [
+            $$('span.contrib-label', {text: 'Contribution: '}),
+            $$('span', {text: this.node.contribution})
+          ]
+        })
+      );
     }
 
     // Equal contribution
     // -------
 
+
     if (this.node.equal_contrib && this.node.equal_contrib.length > 0) {
-      this.content.appendChild($$('.label', {text: 'Contributed equally with'}));
-      this.content.appendChild($$('.equal-contribution', {text: this.node.equal_contrib}));
+      this.content.appendChild(
+        $$('.equal-contribution.contrib-data', {
+          children: [
+            $$('span.contrib-label', {text: 'Contributed equally with: '}),
+            $$('span', {text: this.node.equal_contrib.join(', ')})
+          ]
+        })
+      );
     }
 
 
@@ -87,38 +105,51 @@ ContributorView.Prototype = function() {
     // -------
 
     if (this.node.emails.length > 0) {
-      this.content.appendChild($$('.label', {text: 'For correspondence'}));
-      this.content.appendChild($$('.emails', {
-        children: _.map(this.node.emails, function(email) {
-          return $$('a', {href: "mailto:"+email, text: email});
+      this.content.appendChild(
+        $$('.emails.contrib-data', {
+          children: [
+            $$('span.contrib-label', {text: 'For correspondence: '}),
+            $$('span', {
+              children: _.map(this.node.emails, function(email) {
+                return $$('a', {href: "mailto:"+email, text: email+' '});
+              })
+            })
+          ]
         })
-      }));
+      );
     }
-
 
     // Funding
     // -------
 
     if (this.node.fundings.length > 0) {
-      this.content.appendChild($$('.label', {text: 'Funding'}));
-      this.content.appendChild($$('.fundings', {
-        children: _.map(this.node.fundings, function(funding) {
-          return $$('.funding', {text: funding});
+      this.content.appendChild(
+        $$('.fundings.contrib-data', {
+          children: [
+            $$('span.contrib-label', {text: 'Funding: '}),
+            $$('span', {
+              text: this.node.fundings.join('; ')
+            })
+          ]
         })
-      }));
+      );
     }
-
 
     // Competing interests
     // -------
 
-    if (this.node.competing_interests.length > 0) {
-      this.content.appendChild($$('.label', {text: 'Competing Interests'}));
-      this.content.appendChild($$('.competing-interests', {
-        children: _.map(this.node.competing_interests, function(ci) {
-          return $$('.conflict', {text: ci});
+
+    if (this.node.competing_interests.length) {
+      this.content.appendChild(
+        $$('.competing-interests.contrib-data', {
+          children: [
+            $$('span.contrib-label', {text: 'Competing Interests: '}),
+            $$('span', {
+              text: this.node.competing_interests.join(', ')
+            })
+          ]
         })
-      }));
+      );
     }
 
 
@@ -126,23 +157,33 @@ ContributorView.Prototype = function() {
     // -------
 
     if (this.node.orcid) {
-      this.content.appendChild($$('.label', { text: 'ORCID' }));
-      this.content.appendChild($$('a.orcid', { href: this.node.orcid, text: this.node.orcid }));
+      this.content.appendChild(
+        $$('.contrib-data', {
+          children: [
+            $$('span.contrib-label', {text: 'ORCID: '}),
+            $$('a.orcid', { href: this.node.orcid, text: this.node.orcid })
+          ]
+        })
+      );
     }
+
 
 
     // Group member (in case contributor is a person group)
     // -------
 
     if (this.node.members.length > 0) {
-      this.content.appendChild($$('.label', {text: 'Group Members'}));
-      this.content.appendChild($$('.members', {
-        children: _.map(this.node.members, function(member) {
-          return $$('.member', {text: member});
+      this.content.appendChild(
+        $$('.group-members.contrib-data', {
+          children: [
+            $$('span.contrib-label', {text: 'Group Members: '}),
+            $$('span', {
+              text: this.node.members.join(', ')
+            })
+          ]
         })
-      }));
+      );
     }
-
 
     // Contributor Bio
     // -------
@@ -164,7 +205,6 @@ ContributorView.Prototype = function() {
     // -------
 
     if (this.node.deceased) {
-      // this.content.appendChild($$('.label', {text: 'Present address'}));
       this.content.appendChild($$('.label', {text: "* Deceased"}));
     }
 

@@ -16,10 +16,6 @@ CompositeView.Prototype = function() {
   // =============================
   //
 
-  // Render Markup
-  // --------
-  //
-
   this.render = function() {
     NodeView.prototype.render.call(this);
 

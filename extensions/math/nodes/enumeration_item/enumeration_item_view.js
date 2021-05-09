@@ -1,7 +1,7 @@
 "use strict";
 
-var LensNodes = require("lens/article/nodes");
-var $$ = require("lens/substance/application").$$;
+var LensNodes = require("../../../../article/nodes");
+var $$ = require("../../../../substance/application").$$;
 var NodeView = LensNodes["node"].View;
 var CompositeView = LensNodes["composite"].View;
 

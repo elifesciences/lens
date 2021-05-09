@@ -1,4 +1,4 @@
-var LensNodes = require('lens/article/nodes');
+var LensNodes = require('../../../../article/nodes');
 
 module.exports = {
   Model: require('./math_environment_reference.js'),

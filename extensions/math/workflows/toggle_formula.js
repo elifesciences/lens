@@ -1,5 +1,5 @@
 var _ = require('underscore');
-var Lens = require('lens/reader');
+var Lens = require('../../../reader');
 var Workflow = Lens.Workflow;
 
 var ToggleFormula = function() {

@@ -2,9 +2,9 @@
 
 **Lens** provides a novel way of looking at content on the web. It is designed to make life easier for researchers, reviewers, authors and readers.
 
-- **Read the [announcement](http://elifesciences.org/elife-news/lens)**
-- **Watch the [introduction video](http://vimeo.com/67254579).**
-- **See Lens in [action](http://lens.elifesciences.org/00778)**
+- **Read the [announcement](https://elifesciences.org/elife-news/lens)**
+- **Watch the [introduction video](https://vimeo.com/67254579).**
+- **See Lens in [action](https://lens.elifesciences.org/00778)**
 
 ## Using Lens
 
@@ -29,7 +29,7 @@ However, now let's look into developing our own extensions.
 
 ### Prerequisites
 
-For Lens development, you need to have Node.js >=0.10.x installed.
+For Lens development, you need to have Node.js >=10.x installed.
 
 You need to repeat that install step whenever you updated the screwdriver repo.
 
@@ -37,25 +37,37 @@ You need to repeat that install step whenever you updated the screwdriver repo.
 
 1. Clone the `lens-starter` repository
 
-  ```bash
-  $ git clone https://github.com/elifesciences/lens-starter.git
-  ```
+```bash
+  git clone https://github.com/elifesciences/lens-starter.git
+  cd lens-starter
+```
 
-2. Fetch dependencies
+2. Configure System
 
-  ```bash
-  $ cd lens-starter
-  $ npm install
-  ```
+As stated above, you'll need version 10.x of Node installed, and you'll also need version 2.7.x of Python available. You can use [nvm](https://github.com/nvm-sh/nvm) to manage which version of node to use on a per-project basis, and [PyEnv](https://github.com/pyenv/pyenv) to do the same for Python. With both of these tools setup, you can...
 
-3. Run the server
+```bash
+echo "lts/dubnium" > .nvmrc
+nvm install
+nvm use
+echo "2.7.17" > .python-version
+pyenv install
+pvenv local
+```
 
-  ```bash
-  ~/projects/lens-starter $ node server
-  Lens running on port 4001
-  http://127.0.0.1:4001/
-  ```
+3. Fetch dependencies
 
+```bash
+npm install
+```
+
+4. Run the server
+
+```bash
+npm start
+```
+
+Then navigate to http://127.0.0.1:4001/ in your web browser.
 
 ### Converter
 
@@ -94,7 +106,7 @@ ElifeConverter.Prototype = function() {
       return [baseURL, node.url].join('');
     } else {
       node.url = [
-        "http://cdn.elifesciences.org/elife-articles/",
+        "https://cdn.elifesciences.org/elife-articles/",
         state.doc.id,
         "/suppl/",
         node.url
@@ -203,7 +215,7 @@ Lens can easily be extended with a customized panel. It can be used to show addi
 - Pull in metrics (click count, number of articles citing that article etc.)
 - Retrieve related articles dynamically (e.g. important ones that reference the existing one)
 
-For demonstration we will look at the implementation of a simple Altmetrics panel. It will pull data asynchronously from the Altmetrics API (http://api.altmetric.com/v1/doi/10.7554/eLife.00005) and render the information in Lens.
+For demonstration we will look at the implementation of a simple Altmetrics panel. It will pull data asynchronously from the Altmetrics API (https://api.altmetric.com/v1/doi/10.7554/eLife.00005) and render the information in Lens.
 
 #### Panel Definition
 
@@ -241,7 +253,7 @@ AltmetricsController.Prototype = function() {
     var doi = this.document.get('publication_info').doi;
 
     $.ajax({
-      url: "http://api.altmetric.com/v1/doi/"+doi,
+      url: "https://api.altmetric.com/v1/doi/"+doi,
       dataType: "json",
     }).done(function(res) {
       cb(null, res);
@@ -335,9 +347,9 @@ Mobile support has been removed with Lens 2.0 to reduce technical debt and itera
 
 ## Credits
 
-Lens was developed in collaboration between [UC Berkeley](http://bioegrad.berkeley.edu/) graduate student [Ivan Grubisic](http://www.linkedin.com/pub/ivan-grubisic/26/353/739) and [eLife](http://elifesciences.org). The team of [Substance](http://substance.io) is helping with the technical execution.
+Lens was developed in collaboration between [UC Berkeley](http://bioegrad.berkeley.edu/) graduate student [Ivan Grubisic](https://www.linkedin.com/pub/ivan-grubisic/26/353/739) and [eLife](https://elifesciences.org). The team of [Substance](http://substance.io) is helping with the technical execution.
 
-Substantial contributions were made by [HighWire](highwire.org), which launched Lens for a number of science journals in fall 2014 (The Journal of Biological Chemistry, The Plant Cell, Journal of Lipid Research, mBio®, and more). [The American Mathematical Society (AMS)](http://ams.org/) made Lens ready for advanced rendering of math articles.
+Substantial contributions were made by [HighWire](http://highwire.org), which launched Lens for a number of science journals in fall 2014 (The Journal of Biological Chemistry, The Plant Cell, Journal of Lipid Research, mBio®, and more). [The American Mathematical Society (AMS)](http://ams.org/) made Lens ready for advanced rendering of math articles.
 
 Thanks go to the following people, who made Lens possible:
 

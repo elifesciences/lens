@@ -127,7 +127,6 @@ PanelView.Prototype = function() {
     return this.el.querySelector('*[data-id='+nodeId+']');
   };
 
-
   // Event handling
   // --------
   //

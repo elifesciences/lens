@@ -8,7 +8,7 @@ CustomAnnotationView.Prototype = function() {
 
   this.setClasses = function() {
     AnnotationView.prototype.setClasses.call(this);
-    this.$el.addClass(this.node.name);
+    this.$el.removeClass('custom_annotation').addClass(this.node.name);
   };
 
 };

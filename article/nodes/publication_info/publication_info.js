@@ -22,7 +22,10 @@ PublicationInfo.type = {
     "links": ["array", "objects"],
     "doi": "string",
     "related_article": "string",
-    "article_info": "paragraph"
+    "article_info": "paragraph",
+    // optional
+    "subject_link": "string",
+    "article_type_link": "string"
   }
 };
 
@@ -85,6 +88,22 @@ PublicationInfo.Prototype = function() {
   this.getArticleInfo = function() {
     return this.document.get("articleinfo");
   };
+
+  this.getSubjectLinks = function() {
+    return this.subjects.map(function(subject) {
+      return {
+        name: subject,
+        url: this.subject_link + '/' + subject.replace(/ /g, '-').toLowerCase()
+      }
+    }.bind(this))
+  }
+
+  this.getArticleTypeLink = function() {
+    return {
+      name: this.article_type,
+      url: this.article_type_link + '/' + this.article_type.replace(/ /g, '-').toLowerCase()
+    }
+  }
 
 };
 

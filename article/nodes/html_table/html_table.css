@@ -19,8 +19,8 @@
   position: relative;
   border-collapse: collapse;
   border-spacing: 0;
-  margin-bottom: 20px;
   margin: 0 auto;
+  margin-bottom: 20px;
 }
 
 .lens-article .content-node.html-table thead tr {
