@@ -1,0 +1,306 @@
+/* Default style
+=============================== */
+
+$interface-font: "Avenir Next", "Helvetica", arial, sans-serif;
+$prose-font: "PT Serif", "Georgia", serif;
+$default-text-color: #212121;
+
+/* Used as a mixin */
+.contextual-label {
+  font-family: $interface-font;
+  font-weight: 600;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+
+html {
+  -webkit-font-smoothing: inherit;
+}
+body {
+  font-family: $interface-font;
+  font-weight: 500;
+  color: $default-text-color;
+}
+
+/* Links */
+a {
+  color: #0277BD;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #0277BD;
+}
+
+/* Line height overrides */
+.article .resources {
+  line-height: 24px;
+}
+
+/* Bread crumbs */
+.lens-article .content-node.cover .breadcrumbs a {
+  @extend .contextual-label;
+}
+
+/* Article title */
+.lens-article .content-node.cover .title {
+  font-size: 36px;
+  line-height: 48px;
+  font-weight: 600;
+}
+
+/* Published date */
+.lens-article .content-node.cover .published-on {
+  @extend .contextual-label;
+}
+
+.lens-article .content-node.cover .subjects {
+  @extend .contextual-label;
+}
+
+.lens-article .content-node.cover .subjects a {
+  font-weight: 600;
+}
+
+/* Authors on cover page */
+.lens-article .content-node.cover .doi {
+  @extend .contextual-label;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  margin: 24px 0;
+  padding: 11px 0;
+
+  a {
+    text-transform: none;
+    color: #212121;
+    font-weight: 600;
+  }
+}
+
+.lens-article .content-node.cover .authors .text a {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  margin: 0 0 12px;
+  color: $default-text-color;
+}
+
+.lens-article .content-node.cover .authors .text a:hover {
+  background: none;
+  // border-bottom: 1px solid #212121;
+  color: #0277BD;
+}
+
+.lens-article .content-node.cover .authors .contributor_reference.highlighted {
+  border-bottom: 1px solid #0277BD;
+  background: none;
+  color: #0277BD;
+}
+
+/* Links on cover page (PDF, Source XML, Lens JSON) */
+.lens-article .content-node.cover .content .links {
+  display: none; // hide links to PDF, Source XML, Lens JSON
+}
+.lens-article .content-node.cover .content .links a {
+  font-weight: 600;
+  @extend .contextual-label;
+}
+
+/* Paragraph (only in main content) */
+.surface.content .content-node.paragraph {
+  font-family: $prose-font;
+  line-height: 1.5;
+  font-size: 16px;
+}
+
+/* Headings */
+.content-node.heading.level-1 .content {
+  font-size: 26px;
+  line-height: 24px;
+  padding-top: 24px;
+  font-weight: 600;
+}
+
+.content-node.heading.level-2 .content {
+  font-size: 22px;
+  line-height: 24px;
+  padding-top: 12px;
+  font-weight: 600;
+}
+.surface.content .nodes > .content-node.heading.level-2 {
+  padding-bottom: 0px;
+}
+
+.content-node.heading.level-3 .content {
+  font-size: 20px;
+  line-height: 24px;
+  padding-top: 12px;
+  font-weight: 600;
+}
+.surface.content .nodes > .content-node.heading.level-3 {
+  padding-bottom: 0px;
+}
+
+.content-node.heading.level-4 .content {
+  font-size: 18px;
+  line-height: 24px;
+  padding-top: 12px;
+  font-weight: 600;
+}
+.surface.content .nodes > .content-node.heading.level-4 {
+  padding-bottom: 0px;
+}
+
+.content-node.heading.level-5 .content {
+  font-size: 16px;
+  line-height: 24px;
+  padding-top: 12px;
+  font-weight: 600;
+}
+.surface.content .nodes > .content-node.heading.level-5 {
+  padding-bottom: 0px;
+}
+
+/* Headings in TOC */
+.resource-view.toc .heading-ref {
+  color: inherit; // reset color
+  padding: 0;
+  margin-bottom: 12px;
+  border: none;
+}
+
+.resource-view.toc .heading-ref.active {
+  color: inherit;
+  border: none;
+  span {
+    text-decoration: underline;
+  }
+}
+
+.resource-view.toc .heading-ref {
+  font-size: 16px;
+}
+
+.resource-view.toc .heading-ref.level-2 {
+  font-weight: 500;
+  font-size: 16px;
+  padding-left: 24px;
+}
+
+.resource-view.toc .heading-ref.level-3 {
+  font-weight: 500;
+  font-size: 16px;
+  padding-left: 48px;
+}
+
+.resource-view.toc .heading-ref.level-4 {
+  padding-left: 48px;
+}
+
+/* Reference card */
+.lens-article .resources .content-node.citation .resource-header .name {
+  font-weight: 600;
+}
+
+.lens-article .resources .content-node.contributor .resource-header .name {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* Scrollbar default highlight color */
+.node.highlighted {
+  background: #666;
+}
+
+/* Highlighted resource default style (e.g. contributor) */
+.article .resources .info .content-node.highlighted {
+  border-left: 3px solid #212121;
+}
+
+/* Citation resource */
+.lens-article .resources .content-node.citation .resource-header .name {
+  @extend .contextual-label;
+}
+
+.lens-article .resources .content-node.citation {
+  font-family: $prose-font;
+}
+
+.lens-article .content-node.citation .content .authors {
+  font-family: $interface-font;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.lens-article .content-node.citation .content .source,
+.lens-article .content-node.citation .content .doi {
+  font-size: 11px;
+}
+
+/* Change font-size for all resource nodes */
+.lens-article .resources .figures .nodes > .content-node {
+  font-size: 13px;
+}
+
+/* Caption title (e.g. figure, table) */
+.lens-article .content-node.caption > .content > .content-node.caption-title {
+  font-size: 13px;
+  padding-bottom: 0px;
+}
+
+/* Label for resources */
+.article .resources .resource-header .name {
+  font-size: 13px;
+}
+
+/* HACK: Make sure always the interface font is in toggle buttons (focus, fullscreen) */
+.article .resources .content-node .resource-header .toggles {
+  font-family: $interface-font;
+}
+
+/* Resource view */
+
+.panel.info {
+  font-family: $prose-font;
+}
+
+.lens-article .content-node.publication-info .label {
+  font-family: $interface-font;
+}
+
+.article .resources .nodes > .content-node.publication-info .content-node[data-id=articleinfo] .heading .content {
+  font-weight: 600;
+}
+
+.lens-article .content-node.contributor .label {
+  font-family: $interface-font;
+  color: $default-text-color;
+  font-weight: 600;
+}
+
+
+.article .resources .nodes > .content-node.publication-info .content-node[data-id=articleinfo] .heading.level-3 .content {
+  font-family: $interface-font;
+  font-weight: 600;
+}
+
+.lens-article .resources .content-node.contributor .resource-header .name {
+  @extend .contextual-label;
+  font-size: 11px;
+}
+
+.lens-article .content-node.publication-info .label {
+  color: $default-text-color;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.lens-article .content-node.contributor .contributor-name {
+  font-family: $interface-font;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}

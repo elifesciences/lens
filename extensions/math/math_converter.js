@@ -1,8 +1,8 @@
 
 var _ = require('underscore');
-var util = require("lens/substance/util");
-var LensConverter = require('lens/converter');
-var LensArticle = require("lens/article");
+var util = require("../../substance/util");
+var LensConverter = require('../../converter');
+var LensArticle = require("../../article");
 var MathNodeTypes = require("./nodes");
 
 // Options:
@@ -20,6 +20,14 @@ MathConverter.Prototype = function MathConverterPrototype() {
 
   this._refTypeMapping["disp-formula"] = "formula_reference";
   this._refTypeMapping["statement"] = "math_environment_reference";
+
+  this.acceptedParagraphElements = _.extend(__super__.acceptedParagraphElements, {
+    "def-list": { handler: 'defList' }
+  });
+
+  this._annotationTypes = _.extend(__super__._annotationTypes, {
+    "roman": "custom_annotation"
+  });
 
   this.test = function(xmlDoc, documentUrl) {
     /* jshint unused:false */
@@ -67,6 +75,7 @@ MathConverter.Prototype = function MathConverterPrototype() {
     return doc;
   };
 
+
   // TODO: the default implemenation should be plain, i.e. not adding an extra heading 'Main Text'
   // Instead the LensConverter should override this...
   // ...or we should consider adding an option (if the eLife way to do it is more often applicable...)
@@ -96,7 +105,7 @@ MathConverter.Prototype = function MathConverterPrototype() {
     }
   };
 
-  this._bodyNodes['def-list'] = function(state, defList) {
+  this._bodyNodes['def-list'] = this.defList = function(state, defList) {
     var enumerationNode = {
       type: 'enumeration',
       id: state.nextId('enumeration'),
@@ -105,20 +114,46 @@ MathConverter.Prototype = function MathConverterPrototype() {
     var defItems = this.selectDirectChildren(defList, 'def-item');
     for (var i = 0; i < defItems.length; i++) {
       var defItem = defItems[i];
+      var term = defItem.querySelector('term');
+      var termId = term.id;
+      var def = defItem.querySelector('def');
       var enumItemNode = {
         type: 'enumeration-item',
+        // TODO: enabling the correct id makes warnings disappear
+        // which are given when seeing references to this def
+        // However, to work properly, we would need nesting support
+        // for definition references
+        // so we leave it for now
+        // id: termId || state.nextId('enumeration-item'),
         id: state.nextId('enumeration-item'),
+        children: []
       };
-      var term = defItem.querySelector('term');
+      // convert label
       enumItemNode.label = this.annotatedText(state, term, [enumItemNode.id, 'label']);
-      var content = defItem.querySelector('def p');
-      enumItemNode.children = _.pluck(this.paragraphGroup(state, content), "id");
+      // convert content
+      // TODO: is the assumption correct that def-item content is always wrapped in a p element?
+      var pEls = this.selectDirectChildren(def, 'p');
+      for (var j = 0; j < pEls.length; j++) {
+        var p = pEls[j];
+        var children = this.paragraphGroup(state, p);
+        var pgroup = {
+          type: 'paragraph',
+          id: state.nextId('pgroup'),
+          children: _.pluck(children, 'id')
+        };
+        state.doc.create(pgroup);
+        enumItemNode.children.push(pgroup.id);
+      }
       state.doc.create(enumItemNode);
       enumerationNode.items.push(enumItemNode.id);
     }
     state.doc.create(enumerationNode);
     return enumerationNode;
   };
+
+  // HACK: There is content that has nested <app> elements, which is not allowed
+  // we just treat them as sections
+  this._bodyNodes['app'] = this._bodyNodes['sec'];
 
   this.extractDefinitions = function(/*state, article*/) {
     // We don't want to show a definitions (glossary) panel
@@ -276,7 +311,7 @@ MathConverter.Prototype = function MathConverterPrototype() {
 
   this._getFormulaData = function(state, formulaElement, formulaId, inline) {
     var result = [];
-    var labels = {'tex' : {}, 'svg': {}, 'math': {}};
+    var labels = {'tex' : {}, 'svg': {}, 'html': {}, 'math': {}};
     var el = formulaElement;
     var alternatives = el.querySelector('alternatives');
     if (alternatives) el = alternatives;
@@ -295,6 +330,13 @@ MathConverter.Prototype = function MathConverterPrototype() {
           result.push({
             format: "svg",
             data: this.toHtml(child)
+          });
+          break;
+        case "textual-form":
+          labels.html = this._extractLabels(child);
+          result.push({
+            format: "html",
+            data: $(child).text()
           });
           break;
         case "mml:math":
@@ -342,6 +384,7 @@ MathConverter.Prototype = function MathConverterPrototype() {
     state.labelsForFormula[formulaId] = labels;
     return result;
   };
+
   this.formula = function(state, formulaElement, inline) {
     var doc = state.doc;
     var id = state.nextId("formula");
@@ -496,6 +539,7 @@ MathConverter.Prototype = function MathConverterPrototype() {
       if (type === 'label' || !el.textContent) continue;
       institutionText += el.textContent;
     }
+    var specific_use = aff.getAttribute('specific-use');
 
     // TODO: we might add a property to the affiliation node that collects
     // data which is not handled here
@@ -505,7 +549,8 @@ MathConverter.Prototype = function MathConverterPrototype() {
       type: "affiliation",
       source_id: aff.getAttribute("id"),
       label: label ? label.textContent : null,
-      institution: institutionText
+      institution: institutionText,
+      specific_use: specific_use || null
     };
 
     state.affiliations.push(affiliationNode.id);
@@ -539,7 +584,7 @@ MathConverter.Prototype = function MathConverterPrototype() {
     //  <kwd>lipid droplet</kwd>
     //  <kwd>anti-bacterial</kwd>
     // </kwd-group>
-    var keyWords = articleMeta.querySelectorAll("kwd-group kwd");
+    var keywordEls = articleMeta.querySelectorAll("kwd-group kwd");
 
     // Extract subjects
     // ------------
@@ -551,7 +596,7 @@ MathConverter.Prototype = function MathConverterPrototype() {
     // <subject>Microbiology and infectious disease</subject>
     // </subj-group>
 
-    var subjects = articleMeta.querySelectorAll("subj-group[subj-group-type=heading] subject");
+    var subjectEls = articleMeta.querySelectorAll("subj-group[subj-group-type=heading] subject");
 
     // Article Type
     //
@@ -596,8 +641,18 @@ MathConverter.Prototype = function MathConverterPrototype() {
 
     publicationInfo.raw_formats = rawFormats;
 
-    publicationInfo.keywords = _.pluck(keyWords, "textContent");
-    publicationInfo.subjects = _.pluck(subjects, "textContent");
+    var keywords = [];
+    for (var i = 0; i < keywordEls.length; i++) {
+      keywords.push(this.annotatedText(state, keywordEls[i], ["publication_info", "keywords", i]));
+    }
+    publicationInfo.keywords = keywords;
+
+    var subjects = [];
+    for (var i = 0; i < subjectEls.length; i++) {
+      subjects.push(this.annotatedText(state, subjectEls[i], ["publication_info", "subjects", i]));
+    }
+    publicationInfo.subjects = subjects;
+
     publicationInfo.article_type = articleType ? articleType.textContent : "";
     publicationInfo.links = links;
   };
@@ -672,14 +727,17 @@ MathConverter.Prototype = function MathConverterPrototype() {
             anno.target = targetNode.id;
           } else {
             console.log("Could not lookup math environment for reference", anno);
+            continue;
           }
           referencedMath[targetNode.id] = true;
         } else {
           targetNode = state.doc.getNodeBySourceId(anno.target) || state.doc.get(anno.target);
           if (targetNode) {
             anno.target = targetNode.id;
+            targetNode.isReferenced = true;
           } else {
             console.log("Could not lookup targetNode for annotation", anno);
+            continue;
           }
         }
       }
@@ -696,58 +754,91 @@ MathConverter.Prototype = function MathConverterPrototype() {
     state.referencedMath = referencedMath;
   };
 
+  function _showFigure(state, node) {
+    // show all figures in the figures panel
+    state.doc.show('figures', node.id);
+    // show unreferenced and anchored figures in the main content
+    if (!node.isReferenced || node.position === 'anchor') {
+      state.doc.show('content', node.id);
+    }
+  }
+
+  function _showFormulaOrEnvironment(state, node, nested) {
+    var referencedMath = state.referencedMath;
+    var info = state.nodeInfo[node.id];
+    // only show formulas and environments in the math panel
+    // - if they are referenced
+    // - or have specificUse='resource' set explicitly
+    if (referencedMath[node.id] ||
+        (info && info.specificUse === "resource")) {
+      doc.show(MATH_PANEL, node.id);
+    }
+    if (!nested) {
+      doc.show('content', node.id);
+    }
+    // a math environment can have nested content
+    // such as figures or environments which need
+    // to be processed recursively
+    if (node.type === 'math_environment') {
+      _showNestedContent(state, node.body);
+    }
+  }
+
+  function _showNestedContent(state, nodeIds) {
+    var referencedMath = state.referencedMath;
+    for (var i = 0; i < nodeIds.length; i++) {
+      var nodeId = nodeIds[i]
+      var node = state.doc.get(nodeId);
+      var info = state.nodeInfo[nodeId];
+      switch (node.type) {
+        case 'figure':
+          // show all figures in the figures panel
+          state.doc.show('figures', nodeId);
+          // hide referenced and unanchored figures from the environment
+          if (node.isReferenced && node.position !== 'anchor') {
+            nodeIds.splice(i, 1);
+            i--;
+          }
+          break;
+        case 'formula':
+        case 'math_environment':
+          _showFormulaOrEnvironment(state, node, 'nested');
+          break;
+        default:
+          // nothing
+      }
+    }
+  }
+
+  function _showProof(state, node) {
+    // proofs are always shown only in the content
+    state.doc.show('content', node.id);
+    _showNestedContent(state, node.children);
+  }
+
   this.populatePanels = function(state) {
     var doc = state.doc;
     var referencedMath = state.referencedMath;
     var node, child, info;
     for (var i = 0; i < state.shownNodes.length; i++) {
-      node = state.shownNodes[i];
+      node = doc.get(state.shownNodes[i].id);
       switch (node.type) {
         case 'figure':
-          // show figures without captions are only in-flow
-          if (!node.caption) {
-            state.doc.show('content', node.id);
-          }
-          // all others are shown in the figures panel
-          else {
-            state.doc.show('figures', node.id);
-            // in addition a figure can be shown in-flow using position='anchor'
-            if (node.position === 'anchor') {
-              state.doc.show('content', node.id);
-            }
-          }
+          _showFigure(state, node);
           break;
         case 'formula':
         case 'math_environment':
-          info = state.nodeInfo[node.id];
-          // only environments or formulas go into the math panel
-          // that ar referenced or forced using `specific-use='resource'`
-          if (referencedMath[node.id] ||
-              (info && info.specificUse === "resource")) {
-            doc.show(MATH_PANEL, node.id);
-          }
-          doc.show('content', node.id);
+          _showFormulaOrEnvironment(state, node);
           break;
-        // Special treatment for proofs as they may contain equations
-        // which when referenced should be displayed in the resource panel
         case 'proof':
-          LensConverter.prototype.showNode.call(this, state, node);
-          for (var j = 0; j < node.children.length; j++) {
-            child = doc.get(node.children[j]);
-            if (child.type === 'formula' || child.type === 'math_environment') {
-              info = state.nodeInfo[child.id];
-              if (referencedMath[child.id] ||
-                (info && info.specificUse === "resource")) {
-                doc.show(MATH_PANEL, child.id);
-              }
-            }
-          }
+          _showProof(state, node);
           break;
         default:
           LensConverter.prototype.showNode.call(this, state, node);
       }
     }
   };
+
 };
 
 MathConverter.Prototype.prototype = LensConverter.prototype;

@@ -59,8 +59,7 @@ ContentPanelView.Prototype = function() {
   this.onTocItemSelected = function(nodeId) {
     var n = this.findNodeView(nodeId);
     if (n) {
-      var topOffset = $(n).position().top+CORRECTION;
-      this.surface.$el.scrollTop(topOffset);
+      n.scrollIntoView();
     }
   };
 

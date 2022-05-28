@@ -1,5 +1,5 @@
 /*
-Contributor 
+Contributor
 --------------------------------------- */
 
 .lens-article .resources .content-node.contributor .resource-header .name {
@@ -9,16 +9,16 @@ Contributor
 }
 
 .lens-article .content-node.contributor .content {
-  
+
 }
 
 .lens-article .content-node.contributor .affiliation {
-  margin-top: 10px;
-  font-size: 14px;
+  margin-top: 12px;
+  margin-bottom: 12px;
 }
 
 .lens-article .content-node.contributor .contributor-bio {
-  padding-top: 30px;  
+  padding-top: 30px;
 }
 
 .lens-article .content-node.contributor .contributor-bio .bio {
@@ -44,8 +44,10 @@ Contributor
   margin-bottom: 20px;
 }
 
-.lens-article .content-node.contributor .label {
-  font-size: 14px;
-  margin-top: 20px;
-  color: #999;
+.lens-article .content-node.contributor .contrib-label {
+  font-weight: 600;
+}
+
+.lens-article .content-node.contributor .contrib-data {
+  margin-bottom: 12px;
 }

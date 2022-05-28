@@ -30,33 +30,28 @@ CoverView.Prototype = function() {
     var node = this.node;
     var pubInfo = this.node.document.get('publication_info');
 
-    if (node.breadcrumbs && node.breadcrumbs.length > 0) {
-      var breadcrumbs = $$('.breadcrumbs', {
-        children: _.map(node.breadcrumbs, function(bc) {
-          var html;
-          if (bc.image) {
-            html = '<img src="'+bc.image+'" title="'+bc.name+'"/>';
-          } else {
-            html = bc.name;
-          }
-          return $$('a', {href: bc.url, html: html});
-        })
-      });
-      this.content.appendChild(breadcrumbs);
-    }
 
+    // Render Subject(s) if available
+    // --------------
+    //
 
     if (pubInfo) {
-      var pubDate = pubInfo.published_on;
-      if (pubDate) {
-        var items = [articleUtil.formatDate(pubDate)];
-        if (pubInfo.journal && !node.breadcrumbs) {
-          items.push(' in <i>'+pubInfo.journal+'</i>');
-        }
+      var subjects = pubInfo.subjects;
+      if (subjects) {
+        var subjectsEl
+        if (pubInfo.subject_link) {
+          subjectsEl = $$('.subjects', {
+            children: _.map(pubInfo.getSubjectLinks(), function(subject) {
+              return $$('a', {href: subject.url, text: subject.name})
+            })
+          })
 
-        this.content.appendChild($$('.published-on', {
-          html: items.join('')
-        }));
+        } else {
+          subjectsEl = $$('.subjects', {
+            html: subjects.join(' ')
+          })
+        }
+        this.content.appendChild(subjectsEl);
       }
     }
 
@@ -87,6 +82,28 @@ CoverView.Prototype = function() {
     }));
 
     this.content.appendChild(authors);
+
+    if (pubInfo) {
+      var pubDate = pubInfo.published_on;
+      var articleType = pubInfo.article_type;
+      if (pubDate) {
+        var items = [articleUtil.formatDate(pubDate)];
+
+        if (articleType) {
+          if (pubInfo.article_type_link) {
+            var linkData = pubInfo.getArticleTypeLink()
+            items.unshift('<a href="'+linkData.url+'">'+linkData.name+'</a>')
+          } else {
+            items.unshift(articleType)
+          }
+          
+        }
+
+        this.content.appendChild($$('.published-on', {
+          html: items.join(' ')
+        }));
+      }
+    }
 
     // Render Links
     // --------------

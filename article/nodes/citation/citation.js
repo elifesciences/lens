@@ -90,7 +90,7 @@ Citation.example = {
   "citation_urls": [
     {
       "name": "PubMed",
-      "url": "http://www.ncbi.nlm.nih.gov/pubmed/19606141"
+      "url": "https://www.ncbi.nlm.nih.gov/pubmed/19606141"
     }
   ]
 };

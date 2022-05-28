@@ -14,7 +14,6 @@
 .content-node.heading { }
 
 .content-node.heading .content {
-  color: rgba(0,0,0,0.8);
   font-weight: 600;
   line-height: 40px;
 }
